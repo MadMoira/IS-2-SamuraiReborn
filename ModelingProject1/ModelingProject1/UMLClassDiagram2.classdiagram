@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="0e0fa1be-c187-479f-b5f6-e798eca89ce4" name="UMLClassDiagram2" linkedPackageId="e959441f-9cd9-48f0-b70d-25ad5e724ef0" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="ff1aee99-da82-45a5-ae43-c76c166e3e74">
+      <profileInstance Id="76c7d78c-763d-4d57-b749-e57c19df4389" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="83e0eb26-30cd-4bb5-93bc-808b41c22b24">
+      <profileInstance Id="d20395b6-1264-4a96-932c-61e03f18a5d3" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2eee75fd-7fa6-4500-a095-d67cda1b2597" name="Class1" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7c45e56b-ca55-4dd7-af4d-c222606446f0" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <Interface Id="f387c470-e61c-459b-b630-90b541c59aed" name="Interface2" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5eb305e9-4e0c-416d-a1ae-ae8dcf1bfdef" />
+      </Interface>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="e959441f-9cd9-48f0-b70d-25ad5e724ef0" name="ModelingProject1">
+    <elementDefinition Id="11c6a509-55c3-40fe-ba11-951ba3340762" />
+  </package>
+</logicalClassDesignerModel>

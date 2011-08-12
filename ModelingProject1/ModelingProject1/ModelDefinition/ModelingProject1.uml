@@ -21,10 +21,40 @@
     <packageHasNamedElement>
       <class
         Id="79a3ab7e-d8eb-481a-83ed-393a61138b99"
+        name="PandaP1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="9a9893d3-be06-46b3-9f18-eb04c74f468c"
+        name="Interface1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ebf3a58b-500b-4c0e-b1dc-418b2f10eb0a"
+        name="MeerkatP2"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7c45e56b-ca55-4dd7-af4d-c222606446f0"
         name="Class1"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="5eb305e9-4e0c-416d-a1ae-ae8dcf1bfdef"
+        name="Interface2"
+        isAbstract="false"
+        isLeaf="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
