@@ -4,11 +4,23 @@
     <logicalClassDesignerModelHasTypes>
       <class Id="90324718-5134-4ca1-9d25-17fafb1f4cba" name="PandaP1" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="79a3ab7e-d8eb-481a-83ed-393a61138b99" />
+        <generalsInternal>
+          <generalization Id="24b2492f-b01c-4763-8567-1c8939fa08b6" isSubstitutable="false">
+            <classMoniker Id="2fff9e50-fbb3-4539-b395-779d0040ded4" LastKnownName="Player" />
+            <elementDefinition Id="a99a92c9-5f45-4f61-9cb7-b58f14672443" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="6ac5d0ab-44c2-4000-9b92-9d90f9bb3b3a" name="MeerkatP2" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="ebf3a58b-500b-4c0e-b1dc-418b2f10eb0a" />
+        <generalsInternal>
+          <generalization Id="48718c89-bfd8-4cfe-9b5c-7a4424e3afa1" isSubstitutable="false">
+            <classMoniker Id="2fff9e50-fbb3-4539-b395-779d0040ded4" LastKnownName="Player" />
+            <elementDefinition Id="b6a9c73c-da56-4aa1-843b-8bf0aabe556b" />
+          </generalization>
+        </generalsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -17,18 +29,70 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="fef43e73-6218-4463-b8bf-b047dc03a423" name="TileSet" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="fef43e73-6218-4463-b8bf-b047dc03a423" name="Tileset" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="d502f8d0-3120-4a47-bf09-c43cb4d12488" />
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="f426f76a-2ab1-4636-8745-47763de97cb9" name="NPC" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="f426f76a-2ab1-4636-8745-47763de97cb9" name="Enemy" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="bbab85cf-7c5a-4f21-b46f-5286ac6a1e0e" />
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="9a44ad41-8b05-4d54-9be7-29062b352fc2" name="Boss" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="36eb4621-bec4-4180-923c-5bc8a704c778" />
+      <class Id="2fff9e50-fbb3-4539-b395-779d0040ded4" name="Player" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="bded0ad0-4a4c-4b0b-b242-8c9e468b735e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="aad3cbcc-d870-4835-9ebb-f3b48f179202" name="GameCore" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3e4513ae-2beb-4d69-97ee-1ded43d92b7f" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="b419850f-0c7d-4b86-9214-116e554b1f29" name="Screen" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="196575ff-88ca-46c5-82d0-9a18c2f12689" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3c1adfd6-e07f-4841-8ede-13f58ded619a" name="Weapon" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="885c5b04-e398-45ce-a43b-23f7dc32e233" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1b81136f-f734-40b5-9fd2-4ac643a83ef7" name="Sword" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="30fa1bbc-2504-4f75-b714-f47e939f0c6e" />
+        <generalsInternal>
+          <generalization Id="03c5e457-a8bb-4aea-9861-3082b022bbff" isSubstitutable="false">
+            <classMoniker Id="3c1adfd6-e07f-4841-8ede-13f58ded619a" LastKnownName="Weapon" />
+            <elementDefinition Id="ff17e1dd-b023-4bf7-aac4-547e5a13806d" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="47e9cb29-0ea4-4ec4-8557-0e0828b5ef81" name="Spear" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2f1b9068-3ab4-410f-9afd-fcdd59b87fb4" />
+        <generalsInternal>
+          <generalization Id="199fc660-7556-4c32-9100-fb655cd9db4a" isSubstitutable="false">
+            <classMoniker Id="3c1adfd6-e07f-4841-8ede-13f58ded619a" LastKnownName="Weapon" />
+            <elementDefinition Id="dbe2f937-2d64-40d6-b309-d385451b606a" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="daf5ad72-137c-4e6e-93d3-de0e86426b45" name="Level" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="747b7fbb-e4b3-4fe7-bc8d-441f352b344b" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7c7f0d8a-6524-47a1-8209-1d2131b6ca4e" name="UI" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="536b3c52-c6c5-400d-8cb2-15226c01f466" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="98e3658f-6b92-4ecc-adb8-fdbd6e7d0051" name="Menu" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7853a750-c49a-40f6-a297-a10b771e842a" />
       </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>

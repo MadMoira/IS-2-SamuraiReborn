@@ -24,7 +24,18 @@
         name="PandaP1"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="a99a92c9-5f45-4f61-9cb7-b58f14672443"
+            isSubstitutable="false">
+            <classMoniker
+              Id="bded0ad0-4a4c-4b0b-b242-8c9e468b735e"
+              LastKnownName="Player"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <Interface
@@ -39,7 +50,18 @@
         name="MeerkatP2"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="b6a9c73c-da56-4aa1-843b-8bf0aabe556b"
+            isSubstitutable="false">
+            <classMoniker
+              Id="bded0ad0-4a4c-4b0b-b242-8c9e468b735e"
+              LastKnownName="Player"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -67,7 +89,7 @@
     <packageHasNamedElement>
       <class
         Id="d502f8d0-3120-4a47-bf09-c43cb4d12488"
-        name="TileSet"
+        name="Tileset"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
@@ -75,7 +97,7 @@
     <packageHasNamedElement>
       <class
         Id="bbab85cf-7c5a-4f21-b46f-5286ac6a1e0e"
-        name="NPC"
+        name="Enemy"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
@@ -84,6 +106,116 @@
       <class
         Id="36eb4621-bec4-4180-923c-5bc8a704c778"
         name="Boss"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="bded0ad0-4a4c-4b0b-b242-8c9e468b735e"
+        name="Player"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3e4513ae-2beb-4d69-97ee-1ded43d92b7f"
+        name="GameCore"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="196575ff-88ca-46c5-82d0-9a18c2f12689"
+        name="Screen"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="885c5b04-e398-45ce-a43b-23f7dc32e233"
+        name="Weapon"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="30fa1bbc-2504-4f75-b714-f47e939f0c6e"
+        name="Sword"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="ff17e1dd-b023-4bf7-aac4-547e5a13806d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="885c5b04-e398-45ce-a43b-23f7dc32e233"
+              LastKnownName="Weapon"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2f1b9068-3ab4-410f-9afd-fcdd59b87fb4"
+        name="Spear"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="dbe2f937-2d64-40d6-b309-d385451b606a"
+            isSubstitutable="false">
+            <classMoniker
+              Id="885c5b04-e398-45ce-a43b-23f7dc32e233"
+              LastKnownName="Weapon"
+              LastKnownLocation="ModelingProject1.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="747b7fbb-e4b3-4fe7-bc8d-441f352b344b"
+        name="Level"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6b26e994-b739-4fe0-bd8f-71303f1ff063"
+        name="LTutorial"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b3fcc8b7-d453-43be-86c0-9f52423c1bb8"
+        name="LLevelOne"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="536b3c52-c6c5-400d-8cb2-15226c01f466"
+        name="UI"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7853a750-c49a-40f6-a297-a10b771e842a"
+        name="Menu"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
