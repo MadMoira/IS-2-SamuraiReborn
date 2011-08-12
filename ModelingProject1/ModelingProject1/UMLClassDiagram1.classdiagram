@@ -28,6 +28,25 @@
             <elementDefinition Id="a5baab80-ca5e-46fb-b24d-cec571788aef" />
           </association>
         </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="0610b74c-9fc0-422b-b0fd-9ff038f59d80" name="Stats*" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="8111bda1-7f1f-4e8a-a4a4-91e97061da03" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="31316100-ba6f-4fed-8a9a-0076a3288c28" name="walk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="467e0179-da78-4b9a-9a15-22f196116363" />
+          </operation>
+          <operation Id="f1713227-8d38-41b7-92dd-3a4b5b198f68" name="changeStance" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="428256ce-a69e-4ee2-996c-119e6883e633" />
+          </operation>
+          <operation Id="acecae4b-e464-4bdf-9984-010bb2f8bd4b" name="attack" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ba6cb000-33c4-4df8-922c-ad9fb9b13b68" />
+          </operation>
+          <operation Id="6b98dc42-68fb-4c16-96e0-58bac4a5d0c3" name="getPandaStats" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="621f39da-1778-4a29-9620-1daf3aa0a49b" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -57,6 +76,22 @@
             <elementDefinition Id="df811dda-299d-43c7-b3db-361bdd36e87e" />
           </association>
         </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="bb3482ee-2dfb-4d6f-a7d1-638168aa09cd" name="Stats*" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="cbcc3e43-9392-4061-9765-d5b639c0e522" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="1db5e6e3-efe0-45f6-86f0-7a757e512342" name="attack" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="c94a78d4-1daf-4f91-a79d-f1b47253f604" />
+          </operation>
+          <operation Id="f53e464c-51b6-40ff-8e04-65e3a6b5aac1" name="walk" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="58d26e60-8cef-4734-aefe-7e928859b633" />
+          </operation>
+          <operation Id="9ef6f53a-6744-4d91-8def-e8dd4419d941" name="getMeerkatStats" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="0f0b7c4d-bbdd-4666-8a75-f1e5e37845dc" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -249,6 +284,11 @@
     <logicalClassDesignerModelHasTypes>
       <Interface Id="cb966a13-63da-479c-9784-78bb01317625" name="Screen" isAbstract="false" isLeaf="false">
         <elementDefinition Id="e8024af3-9b00-4a63-8c9c-3ff4428e22f6" />
+        <ownedOperations>
+          <operation Id="f17d17f8-617d-4b42-9ea5-3d46172f8131" name="updateScreen" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="404027f7-043c-4c2b-b420-8986b7fec5d7" />
+          </operation>
+        </ownedOperations>
       </Interface>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>
