@@ -11,6 +11,26 @@
         <elementDefinition Id="ebf3a58b-500b-4c0e-b1dc-418b2f10eb0a" />
       </class>
     </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="15b57f26-18b9-40fd-9bd8-4b35dfcb4597" name="Sprite" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="17e24110-f9c7-4153-bd7b-1c488a7533cf" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="fef43e73-6218-4463-b8bf-b047dc03a423" name="TileSet" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d502f8d0-3120-4a47-bf09-c43cb4d12488" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f426f76a-2ab1-4636-8745-47763de97cb9" name="NPC" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="bbab85cf-7c5a-4f21-b46f-5286ac6a1e0e" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9a44ad41-8b05-4d54-9be7-29062b352fc2" name="Boss" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="36eb4621-bec4-4180-923c-5bc8a704c778" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="01b60acc-10a7-4cf8-9470-7f22dc9f60c2" name="ModelingProject1">
     <elementDefinition Id="11c6a509-55c3-40fe-ba11-951ba3340762" />
