@@ -23,7 +23,7 @@
         <OperationElementListCompartment Id="d919bad8-4194-4d24-abf0-fda037042b21" absoluteBounds="6.64, 5.0425780728459362, 1.8450000000000002, 0.36132811258236552" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.625 : 3.57617186754942); (6.625 : 3.57617186754942)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
+    <associationConnector edgePoints="[(4.625 : 3.57617186754942); (6.625 : 3.57617186754942)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
       <associationMoniker Id="f30ff688-f4f8-4703-97de-6219bdd6bd46" />
       <relativeChildShapes />
       <nodes>
@@ -31,7 +31,7 @@
         <classShapeMoniker Id="7b73368f-5471-4ebb-a798-0f509c73d590" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.625 : 4.82617186754942); (6.625 : 4.82617186754942)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
+    <associationConnector edgePoints="[(4.625 : 4.82617186754942); (6.625 : 4.82617186754942)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
       <associationMoniker Id="07d3a209-836c-41ff-8b0f-a83bec9bf102" />
       <relativeChildShapes />
       <nodes>
@@ -53,7 +53,7 @@
         <OperationElementListCompartment Id="019d55d6-0f9f-403c-843b-80ade6c0f9f1" absoluteBounds="8.39, 6.671484357615312, 1.4700000000000002, 0.20117186754941951" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.9687505 : 5.75); (8.9687505 : 4.43945308278004); (8.5 : 4.43945308278004)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
+    <associationConnector edgePoints="[(8.9687505 : 5.75); (8.9687505 : 4.43945308278004); (8.5 : 4.43945308278004)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
       <associationMoniker Id="75d283ff-54cf-4730-b597-7a43ed334489" />
       <relativeChildShapes />
       <nodes>
@@ -68,22 +68,22 @@
         <OperationElementListCompartment Id="8bef88d8-e75d-4ee8-8d93-a3ce9136bf33" absoluteBounds="9.515, 1.2613281125823657, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10.25 : 1.56249998013179); (10.25 : 2.25)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
+    <associationConnector edgePoints="[(10.25 : 1.56249998013179); (10.25 : 2.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
       <associationMoniker Id="274a1fdd-47ed-4431-bdf6-e9163bbe1d5b" />
       <relativeChildShapes />
       <moveableDecoratorHostShapes>
-        <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="10.33333333209157, 2, 0.125, 0.14800345897674561" shapeFieldName="TargetMultiplicity" />
+        <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="10.326388888061047, 2, 0.125, 0.14800345897674561" shapeFieldName="TargetMultiplicity" />
       </moveableDecoratorHostShapes>
       <nodes>
         <classShapeMoniker Id="9dd53da8-4cef-4cb6-879b-e4e5511fb75b" />
         <classShapeMoniker Id="43a7457b-5efb-4069-9b39-48dab23d4f1d" />
       </nodes>
     </associationConnector>
-    <classShape Id="0a4fad46-d87d-42e6-9abf-e7efe3290b7f" absoluteBounds="0.625, 0.5, 1.5, 0.90234373509883881" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
+    <classShape Id="0a4fad46-d87d-42e6-9abf-e7efe3290b7f" absoluteBounds="0.5, 0.5, 1.5, 0.90234373509883881" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
       <classMoniker Id="8ba72321-8722-4ef4-b8a7-0e536fce260e" LastKnownName="GameCore" />
       <nestedChildShapes>
-        <AttributeElementListCompartment Id="cc658c5e-e48f-49f8-8902-491261ae353b" absoluteBounds="0.6399999999999999, 0.88999999999999968, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-        <OperationElementListCompartment Id="af218ac7-5017-479c-8443-2771bd0c936e" absoluteBounds="0.6399999999999999, 1.1011718675494198, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <AttributeElementListCompartment Id="cc658c5e-e48f-49f8-8902-491261ae353b" absoluteBounds="0.5149999999999999, 0.88999999999999968, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="af218ac7-5017-479c-8443-2771bd0c936e" absoluteBounds="0.5149999999999999, 1.1011718675494198, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="bc8f19d3-63dc-4449-ad6f-baaff777e1a0" absoluteBounds="0.5, 3.125, 1.5, 2.6640624304612475" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
@@ -93,7 +93,7 @@
         <OperationElementListCompartment Id="e5774c0a-e757-41eb-8011-5bc8249d5c67" absoluteBounds="0.515, 4.3667968476812042, 1.4700000000000002, 1.3222655827800431" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <generalizationConnector edgePoints="[(3.125 : 3.57617186754942); (2 : 3.57617186754942)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110">
+    <generalizationConnector edgePoints="[(3.125 : 3.57617186754942); (2 : 3.57617186754942)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110">
       <generalizationMoniker Id="74dde245-c885-45a9-a6c2-d3281758bd0c" />
       <relativeChildShapes />
       <nodes>
@@ -101,7 +101,7 @@
         <classShapeMoniker Id="bc8f19d3-63dc-4449-ad6f-baaff777e1a0" />
       </nodes>
     </generalizationConnector>
-    <generalizationConnector edgePoints="[(3.125 : 4.82617186754942); (2 : 4.82617186754942)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110">
+    <generalizationConnector edgePoints="[(3.125 : 4.82617186754942); (2 : 4.82617186754942)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110">
       <generalizationMoniker Id="6dbd7c7f-b56b-4d25-9b28-6dc905087963" />
       <relativeChildShapes />
       <nodes>
@@ -116,7 +116,7 @@
         <OperationElementListCompartment Id="6475594a-c7f1-48f4-827f-fea81236b5d3" absoluteBounds="11.515, 4.5113281125823654, 1.4700000000000002, 0.20117186754941951" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.875 : 6.36132811258237); (12.25 : 6.36132811258237); (12.25 : 4.81249998013178)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
+    <associationConnector edgePoints="[(9.875 : 6.36132811258237); (12.25 : 6.36132811258237); (12.25 : 4.81249998013178)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
       <associationMoniker Id="46c61450-dbc8-47c5-9dcc-27ee7866d752" />
       <relativeChildShapes />
       <nodes>
@@ -131,7 +131,7 @@
         <OperationElementListCompartment Id="f6d31c8e-2506-42b8-ad8b-c719b2885425" absoluteBounds="13.515, 3.8511718675494198, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <generalizationConnector edgePoints="[(13.5 : 3.95117186754942); (13 : 3.95117186754942)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110">
+    <generalizationConnector edgePoints="[(13.5 : 3.95117186754942); (13 : 3.95117186754942)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110">
       <generalizationMoniker Id="cf5378bb-41c6-49ef-a790-34a52e164427" />
       <relativeChildShapes />
       <nodes>
@@ -146,7 +146,7 @@
         <OperationElementListCompartment Id="11fb44f5-cb5f-4a65-b16f-d244bcf9b336" absoluteBounds="13.515, 4.85117186754942, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <generalizationConnector edgePoints="[(13.5 : 4.53124999006589); (13 : 4.53124999006589)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110">
+    <generalizationConnector edgePoints="[(13.5 : 4.53124999006589); (13 : 4.53124999006589)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110">
       <generalizationMoniker Id="3733f5f5-4eca-451c-889a-c778797292e4" />
       <relativeChildShapes />
       <nodes>
@@ -168,7 +168,7 @@
         <OperationElementListCompartment Id="01daba7f-2cf9-4220-b016-147c0ccad43d" absoluteBounds="12.265, 1.1011718675494193, 1.9700000000000002, 0.20117186754941951" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(12.25 : 0.951171867549419); (11 : 0.951171867549419)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="*" targetMultiplicity="1">
+    <associationConnector edgePoints="[(12.25 : 0.951171867549419); (11 : 0.951171867549419)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="*" targetMultiplicity="1">
       <associationMoniker Id="d48a7996-c2f6-4ab6-b596-08be06ef4127" />
       <relativeChildShapes />
       <nodes>
@@ -183,7 +183,7 @@
         <OperationElementListCompartment Id="6848cfd5-69ab-45e9-a2c3-c59c8639c3d4" absoluteBounds="0.51500000000000012, 7.1363281125823654, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </interfaceShape>
-    <associationConnector edgePoints="[(1.015626 : 6.375); (1.015626 : 5.78906243046125)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
+    <associationConnector edgePoints="[(1.015626 : 6.375); (1.015626 : 5.78906243046125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
       <associationMoniker Id="1c9e3d42-1ad9-4eb1-817e-2646924f55db" />
       <relativeChildShapes />
       <nodes>
@@ -212,7 +212,7 @@
         <OperationElementListCompartment Id="b6d13621-6c67-4dd5-9d6d-747bded52afc" absoluteBounds="0.5149999999999999, 10.171484357615311, 1.4700000000000002, 0.20117186754941951" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.25 : 9.25); (1.25 : 8.40624999006589); (2.625 : 8.40624999006589)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1..*" targetMultiplicity="1">
+    <associationConnector edgePoints="[(1.25 : 9.25); (1.25 : 8.40624999006589); (2.625 : 8.40624999006589)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1..*" targetMultiplicity="1">
       <associationMoniker Id="bcceac40-1bad-4483-8c3e-8a8c7df6f4b4" />
       <relativeChildShapes />
       <nodes>
@@ -227,7 +227,7 @@
         <OperationElementListCompartment Id="457ef4b1-e0a3-47be-a3f2-68bca102a870" absoluteBounds="0.5149999999999999, 12.847265582780043, 1.4700000000000002, 0.20117186754941963" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.25 : 10.4726562251647); (1.25 : 11.125)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1..*">
+    <associationConnector edgePoints="[(1.25 : 10.4726562251647); (1.25 : 11.125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1..*">
       <associationMoniker Id="53f7508b-9855-4d71-91d2-d9539035fcb4" />
       <relativeChildShapes />
       <nodes>
@@ -242,7 +242,7 @@
         <OperationElementListCompartment Id="d2960f28-4d77-45a1-b3d2-b2ffcc8d27ff" absoluteBounds="3.14, 7.0621093377470974, 1.4700000000000002, 0.20117186754941963" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.539065 : 5.78906243046125); (1.539065 : 6.125); (2.25 : 6.125); (2.25 : 6.43164060264826); (3.125 : 6.43164060264826)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
+    <associationConnector edgePoints="[(1.539065 : 5.78906243046125); (1.539065 : 6.125); (2.25 : 6.125); (2.25 : 6.43164060264826); (3.125 : 6.43164060264826)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
       <associationMoniker Id="0b810d14-b8f9-4456-8b51-424724bc2cf3" />
       <relativeChildShapes />
       <nodes>
