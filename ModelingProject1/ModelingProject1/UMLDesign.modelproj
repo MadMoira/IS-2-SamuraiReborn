@@ -6,7 +6,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0a6d58f0-e224-4dee-ae91-4b677d3690d0}</ProjectGuid>
     <ArchitectureToolsVersion>1.0.0.0</ArchitectureToolsVersion>
-    <Name>ModelingProject1</Name>
+    <Name>UMLDesign</Name>
     <RootNamespace>ModelingProject1</RootNamespace>
     <SccProjectName>&lt;Project Location In Database&gt;</SccProjectName>
     <SccProvider>Mercurial Source Control Package</SccProvider>
