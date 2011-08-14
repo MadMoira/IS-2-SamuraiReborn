@@ -267,6 +267,17 @@
             isDerivedUnion="false"
             aggregation="None"
             isComposite="false" />
+          <property
+            Id="ee10785c-8fbd-429d-a0a0-abff1ce9c975"
+            name="texture"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -604,6 +615,14 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false" />
+          <operation
+            Id="fd483f63-e5f9-42f9-8af7-a2dbf0dba810"
+            name="loadTMXTileMapFile"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -636,10 +655,63 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="5cf189b8-2b2d-41c8-8a4d-d8bb487d75e5"
+            name="gameState"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
             Id="e732155d-9b35-4e63-b3ce-b0db9e450172"
             name="initPlayers"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="d5d10c3c-2daf-42ec-b69e-7ac9b5e49941"
+            name="setup"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="256039e4-cc02-4103-81d6-7eda10de0cb5"
+            name="close"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="b0ec9b89-488e-45bc-b615-43dbe6c1b83c"
+            name="initGame"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="4a811d90-e4cd-4926-bb4a-d2a068a6f4fa"
+            name="changeState"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="c0566b1b-06c6-418f-b39d-7f39772aadc8"
+            name="setNewState"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -1039,7 +1111,7 @@
         <ownedAttributes>
           <property
             Id="1cf60190-7a51-45c3-9dfa-5ea0570580de"
-            name="Type"
+            name="type"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1109,11 +1181,30 @@
             isDerivedUnion="false"
             aggregation="None"
             isComposite="false" />
+          <property
+            Id="91d7d85d-3ab1-48a4-9fb2-7dec139bdba8"
+            name="screen"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
         </ownedAttributes>
         <ownedOperations>
           <operation
             Id="404027f7-043c-4c2b-b420-8986b7fec5d7"
             name="updateScreen"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="9ab4cccd-aabf-43a8-9395-81fd373dbb58"
+            name="initScreen"
             isLeaf="false"
             isStatic="false"
             isAbstract="true"
@@ -1587,6 +1678,188 @@
           <property
             Id="ae027547-655b-4d5c-8ea1-8b2a8549b65b"
             name="difficultyLevel"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a6e46221-2ef8-41ad-8613-aa1f5213602a"
+        name="GameState"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedOperationsInternal>
+          <operation
+            Id="185ac1a2-3ddc-4ff3-bc07-43ad84d9651b"
+            name="handleEvents"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="8e67c47b-1684-4381-a77c-6d44427e077f"
+        name="GameState"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="c845272a-7d8d-4b5b-b0f1-5dfdd58e523e"
+            isDerived="false"
+            sourceEndRoleName="GameState"
+            targetEndRoleName="MainMenu"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="77ecc7f4-4a8b-4a12-a220-d055575552d0"
+              LastKnownName="MainMenu"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f5c96397-0709-4325-aa5c-6c3d2532a29d"
+                  name="GameState"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="618ccc23-c066-4b56-94c9-0aca55c9514a"
+                  name="MainMenu"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1fe4f742-c859-417a-a484-c0b71412bead"
+            isDerived="false"
+            sourceEndRoleName="GameState"
+            targetEndRoleName="LevelOne"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="db636453-3e1b-4a00-abfa-ab3ce489d42e"
+              LastKnownName="LevelOne"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="679852cc-94c2-473a-9333-ef4de3de062d"
+                  name="GameState"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="48e30957-4836-4cdf-bbb0-370869d31a61"
+                  name="LevelOne"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedOperations>
+          <operation
+            Id="7a69e84c-0f3c-4e37-8a95-b564ae7311d7"
+            name="handleEvents"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="75e1f89c-f16e-4eac-aff7-04c44100f9e3"
+            name="render"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="e9d09cfe-0f7d-4c74-abb1-a92a0611659e"
+            name="logic"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperations>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="77ecc7f4-4a8b-4a12-a220-d055575552d0"
+        name="MainMenu"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="63d8dc22-9d99-496c-b2e8-c61b459a1f98"
+        name="GameStates"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="f37aa175-0aa9-48ff-9374-58cd363c2afc"
+            name="INTRO" />
+          <enumerationLiteral
+            Id="e31f7405-58f5-4155-aa77-a1ecf4eb7f20"
+            name="MAINMENU" />
+          <enumerationLiteral
+            Id="d1e2f616-4ac7-4e2d-b0b6-764e6a530df2"
+            name="EXIT" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="db636453-3e1b-4a00-abfa-ab3ce489d42e"
+        name="LevelOne"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="eed8c01a-04ef-4755-b800-dec42ed54473"
+            name="level"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
