@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject1", "ModelingProject1\ModelingProject1.modelproj", "{0A6D58F0-E224-4DEE-AE91-4B677D3690D0}"
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "UMLDesign", "ModelingProject1\UMLDesign.modelproj", "{0A6D58F0-E224-4DEE-AE91-4B677D3690D0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SourceCode", "SourceCode\SourceCode.vcxproj", "{02426EBF-3E86-4558-915F-04E6F785622F}"
 EndProject
