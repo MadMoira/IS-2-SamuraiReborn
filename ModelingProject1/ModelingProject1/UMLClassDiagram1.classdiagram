@@ -105,7 +105,30 @@
           <property Id="46b051fc-5079-452d-8448-41cb153f0b56" name="numberOfTiles" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="05226455-9d4d-4dfc-9e4c-9ab83ae0fe4b" />
           </property>
+          <property Id="7ae502c0-31ba-4321-9619-8d91772f8631" name="ID" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="8caa369a-8c1e-4168-a33e-dc7041daea89" />
+          </property>
+          <property Id="366616bd-9166-43e3-a961-3050ba70ae01" name="widthTile" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7010e713-9157-4227-85f8-2f75ac79bd57" />
+          </property>
+          <property Id="85c76727-cffe-4837-9557-71f0ef08b3b6" name="heightTile" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1dad3060-cd9b-44fe-a96f-bff393be22ea" />
+          </property>
+          <property Id="033b2c44-0e92-4192-9494-7c961e0ee9d7" name="texture" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="faf88cd6-3bd9-453a-b70a-f23a459b637f" />
+          </property>
+          <property Id="00f1e7e9-a2b9-445b-b095-48a4d7e8356d" name="filename" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="afb74638-e77b-4c65-ad1c-fcd9c3ca342c" />
+          </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="a23fd375-887c-4c97-b946-2a601aa24604" name="loadTexture" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7d0ecbc1-f831-42b6-9c0a-d0011c465d4d" />
+          </operation>
+          <operation Id="0a011c66-4da9-4300-814d-f6abac7c7945" name="getTileWithID" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="23a94b57-fe7a-4a3f-820f-975eb2cd9a2d" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -180,12 +203,34 @@
           <property Id="09ab8e23-9717-47d5-8639-c8d39381d9ff" name="name" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
             <elementDefinition Id="1e0a0000-d4ea-4e53-adf5-8bb8259aff03" />
           </property>
+          <property Id="3ed528df-c0e0-4560-a6cb-69f9b4b69816" name="tileMap" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f694e07a-8513-46bd-a6ec-63a5c06a552c" />
+          </property>
+          <property Id="27180a98-e42b-4e5d-972a-b332756e4d30" name="listCollisionTiles" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7dd15556-1ca8-4faf-8885-3ab9e0fb58e5" />
+          </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="5c6e2e33-42bc-40a3-9b33-017a2c7d0180" name="getTileCollision" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2d00d008-45cd-4493-b572-14c6474aca09" />
+          </operation>
+          <operation Id="d264c5a0-9a6a-404f-ad44-6e57d071ce73" name="getTileOfPlayerPosition" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="9864dc8e-b41a-49ca-b7df-678e940d44a7" />
+          </operation>
+          <operation Id="a3a84a23-06f5-4699-a1da-e05324b8307a" name="loadLevelWithName" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="8e1f397c-b1d9-45a4-89c8-1edc8637d090" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
       <class Id="8ba72321-8722-4ef4-b8a7-0e536fce260e" name="GameCore" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="b2bb2222-c3a3-4d73-a116-964d9e91c1dc" />
+        <ownedOperationsInternal>
+          <operation Id="4560e400-b33b-45f2-8bae-9331e0e64694" name="initPlayers" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e732155d-9b35-4e63-b3ce-b0db9e450172" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -245,6 +290,9 @@
           <operation Id="0936033e-8acb-495a-bad9-aa46760ad766" name="handleEvents" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
             <elementDefinition Id="86e276b9-5621-4931-ab75-2c86b1aed680" />
           </operation>
+          <operation Id="a3c65320-a5a0-49af-a3f4-b4dc21563c73" name="isAlive" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="76547ab0-65cd-4516-8695-81464ba2032b" />
+          </operation>
         </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
@@ -291,10 +339,15 @@
             <elementDefinition Id="967cdaf5-267e-4c9e-86ab-e306f7871805" />
           </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="79ea3b0a-d6bb-488d-9d77-382b613ca5c5" name="computeScore" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="53ec7375-a5d2-44c8-b720-2ad6d38c787e" />
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="f56f76aa-3e68-4136-84de-864d418c4e7c" name="Collisionable Object" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="f56f76aa-3e68-4136-84de-864d418c4e7c" name="CollisionObject" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="d545faae-0d8a-4bc2-8f26-1d65b9394641" />
         <targetEnds>
           <association Id="d48a7996-c2f6-4ab6-b596-08be06ef4127" isDerived="false" sourceEndRoleName="N - CO" targetEndRoleName="Nivel" isLeaf="false" isAbstract="false">
@@ -324,6 +377,11 @@
             <elementDefinition Id="62d79a4c-add2-4c82-a8fc-ab7f47998920" />
           </association>
         </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="44ca786a-eaad-4c38-91fb-f24c94eac100" name="property" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="01a9288f-8426-4839-885f-c6fea21d90a4" />
+          </property>
+        </ownedAttributesInternal>
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
@@ -352,6 +410,14 @@
             <elementDefinition Id="1cf60190-7a51-45c3-9dfa-5ea0570580de" />
           </property>
         </ownedAttributes>
+        <ownedOperations>
+          <operation Id="3e7b6f5c-07a7-4c64-bb6d-07d902561eec" name="pollEvents" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="ef97099f-a1c6-4a9d-b97a-ded525e5e3c5" />
+          </operation>
+          <operation Id="4eece2db-a1bc-4b02-94fb-af0abb6443fb" name="clearEvents" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="40e5869e-70b2-4337-a440-39938156378d" />
+          </operation>
+        </ownedOperations>
       </Interface>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
