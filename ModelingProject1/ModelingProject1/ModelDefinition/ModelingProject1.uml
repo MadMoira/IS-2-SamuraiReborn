@@ -167,6 +167,47 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="615579e2-c7f4-46d3-ab38-065deab1fdd3"
+            isDerived="false"
+            sourceEndRoleName="Sprite"
+            targetEndRoleName="IDSprites"
+            isLeaf="false"
+            isAbstract="false">
+            <enumerationMoniker
+              Id="2fb7a53f-abb8-47dc-9c75-83b24898d83c"
+              LastKnownName="IDSprites"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a15d7a6a-9bee-42d8-b958-f35a1833d67e"
+                  name="Sprite"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bb1c6a06-624f-4b91-9751-68b3859f665c"
+                  name="IDSprites"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="442f8201-10de-452e-ba1c-7a090691ab46"
@@ -258,7 +299,7 @@
             isComposite="false" />
           <property
             Id="15843beb-6c87-44ad-88cf-4cf567e3cff9"
-            name="velocity"
+            name="speedX"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -270,6 +311,94 @@
           <property
             Id="ee10785c-8fbd-429d-a0a0-abff1ce9c975"
             name="texture"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="1cbadf9d-80c0-4528-89a4-128df06763d9"
+            name="speedY"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="64025dc0-6742-464d-8e63-ef88da912365"
+            name="delayX"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="abf25ded-d7dc-41d2-8c8f-aae00621014d"
+            name="delayY"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="0c862a6c-7fd9-4885-830a-f1675f4de0a5"
+            name="countX"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="0eb513b9-a640-4842-bb61-c3400eee3662"
+            name="countY"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="36fd86e5-b7bc-42a8-8a6c-0820ad5ed7a8"
+            name="animationDirection"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="fbe95ddd-c548-45ff-9608-7af1ae5b9406"
+            name="frameCount"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="05f1746c-4ed6-48ba-bfbc-10e1731888d6"
+            name="frameDelay"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -496,6 +625,17 @@
             isDerivedUnion="false"
             aggregation="None"
             isComposite="false" />
+          <property
+            Id="4403332c-9a54-485e-834f-a16b5223b81a"
+            name="modeIA"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
@@ -554,6 +694,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="a4361f93-f668-4713-af76-bf00f05d99c8"
+            isDerived="false"
+            sourceEndRoleName="Level"
+            targetEndRoleName="Levels"
+            isLeaf="false"
+            isAbstract="false">
+            <enumerationMoniker
+              Id="4e409097-9093-415d-b710-9bc123d0580c"
+              LastKnownName="Levels"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="228b082f-a405-496b-af24-dc896cc1749c"
+                  name="Level"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="30b1ab0f-8d0b-4dc8-8212-f0b5cac02424"
+                  name="Levels"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -581,6 +760,17 @@
           <property
             Id="7dd15556-1ca8-4faf-8885-3ab9e0fb58e5"
             name="listCollisionTiles"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="62fa9b61-9df7-44e0-991a-b3f2d6a1cbcb"
+            name="numberOfEnemies"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -655,6 +845,164 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="edc19e83-4476-47c6-b184-346ee5e15cbd"
+            isDerived="false"
+            sourceEndRoleName="GameCore"
+            targetEndRoleName="Screen"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="e8024af3-9b00-4a63-8c9c-3ff4428e22f6"
+              LastKnownName="Screen"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b6306f77-2cae-46b7-87bc-2c9f375c129b"
+                  name="GameCore"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8bd10f45-be1c-4522-b613-0b01d37017b6"
+                  name="Screen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="0376d56b-973a-4014-8ed1-6cd908ffc228"
+            isDerived="false"
+            sourceEndRoleName="GameCore"
+            targetEndRoleName="Timer"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="e38cba53-d577-439c-a0a1-f04cb19a9bc3"
+              LastKnownName="Timer"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3c02cfe7-4171-4eb6-9ec9-5e88c337d1b5"
+                  name="GameCore"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c6ee205d-6ec7-41a3-960b-48374a8734ac"
+                  name="Timer"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="f359f27c-a11b-43b9-9bcb-11fa2182587c"
+            isDerived="false"
+            sourceEndRoleName="GameCore"
+            targetEndRoleName="Configuration"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="f2be4b80-7c93-406f-957c-e8b1f6e74b3c"
+              LastKnownName="Configuration"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="329fe39e-7ae9-4e3f-ab2b-265034e465f2"
+                  name="GameCore"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ac67e911-ee89-41b4-a547-5f9ad3ed0774"
+                  name="Configuration"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="cf2fde80-08ad-42af-abe5-7ca0013a09aa"
+            isDerived="false"
+            sourceEndRoleName="GameCore"
+            targetEndRoleName="Score"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="9874fcd1-0d66-4e41-8bdd-8320b517532b"
+              LastKnownName="Score"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="58b082a5-a730-4ebd-b712-d3f364a633ec"
+                  name="GameCore"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="837ddab4-c47c-4e93-ad77-8ca72b17442b"
+                  name="Score"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="5cf189b8-2b2d-41c8-8a4d-d8bb487d75e5"
@@ -712,6 +1060,14 @@
           <operation
             Id="c0566b1b-06c6-418f-b39d-7f39772aadc8"
             name="setNewState"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="bfb5b085-39c5-404d-9415-7a743641fbec"
+            name="setupFPS"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -865,7 +1221,7 @@
             isQuery="false" />
           <operation
             Id="86e276b9-5621-4931-ab75-2c86b1aed680"
-            name="handleEvents"
+            name="handleInput"
             isLeaf="false"
             isStatic="false"
             isAbstract="true"
@@ -877,6 +1233,14 @@
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="63fb8312-a92f-4b6c-87c1-a5fe404b414a"
+            name="executeAction"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
             concurrency="Sequential"
             isQuery="false" />
         </ownedOperationsInternal>
@@ -893,6 +1257,17 @@
           <property
             Id="033e6ec6-1122-4b5a-9e9b-139929754425"
             name="damage"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="e5edcbe2-210d-42d9-a9d9-904a68955903"
+            name="active"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1050,6 +1425,28 @@
           <property
             Id="01a9288f-8426-4839-885f-c6fea21d90a4"
             name="property"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="0795d2d0-ebba-451a-860c-573c4f53d9c6"
+            name="tileNumber"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="7929c49a-6ee9-4b5c-a3f5-952ebb8f39eb"
+            name="specialCollision"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -1686,6 +2083,17 @@
             isDerivedUnion="false"
             aggregation="None"
             isComposite="false" />
+          <property
+            Id="ebd0d82a-9c68-4c1f-96fd-6447111556e9"
+            name="soundMode"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
@@ -1763,7 +2171,7 @@
             isAbstract="false">
             <classMoniker
               Id="db636453-3e1b-4a00-abfa-ab3ce489d42e"
-              LastKnownName="LevelOne"
+              LastKnownName="LevelOneJapan"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -1836,6 +2244,47 @@
         name="GameStates"
         isAbstract="false"
         isLeaf="false">
+        <targetEnds>
+          <association
+            Id="aff7d6a1-0db3-4dff-a24c-efd72ba503ef"
+            isDerived="false"
+            sourceEndRoleName="GameStates"
+            targetEndRoleName="GameState"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="8e67c47b-1684-4381-a77c-6d44427e077f"
+              LastKnownName="GameState"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a81d703f-9683-447f-83a2-b79af79c790b"
+                  name="GameStates"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3ac90f7e-0e30-4f1a-ace5-9d458b1fb9b1"
+                  name="GameState"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedLiterals>
           <enumerationLiteral
             Id="f37aa175-0aa9-48ff-9374-58cd363c2afc"
@@ -1846,13 +2295,16 @@
           <enumerationLiteral
             Id="d1e2f616-4ac7-4e2d-b0b6-764e6a530df2"
             name="EXIT" />
+          <enumerationLiteral
+            Id="3d21d98e-b253-4293-a372-72eb3b6836bb"
+            name="LEVELZEROTUTORIAL" />
         </ownedLiterals>
       </enumeration>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
         Id="db636453-3e1b-4a00-abfa-ab3ce489d42e"
-        name="LevelOne"
+        name="LevelOneJapan"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -1870,6 +2322,41 @@
             isComposite="false" />
         </ownedAttributesInternal>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="4e409097-9093-415d-b710-9bc123d0580c"
+        name="Levels"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="7ba400d2-9865-4fac-ad05-10dbe65b2e29"
+            name="LEVELONEJAPAN" />
+          <enumerationLiteral
+            Id="0c4dff94-ff30-4eaa-b991-d165c1074639"
+            name="LEVELZEROTUTORIAL" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="2fb7a53f-abb8-47dc-9c75-83b24898d83c"
+        name="IDSprites"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="8f16c4db-a6a8-4e22-99aa-f9b85fe84119"
+            name="PANDA" />
+          <enumerationLiteral
+            Id="ff0d27b9-d9ba-46f6-801a-c41302a60f9d"
+            name="MEERKAT" />
+          <enumerationLiteral
+            Id="14ba769c-fd95-4d55-a39b-1ccb150e1edd"
+            name="JAPANESEMONKEY" />
+        </ownedLiterals>
+      </enumeration>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
