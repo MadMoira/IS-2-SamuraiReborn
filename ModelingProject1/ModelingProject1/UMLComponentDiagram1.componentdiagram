@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<componentModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="b301f740-a54a-4763-9da3-dc337f49e09a" name="UMLComponentDiagram1" linkedPackageId="f8a884f4-987f-43a1-96ab-f8718b89b0a4" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner">
+  <ownedCommentsInternal>
+    <comment Id="83b9e9a5-3b14-4d72-ad81-f95a1e9d3485">
+      <elementDefinition Id="0db7b3b0-2442-4792-addd-58477749854c" />
+      <body>En caso de que vayamos a guardar alguna informacion del jugador como estadisticas, y como todavia no hemos decidido si usar una base de datos, lo coloco de forma representativa</body>
+      <annotatedElements>
+        <componentMoniker Id="fbc0d877-d43c-42b6-b3fd-b9dea2b69f19" LastKnownName="Log.exe" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="50e3a3b0-7e6d-485c-ae1d-6af99be825f6">
+      <profileInstance Id="ea9b64bd-14c9-4ad0-8902-585a9436d4d9" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="b5541ce5-baf4-4e47-ab45-5188dc972edd">
+      <profileInstance Id="7557d342-a449-4f2a-9463-19dd3e7984d8" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <componentModelHasComponents>
+      <component Id="a9e52ff7-6d5c-4a06-bf7b-6b492914f9cb" name="executable.exe" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a63363c7-2de6-4634-833d-377ce1924c04" />
+        <suppliersInternal>
+          <dependency Id="a9d548c5-187a-44f4-ba37-5e0d27e057ba">
+            <componentMoniker Id="3479221c-6132-4b9b-a14f-40665c0c31fa" LastKnownName="SDL_image.dll" />
+            <elementDefinition Id="920b6430-51e1-4af4-a39b-8870e83c497a" />
+          </dependency>
+          <dependency Id="8b09d3b4-f6ff-45b3-ab25-24ecebf7431c">
+            <componentMoniker Id="b7664cf1-76c9-4ed9-bc79-d87b87ea9d93" LastKnownName="SDL_mixer.dll" />
+            <elementDefinition Id="88879a4e-1f83-4c3d-b8ff-56991d4b1260" />
+          </dependency>
+          <dependency Id="0344fa77-9874-4170-849c-31c96e3d8f19">
+            <componentMoniker Id="6f4ef685-2264-471e-a50b-d3c575f0f57c" LastKnownName="Resources" />
+            <elementDefinition Id="8e3bbc04-a8eb-42da-9d27-85d0fd24a563" />
+          </dependency>
+          <dependency Id="073ad7b5-301c-4411-9818-2af72a1ca18b">
+            <componentMoniker Id="330c57b9-5387-42fc-bfaa-29218f117f44" LastKnownName="Gameplay.cpp" />
+            <elementDefinition Id="0dc1a21f-3b06-4865-b386-7fa20a14be3d" />
+          </dependency>
+        </suppliersInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="3479221c-6132-4b9b-a14f-40665c0c31fa" name="SDL_image.dll" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="dd666910-e6d1-4a95-a2f8-27bd5b4ba52c" />
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="b7aa3c22-ef22-4ac5-b8e4-305e185e56da" name="IA.cpp" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="af42a860-13c6-4aba-9761-4f6725d6b02c" />
+        <ownedAttributesInternal>
+          <providedInterface Id="f936630d-98d1-4460-8568-9da73b78ca2e" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="5e79f1ef-dd29-4698-9a95-ed70d072ae14" />
+            <type_NamedElement>
+              <interfaceMoniker Id="50566050-9481-4dd8-8a28-19aea35d3769" LastKnownName="enemies behavoiur" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="b7664cf1-76c9-4ed9-bc79-d87b87ea9d93" name="SDL_mixer.dll" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ffb4a45e-0de6-4025-a201-ff0ed24de095" />
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="6f4ef685-2264-471e-a50b-d3c575f0f57c" name="Resources" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7dd2d6a9-8704-46d4-a6a3-5c112388092a" />
+        <ownedAttributesInternal>
+          <part Id="7d0da886-93e1-43ab-8784-48f01712c366" name="Images" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="099907a7-7cdf-48bf-9fc4-f8a41b038c9b" />
+            <type_NamedElement>
+              <componentMoniker Id="d97a1130-ffd1-4fa2-85b6-97b9c928a638" LastKnownName="Component2" />
+            </type_NamedElement>
+          </part>
+          <part Id="488d4867-8211-43dc-88b2-b571dd7e8b77" name="Sounds" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+            <elementDefinition Id="271c958e-755b-4715-8e1a-37fd0731bafb" />
+            <type_NamedElement>
+              <componentMoniker Id="db641122-fcee-47aa-b641-8f2b8d19499a" LastKnownName="Component4" />
+            </type_NamedElement>
+          </part>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="d97a1130-ffd1-4fa2-85b6-97b9c928a638" name="Component2" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="bc89186e-7457-4723-a075-371eb9d33350" />
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="db641122-fcee-47aa-b641-8f2b8d19499a" name="Component4" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="27c044a4-b02e-4dc5-ab32-d1e0bae81719" />
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="fbc0d877-d43c-42b6-b3fd-b9dea2b69f19" name="Log.exe" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d6fb9ebb-6b31-4b1f-872c-522c7336ee59" />
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="50566050-9481-4dd8-8a28-19aea35d3769" name="enemies behavoiur" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5a699049-66f0-4282-9006-55cd313ace7c" />
+      </Interface>
+    </modelContainsNamedElements>
+    <componentModelHasComponents>
+      <component Id="330c57b9-5387-42fc-bfaa-29218f117f44" name="Gameplay.cpp" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="94d32f95-efb2-47b6-b088-14382b33afa4" />
+        <ownedAttributesInternal>
+          <requiredInterface Id="5cc68df2-09a1-4cb7-9896-3a4a4c21baf4" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="9fd845a1-3d71-4808-9bf8-63bd66006592" />
+            <suppliersInternal>
+              <dependency Id="2c8004dd-9ea1-47ce-8f26-bacf790c9b4b">
+                <providedInterfaceMoniker Id="f936630d-98d1-4460-8568-9da73b78ca2e" LastKnownName="Port1" />
+                <elementDefinition Id="90774498-32c9-4986-b8cc-b19d5bde6552" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="72cd8912-8555-43f4-9719-c0ca8fc5028c" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="72cd8912-8555-43f4-9719-c0ca8fc5028c" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="1305ee86-afe9-4263-9bb3-383cd562f50f" />
+      </Interface>
+    </modelContainsNamedElements>
+  </packagedElements>
+  <package Id="f8a884f4-987f-43a1-96ab-f8718b89b0a4" name="ModelingProject1">
+    <elementDefinition Id="11c6a509-55c3-40fe-ba11-951ba3340762" />
+  </package>
+</componentModel>
