@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="8af3f014-1447-43eb-8ba5-f2d67e83a718" name="UMLClassDiagram1" linkedPackageId="01b60acc-10a7-4cf8-9470-7f22dc9f60c2" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" dslVersion="1.0.0.0" Id="8af3f014-1447-43eb-8ba5-f2d67e83a718" name="UMLClassDiagram1" linkedPackageId="01b60acc-10a7-4cf8-9470-7f22dc9f60c2" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="90324718-5134-4ca1-9d25-17fafb1f4cba" name="PandaP1" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -360,6 +360,22 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="cf2fde80-08ad-42af-abe5-7ca0013a09aa" />
+          </association>
+          <association Id="c5482b24-fedf-4336-85c7-3fbdbc7d4cc8" isDerived="false" sourceEndRoleName="GameCore" targetEndRoleName="GameSaves" isLeaf="false" isAbstract="false">
+            <classMoniker Id="4de3d472-76b3-4cb3-9b4e-228592c2342f" LastKnownName="GameSaves" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e7768b55-9006-43a5-bc90-e924ff440ff4" name="GameCore" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f0244038-b17f-4035-8743-2b4bbb0acd23" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="98c16eb1-d33c-4c51-bbf1-d5ffc4c6fb29" name="GameSaves" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="4ee934c0-7265-4ea0-bfb5-f19b84340e0d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="633c9856-cb2a-4487-98e4-3d08361804be" />
           </association>
         </targetEnds>
         <ownedAttributesInternal>
@@ -829,6 +845,27 @@
           </enumerationLiteral>
         </ownedLiterals>
       </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="4de3d472-76b3-4cb3-9b4e-228592c2342f" name="GameSaves" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="15494600-b0ae-4a53-91c7-39375b9744fc" />
+        <ownedAttributesInternal>
+          <property Id="c09acd6d-3a83-4c8c-87b3-23bacedd30e0" name="saveFile" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b54ebf5c-86c2-4515-88e6-6d84dacff7e2" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="70f97bda-13a5-47c4-87ea-c61c5c091e5f" name="loadFileInformation" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6cc9c764-6b33-4742-a139-d38c507e1801" />
+          </operation>
+          <operation Id="7e706243-38a5-4560-932b-55f1b6e065f4" name="saveFileInformation" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="88c91d33-95b5-44d2-b33c-d2ae6028ca88" />
+          </operation>
+          <operation Id="e3a95a5c-f0da-4512-b3ff-f52e07a92365" name="changePlayersState" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6cef2597-cd77-4a24-ae23-a235d06cb564" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
     </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="01b60acc-10a7-4cf8-9470-7f22dc9f60c2" name="ModelingProject1">

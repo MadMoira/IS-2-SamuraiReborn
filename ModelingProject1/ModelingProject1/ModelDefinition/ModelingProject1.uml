@@ -1014,6 +1014,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="633c9856-cb2a-4487-98e4-3d08361804be"
+            isDerived="false"
+            sourceEndRoleName="GameCore"
+            targetEndRoleName="GameSaves"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="15494600-b0ae-4a53-91c7-39375b9744fc"
+              LastKnownName="GameSaves"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f0244038-b17f-4035-8743-2b4bbb0acd23"
+                  name="GameCore"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4ee934c0-7265-4ea0-bfb5-f19b84340e0d"
+                  name="GameSaves"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -2631,6 +2670,54 @@
         Id="1305ee86-afe9-4263-9bb3-383cd562f50f"
         isAbstract="false"
         isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="15494600-b0ae-4a53-91c7-39375b9744fc"
+        name="GameSaves"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="b54ebf5c-86c2-4515-88e6-6d84dacff7e2"
+            name="saveFile"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="6cc9c764-6b33-4742-a139-d38c507e1801"
+            name="loadFileInformation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="88c91d33-95b5-44d2-b33c-d2ae6028ca88"
+            name="saveFileInformation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="6cef2597-cd77-4a24-ae23-a235d06cb564"
+            name="changePlayersState"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
