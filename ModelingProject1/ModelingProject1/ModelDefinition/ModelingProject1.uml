@@ -1,20 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
   dslVersion="1.0.0.0"
   Id="11c6a509-55c3-40fe-ba11-951ba3340762"
   name="ModelingProject1" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
-  <ownedCommentsInternal>
-    <comment
-      Id="0db7b3b0-2442-4792-addd-58477749854c">
-      <body>En caso de que vayamos a guardar alguna informacion del jugador como estadisticas, y como todavia no hemos decidido si usar una base de datos, lo coloco de forma representativa</body>
-      <annotatedElements>
-        <componentMoniker
-          Id="d6fb9ebb-6b31-4b1f-872c-522c7336ee59"
-          LastKnownName="Log.exe"
-          LastKnownLocation="ModelingProject1.uml" />
-      </annotatedElements>
-    </comment>
-  </ownedCommentsInternal>
   <profileInstances>
     <packageHasProfileInstances
       Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
@@ -2718,6 +2706,657 @@
             isQuery="false" />
         </ownedOperationsInternal>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="ba0d76fd-112f-41f1-b12b-f1d66990e193"
+        name="Component3"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="c7066c28-5192-4070-a04c-17aed3b13d3c"
+        name="Component5"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="9913a961-d98b-47e9-bb10-88a65fc24823"
+        name="Game Core"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <part
+            Id="4dc54a2b-0d56-439b-91d6-0b6c3cb7e21d"
+            name="timer"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="242274d9-0fe9-48a5-b252-98bf6c84f89a"
+                LastKnownName="Timer"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="496859d6-671a-4b34-9001-816154c1c89e"
+            name="configuration"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="cba32727-e7b9-4ccd-aab7-53bd8bf841b9"
+                LastKnownName="Configuration"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <part
+            Id="1e14e580-6014-4287-8ec4-3889e0dcc9e3"
+            name="gameSaves"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="80e29230-c832-4718-b856-c16dca10e104"
+                LastKnownName="GameSaves"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <providedInterface
+            Id="dfcd494c-f038-4119-99f3-c02429cce7ba"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <targetNamedElementsInternal>
+              <connector
+                Id="47dabd21-20e8-4925-b7ae-0f521ffc45f0"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="4dc54a2b-0d56-439b-91d6-0b6c3cb7e21d"
+                  LastKnownName="timer"
+                  LastKnownLocation="ModelingProject1.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="953fbcf0-89a1-47f3-88e2-c2b4bc0e12bc" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="05a0d7e1-26a5-458c-81e7-9b6c35900aa0">
+                      <portWithPart>
+                        <providedInterfaceMoniker
+                          Id="0dc72acb-587d-4762-b0b8-2f629055a53f"
+                          LastKnownName="Port1"
+                          LastKnownLocation="ModelingProject1.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="6122bbef-e126-434e-a232-61f9ed4e400a"
+                LastKnownName="Timer Request"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <providedInterface
+            Id="26b4a9db-18b7-42ac-8684-051a2b4f623a"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <targetNamedElementsInternal>
+              <connector
+                Id="a6b32fb5-4824-429f-a685-9c9b74c77dd5"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="1e14e580-6014-4287-8ec4-3889e0dcc9e3"
+                  LastKnownName="gameSaves"
+                  LastKnownLocation="ModelingProject1.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="e908b720-9e88-4d51-98dd-d78edc2ba775" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="5785ad8f-7841-4ba4-a0d9-5b8d9e4965b5">
+                      <portWithPart>
+                        <providedInterfaceMoniker
+                          Id="db55d88d-2c5e-4d61-8075-b7a684683814"
+                          LastKnownName="Port1"
+                          LastKnownLocation="ModelingProject1.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="37273fd5-8bfc-4e1a-9f3a-4b01fa516de7"
+                LastKnownName="Save/Load Game"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <providedInterface
+            Id="740e39c9-7d4e-4ab2-a0e6-598cebac8619"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <targetNamedElementsInternal>
+              <connector
+                Id="64e5fd1d-13e1-4abd-b826-767768132f0d"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="496859d6-671a-4b34-9001-816154c1c89e"
+                  LastKnownName="configuration"
+                  LastKnownLocation="ModelingProject1.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="5d35e192-ab11-4f66-9eab-39232fa7f8a2" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="d1eb9235-48bc-470f-be22-54c6db35793f">
+                      <portWithPart>
+                        <providedInterfaceMoniker
+                          Id="04f7587b-ba3f-4f17-9689-71b0397c9c02"
+                          LastKnownName="Port1"
+                          LastKnownLocation="ModelingProject1.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="104a7a66-c213-40f4-a7de-08f136f834dd"
+                LastKnownName="Change Configuration"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <part
+            Id="5430be0b-8c51-4f17-893e-be20034186d5"
+            name="score"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="Composite"
+            isComposite="true">
+            <type_NamedElement>
+              <componentMoniker
+                Id="29b49758-b344-4cfb-b5f5-447f5815affc"
+                LastKnownName="Score"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </part>
+          <providedInterface
+            Id="cf9cb32b-2cfd-448c-84f7-cf1c6018a0f5"
+            name="Port4"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <targetNamedElementsInternal>
+              <connector
+                Id="643aa8e3-fe0c-4834-9ffd-5429cacacff7"
+                isLeaf="false"
+                isStatic="false">
+                <partMoniker
+                  Id="5430be0b-8c51-4f17-893e-be20034186d5"
+                  LastKnownName="score"
+                  LastKnownLocation="ModelingProject1.uml" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="0a451871-78f6-458b-9690-c120015022c2" />
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd
+                      Id="5e28cc3e-7ca2-4b0a-9aa8-f93bfe8cfd89">
+                      <portWithPart>
+                        <providedInterfaceMoniker
+                          Id="f4d88277-8799-4440-8e65-b67ccd366384"
+                          LastKnownName="Port1"
+                          LastKnownLocation="ModelingProject1.uml" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+              </connector>
+            </targetNamedElementsInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="1872a58b-5917-44d9-885b-564c8f38866b"
+                LastKnownName="Compute Score"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="23024dae-82e7-4224-a5fb-86dbdda62b2e"
+            name="Port5"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="da948910-5e4c-4f66-acfb-a4e24e3fa69d">
+                <providedInterfaceMoniker
+                  Id="f10e1e03-fc44-4de7-87a3-2318848697f5"
+                  LastKnownName="Port1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="dad4292b-ff5d-4732-a4b2-ca6fe3188e1e"
+                LastKnownName="Update Hardware"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="8421395e-70fb-4c3d-bb66-7d4659cd3df3"
+            name="Port6"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="a0c18033-e0e6-441b-b10a-df0a8faa5bc4">
+                <providedInterfaceMoniker
+                  Id="573bbbff-6d1b-4f38-a83d-a61c029ca49a"
+                  LastKnownName="Port1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="5d83832b-c7a8-46c1-bbe9-f2e707e59a14"
+                LastKnownName="Update hardware"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <providedInterface
+            Id="e746bd0c-8022-4b2c-b988-f3ae42e52d7f"
+            name="Port7"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="8cd4c496-a9a9-42d4-9d3d-32abd3124d2b"
+                LastKnownName="Init/Update Screen"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="242274d9-0fe9-48a5-b252-98bf6c84f89a"
+        name="Timer"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="0dc72acb-587d-4762-b0b8-2f629055a53f"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="35e2a8ae-a487-4e2d-9bdf-802ab462bb8a"
+                LastKnownName="Timer Request"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="cba32727-e7b9-4ccd-aab7-53bd8bf841b9"
+        name="Configuration"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="04f7587b-ba3f-4f17-9689-71b0397c9c02"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="cdb8a378-9985-49b0-951e-d32bb3c1b5e2"
+                LastKnownName="Change Configuration"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="80e29230-c832-4718-b856-c16dca10e104"
+        name="GameSaves"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="db55d88d-2c5e-4d61-8075-b7a684683814"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="0dfb0444-ecb4-49ca-9260-fa734ed1db6a"
+                LastKnownName="Save/Load Game"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="5ec5e96a-ee83-4d73-87a5-f1d4bf784ef0"
+        name="Component6"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b6893f92-32a9-4d72-97e5-bf7424efed78"
+        name="Interface3"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="6122bbef-e126-434e-a232-61f9ed4e400a"
+        name="Timer Request"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="35e2a8ae-a487-4e2d-9bdf-802ab462bb8a"
+        name="Timer Request"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="fcf3625f-f04a-41ac-8071-7f69d58703ad"
+        name="Interface5"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="0dfb0444-ecb4-49ca-9260-fa734ed1db6a"
+        name="Save/Load Game"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="37273fd5-8bfc-4e1a-9f3a-4b01fa516de7"
+        name="Save/Load Game"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="cdb8a378-9985-49b0-951e-d32bb3c1b5e2"
+        name="Change Configuration"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="104a7a66-c213-40f4-a7de-08f136f834dd"
+        name="Change Configuration"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="29b49758-b344-4cfb-b5f5-447f5815affc"
+        name="Score"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="f4d88277-8799-4440-8e65-b67ccd366384"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="b052e073-f9b6-4830-aec2-68ca8bfabd3d"
+                LastKnownName="ComputeScore"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="1872a58b-5917-44d9-885b-564c8f38866b"
+        name="Compute Score"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b052e073-f9b6-4830-aec2-68ca8bfabd3d"
+        name="ComputeScore"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="ef3ccc7a-30bb-417f-b506-e8690a163008"
+        name="SDL"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="f10e1e03-fc44-4de7-87a3-2318848697f5"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="804630f1-14fe-4269-88d6-1b068031aad7"
+                LastKnownName="Update Hardware"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="804630f1-14fe-4269-88d6-1b068031aad7"
+        name="Update Hardware"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="dad4292b-ff5d-4732-a4b2-ca6fe3188e1e"
+        name="Update Hardware"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="5d83832b-c7a8-46c1-bbe9-f2e707e59a14"
+        name="Update hardware"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="d612cb39-c311-4907-8b5a-d31fcebb1a60"
+        name="OpenGL"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="573bbbff-6d1b-4f38-a83d-a61c029ca49a"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="5e242c1f-b454-4d42-a400-926290d6fe51"
+                LastKnownName="Update Hardware"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="5e242c1f-b454-4d42-a400-926290d6fe51"
+        name="Update Hardware"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="8cd4c496-a9a9-42d4-9d3d-32abd3124d2b"
+        name="Init/Update Screen"
+        isAbstract="false"
+        isLeaf="false" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
