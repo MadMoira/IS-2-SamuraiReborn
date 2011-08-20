@@ -3062,6 +3062,53 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </providedInterface>
+          <providedInterface
+            Id="c67db79a-c547-4a98-ba17-c3fe2923c546"
+            name="Port8"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="76000a61-e7da-4570-81c5-fa57014e43a2"
+                LastKnownName="Change State"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="f5317d98-8e08-4cd4-8edd-98533abff0e9"
+            name="Port9"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="4d095ee4-2b7d-4d8d-85ad-f9f6936d7483">
+                <providedInterfaceMoniker
+                  Id="786c9262-d52e-4475-bfab-fb134f9cef1b"
+                  LastKnownName="Load TileSet"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="3618d36b-f0fa-48f0-b24f-640de027a5dc"
+                LastKnownName="Loas TileMap"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
         </ownedAttributesInternal>
       </component>
     </packageHasNamedElement>
@@ -3355,6 +3402,416 @@
       <Interface
         Id="8cd4c496-a9a9-42d4-9d3d-32abd3124d2b"
         name="Init/Update Screen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="dcd95ab9-5cdd-4e90-a208-27de15d34be0"
+        name="Level"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="786c9262-d52e-4475-bfab-fb134f9cef1b"
+            name="Load TileSet"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="8bb68a58-917a-450e-8490-81a114572bb7"
+                LastKnownName="Load TileMap"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <providedInterface
+            Id="9a7a2e7e-21d1-4284-b645-cddee04285d6"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="ab5908e1-c192-4677-83eb-ee6c3161782d"
+                LastKnownName="Characters Changes"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="c944f965-272f-4fb0-ad4e-5fca481f99ac"
+        name="Non Playable Character"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="2e6aa8a5-4337-4921-b09e-b809fd6aba6c"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="10ae8b67-2d81-497a-bc07-b0c049e0f30a"
+                LastKnownName="Change Received"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="0744a002-6443-48b6-96b1-38dcfbf7c495"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="4b1e8fd4-5e16-4d7f-991a-caad6536d32c">
+                <providedInterfaceMoniker
+                  Id="33b9094c-12fa-4189-a6c6-341b9fb822f1"
+                  LastKnownName="Port3"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="54e0e695-34d4-4eb3-9b1b-48c7735bb90e"
+                LastKnownName="Change Sent"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="8bb68a58-917a-450e-8490-81a114572bb7"
+        name="Load TileMap"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="76000a61-e7da-4570-81c5-fa57014e43a2"
+        name="Change State"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="3618d36b-f0fa-48f0-b24f-640de027a5dc"
+        name="Loas TileMap"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="a0ab81e4-9879-43a6-8074-d338f2af3d3c"
+        name="Playable Character"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="5af90ee7-be9a-4a78-bad5-a68f54f52f10"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="1d3906ed-c523-49a7-9b27-f0a5802f5fde"
+                LastKnownName="Change Received"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="e12a1177-6b6d-463a-a85e-9a02e1ba7f70"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="520bb2df-3f62-4126-8653-d3e14ed6da68">
+                <providedInterfaceMoniker
+                  Id="1f3c0cff-a537-4135-b9f1-8eba222c407f"
+                  LastKnownName="Port2"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="3f25eb5e-dc8f-43a1-900e-5fdadcf51d2b"
+                LastKnownName="Change Sent"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <component
+        Id="ad793819-f2ee-4492-9f39-1fef4adf9f52"
+        name="Observer"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <providedInterface
+            Id="1f3c0cff-a537-4135-b9f1-8eba222c407f"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="47519b84-3e60-42dd-8081-9ab7b79c9d33"
+                LastKnownName="Change Report In"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <providedInterface
+            Id="33b9094c-12fa-4189-a6c6-341b9fb822f1"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="4432400e-5685-428f-88f7-6bc0733f4a1b"
+                LastKnownName="Change Report In"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface
+            Id="2d69e4e2-863e-4b97-9ef2-ae1242e2a095"
+            name="Port4"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="f7490d9f-17bd-4186-8264-8117e55feae2">
+                <providedInterfaceMoniker
+                  Id="2e6aa8a5-4337-4921-b09e-b809fd6aba6c"
+                  LastKnownName="Port1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="73928d11-c614-4aa0-8c02-bc863dbab82d"
+                LastKnownName="Change Report Out"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="04103d7d-7149-442d-9fc1-152a3a67365b"
+            name="Port5"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="39e69ee8-ebdd-4538-bfe6-c1115e79aa46">
+                <providedInterfaceMoniker
+                  Id="5af90ee7-be9a-4a78-bad5-a68f54f52f10"
+                  LastKnownName="Port1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="ac3dceac-2916-47e8-b96d-a176dc271205"
+                LastKnownName="Change Report Out"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="0720cdba-7c36-4c3c-9cf2-8c83f9690d8f"
+            name="Port1"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="806f520d-636e-4ba1-a2dd-f6002bc8e82e">
+                <providedInterfaceMoniker
+                  Id="9a7a2e7e-21d1-4284-b645-cddee04285d6"
+                  LastKnownName="Port1"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="bb69586c-b1bf-4a04-82eb-164eeded8597"
+                LastKnownName="Change Report Out"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ed8599fb-3ee0-4892-b8a9-99b11e654347"
+        name="Change Report In"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="47519b84-3e60-42dd-8081-9ab7b79c9d33"
+        name="Change Report In"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="4432400e-5685-428f-88f7-6bc0733f4a1b"
+        name="Change Report In"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="73928d11-c614-4aa0-8c02-bc863dbab82d"
+        name="Change Report Out"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ac3dceac-2916-47e8-b96d-a176dc271205"
+        name="Change Report Out"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="0decfeca-242a-4a3e-8f13-0a47c4f23a0b"
+        name="Interface11"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="9cbe25d0-e430-4858-b163-004908739823"
+        name="Interface6"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="bb69586c-b1bf-4a04-82eb-164eeded8597"
+        name="Change Report Out"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ab5908e1-c192-4677-83eb-ee6c3161782d"
+        name="Characters Changes"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="10ae8b67-2d81-497a-bc07-b0c049e0f30a"
+        name="Change Received"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="54e0e695-34d4-4eb3-9b1b-48c7735bb90e"
+        name="Change Sent"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="1d3906ed-c523-49a7-9b27-f0a5802f5fde"
+        name="Change Received"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="3f25eb5e-dc8f-43a1-900e-5fdadcf51d2b"
+        name="Change Sent"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
