@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Sebastian\Documents\Librerias\SDL-1.2.14\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\SDL - DLL, INC, LIB\include files\SDL;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Users\Sebastian\Documents\Librerias\SDL-1.2.14\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -71,10 +71,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AI.cpp" />
+    <ClCompile Include="CollisionObject.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameConfiguration.cpp" />
+    <ClCompile Include="GameCore.cpp" />
+    <ClCompile Include="GameSaves.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameTimer.cpp" />
+    <ClCompile Include="JapaneseMonkey.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MeerkatP2.cpp" />
+    <ClCompile Include="PandaP1.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="SLevelOneJapan.cpp" />
+    <ClCompile Include="SMainMenu.cpp" />
+    <ClCompile Include="Spear.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Stats.cpp" />
+    <ClCompile Include="Sword.cpp" />
+    <ClCompile Include="Tileset.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AI.h" />
+    <ClInclude Include="CollisionObject.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameConfiguration.h" />
+    <ClInclude Include="GameCore.h" />
+    <ClInclude Include="GameSaves.h" />
+    <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameTimer.h" />
+    <ClInclude Include="JapaneseMonkey.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="MeerkatP2.h" />
+    <ClInclude Include="PandaP1.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Score.h" />
+    <ClInclude Include="SLevelOneJapan.h" />
+    <ClInclude Include="SMainMenu.h" />
+    <ClInclude Include="Spear.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Stats.h" />
+    <ClInclude Include="Sword.h" />
+    <ClInclude Include="Tileset.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
