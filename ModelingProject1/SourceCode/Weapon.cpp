@@ -8,5 +8,4 @@ Weapon::Weapon(void)
 
 Weapon::~Weapon(void)
 {
-	//adshjsdkasdaskjdbasdhasdkasjdhaslda
 }
