@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="11c6a509-55c3-40fe-ba11-951ba3340762"
   name="ModelingProject1" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -3451,6 +3451,34 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </providedInterface>
+          <requiredInterface
+            Id="40e7b6d0-a9ac-4450-b3e5-25508c6c23bb"
+            name="Port2"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="16041dd5-7758-44b4-bdb5-4e504e340116">
+                <providedInterfaceMoniker
+                  Id="e746bd0c-8022-4b2c-b988-f3ae42e52d7f"
+                  LastKnownName="Port7"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="b5a98c27-6a6c-42ff-b686-7f152aaed72e"
+                LastKnownName="Update Screen"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
         </ownedAttributesInternal>
       </component>
     </packageHasNamedElement>
@@ -3506,6 +3534,34 @@
               <interfaceMoniker
                 Id="54e0e695-34d4-4eb3-9b1b-48c7735bb90e"
                 LastKnownName="Change Sent"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="7e914fd4-4ea1-4761-b569-7933c864f0af"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="63d5cdca-d2d7-4342-878f-0f599bf573bd">
+                <providedInterfaceMoniker
+                  Id="e746bd0c-8022-4b2c-b988-f3ae42e52d7f"
+                  LastKnownName="Port7"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="694c9cfe-d8e0-43b9-bc22-7ad453a92bde"
+                LastKnownName="Update Screen"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </requiredInterface>
@@ -3585,6 +3641,34 @@
               <interfaceMoniker
                 Id="3f25eb5e-dc8f-43a1-900e-5fdadcf51d2b"
                 LastKnownName="Change Sent"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface
+            Id="bd739262-8412-4170-bc99-649b90d9764c"
+            name="Port3"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false"
+            isService="false"
+            isBehavior="false">
+            <suppliersInternal>
+              <dependency
+                Id="bbe39c00-40f5-4d53-ab7d-88da0de29b85">
+                <providedInterfaceMoniker
+                  Id="e746bd0c-8022-4b2c-b988-f3ae42e52d7f"
+                  LastKnownName="Port7"
+                  LastKnownLocation="ModelingProject1.uml" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="ca169225-e549-416d-afb5-2b201301b0ae"
+                LastKnownName="Update Screen"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </requiredInterface>
@@ -3812,6 +3896,27 @@
       <Interface
         Id="3f25eb5e-dc8f-43a1-900e-5fdadcf51d2b"
         name="Change Sent"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="b5a98c27-6a6c-42ff-b686-7f152aaed72e"
+        name="Update Screen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="694c9cfe-d8e0-43b9-bc22-7ad453a92bde"
+        name="Update Screen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="ca169225-e549-416d-afb5-2b201301b0ae"
+        name="Update Screen"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>

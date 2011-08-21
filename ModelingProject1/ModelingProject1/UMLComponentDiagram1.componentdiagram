@@ -347,6 +347,18 @@
               <interfaceMoniker Id="1d3d75a5-89db-4cc2-9f47-50c0d7aa48ec" LastKnownName="Characters Changes" />
             </type_NamedElement>
           </providedInterface>
+          <requiredInterface Id="ad532ce3-c8c2-49f4-9d0b-698bce5ec02a" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="40e7b6d0-a9ac-4450-b3e5-25508c6c23bb" />
+            <suppliersInternal>
+              <dependency Id="cff82d73-71a2-41d4-b5ea-86e76f8e1bcb">
+                <providedInterfaceMoniker Id="dcbe25af-ecd7-4e2d-98c8-0d20bb228330" LastKnownName="Port7" />
+                <elementDefinition Id="16041dd5-7758-44b4-bdb5-4e504e340116" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="9ea9a51c-f80e-4c0b-9f6e-7dc16e187190" LastKnownName="Update Screen" />
+            </type_NamedElement>
+          </requiredInterface>
         </ownedAttributesInternal>
       </component>
     </componentModelHasComponents>
@@ -370,6 +382,18 @@
             </suppliersInternal>
             <type_NamedElement>
               <interfaceMoniker Id="d40e4eb9-08b6-4acd-947f-d86c5aa80d4b" LastKnownName="Change Sent" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="c666a21b-ab68-4e00-ae8a-71bdc090653d" name="Port3" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="7e914fd4-4ea1-4761-b569-7933c864f0af" />
+            <suppliersInternal>
+              <dependency Id="16935376-37e3-467d-921f-de8edc952507">
+                <providedInterfaceMoniker Id="dcbe25af-ecd7-4e2d-98c8-0d20bb228330" LastKnownName="Port7" />
+                <elementDefinition Id="63d5cdca-d2d7-4342-878f-0f599bf573bd" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="c4a0f1f8-1af9-4bed-b655-64c971fb3c28" LastKnownName="Update Screen" />
             </type_NamedElement>
           </requiredInterface>
         </ownedAttributesInternal>
@@ -410,6 +434,18 @@
             </suppliersInternal>
             <type_NamedElement>
               <interfaceMoniker Id="9e47b000-1278-4352-bbd8-7384bd533676" LastKnownName="Change Sent" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="740f8af0-3f01-4655-aaab-0b86486a0804" name="Port3" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="bd739262-8412-4170-bc99-649b90d9764c" />
+            <suppliersInternal>
+              <dependency Id="ebae108e-d05b-4e06-ac1b-1ac2521a89de">
+                <providedInterfaceMoniker Id="dcbe25af-ecd7-4e2d-98c8-0d20bb228330" LastKnownName="Port7" />
+                <elementDefinition Id="bbe39c00-40f5-4d53-ab7d-88da0de29b85" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="39461c2d-627f-4f59-bfb8-cea5c9205ab8" LastKnownName="Update Screen" />
             </type_NamedElement>
           </requiredInterface>
         </ownedAttributesInternal>
@@ -518,6 +554,21 @@
     <modelContainsNamedElements>
       <Interface Id="9e47b000-1278-4352-bbd8-7384bd533676" name="Change Sent" isAbstract="false" isLeaf="false">
         <elementDefinition Id="3f25eb5e-dc8f-43a1-900e-5fdadcf51d2b" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="9ea9a51c-f80e-4c0b-9f6e-7dc16e187190" name="Update Screen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b5a98c27-6a6c-42ff-b686-7f152aaed72e" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="c4a0f1f8-1af9-4bed-b655-64c971fb3c28" name="Update Screen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="694c9cfe-d8e0-43b9-bc22-7ad453a92bde" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="39461c2d-627f-4f59-bfb8-cea5c9205ab8" name="Update Screen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ca169225-e549-416d-afb5-2b201301b0ae" />
       </Interface>
     </modelContainsNamedElements>
   </packagedElements>
