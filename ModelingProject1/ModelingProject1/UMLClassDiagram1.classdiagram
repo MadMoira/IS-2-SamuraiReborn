@@ -1293,18 +1293,6 @@
         <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
       </referencedType>
     </packageHasNamedElement>
-    <logicalClassDesignerModelHasPackages>
-      <package Id="dbd22535-52e6-4be0-a550-8ef082037acd" name="Package1">
-        <elementDefinition Id="db723aa8-2c22-4ee1-aff5-bbbcd678e97f" />
-        <packagedElements>
-          <packageHasNamedElement>
-            <class Id="0c37f4b1-db86-48f0-b311-dc1ea46c795b" name="CLON!!!!" isAbstract="false" isLeaf="false" isActiveClass="false">
-              <elementDefinition Id="47c90c15-7093-4d06-9af2-b364b2f94327" />
-            </class>
-          </packageHasNamedElement>
-        </packagedElements>
-      </package>
-    </logicalClassDesignerModelHasPackages>
   </packagedElements>
   <package Id="01b60acc-10a7-4cf8-9470-7f22dc9f60c2" name="ModelingProject1">
     <elementDefinition Id="11c6a509-55c3-40fe-ba11-951ba3340762" />

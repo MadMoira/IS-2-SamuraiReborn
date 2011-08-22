@@ -359,17 +359,5 @@
         <classShapeMoniker Id="2a630b79-b338-4f5e-8a48-243570a4176c" />
       </nodes>
     </associationConnector>
-    <packageShape Id="a81f5c4e-815a-4a20-acdf-3636ec956536" absoluteBounds="3.125, 2.875, 2.75, 1.875" customColor="255, 249, 230" hideQualifiedName="false">
-      <packageMoniker Id="dbd22535-52e6-4be0-a550-8ef082037acd" LastKnownName="Package1" />
-      <nestedChildShapes>
-        <classShape Id="ce62cf75-2bb8-4f0a-8fce-d85c9e7b86d8" absoluteBounds="4.25, 3.75, 1.5, 0.90234373509883881" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
-          <classMoniker Id="0c37f4b1-db86-48f0-b311-dc1ea46c795b" LastKnownName="CLON!!!!" />
-          <nestedChildShapes>
-            <AttributeElementListCompartment Id="7a950be9-ecde-4050-b821-5033ce48bffe" absoluteBounds="4.265, 4.14, 1.4700000000000002, 0.2011718675494194" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-            <OperationElementListCompartment Id="0f462fe5-7ca3-4aa3-b397-8544e40904d6" absoluteBounds="4.265, 4.35117186754942, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
-          </nestedChildShapes>
-        </classShape>
-      </nestedChildShapes>
-    </packageShape>
   </nestedChildShapes>
 </logicalClassDesignerDiagram>
