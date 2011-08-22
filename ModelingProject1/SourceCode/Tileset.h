@@ -5,8 +5,6 @@
 #include <string>
 #include <GL/gl.h>
 
-using namespace std;
-
 class Tileset
 {
 public:
@@ -16,8 +14,16 @@ public:
 	void loadTexture();
 	void getTileWithID();
 
+	void setFilename(std::string name) { filename = name; }
+
+	void setHeightTile(int height) { heightTile = height; }
+
+	void setWidthTile(int width) { widthTile = width; }
+
+	void setNumberOfTiles(int number) { numberOfTiles = number; }
+
 private:
-	string filename;
+	std::string filename;
 	GLuint texture;
 	int ID;
 	int heightTile, widthTile;
