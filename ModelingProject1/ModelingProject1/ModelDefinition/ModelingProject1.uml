@@ -764,7 +764,7 @@
         <ownedAttributesInternal>
           <property
             Id="1e0a0000-d4ea-4e53-adf5-8bb8259aff03"
-            name="name"
+            name="levelName"
             visibility="Private"
             isLeaf="false"
             isStatic="false"

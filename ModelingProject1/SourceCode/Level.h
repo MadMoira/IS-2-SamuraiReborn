@@ -8,8 +8,6 @@
 
 #include "Tileset.h"
 
-using namespace std;
-
 enum Levels 
 { 
 	LEVELZEROTUTORIAL, 
@@ -25,13 +23,13 @@ public:
 	void getTileCollision();
 	void getTileOfPlayerPosition();
 	void loadLevelWithName();
-	void loadTMXTileMapFile();
+	int loadTMXTileMapFile(std::string filename);
 
 private:
-	string levelName;
+	std::string levelName;
 	int numberOfEnemies;
-	vector<int> listCollisionTiles;
-	Tileset *tiles;
+	std::vector<int> listCollisionTiles;
+	//boost::ptr_vector< Tileset > tilesetList;
 	/*Implement the map with smart pointers*/
 };
 
