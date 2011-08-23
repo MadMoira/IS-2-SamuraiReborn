@@ -105,7 +105,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 				//printf("%03d", layer->GetTileGid(y, x));
 				tempLayerMap[y][x] = layer->GetTileGid(y, x);
 
-				const Tmx::Tileset *tileset = map->FindTileset(layer->GetTileGid(y,x));
+				//const Tmx::Tileset *tileset = map->FindTileset(layer->GetTileGid(y,x));
 			}
 		}
 

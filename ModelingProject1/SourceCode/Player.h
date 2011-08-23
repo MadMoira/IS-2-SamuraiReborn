@@ -11,12 +11,12 @@ public:
 
 	~Player(void);
 
-	virtual void attack();
+	/*virtual void attack();
 	virtual void block();
 	virtual void executeAction();
 	virtual void handleInput();
 	virtual void jump();
-	virtual void walk();
+	virtual void walk();*/
 
 	void changeFightStyle();
 	void getPlayerStats();

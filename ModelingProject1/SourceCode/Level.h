@@ -28,6 +28,7 @@ public:
 	void getTileOfPlayerPosition();
 	void loadLevelWithName();
 	int loadTMXTileMapFile(std::string filename);
+	boost::ptr_vector< Layer > getLayersList() { return layersList; }
 
 private:
 	std::string levelName;

@@ -2,151 +2,58 @@
 and may not be redestributed without written permission.*/
 
 //The headers
+
+#include <windows.h>
+
 #include "SDL.h"
 #include "SDL_image.h"
 #include <string>
 
-//Screen attributes
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
-const int SCREEN_BPP = 32;
+#include "Level.h"
 
-//The surfaces
-SDL_Surface *image = NULL;
-SDL_Surface *screen = NULL;
-
-//The event structure that will be used
-SDL_Event event;
-
-SDL_Surface *load_image( std::string filename )
-{
-    //The image that's loaded
-    SDL_Surface* loadedImage = NULL;
-
-    //The optimized image that will be used
-    SDL_Surface* optimizedImage = NULL;
-
-    //Load the image
-    loadedImage = IMG_Load( filename.c_str() );
-
-    //If the image loaded
-    if( loadedImage != NULL )
-    {
-        //Create an optimized image
-        optimizedImage = SDL_DisplayFormat( loadedImage );
-
-        //Free the old image
-        SDL_FreeSurface( loadedImage );
-    }
-
-    //Return the optimized image
-    return optimizedImage;
-}
-
-void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination )
-{
-    //Temporary rectangle to hold the offsets
-    SDL_Rect offset;
-
-    //Get the offsets
-    offset.x = x;
-    offset.y = y;
-
-    //Blit the surface
-    SDL_BlitSurface( source, NULL, destination, &offset );
-}
-
-bool init()
-{
-    //Initialize all SDL subsystems
-    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 )
-    {
-        return false;
-    }
-
-    //Set up the screen
-    screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
-
-    //If there was an error in setting up the screen
-    if( screen == NULL )
-    {
-        return false;
-    }
-
-    //Set the window caption
-    SDL_WM_SetCaption( "Event test", NULL );
-
-    //If everything initialized fine
-    return true;
-}
-
-bool load_files()
-{
-    //Load the image
-    image = load_image( "x.png" );
-
-    //If there was an error in loading the image
-    if( image == NULL )
-    {
-        return false;
-    }
-
-    //If everything loaded fine
-    return true;
-}
-
-void clean_up()
-{
-    //Free the surface
-    SDL_FreeSurface( image );
-
-    //Quit SDL
-    SDL_Quit();
-}
+#include <GL/gl.h>
 
 int main( int argc, char* args[] )
 {
-    //Make sure the program waits for a quit
-    bool quit = false;
+	if ( SDL_Init(SDL_INIT_VIDEO) != 0 ) {
+		printf("Unable to initialize SDL: %s\n", SDL_GetError());
+		exit(1);
+	}
+	SDL_Surface *gameMainSurface;
+	//const SDL_VideoInfo* myPointer = SDL_GetVideoInfo(); //Return a struct with information about the actual video mode
 
-    //Initialize
-    if( init() == false )
-    {
-        return 1;
-    }
+	int width = 1280; //Width and height for testing
+	int height = 720;
 
-    //Load the files
-    if( load_files() == false )
-    {
-        return 1;
-    }
+	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ); //Establish a mode about how OpenGL it's going to work
+	gameMainSurface = SDL_SetVideoMode( width, height, 32, SDL_OPENGL) ; //Create the surface for the game 
 
-    //Apply the surface to the screen
-    apply_surface( 0, 0, image, screen );
+	//----------------------------------------------
+	//----Initialize OpenGL for 2D------------------
 
-    //Update the screen
-    if( SDL_Flip( screen ) == -1 )
-    {
-        return 1;
-    }
+	glEnable( GL_TEXTURE_2D );
+ 
+	glClearColor( 0.5f, 0.5f, 0.5f, 0.0f );
 
-    //While the user hasn't quit
-    while( quit == false )
-    {
-        //While there's an event to handle
-        while( SDL_PollEvent( &event ) )
-        {
-            //If the user has Xed out the window
-            if( event.type == SDL_QUIT )
-            {
-                //Quit the program
-                quit = true;
-            }
-        }
-    }
+	glViewport( 0, 0, width, height );
+	 
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	 
+	glMatrixMode( GL_PROJECTION );
+	glLoadIdentity();
+	 
+	glOrtho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
+	 
+	glMatrixMode( GL_MODELVIEW );
+	glLoadIdentity();
 
-    //Free the surface and quit SDL
-    clean_up();
+	//----------------------------------------------
+	//----------------------------------------------
 
-    return 0;
+	Level *levelOne = new Level();
+	levelOne->loadTMXTileMapFile("example.tmx");
+
+	SDL_Quit();
+
+	return 0;
 }
