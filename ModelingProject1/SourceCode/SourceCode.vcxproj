@@ -50,6 +50,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -81,6 +82,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="JapaneseMonkey.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MeerkatP2.cpp" />
@@ -110,6 +112,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="JapaneseMonkey.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MeerkatP2.h" />
     <ClInclude Include="PandaP1.h" />
