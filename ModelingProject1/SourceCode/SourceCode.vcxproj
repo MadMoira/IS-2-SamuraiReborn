@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\SDL - DLL, INC, LIB\include files\SDL;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Sebastian\Documents\Librerias\TMXParser;C:\Users\Sebastian\Documents\Librerias\SDL-1.2.14\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Sebastian\Documents\Librerias\TMXParser;C:\Users\Sebastian\Documents\Librerias\SDL-1.2.14\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -53,7 +53,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL.lib;SDLmain.lib;SDL_image.lib;SDL_mixer.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>TMXParserd.lib;OpenGL32.lib;glu32.lib;SDL.lib;SDLmain.lib;SDL_image.lib;SDL_mixer.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -97,9 +97,6 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="CollisionObject.h" />
     <ClInclude Include="Enemy.h" />
@@ -123,6 +120,9 @@
     <ClInclude Include="Sword.h" />
     <ClInclude Include="Tileset.h" />
     <ClInclude Include="Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="x.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
