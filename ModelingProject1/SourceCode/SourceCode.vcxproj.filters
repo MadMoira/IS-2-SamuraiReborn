@@ -137,11 +137,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="x.png">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Level.h">
       <Filter>Header Files\Level Design</Filter>
     </ClInclude>
@@ -211,5 +206,10 @@
     <ClInclude Include="AI.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="x.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
