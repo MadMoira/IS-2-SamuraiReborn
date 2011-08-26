@@ -207,9 +207,4 @@
       <Filter>Header Files\AI</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="x.png">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

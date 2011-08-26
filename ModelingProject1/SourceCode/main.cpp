@@ -67,10 +67,11 @@ int main( int argc, char* args[] )
 	if(screen.initialize()==false){
 		return 1;
 	}
-	loadTexture("x.png");
+
+	loadTexture("imagen.png");
 	
 	loadTexture("y.png");
-
+	
 	SDL_GL_SwapBuffers();
 	
 	bool quit = false;
@@ -91,11 +92,10 @@ int main( int argc, char* args[] )
 			else if(temp>100){adelante=true;}
 			glTranslatef(temp,0.0f,0.0f);
 			
-			loadTexture("imagen.png");
 			loadTexture("x.png");
-			loadTexture("y.png");
 
 			SDL_GL_SwapBuffers();
+			
 			if( evento.type == SDL_KEYDOWN )
 			{
 				if(evento.key.keysym.sym == SDLK_ESCAPE){

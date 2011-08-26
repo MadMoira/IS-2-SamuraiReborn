@@ -121,9 +121,6 @@
     <ClInclude Include="Tileset.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="x.png" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

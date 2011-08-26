@@ -31,10 +31,10 @@ bool GameScreen::initialize()
 
 bool GameScreen::initializeOGL()
 {	
-	glViewport(0,0,1280,720);
+	glViewport(0,0,800,600);
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
-    glOrtho( 0, 1280, 720, 0, -1, 1 );
+    glOrtho( 0, 800, 600, 0, -1, 1 );
 	glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
