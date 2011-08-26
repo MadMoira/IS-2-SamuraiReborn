@@ -10,7 +10,7 @@ public:
 	Player(void);
 
 	~Player(void);
-
+	/*
 	virtual void attack();
 	virtual void block();
 	virtual void executeAction();
@@ -21,7 +21,7 @@ public:
 	void changeFightStyle();
 	void getPlayerStats();
 	bool isAlive();
-
+	*/
 private:
 	int currentFightMode;
 	int currentHealth, currentStamina;

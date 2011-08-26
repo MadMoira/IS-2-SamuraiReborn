@@ -1,152 +1,103 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2011)
-and may not be redestributed without written permission.*/
-
-//The headers
-#include "SDL.h"
+#include "GameCore.h"
 #include "SDL_image.h"
 #include <string>
-
-//Screen attributes
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
-const int SCREEN_BPP = 32;
-
-//The surfaces
-SDL_Surface *image = NULL;
-SDL_Surface *screen = NULL;
-
-//The event structure that will be used
-SDL_Event event;
+#include <iostream>
+using namespace std;
 
 SDL_Surface *load_image( std::string filename )
 {
-    //The image that's loaded
     SDL_Surface* loadedImage = NULL;
 
-    //The optimized image that will be used
     SDL_Surface* optimizedImage = NULL;
 
-    //Load the image
     loadedImage = IMG_Load( filename.c_str() );
 
-    //If the image loaded
     if( loadedImage != NULL )
     {
-        //Create an optimized image
-        optimizedImage = SDL_DisplayFormat( loadedImage );
+        optimizedImage = SDL_DisplayFormatAlpha( loadedImage );
 
-        //Free the old image
         SDL_FreeSurface( loadedImage );
     }
 
-    //Return the optimized image
     return optimizedImage;
 }
 
-void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination )
-{
-    //Temporary rectangle to hold the offsets
-    SDL_Rect offset;
+void loadTexture(string name){
+	
+	SDL_Surface* background = load_image(name);
+	
+	GLuint texture;
 
-    //Get the offsets
-    offset.x = x;
-    offset.y = y;
+	if(background!=NULL){
+		
+		glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
 
-    //Blit the surface
-    SDL_BlitSurface( source, NULL, destination, &offset );
-}
+		glTexImage2D(	GL_TEXTURE_2D,
+						0, 
+						4, 
+						background->w, 
+						background->h,
+						0, 
+						GL_BGRA,
+						GL_UNSIGNED_BYTE, 
+						background->pixels);
 
-bool init()
-{
-    //Initialize all SDL subsystems
-    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 )
-    {
-        return false;
-    }
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-    //Set up the screen
-    screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
-
-    //If there was an error in setting up the screen
-    if( screen == NULL )
-    {
-        return false;
-    }
-
-    //Set the window caption
-    SDL_WM_SetCaption( "Event test", NULL );
-
-    //If everything initialized fine
-    return true;
-}
-
-bool load_files()
-{
-    //Load the image
-    image = load_image( "x.png" );
-
-    //If there was an error in loading the image
-    if( image == NULL )
-    {
-        return false;
-    }
-
-    //If everything loaded fine
-    return true;
-}
-
-void clean_up()
-{
-    //Free the surface
-    SDL_FreeSurface( image );
-
-    //Quit SDL
-    SDL_Quit();
+		glBegin (GL_QUADS);
+		glTexCoord2f (0.0, 0.0);
+		glVertex3f (0.0, 0.0, 0.0);
+		glTexCoord2f (1.0, 0.0);
+		glVertex3f (background->w, 0.0, 0.0);
+		glTexCoord2f (1.0, 1.0);
+		glVertex3f (background->w, background->h, 0.0);
+		glTexCoord2f (0.0, 1.0);
+		glVertex3f (0.0, background->h, 0.0);
+		glEnd ();
+		SDL_FreeSurface(background);
+	}
 }
 
 int main( int argc, char* args[] )
 {
-    //Make sure the program waits for a quit
-    bool quit = false;
+	GameCore core;
 
-    //Initialize
-    if( init() == false )
-    {
-        return 1;
-    }
+	if(core.initGame()==false){
+		return 1;
+	}
 
-    //Load the files
-    if( load_files() == false )
-    {
-        return 1;
-    }
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
 
-    //Apply the surface to the screen
-    apply_surface( 0, 0, image, screen );
+	glTranslatef(0.0f,10.0f,0.0f);
 
-    //Update the screen
-    if( SDL_Flip( screen ) == -1 )
-    {
-        return 1;
-    }
+	loadTexture("imagen.png");
+	loadTexture("x.png");
+	loadTexture("y.png");
 
-    //While the user hasn't quit
-    while( quit == false )
-    {
-        //While there's an event to handle
-        while( SDL_PollEvent( &event ) )
-        {
-            //If the user has Xed out the window
-            if( event.type == SDL_QUIT )
-            {
-                //Quit the program
-                quit = true;
-            }
-        }
-    }
+	SDL_GL_SwapBuffers();
+	
+	bool quit = false;
+	SDL_Event evento;
 
-    //Free the surface and quit SDL
-    clean_up();
+	float temp = 0;
+	bool adelante=true;
+	while(quit==false){
 
+		while( SDL_PollEvent( &evento ) )
+		{
+			if( evento.type == SDL_KEYDOWN )
+			{
+				if(evento.key.keysym.sym == SDLK_ESCAPE){
+					quit = true;
+				}
+			}
+			if(evento.type == SDL_QUIT){
+				quit = true;
+			}
+		}
+	}
+	
     return 0;
 }
