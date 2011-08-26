@@ -1,4 +1,4 @@
-#include "GameScreen.h"
+#include "GameCore.h"
 #include "SDL_image.h"
 #include <string>
 #include <iostream>
@@ -25,7 +25,7 @@ SDL_Surface *load_image( std::string filename )
 void loadTexture(string name){
 	
 	SDL_Surface* background = load_image(name);
-
+	
 	GLuint texture;
 
 	if(background!=NULL){
@@ -44,31 +44,36 @@ void loadTexture(string name){
 						background->pixels);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-				
-		SDL_FreeSurface(background);
 
 		glBegin (GL_QUADS);
 		glTexCoord2f (0.0, 0.0);
 		glVertex3f (0.0, 0.0, 0.0);
 		glTexCoord2f (1.0, 0.0);
-		glVertex3f (800, 0.0, 0.0);
+		glVertex3f (background->w, 0.0, 0.0);
 		glTexCoord2f (1.0, 1.0);
-		glVertex3f (800, 600, 0.0);
+		glVertex3f (background->w, background->h, 0.0);
 		glTexCoord2f (0.0, 1.0);
-		glVertex3f (0.0, 600, 0.0);
+		glVertex3f (0.0, background->h, 0.0);
 		glEnd ();
+		SDL_FreeSurface(background);
 	}
-	
 }
 
 int main( int argc, char* args[] )
 {
-	GameScreen screen;
-	if(screen.initialize()==false){
+	GameCore core;
+
+	if(core.initGame()==false){
 		return 1;
 	}
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+
+	glTranslatef(0.0f,10.0f,0.0f);
+
+	loadTexture("imagen.png");
 	loadTexture("x.png");
-	
 	loadTexture("y.png");
 
 	SDL_GL_SwapBuffers();
@@ -79,22 +84,9 @@ int main( int argc, char* args[] )
 	float temp = 0;
 	bool adelante=true;
 	while(quit==false){
+
 		while( SDL_PollEvent( &evento ) )
 		{
-			if(adelante){
-				temp++;			
-			}
-			else{
-				temp--;			
-			}
-			if(temp<0){adelante=false;}
-			else if(temp>100){adelante=true;}
-			glTranslatef(temp,0.0f,0.0f);
-			loadTexture("x.png");
-	
-			loadTexture("y.png");
-
-			SDL_GL_SwapBuffers();
 			if( evento.type == SDL_KEYDOWN )
 			{
 				if(evento.key.keysym.sym == SDLK_ESCAPE){
