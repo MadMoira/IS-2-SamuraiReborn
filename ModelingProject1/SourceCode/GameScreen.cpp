@@ -34,15 +34,15 @@ bool GameScreen::initializeOGL()
 	glViewport(0,0,1280,720);
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
-    glOrtho( 0, 800, 600, 0, -1, 1 );
+    glOrtho( 0, 1280, 720, 0, -1, 1 );
 	glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
 	glEnable(GL_TEXTURE_2D);
-	//glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-	//glEnable(GL_BLEND);
-	glAlphaFunc(GL_GREATER,0.1f);
-	glEnable(GL_ALPHA_TEST);
+	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	//glAlphaFunc(GL_GREATER,0.1f);
+	//glEnable(GL_ALPHA_TEST);
 	glClearColor(1.0f,1.0f,1.0f,1.0f);
 
     if( glGetError() != GL_NO_ERROR )

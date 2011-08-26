@@ -90,8 +90,9 @@ int main( int argc, char* args[] )
 			if(temp<0){adelante=false;}
 			else if(temp>100){adelante=true;}
 			glTranslatef(temp,0.0f,0.0f);
+			
+			loadTexture("imagen.png");
 			loadTexture("x.png");
-	
 			loadTexture("y.png");
 
 			SDL_GL_SwapBuffers();
