@@ -14,7 +14,7 @@ public:
 
 	void changeState();
 	void close();
-	void initGame();
+	bool initGame();
 	void initPlayers();
 	void setNewState();
 	void setup();
