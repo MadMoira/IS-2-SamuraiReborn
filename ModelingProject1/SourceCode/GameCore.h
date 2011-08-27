@@ -5,6 +5,7 @@
 #include "GameSaves.h"
 #include "GameScreen.h"
 #include "GameTimer.h"
+#include <string>
 
 class GameCore
 {
@@ -18,6 +19,7 @@ public:
 	void initPlayers();
 	void setNewState();
 	void setup();
+    GLuint loadTexture(std::string name);
 	void setupFPS();
 
 private:

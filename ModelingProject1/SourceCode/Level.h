@@ -6,8 +6,8 @@
 #include <vector>
 #include <GL/gl.h>
 
-#include <boost/ptr_container/ptr_vector.hpp>
-#include <boost/lexical_cast.hpp>
+//#include <boost/ptr_container/ptr_vector.hpp>
+//#include <boost/lexical_cast.hpp>
 
 #include "Tileset.h"
 #include "Layer.h"
@@ -33,7 +33,7 @@ private:
 	std::string levelName;
 	int numberOfEnemies;
 	int widthLevelInTiles, heightLevelInTiles;
-	boost::ptr_vector< Layer > layersList;
-	boost::ptr_vector< Tileset > tilesetList;
+	//boost::ptr_vector< Layer > layersList;
+	//boost::ptr_vector< Tileset > tilesetList;
 };
 
