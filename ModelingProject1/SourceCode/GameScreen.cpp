@@ -4,8 +4,9 @@
 GameScreen::GameScreen(void)
 {
 	screen = NULL;
-	width = 800;
-	height = 600;
+	width = 1280;
+	height = 720;
+	windowName="Unnamed Game!";
 }
 
 bool GameScreen::initialize()
@@ -27,7 +28,7 @@ bool GameScreen::initialize()
     {
         return false;
     }
-	SDL_WM_SetCaption( "Unnamed Game!", NULL );
+	SDL_WM_SetCaption( windowName.c_str(), NULL );
     return true;
 }
 
