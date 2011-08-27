@@ -22,13 +22,13 @@ SDL_Surface *load_image( std::string filename )
     return optimizedImage;
 }
 
-void loadTexture(string name){
+GLuint loadTexture(string name){
 	
-	SDL_Surface* background = load_image(name);
+	SDL_Surface* image = load_image(name);
 	
 	GLuint texture;
 
-	if(background!=NULL){
+	if(image!=NULL){
 		
 		glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
@@ -36,33 +36,34 @@ void loadTexture(string name){
 		glTexImage2D(	GL_TEXTURE_2D,
 						0, 
 						4, 
-						background->w, 
-						background->h,
+						image->w, 
+						image->h,
 						0, 
 						GL_BGRA,
 						GL_UNSIGNED_BYTE, 
-						background->pixels);
+						image->pixels);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-		int param;
-		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &param);
-		char aux[20];
-		sprintf(aux,"%d",param);
-		MessageBox(NULL, aux, "bonjour(s)", MB_OK);
+		SDL_FreeSurface(image);
+		return texture;
+	}
+}
 
-		glBegin (GL_QUADS);
+void drawtexture(GLuint){
+	int widht, height; 
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widht);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+	    glBegin (GL_QUADS);
 		glTexCoord2f (0.0, 0.0);
 		glVertex3f (0.0, 0.0, 0.0);
 		glTexCoord2f (1.0, 0.0);
-		glVertex3f (background->w, 0.0, 0.0);
+		glVertex3f (widht, 0.0, 0.0);
 		glTexCoord2f (1.0, 1.0);
-		glVertex3f (background->w, background->h, 0.0);
+		glVertex3f (widht, height, 0.0);
 		glTexCoord2f (0.0, 1.0);
-		glVertex3f (0.0, background->h, 0.0);
+		glVertex3f (0.0, height, 0.0);
 		glEnd ();
-		SDL_FreeSurface(background);
-	}
 }
 
 int main( int argc, char* args[] )
@@ -76,13 +77,16 @@ int main( int argc, char* args[] )
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	//glTranslatef(0.0f,10.0f,0.0f);
+	glTranslatef(0.0f,10.0f,0.0f);
 
-	loadTexture("imagen.png");
-	loadTexture("x.png");
-	loadTexture("y.png");
+	GLuint texe1 = loadTexture("imagen.png");
+	GLuint texe2 = loadTexture("x.png");
+	GLuint texe3 = loadTexture("y.png");
+	drawtexture(texe1);
+	drawtexture(texe2);
+	drawtexture(texe3);
 
-	SDL_GL_SwapBuffers();
+	//SDL_GL_SwapBuffers();
 	
 	bool quit = false;
 	SDL_Event evento;

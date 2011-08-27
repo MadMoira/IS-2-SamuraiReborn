@@ -33,7 +33,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 
 	log << "Loading Tilesets... " << std::endl;
 
-	for (int i = 0; i < map->GetNumTilesets(); i++) 
+	/*for (int i = 0; i < map->GetNumTilesets(); i++) 
 	{
 		log << "Loading Tileset #0" << i << std::endl;
 
@@ -114,7 +114,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 
 	widthLevelInTiles = layersList.at(0).getWidthLevelLayer();
 	heightLevelInTiles = layersList.at(0).getHeightLevelLayer();
-
+	*/
 	log << "Load Of Map Finished... " << std::endl;
 	log << "Closing File... " << std::endl;
 
