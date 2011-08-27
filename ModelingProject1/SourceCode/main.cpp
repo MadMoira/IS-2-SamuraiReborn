@@ -45,6 +45,12 @@ void loadTexture(string name){
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
+		int param;
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &param);
+		char aux[20];
+		sprintf(aux,"%d",param);
+		MessageBox(NULL, aux, "bonjour(s)", MB_OK);
+
 		glBegin (GL_QUADS);
 		glTexCoord2f (0.0, 0.0);
 		glVertex3f (0.0, 0.0, 0.0);
@@ -70,7 +76,7 @@ int main( int argc, char* args[] )
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	glTranslatef(0.0f,10.0f,0.0f);
+	//glTranslatef(0.0f,10.0f,0.0f);
 
 	loadTexture("imagen.png");
 	loadTexture("x.png");

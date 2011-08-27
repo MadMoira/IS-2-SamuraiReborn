@@ -9,5 +9,7 @@ public:
 private:
 	int difficultyLevel;
 	int soundMode;
+	int screenWidth;
+	int screenHeight;
 };
 
