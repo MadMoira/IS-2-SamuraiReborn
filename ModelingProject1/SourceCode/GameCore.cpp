@@ -1,6 +1,6 @@
 #include "GameCore.h"
 
-
+using namespace std;
 GameCore::GameCore(void)
 {
 	currentGameState = 0;

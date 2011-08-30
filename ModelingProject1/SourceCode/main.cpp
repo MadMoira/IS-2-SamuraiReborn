@@ -4,11 +4,11 @@
 #include <iostream>
 using namespace std;
 
-SDL_Surface *load_image( std::string filename )
+SDL_Surface *load_image( string filename )
 {
     SDL_Surface* loadedImage = NULL;
-
-    SDL_Surface* optimizedImage = NULL;
+	SDL_Surface* optimizedImage = NULL;
+	
 
     loadedImage = IMG_Load( filename.c_str() );
 
@@ -25,7 +25,7 @@ SDL_Surface *load_image( std::string filename )
 void loadTexture(string name){
 	
 	SDL_Surface* background = load_image(name);
-	
+	const SDL_VideoInfo* resolution = SDL_GetVideoInfo();
 	GLuint texture;
 
 	if(background!=NULL){
@@ -43,9 +43,13 @@ void loadTexture(string name){
 						GL_UNSIGNED_BYTE, 
 						background->pixels);
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		
 
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glBegin (GL_QUADS);
+		glScaled((1280 * background->w)/background->w,
+	    	     (720 * background->h)/background->h
+				 ,0);
 		glTexCoord2f (0.0, 0.0);
 		glVertex3f (0.0, 0.0, 0.0);
 		glTexCoord2f (1.0, 0.0);
@@ -62,16 +66,14 @@ void loadTexture(string name){
 int main( int argc, char* args[] )
 {
 	GameCore core;
-
+	
 	if(core.initGame()==false){
 		return 1;
 	}
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-
-	glTranslatef(0.0f,10.0f,0.0f);
-
+	
 	loadTexture("imagen.png");
 	loadTexture("x.png");
 	loadTexture("y.png");
@@ -82,7 +84,6 @@ int main( int argc, char* args[] )
 	SDL_Event evento;
 
 	float temp = 0;
-	bool adelante=true;
 	while(quit==false){
 
 		while( SDL_PollEvent( &evento ) )
