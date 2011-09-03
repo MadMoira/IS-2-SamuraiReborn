@@ -51,7 +51,8 @@ int main( int argc, char* args[] )
 	//----------------------------------------------
 
 	Level *levelOne = new Level();
-	levelOne->loadTMXTileMapFile("example.tmx");
+	levelOne->loadTMXTileMapFile("test.tmx");
+
 
 	SDL_Quit();
 
