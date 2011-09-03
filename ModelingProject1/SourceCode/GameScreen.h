@@ -1,7 +1,7 @@
 #pragma once
 
-#include "SDL.h"
-#include "SDL_opengl.h"
+#include "SDL/SDL.h"
+#include "SDL/SDL_opengl.h"
 #include <string>
 
 class GameScreen
@@ -15,9 +15,11 @@ public:
 	bool initializeOGL();
 	bool initialize();
 
+	
 private:
 	SDL_Surface *screen;
 	int width, height;
 	std::string windowName;
+	const SDL_VideoInfo* defaultResolution;
 };
 

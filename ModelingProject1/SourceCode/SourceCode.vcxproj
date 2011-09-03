@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Esteban\Dropbox\Ingenieria De Software II\External Libraries\TMXParser;D:\SDL-1.2.14\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Sebastian\Documents\Librerias\TMXParser;C:\Users\Sebastian\Documents\Librerias\SDL-1.2.14\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\Esteban\Dropbox\Ingenieria De Software II\External Libraries\TMXParser;D:\SDL-1.2.14\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Sebastian\Documents\Librerias\TMXParser;C:\Users\Sebastian\Documents\Librerias\SDL-1.2.14\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -99,7 +99,9 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="imagen.png" />
     <None Include="x.png" />
+    <None Include="y.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
