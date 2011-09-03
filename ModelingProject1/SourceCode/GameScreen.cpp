@@ -13,7 +13,6 @@ GameScreen::GameScreen(void)
 
 bool GameScreen::initialize()
 {
-
     if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
         return false;
@@ -21,7 +20,7 @@ bool GameScreen::initialize()
 	
 	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 
-    if( SDL_SetVideoMode( width, height, 32, SDL_OPENGL | SDL_FULLSCREEN ) == NULL ) //32 BPP
+    if( SDL_SetVideoMode( width, height, 32, SDL_OPENGL ) == NULL ) 
     {
         return false;
     }
@@ -30,7 +29,9 @@ bool GameScreen::initialize()
     {
         return false;
     }
+
 	SDL_WM_SetCaption( "Unnamed Game!", NULL );
+
     return true;
 }
 
@@ -43,16 +44,20 @@ bool GameScreen::initializeOGL()
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
 		
-	if(proportion > 1.5 && proportion < 1.7){
+	if(proportion > 1.5 && proportion < 1.7)
+	{
 		glOrtho( 0, 1280,800, 0, -1, 1 );
 	}
-	else if(proportion > 1.7 && proportion < 1.8){
+
+	else if(proportion > 1.7 && proportion < 1.8)
+	{
 		glOrtho( 0, 1280,720, 0, -1, 1 );
 	}
-	else{
+
+	else
+	{
 		glOrtho( 0, 1280,960, 0, -1, 1 );
 	}
-
 	
 	glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
@@ -60,7 +65,7 @@ bool GameScreen::initializeOGL()
 	glEnable(GL_TEXTURE_2D);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
-	glClearColor(1.0f,1.0f,1.0f,1.0f);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
     if( glGetError() != GL_NO_ERROR )
     {

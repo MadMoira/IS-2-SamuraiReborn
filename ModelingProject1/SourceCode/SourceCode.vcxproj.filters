@@ -135,6 +135,9 @@
     <ClCompile Include="AI.cpp">
       <Filter>Source Files\AI</Filter>
     </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Source Files\Level Design</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -206,15 +209,12 @@
     <ClInclude Include="AI.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Header Files\Level Design</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="x.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="y.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="imagen.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

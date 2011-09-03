@@ -1,91 +1,54 @@
+
+#include <windows.h>
+
+#include "SDL/SDL_image.h"
+#include <GL/GL.h>
+
 #include "GameCore.h"
-#include "SDL_image.h"
-#include <string>
-#include <iostream>
-using namespace std;
 
-SDL_Surface *load_image( string filename )
+		
+void drawtexture(GLuint texture)
 {
-    SDL_Surface* loadedImage = NULL;
-	SDL_Surface* optimizedImage = NULL;
-	
-
-    loadedImage = IMG_Load( filename.c_str() );
-
-    if( loadedImage != NULL )
-    {
-        optimizedImage = SDL_DisplayFormatAlpha( loadedImage );
-
-        SDL_FreeSurface( loadedImage );
-    }
-
-    return optimizedImage;
+        int width, height; 
+        glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
+        glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+		glBindTexture( GL_TEXTURE_2D, i );
+            glBegin (GL_QUADS);
+			glScaled((1280 * width)/width, (720 * height)/height ,0);
+				glTexCoord2f (0.0, 0.0);
+                glVertex3f (0.0, 0.0, 0.0);
+                glTexCoord2f (1.0, 0.0);
+                glVertex3f (width, 0.0, 0.0);
+                glTexCoord2f (1.0, 1.0);
+                glVertex3f (width, height, 0.0);
+                glTexCoord2f (0.0, 1.0);
+                glVertex3f (0.0, height, 0.0);
+            glEnd ();
 }
-
-void loadTexture(string name){
-	
-	SDL_Surface* background = load_image(name);
-	const SDL_VideoInfo* resolution = SDL_GetVideoInfo();
-	GLuint texture;
-
-	if(background!=NULL){
-		
-		glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-
-		glTexImage2D(	GL_TEXTURE_2D,
-						0, 
-						4, 
-						background->w, 
-						background->h,
-						0, 
-						GL_BGRA,
-						GL_UNSIGNED_BYTE, 
-						background->pixels);
-
-		
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glBegin (GL_QUADS);
-		glScaled((1280 * background->w)/background->w,
-	    	     (720 * background->h)/background->h
-				 ,0);
-		glTexCoord2f (0.0, 0.0);
-		glVertex3f (0.0, 0.0, 0.0);
-		glTexCoord2f (1.0, 0.0);
-		glVertex3f (background->w, 0.0, 0.0);
-		glTexCoord2f (1.0, 1.0);
-		glVertex3f (background->w, background->h, 0.0);
-		glTexCoord2f (0.0, 1.0);
-		glVertex3f (0.0, background->h, 0.0);
-		glEnd ();
-		SDL_FreeSurface(background);
-	}
-}
-
+	 
 int main( int argc, char* args[] )
 {
-	GameCore core;
+	GameCore Core;
 	
-	if(core.initGame()==false){
+	if( Core.initGame() == false)
+	{
 		return 1;
 	}
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	
-	loadTexture("imagen.png");
-	loadTexture("x.png");
-	loadTexture("y.png");
-
-	SDL_GL_SwapBuffers();
+	GLuint texe1 = Core.loadTexture("imagen.png");
+	GLuint texe2 = Core.loadTexture("y.png");
+	drawtexture(texe1);
+	drawtexture(texe2);
 	
 	bool quit = false;
 	SDL_Event evento;
-
 	float temp = 0;
-	while(quit==false){
 
+	while(quit == false)
+	{
 		while( SDL_PollEvent( &evento ) )
 		{
 			if( evento.type == SDL_KEYDOWN )
@@ -98,7 +61,10 @@ int main( int argc, char* args[] )
 				quit = true;
 			}
 		}
+
+		SDL_GL_SwapBuffers();
+	
 	}
 	
-    return 0;
+	return 0;
 }

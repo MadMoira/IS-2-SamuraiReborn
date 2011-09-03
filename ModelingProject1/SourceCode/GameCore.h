@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "GameState.h"
 #include "GameConfiguration.h"
 #include "GameSaves.h"
@@ -9,7 +11,7 @@
 class GameCore
 {
 public:
-	GameCore(void);
+	GameCore();
 	~GameCore(void);
 
 	void changeState();
@@ -18,6 +20,10 @@ public:
 	void initPlayers();
 	void setNewState();
 	void setup();
+
+	SDL_Surface *load_image(std::string filename);
+    GLuint loadTexture(std::string name);
+
 	void setupFPS();
 
 private:
