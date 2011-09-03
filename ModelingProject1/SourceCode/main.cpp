@@ -12,7 +12,7 @@ void drawtexture(GLuint texture)
         int width, height; 
         glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
         glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
-		glBindTexture( GL_TEXTURE_2D, i );
+		glBindTexture( GL_TEXTURE_2D, texture );
             glBegin (GL_QUADS);
 			glScaled((1280 * width)/width, (720 * height)/height ,0);
 				glTexCoord2f (0.0, 0.0);
