@@ -1,7 +1,13 @@
 #include "GameCore.h"
-#include "SDL_image.h"
+
+#include <windows.h>
+
+#include "SDL/SDL_image.h"
 #include <string>
 #include <iostream>
+
+#include <gl/GL.h>
+
 using namespace std;
 
 SDL_Surface *load_image( std::string filename )
@@ -27,12 +33,12 @@ void loadTexture(string name){
 	SDL_Surface* background = load_image(name);
 	
 	GLuint texture;
-
+ 
 	if(background!=NULL){
 		
 		glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
-
+	 
 		glTexImage2D(	GL_TEXTURE_2D,
 						0, 
 						4, 
@@ -42,28 +48,28 @@ void loadTexture(string name){
 						GL_BGRA,
 						GL_UNSIGNED_BYTE, 
 						background->pixels);
-
+	 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
+	 
 		glBegin (GL_QUADS);
 		glTexCoord2f (0.0, 0.0);
 		glVertex3f (0.0, 0.0, 0.0);
 		glTexCoord2f (1.0, 0.0);
-		glVertex3f (background->w, 0.0, 0.0);
+		glVertex3f ((GLfloat)background->w, 0.0, 0.0);
 		glTexCoord2f (1.0, 1.0);
-		glVertex3f (background->w, background->h, 0.0);
+		glVertex3f ((GLfloat)background->w, (GLfloat)background->h, 0.0);
 		glTexCoord2f (0.0, 1.0);
-		glVertex3f (0.0, background->h, 0.0);
+		glVertex3f (0.0, (GLfloat)background->h, 0.0);
 		glEnd ();
 		SDL_FreeSurface(background);
 	}
 }
-
+	 
 int main( int argc, char* args[] )
 {
 	GameCore core;
 
-	if(core.initGame()==false){
+	if(core.initGame() == false){
 		return 1;
 	}
 
@@ -80,11 +86,10 @@ int main( int argc, char* args[] )
 	
 	bool quit = false;
 	SDL_Event evento;
-
 	float temp = 0;
 	bool adelante=true;
-	while(quit==false){
 
+	while(quit == false){
 		while( SDL_PollEvent( &evento ) )
 		{
 			if( evento.type == SDL_KEYDOWN )
@@ -99,5 +104,5 @@ int main( int argc, char* args[] )
 		}
 	}
 	
-    return 0;
+	return 0;
 }

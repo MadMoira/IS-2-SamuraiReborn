@@ -6,7 +6,11 @@
 #include <vector>
 #include <GL/gl.h>
 
+#include <boost/ptr_container/ptr_vector.hpp>
+#include <boost/lexical_cast.hpp>
+
 #include "Tileset.h"
+#include "Layer.h"
 
 enum Levels 
 { 
@@ -25,11 +29,15 @@ public:
 	void loadLevelWithName();
 	int loadTMXTileMapFile(std::string filename);
 
+	bool drawLevelMap();
+
+	boost::ptr_vector< Layer > getLayersList() { return layersList; }
+
 private:
 	std::string levelName;
 	int numberOfEnemies;
-	std::vector<int> listCollisionTiles;
-	//boost::ptr_vector< Tileset > tilesetList;
-	/*Implement the map with smart pointers*/
+	int widthLevelInTiles, heightLevelInTiles;
+	boost::ptr_vector< Layer > layersList;
+	boost::ptr_vector< Tileset > tilesetList;
 };
 
