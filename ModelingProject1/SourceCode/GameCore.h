@@ -18,6 +18,7 @@ public:
 	void initPlayers();
 	void setNewState();
 	void setup();
+    GLuint loadTexture(std::string name);
 	void setupFPS();
 
 private:

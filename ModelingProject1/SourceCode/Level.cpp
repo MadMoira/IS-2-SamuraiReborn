@@ -109,6 +109,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 			for (int y = 0; y < layer->GetHeight(); y++) 
 			{
 				int tileID = layer->GetTileGid(x, y);
+				tempLayerMap[y][x] = layer->GetTileGid(y, x);
 				
 				if (tileID == NULL){
 					tempLayerMap[y][x] = 0;
