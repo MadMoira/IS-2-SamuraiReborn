@@ -31,8 +31,7 @@ GLuint loadTexture(string name){
 	if(image!=NULL){
 		
 		glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-
+		glBindTexture(GL_TEXTURE_2D, texture);
 		glTexImage2D(	GL_TEXTURE_2D,
 						0, 
 						4, 
@@ -54,16 +53,16 @@ void drawtexture(GLuint){
 	int widht, height; 
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widht);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
-	    glBegin (GL_QUADS);
-		glTexCoord2f (0.0, 0.0);
-		glVertex3f (0.0, 0.0, 0.0);
-		glTexCoord2f (1.0, 0.0);
-		glVertex3f (widht, 0.0, 0.0);
-		glTexCoord2f (1.0, 1.0);
-		glVertex3f (widht, height, 0.0);
-		glTexCoord2f (0.0, 1.0);
-		glVertex3f (0.0, height, 0.0);
-		glEnd ();
+	glBegin (GL_QUADS);
+	glTexCoord2f (0.0, 0.0);
+	glVertex3f (0.0, 0.0, 0.0);
+	glTexCoord2f (1.0, 0.0);
+	glVertex3f (widht, 0.0, 0.0);
+	glTexCoord2f (1.0, 1.0);
+	glVertex3f (widht, height, 0.0);
+	glTexCoord2f (0.0, 1.0);
+	glVertex3f (0.0, height, 0.0);
+	glEnd ();
 }
 
 int main( int argc, char* args[] )
@@ -76,25 +75,24 @@ int main( int argc, char* args[] )
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-
-	glTranslatef(0.0f,10.0f,0.0f);
-
+	glTranslatef(0.0f,0.0f,0.0f);
 	GLuint texe1 = loadTexture("imagen.png");
 	GLuint texe2 = loadTexture("x.png");
 	GLuint texe3 = loadTexture("y.png");
+    glBindTexture(GL_TEXTURE_2D, texe1);
 	drawtexture(texe1);
+	glBindTexture(GL_TEXTURE_2D, texe2);
 	drawtexture(texe2);
+	glBindTexture(GL_TEXTURE_2D, texe3);
 	drawtexture(texe3);
 
-	//SDL_GL_SwapBuffers();
+	SDL_GL_SwapBuffers();
 	
 	bool quit = false;
 	SDL_Event evento;
 
-	float temp = 0;
 	bool adelante=true;
 	while(quit==false){
-
 		while( SDL_PollEvent( &evento ) )
 		{
 			if( evento.type == SDL_KEYDOWN )

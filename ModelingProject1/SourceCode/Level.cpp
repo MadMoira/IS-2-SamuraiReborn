@@ -33,7 +33,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 
 	log << "Loading Tilesets... " << std::endl;
 
-	/*for (int i = 0; i < map->GetNumTilesets(); i++) 
+	for (int i = 0; i < map->GetNumTilesets(); i++) 
 	{
 		log << "Loading Tileset #0" << i << std::endl;
 
@@ -52,6 +52,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 		tilesetList.at(i).setID(i);
 		tilesetList.at(i).setFilename(tileset->GetImage()->GetSource().c_str());
 		tilesetList.at(i).setHeightTile(32);	tilesetList.at(i).setWidthTile(32);
+		tilesetList.at(i).setHeightImage( tileset->GetImage()->GetHeight() );		
+		tilesetList.at(i).setWidthImage( tileset->GetImage()->GetWidth() );
 		tilesetList.at(i).setNumberOfTiles( tileset->GetTiles().size() );
 
 		if (tileset->GetTiles().size() > 0) 
@@ -82,6 +84,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 
 				log << iter->first.c_str() << " = " << iter->second.c_str() << std::endl;
 			}
+
+			tilesetList.at(i).setListCollisionTiles(tempListTilesCollision);
 		}
 	}
 
@@ -97,15 +101,22 @@ int Level::loadTMXTileMapFile(std::string filename)
 							  layer->GetWidth(), layer->GetHeight()) );
 
 		std::vector< std::vector <int> > tempLayerMap = layersList.at(i).getLayerMap();
+		int w = layer->GetWidth();
+		int h = layer->GetHeight();
 
 		for (int x = 0; x < layer->GetWidth(); x++) 
 		{
 			for (int y = 0; y < layer->GetHeight(); y++) 
 			{
-				//printf("%03d", layer->GetTileGid(y, x));
+				int tileID = layer->GetTileGid(x, y);
 				tempLayerMap[y][x] = layer->GetTileGid(y, x);
-
-				const Tmx::Tileset *tileset = map->FindTileset(layer->GetTileGid(y,x));
+				
+				if (tileID == NULL){
+					tempLayerMap[y][x] = 0;
+				}
+				
+				else{
+					tempLayerMap[y][x] = tileID;}
 			}
 		}
 
@@ -114,7 +125,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 
 	widthLevelInTiles = layersList.at(0).getWidthLevelLayer();
 	heightLevelInTiles = layersList.at(0).getHeightLevelLayer();
-	*/
+
 	log << "Load Of Map Finished... " << std::endl;
 	log << "Closing File... " << std::endl;
 
@@ -123,4 +134,67 @@ int Level::loadTMXTileMapFile(std::string filename)
 	delete map;
 
 	return 0;
+}
+
+bool Level::drawLevelMap()
+{
+	int widthMap = layersList.at(0).getWidthLevelLayer();
+	int heightMap = layersList.at(0).getHeightLevelLayer();
+	GLfloat sizeTile = 32.f;
+
+	for (int i = 0; i < layersList.size(); i++)
+	{
+		std::vector< std::vector <int> > layerMap = layersList.at(0).getLayerMap();
+		int widthTilesetImage = tilesetList.at(i).getWidthImage();
+		int heightTilesetImage = tilesetList.at(i).getHeightImage();
+
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		glEnableClientState( GL_VERTEX_ARRAY );
+		glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
+	
+		glBindTexture( GL_TEXTURE_2D, tilesetList.at(i).getTexture() );
+	
+		for (int i = 0; i < heightLevelInTiles; i++)
+		{
+			for (int j = 0; j < widthLevelInTiles; j++)
+			{
+				int frameIndex = layerMap[i][j];
+			
+				const GLfloat tileX = 0.0f + (sizeTile*j);
+				const GLfloat tileY = 0.0f + (sizeTile*i);
+
+				const GLfloat verts[] = {
+					tileX, tileY,
+					tileX + sizeTile, tileY,
+					tileX + sizeTile, tileY + sizeTile,
+					tileX, tileY + sizeTile
+				};
+
+				const GLfloat textureWidth = sizeTile / (GLfloat)widthTilesetImage;
+				const GLfloat textureHeight = sizeTile / (GLfloat)heightTilesetImage;
+				const int numFramePerRow = widthTilesetImage / sizeTile;
+				const GLfloat textureX = (frameIndex % numFramePerRow) * textureWidth;
+				const GLfloat textureY = (frameIndex / numFramePerRow + 1) * textureHeight;
+
+				const GLfloat texVerts[] = {
+						textureX, textureY,
+						textureX + textureWidth, textureY,
+						textureX + textureWidth, textureY + textureHeight,
+						textureX, textureY + textureHeight
+				};
+			
+				glVertexPointer(2, GL_FLOAT, 0, verts);
+				glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
+				glDrawArrays(GL_QUADS, 0, 4);
+
+			}
+		}		
+	
+		glDisableClientState( GL_VERTEX_ARRAY );			
+		glDisableClientState( GL_TEXTURE_COORD_ARRAY );	
+
+	}
+
+	return true;
 }

@@ -15,8 +15,16 @@ public:
 	void loadTexture();
 	void getTileWithID();
 
+	GLuint getTexture() { return texture; }
+
 	std::map< int, std::string > getListCollisionTiles() { return listCollisionTiles; }
 	void setListCollisionTiles(std::map< int, std::string > list) { listCollisionTiles = list; }
+
+	int getHeightImage() { return heightImage; }
+	void setHeightImage(int height) { heightImage = height; }
+
+	int getWidthImage() { return widthImage; }
+	void setWidthImage(int width) { widthImage = width; }
 
 	void setFilename(std::string name) { filename = name; }
 
@@ -33,6 +41,7 @@ private:
 	GLuint texture;
 	int ID;
 	int heightTile, widthTile;
+	int heightImage, widthImage;
 	int numberOfTiles;
 	std::map< int, std::string > listCollisionTiles;
 };

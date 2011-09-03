@@ -1,16 +1,17 @@
 #pragma once
 
+#include <string>
+
 #include "GameState.h"
 #include "GameConfiguration.h"
 #include "GameSaves.h"
 #include "GameScreen.h"
 #include "GameTimer.h"
-#include <string>
 
 class GameCore
 {
 public:
-	GameCore(void);
+	GameCore();
 	~GameCore(void);
 
 	void changeState();
@@ -19,9 +20,13 @@ public:
 	void initPlayers();
 	void setNewState();
 	void setup();
+
+	SDL_Surface *load_image(std::string filename);
     GLuint loadTexture(std::string name);
+
 	void setupFPS();
 
+	
 private:
 	GameState *currentGameState;
 	GameConfiguration *configuration;
