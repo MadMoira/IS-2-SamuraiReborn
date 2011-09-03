@@ -21,8 +21,10 @@ public:
 	void setListCollisionTiles(std::map< int, std::string > list) { listCollisionTiles = list; }
 
 	int getHeightImage() { return heightImage; }
+	void setHeightImage(int height) { heightImage = height; }
 
 	int getWidthImage() { return widthImage; }
+	void setWidthImage(int width) { widthImage = width; }
 
 	void setFilename(std::string name) { filename = name; }
 
