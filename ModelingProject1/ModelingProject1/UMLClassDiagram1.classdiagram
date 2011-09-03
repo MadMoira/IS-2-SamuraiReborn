@@ -1328,13 +1328,6 @@
         <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
       </referencedType>
     </packageHasNamedElement>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="8dd4c680-2583-46de-baa1-d7d22ea69f5c" name="Layer" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="75fbd5cb-2074-41b9-a783-9d55c1d83bce" />
-        <targetEnds>
-          <association Id="b93dc8f1-ecfe-4fa9-aa39-199927d7bd51" isDerived="false" sourceEndRoleName="Layer" targetEndRoleName="Tileset" isLeaf="false" isAbstract="false">
-            <classMoniker Id="fef43e73-6218-4463-b8bf-b047dc03a423" LastKnownName="Tileset" />
-            <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="3ca0cbd6-40ba-4785-8279-9fcd15e0b59b" name="Layer" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
                   <elementDefinition Id="20b69649-9b2c-48db-ba61-827756c47c13" />
@@ -1375,7 +1368,6 @@
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
-      </class>
     </logicalClassDesignerModelHasTypes>
     <packageHasNamedElement>
       <referencedType Id="ec984834-0b55-4115-8929-d61841a3eba2" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">

@@ -1,60 +1,108 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2011)
-and may not be redestributed without written permission.*/
-
-//The headers
+#include "GameCore.h"
 
 #include <windows.h>
 
-#include "SDL.h"
-#include "SDL_image.h"
+#include "SDL/SDL_image.h"
 #include <string>
+#include <iostream>
 
-#include "Level.h"
+#include <gl/GL.h>
 
-#include <GL/gl.h>
+using namespace std;
 
+SDL_Surface *load_image( std::string filename )
+{
+    SDL_Surface* loadedImage = NULL;
+
+    SDL_Surface* optimizedImage = NULL;
+
+    loadedImage = IMG_Load( filename.c_str() );
+
+    if( loadedImage != NULL )
+    {
+        optimizedImage = SDL_DisplayFormatAlpha( loadedImage );
+
+        SDL_FreeSurface( loadedImage );
+    }
+
+    return optimizedImage;
+}
+
+void loadTexture(string name){
+	
+	SDL_Surface* background = load_image(name);
+	
+	GLuint texture;
+ 
+	if(background!=NULL){
+		
+		glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
+	 
+		glTexImage2D(	GL_TEXTURE_2D,
+						0, 
+						4, 
+						background->w, 
+						background->h,
+						0, 
+						GL_BGRA,
+						GL_UNSIGNED_BYTE, 
+						background->pixels);
+	 
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	 
+		glBegin (GL_QUADS);
+		glTexCoord2f (0.0, 0.0);
+		glVertex3f (0.0, 0.0, 0.0);
+		glTexCoord2f (1.0, 0.0);
+		glVertex3f ((GLfloat)background->w, 0.0, 0.0);
+		glTexCoord2f (1.0, 1.0);
+		glVertex3f ((GLfloat)background->w, (GLfloat)background->h, 0.0);
+		glTexCoord2f (0.0, 1.0);
+		glVertex3f (0.0, (GLfloat)background->h, 0.0);
+		glEnd ();
+		SDL_FreeSurface(background);
+	}
+}
+	 
 int main( int argc, char* args[] )
 {
-	if ( SDL_Init(SDL_INIT_VIDEO) != 0 ) {
-		printf("Unable to initialize SDL: %s\n", SDL_GetError());
-		exit(1);
+	GameCore core;
+
+	if(core.initGame() == false){
+		return 1;
 	}
-	SDL_Surface *gameMainSurface;
-	//const SDL_VideoInfo* myPointer = SDL_GetVideoInfo(); //Return a struct with information about the actual video mode
 
-	int width = 1280; //Width and height for testing
-	int height = 720;
-
-	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ); //Establish a mode about how OpenGL it's going to work
-	gameMainSurface = SDL_SetVideoMode( width, height, 32, SDL_OPENGL) ; //Create the surface for the game 
-
-	//----------------------------------------------
-	//----Initialize OpenGL for 2D------------------
-
-	glEnable( GL_TEXTURE_2D );
- 
-	glClearColor( 0.5f, 0.5f, 0.5f, 0.0f );
-
-	glViewport( 0, 0, width, height );
-	 
-	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	 
-	glMatrixMode( GL_PROJECTION );
-	glLoadIdentity();
-	 
-	glOrtho(0.0f, width, height, 0.0f, -1.0f, 1.0f);
-	 
-	glMatrixMode( GL_MODELVIEW );
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	//----------------------------------------------
-	//----------------------------------------------
+	glTranslatef(0.0f,10.0f,0.0f);
 
-	Level *levelOne = new Level();
-	levelOne->loadTMXTileMapFile("test.tmx");
+	loadTexture("imagen.png");
+	loadTexture("x.png");
+	loadTexture("y.png");
 
+	SDL_GL_SwapBuffers();
+	
+	bool quit = false;
+	SDL_Event evento;
+	float temp = 0;
+	bool adelante=true;
 
-	SDL_Quit();
-
+	while(quit == false){
+		while( SDL_PollEvent( &evento ) )
+		{
+			if( evento.type == SDL_KEYDOWN )
+			{
+				if(evento.key.keysym.sym == SDLK_ESCAPE){
+					quit = true;
+				}
+			}
+			if(evento.type == SDL_QUIT){
+				quit = true;
+			}
+		}
+	}
+	
 	return 0;
 }

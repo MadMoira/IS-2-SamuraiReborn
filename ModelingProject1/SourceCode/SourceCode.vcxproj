@@ -41,7 +41,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\SDL - DLL, INC, LIB\include files\SDL;$(IncludePath)</IncludePath>
+    <IncludePath>D:\SDL - DLL, INC, LIB\include files;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
@@ -99,9 +99,6 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="CollisionObject.h" />
     <ClInclude Include="Enemy.h" />
@@ -126,6 +123,11 @@
     <ClInclude Include="Sword.h" />
     <ClInclude Include="Tileset.h" />
     <ClInclude Include="Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagen.png" />
+    <None Include="x.png" />
+    <None Include="y.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

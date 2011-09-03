@@ -11,6 +11,12 @@ GameCore::GameCore(void)
 	currentStateID = STATE_NULL;
 }
 
+bool GameCore::initGame(){
+	if(screen->initialize()){
+		return true;
+	}
+	return false;
+}
 
 GameCore::~GameCore(void)
 {
