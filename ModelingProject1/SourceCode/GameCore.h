@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-
+#include "SDL_image.h"
 #include "GameState.h"
 #include "GameConfiguration.h"
 #include "GameSaves.h"

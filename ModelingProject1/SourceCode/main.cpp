@@ -4,50 +4,6 @@
 #include <iostream>
 using namespace std;
 
-SDL_Surface *load_image( std::string filename )
-{
-    SDL_Surface* loadedImage = NULL;
-
-    SDL_Surface* optimizedImage = NULL;
-
-    loadedImage = IMG_Load( filename.c_str() );
-
-    if( loadedImage != NULL )
-    {
-        optimizedImage = SDL_DisplayFormatAlpha( loadedImage );
-
-        SDL_FreeSurface( loadedImage );
-    }
-
-    return optimizedImage;
-}
-
-GLuint loadTexture(string name){
-	
-	SDL_Surface* image = load_image(name);
-	
-	GLuint texture;
-
-	if(image!=NULL){
-		
-		glGenTextures(1, &texture);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		glTexImage2D(	GL_TEXTURE_2D,
-						0, 
-						4, 
-						image->w, 
-						image->h,
-						0, 
-						GL_BGRA,
-						GL_UNSIGNED_BYTE, 
-						image->pixels);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-		SDL_FreeSurface(image);
-		return texture;
-	}
-}
 
 void drawtexture(GLuint){
 	int widht, height; 
@@ -76,9 +32,9 @@ int main( int argc, char* args[] )
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	glTranslatef(0.0f,0.0f,0.0f);
-	GLuint texe1 = loadTexture("imagen.png");
-	GLuint texe2 = loadTexture("x.png");
-	GLuint texe3 = loadTexture("y.png");
+	GLuint texe1 = core.loadTexture("imagen.png");
+	GLuint texe2 = core.loadTexture("x.png");
+	GLuint texe3 = core.loadTexture("y.png");
     glBindTexture(GL_TEXTURE_2D, texe1);
 	drawtexture(texe1);
 	glBindTexture(GL_TEXTURE_2D, texe2);
