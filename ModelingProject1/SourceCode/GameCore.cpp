@@ -1,40 +1,32 @@
 #include "GameCore.h"
-#include <string>
-#include "SDL_image.h"
 
-#include "SDL/SDL_image.h"
 
 GameCore::GameCore()
-GameCore::GameCore(void)
 {
-	currentGameState = 0;
-	configuration = new GameConfiguration();
-	saves = new GameSaves();
-	screen = new GameScreen();
-	timer = new GameTimer();
-	currentStateID = STATE_NULL;
+        currentGameState = 0;
+        configuration = new GameConfiguration();
+        saves = new GameSaves();
+        screen = new GameScreen();
+        timer = new GameTimer();
+        currentStateID = STATE_NULL;
 }
 
 bool GameCore::initGame()
 {
-	if( screen->initialize() )
-	{
-bool GameCore::initGame()
-{
-	if( screen->initialize() )
-	{
-		return true;
-	}
-	return false;
+        if( screen->initialize() )
+        {
+			return true;
+        }
+        return false;
 }
 
 GameCore::~GameCore(void)
 {
-	delete currentGameState;
-	delete configuration;
-	delete saves;
-	delete screen;
-	delete timer;
+        delete currentGameState;
+        delete configuration;
+        delete saves;
+        delete screen;
+        delete timer;
 }
 
 SDL_Surface *GameCore::load_image( std::string filename )
@@ -57,49 +49,30 @@ SDL_Surface *GameCore::load_image( std::string filename )
 
 GLuint GameCore::loadTexture(std::string name)
 {
+        SDL_Surface* image = load_image(name);
+        
+        GLuint texture;
 
-    loadedImage = IMG_Load( filename.c_str() );
-	SDL_Surface* image = load_image(name);
-	
-	GLuint texture;
+        if( image != NULL )
+        {
+                glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
 
-	if(image!=NULL){
-        optimizedImage = SDL_DisplayFormatAlpha( loadedImage );
-		
-        SDL_FreeSurface( loadedImage );
-    }
+                glTexImage2D(   GL_TEXTURE_2D,
+                                                0, 
+                                                4, 
+                                                image->w, 
+                                                image->h,
+                                                0, 
+                                                GL_BGRA,
+                                                GL_UNSIGNED_BYTE, 
+                                                image->pixels);
 
-    return optimizedImage;
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+                SDL_FreeSurface(image);
+                return texture;
+        }
+
+        return NULL;
 }
-		glTexImage2D(	GL_TEXTURE_2D,
-						0, 
-						4, 
-						image->w, 
-						image->h,
-						0, 
-						GL_BGRA,
-						GL_UNSIGNED_BYTE, 
-						image->pixels);
-
-GLuint GameCore::loadTexture(std::string name)
-{
-
-    loadedImage = IMG_Load( filename.c_str() );
-
-	if( image != NULL )
-	{
-        optimizedImage = SDL_DisplayFormatAlpha( loadedImage );
-        SDL_FreeSurface( loadedImage );
-    }
-
-	return NULL;
-}
-
-GLuint GameCore::loadTexture(std::string name)
-{
-	if( image != NULL )
-	{
-
-	return NULL;
-
-	return NULL;

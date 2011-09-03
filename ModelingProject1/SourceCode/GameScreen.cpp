@@ -13,13 +13,14 @@ GameScreen::GameScreen(void)
 
 bool GameScreen::initialize()
 {
+	
     if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
         return false;
     }
 	
 	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-
+	if( SDL_SetVideoMode( width, height, 32, SDL_OPENGL ) == NULL ) //32 BPP
     {
         return false;
     }
@@ -29,6 +30,7 @@ bool GameScreen::initialize()
         return false;
     }
 
+	SDL_WM_SetCaption( "Unnamed Game!", NULL );
 
     return true;
 }
