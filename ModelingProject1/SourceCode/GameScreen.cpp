@@ -10,7 +10,6 @@ GameScreen::GameScreen(void)
 
 bool GameScreen::initialize()
 {
-
     if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
         return false;
@@ -18,7 +17,7 @@ bool GameScreen::initialize()
 	
 	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 
-    if( SDL_SetVideoMode( width, height, 32, SDL_OPENGL ) == NULL ) //32 BPP
+    if( SDL_SetVideoMode( width, height, 32, SDL_OPENGL ) == NULL ) 
     {
         return false;
     }
@@ -27,7 +26,9 @@ bool GameScreen::initialize()
     {
         return false;
     }
+
 	SDL_WM_SetCaption( "Unnamed Game!", NULL );
+
     return true;
 }
 
@@ -43,7 +44,7 @@ bool GameScreen::initializeOGL()
 	glEnable(GL_TEXTURE_2D);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
-	glClearColor(1.0f,1.0f,1.0f,1.0f);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
     if( glGetError() != GL_NO_ERROR )
     {

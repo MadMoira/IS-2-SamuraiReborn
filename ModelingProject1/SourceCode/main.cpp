@@ -2,74 +2,33 @@
 
 #include <windows.h>
 
+#include <GL/GL.h>
+
 #include "SDL/SDL_image.h"
-#include <string>
-#include <iostream>
 
-#include <gl/GL.h>
 
-using namespace std;
-
-SDL_Surface *load_image( std::string filename )
-{
-    SDL_Surface* loadedImage = NULL;
-
-    SDL_Surface* optimizedImage = NULL;
-
-    loadedImage = IMG_Load( filename.c_str() );
-
-    if( loadedImage != NULL )
-    {
-        optimizedImage = SDL_DisplayFormatAlpha( loadedImage );
-
-        SDL_FreeSurface( loadedImage );
-    }
-
-    return optimizedImage;
-}
-
-void loadTexture(string name){
-	
-	SDL_Surface* background = load_image(name);
-	
-	GLuint texture;
- 
-	if(background!=NULL){
-		
-		glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-	 
-		glTexImage2D(	GL_TEXTURE_2D,
-						0, 
-						4, 
-						background->w, 
-						background->h,
-						0, 
-						GL_BGRA,
-						GL_UNSIGNED_BYTE, 
-						background->pixels);
-	 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	 
-		glBegin (GL_QUADS);
-		glTexCoord2f (0.0, 0.0);
-		glVertex3f (0.0, 0.0, 0.0);
-		glTexCoord2f (1.0, 0.0);
-		glVertex3f ((GLfloat)background->w, 0.0, 0.0);
-		glTexCoord2f (1.0, 1.0);
-		glVertex3f ((GLfloat)background->w, (GLfloat)background->h, 0.0);
-		glTexCoord2f (0.0, 1.0);
-		glVertex3f (0.0, (GLfloat)background->h, 0.0);
-		glEnd ();
-		SDL_FreeSurface(background);
-	}
+void drawtexture(GLuint){
+        int widht, height; 
+        glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widht);
+        glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+            glBegin (GL_QUADS);
+                glTexCoord2f (0.0, 0.0);
+                glVertex3f (0.0, 0.0, 0.0);
+                glTexCoord2f (1.0, 0.0);
+                glVertex3f (widht, 0.0, 0.0);
+                glTexCoord2f (1.0, 1.0);
+                glVertex3f (widht, height, 0.0);
+                glTexCoord2f (0.0, 1.0);
+                glVertex3f (0.0, height, 0.0);
+                glEnd ();
 }
 	 
 int main( int argc, char* args[] )
 {
-	GameCore core;
+	GameCore Core;
 
-	if(core.initGame() == false){
+	if( Core.initGame() == false)
+	{
 		return 1;
 	}
 
@@ -78,11 +37,12 @@ int main( int argc, char* args[] )
 
 	glTranslatef(0.0f,10.0f,0.0f);
 
-	loadTexture("imagen.png");
-	loadTexture("x.png");
-	loadTexture("y.png");
-
-	SDL_GL_SwapBuffers();
+	GLuint texe1 = Core.loadTexture("imagen.png");
+	GLuint texe2 = Core.loadTexture("x.png");
+	GLuint texe3 = Core.loadTexture("y.png");
+	drawtexture(texe1);
+	drawtexture(texe2);
+	drawtexture(texe3);
 	
 	bool quit = false;
 	SDL_Event evento;
@@ -102,6 +62,7 @@ int main( int argc, char* args[] )
 				quit = true;
 			}
 		}
+		SDL_GL_SwapBuffers();
 	}
 	
 	return 0;
