@@ -52,6 +52,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 		tilesetList.at(i).setID(i);
 		tilesetList.at(i).setFilename(tileset->GetImage()->GetSource().c_str());
 		tilesetList.at(i).setHeightTile(32);	tilesetList.at(i).setWidthTile(32);
+		tilesetList.at(i).setHeightImage( tileset->GetImage()->GetHeight() );		
+		tilesetList.at(i).setWidthImage( tileset->GetImage()->GetWidth() );
 		tilesetList.at(i).setNumberOfTiles( tileset->GetTiles().size() );
 
 		if (tileset->GetTiles().size() > 0) 
@@ -82,6 +84,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 
 				log << iter->first.c_str() << " = " << iter->second.c_str() << std::endl;
 			}
+
+			tilesetList.at(i).setListCollisionTiles(tempListTilesCollision);
 		}
 	}
 
