@@ -1,7 +1,7 @@
 #pragma once
 
-#include "SDL.h"
-#include "SDL_opengl.h"
+#include "SDL/SDL.h"
+#include "SDL/SDL_opengl.h"
 #include <string>
 
 class GameScreen
@@ -14,7 +14,6 @@ public:
 	void updateScreen();
 	bool initializeOGL();
 	bool initialize();
-
 	
 private:
 	SDL_Surface *screen;

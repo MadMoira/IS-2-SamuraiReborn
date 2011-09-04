@@ -1,43 +1,47 @@
 #include "GameCore.h"
-#include "SDL_image.h"
-#include <string>
-#include <iostream>
-using namespace std;
+
+#include <windows.h>
+#include <gl\GL.h>
 
 
-void drawtexture(GLuint){
-	int widht, height; 
-	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widht);
+void drawtexture(GLuint)
+{
+	int width, height; 
+
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+
 	glBegin (GL_QUADS);
-	glTexCoord2f (0.0, 0.0);
-	glVertex3f (0.0, 0.0, 0.0);
-	glTexCoord2f (1.0, 0.0);
-	glVertex3f (widht, 0.0, 0.0);
-	glTexCoord2f (1.0, 1.0);
-	glVertex3f (widht, height, 0.0);
-	glTexCoord2f (0.0, 1.0);
-	glVertex3f (0.0, height, 0.0);
+		glTexCoord2f (0.0, 0.0);
+		glVertex3f (0.0, 0.0, 0.0);
+		glTexCoord2f (1.0, 0.0);
+		glVertex3f ( (GLfloat)width, 0.0, 0.0);
+		glTexCoord2f (1.0, 1.0);
+		glVertex3f ( (GLfloat)width, (GLfloat)height, 0.0);
+		glTexCoord2f (0.0, 1.0);
+		glVertex3f (0.0, (GLfloat)height, 0.0);
 	glEnd ();
 }
 
 int main( int argc, char* args[] )
 {
-	GameCore core;
+	GameCore Core;
 
-	if(core.initGame()==false){
+	if(Core.initGame() == false)
+	{
 		return 1;
 	}
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	GLuint texe1 = core.loadTexture("Mov1.png");
-	GLuint texe2 = core.loadTexture("InitialPosition.png");
+	GLuint texe1 = Core.loadTexture("Mov1.png");
+	GLuint texe2 = Core.loadTexture("InitialPosition.png");
 
     glBindTexture(GL_TEXTURE_2D, texe1);
 	drawtexture(texe1);
-	glTranslatef(100.0f,30.0f,0.0f);
+
+	glTranslatef(100.0f, 30.0f, 0.0f);
 	glBindTexture(GL_TEXTURE_2D, texe2);
 	drawtexture(texe2);
 
@@ -46,8 +50,8 @@ int main( int argc, char* args[] )
 	bool quit = false;
 	SDL_Event evento;
 
-	bool adelante=true;
-	while(quit==false){
+	while( !quit )
+	{
 		while( SDL_PollEvent( &evento ) )
 		{
 			if( evento.type == SDL_KEYDOWN )
