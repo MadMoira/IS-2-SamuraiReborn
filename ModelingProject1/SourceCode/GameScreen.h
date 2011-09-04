@@ -17,7 +17,7 @@ public:
 	
 private:
 	SDL_Surface *screen;
-	int width, height;
+	int width, heigth;
 	std::string windowName;
 	const SDL_VideoInfo* defaultResolution;
 };

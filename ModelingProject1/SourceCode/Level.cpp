@@ -12,6 +12,8 @@ Level::Level(void)
 
 Level::~Level(void)
 {
+	layersList.clear();
+	tilesetList.clear();
 }
 
 int Level::loadTMXTileMapFile(std::string filename)
@@ -56,6 +58,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 		tilesetList.at(i).setWidthImage( tileset->GetImage()->GetWidth() );
 		tilesetList.at(i).setNumberOfTiles( tileset->GetTiles().size() );
 
+		tilesetList.at(i).setTexture(GameCore::loadTexture("tilesheet.png"));
+
 		if (tileset->GetTiles().size() > 0) 
 		{
 			std::map< int, std::string > tempListTilesCollision = tilesetList.at(i).getListCollisionTiles();
@@ -88,6 +92,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 			tilesetList.at(i).setListCollisionTiles(tempListTilesCollision);
 		}
 	}
+
 
 	log << "Loading Layers... " << std::endl;
 
@@ -139,8 +144,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 bool Level::drawLevelMap()
 {
 	int widthMap = layersList.at(0).getWidthLevelLayer();
-	int heightMap = layersList.at(0).getHeightLevelLayer();
-	GLfloat sizeTile = 32.f;
+	int heigthMap = layersList.at(0).getHeightLevelLayer();
+	GLfloat sizeTile = 32.0f;
 
 	for (int i = 0; i < layersList.size(); i++)
 	{
@@ -155,9 +160,9 @@ bool Level::drawLevelMap()
 	
 		glBindTexture( GL_TEXTURE_2D, tilesetList.at(i).getTexture() );
 	
-		for (int i = 0; i < heightLevelInTiles; i++)
+		for (int i = 0; i < heigthMap; i++)
 		{
-			for (int j = 0; j < widthLevelInTiles; j++)
+			for (int j = 0; j < widthMap; j++)
 			{
 				int frameIndex = layerMap[i][j];
 			
@@ -173,7 +178,7 @@ bool Level::drawLevelMap()
 
 				const GLfloat textureWidth = sizeTile / (GLfloat)widthTilesetImage;
 				const GLfloat textureHeight = sizeTile / (GLfloat)heightTilesetImage;
-				const int numFramePerRow = widthTilesetImage / sizeTile;
+				const int numFramePerRow = (GLfloat)widthTilesetImage / sizeTile;
 				const GLfloat textureX = (frameIndex % numFramePerRow) * textureWidth;
 				const GLfloat textureY = (frameIndex / numFramePerRow + 1) * textureHeight;
 

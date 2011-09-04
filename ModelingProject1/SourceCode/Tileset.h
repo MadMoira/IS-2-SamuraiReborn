@@ -34,6 +34,8 @@ public:
 
 	void setNumberOfTiles(int number) { numberOfTiles = number; }
 
+	void setTexture(GLuint tex) { texture = tex; }
+
 	void setID(int id) { ID = id; }
 
 private:

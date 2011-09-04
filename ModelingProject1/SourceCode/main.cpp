@@ -1,5 +1,7 @@
 #include "GameCore.h"
 
+#include "Level.h"
+
 #include <windows.h>
 #include <gl\GL.h>
 
@@ -32,8 +34,10 @@ int main( int argc, char* args[] )
 		return 1;
 	}
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
+	Level *levelOne = new Level();
+	levelOne->loadTMXTileMapFile("test1.tmx");	
+	
+	levelOne->drawLevelMap();
 
 	GLuint texe1 = Core.loadTexture("Mov1.png");
 	GLuint texe2 = Core.loadTexture("InitialPosition.png");
@@ -65,6 +69,10 @@ int main( int argc, char* args[] )
 			}
 		}
 	}
+
+	delete levelOne;
+
+	SDL_Quit();
 	
     return 0;
 }
