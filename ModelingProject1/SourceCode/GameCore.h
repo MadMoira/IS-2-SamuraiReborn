@@ -23,6 +23,8 @@ public:
 
     static GLuint loadTexture(std::string name);
 
+	static void drawTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat offx, GLfloat offy);
+
 	void setupFPS();
 	
 private:
