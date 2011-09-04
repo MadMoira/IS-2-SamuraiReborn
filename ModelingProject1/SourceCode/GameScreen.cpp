@@ -19,7 +19,10 @@ bool GameScreen::initialize()
         return false;
     }
 	
-	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+	if(SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 )!=0){
+		return false;
+	}
+
 	if( SDL_SetVideoMode( width, height, 32, SDL_OPENGL ) == NULL ) //32 BPP
     {
         return false;

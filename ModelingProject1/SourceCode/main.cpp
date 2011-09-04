@@ -31,16 +31,15 @@ int main( int argc, char* args[] )
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-	glTranslatef(0.0f,0.0f,0.0f);
-	GLuint texe1 = core.loadTexture("imagen.png");
-	GLuint texe2 = core.loadTexture("x.png");
-	GLuint texe3 = core.loadTexture("y.png");
+
+	GLuint texe1 = core.loadTexture("Mov1.png");
+	GLuint texe2 = core.loadTexture("InitialPosition.png");
+
     glBindTexture(GL_TEXTURE_2D, texe1);
 	drawtexture(texe1);
+	glTranslatef(100.0f,30.0f,0.0f);
 	glBindTexture(GL_TEXTURE_2D, texe2);
 	drawtexture(texe2);
-	glBindTexture(GL_TEXTURE_2D, texe3);
-	drawtexture(texe3);
 
 	SDL_GL_SwapBuffers();
 	
