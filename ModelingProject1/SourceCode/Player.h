@@ -10,7 +10,7 @@ public:
 	Player(void);
 
 	~Player(void);
-	/*
+	
 	/*virtual void attack();
 	virtual void block();
 	virtual void executeAction();
