@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "SDL_image.h"
+#include "SDL/SDL_image.h"
 #include "GameState.h"
 #include "GameConfiguration.h"
 #include "GameSaves.h"
@@ -25,7 +25,6 @@ public:
     GLuint loadTexture(std::string name);
 
 	void setupFPS();
-
 	
 private:
 	GameState *currentGameState;

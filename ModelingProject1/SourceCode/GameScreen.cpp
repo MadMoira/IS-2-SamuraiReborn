@@ -19,11 +19,12 @@ bool GameScreen::initialize()
         return false;
     }
 	
-	if(SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 )!=0){
+	if(SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ) != 0)
+	{
 		return false;
 	}
 
-	if( SDL_SetVideoMode( width, height, 32, SDL_OPENGL ) == NULL ) //32 BPP
+	if( SDL_SetVideoMode( width, height, 32, SDL_OPENGL ) == NULL ) 
     {
         return false;
     }
@@ -43,7 +44,7 @@ bool GameScreen::initializeOGL()
 	const SDL_VideoInfo* resolution = SDL_GetVideoInfo();
 	float proportion = ((float)resolution->current_w / (float)resolution->current_h);
 	
-	glViewport(0,0,resolution->current_w,resolution->current_h);
+	glViewport(0, 0, resolution->current_w, resolution->current_h);
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
 		
@@ -66,7 +67,7 @@ bool GameScreen::initializeOGL()
     glLoadIdentity();
 
 	glEnable(GL_TEXTURE_2D);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
 
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
