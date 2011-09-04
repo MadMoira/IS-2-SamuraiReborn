@@ -21,8 +21,7 @@ public:
 	void setNewState();
 	void setup();
 
-	SDL_Surface *load_image(std::string filename);
-    GLuint loadTexture(std::string name);
+    static GLuint loadTexture(std::string name);
 
 	void setupFPS();
 	

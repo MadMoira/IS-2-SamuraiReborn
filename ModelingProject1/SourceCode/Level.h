@@ -12,6 +12,8 @@
 #include "Tileset.h"
 #include "Layer.h"
 
+#include "GameCore.h"
+
 enum Levels 
 { 
 	LEVELZEROTUTORIAL, 
@@ -32,6 +34,8 @@ public:
 	bool drawLevelMap();
 
 	boost::ptr_vector< Layer > getLayersList() { return layersList; }
+
+	boost::ptr_vector< Tileset > getTilesetList() { return tilesetList; }
 
 private:
 	std::string levelName;

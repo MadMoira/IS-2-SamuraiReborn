@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files\Boost\boost_1_47_0;C:\Users\Sebastian\Documents\Librerias\TMXParser;C:\Users\Sebastian\Documents\Librerias\SDL-1.2.14\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\SDL - DLL, INC, LIB\include files;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Users\Sebastian\Documents\Librerias\TMXParser;C:\Users\Sebastian\Documents\Librerias\SDL-1.2.14\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
