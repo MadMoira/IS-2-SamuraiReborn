@@ -5,26 +5,6 @@
 #include <windows.h>
 #include <gl\GL.h>
 
-
-void drawtexture(GLuint)
-{
-	int width, height; 
-
-	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
-	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
-
-	glBegin (GL_QUADS);
-		glTexCoord2f (0.0, 0.0);
-		glVertex3f (0.0, 0.0, 0.0);
-		glTexCoord2f (1.0, 0.0);
-		glVertex3f ( (GLfloat)width, 0.0, 0.0);
-		glTexCoord2f (1.0, 1.0);
-		glVertex3f ( (GLfloat)width, (GLfloat)height, 0.0);
-		glTexCoord2f (0.0, 1.0);
-		glVertex3f (0.0, (GLfloat)height, 0.0);
-	glEnd ();
-}
-
 int main( int argc, char* args[] )
 {
 	GameCore Core;
@@ -39,15 +19,14 @@ int main( int argc, char* args[] )
 	
 	levelOne->drawLevelMap();
 
-	GLuint texe1 = Core.loadTexture("Mov1.png");
-	GLuint texe2 = Core.loadTexture("InitialPosition.png");
-
-    glBindTexture(GL_TEXTURE_2D, texe1);
-	drawtexture(texe1);
+	GLuint texture1 = Core.loadTexture("Mov1.png");
+	GLuint texture2 = Core.loadTexture("InitialPosition.png");
+    
+	Core.drawTexture(texture1, 0.0f, 0.0f, 800.0f, 600.0f);
 
 	glTranslatef(100.0f, 30.0f, 0.0f);
-	glBindTexture(GL_TEXTURE_2D, texe2);
-	drawtexture(texe2);
+
+	Core.drawTexture(texture2, 0.0f, 0.0f, 800.0f, 600.0f);
 
 	SDL_GL_SwapBuffers();
 	
@@ -70,6 +49,8 @@ int main( int argc, char* args[] )
 		}
 	}
 
+	glDeleteTextures(1, &texture1);
+	glDeleteTextures(1, &texture2);
 	delete levelOne;
 
 	SDL_Quit();
