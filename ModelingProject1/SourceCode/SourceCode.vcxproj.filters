@@ -217,10 +217,7 @@
     <None Include="x.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="imagen.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="y.png">
+    <None Include="background.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
