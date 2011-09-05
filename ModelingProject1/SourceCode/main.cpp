@@ -14,17 +14,21 @@ int main( int argc, char* args[] )
 		return 1;
 	}
 
-	Level *levelOne = new Level();
+	/*Level *levelOne = new Level();
 	levelOne->loadTMXTileMapFile("test1.tmx");	
 	
-	levelOne->drawLevelMap();
+	levelOne->drawLevelMap();*/
 
 	GLuint texture1 = Core.loadTexture("Mov1.png");
 	GLuint texture2 = Core.loadTexture("InitialPosition.png");
-    
-	Core.drawTexture(texture1, 0.0f, 0.0f, 800.0f, 600.0f);
 
-	glTranslatef(100.0f, 30.0f, 0.0f);
+	GLuint textureBackground = Core.loadTexture("background.png");
+
+	Core.drawTexture(textureBackground, 0.0f, 0.0f, 1280.0f, 720.0f);
+    
+	Core.drawTexture(texture1, 0.0f, 100.0f, 800.0f, 600.0f);
+
+	glTranslatef(100.0f, 130.0f, 0.0f);
 
 	Core.drawTexture(texture2, 0.0f, 0.0f, 800.0f, 600.0f);
 
@@ -51,7 +55,8 @@ int main( int argc, char* args[] )
 
 	glDeleteTextures(1, &texture1);
 	glDeleteTextures(1, &texture2);
-	delete levelOne;
+	glDeleteTextures(1, &textureBackground);
+	//delete levelOne;
 
 	SDL_Quit();
 	
