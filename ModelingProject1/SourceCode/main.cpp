@@ -1,7 +1,5 @@
 #include "GameCore.h"
-
 #include "Level.h"
-
 #include <windows.h>
 #include <gl\GL.h>
 
