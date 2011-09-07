@@ -16,8 +16,9 @@ public:
 	virtual void executeAction();
 	virtual void handleInput();
 	virtual void jump();
-	virtual void walk();*/
-
+	
+	*/
+	virtual void walk();
 	void changeFightStyle();
 	void getPlayerStats();
 	bool isAlive();

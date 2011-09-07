@@ -15,3 +15,7 @@ Player::~Player(void)
 	delete stats;
 	delete playerSprite;
 }
+
+void Player::walk(){
+
+}
