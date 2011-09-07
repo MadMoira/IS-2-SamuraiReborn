@@ -97,3 +97,29 @@ void GameCore::drawTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat offx, G
 				glVertex3f( x,  y + offy, 0.f );
 	glEnd();
 }
+
+void GameCore::drawTexture_animation(int number_of_frames, int current_frame, GLuint texture){
+
+	double cell_division = 1.0/number_of_frames;
+	double x_cell = current_frame * cell_division;
+	double x_cell2= ( current_frame * cell_division ) + cell_division;
+	glBindTexture( GL_TEXTURE_2D, texture );
+	glBegin(GL_QUADS);
+		glTexCoord2d(x_cell, 0.0);
+		glVertex3i(0, 0, 0.f); 
+		glTexCoord2d(x_cell2, 0.0);
+		glVertex3i( 800 , 0, 0.f);
+		glTexCoord2d( x_cell2 , 1.0 );
+		glVertex3i( 800, 600, 0.f);
+		glTexCoord2d( x_cell , 1.0);
+		glVertex3i(0, 600, 0.f); 
+	glEnd();
+
+}
+
+void GameCore::show(int x, int y, GLuint text1, int frame){
+
+	glTranslatef( x, y, 0 );
+	GameCore::drawTexture_animation(9, frame, text1);
+}
+

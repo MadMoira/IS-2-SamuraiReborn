@@ -5,3 +5,7 @@ PandaP1::PandaP1(void)
 {
 }
 
+void PandaP1::walk(){
+
+}
+

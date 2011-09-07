@@ -6,5 +6,6 @@ class PandaP1 : public Player
 {
 public:
 	PandaP1(void);
+	void walk();
 };
 
