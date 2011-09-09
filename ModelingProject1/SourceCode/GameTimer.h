@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL/SDL.h>
+
 class GameTimer
 {
 public:
@@ -13,6 +15,9 @@ public:
 	void unpause();
 
 	int getTicks();
+
+    bool isStarted();
+    bool isPaused();
 
 private:
 	int startTicks, pausedTicks;

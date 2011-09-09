@@ -11,6 +11,7 @@
 
 #include "Tileset.h"
 #include "Layer.h"
+#include "Tilemap.h"
 
 #include "GameCore.h"
 
@@ -28,20 +29,24 @@ public:
 
 	void getTileCollision();
 	void getTileOfPlayerPosition();
-	void loadLevelWithName();
+
 	int loadTMXTileMapFile(std::string filename);
 
 	bool drawLevelMap();
 
 	boost::ptr_vector< Layer > getLayersList() { return layersList; }
+	void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY);
+	void scrollBackgroundLayers();
 
 	boost::ptr_vector< Tileset > getTilesetList() { return tilesetList; }
+
+	boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
 
 private:
 	std::string levelName;
 	int numberOfEnemies;
-	int widthLevelInTiles, heightLevelInTiles;
 	boost::ptr_vector< Layer > layersList;
 	boost::ptr_vector< Tileset > tilesetList;
+	boost::ptr_vector< Tilemap > tilemapList;
 };
 

@@ -76,7 +76,6 @@ GLuint GameCore::loadTexture(std::string name)
 
 void GameCore::drawTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat offx, GLfloat offy)
 {
-
 	glBindTexture( GL_TEXTURE_2D, texture );
 
 	glBegin( GL_QUADS );

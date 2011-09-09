@@ -138,6 +138,9 @@
     <ClCompile Include="Layer.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
+    <ClCompile Include="Tilemap.cpp">
+      <Filter>Source Files\Level Design</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -212,12 +215,15 @@
     <ClInclude Include="Layer.h">
       <Filter>Header Files\Level Design</Filter>
     </ClInclude>
+    <ClInclude Include="Tilemap.h">
+      <Filter>Header Files\Level Design</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="x.png">
+    <None Include="mountains.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="background.png">
+    <None Include="nubes.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

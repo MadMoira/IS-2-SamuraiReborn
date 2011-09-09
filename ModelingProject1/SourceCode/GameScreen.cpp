@@ -8,12 +8,14 @@ GameScreen::GameScreen(void)
 	screen = NULL;
 	width = 0;
 	heigth = 0;
-	
+}
+
+GameScreen::~GameScreen(void)
+{
 }
 
 bool GameScreen::initialize()
 {
-	
     if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
         return false;
@@ -26,7 +28,7 @@ bool GameScreen::initialize()
 
 	width = 1280;	heigth = 720;
 
-	if( SDL_SetVideoMode(width, heigth, 32, SDL_OPENGL) == NULL) 
+	if( SDL_SetVideoMode(width, heigth, 32, SDL_OPENGL ) == NULL) 
     {
         return false;
     }
@@ -83,6 +85,4 @@ bool GameScreen::initializeOGL()
     return true;
 }
 
-GameScreen::~GameScreen(void)
-{
-}
+

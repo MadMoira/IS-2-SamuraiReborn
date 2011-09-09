@@ -2,6 +2,7 @@
 
 #include <string>
 #include "SDL/SDL_image.h"
+
 #include "GameState.h"
 #include "GameConfiguration.h"
 #include "GameSaves.h"

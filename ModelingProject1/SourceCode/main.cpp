@@ -1,9 +1,13 @@
+
 #include "GameCore.h"
+#include "GameTimer.h"
 
 #include "Level.h"
 
 #include <windows.h>
 #include <gl\GL.h>
+
+#define FRAMES_PER_SECOND 15
 
 int main( int argc, char* args[] )
 {
@@ -14,31 +18,26 @@ int main( int argc, char* args[] )
 		return 1;
 	}
 
-	/*Level *levelOne = new Level();
-	levelOne->loadTMXTileMapFile("test1.tmx");	
-	
-	levelOne->drawLevelMap();*/
+	Level *levelOne = new Level();
+	//levelOne->loadTMXTileMapFile("Prueba.tmx");	
 
-	GLuint texture1 = Core.loadTexture("Mov1.png");
-	GLuint texture2 = Core.loadTexture("InitialPosition.png");
+	levelOne->addLayerToList("nubes.png", 1600.f, 720.f, 1.0f, 0.0f);
+	levelOne->addLayerToList("mountains.png", 1600.f, 720.f, 3.0f, 0.0f);
 
-	GLuint textureBackground = Core.loadTexture("background.png");
-
-	Core.drawTexture(textureBackground, 0.0f, 0.0f, 1280.0f, 720.0f);
-    
-	Core.drawTexture(texture1, 0.0f, 100.0f, 800.0f, 600.0f);
-
-	glTranslatef(100.0f, 130.0f, 0.0f);
-
-	Core.drawTexture(texture2, 0.0f, 0.0f, 800.0f, 600.0f);
+	levelOne->drawLevelMap();
 
 	SDL_GL_SwapBuffers();
 	
 	bool quit = false;
 	SDL_Event evento;
 
+	GLfloat offset = 0.f, offset1 = 0.f;
+	GameTimer timer;
+
 	while( !quit )
 	{
+		timer.start();
+
 		while( SDL_PollEvent( &evento ) )
 		{
 			if( evento.type == SDL_KEYDOWN )
@@ -51,12 +50,21 @@ int main( int argc, char* args[] )
 				quit = true;
 			}
 		}
+
+		levelOne->scrollBackgroundLayers();
+		
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+		    levelOne->drawLevelMap();
+		SDL_GL_SwapBuffers();
+
+		if( timer.getTicks() < 1000 / FRAMES_PER_SECOND )
+        {
+            SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - timer.getTicks() );
+        }
 	}
 
-	glDeleteTextures(1, &texture1);
-	glDeleteTextures(1, &texture2);
-	glDeleteTextures(1, &textureBackground);
-	//delete levelOne;
+	delete levelOne;
 
 	SDL_Quit();
 	

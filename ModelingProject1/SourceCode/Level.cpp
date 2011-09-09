@@ -14,6 +14,7 @@ Level::~Level(void)
 {
 	layersList.clear();
 	tilesetList.clear();
+	tilemapList.clear();
 }
 
 int Level::loadTMXTileMapFile(std::string filename)
@@ -58,7 +59,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 		tilesetList.at(i).setWidthImage( tileset->GetImage()->GetWidth() );
 		tilesetList.at(i).setNumberOfTiles( tileset->GetTiles().size() );
 
-		tilesetList.at(i).setTexture(GameCore::loadTexture("tilesheet.png"));
+		tilesetList.at(i).setTexture(GameCore::loadTexture("grass.png"));
 
 		if (tileset->GetTiles().size() > 0) 
 		{
@@ -93,7 +94,6 @@ int Level::loadTMXTileMapFile(std::string filename)
 		}
 	}
 
-
 	log << "Loading Layers... " << std::endl;
 
 	for (int i = 0; i < map->GetNumLayers(); i++) 
@@ -102,21 +102,23 @@ int Level::loadTMXTileMapFile(std::string filename)
 
 		const Tmx::Layer *layer = map->GetLayer(i);
 		
-		layersList.push_back( new Layer(map->GetLayer(i)->GetName().c_str(), 
+		tilemapList.push_back( new Tilemap(map->GetLayer(i)->GetName().c_str(), 
 							  layer->GetWidth(), layer->GetHeight()) );
 
-		std::vector< std::vector <int> > tempLayerMap = layersList.at(i).getLayerMap();
-		int w = layer->GetWidth();
-		int h = layer->GetHeight();
+		std::vector< std::vector <int> > tempLayerMap = tilemapList.at(i).getLayerMap();
+		int width = layer->GetWidth();
+		int height = layer->GetHeight();
 
-		for (int x = 0; x < layer->GetWidth(); x++) 
+		tilemapList.at(i).setWidthLevelInTiles(width);
+		tilemapList.at(i).setHeightLevelInTiles(height);
+
+		for (int x = 0; x < width; x++) 
 		{
-			for (int y = 0; y < layer->GetHeight(); y++) 
+			for (int y = 0; y < height; y++) 
 			{
 				int tileID = layer->GetTileGid(x, y);
-				tempLayerMap[y][x] = layer->GetTileGid(y, x);
 				
-				if (tileID == NULL){
+				if (tileID == 0){
 					tempLayerMap[y][x] = 0;
 				}
 				
@@ -125,11 +127,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 			}
 		}
 
-		layersList.at(i).setLayerMap(tempLayerMap);
+		tilemapList.at(i).setLayerMap(tempLayerMap);
 	}
-
-	widthLevelInTiles = layersList.at(0).getWidthLevelLayer();
-	heightLevelInTiles = layersList.at(0).getHeightLevelLayer();
 
 	log << "Load Of Map Finished... " << std::endl;
 	log << "Closing File... " << std::endl;
@@ -143,15 +142,21 @@ int Level::loadTMXTileMapFile(std::string filename)
 
 bool Level::drawLevelMap()
 {
-	int widthMap = layersList.at(0).getWidthLevelLayer();
-	int heigthMap = layersList.at(0).getHeightLevelLayer();
-	GLfloat sizeTile = 32.0f;
-
 	for (int i = 0; i < layersList.size(); i++)
 	{
-		std::vector< std::vector <int> > layerMap = layersList.at(0).getLayerMap();
+		layersList.at(i).drawLayerTexture(1280.f, 720.f);
+	}
+
+	GLfloat sizeTile = 32.0f;
+
+	for (int i = 0; i < tilemapList.size(); i++)
+	{
+		std::vector< std::vector <int> > layerMap = tilemapList.at(0).getLayerMap();
 		int widthTilesetImage = tilesetList.at(i).getWidthImage();
 		int heightTilesetImage = tilesetList.at(i).getHeightImage();
+
+		int widthMap = tilemapList.at(i).getWidthLevelInTiles();
+		int heigthMap = tilemapList.at(i).getHeightLevelInTiles();
 
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -165,6 +170,13 @@ bool Level::drawLevelMap()
 			for (int j = 0; j < widthMap; j++)
 			{
 				int frameIndex = layerMap[i][j];
+
+				if (frameIndex == 0)
+				{ 
+					continue; 
+				}
+
+				frameIndex -= 1;
 			
 				const GLfloat tileX = 0.0f + (sizeTile*j);
 				const GLfloat tileY = 0.0f + (sizeTile*i);
@@ -180,7 +192,7 @@ bool Level::drawLevelMap()
 				const GLfloat textureHeight = sizeTile / (GLfloat)heightTilesetImage;
 				const int numFramePerRow = (GLfloat)widthTilesetImage / sizeTile;
 				const GLfloat textureX = (frameIndex % numFramePerRow) * textureWidth;
-				const GLfloat textureY = (frameIndex / numFramePerRow + 1) * textureHeight;
+				const GLfloat textureY = (frameIndex / numFramePerRow ) * textureHeight;
 
 				const GLfloat texVerts[] = {
 						textureX, textureY,
@@ -198,8 +210,20 @@ bool Level::drawLevelMap()
 	
 		glDisableClientState( GL_VERTEX_ARRAY );			
 		glDisableClientState( GL_TEXTURE_COORD_ARRAY );	
-
 	}
 
 	return true;
+}
+
+void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY)
+{
+	layersList.push_back( new Layer(name, widthLayer, heightLayer, velX, velY) );
+}
+
+void Level::scrollBackgroundLayers()
+{
+	for (int i = 0; i < layersList.size(); i++)
+	{
+		layersList.at(i).scrollLayer();
+	}
 }
