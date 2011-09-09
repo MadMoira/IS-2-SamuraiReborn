@@ -138,6 +138,9 @@
     <ClCompile Include="Layer.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
+    <ClCompile Include="GameSound.cpp">
+      <Filter>Source Files\Game Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -211,6 +214,9 @@
     </ClInclude>
     <ClInclude Include="Layer.h">
       <Filter>Header Files\Level Design</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSound.h">
+      <Filter>Header Files\Game Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

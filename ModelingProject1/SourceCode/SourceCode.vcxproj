@@ -79,6 +79,7 @@
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameSaves.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="GameSound.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="JapaneseMonkey.cpp" />
@@ -121,6 +122,7 @@
     <ClInclude Include="Score.h" />
     <ClInclude Include="SLevelOneJapan.h" />
     <ClInclude Include="SMainMenu.h" />
+    <ClInclude Include="GameSound.h" />
     <ClInclude Include="Spear.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Stats.h" />
