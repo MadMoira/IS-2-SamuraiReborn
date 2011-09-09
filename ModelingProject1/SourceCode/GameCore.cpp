@@ -8,12 +8,13 @@ GameCore::GameCore()
         saves = new GameSaves();
         screen = new GameScreen();
         timer = new GameTimer();
+		sound = new GameSound();
         currentStateID = STATE_NULL;
 }
 
 bool GameCore::initGame()
 {
-	if( screen->initialize() )
+	if( screen->initialize() && sound->initSound() )
 	{
 		return true;
     }
@@ -28,6 +29,15 @@ GameCore::~GameCore(void)
         delete saves;
         delete screen;
         delete timer;
+		delete sound;
+}
+
+void GameCore::startMusic(std::string MusicName){
+	sound->loadSound(MusicName);	
+}
+
+void GameCore::startSoundEffect(std::string EffectName){
+	sound->loadChunk(EffectName);
 }
 
 GLuint GameCore::loadTexture(std::string name)

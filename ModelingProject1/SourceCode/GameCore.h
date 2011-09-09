@@ -7,6 +7,7 @@
 #include "GameSaves.h"
 #include "GameScreen.h"
 #include "GameTimer.h"
+#include "GameSound.h"
 #include "PandaP1.h"
 
 class GameCore
@@ -21,9 +22,11 @@ public:
 	void initPlayers();
 	void setNewState();
 	void setup();
-	void show(int x, int y, GLuint text1, int frame);
+	void show(int, int, GLuint, int);
+	void startMusic(std::string);
+	void startSoundEffect(std::string);
 	
-	static void drawTexture_animation(int number_of_frames, int current_frame, GLuint texture);
+	static void drawTexture_animation(int, int, GLuint);
     static GLuint loadTexture(std::string name);
 
 	static void drawTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat offx, GLfloat offy);
@@ -36,6 +39,7 @@ private:
 	GameSaves *saves;
 	GameScreen *screen;
 	GameTimer *timer;
+	GameSound *sound;
 	int currentStateID;
 };
 

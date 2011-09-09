@@ -2,6 +2,7 @@
 #include "Level.h"
 #include <windows.h>
 #include <gl\GL.h>
+#include <SDL\SDL_mixer.h>
 
 enum { right, left};
 
@@ -47,7 +48,7 @@ test::test(void)
 {
 	x = 0;
 	y = 0;
-	velx = 1;
+	velx = 10;
 	vely = 1;
 	frame = 0;
 	status = right;
@@ -58,19 +59,25 @@ void test::move(){
 	x += velx;
     frame++;
     //Keep the stick figure in bounds
-    if( ( x < 0 ) || ( x + 1 > 1680 ) )
+    if( ( x < 0 ) || ( x + 1 > 1280 ) )
     {
         x -= velx;    
     }
 
 }
 
+void cleanup(){
+
+	Mix_CloseAudio();
+	Mix_Quit();
+	SDL_Quit();
+
+}
 
 int main( int argc, char* args[] )
 {
 	GameCore Core;
 	test test1;
-
 	if(Core.initGame() == false)
 	{
 		return 1;
@@ -83,7 +90,6 @@ int main( int argc, char* args[] )
 
 	GLuint texture1 = Core.loadTexture("Mov1.png");
 	GLuint texture2 = Core.loadTexture("InitialPosition.png");
-
 	GLuint textureBackground = Core.loadTexture("background.png");
 
 	//Core.drawTexture(textureBackground, 0.0f, 0.0f, 1280.0f, 720.0f);
@@ -93,9 +99,9 @@ int main( int argc, char* args[] )
 
 	Core.drawTexture(texture2, 0.0f, 0.0f, 800.0f, 600.0f);
 
-	
-	
 	bool quit = false;
+	
+		
 	SDL_Event evento;
 
 	while( !quit )
@@ -115,6 +121,7 @@ int main( int argc, char* args[] )
 
 		test1.setTest1(Core.loadTexture("Panda - SpriteSheet.png"));
 		test1.move();
+		
 		glClear( GL_COLOR_BUFFER_BIT );
 		Core.show(test1.x, test1.y, test1.text1, test1.frame);
 
@@ -126,7 +133,9 @@ int main( int argc, char* args[] )
 	glDeleteTextures(1, &textureBackground);
 	//delete levelOne;
 
-	SDL_Quit();
+	cleanup();
+	
+
 	
     return 0;
 }
