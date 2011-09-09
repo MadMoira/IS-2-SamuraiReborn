@@ -25,10 +25,12 @@ public:
 	void show(int, int, GLuint, int);
 	void startMusic(std::string);
 	void startSoundEffect(std::string);
+	void startTimer();
 	
-	static void drawTexture_animation(int, int, GLuint);
+	
     static GLuint loadTexture(std::string name);
 
+	static void drawTexture_animation(int, int, GLuint);
 	static void drawTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat offx, GLfloat offy);
 
 	void setupFPS();

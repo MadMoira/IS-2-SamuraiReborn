@@ -4,27 +4,26 @@
 #include <gl\GL.h>
 #include <SDL\SDL_mixer.h>
 
-enum { right, left};
+enum{right, left};
 
 class test {
 	
 	private:
-	
-	int velx, vely;
-	int status;
-	
-		
+		int velx, vely;
+		int status;
+
 	public:
-	int x, y;
-	int frame;
-	GLuint text1;
-	test(void);
-	int getx();
-	int gety();
-	GLuint getText1();
-	void setTest1(GLuint sprite);
-	void handle_events();
-	void move();
+		test(void);
+		int getx();
+		int gety();
+		void setTest1(GLuint sprite);
+		void handle_events();
+		void move();
+
+		int x, y;
+		int frame;
+		GLuint text1;
+		GLuint getText1();
 
 };
 
@@ -48,7 +47,7 @@ test::test(void)
 {
 	x = 0;
 	y = 0;
-	velx = 10;
+	velx = 3;
 	vely = 1;
 	frame = 0;
 	status = right;
@@ -77,35 +76,41 @@ void cleanup(){
 int main( int argc, char* args[] )
 {
 	GameCore Core;
+
 	test test1;
+
 	if(Core.initGame() == false)
 	{
 		return 1;
 	}
+
+	
 
 	/*Level *levelOne = new Level();
 	levelOne->loadTMXTileMapFile("test1.tmx");	
 	
 	levelOne->drawLevelMap();*/
 
-	GLuint texture1 = Core.loadTexture("Mov1.png");
-	GLuint texture2 = Core.loadTexture("InitialPosition.png");
-	GLuint textureBackground = Core.loadTexture("background.png");
+	//GLuint texture1 = Core.loadTexture("Mov1.png");
+	//GLuint texture2 = Core.loadTexture("InitialPosition.png");
+	//GLuint textureBackground = Core.loadTexture("background.png");
 
 	//Core.drawTexture(textureBackground, 0.0f, 0.0f, 1280.0f, 720.0f);
     //Core.drawTexture(texture1, 0.0f, 100.0f, 800.0f, 600.0f);
 
-	glTranslatef(100.0f, 130.0f, 0.0f);
+	//glTranslatef(100.0f, 130.0f, 0.0f);
 
-	Core.drawTexture(texture2, 0.0f, 0.0f, 800.0f, 600.0f);
+	//Core.drawTexture(texture2, 0.0f, 0.0f, 800.0f, 600.0f);
+	Core.startMusic("beat.wav");
 
 	bool quit = false;
-	
-		
+			
 	SDL_Event evento;
 
 	while( !quit )
 	{
+		Core.startTimer();
+
 		while( SDL_PollEvent( &evento ) )
 		{
 			if( evento.type == SDL_KEYDOWN )
@@ -126,11 +131,12 @@ int main( int argc, char* args[] )
 		Core.show(test1.x, test1.y, test1.text1, test1.frame);
 
 		SDL_GL_SwapBuffers();
+		Core.setupFPS();
 	}
 
-	glDeleteTextures(1, &texture1);
-	glDeleteTextures(1, &texture2);
-	glDeleteTextures(1, &textureBackground);
+	//glDeleteTextures(1, &texture1);
+	//glDeleteTextures(1, &texture2);
+	//glDeleteTextures(1, &textureBackground);
 	//delete levelOne;
 
 	cleanup();

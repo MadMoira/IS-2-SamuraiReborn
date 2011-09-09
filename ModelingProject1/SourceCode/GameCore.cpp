@@ -32,12 +32,26 @@ GameCore::~GameCore(void)
 		delete sound;
 }
 
-void GameCore::startMusic(std::string MusicName){
+void GameCore::startMusic(std::string MusicName)
+{
 	sound->loadSound(MusicName);	
 }
 
-void GameCore::startSoundEffect(std::string EffectName){
+void GameCore::startSoundEffect(std::string EffectName)
+{
 	sound->loadChunk(EffectName);
+}
+
+void GameCore::startTimer()
+{
+	timer->start();
+}
+
+void GameCore::setupFPS()
+{
+	if(timer->getTicks() < 1000/120){
+		SDL_Delay( ( 1000 / 120 ) - timer->getTicks() );
+	}
 }
 
 GLuint GameCore::loadTexture(std::string name)
@@ -108,7 +122,8 @@ void GameCore::drawTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat offx, G
 	glEnd();
 }
 
-void GameCore::drawTexture_animation(int number_of_frames, int current_frame, GLuint texture){
+void GameCore::drawTexture_animation(int number_of_frames, int current_frame, GLuint texture)
+{
 
 	double cell_division = 1.0/number_of_frames;
 	double x_cell = current_frame * cell_division;
@@ -131,5 +146,6 @@ void GameCore::show(int x, int y, GLuint text1, int frame){
 
 	glTranslatef( x, y, 0 );
 	GameCore::drawTexture_animation(9, frame, text1);
+
 }
 
