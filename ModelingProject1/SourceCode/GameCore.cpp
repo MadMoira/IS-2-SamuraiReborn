@@ -13,8 +13,9 @@ GameCore::GameCore()
 }
 
 bool GameCore::initGame()
-{
-	if( screen->initialize() && sound->initSound() )
+{	
+	sound->initSound();
+	if( screen->initialize())
 	{
 		return true;
     }
@@ -30,6 +31,10 @@ GameCore::~GameCore(void)
         delete screen;
         delete timer;
 		delete sound;
+}
+
+GameSound* GameCore::getGameSound(){
+	return sound;
 }
 
 void GameCore::startMusic(std::string MusicName)

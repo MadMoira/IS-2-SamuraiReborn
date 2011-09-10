@@ -1,7 +1,8 @@
 #pragma once
 
-#include <SDL\SDL_mixer.h>
 #include <string>
+#include <fmod.hpp>
+#include <fmod_errors.h>
 
 class GameSound{
 	public:
@@ -11,10 +12,21 @@ class GameSound{
 		bool initSound();
 		void loadSound(std::string name);
 		void loadChunk(std::string name);
+		void upVolumeSE();
+		void downVolumeSE();
+		void upVolumeMUS();
+		void downVolumeMUS();
+		void closeAll();
+
+		void ERRCHECK(FMOD_RESULT);
+		
 
 	private:
 
-		Mix_Music *music;
-		Mix_Chunk *effect;
+		FMOD::System  *system;
+		FMOD::Sound   *sound;
+		FMOD::Sound *chunks[3];
+		FMOD::Channel *channel[2];
+		FMOD_RESULT    result;
 
 };
