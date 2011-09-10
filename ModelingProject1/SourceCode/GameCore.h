@@ -26,6 +26,7 @@ public:
 	void startMusic(std::string);
 	void startSoundEffect(std::string);
 	void startTimer();
+	GameSound* getGameSound();
 	
 	
     static GLuint loadTexture(std::string name);

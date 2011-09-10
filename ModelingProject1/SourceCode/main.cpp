@@ -2,7 +2,6 @@
 #include "Level.h"
 #include <windows.h>
 #include <gl\GL.h>
-#include <SDL\SDL_mixer.h>
 
 enum{right, left};
 
@@ -67,8 +66,6 @@ void test::move(){
 
 void cleanup(){
 
-	Mix_CloseAudio();
-	Mix_Quit();
 	SDL_Quit();
 
 }
@@ -76,9 +73,8 @@ void cleanup(){
 int main( int argc, char* args[] )
 {
 	GameCore Core;
-
 	test test1;
-
+	
 	if(Core.initGame() == false)
 	{
 		return 1;
@@ -101,10 +97,9 @@ int main( int argc, char* args[] )
 	//glTranslatef(100.0f, 130.0f, 0.0f);
 
 	//Core.drawTexture(texture2, 0.0f, 0.0f, 800.0f, 600.0f);
-	Core.startMusic("beat.wav");
-
-	bool quit = false;
 			
+	bool quit = false;
+	
 	SDL_Event evento;
 
 	while( !quit )
@@ -126,10 +121,8 @@ int main( int argc, char* args[] )
 
 		test1.setTest1(Core.loadTexture("Panda - SpriteSheet.png"));
 		test1.move();
-		
 		glClear( GL_COLOR_BUFFER_BIT );
 		Core.show(test1.x, test1.y, test1.text1, test1.frame);
-
 		SDL_GL_SwapBuffers();
 		Core.setupFPS();
 	}
@@ -138,7 +131,8 @@ int main( int argc, char* args[] )
 	//glDeleteTextures(1, &texture2);
 	//glDeleteTextures(1, &textureBackground);
 	//delete levelOne;
-
+	glDeleteTextures(1, &test1.text1);
+	Core.getGameSound()->closeAll();
 	cleanup();
 	
 
