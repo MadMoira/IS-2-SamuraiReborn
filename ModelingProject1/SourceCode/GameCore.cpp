@@ -54,8 +54,8 @@ void GameCore::startTimer()
 
 void GameCore::setupFPS()
 {
-	if(timer->getTicks() < 1000/120){
-		SDL_Delay( ( 1000 / 120 ) - timer->getTicks() );
+	if(timer->getTicks() < 1000/30){
+		SDL_Delay( ( 1000 / 30 ) - timer->getTicks() );
 	}
 }
 
@@ -106,28 +106,36 @@ GLuint GameCore::loadTexture(std::string name)
 void GameCore::drawTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat offx, GLfloat offy)
 {
 
-	glBindTexture( GL_TEXTURE_2D, texture );
+        glBindTexture( GL_TEXTURE_2D, texture );
 
-	glBegin( GL_QUADS );
-				//Top-left vertex (corner)
-				glTexCoord2i( 0, 0 );
-				glVertex3f( x, y, 0.f );
+        glBegin( GL_QUADS );
+                                //Top-left vertex (corner)
+                                glTexCoord2i( 0, 0 );
+                                glVertex3f( x, y, 0.f );
 
-				//Bottom-left vertex (corner)
-				glTexCoord2i( 1, 0 );
-				glVertex3f( x + offx, y, 0.f );
-			 
-				//Bottom-right vertex (corner)
-				glTexCoord2i( 1, 1 );
-				glVertex3f( x + offx, y + offy, 0.f );
-			 
-				//Top-right vertex (corner)
-				glTexCoord2i( 0, 1 );
-				glVertex3f( x,  y + offy, 0.f );
-	glEnd();
+                                //Bottom-left vertex (corner)
+                                glTexCoord2i( 1, 0 );
+                                glVertex3f( x + offx, y, 0.f );
+                         
+                                //Bottom-right vertex (corner)
+                                glTexCoord2i( 1, 1 );
+                                glVertex3f( x + offx, y + offy, 0.f );
+                         
+                                //Top-right vertex (corner)
+                                glTexCoord2i( 0, 1 );
+                                glVertex3f( x,  y + offy, 0.f );
+        glEnd();
 }
 
-void GameCore::drawTexture_animation(int number_of_frames, int current_frame, GLuint texture)
+
+void GameCore::show(int x, int y, GLuint text1, int frame, GLfloat offsetx, GLfloat offsety){
+
+	glTranslatef( x, y, 0 );
+	GameCore::drawTexture_animation(9, frame, text1, offsetx, offsety);
+
+}
+
+void GameCore::drawTexture_animation(int number_of_frames, int current_frame, GLuint texture, GLfloat offsetx, GLfloat offsety)
 {
 
 	double cell_division = 1.0/number_of_frames;
@@ -136,21 +144,17 @@ void GameCore::drawTexture_animation(int number_of_frames, int current_frame, GL
 	glBindTexture( GL_TEXTURE_2D, texture );
 	glBegin(GL_QUADS);
 		glTexCoord2d(x_cell, 0.0);
-		glVertex3i(0, 0, 0.f); 
+		glVertex3i(offsetx, offsety, 0.f); 
+
 		glTexCoord2d(x_cell2, 0.0);
-		glVertex3i( 800 , 0, 0.f);
+		glVertex3i( 400+offsetx , offsety, 0.f);
+
 		glTexCoord2d( x_cell2 , 1.0 );
-		glVertex3i( 800, 600, 0.f);
+		glVertex3i( 400+offsetx, 300+offsety, 0.f);
+
 		glTexCoord2d( x_cell , 1.0);
-		glVertex3i(0, 600, 0.f); 
+		glVertex3i(offsetx, 300+offsety, 0.f); 
+
 	glEnd();
 
 }
-
-void GameCore::show(int x, int y, GLuint text1, int frame){
-
-	glTranslatef( x, y, 0 );
-	GameCore::drawTexture_animation(9, frame, text1);
-
-}
-
