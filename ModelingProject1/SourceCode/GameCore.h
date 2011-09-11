@@ -22,7 +22,7 @@ public:
 	void initPlayers();
 	void setNewState();
 	void setup();
-	void show(int, int, GLuint, int);
+	void show(int, int, GLuint, int, GLfloat, GLfloat);
 	void startMusic(std::string);
 	void startSoundEffect(std::string);
 	void startTimer();
@@ -31,7 +31,7 @@ public:
 	
     static GLuint loadTexture(std::string name);
 
-	static void drawTexture_animation(int, int, GLuint);
+	static void drawTexture_animation(int, int, GLuint, GLfloat, GLfloat);
 	static void drawTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat offx, GLfloat offy);
 
 	void setupFPS();
