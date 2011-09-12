@@ -38,15 +38,12 @@ public:
 	void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY);
 	void scrollBackgroundLayers();
 
-	boost::ptr_vector< Tileset > getTilesetList() { return tilesetList; }
-
 	boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
 
 private:
 	std::string levelName;
 	int numberOfEnemies;
 	boost::ptr_vector< Layer > layersList;
-	boost::ptr_vector< Tileset > tilesetList;
 	boost::ptr_vector< Tilemap > tilemapList;
 };
 
