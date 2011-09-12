@@ -19,7 +19,7 @@ int main( int argc, char* args[] )
 	}
 
 	Level *levelOne = new Level();
-	//levelOne->loadTMXTileMapFile("Prueba.tmx");	
+	levelOne->loadTMXTileMapFile("Prueba2.tmx");	
 
 	levelOne->addLayerToList("nubes.png", 1600.f, 720.f, 1.0f, 0.0f);
 	levelOne->addLayerToList("mountains.png", 1600.f, 720.f, 3.0f, 0.0f);
