@@ -6,49 +6,49 @@ using namespace std;
 GameScreen::GameScreen(void)
 {
 	screen = NULL;
-	width = 0;
-	heigth = 0;
+	width = height = 0;
+	windowName = "Unnamed 2D Game";
 }
 
 GameScreen::~GameScreen(void)
 {
 }
 
-bool GameScreen::initialize()
+bool GameScreen::initializeScreen()
 {
-    if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
+    if( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_TIMER ) < 0 )
     {
         return false;
     }
 	
-	if(SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ) != 0)
+	if( SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ) != 0)
 	{
 		return false;
 	}
 
-	width = 1280;	heigth = 720;
+	width = 1280;	height = 720;
 
-	if( SDL_SetVideoMode(width, heigth, 32, SDL_OPENGL ) == NULL) 
+	if( (screen = SDL_SetVideoMode(width, height, 32, SDL_OPENGL ) ) == NULL) 
     {
         return false;
     }
 
-    if( initializeOGL() == false )
+    if( initializeOpenGL() == false )
     {
         return false;
     }
 
-	SDL_WM_SetCaption( "Unnamed Game!", NULL );
+	SDL_WM_SetCaption( windowName.c_str(), NULL );
 
     return true;
 }
 
-bool GameScreen::initializeOGL()
+bool GameScreen::initializeOpenGL()
 {	
-	const SDL_VideoInfo* resolution = SDL_GetVideoInfo();
-	float proportion = ((float)resolution->current_w / (float)resolution->current_h);
+	defaultResolution = SDL_GetVideoInfo();
+	float proportion = ((float)defaultResolution->current_w / (float)defaultResolution->current_h);
 	
-	glViewport(0, 0, resolution->current_w, resolution->current_h);
+	glViewport(0, 0, defaultResolution->current_w, defaultResolution->current_h);
     glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
 		
