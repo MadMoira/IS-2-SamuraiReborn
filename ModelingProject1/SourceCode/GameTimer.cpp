@@ -24,6 +24,14 @@ void GameTimer::stop()
     started = paused = false;
 }
 
+void GameTimer::delay()
+{
+	if( getTicks() < 1000 / FRAMES_PER_SECOND )
+    {
+		SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - getTicks() );
+    }
+}
+
 void GameTimer::pause()
 {
     if( ( started == true ) && ( paused == false ) )

@@ -10,7 +10,7 @@
 
 #include <boost/ptr_container/ptr_vector.hpp>
 
-#include "GameCore.h"
+#include "GameRender.h"
 #include "Tileset.h"
 
 class Tilemap

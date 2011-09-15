@@ -29,7 +29,7 @@ bool Tilemap::drawTilemap(GLfloat sizeTile, int indexTileset)
 	GLfloat widthTilesetImage = tilesetList.at(indexTileset).getWidthImage();
 	GLfloat heightTilesetImage = tilesetList.at(indexTileset).getHeightImage();
 
-	int widthMap = 40 + offsetX/32;
+	int widthMap = 40 + (int)offsetX/32;
 	int heigthMap = 23;
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -41,7 +41,7 @@ bool Tilemap::drawTilemap(GLfloat sizeTile, int indexTileset)
 
 	for (int i = 0; i < heigthMap; i++)
 	{
-		int startX = offsetX/32;
+		int startX = (int)offsetX/32;
 
 		for (int j = 0; j < 40; j++) 
 		{
@@ -66,7 +66,7 @@ bool Tilemap::drawTilemap(GLfloat sizeTile, int indexTileset)
 
 			const GLfloat textureWidth = sizeTile / (GLfloat)widthTilesetImage;
 			const GLfloat textureHeight = sizeTile / (GLfloat)heightTilesetImage;
-			const int numFramePerRow = (GLfloat)widthTilesetImage / sizeTile;
+			const int numFramePerRow = (int)widthTilesetImage / (int)sizeTile;
 			const GLfloat textureX = ((frameIndex % numFramePerRow) * textureWidth);
 			const GLfloat textureY = (frameIndex / numFramePerRow ) * textureHeight;
 
@@ -94,5 +94,5 @@ bool Tilemap::drawTilemap(GLfloat sizeTile, int indexTileset)
 void Tilemap::addTileset(int id, std::string name, GLfloat widthTile, GLfloat heightTile, GLfloat imageWidth, GLfloat imageHeight, 
 			int size)
 {
-	tilesetList.push_back( new Tileset(id, name, widthTile, heightTile, imageWidth, imageHeight, size, GameCore::loadTexture(name)) );
+	tilesetList.push_back( new Tileset(id, name, widthTile, heightTile, imageWidth, imageHeight, size, GameRender::loadTexture(name)) );
 }

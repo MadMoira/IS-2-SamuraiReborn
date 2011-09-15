@@ -1,5 +1,5 @@
 
-#include "GameCore.h"
+#include "GameRender.h"
 #include "Layer.h"
 
 Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY)
@@ -7,7 +7,7 @@ Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat 
 	nameLayer = name;
 	widthLevelLayer = widthLayer;
 	heightLevelLayer = heightLayer;
-	texture = GameCore::loadTexture(name);
+	texture = GameRender::loadTexture(name);
 	velocityX = velX;
 	velocityY = velY;
 	offsetX = offsetY = 0.0f;
@@ -33,7 +33,7 @@ void Layer::drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen)
 	glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &heightTexture);
 
 	widthTexture = 1600.f;
-		heightTexture = 720.f;
+	heightTexture = 720.f;
 
 	const GLfloat vertX = 0.0f;
 	const GLfloat vertY = 0.0f;
@@ -63,7 +63,6 @@ void Layer::drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen)
 
 	glDisableClientState( GL_VERTEX_ARRAY );			
 	glDisableClientState( GL_TEXTURE_COORD_ARRAY );	
-
 }
 
 bool Layer::scrollLayer()

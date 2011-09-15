@@ -61,6 +61,12 @@
     <Filter Include="Header Files\AI">
       <UniqueIdentifier>{d2f527fe-6e04-4554-b47b-57093ce65521}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{ffbcbbc9-cab5-427b-b7d2-98fe4dcde9de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{a2fed22b-84eb-48b0-8137-92799dce802f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -141,6 +147,24 @@
     <ClCompile Include="Tilemap.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
+    <ClCompile Include="GameSound.cpp">
+      <Filter>Source Files\Game Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SLevelTutorial.cpp">
+      <Filter>Source Files\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRender.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>Source Files\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInput.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardHandler.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -215,8 +239,26 @@
     <ClInclude Include="Layer.h">
       <Filter>Header Files\Level Design</Filter>
     </ClInclude>
+    <ClInclude Include="GameSound.h">
+      <Filter>Header Files\Game Core</Filter>
+    </ClInclude>
     <ClInclude Include="Tilemap.h">
       <Filter>Header Files\Level Design</Filter>
+    </ClInclude>
+    <ClInclude Include="SLevelTutorial.h">
+      <Filter>Header Files\Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRender.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>Header Files\Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInput.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardHandler.h">
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +266,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="nubes.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Panda - SpriteSheet.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Meerkat - SpriteSheet.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

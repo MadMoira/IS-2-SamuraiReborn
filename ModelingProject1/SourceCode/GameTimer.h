@@ -2,6 +2,8 @@
 
 #include <SDL/SDL.h>
 
+#define FRAMES_PER_SECOND 10
+
 class GameTimer
 {
 public:
