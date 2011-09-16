@@ -1,44 +1,63 @@
-#include "GameCore.h"
-#include "Level.h"
 #include <windows.h>
 #include <gl\GL.h>
 #include "CollisionObserver.h"
 
 int main( int argc, char* args[] ){
 
-	GameCore Core;
-	CollisionObserver observer = CollisionObserver();
+#include "GameCore.h"
+#include "GameRender.h"
+#include "GameInput.h"
 
-	if(Core.initGame() == false){
+#include "GameStateManager.h"
+
+#include "SLevelTutorial.h"
+
+#include "PandaP1.h"
+
+#include "Level.h"
+
+	GameCore Core;
+	GameRender Render;
+	GameInput Input;
+
+	GameStateManager StateManager;
+	
+	if( !Core.initializeGameCore() )
 		return 1;
 	}
-	/*Level *levelOne = new Level();
-	levelOne->loadTMXTileMapFile("test1.tmx");	
+	Core.addPlayerToGame( new PandaP1() );
 
-	levelOne->drawLevelMap();*/
+	StateManager.changeState( new SLevelTutorial( &Render, &Core, &Input, STATE_LEVELZEROTUTORIAL ) );
 	//motion rate
 	float x=0.0f;
 	float dx;
 	//collision boxes
 	CollisionBox box1= CollisionBox(x+80, 100 , 180,  498);
 	CollisionBox box2= CollisionBox(250+246, 100 , 462,  537);
+	
+	StateManager.render();
+	/*Level *levelOne = new Level();
+	levelOne->loadTMXTileMapFile("Prueba2.tmx");	
+	levelOne->addLayerToList("nubes.png", 1600.f, 720.f, 1.0f, 0.0f);
+	levelOne->addLayerToList("mountains.png", 1600.f, 720.f, 3.0f, 0.0f);
 
-	//Images
-	GLuint texture1 = Core.loadTexture("Mov1.png");
+	levelOne->drawLevelMap();*/
+	while( Core.getIsRunning() )
+	{
+		Core.getGameTimer()->start();
 
-	GLuint texture2 = Core.loadTexture("InitialPosition.png");
+		StateManager.handleEvents();
+		StateManager.logic();
+		StateManager.render();
 
-	GLuint textureBackground = Core.loadTexture("background.jpg");
+		/*levelOne->scrollBackgroundLayers();
+		
+		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+		    levelOne->drawLevelMap();
+		SDL_GL_SwapBuffers();*/
 
-	bool quit = false;
-	SDL_Event evento;
-	while( !quit ){
-
-		while( SDL_PollEvent( &evento ) ){
-			if( evento.type == SDL_KEYDOWN ){
-				if(evento.key.keysym.sym == SDLK_ESCAPE){
-					quit = true;
-				}
+		Core.getGameTimer()->delay();
 				if(evento.key.keysym.sym == SDLK_RIGHT){
 					dx = 20.0f;
 					x+=dx;
@@ -63,11 +82,6 @@ int main( int argc, char* args[] ){
 				if(evento.key.keysym.sym == SDLK_2){
 					x=0.0;
 				}
-			}  
-			if(evento.type == SDL_QUIT){
-				quit = true;
-			}
-		}
 
 		Core.drawTexture(textureBackground, 0.0f, 0.0f, 1280.0f, 720.0f);
 
@@ -78,12 +92,8 @@ int main( int argc, char* args[] ){
 		SDL_GL_SwapBuffers();
 	}
 
-	glDeleteTextures(1, &texture1);
-	glDeleteTextures(1, &texture2);
-	glDeleteTextures(1, &textureBackground);
 	//delete levelOne;
-
-	SDL_Quit();
+	Core.cleanUpGameCore();
 
 	return 0;
 }
