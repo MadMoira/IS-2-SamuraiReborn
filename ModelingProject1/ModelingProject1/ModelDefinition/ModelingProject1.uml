@@ -1550,6 +1550,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="aca70f9a-a8fb-4613-8d48-605a9c0bbcf5"
+            isDerived="false"
+            sourceEndRoleName="GameCore"
+            targetEndRoleName="GameSound"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="2e973eb4-d7a1-47a3-a99b-cdad29e25f18"
+              LastKnownName="GameSound"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="86bd8f8f-adea-4aa9-843d-74044cbe7e9b"
+                  name="GameCore"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2ccee26b-f426-47ff-9975-80775b88d11f"
+                  name="GameSound"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -5043,6 +5082,310 @@
       <undefinedType
         Id="fd716e3c-4f46-407f-9974-45c75a23a2d0"
         name="map&lt; int, string &gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2e973eb4-d7a1-47a3-a99b-cdad29e25f18"
+        name="GameSound"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="68740dd5-84ea-4d47-b89f-891626b4d5d7"
+            name="sound"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="b27f655a-6b16-44cd-8596-2116954b4830"
+                LastKnownName="FMOD::Sound"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="34d0aea5-dce4-47ad-87ad-8a68d2c0fa98"
+            name="system"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="c5021b73-0d12-4053-bfd4-4d49a418f2c5"
+                LastKnownName="FMOD::System"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="a8f2df4d-8139-4389-b189-54c4f9cf432f"
+            name="chunks[3]"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="b27f655a-6b16-44cd-8596-2116954b4830"
+                LastKnownName="FMOD::Sound"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="14760d28-72fa-44dc-8d43-d21c40f58349"
+            name="channel[2]"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="dc18499d-7a99-4ef1-8bd1-769e52df0116"
+                LastKnownName="FMOD::Channel"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="91ceaec3-7117-47ac-bdea-a287e6b5e7ab"
+            name="result"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="07f98104-a9fe-4cfa-9668-757918041c37"
+                LastKnownName="FMOD_Result"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="89f0e121-1d49-4c9a-a835-fa25448ede6c"
+            name="initSound"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="51ca6b8b-5bc2-4ed6-9897-e3d79a81359d"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c05a536c-4013-4916-9e93-0da60ec30d55"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ab9e4a1c-9726-4f89-9e14-e82b41d8f166"
+            name="loadSound"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f02cb1d1-7bd3-46af-927e-2e8b87c27cc9"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c05a536c-4013-4916-9e93-0da60ec30d55"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="837afe3b-e9b6-4cb7-affb-0604eedd992f"
+                  name="string name"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="1ba09d21-d43f-4f5d-92a2-558678b155a3"
+            name="loadChunk"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fc621abe-633d-47c2-92d4-350c84e0a03d"
+                  name="string name"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="23206df6-92fd-4877-8b38-5a431eb65460"
+            name="upVolumeSE"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="35e86f07-1d79-41ff-b9ab-9068623f64d8"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c05a536c-4013-4916-9e93-0da60ec30d55"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="cc11aeda-e985-4330-9e4f-506c586deff9"
+            name="downVolumeSE"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="603ef2dc-cbaa-4d50-8e4a-e1017b97d773"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c05a536c-4013-4916-9e93-0da60ec30d55"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="5c97eeb8-04dd-4b71-bbbd-a9e373d284f4"
+            name="upVolumeMUS"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9dedbf9d-0b62-47a0-ba63-5131332d7ae1"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="c05a536c-4013-4916-9e93-0da60ec30d55"
+                      LastKnownName="void"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="35cff9cd-b7aa-4779-b6ea-41745af05e4b"
+            name="downVolumeMUS : void"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="3eb3e8ab-f759-4552-b9a4-f22a43c30118"
+            name="closeAll"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="7c65c543-dbd0-4736-bc72-ce1d87c515de"
+        name="Mix_Music" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="8a810a53-73fb-4252-a341-bb5c1dee10bf"
+        name="Mix_Chunk" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="c5021b73-0d12-4053-bfd4-4d49a418f2c5"
+        name="FMOD::System" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="b27f655a-6b16-44cd-8596-2116954b4830"
+        name="FMOD::Sound" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="a5e7304d-2058-4fcf-b7bc-7ab7c8add4ed"
+        name="FMOD::Sound+" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="dc18499d-7a99-4ef1-8bd1-769e52df0116"
+        name="FMOD::Channel" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="07f98104-a9fe-4cfa-9668-757918041c37"
+        name="FMOD_Result" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
