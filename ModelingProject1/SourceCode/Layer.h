@@ -1,24 +1,43 @@
 #pragma once
 
+#include <windows.h>
+#include <GL/gl.h>
+
 #include <vector>
 #include <string>
 
 class Layer
 {
 public:
-	Layer(std::string name, int widthLayer, int heightLayer);
+	Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY);
 	~Layer(void);
 
-	std::vector< std::vector <int> > getLayerMap() { return layerMap; } ;
-	void setLayerMap(std::vector< std::vector <int> > map) { layerMap = map; };
+	void drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen);
+	
+	GLuint getTexture() { return texture; }
+	void setLayerTexture(GLuint layerTexture) { texture = layerTexture; }
 
-	int getWidthLevelLayer() { return widthLevelLayer; }
+	GLfloat getWidthLevelLayer() { return widthLevelLayer; }
+	void setWidthLevelLayer(GLfloat width) { widthLevelLayer = width; }
 
-	int getHeightLevelLayer() { return heightLevelLayer; }
+	GLfloat getHeightLevelLayer() { return heightLevelLayer; }
+	void setHeightLevelLayer(GLfloat height) { heightLevelLayer = height; }
+
+	GLfloat setVelocityX(GLfloat velX) { velocityX = velX; }
+
+	bool scrollLayer();
+
+	GLfloat getOffsetX() { return offsetX; }
+	void setOffsetX(GLfloat velX) { offsetX = velX; }
+
+	GLfloat getOffsetY() { return offsetY; }
+
+	bool checkScreenBoundaries();
 
 private:
 	std::string nameLayer;
-	std::vector< std::vector <int> > layerMap;
-	int widthLevelLayer, heightLevelLayer;
+	GLuint texture;
+	GLfloat widthLevelLayer, heightLevelLayer;
+	GLfloat velocityX, velocityY, offsetX, offsetY;
 };
 

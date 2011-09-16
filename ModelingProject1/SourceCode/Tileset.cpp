@@ -1,12 +1,18 @@
 #include "Tileset.h"
 
 
-Tileset::Tileset(void)
+Tileset::Tileset(int id, std::string name, GLfloat width, GLfloat height, GLfloat imageWidth, GLfloat imageHeight, 
+			int size, GLuint tex)
 {
-	ID = heightTile = widthTile = numberOfTiles = 0;
-	filename = "";
+	ID = id;
+	filename = name;
+	widthTile = width;
+	heightTile = height;
+	widthImage = imageWidth;
+	heightImage = imageHeight;
+	numberOfTiles = size;
+	texture = tex;
 }
-
 
 Tileset::~Tileset(void)
 {
