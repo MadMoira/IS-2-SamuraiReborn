@@ -12,16 +12,14 @@ int main( int argc, char* args[] ){
 	if(Core.initGame() == false){
 		return 1;
 	}
-	/*Level *levelOne = new Level();
-	levelOne->loadTMXTileMapFile("test1.tmx");	
 
-	levelOne->drawLevelMap();*/
 	//motion rate
 	float x=0.0f;
 	float dx;
+
 	//collision boxes
-	CollisionBox box1= CollisionBox(x+80, 100 , 180,  498);
-	CollisionBox box2= CollisionBox(250+246, 100 , 462,  537);
+	CollisionBox box1= CollisionBox(x+80, 100 , 139,  498); // Meerkat
+	CollisionBox box2= CollisionBox(250+246, 100 , 265,  537); // Panda
 
 	//Images
 	GLuint texture1 = Core.loadTexture("Mov1.png");

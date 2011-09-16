@@ -8,10 +8,11 @@ CollisionObserver::CollisionObserver(){
 CollisionObserver::~CollisionObserver(void){
 }
 
-bool CollisionObserver::checkCollision( CollisionBox &A, CollisionBox &B , float direction){
+//Method to check for collisions between two collision boxes
+bool CollisionObserver::checkCollision( CollisionBox &A, CollisionBox &B , float directionX){
 
-	//If any sides from A is inside of B
-	if( ( /*( (A.gety()+A.geth()) > B.gety()) || ( A.gety() < (B.gety()+B.geth()) ) || */(( (A.getx()+A.getw()) > (B.getx()) ) && ( A.getx() < (B.getx()+B.getw())) && direction>0.0) || (( (A.getx()+A.getw()) > (B.getx()) ) && ( A.getx() < (B.getx()+B.getw())) && direction<0.0))){
+	//Collisions for left to right, right to left and up to down
+	if( ( ( ((A.gety()+A.geth()) > B.gety()) && ( (A.getx()+A.getw()) > (B.getx()) ) && ( A.getx() < (B.getx()+B.getw()))) || (( (A.getx()+A.getw()) > (B.getx()) ) && ( A.getx() < (B.getx()+B.getw())) && directionX>0.0) || (( (A.getx()+A.getw()) > (B.getx()) ) && ( A.getx() < (B.getx()+B.getw())) && directionX<0.0))){
 		return true;
 	}
 	return false;
