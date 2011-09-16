@@ -138,12 +138,6 @@
     <ClCompile Include="Layer.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionObserver.cpp">
-      <Filter>Source Files\Game Core</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionBox.cpp">
-      <Filter>Source Files\Game Core</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -218,11 +212,13 @@
     <ClInclude Include="Layer.h">
       <Filter>Header Files\Level Design</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionObserver.h">
-      <Filter>Header Files\Game Core</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionBox.h">
-      <Filter>Header Files\Game Core</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="background.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="x.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
