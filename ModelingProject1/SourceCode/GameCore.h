@@ -1,38 +1,47 @@
 #pragma once
 
-#include <string>
-#include "SDL/SDL_image.h"
-#include "GameState.h"
+#include <boost/ptr_container/ptr_vector.hpp>
+
 #include "GameConfiguration.h"
 #include "GameSaves.h"
 #include "GameScreen.h"
 #include "GameTimer.h"
+#include "GameSound.h"
+#include "Player.h"
 
 class GameCore
 {
 public:
-	GameCore();
+	GameCore(void);
 	~GameCore(void);
 
-	void changeState();
 	void close();
-	bool initGame();
-	void initPlayers();
-	void setNewState();
-	void setup();
 
-    static GLuint loadTexture(std::string name);
+	bool initializeGameCore();
+	bool cleanUpGameCore();
 
-	static void drawTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat offx, GLfloat offy);
+	void initializePlayers();
 
-	void setupFPS();
+	GameTimer* getGameTimer() { return timer; }
+	void startTimer();
+
+	GameSound* getGameSound() { return sound; };
+	void startMusic(std::string filename);
+	void startSoundEffect(std::string filename);
+
+	boost::ptr_vector< Player > &getPlayersList() { return playersList; }
+	void addPlayerToGame(Player *player);
+
+	bool getIsRunning() { return isRunning; }
+	void setIsRunning(bool running) { isRunning = running; }
 	
 private:
-	GameState *currentGameState;
 	GameConfiguration *configuration;
 	GameSaves *saves;
 	GameScreen *screen;
 	GameTimer *timer;
-	int currentStateID;
+	GameSound *sound;
+	boost::ptr_vector< Player > playersList;
+	bool isRunning;
 };
 
