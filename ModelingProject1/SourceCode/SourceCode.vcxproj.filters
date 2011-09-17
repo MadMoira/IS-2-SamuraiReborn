@@ -16,9 +16,6 @@
     <Filter Include="Source Files\Level Design">
       <UniqueIdentifier>{89be983c-508e-4cf4-810d-53c60282ae87}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Level Design">
-      <UniqueIdentifier>{2378c23d-b2fe-445d-888d-3da70165f3fb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Game Core">
       <UniqueIdentifier>{1cbcd426-636a-4306-8cae-d883f47f281a}</UniqueIdentifier>
     </Filter>
@@ -66,6 +63,9 @@
     </Filter>
     <Filter Include="Source Files\Input">
       <UniqueIdentifier>{a2fed22b-84eb-48b0-8137-92799dce802f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Level Design">
+      <UniqueIdentifier>{2378c23d-b2fe-445d-888d-3da70165f3fb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +165,9 @@
     <ClCompile Include="KeyboardHandler.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -260,6 +263,9 @@
     <ClInclude Include="KeyboardHandler.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="mountains.png">
@@ -272,6 +278,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Meerkat - SpriteSheet.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Panda - SpriteSheet1.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

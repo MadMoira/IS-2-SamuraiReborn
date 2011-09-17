@@ -1,9 +1,10 @@
+
 #include "KeyboardHandler.h"
 
-
-KeyboardHandler::KeyboardHandler(void)
+KeyboardHandler::KeyboardHandler(int buttonRight, int buttonLeft)
 {
-	setKeyValues( KEY_RIGHT, SDLK_RIGHT );
+	setKeyValues( KEY_RIGHT, buttonRight );
+	setKeyValues( KEY_LEFT, buttonLeft );
 }
 
 KeyboardHandler::~KeyboardHandler(void)

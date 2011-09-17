@@ -2,9 +2,12 @@
 
 #include <windows.h>
 #include <string>
+#include <vector>
 #include <GL/gl.h>
 
 #include "GameRender.h"
+
+#include "Animation.h"
 
 #define INITIAL_POSITION 0
 
@@ -25,7 +28,8 @@ class Sprite
 {
 public:
 	Sprite(IDSprites id, std::string filename, GLfloat speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
-			int initialFrame, int maxFrame, GLfloat widthSprite, GLfloat heightSprite);
+				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, IDSpriteStates state,
+				GLfloat widthSprite, GLfloat heightSprite);
 	~Sprite(void);
 
 	GLfloat getPosX() { return posX; }
@@ -34,6 +38,7 @@ public:
 	GLfloat getPosY() { return posY; }
 
 	GLfloat getSpeedX() { return speedX; }
+	void setConstantSpeedX(int constant) { speedX *= constant; }
 
 	GLfloat getSpeedY() { return speedY; }
 
@@ -43,24 +48,25 @@ public:
 
 	GLuint getTexture() { return texture; }
 
-	int getCurrentFrame() { return currentFrame; }
-	void setCurrentFrame(int frame) { currentFrame = frame; }
+	Animation *getHandlerAnimation() { return handlerAnimation; }
+	void changeCurrentFrame(int frame);
 
 	int getCurrentState() { return currentState; }
-	void setCurrentState(int state);
-
-	void updateCurrentSpriteFrame();
+	void setCurrentState(IDSpriteStates state);
 
 	void drawTexture();
 
 private:
+	IDSprites ID;
 	GLuint texture;
-	int ID;
+	Animation *handlerAnimation;
+	IDSpriteStates currentState;
+	std::vector< int > maxFramesPerAnimation;
+	std::vector< int > returnFramesPerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
 	GLfloat posX, posY;
 	GLfloat speedX, speedY, countX, countY;
 	GLfloat delayX, delayY;
-	int frameCount, frameDelay, animationDirection;
-	int currentFrame, currentState, maxFrameFromCurrentState;
+	int frameCount, frameDelay;
 };
 

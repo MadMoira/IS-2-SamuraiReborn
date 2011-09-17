@@ -3,9 +3,7 @@
 #include <windows.h>
 #include <GL/gl.h>
 
-#include <string>
 #include <vector>
-
 #include <exception>
 
 #include <boost/ptr_container/ptr_vector.hpp>

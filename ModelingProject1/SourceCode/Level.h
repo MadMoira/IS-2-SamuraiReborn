@@ -2,8 +2,6 @@
 
 #include <windows.h>
 
-#include <string>
-#include <vector>
 #include <GL/gl.h>
 
 #include <boost/ptr_container/ptr_vector.hpp>

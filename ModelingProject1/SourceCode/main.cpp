@@ -10,16 +10,11 @@
 
 #include "SLevelTutorial.h"
 
-#include "PandaP1.h"
-
-#include "Level.h"
-
 int main( int argc, char* args[] )
 {
 	GameCore Core;
 	GameRender Render;
 	GameInput Input;
-
 	GameStateManager StateManager;
 	
 	if( !Core.initializeGameCore() )
@@ -27,10 +22,9 @@ int main( int argc, char* args[] )
 		return 1;
 	}
 
-	Core.addPlayerToGame( new PandaP1() );
-	
 	StateManager.changeState( new SLevelTutorial( &Render, &Core, &Input, STATE_LEVELZEROTUTORIAL ) );
 	
+	StateManager.init();
 	StateManager.render();
 
 	/*Level *levelOne = new Level();

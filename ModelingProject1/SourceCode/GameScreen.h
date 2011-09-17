@@ -12,7 +12,7 @@ public:
 
 	bool initializeScreen();
 	bool initializeOpenGL();
-	void updateScreen();
+	bool initializeSDLGLState();
 	
 private:
 	SDL_Surface *screen;

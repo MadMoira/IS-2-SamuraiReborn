@@ -3,17 +3,20 @@
 #include <string>
 #include <map>
 
+#include "Sprite.h"
+
 #include "SDL/SDL.h"
 
 enum Keys
 {
-	KEY_RIGHT
+	KEY_RIGHT,
+	KEY_LEFT
 };
 
 class KeyboardHandler
 {
 public:
-	KeyboardHandler(void);
+	KeyboardHandler(int buttonRight, int buttonLeft);
 	~KeyboardHandler(void);
 		
 	std::map< int, int > getKeyValues() { return keyValues; }

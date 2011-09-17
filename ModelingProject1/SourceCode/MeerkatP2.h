@@ -8,10 +8,11 @@ public:
 	~MeerkatP2();
 
 	void initializePlayer(IDSprites id, std::string filename, GLfloat speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
-								GLfloat widthSprite, GLfloat heightSprite, int initialFrame, int maxFrame);
-	void walk() {};
-	void draw() {};
-	void executeAction() {};
+				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, IDSpriteStates state,
+				GLfloat widthSprite, GLfloat heightSprite);
+	void walk();
+	void draw();
+	void executeAction();
 	
 };
 

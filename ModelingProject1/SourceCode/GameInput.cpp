@@ -1,5 +1,5 @@
-#include "GameInput.h"
 
+#include "GameInput.h"
 
 GameInput::GameInput(void)
 {
@@ -38,9 +38,20 @@ bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *
 	
 	if( keystates[ keyValues[KEY_RIGHT] ] )
     {
-		playerSprite->setCurrentState(WALKING);	
+		playerSprite->setCurrentState(WALKING);
+		playerSprite->setConstantSpeedX ( playerSprite->getHandlerAnimation()->changeAnimationDirection(RIGHT) );
 		return true;
 	}
+
+	if( keystates[ keyValues[KEY_LEFT] ] )
+    {
+		playerSprite->setCurrentState(WALKING);
+		playerSprite->setConstantSpeedX ( playerSprite->getHandlerAnimation()->changeAnimationDirection(LEFT) );
+		return true;
+	}
+
+	playerSprite->setCurrentState(STILL);
+	playerSprite->changeCurrentFrame(INITIAL_POSITION);
 
 	return false;
 }

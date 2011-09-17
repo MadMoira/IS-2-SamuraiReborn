@@ -1,5 +1,5 @@
-#include "GameStateManager.h"
 
+#include "GameStateManager.h"
 
 GameStateManager::GameStateManager(void)
 {
@@ -31,6 +31,11 @@ void GameStateManager::changeState(GameState *gameState)
 
    pushState(gameState);
    currentState = gameState->getNameState();
+}
+
+void GameStateManager::init()
+{
+	statesStack.at(currentID).init();
 }
 
 void GameStateManager::handleEvents()
