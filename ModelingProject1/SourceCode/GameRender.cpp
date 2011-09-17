@@ -1,3 +1,4 @@
+
 #include "GameRender.h"
 
 GameRender::GameRender(void)
@@ -86,7 +87,8 @@ void GameRender::drawFullTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat w
 }
 
 void GameRender::drawSpriteTexture(GLuint texture, GLfloat posX, GLfloat posY, int currentFrame, 
-								GLfloat widthTexture, GLfloat heightTexture, GLfloat widthSprite, GLfloat heightSprite)
+								GLfloat widthTexture, GLfloat heightTexture, GLfloat widthSprite, GLfloat heightSprite,
+								int direction)
 {
 	glEnableClientState( GL_VERTEX_ARRAY );
 	glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
@@ -106,12 +108,21 @@ void GameRender::drawSpriteTexture(GLuint texture, GLfloat posX, GLfloat posY, i
 	const GLfloat textureX = ( currentFrame % numFramePerRow ) * textureWidth;
 	const GLfloat textureY = ( currentFrame / numFramePerRow ) * textureHeight;
 
-	const GLfloat texVerts[] = {
+	GLfloat texVerts[] = {
 			textureX, textureY,
 			textureX + textureWidth, textureY,
 			textureX + textureWidth, textureY + textureHeight,
 			textureX, textureY + textureHeight
 	};
+
+	if ( direction == 1 )
+	{
+		const GLfloat textureXPlusWidth = ( ( currentFrame % numFramePerRow ) + 1 ) * textureWidth;
+		const GLfloat textureXMinusWidth = ( ( currentFrame % numFramePerRow )  ) * textureWidth;
+
+		texVerts[0] = texVerts[6] = textureXPlusWidth;
+		texVerts[2] = texVerts[4] = textureXMinusWidth;
+	}	
 			
 	glVertexPointer(2, GL_FLOAT, 0, verts);
 	glTexCoordPointer(2, GL_FLOAT, 0, texVerts);

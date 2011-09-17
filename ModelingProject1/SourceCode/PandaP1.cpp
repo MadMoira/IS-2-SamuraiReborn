@@ -1,5 +1,5 @@
-#include "PandaP1.h"
 
+#include "PandaP1.h"
 
 PandaP1::~PandaP1()
 {
@@ -8,22 +8,24 @@ PandaP1::~PandaP1()
 }
 
 void PandaP1::initializePlayer(IDSprites id, std::string filename, GLfloat speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
-								GLfloat widthSprite, GLfloat heightSprite, int initialFrame, int maxFrame)
+				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, IDSpriteStates state,
+				GLfloat widthSprite, GLfloat heightSprite)
 {
-	playerSprite = new Sprite(id, filename, speedX, speedY, posX, posY, initialFrame, maxFrame, widthSprite, heightSprite);
-	keyboardHandler = new KeyboardHandler();
+	playerSprite = new Sprite(id, filename, speedX, speedY, posX, posY, initialFrame, maxFrame, returnFrame,
+							 state, widthSprite, heightSprite);
+	keyboardHandler = new KeyboardHandler(SDLK_RIGHT, SDLK_LEFT);
 }
 
 void PandaP1::walk()
 {
 	if ( playerSprite->movePosXWithSpeed() )
 	{
-		playerSprite->updateCurrentSpriteFrame();
+		playerSprite->getHandlerAnimation()->animate() ;
 		return;
 	}
 
 	playerSprite->setCurrentState(STILL);
-	playerSprite->setCurrentFrame(INITIAL_POSITION);
+	playerSprite->changeCurrentFrame(INITIAL_POSITION);
 }
 
 void PandaP1::draw()

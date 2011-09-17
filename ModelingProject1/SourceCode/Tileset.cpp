@@ -1,5 +1,5 @@
-#include "Tileset.h"
 
+#include "Tileset.h"
 
 Tileset::Tileset(int id, std::string name, GLfloat width, GLfloat height, GLfloat imageWidth, GLfloat imageHeight, 
 			int size, GLuint tex)

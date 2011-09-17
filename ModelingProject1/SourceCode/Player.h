@@ -20,7 +20,8 @@ public:
 	
 	*/
 	virtual void initializePlayer(IDSprites id, std::string filename, GLfloat speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
-								GLfloat widthSprite, GLfloat heightSprite, int initialFrame, int maxFrame) = 0;
+				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, IDSpriteStates state,
+				GLfloat widthSprite, GLfloat heightSprite) = 0;
 	virtual void walk() = 0;
 	virtual void draw() = 0;
 	virtual void executeAction() = 0;

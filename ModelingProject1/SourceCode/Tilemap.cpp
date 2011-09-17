@@ -1,5 +1,5 @@
-#include "Tilemap.h"
 
+#include "Tilemap.h"
 
 Tilemap::Tilemap(std::string name, int widthInTiles, int heightInTiles)
 {

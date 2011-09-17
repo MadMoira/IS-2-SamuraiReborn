@@ -1,6 +1,7 @@
+
 #include "SLevelTutorial.h"
 
-SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, int stateName) 
+SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, GameStates stateName) 
 	: GameState( gR, gC, gI, stateName )
 {
 	gameCore = gC;
@@ -11,6 +12,25 @@ SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, int 
 
 SLevelTutorial::~SLevelTutorial(void)
 {
+}
+
+void SLevelTutorial::init()
+{
+	std::vector < int > maxFrameVector;
+	maxFrameVector.push_back( 1 );
+	maxFrameVector.push_back( 8 );
+
+	std::vector < int > returnFrameVector;
+	returnFrameVector.push_back( 0 );
+	returnFrameVector.push_back( 1 );
+
+	gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet1.png", 
+						10.0f, 0.0f, 50.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
+						STILL, 250.0f, 187.0f);
+
+	gameCore->addPlayerToGame( new MeerkatP2(), MEERKAT, "Meerkat - SpriteSheet.png", 
+						12.0f, 0.0f, 100.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
+						STILL, 250.0f, 187.0f);
 }
 
 void SLevelTutorial::handleEvents()
@@ -27,9 +47,6 @@ void SLevelTutorial::handleEvents()
 		{
 			continue;
 		}
-
-		gameCore->getPlayersList().at(i).getPlayerSprite()->setCurrentFrame(INITIAL_POSITION);
-		gameCore->getPlayersList().at(i).getPlayerSprite()->setCurrentState(STILL);
 	}
 }
 
