@@ -39,6 +39,12 @@ bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *
 	if( keystates[ keyValues[KEY_RIGHT] ] )
     {
 		playerSprite->setCurrentState(WALKING);
+
+		if( keystates[ keyValues[KEY_RUN] ] )
+		{
+			playerSprite->setCurrentState(RUNNING);
+		}
+
 		playerSprite->setConstantSpeedX ( playerSprite->getHandlerAnimation()->changeAnimationDirection(RIGHT) );
 		return true;
 	}
@@ -46,12 +52,17 @@ bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *
 	if( keystates[ keyValues[KEY_LEFT] ] )
     {
 		playerSprite->setCurrentState(WALKING);
+
+		if( keystates[ keyValues[KEY_RUN] ] )
+		{
+			playerSprite->setCurrentState(RUNNING);
+		}
 		playerSprite->setConstantSpeedX ( playerSprite->getHandlerAnimation()->changeAnimationDirection(LEFT) );
 		return true;
 	}
 
 	playerSprite->setCurrentState(STILL);
-	playerSprite->changeCurrentFrame(INITIAL_POSITION);
+	playerSprite->changeCurrentFrame(STILL);
 
 	return false;
 }

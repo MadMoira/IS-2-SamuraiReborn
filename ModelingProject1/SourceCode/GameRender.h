@@ -17,6 +17,6 @@ public:
 	void drawFullTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat widthTexture, GLfloat heightTexture);
 	static void drawSpriteTexture(GLuint texture, GLfloat posX, GLfloat posY, int currentFrame, 
 									GLfloat widthTexture, GLfloat heightTexture, GLfloat widthSprite, GLfloat heightSprite,
-									int direction);
+									int direction, int state);
 };
 

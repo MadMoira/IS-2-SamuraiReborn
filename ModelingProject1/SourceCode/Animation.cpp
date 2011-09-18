@@ -27,7 +27,7 @@ int Animation::animate()
  
     currentFrame += incrementFrame;
 
-    if( currentFrame + 1 > maxFrames)
+    if( currentFrame > maxFrames)
 	{
 		currentFrame = returnFrame;
     }
@@ -37,8 +37,9 @@ int Animation::animate()
 
 void Animation::setCurrentFrame(int frame)
 {
-    if( frame < 0 || frame >= maxFrames) 
+    if( frame < 0 || frame > maxFrames) 
 	{
+		currentFrame = returnFrame;
 		return;
 	}
  

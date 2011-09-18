@@ -9,8 +9,6 @@
 
 #include "Animation.h"
 
-#define INITIAL_POSITION 0
-
 enum IDSprites 
 { 
 	PANDA, 
@@ -21,13 +19,15 @@ enum IDSprites
 enum IDSpriteStates
 {
 	STILL,
-	WALKING
+	WALKING,
+	JUMPING,
+	RUNNING
 };
 
 class Sprite
 {
 public:
-	Sprite(IDSprites id, std::string filename, GLfloat speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
+	Sprite(IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, IDSpriteStates state,
 				GLfloat widthSprite, GLfloat heightSprite);
 	~Sprite(void);
@@ -37,8 +37,9 @@ public:
 
 	GLfloat getPosY() { return posY; }
 
-	GLfloat getSpeedX() { return speedX; }
-	void setConstantSpeedX(int constant) { speedX *= constant; }
+	GLfloat getSpeedX() { return speedXVector.at(currentState); }
+	void setSpeedX(GLfloat speedX) { speedXVector.at(currentState) = speedX; }
+	void setConstantSpeedX(int constant);
 
 	GLfloat getSpeedY() { return speedY; }
 
@@ -65,7 +66,8 @@ private:
 	std::vector< int > returnFramesPerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
 	GLfloat posX, posY;
-	GLfloat speedX, speedY, countX, countY;
+	std::vector< GLfloat > speedXVector;
+	GLfloat speedY, countX, countY;
 	GLfloat delayX, delayY;
 	int frameCount, frameDelay;
 };

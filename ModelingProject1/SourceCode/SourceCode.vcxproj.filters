@@ -251,9 +251,6 @@
     <ClInclude Include="SLevelTutorial.h">
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
-    <ClInclude Include="GameRender.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="GameStateManager.h">
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
@@ -264,6 +261,9 @@
       <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRender.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

@@ -16,21 +16,37 @@ SLevelTutorial::~SLevelTutorial(void)
 
 void SLevelTutorial::init()
 {
+	std::vector< GLfloat > speedXVector;
+	speedXVector.push_back( 0.0f );
+	speedXVector.push_back( 10.0f );
+	speedXVector.push_back( 10.0f );
+	speedXVector.push_back( 35.0f );
+
 	std::vector < int > maxFrameVector;
 	maxFrameVector.push_back( 1 );
+	maxFrameVector.push_back( 8 );
+	maxFrameVector.push_back( 8 );
 	maxFrameVector.push_back( 8 );
 
 	std::vector < int > returnFrameVector;
 	returnFrameVector.push_back( 0 );
 	returnFrameVector.push_back( 1 );
+	returnFrameVector.push_back( 1 );
+	returnFrameVector.push_back( 1 );
 
-	gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet1.png", 
-						10.0f, 0.0f, 50.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
-						STILL, 250.0f, 187.0f);
+	gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
+						speedXVector, 0.0f, 50.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
+						STILL, 187.0f, 187.0f);
+
+	speedXVector.at(RUNNING) = 40.0f;
 
 	gameCore->addPlayerToGame( new MeerkatP2(), MEERKAT, "Meerkat - SpriteSheet.png", 
-						12.0f, 0.0f, 100.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
+						speedXVector, 0.0f, 100.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
 						STILL, 250.0f, 187.0f);
+
+	speedXVector.clear();
+	maxFrameVector.clear();
+	returnFrameVector.clear();
 }
 
 void SLevelTutorial::handleEvents()

@@ -1,7 +1,7 @@
 
 #include "Sprite.h"
 
-Sprite::Sprite(IDSprites id, std::string filename, GLfloat speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
+Sprite::Sprite(IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, IDSpriteStates state,
 				GLfloat widthSprite, GLfloat heightSprite)
 {
@@ -16,7 +16,8 @@ Sprite::Sprite(IDSprites id, std::string filename, GLfloat speedX, GLfloat speed
 
 	width = widthSprite;	height = heightSprite;
 	this->posX = posX;  this->posY = posY;
-	this->speedX = speedX;	this->speedY = speedY;
+	speedXVector = speedX;
+	this->speedY = speedY;
 	currentState = state;
 }
 
@@ -25,17 +26,26 @@ Sprite::~Sprite(void)
 	glDeleteTextures(1, &texture);
 	maxFramesPerAnimation.clear();
 	returnFramesPerAnimation.clear();
+	speedXVector.clear();
 }
 
 bool Sprite::movePosXWithSpeed()
 {
-	if ( posX + speedX + width < 1280.f)
+	if ( posX + getSpeedX() + width < 1280.f)
 	{
-		posX += speedX;
+		posX += getSpeedX();
 		return true;
 	}
 
 	return false;
+}
+
+void Sprite::setConstantSpeedX(int constant)
+{
+	for(std::string::size_type i = 0; i < speedXVector.size(); i++)
+	{
+		speedXVector.at(i) *= constant;
+	}
 }
 
 void Sprite::changeCurrentFrame(int frame)
@@ -60,7 +70,7 @@ void Sprite::drawTexture()
 {
 	GameRender::drawSpriteTexture(texture, posX, posY,  handlerAnimation->getCurrentFrame(), 
 									widthTexture, heightTexture, width, height, 
-									handlerAnimation->getAnimationDirection() );
+									handlerAnimation->getAnimationDirection(), currentState );
 }
 
 
