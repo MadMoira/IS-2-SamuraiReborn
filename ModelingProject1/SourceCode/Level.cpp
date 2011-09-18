@@ -5,8 +5,9 @@
 
 #include "TmxParser/Tmx.h"
 
-Level::Level(void)
+Level::Level(Levels id)
 {
+	IDLevel = id;
 }
 
 Level::~Level(void)
@@ -139,19 +140,20 @@ bool Level::drawLevelMap()
 		layersList.at(i).drawLayerTexture(1280.f, 720.f);
 	}
 
-	GLfloat sizeTile = 32.0f;
+	/*GLfloat sizeTile = 32.0f;
 
 	for (std::string::size_type i = 0; i < tilemapList.size(); i++)
 	{
 		tilemapList.at(i).drawTilemap(32.0f, i);
-	}
+	}*/
 	
 	return true;
 }
 
-void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY)
+void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY, 
+				GLfloat constantX, bool hasRepetition)
 {
-	layersList.push_back( new Layer(name, widthLayer, heightLayer, velX, velY) );
+	layersList.push_back( new Layer(name, widthLayer, heightLayer, velX, velY, constantX, hasRepetition) );
 }
 
 void Level::scrollBackgroundLayers()
@@ -159,5 +161,13 @@ void Level::scrollBackgroundLayers()
 	for (std::string::size_type i = 0; i < layersList.size(); i++)
 	{
 		layersList.at(i).scrollLayer();
+	}
+}
+
+void Level::checkLayersSpeed(GLfloat speedX)
+{
+	for (std::string::size_type i = 1; i < layersList.size(); i++)
+	{
+		layersList.at(i).setVelocityX(speedX);
 	}
 }

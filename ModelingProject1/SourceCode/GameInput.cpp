@@ -57,6 +57,7 @@ bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *
 		{
 			playerSprite->setCurrentState(RUNNING);
 		}
+
 		playerSprite->setConstantSpeedX ( playerSprite->getHandlerAnimation()->changeAnimationDirection(LEFT) );
 		return true;
 	}

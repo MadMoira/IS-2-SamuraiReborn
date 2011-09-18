@@ -2,7 +2,8 @@
 #include "GameRender.h"
 #include "Layer.h"
 
-Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY)
+Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY, 
+			GLfloat constantX, bool hasRepetition)
 {
 	nameLayer = name;
 	widthLevelLayer = widthLayer;
@@ -11,6 +12,8 @@ Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat 
 	velocityX = velX;
 	velocityY = velY;
 	offsetX = offsetY = 0.0f;
+	repeat = hasRepetition;
+	constantVelX = constantX;
 }
 
 Layer::~Layer(void)
@@ -77,6 +80,11 @@ bool Layer::checkScreenBoundaries()
 {
 	if (offsetX > widthLevelLayer - 1280.f)
 	{
+		if ( repeat )
+		{
+			return false;
+		}
+
 		offsetX = widthLevelLayer - 1280.f; 
 		return true;
 	}

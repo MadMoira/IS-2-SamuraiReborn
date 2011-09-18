@@ -22,7 +22,7 @@ enum Levels
 class Level
 {
 public:
-	Level(void);
+	Level(Levels id);
 	~Level(void);
 
 	void getTileCollision();
@@ -33,12 +33,16 @@ public:
 	bool drawLevelMap();
 
 	boost::ptr_vector< Layer > getLayersList() { return layersList; }
-	void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY);
+	void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY, 
+				 GLfloat constantX, bool hasRepetition);
 	void scrollBackgroundLayers();
+	void checkLayersSpeed(GLfloat speedX);
+	void setLayerVelocityX(int index, GLfloat speedX) { layersList.at(index).setVelocityX(speedX); }
 
 	boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
 
 private:
+	Levels IDLevel;
 	std::string levelName;
 	int numberOfEnemies;
 	boost::ptr_vector< Layer > layersList;
