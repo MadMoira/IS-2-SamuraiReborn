@@ -2,6 +2,8 @@
 
 #include "GameState.h"
 
+#include "Level.h"
+
 #include "PandaP1.h"
 #include "MeerkatP2.h"
 
@@ -15,5 +17,8 @@ public:
 	void handleEvents();
 	void logic();
 	void render();
+
+private:
+	Level *tutorialLevel;
 };
 

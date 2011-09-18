@@ -12,6 +12,7 @@ SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, Game
 
 SLevelTutorial::~SLevelTutorial(void)
 {
+	delete tutorialLevel;
 }
 
 void SLevelTutorial::init()
@@ -35,14 +36,20 @@ void SLevelTutorial::init()
 	returnFrameVector.push_back( 1 );
 
 	gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
-						speedXVector, 0.0f, 50.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
+						speedXVector, 0.0f, 50.0f, 500.0f, 0, maxFrameVector, returnFrameVector,
 						STILL, 187.0f, 187.0f);
 
 	speedXVector.at(RUNNING) = 40.0f;
 
 	gameCore->addPlayerToGame( new MeerkatP2(), MEERKAT, "Meerkat - SpriteSheet.png", 
-						speedXVector, 0.0f, 100.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
+						speedXVector, 0.0f, 100.0f, 500.0f, 0, maxFrameVector, returnFrameVector,
 						STILL, 250.0f, 187.0f);
+
+	tutorialLevel = new Level(LEVELZEROTUTORIAL);
+	tutorialLevel->loadTMXTileMapFile("Prueba2.tmx");	
+
+	tutorialLevel->addLayerToList("nubes.png", 1600.f, 720.f, 1.0f, 0.0f, 0.1f, true);
+	tutorialLevel->addLayerToList("mountains.png", 1600.f, 720.f, speedXVector.at(0), 0.0f, 0.5f, false);
 
 	speedXVector.clear();
 	maxFrameVector.clear();
@@ -68,6 +75,9 @@ void SLevelTutorial::handleEvents()
 
 void SLevelTutorial::logic()
 {
+	tutorialLevel->checkLayersSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
+	tutorialLevel->scrollBackgroundLayers();
+
 	for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
 	{
 		gameCore->getPlayersList().at(i).executeAction();
@@ -78,6 +88,8 @@ void SLevelTutorial::render()
 {
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+	tutorialLevel->drawLevelMap();
 
 	for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
 	{

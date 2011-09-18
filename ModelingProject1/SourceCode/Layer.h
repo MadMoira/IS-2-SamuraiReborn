@@ -9,7 +9,8 @@
 class Layer
 {
 public:
-	Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY);
+	Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY, 
+		  GLfloat constantX, bool hasRepetition);
 	~Layer(void);
 
 	void drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen);
@@ -23,7 +24,8 @@ public:
 	GLfloat getHeightLevelLayer() { return heightLevelLayer; }
 	void setHeightLevelLayer(GLfloat height) { heightLevelLayer = height; }
 
-	GLfloat setVelocityX(GLfloat velX) { velocityX = velX; }
+	GLfloat getVelocityX() { return velocityX; }
+	void setVelocityX(GLfloat velX) { velocityX = velX*constantVelX; }
 
 	bool scrollLayer();
 
@@ -34,10 +36,14 @@ public:
 
 	bool checkScreenBoundaries();
 
+	bool getRepeat() { return repeat; }
+	void setRepeat(bool hasRepetition) { repeat = hasRepetition; }
+
 private:
 	std::string nameLayer;
 	GLuint texture;
 	GLfloat widthLevelLayer, heightLevelLayer;
 	GLfloat velocityX, velocityY, offsetX, offsetY;
+	GLfloat constantVelX;
+	bool repeat;
 };
-

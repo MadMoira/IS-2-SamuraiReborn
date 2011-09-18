@@ -27,14 +27,6 @@ int main( int argc, char* args[] )
 	StateManager.init();
 	StateManager.render();
 
-	/*Level *levelOne = new Level();
-	levelOne->loadTMXTileMapFile("Prueba2.tmx");	
-
-	levelOne->addLayerToList("nubes.png", 1600.f, 720.f, 1.0f, 0.0f);
-	levelOne->addLayerToList("mountains.png", 1600.f, 720.f, 3.0f, 0.0f);
-
-	levelOne->drawLevelMap();*/
-
 	while( Core.getIsRunning() )
 	{
 		Core.getGameTimer()->start();
@@ -43,17 +35,9 @@ int main( int argc, char* args[] )
 		StateManager.logic();
 		StateManager.render();
 
-		/*levelOne->scrollBackgroundLayers();
-		
-		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-		    levelOne->drawLevelMap();
-		SDL_GL_SwapBuffers();*/
-
 		Core.getGameTimer()->delay();
 	}
 
-	//delete levelOne;
 	Core.cleanUpGameCore();
 	
     return 0;
