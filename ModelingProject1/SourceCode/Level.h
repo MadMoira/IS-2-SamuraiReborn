@@ -37,9 +37,10 @@ public:
 				 GLfloat constantX, bool hasRepetition);
 	void scrollBackgroundLayers();
 	void checkLayersSpeed(GLfloat speedX);
-	void setLayerVelocityX(int index, GLfloat speedX) { layersList.at(index).setVelocityX(speedX); }
 
 	boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
+	void scrollTilemap();
+	void checkTilemapsSpeed(GLfloat speedX);
 
 private:
 	Levels IDLevel;
