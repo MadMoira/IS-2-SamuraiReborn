@@ -132,7 +132,7 @@ bool Tilemap::drawTilemap(int indexTileset)
 
 GLfloat Tilemap::transformOffsetXToIntervalValues(GLfloat offX)
 {
-	int modForTextureCoordinates = sizeTiles* ( floor(offX/sizeTiles) );
+	int modForTextureCoordinates = (int)sizeTiles* (int)( floor(offX/sizeTiles) );
 
 	if (offX > sizeTiles*2 ) 
 	{ 
