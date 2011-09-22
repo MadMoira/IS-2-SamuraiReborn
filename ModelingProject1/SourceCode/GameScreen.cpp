@@ -26,7 +26,7 @@ bool GameScreen::initializeScreen()
 
 	width = 1280;	height = 720;
 
-	if( (screen = SDL_SetVideoMode(width, height, 32, SDL_OPENGL  ) ) == NULL) 
+	if( (screen = SDL_SetVideoMode(width, height, 32, SDL_OPENGL ) ) == NULL) 
     {
         return false;
     }

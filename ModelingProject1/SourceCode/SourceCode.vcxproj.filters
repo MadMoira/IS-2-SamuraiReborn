@@ -168,6 +168,9 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Level Design</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -266,6 +269,9 @@
     <ClInclude Include="GameRender.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\Level Design</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="mountains.png">
@@ -280,7 +286,7 @@
     <None Include="Meerkat - SpriteSheet.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Panda - SpriteSheet1.png">
+    <None Include="TutorialMapTest.tmx">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -18,5 +18,7 @@ public:
 	static void drawSpriteTexture(GLuint texture, GLfloat posX, GLfloat posY, int currentFrame, 
 									GLfloat widthTexture, GLfloat heightTexture, GLfloat widthSprite, GLfloat heightSprite,
 									int direction, int state);
+	static void drawLayerTexture(GLuint texture, GLfloat offsetX, GLfloat offsetY, GLfloat widthScreen, 
+								GLfloat heightScreen);
 };
 

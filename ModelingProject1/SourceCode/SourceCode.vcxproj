@@ -54,7 +54,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>fmodex_vc.lib;TmxParserd.lib;opengl32.lib;SDL.lib;SDLmain.lib;SDL_image.lib;SDL_mixer.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmodex_vc.lib;TmxParserd.lib;opengl32.lib;SDL.lib;SDLmain.lib;SDL_image.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>fmodex_vc.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
@@ -103,6 +103,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Stats.cpp" />
     <ClCompile Include="Sword.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Stats.h" />
     <ClInclude Include="Sword.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="Tilemap.h" />
     <ClInclude Include="Tileset.h" />
     <ClInclude Include="Weapon.h" />
@@ -146,7 +148,7 @@
     <None Include="mountains.png" />
     <None Include="nubes.png" />
     <None Include="Panda - SpriteSheet.png" />
-    <None Include="Panda - SpriteSheet1.png" />
+    <None Include="TutorialMapTest.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

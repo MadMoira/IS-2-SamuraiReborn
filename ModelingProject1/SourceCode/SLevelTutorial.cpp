@@ -17,11 +17,17 @@ SLevelTutorial::~SLevelTutorial(void)
 
 void SLevelTutorial::init()
 {
-	std::vector< GLfloat > speedXVector;
-	speedXVector.push_back( 0.0f );
-	speedXVector.push_back( 10.0f );
-	speedXVector.push_back( 10.0f );
-	speedXVector.push_back( 35.0f );
+	std::vector< GLfloat > speedXVectorPanda;
+	speedXVectorPanda.push_back( 0.0f );
+	speedXVectorPanda.push_back( 10.0f );
+	speedXVectorPanda.push_back( 10.0f );
+	speedXVectorPanda.push_back( 35.0f );
+
+	std::vector< GLfloat > speedXVectorMeerkat;
+	speedXVectorMeerkat.push_back( 0.0f );
+	speedXVectorMeerkat.push_back( 10.0f );
+	speedXVectorMeerkat.push_back( 10.0f );
+	speedXVectorMeerkat.push_back( 40.0f );
 
 	std::vector < int > maxFrameVector;
 	maxFrameVector.push_back( 1 );
@@ -36,17 +42,17 @@ void SLevelTutorial::init()
 	returnFrameVector.push_back( 1 );
 
 	gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
-						speedXVector, 0.0f, 50.0f, 500.0f, 0, maxFrameVector, returnFrameVector,
+						speedXVectorPanda, 0.0f, 50.0f, 460.0f, 0, maxFrameVector, returnFrameVector,
 						STILL, 187.0f, 187.0f);
 
-	speedXVector.at(RUNNING) = 40.0f;
-
 	gameCore->addPlayerToGame( new MeerkatP2(), MEERKAT, "Meerkat - SpriteSheet.png", 
-						speedXVector, 0.0f, 100.0f, 500.0f, 0, maxFrameVector, returnFrameVector,
-						STILL, 250.0f, 187.0f);
+						speedXVectorMeerkat, 0.0f, 100.0f, 460.0f, 0, maxFrameVector, returnFrameVector,
+						STILL, 204.0f, 187.0f);
 
 	tutorialLevel = new Level(LEVELZEROTUTORIAL);
-	tutorialLevel->loadTMXTileMapFile("Prueba2.tmx");	
+	tutorialLevel->loadTMXTileMapFile("TutorialMapTest.tmx");	
+
+	//tutorialLevel->addLayerToList("BackGround1.png", 1280.f, 720.f, 2.0f, 0.0f, 0.3f, true);
 
 	tutorialLevel->addLayerToList("nubes.png", 1600.f, 720.f, 1.0f, 0.0f, 0.1f, true);
 	tutorialLevel->addLayerToList("mountains.png", 1600.f, 720.f, speedXVector.at(0), 0.0f, 0.5f, false);
@@ -77,6 +83,9 @@ void SLevelTutorial::logic()
 {
 	tutorialLevel->checkLayersSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
 	tutorialLevel->scrollBackgroundLayers();
+
+	tutorialLevel->checkTilemapsSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
+	tutorialLevel->scrollTilemap();
 
 	for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
 	{
