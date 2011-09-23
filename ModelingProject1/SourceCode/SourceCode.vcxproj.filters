@@ -67,6 +67,12 @@
     <Filter Include="Header Files\Level Design">
       <UniqueIdentifier>{2378c23d-b2fe-445d-888d-3da70165f3fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game Physics">
+      <UniqueIdentifier>{2fb24f2d-dff7-4bc3-87f5-ea3a4ac28b15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game Physics">
+      <UniqueIdentifier>{30242d66-1334-48ec-b79c-93090231b9d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
