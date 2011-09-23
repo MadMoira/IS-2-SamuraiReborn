@@ -177,6 +177,9 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
+    <ClCompile Include="MovementPhys.cpp">
+      <Filter>Source Files\Game Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Level Design</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementPhys.h">
+      <Filter>Header Files\Game Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
