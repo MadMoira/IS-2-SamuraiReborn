@@ -278,6 +278,9 @@
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Level Design</Filter>
     </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Header Files\Game Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="mountains.png">
