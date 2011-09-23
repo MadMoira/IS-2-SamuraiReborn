@@ -1,6 +1,5 @@
 
-#include <windows.h>
-#include <gl\GL.h>
+
 
 #include "GameCore.h"
 #include "GameRender.h"
