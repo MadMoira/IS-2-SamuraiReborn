@@ -1,13 +1,14 @@
 #pragma once
 
-#include <boost/ptr_container/ptr_vector.hpp>
 
+#include <boost/ptr_container/ptr_vector.hpp>
 #include "GameConfiguration.h"
 #include "GameSaves.h"
 #include "GameScreen.h"
 #include "GameTimer.h"
 #include "GameSound.h"
 #include "Player.h"
+
 
 class GameCore
 {
