@@ -127,6 +127,7 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="MeerkatP2.h" />
+    <ClInclude Include="Movement.h" />
     <ClInclude Include="PandaP1.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Score.h" />
