@@ -41,16 +41,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\SDL - DLL, INC, LIB\include files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;C:\SDL - DLL, INC, LIB\include files;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\SDL - DLL, INC, LIB\lib files;C:\Program Files\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\boost\boost_1_47;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
