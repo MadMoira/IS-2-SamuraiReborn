@@ -1,25 +1,25 @@
 #pragma once
 
+#include <windows.h>
 #include <math.h>
-//#include <GL/gl.h>
+#include <GL/gl.h>
 
 enum physicState{
-	PROYECTIL,
-	FREEFALLING
+	PROYECTIL
 };
 
 class MovementPhys
 {
 
 public:
-	void physicManager(float *xVelocity, float *yVelocity, physicState estate); 
+	void physicManager(GLfloat *xVelocity, GLfloat *yVelocity, physicState estate); 
 	MovementPhys(int gravityVal);
 	~MovementPhys(void);
 	
 	
 private:
 	int gravityVal;
-	void ParabolicShot(int *xVelocity,int *yVelocity);
+	void parabolicShot(GLfloat *yVelocity);
 
 };
 

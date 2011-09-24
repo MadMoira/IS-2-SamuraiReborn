@@ -7,7 +7,20 @@ MovementPhys::MovementPhys(int gravityVal)
 	
 }
 
-
 MovementPhys::~MovementPhys(void)
 {
+}
+
+void MovementPhys::parabolicShot(GLfloat *yVelocity){
+	*yVelocity -= this->gravityVal ;
+
+}
+
+void MovementPhys::physicManager(GLfloat *xVelocity, GLfloat *yVelocity, physicState state){
+	switch(state)
+	{
+	case PROYECTIL:
+		parabolicShot(yVelocity);
+		break;
+	}
 }
