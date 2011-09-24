@@ -7,6 +7,7 @@
 #include "GameScreen.h"
 #include "GameTimer.h"
 #include "GameSound.h"
+#include "Camera.h"
 #include "Player.h"
 
 class GameCore
@@ -36,6 +37,7 @@ public:
 
 	bool getIsRunning() { return isRunning; }
 	void setIsRunning(bool running) { isRunning = running; }
+	Camera* getCamera() { return camera; };
 	
 private:
 	GameConfiguration *configuration;
@@ -43,6 +45,7 @@ private:
 	GameScreen *screen;
 	GameTimer *timer;
 	GameSound *sound;
+	Camera *camera;
 	boost::ptr_vector< Player > playersList;
 	bool isRunning;
 };

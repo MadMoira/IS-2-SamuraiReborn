@@ -29,7 +29,7 @@ void SLevelTutorial::init()
 						STILL, 250.0f, 187.0f);
 
 	gameCore->addPlayerToGame( new MeerkatP2(), MEERKAT, "Meerkat - SpriteSheet.png", 
-						12.0f, 0.0f, 100.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
+						12.0f, 0.0f, 50.0f, 200.0f, 0, maxFrameVector, returnFrameVector,
 						STILL, 250.0f, 187.0f);
 }
 
@@ -42,7 +42,8 @@ void SLevelTutorial::handleEvents()
 	{
 		bool receivedInput = gameInput->handleKeyStatesPlayers(
 										gameCore->getPlayersList().at(i).getKeyboardHandler()->getKeyValues(), 
-										gameCore->getPlayersList().at(i).getPlayerSprite() ); 
+										gameCore->getPlayersList().at(i).getPlayerSprite(),
+										gameCore->getCamera()); 
 		if ( receivedInput )
 		{
 			continue;
@@ -67,6 +68,6 @@ void SLevelTutorial::render()
 	{
 		gameCore->getPlayersList().at(i).draw();
 	}
-
+	//gameCore->getCamera()->render();
 	SDL_GL_SwapBuffers();
 }

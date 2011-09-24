@@ -8,6 +8,7 @@ GameCore::GameCore(void)
     screen = new GameScreen();
     timer = new GameTimer();
 	sound = new GameSound();
+	camera = new Camera();
 	isRunning = true;
 }
 
@@ -65,6 +66,7 @@ void GameCore::addPlayerToGame(Player *player, IDSprites id, std::string filenam
 										posX, posY, initialFrame, maxFrame, returnFrame, state,
 										widthSprite, heightSprite);
 }
+
 
 
 

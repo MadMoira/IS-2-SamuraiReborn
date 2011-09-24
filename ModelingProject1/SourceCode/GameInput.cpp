@@ -32,7 +32,7 @@ bool GameInput::handleWindowEvents()
 	return true;
 }
 
-bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite)
+bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite, Camera *camera)
 {
 	Uint8 *keystates = SDL_GetKeyState( NULL );
 	
@@ -40,6 +40,8 @@ bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *
     {
 		playerSprite->setCurrentState(WALKING);
 		playerSprite->setConstantSpeedX ( playerSprite->getHandlerAnimation()->changeAnimationDirection(RIGHT) );
+		camera->moveCamera((playerSprite->getSpeedX())/2, (playerSprite->getSpeedY())/2);
+		camera->render();
 		return true;
 	}
 
@@ -47,9 +49,11 @@ bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *
     {
 		playerSprite->setCurrentState(WALKING);
 		playerSprite->setConstantSpeedX ( playerSprite->getHandlerAnimation()->changeAnimationDirection(LEFT) );
+		camera->moveCamera((playerSprite->getSpeedX())/2, (playerSprite->getSpeedY())/2);
+		camera->render();
 		return true;
 	}
-
+	camera->moveCamera(0, 0);
 	playerSprite->setCurrentState(STILL);
 	playerSprite->changeCurrentFrame(INITIAL_POSITION);
 
