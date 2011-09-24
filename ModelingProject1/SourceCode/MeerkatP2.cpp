@@ -12,6 +12,7 @@ void MeerkatP2::initializePlayer(IDSprites id, std::string filename, std::vector
 	playerSprite = new Sprite(id, filename, speedX, speedY, posX, posY, initialFrame, maxFrame, returnFrame,
 							 state, widthSprite, heightSprite);
 	keyboardHandler = new KeyboardHandler("merkaat.kes");
+	mp = new MovementPhys(-2.0f);
 }
 
 void MeerkatP2::walk()
@@ -41,12 +42,20 @@ void MeerkatP2::run()
 }
 
 void MeerkatP2::jump(){
-	playerSprite->setSpeedY(-10.f);
+	
 	if ( playerSprite->movePosXWithSpeed() )
 	{
 		playerSprite->getHandlerAnimation()->animate() ;
+		GLfloat y,x;
+	    y = playerSprite->getSpeedY();
+	    x = playerSprite->getStateXSpeed();
+	    mp->physicManager(&x,&y,0);
+		playerSprite->setSpeedX(x);
+		playerSprite->setSpeedY(y);
+	    
 		return;
 	}
+	
 
 	stop();
 }

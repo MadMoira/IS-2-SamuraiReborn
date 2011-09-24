@@ -6,6 +6,7 @@
 #include "Weapon.h"
 #include "Stats.h"
 #include "KeyboardHandler.h"
+#include "MovementPhys.h"
 
 class Player : boost::noncopyable
 {
@@ -43,5 +44,6 @@ protected:
 	Stats *stats;
 	Weapon *playerWeapon;
 	KeyboardHandler *keyboardHandler;
+	MovementPhys *mp;
 };
 

@@ -65,8 +65,10 @@ void Sprite::changeCurrentFrame(int frame)
 
 void Sprite::setCurrentState(IDSpriteStates state)
 {
+	 
 	if ( currentState != state )
 	{
+		if(state == JUMPING){this->setSpeedY(-10.f);}
 		currentState = state;
 
 		handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(currentState) );

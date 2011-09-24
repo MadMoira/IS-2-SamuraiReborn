@@ -5,20 +5,21 @@
 #include <GL/gl.h>
 
 enum physicState{
-	PROYECTIL
+	PARABOLIC,
+	PERRA
 };
 
 class MovementPhys
 {
 
 public:
-	void physicManager(GLfloat *xVelocity, GLfloat *yVelocity, physicState estate); 
-	MovementPhys(int gravityVal);
+	void physicManager(GLfloat *xVelocity, GLfloat *yVelocity, int state); 
+	MovementPhys(float gravityVal);
 	~MovementPhys(void);
 	
 	
 private:
-	int gravityVal;
+	float gravityVal;
 	void parabolicShot(GLfloat *yVelocity);
 
 };
