@@ -7,7 +7,7 @@ Animation::Animation(int actualFrame, int maxFramesFromCurrentState, int returnF
     maxFrames = maxFramesFromCurrentState;
 	animationDirection = direction;
     incrementFrame = 1;
-    frameRate = 50;
+    frameRate = 90;
     oldTime = 0;
 	this->returnFrame = returnFrame;
 }

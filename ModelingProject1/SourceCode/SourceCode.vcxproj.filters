@@ -301,11 +301,5 @@
     <None Include="TutorialMapTest.tmx">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="merkaat.kes">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="panda.kes">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>
