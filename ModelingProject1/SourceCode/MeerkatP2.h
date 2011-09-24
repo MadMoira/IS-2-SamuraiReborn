@@ -12,7 +12,7 @@ public:
 				IDSpriteStates state, GLfloat widthSprite, GLfloat heightSprite);
 	void walk();
 	void run();
-	void jump(){};
+	void jump();
 	void draw();
 	void executeAction();
 	

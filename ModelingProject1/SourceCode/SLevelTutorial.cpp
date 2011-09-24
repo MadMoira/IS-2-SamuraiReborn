@@ -20,13 +20,13 @@ void SLevelTutorial::init()
 	std::vector< GLfloat > speedXVectorPanda;
 	speedXVectorPanda.push_back( 0.0f );
 	speedXVectorPanda.push_back( 10.0f );
-	speedXVectorPanda.push_back( 10.0f );
+	speedXVectorPanda.push_back( 0.0f );
 	speedXVectorPanda.push_back( 35.0f );
 
 	std::vector< GLfloat > speedXVectorMeerkat;
 	speedXVectorMeerkat.push_back( 0.0f );
 	speedXVectorMeerkat.push_back( 10.0f );
-	speedXVectorMeerkat.push_back( 10.0f );
+	speedXVectorMeerkat.push_back( 0.0f );
 	speedXVectorMeerkat.push_back( 40.0f );
 
 	std::vector < int > maxFrameVector;
@@ -83,16 +83,16 @@ void SLevelTutorial::handleEvents()
 
 void SLevelTutorial::logic()
 {
+	for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
+	{
+		gameCore->getPlayersList().at(i).executeAction();
+	}
+
 	tutorialLevel->checkLayersSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
 	tutorialLevel->scrollBackgroundLayers();
 
 	tutorialLevel->checkTilemapsSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
 	tutorialLevel->scrollTilemap();
-
-	for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
-	{
-		gameCore->getPlayersList().at(i).executeAction();
-	}
 }
 
 void SLevelTutorial::render()

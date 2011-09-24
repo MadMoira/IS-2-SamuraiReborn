@@ -15,10 +15,9 @@ public:
 	
 	/*virtual void attack();
 	virtual void block();
-	virtual void executeAction();
-	virtual void jump();
-	
+	virtual void executeAction();	
 	*/
+
 	virtual void initializePlayer(IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, 
 				GLfloat posX, GLfloat posY, int initialFrame, std::vector < int > maxFrame, 
 				std::vector < int > returnFrame, IDSpriteStates state, GLfloat widthSprite, GLfloat heightSprite) = 0;
@@ -28,6 +27,7 @@ public:
 	virtual void draw() = 0;
 	void executeAction();
 
+	void stop(); 
 	Sprite *getPlayerSprite() { return playerSprite; }
 
 	KeyboardHandler *getKeyboardHandler() { return keyboardHandler; }

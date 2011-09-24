@@ -147,9 +147,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Meerkat - SpriteSheet.png" />
+    <None Include="merkaat.kes" />
     <None Include="mountains.png" />
     <None Include="nubes.png" />
     <None Include="Panda - SpriteSheet.png" />
+    <None Include="panda.kes" />
     <None Include="TutorialMapTest.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

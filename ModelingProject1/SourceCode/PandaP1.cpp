@@ -13,7 +13,7 @@ void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector<G
 {
 	playerSprite = new Sprite(id, filename, speedX, speedY, posX, posY, initialFrame, maxFrame, returnFrame,
 							 state, widthSprite, heightSprite);
-	keyboardHandler = new KeyboardHandler(SDLK_RIGHT, SDLK_LEFT, SDLK_z);
+	keyboardHandler = new KeyboardHandler("panda.kes");
 }
 
 void PandaP1::walk()

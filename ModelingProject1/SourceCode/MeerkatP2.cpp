@@ -11,31 +11,44 @@ void MeerkatP2::initializePlayer(IDSprites id, std::string filename, std::vector
 {
 	playerSprite = new Sprite(id, filename, speedX, speedY, posX, posY, initialFrame, maxFrame, returnFrame,
 							 state, widthSprite, heightSprite);
-	keyboardHandler = new KeyboardHandler(SDLK_d, SDLK_a, SDLK_c);
+	keyboardHandler = new KeyboardHandler("merkaat.kes");
 }
 
 void MeerkatP2::walk()
 {
+	playerSprite->setSpeedX(playerSprite->getStateXSpeed());
+	playerSprite->setSpeedY(0);
 	if ( playerSprite->movePosXWithSpeed() )
 	{
 		playerSprite->getHandlerAnimation()->animate();
 		return;
 	}
 
-	playerSprite->setCurrentState(STILL);
-	playerSprite->changeCurrentFrame(STILL);
+	stop();
 }
 
 void MeerkatP2::run()
 {
+	playerSprite->setSpeedX(playerSprite->getStateXSpeed());
+	playerSprite->setSpeedY(0);
 	if ( playerSprite->movePosXWithSpeed() )
 	{
 		playerSprite->getHandlerAnimation()->animate() ;
 		return;
 	}
 
-	playerSprite->setCurrentState(STILL);
-	playerSprite->changeCurrentFrame(STILL);
+	stop();
+}
+
+void MeerkatP2::jump(){
+	playerSprite->setSpeedY(-10.f);
+	if ( playerSprite->movePosXWithSpeed() )
+	{
+		playerSprite->getHandlerAnimation()->animate() ;
+		return;
+	}
+
+	stop();
 }
 
 void MeerkatP2::draw()

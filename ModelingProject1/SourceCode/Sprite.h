@@ -33,15 +33,16 @@ public:
 	~Sprite(void);
 
 	GLfloat getPosX() { return posX; }
+	GLfloat getPosY() { return posY; }
 	bool movePosXWithSpeed();
 
-	GLfloat getPosY() { return posY; }
-
-	GLfloat getSpeedX() { return speedXVector.at(currentState); }
-	void setSpeedX(GLfloat speedX) { speedXVector.at(currentState) = speedX; }
+	GLfloat getSpeedX() { return currentXSpeed; }
+	GLfloat getStateXSpeed(){return speedXVector.at(currentState);}
+	void setSpeedX(GLfloat speedX) { currentXSpeed = speedX; }
 	void setConstantSpeedX(int constant);
 
 	GLfloat getSpeedY() { return speedY; }
+	void setSpeedY(GLfloat newSpeedY){speedY=newSpeedY;}
 
 	GLfloat getDelayX() { return delayX; }
 
@@ -66,6 +67,7 @@ private:
 	std::vector< int > returnFramesPerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
 	GLfloat posX, posY;
+	GLfloat currentXSpeed;
 	std::vector< GLfloat > speedXVector;
 	GLfloat speedY, countX, countY;
 	GLfloat delayX, delayY;

@@ -17,8 +17,11 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector<GLfloat> speedX, 
 	width = widthSprite;	height = heightSprite;
 	this->posX = posX;  this->posY = posY;
 	speedXVector = speedX;
+	currentXSpeed=0;
 	this->speedY = speedY;
 	currentState = state;
+	delayX=0;
+	delayY=0;
 }
 
 Sprite::~Sprite(void)
@@ -31,14 +34,20 @@ Sprite::~Sprite(void)
 
 bool Sprite::movePosXWithSpeed()
 {
+	bool movX=false, movY=false;
 	if ( posX + getSpeedX() + width < 1280.f)
 	{
 		posX += getSpeedX();
-		return true;
+		movX=true;
+	}
+	if(posY + getSpeedY()+height < 720.f){
+		posY += getSpeedY();
+		movY=true;
 	}
 
-	return false;
+	return movX&&movY;
 }
+
 
 void Sprite::setConstantSpeedX(int constant)
 {
@@ -46,6 +55,7 @@ void Sprite::setConstantSpeedX(int constant)
 	{
 		speedXVector.at(i) *= constant;
 	}
+	currentXSpeed*=constant;
 }
 
 void Sprite::changeCurrentFrame(int frame)
@@ -61,6 +71,7 @@ void Sprite::setCurrentState(IDSpriteStates state)
 
 		handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(currentState) );
 		handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(currentState) );
+		
 	}
 
 	return;

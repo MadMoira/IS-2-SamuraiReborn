@@ -2,7 +2,7 @@
 
 #include <SDL/SDL.h>
 
-#define FRAMES_PER_SECOND 15
+#define FRAMES_PER_SECOND 10
 
 class GameTimer
 {

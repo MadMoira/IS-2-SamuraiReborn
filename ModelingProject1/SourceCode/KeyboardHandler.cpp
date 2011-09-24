@@ -1,16 +1,28 @@
 
 #include "KeyboardHandler.h"
 
-KeyboardHandler::KeyboardHandler(int buttonRight, int buttonLeft, int buttonRun)
+KeyboardHandler::KeyboardHandler(std::string fileName)
 {
-	setKeyValues( KEY_RIGHT, buttonRight );
-	setKeyValues( KEY_LEFT, buttonLeft );
-	setKeyValues( KEY_RUN, buttonRun );
+	loadKeyValues(fileName);
 }
+
 
 KeyboardHandler::~KeyboardHandler(void)
 {
 	keyValues.clear();
+}
+
+void KeyboardHandler::loadKeyValues(std::string fileName){
+	std::ifstream inFile;
+	inFile.open(fileName);
+
+	int keyValue;
+
+	for(int i=0;i<4;i++){
+		inFile>>keyValue;
+		setKeyValues( i, keyValue );
+	}
+	inFile.close();
 }
 
 void KeyboardHandler::setKeyValues(int keyEnum, int keyValue)
