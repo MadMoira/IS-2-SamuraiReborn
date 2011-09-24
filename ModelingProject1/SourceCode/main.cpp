@@ -1,7 +1,10 @@
 
+
+
 #include "GameCore.h"
 #include "GameRender.h"
 #include "GameInput.h"
+#include "MovementPhys.h"
 
 #include "GameStateManager.h"
 
@@ -13,6 +16,7 @@ int main( int argc, char* args[] )
 	GameRender Render;
 	GameInput Input;
 	GameStateManager StateManager;
+	MovementPhys ff(8);
 	
 	if( !Core.initializeGameCore() )
 	{
@@ -35,6 +39,6 @@ int main( int argc, char* args[] )
 	}
 
 	Core.cleanUpGameCore();
-	
+
     return 0;
 }
