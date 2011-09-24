@@ -1,8 +1,10 @@
 #include "MovementPhys.h"
 
 
-MovementPhys::MovementPhys(void)
+MovementPhys::MovementPhys(int gravityVal)
 {
+	this->gravityVal = gravityVal;
+	
 }
 
 
