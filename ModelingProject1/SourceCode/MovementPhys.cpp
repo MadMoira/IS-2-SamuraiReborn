@@ -1,7 +1,7 @@
 #include "MovementPhys.h"
 
 
-MovementPhys::MovementPhys(int gravityVal)
+MovementPhys::MovementPhys(float gravityVal)
 {
 	this->gravityVal = gravityVal;
 	
@@ -16,10 +16,10 @@ void MovementPhys::parabolicShot(GLfloat *yVelocity){
 
 }
 
-void MovementPhys::physicManager(GLfloat *xVelocity, GLfloat *yVelocity, physicState state){
+void MovementPhys::physicManager(GLfloat *xVelocity, GLfloat *yVelocity, int state){
 	switch(state)
 	{
-	case PROYECTIL:
+	case PARABOLIC:
 		parabolicShot(yVelocity);
 		break;
 	}
