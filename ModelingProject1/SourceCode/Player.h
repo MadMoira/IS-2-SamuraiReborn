@@ -26,6 +26,7 @@ public:
 	virtual void run() = 0;
 	virtual void jump() = 0;
 	virtual void draw() = 0;
+	virtual void still() = 0;
 	void executeAction();
 
 	void stop(); 
@@ -44,6 +45,5 @@ protected:
 	Stats *stats;
 	Weapon *playerWeapon;
 	KeyboardHandler *keyboardHandler;
-	MovementPhys *mp;
 };
 

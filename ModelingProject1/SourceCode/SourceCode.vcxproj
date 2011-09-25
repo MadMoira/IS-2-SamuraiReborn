@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\SDL - DLL, INC, LIB\include files;C:\Program Files\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files\Boost\boost_1_47_0;C:\Users\Sebastian\Documents\Librerias;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\SDL - DLL, INC, LIB\lib files;C:\Program Files\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Sebastian\Documents\Librerias;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,9 +147,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Meerkat - SpriteSheet.png" />
+    <None Include="merkaat.kes" />
     <None Include="mountains.png" />
     <None Include="nubes.png" />
     <None Include="Panda - SpriteSheet.png" />
+    <None Include="panda.kes" />
     <None Include="TutorialMapTest.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

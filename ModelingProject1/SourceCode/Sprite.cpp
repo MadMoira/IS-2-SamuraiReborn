@@ -34,20 +34,24 @@ Sprite::~Sprite(void)
 
 bool Sprite::movePosXWithSpeed()
 {
-	bool movX=false, movY=false;
+	bool movX=false;
 	if ( posX + getSpeedX() + width < 1280.f)
 	{
 		posX += getSpeedX();
 		movX=true;
 	}
+
+	return movX;
+}
+
+bool Sprite::movePosYWithSpeed(){
+	bool movY=false;
 	if(posY + getSpeedY()+height < 720.f){
 		posY += getSpeedY();
 		movY=true;
 	}
-
-	return movX&&movY;
+	return movY;
 }
-
 
 void Sprite::setConstantSpeedX(int constant)
 {

@@ -8,6 +8,7 @@ SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, Game
 	gameRender = gR;
 	gameInput = gI;
 	nameState = stateName;
+	movPhysics = new MovementPhys(-2.0f);
 }
 
 SLevelTutorial::~SLevelTutorial(void)
@@ -85,7 +86,10 @@ void SLevelTutorial::logic()
 {
 	for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
 	{
+		
 		gameCore->getPlayersList().at(i).executeAction();
+		checkGravity(i);		 
+		
 	}
 
 	tutorialLevel->checkLayersSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
@@ -93,6 +97,15 @@ void SLevelTutorial::logic()
 
 	tutorialLevel->checkTilemapsSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
 	tutorialLevel->scrollTilemap();
+}
+
+void SLevelTutorial::checkGravity(int posicion){
+	GLfloat y,x;
+	y = gameCore->getPlayersList().at(posicion).getPlayerSprite()->getSpeedY();
+	x = gameCore->getPlayersList().at(posicion).getPlayerSprite()->getSpeedX();
+	movPhysics->physicManager(&x,&y,PARABOLIC);
+	gameCore->getPlayersList().at(posicion).getPlayerSprite()->setSpeedX(x);
+	gameCore->getPlayersList().at(posicion).getPlayerSprite()->setSpeedY(y);
 }
 
 void SLevelTutorial::render()
