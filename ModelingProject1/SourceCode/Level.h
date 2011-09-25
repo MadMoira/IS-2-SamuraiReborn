@@ -25,9 +25,6 @@ public:
 	Level(Levels id);
 	~Level(void);
 
-	void getTileCollision();
-	void getTileOfPlayerPosition();
-
 	int loadTMXTileMapFile(std::string filename);
 
 	bool drawLevelMap();
@@ -44,8 +41,6 @@ public:
 
 private:
 	Levels IDLevel;
-	std::string levelName;
-	int numberOfEnemies;
 	boost::ptr_vector< Layer > layersList;
 	boost::ptr_vector< Tilemap > tilemapList;
 };

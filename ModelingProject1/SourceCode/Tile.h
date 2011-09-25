@@ -3,6 +3,7 @@
 class Tile
 {
 public:
+	Tile(void);
 	Tile(int idTileset, int id);
 	~Tile(void);
 

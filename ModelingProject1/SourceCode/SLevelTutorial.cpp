@@ -50,9 +50,9 @@ void SLevelTutorial::init()
 						STILL, 204.0f, 187.0f);
 
 	tutorialLevel = new Level(LEVELZEROTUTORIAL);
-	tutorialLevel->loadTMXTileMapFile("TutorialMapTest.tmx");	
+	tutorialLevel->loadTMXTileMapFile("untitled2.tmx");	
 
-	//tutorialLevel->addLayerToList("BackGround1.png", 1280.f, 720.f, 2.0f, 0.0f, 0.3f, true);
+	tutorialLevel->addLayerToList("BackGround1.png", 1280.f, 720.f, 2.0f, 0.0f, 0.3f, true);
 
 	tutorialLevel->addLayerToList("nubes.png", 1600.f, 720.f, 1.0f, 0.0f, 0.1f, true);
 	tutorialLevel->addLayerToList("mountains.png", 1600.f, 720.f, speedXVectorPanda.at(0), 0.0f, 0.5f, false);

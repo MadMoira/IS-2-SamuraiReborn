@@ -44,7 +44,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 		tilemapList.push_back( new Tilemap(map->GetLayer(i)->GetName().c_str(), 
 							  layer->GetWidth(), layer->GetHeight()) );
 
-		std::vector< std::vector <int> > tempLayerMap = tilemapList.at(i).getLayerMap();
+		std::vector< std::vector < Tile > > tempLayerMap = tilemapList.at(i).getLayerMap();
+
 		int width = layer->GetWidth();
 		int height = layer->GetHeight();
 
@@ -58,15 +59,18 @@ int Level::loadTMXTileMapFile(std::string filename)
 				int tileID = layer->GetTileGid(x, y);
 				
 				if (tileID == 0){
-					tempLayerMap[y][x] = 0;
+					tempLayerMap[y][x].setID( 0 );
 				}
 				
-				else{
-					tempLayerMap[y][x] = tileID;}
+				else
+				{
+					tempLayerMap[y][x].setID( tileID );
+				}
 			}
 		}
 
 		tilemapList.at(i).setLayerMap(tempLayerMap);
+		tempLayerMap.clear();
 	}
 
 	
@@ -86,10 +90,12 @@ int Level::loadTMXTileMapFile(std::string filename)
 		log << "Image Source: " << tileset->GetImage()->GetSource().c_str() << std::endl;
 		log << "Transparent Color (hex): " << tileset->GetImage()->GetTransparentColor().c_str() << std::endl;
 		
-		tilemapList.at(0).addTileset( i, tileset->GetImage()->GetSource().c_str(),
+		for (std::string::size_type j = 0; j < tilemapList.size(); j++)
+		{
+			tilemapList.at(j).addTileset( j, tileset->GetImage()->GetSource().c_str(),
 			32.0f, 32.0f, (GLfloat) tileset->GetImage()->GetWidth(), (GLfloat)tileset->GetImage()->GetHeight(), 
 			tileset->GetTiles().size() );
-
+		}
 	
 		if (tileset->GetTiles().size() > 0) 
 		{
@@ -121,6 +127,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 			}
 
 			tilemapList.at(i).getTilesetList().at(i).setListCollisionTiles(tempListTilesCollision);
+			tempListTilesCollision.clear();
 		}
 	}
 
@@ -143,7 +150,7 @@ bool Level::drawLevelMap()
 
 	for (std::string::size_type j = 0; j < tilemapList.size(); j++)
 	{
-		tilemapList.at(j).drawTilemap(j);
+		tilemapList.at(j).drawTilemap(0);
 	}
 	
 	return true;
