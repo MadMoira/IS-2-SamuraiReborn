@@ -295,5 +295,8 @@
     <None Include="TutorialMapTest.tmx">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Tiles.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

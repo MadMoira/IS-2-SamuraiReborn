@@ -22,7 +22,7 @@ Tilemap::~Tilemap(void)
 	layerMap.clear();
 }
 
-bool Tilemap::drawTilemap(int indexTileset)
+void Tilemap::drawTilemap(int indexTileset)
 {
 	GLfloat offsetXTemp = offsetX;
 	
@@ -33,8 +33,8 @@ bool Tilemap::drawTilemap(int indexTileset)
 	GLfloat widthTilesetImage = tilesetList.at(indexTileset).getWidthImage();
 	GLfloat heightTilesetImage = tilesetList.at(indexTileset).getHeightImage();
 
-	int widthMap = (1280 / 32) + 1;
-	int heigthMap = (int) ceil( 720.0f / 32.0f );
+	int widthMap = (1280 / sizeTiles) + 1;
+	int heigthMap = (int) ceil( 720.0f / sizeTiles );
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -60,7 +60,7 @@ bool Tilemap::drawTilemap(int indexTileset)
 				break;
 			}
 			
-			int frameIndex = layerMap[i][startX];
+			int frameIndex = layerMap[i][startX].getID();
 
 			if ( frameIndex == 0 )
 			{ 
@@ -126,8 +126,6 @@ bool Tilemap::drawTilemap(int indexTileset)
 
 	glDisableClientState( GL_VERTEX_ARRAY );			
 	glDisableClientState( GL_TEXTURE_COORD_ARRAY );
-
-	return true;
 }
 
 GLfloat Tilemap::transformOffsetXToIntervalValues(GLfloat offX)
@@ -147,12 +145,12 @@ GLfloat Tilemap::transformOffsetXToIntervalValues(GLfloat offX)
 	return offX;
 }
 
-bool Tilemap::scrollTilemap()
+void Tilemap::scrollTilemap()
 {
 	offsetX += speedX;
 	offsetY += speedY;
 
-	return checkScreenBoundaries();
+	checkScreenBoundaries();
 }
 
 bool Tilemap::checkScreenBoundaries()

@@ -26,12 +26,12 @@ void Layer::drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen)
 	GameRender::drawLayerTexture(texture, offsetX, offsetY, widthScreen, heightScreen);
 }
 
-bool Layer::scrollLayer()
+void Layer::scrollLayer()
 {
 	offsetX += velocityX;
 	offsetY += velocityY;
 
-	return checkScreenBoundaries();
+	checkScreenBoundaries();
 }
 
 bool Layer::checkScreenBoundaries()

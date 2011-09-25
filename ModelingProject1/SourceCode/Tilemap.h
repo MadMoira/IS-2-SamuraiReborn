@@ -9,6 +9,7 @@
 #include <boost/ptr_container/ptr_vector.hpp>
 
 #include "GameRender.h"
+#include "Tile.h"
 #include "Tileset.h"
 
 class Tilemap
@@ -17,13 +18,13 @@ public:
 	Tilemap(std::string name, int widthInTiles, int heightInTiles);
 	~Tilemap(void);
 
-	bool drawTilemap(int indexTileset);
+	void drawTilemap(int indexTileset);
 	GLfloat transformOffsetXToIntervalValues(GLfloat offX);
-	bool scrollTilemap();
+	void scrollTilemap();
 	bool checkScreenBoundaries();
 	
-	std::vector< std::vector <int> > getLayerMap() { return layerMap; } ;
-	void setLayerMap(std::vector< std::vector <int> > map) { layerMap = map; };
+	std::vector< std::vector < Tile > > getLayerMap() { return layerMap; } ;
+	void setLayerMap(std::vector< std::vector < Tile > > map) { layerMap = map; };
 
 	int getWidthLevelInTiles() { return widthLevelInTiles; }
 	void setWidthLevelInTiles(int width) { widthLevelInTiles = width; }
@@ -39,7 +40,7 @@ public:
 
 private:
 	std::string nameLayer;
-	std::vector< std::vector <int> > layerMap;
+	std::vector< std::vector < Tile > > layerMap;
 	int widthLevelInTiles, heightLevelInTiles;
 	GLfloat sizeTiles;
 	boost::ptr_vector< Tileset > tilesetList;

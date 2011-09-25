@@ -27,7 +27,7 @@ public:
 	GLfloat getVelocityX() { return velocityX; }
 	void setVelocityX(GLfloat velX) { velocityX = velX*constantVelX; }
 
-	bool scrollLayer();
+	void scrollLayer();
 
 	GLfloat getOffsetX() { return offsetX; }
 	void setOffsetX(GLfloat velX) { offsetX = velX; }
