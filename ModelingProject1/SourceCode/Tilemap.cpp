@@ -33,7 +33,7 @@ void Tilemap::drawTilemap(int indexTileset)
 	GLfloat widthTilesetImage = tilesetList.at(indexTileset).getWidthImage();
 	GLfloat heightTilesetImage = tilesetList.at(indexTileset).getHeightImage();
 
-	int widthMap = (1280 / sizeTiles) + 1;
+	int widthMap = (1280 / (int)sizeTiles) + 1;
 	int heigthMap = (int) ceil( 720.0f / sizeTiles );
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -158,6 +158,12 @@ bool Tilemap::checkScreenBoundaries()
 	if (offsetX > widthLevelInTiles*sizeTiles - 1280.f)
 	{
 		offsetX = widthLevelInTiles*sizeTiles - 1280.f; 
+		return true;
+	}
+
+	if ( offsetX < 0 )
+	{
+		offsetX = 0;
 		return true;
 	}
 
