@@ -3,7 +3,7 @@
 #include "GameState.h"
 
 #include "Level.h"
-
+#include "MovementPhys.h"
 #include "PandaP1.h"
 #include "MeerkatP2.h"
 
@@ -18,7 +18,10 @@ public:
 	void logic();
 	void render();
 
+	void checkGravity(int posicion);
+
 private:
 	Level *tutorialLevel;
+	MovementPhys *movPhysics;
 };
 

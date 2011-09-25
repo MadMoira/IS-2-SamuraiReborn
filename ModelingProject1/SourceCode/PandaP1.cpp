@@ -16,32 +16,49 @@ void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector<G
 	keyboardHandler = new KeyboardHandler("panda.kes");
 }
 
+void PandaP1::still()
+{
+	
+	playerSprite->movePosYWithSpeed();
+	playerSprite->setSpeedX(0);
+	stop();
+			
+}
+
 void PandaP1::walk()
 {
+	playerSprite->setSpeedX(playerSprite->getStateXSpeed());
 	if ( playerSprite->movePosXWithSpeed() )
 	{
 		playerSprite->getHandlerAnimation()->animate() ;
 		return;
 	}
 
-	playerSprite->setCurrentState(STILL);
-	playerSprite->changeCurrentFrame(STILL);
-}
-
-void PandaP1::jump()
-{
+	stop();
 }
 
 void PandaP1::run()
 {
+	playerSprite->setSpeedX(playerSprite->getStateXSpeed());
 	if ( playerSprite->movePosXWithSpeed() )
 	{
 		playerSprite->getHandlerAnimation()->animate() ;
 		return;
 	}
 
-	playerSprite->setCurrentState(STILL);
-	playerSprite->changeCurrentFrame(STILL);
+	stop();
+}
+
+void PandaP1::jump()
+{
+	if ( playerSprite->movePosXWithSpeed()&&playerSprite->movePosYWithSpeed() )
+	{
+		playerSprite->getHandlerAnimation()->animate() ;
+	
+		return;
+	}
+	
+	stop();
 }
 
 void PandaP1::draw()

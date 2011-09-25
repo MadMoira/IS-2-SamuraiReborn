@@ -70,7 +70,7 @@
     <Filter Include="Header Files\Game Physics">
       <UniqueIdentifier>{30242d66-1334-48ec-b79c-93090231b9d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Game Physics\Game Core">
+    <Filter Include="Source Files\Game Core">
       <UniqueIdentifier>{ba2ab8f5-ccc2-4c34-bc3a-d0b90af1331d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -88,22 +88,22 @@
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
     <ClCompile Include="GameConfiguration.cpp">
-      <Filter>Source Files\Game Physics\Game Core</Filter>
+      <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="GameCore.cpp">
-      <Filter>Source Files\Game Physics\Game Core</Filter>
+      <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="GameSaves.cpp">
-      <Filter>Source Files\Game Physics\Game Core</Filter>
+      <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="GameScreen.cpp">
-      <Filter>Source Files\Game Physics\Game Core</Filter>
+      <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="GameTimer.cpp">
-      <Filter>Source Files\Game Physics\Game Core</Filter>
+      <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="Score.cpp">
-      <Filter>Source Files\Game Physics\Game Core</Filter>
+      <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp">
       <Filter>Source Files\Game States</Filter>
@@ -154,7 +154,7 @@
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
     <ClCompile Include="GameSound.cpp">
-      <Filter>Source Files\Game Physics\Game Core</Filter>
+      <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="SLevelTutorial.cpp">
       <Filter>Source Files\Game States</Filter>
@@ -299,6 +299,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="TutorialMapTest.tmx">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="merkaat.kes">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="panda.kes">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

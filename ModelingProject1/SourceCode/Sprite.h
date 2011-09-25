@@ -33,8 +33,9 @@ public:
 	~Sprite(void);
 
 	GLfloat getPosX() { return posX; }
-	GLfloat getPosY() { return posY; }
 	bool movePosXWithSpeed();
+	GLfloat getPosY() { return posY; }
+	bool movePosYWithSpeed();
 
 	GLfloat getSpeedX() { return currentXSpeed; }
 	GLfloat getStateXSpeed(){return speedXVector.at(currentState);}
