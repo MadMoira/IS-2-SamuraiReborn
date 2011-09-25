@@ -31,7 +31,7 @@ Sprite::~Sprite(void)
 
 bool Sprite::movePosXWithSpeed()
 {
-	if ( posX + getSpeedX() + width < 1280.f)
+	if ( posX + getSpeedX() + width < 1280.f )
 	{
 		posX += getSpeedX();
 		return true;

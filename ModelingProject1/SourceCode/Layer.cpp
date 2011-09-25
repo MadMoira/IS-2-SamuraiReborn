@@ -36,6 +36,12 @@ void Layer::scrollLayer()
 
 bool Layer::checkScreenBoundaries()
 {
+	if (offsetX <= 0)
+	{
+		offsetX = 0;
+		return false;
+	}
+
 	if (offsetX > widthLevelLayer - 1280.f)
 	{
 		if ( repeat )
