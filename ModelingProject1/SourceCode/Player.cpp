@@ -12,7 +12,7 @@ void Player::executeAction()
 	{
 	case STILL:
 		{
-			still();
+			noAction();
 			break;
 		}
 	case WALKING:

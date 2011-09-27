@@ -5,8 +5,7 @@
 #include <GL/gl.h>
 
 enum physicState{
-	PARABOLIC,
-	PERRA
+	PARABOLIC
 };
 
 class MovementPhys

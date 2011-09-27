@@ -15,7 +15,7 @@ void MeerkatP2::initializePlayer(IDSprites id, std::string filename, std::vector
 
 }
 
-void MeerkatP2::still()
+void MeerkatP2::noAction()
 {
 	
 	playerSprite->movePosYWithSpeed();

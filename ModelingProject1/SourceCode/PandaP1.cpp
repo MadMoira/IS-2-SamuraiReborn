@@ -16,7 +16,7 @@ void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector<G
 	keyboardHandler = new KeyboardHandler("panda.kes");
 }
 
-void PandaP1::still()
+void PandaP1::noAction()
 {
 	
 	playerSprite->movePosYWithSpeed();

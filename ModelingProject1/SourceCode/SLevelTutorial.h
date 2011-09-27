@@ -17,8 +17,7 @@ public:
 	void handleEvents();
 	void logic();
 	void render();
-
-	void checkGravity(int posicion);
+    void checkGravity(int vPosition);
 
 private:
 	Level *tutorialLevel;
