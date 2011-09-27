@@ -16,7 +16,7 @@ public:
 	void run();
 	void jump();
 	void draw();
-	void still();
+	void noAction();
 	void executeAction();
 };
 

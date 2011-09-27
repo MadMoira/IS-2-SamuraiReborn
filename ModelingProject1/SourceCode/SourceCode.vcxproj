@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files\Boost\boost_1_47_0;C:\Users\Sebastian\Documents\Librerias;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;C:\SDL - DLL, INC, LIB\include files;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Users\Sebastian\Documents\Librerias;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\SDL - DLL, INC, LIB\lib files;C:\Program Files\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,6 +124,7 @@
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="JapaneseMonkey.h" />
+    <ClInclude Include="Key.h" />
     <ClInclude Include="KeyboardHandler.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />

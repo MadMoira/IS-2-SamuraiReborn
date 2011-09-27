@@ -99,13 +99,13 @@ void SLevelTutorial::logic()
 	tutorialLevel->scrollTilemap();
 }
 
-void SLevelTutorial::checkGravity(int posicion){
+void SLevelTutorial::checkGravity(int vPosition){
 	GLfloat y,x;
-	y = gameCore->getPlayersList().at(posicion).getPlayerSprite()->getSpeedY();
-	x = gameCore->getPlayersList().at(posicion).getPlayerSprite()->getSpeedX();
+	y = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedY();
+	x = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedX();
 	movPhysics->physicManager(&x,&y,PARABOLIC);
-	gameCore->getPlayersList().at(posicion).getPlayerSprite()->setSpeedX(x);
-	gameCore->getPlayersList().at(posicion).getPlayerSprite()->setSpeedY(y);
+	gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedX(x);
+	gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedY(y);
 }
 
 void SLevelTutorial::render()
