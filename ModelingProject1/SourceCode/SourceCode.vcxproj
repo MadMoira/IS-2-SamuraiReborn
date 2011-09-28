@@ -41,16 +41,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\SDL - DLL, INC, LIB\include files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Librerias\SDL - DLL, INC, LIB\include files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Librerias\SDL - DLL, INC, LIB\lib files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Librerias\boost_1_47_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -75,6 +75,7 @@
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionObject.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameConfiguration.cpp" />
@@ -111,6 +112,7 @@
   <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionObject.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameConfiguration.h" />

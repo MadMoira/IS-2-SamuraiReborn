@@ -17,6 +17,7 @@ public:
 	void handleEvents();
 	void logic();
 	void render();
+	void camera();
 
 private:
 	Level *tutorialLevel;

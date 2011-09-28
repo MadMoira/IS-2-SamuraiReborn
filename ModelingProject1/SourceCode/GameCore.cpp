@@ -8,6 +8,7 @@ GameCore::GameCore(void)
     screen = new GameScreen();
     timer = new GameTimer();
 	sound = new GameSound();
+	camera = new Camera();
 	isRunning = true;
 }
 
@@ -18,6 +19,7 @@ GameCore::~GameCore(void)
     delete screen;
     delete timer;
 	delete sound;
+	delete camera;
 	playersList.clear();
 }
 

@@ -82,12 +82,15 @@ void SLevelTutorial::handleEvents()
 
 void SLevelTutorial::logic()
 {
-	tutorialLevel->checkLayersSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
+	gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX()/2 +
+										gameCore->getPlayersList().at(1).getPlayerSprite()->getSpeedX()/2 );
+
+	tutorialLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
 	tutorialLevel->scrollBackgroundLayers();
 
-	tutorialLevel->checkTilemapsSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
+	tutorialLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
 	tutorialLevel->scrollTilemap();
-
+	
 	for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
 	{
 		gameCore->getPlayersList().at(i).executeAction();
@@ -100,11 +103,20 @@ void SLevelTutorial::render()
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	tutorialLevel->drawLevelMap();
-
+	
+	glPushMatrix();
+	camera();
 	for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
 	{
 		gameCore->getPlayersList().at(i).draw();
 	}
+	glPopMatrix();
 
 	SDL_GL_SwapBuffers();
+}
+
+void SLevelTutorial::camera()
+{
+	gameCore->getCamera()->moveCamera();
+	gameCore->getCamera()->renderCamera();
 }
