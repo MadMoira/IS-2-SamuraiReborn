@@ -7,6 +7,7 @@
 #include "GameScreen.h"
 #include "GameTimer.h"
 #include "GameSound.h"
+#include "Camera.h"
 #include "Player.h"
 #include "Camera.h"
 
@@ -40,6 +41,7 @@ public:
 
 	bool getIsRunning() { return isRunning; }
 	void setIsRunning(bool running) { isRunning = running; };
+	Camera* getCamera() { return camera; };
 	
 private:
 	GameConfiguration *configuration;
