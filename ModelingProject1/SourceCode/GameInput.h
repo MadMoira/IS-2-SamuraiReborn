@@ -7,6 +7,8 @@
 #include "Sprite.h"
 #include "KeyboardHandler.h"
 
+#include "Camera.h"
+
 class GameInput
 {
 public:
@@ -14,6 +16,6 @@ public:
 	~GameInput(void);
 
 	bool handleWindowEvents();
-	bool handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite);
+	bool handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite, Camera* camera);
 };
 
