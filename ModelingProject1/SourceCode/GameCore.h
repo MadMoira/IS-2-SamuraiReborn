@@ -41,7 +41,7 @@ public:
 
 	bool getIsRunning() { return isRunning; }
 	void setIsRunning(bool running) { isRunning = running; };
-	Camera* getCamera() { return camera; };
+	
 	
 private:
 	GameConfiguration *configuration;

@@ -16,6 +16,6 @@ public:
 	~GameInput(void);
 
 	bool handleWindowEvents();
-	bool handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite, Camera* camera);
+	bool handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite);
 };
 
