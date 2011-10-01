@@ -2,16 +2,16 @@
 #include "GameRender.h"
 #include "Layer.h"
 
-Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY, 
-			GLfloat constantX, bool hasRepetition)
+Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
+		  GLfloat constantX, bool hasRepetition)
 {
 	nameLayer = name;
 	widthLevelLayer = widthLayer;
 	heightLevelLayer = heightLayer;
 	texture = GameRender::loadTexture(name);
-	velocityX = velX;
-	velocityY = velY;
-	offsetX = offsetY = 0.0f;
+	speed.x = vel.x;
+	speed.y = vel.y;
+	offset.x = offset.y = 0.0f;
 	repeat = hasRepetition;
 	constantVelX = constantX;
 }
@@ -23,33 +23,33 @@ Layer::~Layer(void)
 
 void Layer::drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen)
 {
-	GameRender::drawLayerTexture(texture, offsetX, offsetY, widthScreen, heightScreen);
+	GameRender::drawLayerTexture(texture, offset, widthScreen, heightScreen);
 }
 
 void Layer::scrollLayer()
 {
-	offsetX += velocityX;
-	offsetY += velocityY;
+	offset.x += speed.x;
+	offset.y += speed.y;
 
 	checkScreenBoundaries();
 }
 
 bool Layer::checkScreenBoundaries()
 {
-	if (offsetX <= 0)
+	if (offset.x <= 0)
 	{
-		offsetX = 0;
+		offset.x = 0;
 		return false;
 	}
 
-	if (offsetX > widthLevelLayer - 1280.f)
+	if (offset.x > widthLevelLayer - 1280.f)
 	{
 		if ( repeat )
 		{
 			return false;
 		}
 
-		offsetX = widthLevelLayer - 1280.f; 
+		offset.x = widthLevelLayer - 1280.f; 
 		return true;
 	}
 

@@ -6,10 +6,12 @@
 #include <vector>
 #include <string>
 
+#include "Vector.h"
+
 class Layer
 {
 public:
-	Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY, 
+	Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
 		  GLfloat constantX, bool hasRepetition);
 	~Layer(void);
 
@@ -24,15 +26,15 @@ public:
 	GLfloat getHeightLevelLayer() { return heightLevelLayer; }
 	void setHeightLevelLayer(GLfloat height) { heightLevelLayer = height; }
 
-	GLfloat getVelocityX() { return velocityX; }
-	void setVelocityX(GLfloat velX) { velocityX = velX*constantVelX; }
+	GLfloat getSpeedX() { return speed.x; }
+	void setSpeedX(GLfloat velX) { speed.x = velX*constantVelX; }
 
 	void scrollLayer();
 
-	GLfloat getOffsetX() { return offsetX; }
-	void setOffsetX(GLfloat velX) { offsetX = velX; }
+	GLfloat getOffsetX() { return offset.x; }
+	void setOffsetX(GLfloat velX) { offset.x = velX; }
 
-	GLfloat getOffsetY() { return offsetY; }
+	GLfloat getOffsetY() { return offset.y; }
 
 	bool checkScreenBoundaries();
 
@@ -43,7 +45,7 @@ private:
 	std::string nameLayer;
 	GLuint texture;
 	GLfloat widthLevelLayer, heightLevelLayer;
-	GLfloat velocityX, velocityY, offsetX, offsetY;
+	Vector2f speed, offset;
 	GLfloat constantVelX;
 	bool repeat;
 };

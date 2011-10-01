@@ -52,7 +52,7 @@ GLuint GameRender::loadTexture(std::string name)
      return NULL;
 }
 
-void GameRender::drawFullTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat widthTexture, GLfloat heightTexture)
+void GameRender::drawFullTexture(GLuint texture, Vector2f pos, GLfloat widthTexture, GLfloat heightTexture)
 {
 	glEnableClientState( GL_VERTEX_ARRAY );
 	glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
@@ -60,10 +60,10 @@ void GameRender::drawFullTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat w
 	glBindTexture( GL_TEXTURE_2D, texture );
 
 	const GLfloat verts[] = {
-				x, y,
-				x + widthTexture, y,
-				x + widthTexture, y + heightTexture,
-				x, y + heightTexture
+				pos.x, pos.y,
+				pos.x + widthTexture, pos.y,
+				pos.x + widthTexture, pos.y + heightTexture,
+				pos.x, pos.y + heightTexture
 	};
 
 	const GLfloat textureX = 0.0f;
@@ -86,7 +86,7 @@ void GameRender::drawFullTexture(GLuint texture, GLfloat x, GLfloat y, GLfloat w
 	glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 }
 
-void GameRender::drawSpriteTexture(GLuint texture, GLfloat posX, GLfloat posY, int currentFrame, 
+void GameRender::drawSpriteTexture(GLuint texture, Vector2f pos, int currentFrame, 
 								GLfloat widthTexture, GLfloat heightTexture, GLfloat widthSprite, GLfloat heightSprite,
 								int direction, int state)
 {
@@ -96,16 +96,16 @@ void GameRender::drawSpriteTexture(GLuint texture, GLfloat posX, GLfloat posY, i
 	glBindTexture( GL_TEXTURE_2D, texture );
 
 	GLfloat verts[] = {
-				posX, posY,
-				posX + widthSprite, posY,
-				posX + widthSprite, posY + heightSprite,
-				posX, posY + heightSprite
+				pos.x, pos.y,
+				pos.x + widthSprite, pos.y,
+				pos.x + widthSprite, pos.y + heightSprite,
+				pos.x, pos.y + heightSprite
 	};
 
 	if ( direction == 1 )
 	{
-		verts[0] = verts[6] = posX + widthSprite;
-		verts[2] = verts[4] = posX;
+		verts[0] = verts[6] = pos.x + widthSprite;
+		verts[2] = verts[4] = pos.x;
 	}
 	
 	const GLfloat textureWidth = widthSprite / widthTexture;
@@ -135,7 +135,7 @@ void GameRender::drawSpriteTexture(GLuint texture, GLfloat posX, GLfloat posY, i
 	glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 }
 
-void GameRender::drawLayerTexture(GLuint texture, GLfloat offsetX, GLfloat offsetY, GLfloat widthScreen, 
+void GameRender::drawLayerTexture(GLuint texture, Vector2f offset, GLfloat widthScreen, 
 								GLfloat heightScreen)
 {
 	GLfloat widthTexture, heightTexture;
@@ -160,10 +160,10 @@ void GameRender::drawLayerTexture(GLuint texture, GLfloat offsetX, GLfloat offse
 			vertX, vertY + heightScreen
 	};
 
-	const GLfloat textureX = offsetX/widthScreen;
+	const GLfloat textureX = offset.x/widthScreen;
 	const GLfloat textureY = 0.0f;
-	const GLfloat textureWidth = (widthScreen + offsetX) / widthTexture;
-	const GLfloat textureHeight = (heightScreen + offsetY) / heightTexture;
+	const GLfloat textureWidth = (widthScreen + offset.x) / widthTexture;
+	const GLfloat textureHeight = (heightScreen + offset.y) / heightTexture;
 
 	const GLfloat texVerts[] = {
 			textureX, textureY,

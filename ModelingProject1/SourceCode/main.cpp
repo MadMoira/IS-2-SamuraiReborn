@@ -1,10 +1,10 @@
 
-#include <windows.h>
-#include <gl\GL.h>
+
 
 #include "GameCore.h"
 #include "GameRender.h"
 #include "GameInput.h"
+#include "MovementPhys.h"
 
 #include "GameStateManager.h"
 
@@ -16,6 +16,7 @@ int main( int argc, char* args[] )
 	GameRender Render;
 	GameInput Input;
 	GameStateManager *StateManager = new GameStateManager();
+	MovementPhys ff(8);
 	
 	if( !Core.initializeGameCore() )
 	{

@@ -19,9 +19,6 @@
     <Filter Include="Header Files\Game Core">
       <UniqueIdentifier>{1cbcd426-636a-4306-8cae-d883f47f281a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Game Core">
-      <UniqueIdentifier>{ba2ab8f5-ccc2-4c34-bc3a-d0b90af1331d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game States">
       <UniqueIdentifier>{aec0e6cb-914b-4917-9bd4-fce5c94727aa}</UniqueIdentifier>
     </Filter>
@@ -72,6 +69,9 @@
     </Filter>
     <Filter Include="Header Files\Game Physics">
       <UniqueIdentifier>{30242d66-1334-48ec-b79c-93090231b9d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Core">
+      <UniqueIdentifier>{ba2ab8f5-ccc2-4c34-bc3a-d0b90af1331d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +177,9 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
+    <ClCompile Include="MovementPhys.cpp">
+      <Filter>Source Files\Game Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -278,6 +281,12 @@
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Level Design</Filter>
     </ClInclude>
+    <ClInclude Include="MovementPhys.h">
+      <Filter>Header Files\Game Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="mountains.png">
@@ -295,8 +304,15 @@
     <None Include="TutorialMapTest.tmx">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="merkaat.kes">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="panda.kes">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="Tiles.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="merkaat.kes" />
   </ItemGroup>
 </Project>
