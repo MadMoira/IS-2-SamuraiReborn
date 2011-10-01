@@ -1,12 +1,13 @@
 
 #include "Tilemap.h"
 #include <math.h>
+
 Tilemap::Tilemap(std::string name, int widthInTiles, int heightInTiles)
 {
 	nameLayer = name;
 	widthLevelInTiles = widthInTiles;
 	heightLevelInTiles = heightInTiles;
-	offsetX = offsetY = 0.0f;
+	offset.x = offset.y = 0.0f;
 	sizeTiles = 32.f;
 
 	layerMap.resize(heightLevelInTiles);
@@ -24,9 +25,9 @@ Tilemap::~Tilemap(void)
 
 void Tilemap::drawTilemap(int indexTileset)
 {
-	GLfloat offsetXTemp = offsetX;
+	GLfloat offsetXTemp = offset.x;
 	
-	offsetXTemp = transformOffsetXToIntervalValues(offsetX);
+	offsetXTemp = transformOffsetXToIntervalValues(offset.x);
 	
 	GLfloat variableSizeTile = 32.f;
 
@@ -47,7 +48,7 @@ void Tilemap::drawTilemap(int indexTileset)
 
 	for (int i = 0; i < heigthMap; i++)
 	{
-		int startX = (int)floor(offsetX/sizeTiles);
+		int startX = (int)floor(offset.x/sizeTiles);
 		posXPrevious = 0.0f;
 
 		posXPrevious -= offsetXTemp;
@@ -147,23 +148,23 @@ GLfloat Tilemap::transformOffsetXToIntervalValues(GLfloat offX)
 
 void Tilemap::scrollTilemap()
 {
-	offsetX += speedX;
-	offsetY += speedY;
+	offset.x += speed.x;
+	offset.y += speed.y;
 
 	checkScreenBoundaries();
 }
 
 bool Tilemap::checkScreenBoundaries()
 {
-	if (offsetX > widthLevelInTiles*sizeTiles - 1280.f)
+	if (offset.x > widthLevelInTiles*sizeTiles - 1280.f)
 	{
-		offsetX = widthLevelInTiles*sizeTiles - 1280.f; 
+		offset.x = widthLevelInTiles*sizeTiles - 1280.f; 
 		return true;
 	}
 
-	if ( offsetX < 0 )
+	if ( offset.x < 0 )
 	{
-		offsetX = 0;
+		offset.x = 0;
 		return true;
 	}
 

@@ -9,6 +9,8 @@
 
 #include "Animation.h"
 
+#include "Vector.h"
+
 enum IDSprites 
 { 
 	PANDA, 
@@ -27,25 +29,28 @@ enum IDSpriteStates
 class Sprite
 {
 public:
-	Sprite(IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
+	Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, GLfloat speedY, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, IDSpriteStates state,
 				GLfloat widthSprite, GLfloat heightSprite);
 	~Sprite(void);
 
-	GLfloat getPosX() { return posX; }
+	GLfloat getPosX() { return position.x; }
 	bool movePosXWithSpeed();
+	GLfloat getPosY() { return position.y; }
+	bool movePosYWithSpeed();
 
-	GLfloat getPosY() { return posY; }
+	GLfloat getSpeedX() { return currentXSpeed; }
+	GLfloat getStateXSpeed(){return speed.at(currentState).x;}
 
-	GLfloat getSpeedX() { return speedXVector.at(currentState); }
-	void setSpeedX(GLfloat speedX) { speedXVector.at(currentState) = speedX; }
+	void setSpeedX(GLfloat speedX) { currentXSpeed = speedX; }
 	void setConstantSpeedX(int constant);
 
 	GLfloat getSpeedY() { return speedY; }
+	void setSpeedY(GLfloat newSpeedY){speedY=newSpeedY;}
 
-	GLfloat getDelayX() { return delayX; }
+	GLfloat getDelayX() { return delay.x; }
 
-	GLfloat getDelayY() { return delayY; }
+	GLfloat getDelayY() { return delay.y; }
 
 	GLuint getTexture() { return texture; }
 
@@ -62,13 +67,13 @@ private:
 	GLuint texture;
 	Animation *handlerAnimation;
 	IDSpriteStates currentState;
+	Vector2f position, delay;
+	std::vector< Vector2f > speed;
 	std::vector< int > maxFramesPerAnimation;
 	std::vector< int > returnFramesPerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
-	GLfloat posX, posY;
-	std::vector< GLfloat > speedXVector;
+	GLfloat currentXSpeed;
 	GLfloat speedY, countX, countY;
-	GLfloat delayX, delayY;
 	int frameCount, frameDelay;
 };
 
