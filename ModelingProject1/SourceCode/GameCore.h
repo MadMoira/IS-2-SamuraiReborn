@@ -33,6 +33,7 @@ public:
 	void startSoundEffect(std::string filename);
 
 	Camera* getCamera() {return camera;};
+	GameScreen* getGameScreen() {return screen;};
 
 	boost::ptr_vector< Player > &getPlayersList() { return playersList; }
 	void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX,
