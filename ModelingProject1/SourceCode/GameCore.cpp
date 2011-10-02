@@ -26,9 +26,10 @@ GameCore::~GameCore(void)
 bool GameCore::initializeGameCore()
 {	
 	sound->initSound();
-
+	
 	if( screen->initializeScreen())
 	{
+		camera->initCamera();
 		return true;
     }
 	

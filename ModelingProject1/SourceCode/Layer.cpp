@@ -31,7 +31,7 @@ void Layer::scrollLayer()
 	offsetX += velocityX;
 	offsetY += velocityY;
 
-	//checkScreenBoundaries();
+	checkScreenBoundaries();
 }
 
 bool Layer::checkScreenBoundaries()

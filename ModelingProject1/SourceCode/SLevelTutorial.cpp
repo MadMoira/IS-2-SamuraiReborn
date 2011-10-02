@@ -50,8 +50,9 @@ void SLevelTutorial::init()
 						STILL, 204.0f, 187.0f);
 
 	tutorialLevel = new Level(LEVELZEROTUTORIAL);
-	tutorialLevel->loadTMXTileMapFile("untitled2.tmx");	
+	tutorialLevel->loadTMXTileMapFile("TutorialMapTest.tmx");	
 
+	
 	tutorialLevel->addLayerToList("BackGround1.png", 1280.f, 720.f, 2.0f, 0.0f, 0.3f, true);
 
 	tutorialLevel->addLayerToList("nubes.png", 1600.f, 720.f, 1.0f, 0.0f, 0.1f, true);
@@ -83,8 +84,8 @@ void SLevelTutorial::handleEvents()
 void SLevelTutorial::logic()
 {
 	gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX()/2 +
-										gameCore->getPlayersList().at(1).getPlayerSprite()->getSpeedX()/2 );
-
+										  gameCore->getPlayersList().at(1).getPlayerSprite()->getSpeedX()/2 );
+	
 	tutorialLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
 	tutorialLevel->scrollBackgroundLayers();
 
@@ -99,9 +100,9 @@ void SLevelTutorial::logic()
 
 void SLevelTutorial::render()
 {
+	
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-
 	tutorialLevel->drawLevelMap();
 	
 	glPushMatrix();
@@ -117,6 +118,9 @@ void SLevelTutorial::render()
 
 void SLevelTutorial::camera()
 {
-	gameCore->getCamera()->moveCamera();
+	gameCore->getCamera()->moveCamera(gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX(),
+									  gameCore->getPlayersList().at(1).getPlayerSprite()->getPosX(),
+									  gameCore->getPlayersList().at(0).getPlayerSprite()->getWidthTexture(),
+									  gameCore->getPlayersList().at(1).getPlayerSprite()->getWidthTexture());
 	gameCore->getCamera()->renderCamera();
 }
