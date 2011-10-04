@@ -25,13 +25,17 @@ public:
 
 	void setReturnFrame(int returnFrame) { this->returnFrame = returnFrame; }
 
+	void setCyclesPerFrame(int cycles) { numberCyclesPerFrame = cycles; }
+
+	void setLoopPerAnimation(int loop) { loopPerAnimation = loop; }
+
 	AnimationDirection getAnimationDirection() { return animationDirection; }
 	int changeAnimationDirection(AnimationDirection direction);
 
 private:
 	int currentFrame, incrementFrame;
-	int maxFrames;
-	int returnFrame;
+	int maxFrames, returnFrame;
+	int numberCyclesPerFrame, loopPerAnimation;
 	Uint32 frameRate, oldTime;
 	AnimationDirection animationDirection;
 };

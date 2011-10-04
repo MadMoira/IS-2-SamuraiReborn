@@ -5,7 +5,7 @@
 #include <string>
 
 #include "Sprite.h"
-#include "KeyboardHandler.h"
+#include "GameInputMapper.h"
 
 class GameInput
 {
@@ -13,7 +13,7 @@ public:
 	GameInput(void);
 	~GameInput(void);
 
-	bool handleWindowEvents();
+	bool handleWindowEvents(InputMapping::GameInputMapper *gp);
 	bool handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite);
 };
 

@@ -4,7 +4,6 @@
 PandaP1::~PandaP1()
 {
 	delete playerSprite;
-	delete keyboardHandler;
 }
 
 void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector< Vector2f > speed, GLfloat speedY, 
@@ -13,7 +12,10 @@ void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector< 
 {
 	playerSprite = new Sprite(id, filename, speed, speedY, pos, initialFrame, maxFrame, returnFrame,
 							 state, widthSprite, heightSprite);
-	keyboardHandler = new KeyboardHandler("panda.kes");
+
+	inputMapper = new InputMapping::GameInputMapper();
+	inputMapper->pushContext("maincontext");
+	inputMapper->addCallback( Player::inputCallback, 0);
 }
 
 void PandaP1::noAction()
@@ -49,6 +51,7 @@ void PandaP1::run()
 
 void PandaP1::jump()
 {
+	playerSprite->setSpeedX(playerSprite->getPreviousStateXSpeed());
 	if ( playerSprite->movePosXWithSpeed()&&playerSprite->movePosYWithSpeed() )
 	{
 		playerSprite->getHandlerAnimation()->animate() ;

@@ -15,7 +15,7 @@ enum IDSprites
 { 
 	PANDA, 
 	MEERKAT, 
-	JAPANESEMONKEY 
+	JAPANESEMONKEY, 
 };
 
 enum IDSpriteStates
@@ -23,7 +23,8 @@ enum IDSpriteStates
 	STILL,
 	WALKING,
 	JUMPING,
-	RUNNING
+	RUNNING,
+	DOUBLE_JUMP,
 };
 
 class Sprite
@@ -40,7 +41,8 @@ public:
 	bool movePosYWithSpeed();
 
 	GLfloat getSpeedX() { return currentXSpeed; }
-	GLfloat getStateXSpeed(){return speed.at(currentState).x;}
+	GLfloat getStateXSpeed() { return speed.at(currentState).x; }
+	GLfloat getPreviousStateXSpeed() { return speed.at(previousState).x; }
 
 	void setSpeedX(GLfloat speedX) { currentXSpeed = speedX; }
 	void setConstantSpeedX(int constant);
@@ -60,13 +62,15 @@ public:
 	int getCurrentState() { return currentState; }
 	void setCurrentState(IDSpriteStates state);
 
+	int getPreviousState() { return previousState; }
+
 	void drawTexture();
 
 private:
 	IDSprites ID;
 	GLuint texture;
 	Animation *handlerAnimation;
-	IDSpriteStates currentState;
+	int currentState, previousState;
 	Vector2f position, delay;
 	std::vector< Vector2f > speed;
 	std::vector< int > maxFramesPerAnimation;
