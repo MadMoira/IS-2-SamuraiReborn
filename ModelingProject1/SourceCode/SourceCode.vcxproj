@@ -154,13 +154,8 @@
   <ItemGroup>
     <None Include="LevelOneTileMap.tmx" />
     <None Include="Meerkat - SpriteSheet.png" />
-    <None Include="merkaat.kes" />
-    <None Include="mountains.png" />
     <None Include="nubes.png" />
     <None Include="Panda - SpriteSheet.png" />
-    <None Include="panda.kes" />
-    <None Include="merkaat.kes" />
-    <None Include="Tiles.png" />
     <None Include="TutorialMapTest.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
