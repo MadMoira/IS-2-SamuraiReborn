@@ -307,9 +307,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="mountains.png">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="nubes.png">
       <Filter>Resource Files</Filter>
     </None>
@@ -320,15 +317,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="TutorialMapTest.tmx">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="merkaat.kes">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="panda.kes">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Tiles.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="merkaat.kes" />
