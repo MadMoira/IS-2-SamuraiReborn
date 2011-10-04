@@ -9,12 +9,13 @@ GameInput::~GameInput(void)
 {
 }
 
-bool GameInput::handleWindowEvents()
+bool GameInput::handleWindowEvents(InputMapping::GameInputMapper *gp)
 {
 	SDL_Event evento;
 
 	while( SDL_PollEvent( &evento ) )
 	{
+		gp->processNewInput(evento);
 		if( evento.type == SDL_KEYDOWN )
 		{
 			if( evento.key.keysym.sym == SDLK_ESCAPE )
@@ -32,7 +33,7 @@ bool GameInput::handleWindowEvents()
 	return true;
 }
 
-bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite)
+/*bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite)
 {
 	Uint8 *keystates = SDL_GetKeyState( NULL );
 	bool handled=false;
@@ -72,6 +73,36 @@ bool GameInput::handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *
 			playerSprite->changeCurrentFrame(STILL);
 		}
 	}
+
+	else if ( playerSprite->getPosY()+187.0f >= 580.0f )
+	{
+		if( keystates[ keyValues[KEY_RIGHT] ] )
+		{
+						playerSprite->setConstantSpeedX ( playerSprite->getHandlerAnimation()->changeAnimationDirection(RIGHT) );
+			playerSprite->setCurrentState(WALKING);
+					if( keystates[ keyValues[KEY_JUMP] ] )
+		{
+			playerSprite->setCurrentState(JUMPING);
+			handled=true;
+		}
+		}
+
+		else if ( keystates[ keyValues[KEY_LEFT] ] )
+		{
+			playerSprite->setConstantSpeedX ( playerSprite->getHandlerAnimation()->changeAnimationDirection(LEFT) );
+			playerSprite->setCurrentState(WALKING);
+			
+			if( keystates[ keyValues[KEY_JUMP] ] )
+			{
+			playerSprite->setCurrentState(JUMPING);
+			handled=true;
+			}
+		}
+		else {
+   		playerSprite->setCurrentState(STILL);
+		playerSprite->changeCurrentFrame(STILL);}
+	}
+
 	return handled;
-}
+}*/
 

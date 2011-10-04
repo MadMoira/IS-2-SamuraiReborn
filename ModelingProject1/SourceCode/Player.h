@@ -5,7 +5,7 @@
 #include "Sprite.h"
 #include "Weapon.h"
 #include "Stats.h"
-#include "KeyboardHandler.h"
+#include "GameInputMapper.h"
 #include "MovementPhys.h"
 
 #include "Vector.h"
@@ -30,10 +30,12 @@ public:
 	virtual void noAction() = 0;
 	void executeAction();
 
+	static void inputCallback(InputMapping::MappedInput& inputs, Player& player);
+
 	void stop(); 
 	Sprite *getPlayerSprite() { return playerSprite; }
 
-	KeyboardHandler *getKeyboardHandler() { return keyboardHandler; }
+	InputMapping::GameInputMapper *getInputMapper() { return inputMapper; }
 
 	void changeFightStyle();
 	void getPlayerStats();
@@ -43,8 +45,8 @@ protected:
 	int currentFightMode;
 	int currentHealth, currentStamina;
 	Sprite *playerSprite;
+	InputMapping::GameInputMapper *inputMapper;
 	Stats *stats;
 	Weapon *playerWeapon;
-	KeyboardHandler *keyboardHandler;
 };
 

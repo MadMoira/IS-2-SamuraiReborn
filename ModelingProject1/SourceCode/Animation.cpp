@@ -9,6 +9,8 @@ Animation::Animation(int actualFrame, int maxFramesFromCurrentState, int returnF
     incrementFrame = 1;
     frameRate = 30;
     oldTime = 0;
+	numberCyclesPerFrame = 0;
+		loopPerAnimation = 0;
 	this->returnFrame = returnFrame;
 }
 
@@ -25,13 +27,20 @@ int Animation::animate()
  
     oldTime += frameRate;
  
-    currentFrame += incrementFrame;
-
-    if( currentFrame > maxFrames)
+	
+	if ( loopPerAnimation == numberCyclesPerFrame )
 	{
-		currentFrame = returnFrame;
-    }
-
+		currentFrame += incrementFrame;
+		loopPerAnimation = 0;
+		if( currentFrame > maxFrames)
+		{
+			currentFrame = returnFrame;
+		}
+	}
+	else
+	{
+	loopPerAnimation += 1;
+	}
 	return currentFrame;
 }
 

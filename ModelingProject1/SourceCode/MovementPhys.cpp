@@ -11,9 +11,9 @@ MovementPhys::~MovementPhys(void)
 {
 }
 
-void MovementPhys::parabolicShot(GLfloat *yVelocity){
+void MovementPhys::parabolicShot(GLfloat *yVelocity)
+{
 	*yVelocity -= this->gravityVal ;
-
 }
 
 void MovementPhys::physicManager(Vector2f *speed, int state)

@@ -11,8 +11,9 @@ void MeerkatP2::initializePlayer(IDSprites id, std::string filename, std::vector
 {
 	playerSprite = new Sprite(id, filename, speed, speedY, pos, initialFrame, maxFrame, returnFrame,
 							 state, widthSprite, heightSprite);
-	keyboardHandler = new KeyboardHandler("merkaat.kes");
-
+		inputMapper = new InputMapping::GameInputMapper();
+	inputMapper->pushContext("maincontext");
+	inputMapper->addCallback( Player::inputCallback, 0);
 }
 
 void MeerkatP2::noAction()

@@ -73,6 +73,9 @@
     <Filter Include="Source Files\Game Core">
       <UniqueIdentifier>{ba2ab8f5-ccc2-4c34-bc3a-d0b90af1331d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{855ce3bb-62d9-40e0-b9a9-85a06026bf0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -168,9 +171,6 @@
     <ClCompile Include="GameInput.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="KeyboardHandler.cpp">
-      <Filter>Source Files\Input</Filter>
-    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
@@ -179,6 +179,12 @@
     </ClCompile>
     <ClCompile Include="MovementPhys.cpp">
       <Filter>Source Files\Game Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInputMapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInputContext.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,9 +263,6 @@
     <ClInclude Include="GameSound.h">
       <Filter>Header Files\Game Core</Filter>
     </ClInclude>
-    <ClInclude Include="Tilemap.h">
-      <Filter>Header Files\Level Design</Filter>
-    </ClInclude>
     <ClInclude Include="SLevelTutorial.h">
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
@@ -267,9 +270,6 @@
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
     <ClInclude Include="GameInput.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardHandler.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
@@ -284,8 +284,26 @@
     <ClInclude Include="MovementPhys.h">
       <Filter>Header Files\Game Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Tilemap.h">
+      <Filter>Header Files\Level Design</Filter>
+    </ClInclude>
+    <ClInclude Include="File.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInputContext.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInputMapper.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputConstants.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="RawInputConstants.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
     <ClInclude Include="Vector.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +331,8 @@
     <None Include="Tiles.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="merkaat.kes" />
+    <None Include="merkaat.kes" />
     <None Include="merkaat.kes" />
   </ItemGroup>
 </Project>

@@ -19,7 +19,7 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
 	this->speed = speed;
 	currentXSpeed = 0;
 	this->speedY = speedY;
-	currentState = state;
+	currentState = previousState = state;
 	delay.x = 0;
 	delay.y = 0;
 }
@@ -47,7 +47,7 @@ bool Sprite::movePosXWithSpeed()
 bool Sprite::movePosYWithSpeed()
 {
 	bool movY=false;
-	if(position.y + getSpeedY()+height < 650.f){
+	if(position.y + getSpeedY()+height < 600.f){
 		position.y += getSpeedY();
 		movY=true;
 	}
@@ -74,9 +74,24 @@ void Sprite::setCurrentState(IDSpriteStates state)
 	 
 	if ( currentState != state )
 	{
-		if(state == JUMPING){this->setSpeedY(-10.f);}
-		currentState = state;
+		if(state == JUMPING)
+		{	this->setSpeedY(-22.f);
+			handlerAnimation->setCyclesPerFrame(0);
+		}
 
+		if(state == DOUBLE_JUMP)
+		{
+			this->setSpeedY(-22.f);
+			speed.at(DOUBLE_JUMP).x = speed.at(getPreviousState()).x;
+			handlerAnimation->setCyclesPerFrame(0);
+			previousState = state;
+			currentState = JUMPING;
+		}
+		else{
+		previousState = currentState;
+		currentState = state;}
+
+		handlerAnimation->setLoopPerAnimation(0);
 		handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(currentState) );
 		handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(currentState) );	
 	}
