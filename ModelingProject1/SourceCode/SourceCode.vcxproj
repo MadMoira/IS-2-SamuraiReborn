@@ -152,6 +152,7 @@
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="LevelOneTileMap.tmx" />
     <None Include="Meerkat - SpriteSheet.png" />
     <None Include="merkaat.kes" />
     <None Include="mountains.png" />
