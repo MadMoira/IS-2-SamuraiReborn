@@ -334,5 +334,8 @@
     <None Include="merkaat.kes" />
     <None Include="merkaat.kes" />
     <None Include="merkaat.kes" />
+    <None Include="LevelOneTileMap.tmx">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
