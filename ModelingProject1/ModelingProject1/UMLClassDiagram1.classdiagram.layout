@@ -162,11 +162,11 @@
         <classShapeMoniker Id="1490f002-1c67-4c34-be1f-2d4cefd18acc" />
       </nodes>
     </associationConnector>
-    <classShape Id="aee4233a-e0f2-43d7-b93e-3ab77519bf05" absoluteBounds="28.875, 0.5, 2, 1.3828124701976781" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
+    <classShape Id="aee4233a-e0f2-43d7-b93e-3ab77519bf05" absoluteBounds="18.5, 0.5, 2, 1.4028124701976779" hideQualifiedName="false" increaseHeight="0" customColor="181, 193, 223">
       <classMoniker Id="f56f76aa-3e68-4136-84de-864d418c4e7c" LastKnownName="CollisionObject" />
       <nestedChildShapes>
         <AttributeElementListCompartment Id="bea8e47b-b6be-4bda-b82a-97d5ce6b7f97" absoluteBounds="28.89, 0.89, 1.9700000000000002, 0.68164060264825821" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
-        <OperationElementListCompartment Id="01daba7f-2cf9-4220-b016-147c0ccad43d" absoluteBounds="28.89, 1.5816406026482583, 1.9700000000000002, 0.20117186754941963" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <OperationElementListCompartment Id="01daba7f-2cf9-4220-b016-147c0ccad43d" absoluteBounds="18.515, 1.5816406026482583, 1.9700000000000002, 0.22117186754941942" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(28.875 : 1.19140623509884); (27.75 : 1.19140623509884)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="*" targetMultiplicity="1">

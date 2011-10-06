@@ -41,9 +41,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\SDL-1.2.14\include;$(IncludePath)</IncludePath>
     <IncludePath>D:\SDL - DLL, INC, LIB\include files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>D:\SDL-1.2.14\lib;$(LibraryPath)</LibraryPath>
     <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -107,6 +109,10 @@
     <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="Weapon.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="background.png" />
+    <None Include="x.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />

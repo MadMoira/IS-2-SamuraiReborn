@@ -18,4 +18,3 @@ public:
 	void draw();
 	void executeAction();
 };
-
