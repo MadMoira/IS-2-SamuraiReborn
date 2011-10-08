@@ -13,7 +13,7 @@ public:
 	GameInput(void);
 	~GameInput(void);
 
-	bool handleWindowEvents(InputMapping::GameInputMapper *gp);
-	bool handleKeyStatesPlayers(std::map< int, int > &keyValues, Sprite *playerSprite);
+	bool handleWindowEvents();
+	void handleKeyEvents(InputMapping::GameInputMapper *gameInputMapper);
 };
 

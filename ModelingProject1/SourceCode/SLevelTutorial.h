@@ -4,8 +4,6 @@
 
 #include "Level.h"
 #include "MovementPhys.h"
-#include "PandaP1.h"
-#include "MeerkatP2.h"
 
 class SLevelTutorial : public GameState
 {

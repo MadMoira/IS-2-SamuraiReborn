@@ -1,8 +1,6 @@
 
 #include <fstream>
-
 #include "Level.h"
-
 #include "TmxParser/Tmx.h"
 
 Level::Level(Levels id)

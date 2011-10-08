@@ -13,8 +13,6 @@
 #include "Layer.h"
 #include "Tilemap.h"
 
-#include "GameCore.h"
-
 
 enum Levels 
 { 

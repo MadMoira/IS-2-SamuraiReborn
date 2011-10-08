@@ -1,6 +1,9 @@
 
 #include "SLevelTutorial.h"
 
+#include "PandaP1.h"
+#include "MeerkatP2.h"
+
 SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, GameStates stateName) 
 	: GameState( gR, gC, gI, stateName )
 {
@@ -13,8 +16,8 @@ SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, Game
 
 SLevelTutorial::~SLevelTutorial(void)
 {
-	delete movPhysics;
-	delete tutorialLevel;
+  delete movPhysics;
+  delete tutorialLevel;
 }
 
 void SLevelTutorial::init()
@@ -29,9 +32,9 @@ void SLevelTutorial::init()
 	std::vector< Vector2f > speedMeerkat;
 	speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
 	speedMeerkat.push_back( Vector2f(10.0f, 0.0f) );
-	speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
-	speedMeerkat.push_back( Vector2f(40.0f, 0.0f) );
-	speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
+	speedMeerkat.push_back( Vector2f(0.0f, -22.0f) );
+	speedMeerkat.push_back( Vector2f(28.0f, 0.0f) );
+	speedMeerkat.push_back( Vector2f(0.0f, -16.0f) );
 
 	std::vector < int > maxFrameVector;
 	maxFrameVector.push_back( 1 );
@@ -47,9 +50,9 @@ void SLevelTutorial::init()
 	returnFrameVector.push_back( 1 );
 	returnFrameVector.push_back( 1 );
 
-		gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
-						speedMeerkat, 0.0f, Vector2f(50.0f, 400.0f), 0, maxFrameVector, returnFrameVector,
-						STILL, 204.0f, 187.0f);
+	gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
+						speedMeerkat, Vector2f(50.0f, 400.0f), 0, maxFrameVector, returnFrameVector,
+						204.0f, 187.0f);
 
 	/*gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
 						speedPanda, 0.0f, Vector2f(50.0f, 400.0f), 0, maxFrameVector, returnFrameVector,
@@ -72,10 +75,14 @@ void SLevelTutorial::init()
 
 void SLevelTutorial::handleEvents()
 {
-	gameCore->getPlayersList().at(0).getInputMapper()->clearCurrentMappedInput();
-	bool isRunning = gameInput->handleWindowEvents( gameCore->getPlayersList().at(0).getInputMapper() );
+	gameCore->getPlayersList().at(0).getInputMapper()->clearCurrentMappedInput(
+		GameCoreStates::SpriteState(gameCore->getPlayersList().at(0).getPlayerSprite()->getCurrentState()) );
 
+	bool isRunning = gameInput->handleWindowEvents();
 	gameCore->setIsRunning( isRunning );
+
+	gameInput->handleKeyEvents( gameCore->getPlayersList().at(0).getInputMapper() );
+
 	gameCore->getPlayersList().at(0).getInputMapper()->dispatchInput( gameCore->getPlayersList().at(0) );
 }
 
@@ -85,7 +92,6 @@ void SLevelTutorial::logic()
 	{	
 		gameCore->getPlayersList().at(i).executeAction();
 		checkGravity(i); 
-		
 	}
 
 	tutorialLevel->checkLayersSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
@@ -97,15 +103,15 @@ void SLevelTutorial::logic()
 
 void SLevelTutorial::checkGravity(int vPosition)
 {
-	Vector2f position;
+	Vector2f speed;
 
-	position.x = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedX();
-	position.y = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedY();
+	speed.x = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedX();
+	speed.y = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedY();
 
-	movPhysics->physicManager(&position, PARABOLIC);
+	movPhysics->physicManager(&speed, PARABOLIC);
 
-	gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedX(position.x);
-	gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedY(position.y);
+	gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedX(speed.x);
+	gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedY(speed.y);
 }
 
 void SLevelTutorial::render()

@@ -31,9 +31,9 @@ public:
 	void startSoundEffect(std::string filename);
 
 	boost::ptr_vector< Player > &getPlayersList() { return playersList; }
-	void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed, GLfloat speedY,
+	void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
-				IDSpriteStates state, GLfloat widthSprite, GLfloat heightSprite);
+				GLfloat widthSprite, GLfloat heightSprite);
 
 	bool getIsRunning() { return isRunning; }
 	void setIsRunning(bool running) { isRunning = running; }

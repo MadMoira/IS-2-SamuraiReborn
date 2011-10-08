@@ -3,8 +3,7 @@
 
 MovementPhys::MovementPhys(float gravityVal)
 {
-	this->gravityVal = gravityVal;
-	
+  this->gravityVal = gravityVal;	
 }
 
 MovementPhys::~MovementPhys(void)
@@ -13,15 +12,17 @@ MovementPhys::~MovementPhys(void)
 
 void MovementPhys::parabolicShot(GLfloat *yVelocity)
 {
-	*yVelocity -= this->gravityVal ;
+  *yVelocity -= this->gravityVal ;
 }
 
 void MovementPhys::physicManager(Vector2f *speed, int state)
 {
-	switch(state)
-	{
-	case PARABOLIC:
-		parabolicShot(&speed->y);
-		break;
-	}
+  switch(state)
+  {
+   case PARABOLIC:
+   {
+    parabolicShot(&speed->y);
+    break;
+   }
+  }
 }
