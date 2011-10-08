@@ -6,12 +6,12 @@ PandaP1::~PandaP1()
 	delete playerSprite;
 }
 
-void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector< Vector2f > speed, GLfloat speedY, 
+void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector< Vector2f > speed,  
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
-				std::vector < int > returnFrame, IDSpriteStates state, GLfloat widthSprite, GLfloat heightSprite)
+				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite)
 {
-	playerSprite = new Sprite(id, filename, speed, speedY, pos, initialFrame, maxFrame, returnFrame,
-							 state, widthSprite, heightSprite);
+	playerSprite = new Sprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
+							 widthSprite, heightSprite);
 
 	inputMapper = new InputMapping::GameInputMapper();
 	inputMapper->pushContext("maincontext");
@@ -20,7 +20,6 @@ void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector< 
 
 void PandaP1::noAction()
 {
-	playerSprite->movePosYWithSpeed();
 	playerSprite->setSpeedX(0);
 	stop();		
 }
@@ -58,7 +57,7 @@ void PandaP1::jump()
 	
 		return;
 	}
-	
+
 	stop();
 }
 

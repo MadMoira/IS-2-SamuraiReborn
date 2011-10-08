@@ -4,7 +4,6 @@
 #include <GL/gl.h>
 
 #include <vector>
-#include <exception>
 
 #include <boost/ptr_container/ptr_vector.hpp>
 

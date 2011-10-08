@@ -3,22 +3,22 @@
 
 GameCore::GameCore(void)
 {
-    configuration = new GameConfiguration();
-    saves = new GameSaves();
-    screen = new GameScreen();
-    timer = new GameTimer();
-	sound = new GameSound();
-	isRunning = true;
+  configuration = new GameConfiguration();
+  saves = new GameSaves();
+  screen = new GameScreen();
+  timer = new GameTimer();
+  sound = new GameSound();
+  isRunning = true;
 }
 
 GameCore::~GameCore(void)
 {
-    delete configuration;
-    delete saves;
-    delete screen;
-    delete timer;
-	delete sound;
-	playersList.clear();
+  delete configuration;
+  delete saves;
+  delete screen;
+  delete timer;
+  delete sound;
+  playersList.clear();
 }
 
 bool GameCore::initializeGameCore()
@@ -57,12 +57,12 @@ void GameCore::startSoundEffect(std::string filename)
 }
 
 void GameCore::addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed, 
-				GLfloat speedY, Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
-				std::vector < int > returnFrame, IDSpriteStates state, GLfloat widthSprite, GLfloat heightSprite)
+				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
+				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite)
 {
 	playersList.push_back( player );
-	playersList.at(id).initializePlayer(id, filename, speed, speedY, 
-										pos, initialFrame, maxFrame, returnFrame, state,
+	playersList.at(id).initializePlayer(id, filename, speed, 
+										pos, initialFrame, maxFrame, returnFrame,
 										widthSprite, heightSprite);
 }
 

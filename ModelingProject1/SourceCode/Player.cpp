@@ -1,77 +1,103 @@
 
+#include <algorithm>
+
 #include "Player.h"
-#include <fstream>
+#include "PlayerState.h"
 
 void Player::stop()
 {
-	playerSprite->setCurrentState(STILL);
-	playerSprite->changeCurrentFrame(STILL);
+  playerSprite->changeStatePlayerSprite(STILL_STATE, 0, this->getInputMapper()->getListKeys());
+  getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
+  playerSprite->changeCurrentFrame(GameCoreStates::STILL);
 }
 
 void Player::executeAction()
 {
-	switch( playerSprite->getCurrentState() )
+  switch( playerSprite->getCurrentState() )
+  {
+    case GameCoreStates::STILL:
+    {
+      noAction();
+      break;
+    }
+	case GameCoreStates::WALKING:
+    {
+      walk();
+      break;
+    }
+	case GameCoreStates::RUNNING:
 	{
-	case STILL:
-		{
-			noAction();
-			break;
-		}
-	case WALKING:
-		{
-			walk();
-			break;
-		}
-	case RUNNING:
-		{
-			run();
-			break;
-		}
-	case JUMPING:
-		{
-			jump();
-			break;
-		}
+      run();
+      break;
+    }
+	case GameCoreStates::JUMPING:
+	case GameCoreStates::DOUBLE_JUMP:
+    {
+      jump();
+      break;
 	}
+  }
 }
 
-void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player)
+bool Player::isReadyToPace()
 {
-	std::fstream file;
-	file.open("logKeys.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-	
-	bool bcurrentState = inputs.states.find(InputMapping::WALKING) != inputs.states.end();
-	if ( bcurrentState == true && player.getPlayerSprite()->getCurrentState() != JUMPING )
-	{
-		player.getPlayerSprite()->setCurrentState( WALKING );}
+  if ( playerSprite->getCurrentState() != GameCoreStates::JUMPING && 
+	   playerSprite->getCurrentState() != GameCoreStates::DOUBLE_JUMP )
+  {
+	  return true;
+  }
 
-	if ( bcurrentState == true && player.getPlayerSprite()->getCurrentState() == JUMPING 
-		&& player.getPlayerSprite()->getPreviousState() == WALKING && inputs.actions.find(InputMapping::JUMPING) != inputs.actions.end() )
-	{
-		player.getPlayerSprite()->setCurrentState( DOUBLE_JUMP );
-		
-	}
+  return false;
+}
 
-	if ( bcurrentState == false && player.getPlayerSprite()->getCurrentState() == JUMPING )
-	{
-		player.getPlayerSprite()->setCurrentState( JUMPING );
-		if ( player.getPlayerSprite()->getSpeedY() >= -8 && 
-			inputs.actions.find(InputMapping::JUMPING) != inputs.actions.end() && player.getPlayerSprite()->getPreviousState() != DOUBLE_JUMP )
-		{
-			player.getPlayerSprite()->setCurrentState( DOUBLE_JUMP );
-		}
+bool Player::isReadyToDoubleJump()
+{
+  if ( playerSprite->getSpeedY() >= -8 )
+  {
+    return true;
+  }
 
-	}
-	
-	if ( bcurrentState == false && player.getPlayerSprite()->getCurrentState() != JUMPING )
-	{
-		player.getPlayerSprite()->setCurrentState( STILL );
-	}
+  return false;
+}
 
-	if(inputs.actions.find(InputMapping::JUMPING) != inputs.actions.end())
-	{
-		player.getPlayerSprite()->setCurrentState( JUMPING );
-	}
+void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys)
+{
+  Sprite *playerSprite = player.getPlayerSprite();
 
-	file.close();
+  playerSprite->setConstantSpeedX ( 
+		        playerSprite->getHandlerAnimation()->changeAnimationDirection(inputs.directionKeyPressed) );
+
+  bool findStillInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::STILL) 
+		                   != inputs.states.end();
+  bool findWalkingInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::WALKING) 
+		                     != inputs.states.end();
+  bool findJumpingInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::JUMPING) 
+		                     != inputs.states.end();
+  bool findRunningInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::RUNNING) 
+		                     != inputs.states.end();
+
+  if ( findWalkingInStates && player.isReadyToPace() )
+  {
+    playerSprite->changeStatePlayerSprite(WALKING_STATE, inputs.buttonPreviouslyPressed, keys);
+  }
+
+  if ( findRunningInStates && player.isReadyToPace() )
+  {
+    playerSprite->changeStatePlayerSprite(RUNNING_STATE, inputs.buttonPreviouslyPressed, keys);
+  }
+
+  if ( findJumpingInStates )
+  {
+    playerSprite->changeStatePlayerSprite(JUMPING_STATE, inputs.jumpKeyPreviouslyPressed, keys);
+
+    if ( player.isReadyToDoubleJump() )
+    {
+      playerSprite->changeStatePlayerSprite(DOUBLE_JUMP_STATE, inputs.jumpKeyPreviouslyPressed, keys);
+    }
+  }
+
+  if ( findStillInStates )
+  {
+    playerSprite->changeStatePlayerSprite(STILL_STATE, inputs.buttonPreviouslyPressed, keys);
+  }
 }

@@ -76,6 +76,15 @@
     <Filter Include="Header Files\System">
       <UniqueIdentifier>{855ce3bb-62d9-40e0-b9a9-85a06026bf0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Player\States">
+      <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Player\States">
+      <UniqueIdentifier>{bf076467-bea2-40e9-a8dd-99692646036c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{2b62b77f-74f0-4e6a-b9c1-17d94d20a0bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -181,10 +190,37 @@
       <Filter>Source Files\Game Physics</Filter>
     </ClCompile>
     <ClCompile Include="GameInputMapper.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="GameInputContext.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerStateManager.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StillState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="WalkingState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="RunningState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpingState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleJumpState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ComparatorFunctions.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,13 +332,43 @@
     <ClInclude Include="GameInputMapper.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="InputConstants.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
     <ClInclude Include="RawInputConstants.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Vector.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSpriteStates.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteDataConstants.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="WalkingState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStateManager.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="RunningState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StillState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleJumpState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpingState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ComparatorFunctions.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
@@ -316,13 +382,13 @@
     <None Include="Meerkat - SpriteSheet.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="TutorialMapTest.tmx">
+    <None Include="LevelOneTileMap.tmx">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="merkaat.kes" />
-    <None Include="merkaat.kes" />
-    <None Include="merkaat.kes" />
-    <None Include="LevelOneTileMap.tmx">
+    <None Include="ContextList.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="MainContext.txt">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
