@@ -1,14 +1,16 @@
 
 #include "Animation.h"
 
-Animation::Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, AnimationDirection direction)
+Animation::Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, SpriteData::AnimationDirection direction)
 {
 	currentFrame = actualFrame;
     maxFrames = maxFramesFromCurrentState;
 	animationDirection = direction;
     incrementFrame = 1;
-    frameRate = 50;
+    frameRate = 30;
     oldTime = 0;
+	numberCyclesPerFrame = 0;
+	loopPerAnimation = 0;
 	this->returnFrame = returnFrame;
 }
 
@@ -25,13 +27,22 @@ int Animation::animate()
  
     oldTime += frameRate;
  
-    currentFrame += incrementFrame;
-
-    if( currentFrame > maxFrames)
+	
+	if ( loopPerAnimation == numberCyclesPerFrame )
 	{
-		currentFrame = returnFrame;
-    }
+		currentFrame += incrementFrame;
+		loopPerAnimation = 0;
 
+		if( currentFrame > maxFrames)
+		{
+			currentFrame = returnFrame;
+		}
+	}
+
+	else
+	{
+	  loopPerAnimation += 1;
+	}
 	return currentFrame;
 }
 
@@ -46,7 +57,7 @@ void Animation::setCurrentFrame(int frame)
     currentFrame = frame;
 }
 
-int Animation::changeAnimationDirection(AnimationDirection direction)
+int Animation::changeAnimationDirection(int direction)
 {
 	if ( animationDirection != direction )
 	{

@@ -1,17 +1,12 @@
 #pragma once
 
 #include "SDL/SDL.h"
-
-enum AnimationDirection
-{
-	RIGHT,
-	LEFT
-};
+#include "SpriteDataConstants.h"
 
 class Animation
 {
 public:
-	Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, AnimationDirection direction);
+	Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, SpriteData::AnimationDirection direction);
 	~Animation(void);
  
     int animate();
@@ -25,14 +20,18 @@ public:
 
 	void setReturnFrame(int returnFrame) { this->returnFrame = returnFrame; }
 
-	AnimationDirection getAnimationDirection() { return animationDirection; }
-	int changeAnimationDirection(AnimationDirection direction);
+	void setCyclesPerFrame(int cycles) { numberCyclesPerFrame = cycles; }
+
+	void setLoopPerAnimation(int loop) { loopPerAnimation = loop; }
+
+	int getAnimationDirection() { return animationDirection; }
+	int changeAnimationDirection(int direction);
 
 private:
 	int currentFrame, incrementFrame;
-	int maxFrames;
-	int returnFrame;
+	int maxFrames, returnFrame;
+	int numberCyclesPerFrame, loopPerAnimation;
 	Uint32 frameRate, oldTime;
-	AnimationDirection animationDirection;
+	int animationDirection;
 };
 

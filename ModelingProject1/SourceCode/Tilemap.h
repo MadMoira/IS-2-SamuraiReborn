@@ -4,7 +4,6 @@
 #include <GL/gl.h>
 
 #include <vector>
-#include <exception>
 
 #include <boost/ptr_container/ptr_vector.hpp>
 
@@ -32,7 +31,7 @@ public:
 	int getHeightLevelInTiles() { return heightLevelInTiles; }
 	void setHeightLevelInTiles(int height) { heightLevelInTiles = height; }
 
-	void setVelocityX(GLfloat velX) { speedX = velX; }
+	void setVelocityX(GLfloat velX) { speed.x = velX; }
 
 	boost::ptr_vector< Tileset > getTilesetList() { return tilesetList; }
 	void addTileset(int id, std::string name, GLfloat widthTile, GLfloat heightTile, GLfloat imageWidth, GLfloat imageHeight, 
@@ -41,10 +40,9 @@ public:
 private:
 	std::string nameLayer;
 	std::vector< std::vector < Tile > > layerMap;
+	Vector2f offset, speed;
 	int widthLevelInTiles, heightLevelInTiles;
 	GLfloat sizeTiles;
 	boost::ptr_vector< Tileset > tilesetList;
-	GLfloat offsetX, offsetY;
-	GLfloat speedX, speedY;
 };
 

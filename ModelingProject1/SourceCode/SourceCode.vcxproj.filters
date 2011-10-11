@@ -19,9 +19,6 @@
     <Filter Include="Header Files\Game Core">
       <UniqueIdentifier>{1cbcd426-636a-4306-8cae-d883f47f281a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Game Core">
-      <UniqueIdentifier>{ba2ab8f5-ccc2-4c34-bc3a-d0b90af1331d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game States">
       <UniqueIdentifier>{aec0e6cb-914b-4917-9bd4-fce5c94727aa}</UniqueIdentifier>
     </Filter>
@@ -72,6 +69,21 @@
     </Filter>
     <Filter Include="Header Files\Game Physics">
       <UniqueIdentifier>{30242d66-1334-48ec-b79c-93090231b9d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Core">
+      <UniqueIdentifier>{ba2ab8f5-ccc2-4c34-bc3a-d0b90af1331d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{855ce3bb-62d9-40e0-b9a9-85a06026bf0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Player\States">
+      <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Player\States">
+      <UniqueIdentifier>{bf076467-bea2-40e9-a8dd-99692646036c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{2b62b77f-74f0-4e6a-b9c1-17d94d20a0bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,14 +180,47 @@
     <ClCompile Include="GameInput.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="KeyboardHandler.cpp">
-      <Filter>Source Files\Input</Filter>
-    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files\Level Design</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementPhys.cpp">
+      <Filter>Source Files\Game Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInputMapper.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInputContext.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerStateManager.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StillState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="WalkingState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="RunningState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpingState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleJumpState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="ComparatorFunctions.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Game Core</Filter>
@@ -257,9 +302,6 @@
     <ClInclude Include="GameSound.h">
       <Filter>Header Files\Game Core</Filter>
     </ClInclude>
-    <ClInclude Include="Tilemap.h">
-      <Filter>Header Files\Level Design</Filter>
-    </ClInclude>
     <ClInclude Include="SLevelTutorial.h">
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
@@ -267,9 +309,6 @@
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
     <ClInclude Include="GameInput.h">
-      <Filter>Header Files\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardHandler.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
@@ -284,11 +323,62 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Game Core</Filter>
     </ClInclude>
+    <ClInclude Include="MovementPhys.h">
+      <Filter>Header Files\Game Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Tilemap.h">
+      <Filter>Header Files\Level Design</Filter>
+    </ClInclude>
+    <ClInclude Include="File.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInputContext.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInputMapper.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="RawInputConstants.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSpriteStates.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteDataConstants.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="WalkingState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStateManager.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="RunningState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StillState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleJumpState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpingState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="ComparatorFunctions.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="mountains.png">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="nubes.png">
       <Filter>Resource Files</Filter>
     </None>
@@ -298,10 +388,13 @@
     <None Include="Meerkat - SpriteSheet.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="TutorialMapTest.tmx">
+    <None Include="LevelOneTileMap.tmx">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Tiles.png">
+    <None Include="ContextList.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="MainContext.txt">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

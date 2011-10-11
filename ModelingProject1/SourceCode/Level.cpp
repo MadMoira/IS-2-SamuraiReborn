@@ -1,8 +1,6 @@
 
 #include <fstream>
-
 #include "Level.h"
-
 #include "TmxParser/Tmx.h"
 
 Level::Level(Levels id)
@@ -156,10 +154,10 @@ bool Level::drawLevelMap()
 	return true;
 }
 
-void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY, 
-				GLfloat constantX, bool hasRepetition)
+void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
+				 GLfloat constantX, bool hasRepetition)
 {
-	layersList.push_back( new Layer(name, widthLayer, heightLayer, velX, velY, constantX, hasRepetition) );
+	layersList.push_back( new Layer(name, widthLayer, heightLayer, vel, constantX, hasRepetition) );
 }
 
 void Level::scrollBackgroundLayers()
@@ -174,7 +172,7 @@ void Level::checkLayersSpeed(GLfloat speedX)
 {
 	for (std::string::size_type i = 1; i < layersList.size(); i++)
 	{
-		layersList.at(i).setVelocityX(speedX);
+		layersList.at(i).setSpeedX(speedX);
 	}
 }
 

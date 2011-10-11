@@ -1,6 +1,4 @@
 
-#include <windows.h>
-#include <gl\GL.h>
 
 #include "GameCore.h"
 #include "GameRender.h"
@@ -12,33 +10,33 @@
 
 int main( int argc, char* args[] )
 {
-	GameCore Core;
-	GameRender Render;
-	GameInput Input;
-	GameStateManager *StateManager = new GameStateManager();
+  GameCore Core;
+  GameRender Render;
+  GameInput Input;
+  GameStateManager *StateManager = new GameStateManager();
 	
-	if( !Core.initializeGameCore() )
-	{
-		return 1;
-	}
+  if( !Core.initializeGameCore() )
+  {
+    return 1;
+  }
 
-	StateManager->changeState( new SLevelTutorial( &Render, &Core, &Input, STATE_LEVELZEROTUTORIAL ) );
+  StateManager->changeState( new SLevelTutorial( &Render, &Core, &Input, STATE_LEVELZEROTUTORIAL ) );
 	
-	StateManager->init();
+  StateManager->init();
 
-	while( Core.getIsRunning() )
-	{
-		Core.getGameTimer()->start();
+  while( Core.getIsRunning() )
+  {
+    Core.getGameTimer()->start();
 
-		StateManager->handleEvents();
-		StateManager->logic();
-		StateManager->render();
+    StateManager->handleEvents();
+    StateManager->logic();
+    StateManager->render();
 
-		Core.getGameTimer()->delay();
-	}
+    Core.getGameTimer()->delay();
+  }
 	
-	delete StateManager;
-	Core.cleanUpGameCore();
+  delete StateManager;
+  Core.cleanUpGameCore();
 
-    return 0;
+  return 0;
 }

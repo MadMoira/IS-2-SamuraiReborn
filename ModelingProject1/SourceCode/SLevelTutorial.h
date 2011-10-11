@@ -3,9 +3,7 @@
 #include "GameState.h"
 
 #include "Level.h"
-
-#include "PandaP1.h"
-#include "MeerkatP2.h"
+#include "MovementPhys.h"
 
 class SLevelTutorial : public GameState
 {
@@ -17,9 +15,10 @@ public:
 	void handleEvents();
 	void logic();
 	void render();
-	void camera();
+    void checkGravity(int vPosition);
 
 private:
 	Level *tutorialLevel;
+	MovementPhys *movPhysics;
 };
 
