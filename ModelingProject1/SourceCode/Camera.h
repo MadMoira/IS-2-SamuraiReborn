@@ -13,19 +13,26 @@ public:
 
 	void initCamera();
 
-	void moveCamera(GLfloat posxP1, GLfloat posxP2, GLfloat widthP1, GLfloat widthP2);
+	void moveCamera(GLfloat posx1);
+	void moveCamera(GLfloat posx1, GLfloat posx2);
+	
 	void renderCamera();
 
-	bool checkMidCam(GLfloat posxP1, GLfloat posxP2, GLfloat widthP1, GLfloat widthP2);
+	bool checkMidCam(GLfloat posx1);
+	bool checkMidCam(GLfloat posx1, GLfloat posx2);
 
 	void setCameraSpeed(GLfloat newSpeedx);
+	void restartCameraSpeed();
+
 	GLfloat getCameraSpeed() {return speedx;};
+	bool getOnePlayer() {return onePlayer;};
 
 private:
 
-	GLfloat posx, posy;
+	GLfloat posx;	
 	GLfloat speedx;
 	GLfloat midPoint;
+	bool onePlayer;
 	const SDL_VideoInfo* defaultResolution;
 	
 };

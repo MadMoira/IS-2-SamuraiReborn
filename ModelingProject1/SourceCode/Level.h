@@ -7,11 +7,12 @@
 #include <boost/ptr_container/ptr_vector.hpp>
 #include <boost/lexical_cast.hpp>
 
+#include "Vector.h"
+
 #include "Tileset.h"
 #include "Layer.h"
 #include "Tilemap.h"
 
-#include "GameCore.h"
 
 enum Levels 
 { 
@@ -30,7 +31,7 @@ public:
 	bool drawLevelMap();
 
 	boost::ptr_vector< Layer > getLayersList() { return layersList; }
-	void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY, 
+	void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
 				 GLfloat constantX, bool hasRepetition);
 	void scrollBackgroundLayers();
 	void checkLayersSpeed(GLfloat speedX);

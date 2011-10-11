@@ -1,9 +1,10 @@
 #include "Camera.h"
 
 Camera::Camera(){
-	posx = posy = 0;
+	posx = 0;
 	speedx = 0;	
 	midPoint = 0;
+	onePlayer = true;	
 }
 
 Camera::~Camera(){
@@ -14,9 +15,21 @@ void Camera::initCamera(){
 	midPoint = defaultResolution->current_w/2;
 }
 
-void Camera::moveCamera(GLfloat posxP1, GLfloat posxP2, GLfloat widthP1, GLfloat widthP2){	
-	
-	if (checkMidCam(posxP1, posxP2, widthP1, widthP2)){
+void Camera::moveCamera(GLfloat posx1){	
+
+	if (checkMidCam(posx1)){
+		posx += speedx;
+		midPoint += speedx;
+	}
+	else{
+		speedx = 0;
+	}
+
+}
+
+void Camera::moveCamera(GLfloat posx1, GLfloat posx2){	
+
+	if (checkMidCam(posx1, posx2)){
 		posx += speedx;
 		midPoint += speedx;
 	}
@@ -31,18 +44,31 @@ void Camera::renderCamera(){
 }
 
 void Camera::setCameraSpeed(GLfloat newSpeedx){
-	speedx = newSpeedx;
+	if(onePlayer){
+		speedx += newSpeedx;
+	}
+	else{
+		speedx += newSpeedx/2;
+	}
 }
 
-bool Camera::checkMidCam(GLfloat posxP1, GLfloat posxP2, GLfloat widthP1, GLfloat widthP2){	
+void Camera::restartCameraSpeed(){
+	speedx = 0;
+}
 
-	std::cout << "panda posx: " << posxP1 << std::endl;
-	std::cout << "meerkat posx: " << posxP2 << std::endl;
-	std::cout << "midcam posx: " << midPoint << std::endl;
-	std::cout << "diff: " << (posxP1 - midPoint > 0) << std::endl; 
-	std::cout << std::endl;
+bool Camera::checkMidCam(GLfloat posx1){
 	
-	if(/*(posxP1 - posxP2) <= defaultResolution->current_w/2 &&*/ ((posxP1+widthP1 )- midPoint > 0 || (posxP2+widthP2) - midPoint > 0)){
+	if(posx1 - midPoint > 0){
+		return true;
+	}	
+
+	return false;
+
+}
+
+bool Camera::checkMidCam(GLfloat posx1, GLfloat posx2){
+	
+	if(posx1- midPoint > 0 || posx2 - midPoint > 0){
 		return true;
 	}	
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <boost/ptr_container/ptr_vector.hpp>
-
 #include "GameConfiguration.h"
 #include "GameSaves.h"
 #include "GameScreen.h"
@@ -11,6 +10,8 @@
 #include "Player.h"
 #include "Camera.h"
 
+
+#include "Vector.h"
 
 class GameCore
 {
@@ -36,9 +37,9 @@ public:
 	GameScreen* getGameScreen() {return screen;};
 
 	boost::ptr_vector< Player > &getPlayersList() { return playersList; }
-	void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX,
-				GLfloat posY, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
-				IDSpriteStates state, GLfloat widthSprite, GLfloat heightSprite);
+	void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed,
+				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
+				GLfloat widthSprite, GLfloat heightSprite);
 
 	bool getIsRunning() { return isRunning; }
 	void setIsRunning(bool running) { isRunning = running; };

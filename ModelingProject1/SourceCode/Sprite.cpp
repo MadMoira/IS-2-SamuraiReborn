@@ -1,51 +1,83 @@
 
 #include "Sprite.h"
+#include "PlayerState.h"
 
-Sprite::Sprite(IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
-				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, IDSpriteStates state,
+Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
 				GLfloat widthSprite, GLfloat heightSprite)
 {
-	texture = GameRender::loadTexture(filename);
-	glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &this->widthTexture);
-	glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &this->heightTexture);
+  texture = GameRender::loadTexture(filename);
+  glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &this->widthTexture);
+  glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &this->heightTexture);
 
-	handlerAnimation = new Animation(initialFrame, maxFrame.at(state), returnFrame.at(state), RIGHT );
+  playerStateManager = new PlayerStateManager();
+  playerStateManager->pushState( new GameCoreStates::PlayerState(GameCoreStates::STILL) );
 
-	maxFramesPerAnimation = maxFrame;
-	returnFramesPerAnimation = returnFrame;
+  handlerAnimation = new Animation(initialFrame, maxFrame.at(getCurrentState()), 
+		                           returnFrame.at(getCurrentState()), 
+								   SpriteData::RIGHT );
 
-	width = widthSprite;	height = heightSprite;
-	this->posX = posX;  this->posY = posY;
-	speedXVector = speedX;
-	this->speedY = speedY;
-	currentState = state;
+  maxFramesPerAnimation = maxFrame;
+  returnFramesPerAnimation = returnFrame;
+
+  width = widthSprite;	
+  height = heightSprite;
+  position.x = pos.x;		
+  position.y = pos.y;
+  this->speed = speed;
+  currentXSpeed = speed.at(getCurrentState()).x;
+  currentYSpeed = speed.at(getCurrentState()).y;
+  delay.x = 0;
+  delay.y = 0;
 }
 
 Sprite::~Sprite(void)
 {
-	glDeleteTextures(1, &texture);
-	maxFramesPerAnimation.clear();
-	returnFramesPerAnimation.clear();
-	speedXVector.clear();
+  glDeleteTextures(1, &texture);
+  maxFramesPerAnimation.clear();
+  returnFramesPerAnimation.clear();
+  speed.clear();
+  delete playerStateManager;
 }
 
 bool Sprite::movePosXWithSpeed()
 {
-	if ( posX + getSpeedX() + width < 1280.f )
+	if ( position.x + getSpeedX() + width < 1280.f )
 	{
-		posX += getSpeedX();
+		position.x += getSpeedX();
 		return true;
 	}
 
 	return false;
 }
 
+bool Sprite::movePosYWithSpeed()
+{
+	if(position.y + getSpeedY()+height < 600.f){
+		position.y += getSpeedY();
+		return true;
+	}
+	return false;
+}
+
+void Sprite::setSpeedX(GLfloat speedX)
+{
+	if ( getCurrentState() == GameCoreStates::JUMPING || getCurrentState() == GameCoreStates::DOUBLE_JUMP)
+	{
+		speed.at(getCurrentState()).x = speedX;
+	}
+
+	currentXSpeed = speedX;
+}
+
 void Sprite::setConstantSpeedX(int constant)
 {
-	for(std::string::size_type i = 0; i < speedXVector.size(); i++)
+	for(std::string::size_type i = 0; i < speed.size(); i++)
 	{
-		speedXVector.at(i) *= constant;
+		speed.at(i).x *= constant;
 	}
+
+	currentXSpeed *= constant;
 }
 
 void Sprite::changeCurrentFrame(int frame)
@@ -53,24 +85,44 @@ void Sprite::changeCurrentFrame(int frame)
 	handlerAnimation->setCurrentFrame(frame);
 }
 
-void Sprite::setCurrentState(IDSpriteStates state)
+void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
+                                     std::list<InputMapping::Key> keys)
 {
-	if ( currentState != state )
-	{
-		currentState = state;
+  if ( playerStateManager->getCurrentState() == newState->getCurrentID() )
+  {
+    return;
+  }
 
-		handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(currentState) );
-		handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(currentState) );
-	}
+  int result = newState->checkMovementRestrictions(keyPreviouslyPressed, getPreviousState(), 
+                                                   getCurrentState(), keys );
 
+  if ( result == GameCoreStates::CHANGE )
+  {
+    playerStateManager->changeState(newState);
+
+    setSpeedY(speed.at(getCurrentState()).y);
+    handlerAnimation->setLoopPerAnimation(0);
+    handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
+    handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );	
+    return;
+  }
+
+  else if( result == GameCoreStates::RETURN_STILL )
+  {
+    playerStateManager->changeState(STILL_STATE);
+    setSpeedY(speed.at(getCurrentState()).y);
+    handlerAnimation->setLoopPerAnimation(0);
+    handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
+    handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );
 	return;
+  }
 }
 
 void Sprite::drawTexture()
 {
-	GameRender::drawSpriteTexture(texture, posX, posY,  handlerAnimation->getCurrentFrame(), 
-									widthTexture, heightTexture, width, height, 
-									handlerAnimation->getAnimationDirection(), currentState );
+  GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), 
+                                widthTexture, heightTexture, width, height, 
+                                handlerAnimation->getAnimationDirection(), getCurrentState() );
 }
 
 

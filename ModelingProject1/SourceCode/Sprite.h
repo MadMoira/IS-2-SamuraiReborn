@@ -8,44 +8,43 @@
 #include "GameRender.h"
 
 #include "Animation.h"
+#include "PlayerStateManager.h"
+
+#include "Vector.h"
 
 enum IDSprites 
 { 
 	PANDA, 
 	MEERKAT, 
-	JAPANESEMONKEY 
-};
-
-enum IDSpriteStates
-{
-	STILL,
-	WALKING,
-	JUMPING,
-	RUNNING
+	JAPANESEMONKEY, 
 };
 
 class Sprite
 {
 public:
-	Sprite(IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
-				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, IDSpriteStates state,
+	Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
 				GLfloat widthSprite, GLfloat heightSprite);
 	~Sprite(void);
 
-	GLfloat getPosX() { return posX; }
+	GLfloat getPosX() { return position.x; }
 	bool movePosXWithSpeed();
+	GLfloat getPosY() { return position.y; }
+	bool movePosYWithSpeed();
 
-	GLfloat getPosY() { return posY; }
+	GLfloat getSpeedX() { return currentXSpeed; }
+	GLfloat getStateXSpeed() { return speed.at(getCurrentState()).x; }
+	GLfloat getPreviousStateXSpeed() { return speed.at(getPreviousState()).x; }
 
-	GLfloat getSpeedX() { return speedXVector.at(currentState); }
-	void setSpeedX(GLfloat speedX) { speedXVector.at(currentState) = speedX; }
+	void setSpeedX(GLfloat speedX);
 	void setConstantSpeedX(int constant);
 
-	GLfloat getSpeedY() { return speedY; }
+	GLfloat getSpeedY() { return currentYSpeed; }
+	void setSpeedY(GLfloat newSpeedY){currentYSpeed=newSpeedY;}
 
-	GLfloat getDelayX() { return delayX; }
+	GLfloat getDelayX() { return delay.x; }
 
-	GLfloat getDelayY() { return delayY; }
+	GLfloat getDelayY() { return delay.y; }
 
 	GLuint getTexture() { return texture; }
 
@@ -54,8 +53,12 @@ public:
 	Animation *getHandlerAnimation() { return handlerAnimation; }
 	void changeCurrentFrame(int frame);
 
-	int getCurrentState() { return currentState; }
-	void setCurrentState(IDSpriteStates state);
+	int getCurrentState() { return playerStateManager->getCurrentState(); }
+
+	void changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
+		                         std::list<InputMapping::Key> keys);
+
+	int getPreviousState() { return playerStateManager->getPreviousState(); }
 
 	void drawTexture();
 
@@ -63,14 +66,14 @@ private:
 	IDSprites ID;
 	GLuint texture;
 	Animation *handlerAnimation;
-	IDSpriteStates currentState;
+	PlayerStateManager *playerStateManager;
+	Vector2f position, delay;
+	std::vector< Vector2f > speed;
 	std::vector< int > maxFramesPerAnimation;
 	std::vector< int > returnFramesPerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
-	GLfloat posX, posY;
-	std::vector< GLfloat > speedXVector;
-	GLfloat speedY, countX, countY;
-	GLfloat delayX, delayY;
+	GLfloat currentXSpeed, currentYSpeed;
+	GLfloat countX, countY;
 	int frameCount, frameDelay;
 };
 

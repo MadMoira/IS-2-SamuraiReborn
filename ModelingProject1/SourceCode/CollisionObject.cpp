@@ -5,7 +5,6 @@ CollisionObject::CollisionObject(void)
 {
 }
 
-
 CollisionObject::~CollisionObject(void)
 {
 }
