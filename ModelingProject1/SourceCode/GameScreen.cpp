@@ -111,4 +111,9 @@ bool GameScreen::initializeSDLGLState()
 	return true;
 }
 
+GLfloat GameScreen::getWidth(){
+	defaultResolution = SDL_GetVideoInfo();
+	return defaultResolution->current_w;
+}
+
 
