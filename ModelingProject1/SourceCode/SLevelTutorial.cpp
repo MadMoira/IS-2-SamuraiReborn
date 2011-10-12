@@ -63,10 +63,12 @@ void SLevelTutorial::init()
 						STILL, 204.0f, 187.0f);*/
 
   tutorialLevel = new Level(LEVELZEROTUTORIAL);
-  tutorialLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");	
+	tutorialLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");
 
   tutorialLevel->addLayerToList("nubes.png", 1600.f, 720.f, Vector2f(1.0f, 0.0f), 0.1f, true);
 
+	gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX();
+	
   speedPanda.clear();
   speedMeerkat.clear();
   maxFrameVector.clear();
@@ -91,14 +93,28 @@ void SLevelTutorial::logic()
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();
+		gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX());
     checkGravity(i); 
   }
 
-  tutorialLevel->checkLayersSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
+	tutorialLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
   tutorialLevel->scrollBackgroundLayers();
 
-  tutorialLevel->checkTilemapsSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
+	std::cout << gameCore->getCamera()->getCameraSpeed() << std::endl;
+
+	tutorialLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
   tutorialLevel->scrollTilemap();
+
+	if(gameCore->getCamera()->getOnePlayer()){
+		gameCore->getCamera()->moveCamera(gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX());
+	}
+	else{
+		gameCore->getCamera()->moveCamera(gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX(),
+			gameCore->getPlayersList().at(1).getPlayerSprite()->getPosX());
+	}
+
+	gameCore->getCamera()->restartCameraSpeed();
+
 }
 
 void SLevelTutorial::checkGravity(int vPosition)
@@ -117,14 +133,16 @@ void SLevelTutorial::checkGravity(int vPosition)
 void SLevelTutorial::render()
 {
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);	
 
   tutorialLevel->drawLevelMap();
 
+	glPushMatrix();
+	gameCore->getCamera()->renderCamera();
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {
     gameCore->getPlayersList().at(i).draw();
   }
-
+	glPopMatrix();
   SDL_GL_SwapBuffers();
 }

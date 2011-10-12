@@ -13,6 +13,7 @@ public:
 	bool initializeScreen();
 	bool initializeOpenGL();
 	bool initializeSDLGLState();
+	GLfloat getWidth();
 	
 private:
 	SDL_Surface *screen;
