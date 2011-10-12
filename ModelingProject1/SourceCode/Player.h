@@ -10,7 +10,7 @@
 class Player : boost::noncopyable
 {
 public:
-
+	Player::Player();
 	virtual ~Player() { };
 	
 	/*virtual void attack();
@@ -44,4 +44,3 @@ protected:
 	Weapon *playerWeapon;
 	KeyboardHandler *keyboardHandler;
 };
-

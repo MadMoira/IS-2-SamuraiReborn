@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 #define FRAMES_PER_SECOND 10
 

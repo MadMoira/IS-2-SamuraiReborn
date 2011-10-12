@@ -5,6 +5,8 @@
 class MeerkatP2 : public Player
 {
 public:
+	
+	MeerkatP2::MeerkatP2();
 	~MeerkatP2();
 
 	void initializePlayer(IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX,

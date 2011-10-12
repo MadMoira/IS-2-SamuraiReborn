@@ -5,7 +5,7 @@
 
 #include "Sprite.h"
 
-#include "SDL/SDL.h"
+#include "SDL.h"
 
 enum Keys
 {
