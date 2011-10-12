@@ -320,6 +320,9 @@
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Level Design</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Game Core</Filter>
+    </ClInclude>
     <ClInclude Include="MovementPhys.h">
       <Filter>Header Files\Game Physics</Filter>
     </ClInclude>

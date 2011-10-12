@@ -48,6 +48,8 @@ public:
 
 	GLuint getTexture() { return texture; }
 
+	GLfloat getWidthTexture(){ return width;}
+
 	Animation *getHandlerAnimation() { return handlerAnimation; }
 	void changeCurrentFrame(int frame);
 
