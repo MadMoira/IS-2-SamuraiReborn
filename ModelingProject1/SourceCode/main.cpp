@@ -1,64 +1,42 @@
+
+
 #include "GameCore.h"
+#include "GameRender.h"
+#include "GameInput.h"
 
-#include "Level.h"
+#include "GameStateManager.h"
 
-#include <windows.h>
-#include <gl\GL.h>
+#include "SLevelTutorial.h"
 
 int main( int argc, char* args[] )
 {
-	GameCore Core;
-
-	if(Core.initGame() == false)
-	{
-		return 1;
-	}
-
-	/*Level *levelOne = new Level();
-	levelOne->loadTMXTileMapFile("test1.tmx");	
+  GameCore Core;
+  GameRender Render;
+  GameInput Input;
+  GameStateManager *StateManager = new GameStateManager();
 	
-	levelOne->drawLevelMap();*/
+  if( !Core.initializeGameCore() )
+  {
+    return 1;
+  }
 
-	GLuint texture1 = Core.loadTexture("Mov1.png");
-	GLuint texture2 = Core.loadTexture("InitialPosition.png");
-
-	GLuint textureBackground = Core.loadTexture("background.png");
-
-	Core.drawTexture(textureBackground, 0.0f, 0.0f, 1280.0f, 720.0f);
-    
-	Core.drawTexture(texture1, 0.0f, 100.0f, 800.0f, 600.0f);
-
-	glTranslatef(100.0f, 130.0f, 0.0f);
-
-	Core.drawTexture(texture2, 0.0f, 0.0f, 800.0f, 600.0f);
-
-	SDL_GL_SwapBuffers();
+  StateManager->changeState( new SLevelTutorial( &Render, &Core, &Input, STATE_LEVELZEROTUTORIAL ) );
 	
-	bool quit = false;
-	SDL_Event evento;
+  StateManager->init();
 
-	while( !quit )
-	{
-		while( SDL_PollEvent( &evento ) )
-		{
-			if( evento.type == SDL_KEYDOWN )
-			{
-				if(evento.key.keysym.sym == SDLK_ESCAPE){
-					quit = true;
-				}
-			}
-			if(evento.type == SDL_QUIT){
-				quit = true;
-			}
-		}
-	}
+  while( Core.getIsRunning() )
+  {
+    Core.getGameTimer()->start();
 
-	glDeleteTextures(1, &texture1);
-	glDeleteTextures(1, &texture2);
-	glDeleteTextures(1, &textureBackground);
-	//delete levelOne;
+    StateManager->handleEvents();
+    StateManager->logic();
+    StateManager->render();
 
-	SDL_Quit();
+    Core.getGameTimer()->delay();
+  }
 	
-    return 0;
+  delete StateManager;
+  Core.cleanUpGameCore();
+
+  return 0;
 }

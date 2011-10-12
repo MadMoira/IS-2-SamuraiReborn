@@ -1,31 +1,78 @@
 #pragma once
 
 #include <windows.h>
-
+#include <string>
+#include <vector>
 #include <GL/gl.h>
+
+#include "GameRender.h"
+
+#include "Animation.h"
+#include "PlayerStateManager.h"
+
+#include "Vector.h"
 
 enum IDSprites 
 { 
 	PANDA, 
 	MEERKAT, 
-	JAPANESEMONKEY 
+	JAPANESEMONKEY, 
 };
 
 class Sprite
 {
 public:
-	Sprite(void);
+	Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
+				GLfloat widthSprite, GLfloat heightSprite);
 	~Sprite(void);
 
-	void draw();
+	GLfloat getPosX() { return position.x; }
+	bool movePosXWithSpeed();
+	GLfloat getPosY() { return position.y; }
+	bool movePosYWithSpeed();
+
+	GLfloat getSpeedX() { return currentXSpeed; }
+	GLfloat getStateXSpeed() { return speed.at(getCurrentState()).x; }
+	GLfloat getPreviousStateXSpeed() { return speed.at(getPreviousState()).x; }
+
+	void setSpeedX(GLfloat speedX);
+	void setConstantSpeedX(int constant);
+
+	GLfloat getSpeedY() { return currentYSpeed; }
+	void setSpeedY(GLfloat newSpeedY){currentYSpeed=newSpeedY;}
+
+	GLfloat getDelayX() { return delay.x; }
+
+	GLfloat getDelayY() { return delay.y; }
+
+	GLuint getTexture() { return texture; }
+
+	Animation *getHandlerAnimation() { return handlerAnimation; }
+	void changeCurrentFrame(int frame);
+
+	int getCurrentState() { return playerStateManager->getCurrentState(); }
+
+	void changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
+		                         std::list<InputMapping::Key> keys);
+
+	int getPreviousState() { return playerStateManager->getPreviousState(); }
+
+	void drawTexture();
 
 private:
+	IDSprites ID;
 	GLuint texture;
-	int ID, width, height;
-	float posX, posY;
-	float speedX, speedY, countX, countY;
-	float delayX, delayY;
-	int frameCount, frameDelay, animationDirection;
-	int currentFrame, currentState, maxFrameFromCurrentState;
+	Animation *handlerAnimation;
+	PlayerStateManager *playerStateManager;
+	GameCoreStates::Action currentAction, previousAction;
+	Vector2f position, delay;
+	std::vector< Vector2f > speed;
+	std::vector< int > maxFramesPerAnimation;
+	std::vector< int > returnFramesPerAnimation;
+	GLfloat width, height, widthTexture, heightTexture;
+	GLfloat currentXSpeed, currentYSpeed;
+	GLfloat countX, countY;
+	int frameCount, frameDelay;
 };
 

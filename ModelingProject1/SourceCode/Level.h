@@ -2,17 +2,17 @@
 
 #include <windows.h>
 
-#include <string>
-#include <vector>
 #include <GL/gl.h>
 
 #include <boost/ptr_container/ptr_vector.hpp>
 #include <boost/lexical_cast.hpp>
 
+#include "Vector.h"
+
 #include "Tileset.h"
 #include "Layer.h"
+#include "Tilemap.h"
 
-#include "GameCore.h"
 
 enum Levels 
 { 
@@ -23,25 +23,26 @@ enum Levels
 class Level
 {
 public:
-	Level(void);
+	Level(Levels id);
 	~Level(void);
 
-	void getTileCollision();
-	void getTileOfPlayerPosition();
-	void loadLevelWithName();
 	int loadTMXTileMapFile(std::string filename);
 
 	bool drawLevelMap();
 
 	boost::ptr_vector< Layer > getLayersList() { return layersList; }
+	void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
+				 GLfloat constantX, bool hasRepetition);
+	void scrollBackgroundLayers();
+	void checkLayersSpeed(GLfloat speedX);
 
-	boost::ptr_vector< Tileset > getTilesetList() { return tilesetList; }
+	boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
+	void scrollTilemap();
+	void checkTilemapsSpeed(GLfloat speedX);
 
 private:
-	std::string levelName;
-	int numberOfEnemies;
-	int widthLevelInTiles, heightLevelInTiles;
+	Levels IDLevel;
 	boost::ptr_vector< Layer > layersList;
-	boost::ptr_vector< Tileset > tilesetList;
+	boost::ptr_vector< Tilemap > tilemapList;
 };
 

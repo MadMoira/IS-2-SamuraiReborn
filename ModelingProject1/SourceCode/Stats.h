@@ -1,14 +1,36 @@
 #pragma once
 
-class Stats
+#include <windows.h>
+#include <gl\GL.h>
+
+#include "GameImage.h"
+
+namespace PlayerStats
 {
-public:
+  struct Health
+  {
+    Image::GameImage *healthBar;
+	Vector2f lifeQuadPosition, lifeQuadOffset;
+	Vector2f lifeInitialPosition, lifeInitialOffset;
+	int pointsOfLife;
+
+	Health(Vector2f lifeQPos, Vector2f lifeQOff, Vector2f lifeIPos, Vector2f lifeIOff);
+	Health(){};
+  };
+
+  class Stats
+  {
+   public:
 	Stats(void);
 	~Stats(void);
 
-private:
-	int health, stamina;
+	void drawHealthBar();
+	void drawHealth();
+
+   private:
+    Health health;
+    int stamina;
 	int strength, speedAttack;
 	int strongStyle, fastStyle;
-};
-
+   };
+}

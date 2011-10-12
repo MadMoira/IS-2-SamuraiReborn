@@ -9,41 +9,39 @@
 class Tileset
 {
 public:
-	Tileset(void);
+	Tileset(int id, std::string name, GLfloat widthTile, GLfloat heightTile, GLfloat imageWidth, GLfloat imageHeight, 
+			int size, GLuint tex);
 	~Tileset(void);
-
-	void loadTexture();
-	void getTileWithID();
 
 	GLuint getTexture() { return texture; }
 
 	std::map< int, std::string > getListCollisionTiles() { return listCollisionTiles; }
 	void setListCollisionTiles(std::map< int, std::string > list) { listCollisionTiles = list; }
 
-	int getHeightImage() { return heightImage; }
-	void setHeightImage(int height) { heightImage = height; }
+	GLfloat getHeightImage() { return heightImage; }
+	void setHeightImage(GLfloat height) { heightImage = height; }
 
-	int getWidthImage() { return widthImage; }
-	void setWidthImage(int width) { widthImage = width; }
+	GLfloat getWidthImage() { return widthImage; }
+	void setWidthImage(GLfloat width) { widthImage = width; }
+
+	void setID(int id) { ID = id; }
 
 	void setFilename(std::string name) { filename = name; }
 
-	void setHeightTile(int height) { heightTile = height; }
+	void setHeightTile(GLfloat height) { heightTile = height; }
 
-	void setWidthTile(int width) { widthTile = width; }
+	void setWidthTile(GLfloat width) { widthTile = width; }
 
 	void setNumberOfTiles(int number) { numberOfTiles = number; }
 
 	void setTexture(GLuint tex) { texture = tex; }
 
-	void setID(int id) { ID = id; }
-
 private:
 	std::string filename;
 	GLuint texture;
 	int ID;
-	int heightTile, widthTile;
-	int heightImage, widthImage;
+	GLfloat heightTile, widthTile;
+	GLfloat heightImage, widthImage;
 	int numberOfTiles;
 	std::map< int, std::string > listCollisionTiles;
 };

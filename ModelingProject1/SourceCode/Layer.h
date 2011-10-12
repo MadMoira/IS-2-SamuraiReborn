@@ -1,24 +1,50 @@
 #pragma once
 
-#include <vector>
+#include <windows.h>
+#include <GL/gl.h>
+
 #include <string>
+
+#include "Vector.h"
 
 class Layer
 {
 public:
-	Layer(std::string name, int widthLayer, int heightLayer);
+	Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
+		  GLfloat constantX, bool hasRepetition);
 	~Layer(void);
 
-	std::vector< std::vector <int> > getLayerMap() { return layerMap; } ;
-	void setLayerMap(std::vector< std::vector <int> > map) { layerMap = map; };
+	void drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen);
+	
+	GLuint getTexture() { return texture; }
+	void setLayerTexture(GLuint layerTexture) { texture = layerTexture; }
 
-	int getWidthLevelLayer() { return widthLevelLayer; }
+	GLfloat getWidthLevelLayer() { return widthLevelLayer; }
+	void setWidthLevelLayer(GLfloat width) { widthLevelLayer = width; }
 
-	int getHeightLevelLayer() { return heightLevelLayer; }
+	GLfloat getHeightLevelLayer() { return heightLevelLayer; }
+	void setHeightLevelLayer(GLfloat height) { heightLevelLayer = height; }
+
+	GLfloat getSpeedX() { return speed.x; }
+	void setSpeedX(GLfloat velX) { speed.x = velX*constantVelX; }
+
+	void scrollLayer();
+
+	GLfloat getOffsetX() { return offset.x; }
+	void setOffsetX(GLfloat velX) { offset.x = velX; }
+
+	GLfloat getOffsetY() { return offset.y; }
+
+	bool checkScreenBoundaries();
+
+	bool getRepeat() { return repeat; }
+	void setRepeat(bool hasRepetition) { repeat = hasRepetition; }
 
 private:
 	std::string nameLayer;
-	std::vector< std::vector <int> > layerMap;
-	int widthLevelLayer, heightLevelLayer;
+	GLuint texture;
+	GLfloat widthLevelLayer, heightLevelLayer;
+	Vector2f speed, offset;
+	GLfloat constantVelX;
+	bool repeat;
 };
-

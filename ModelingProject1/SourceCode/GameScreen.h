@@ -10,14 +10,13 @@ public:
 	GameScreen(void);
 	~GameScreen(void);
 
-	void initScreen();
-	void updateScreen();
-	bool initializeOGL();
-	bool initialize();
+	bool initializeScreen();
+	bool initializeOpenGL();
+	bool initializeSDLGLState();
 	
 private:
 	SDL_Surface *screen;
-	int width, heigth;
+	int width, height;
 	std::string windowName;
 	const SDL_VideoInfo* defaultResolution;
 };
