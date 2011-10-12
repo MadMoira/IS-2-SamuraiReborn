@@ -81,6 +81,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameConfiguration.cpp" />
     <ClCompile Include="GameCore.cpp" />
+    <ClCompile Include="GameImage.cpp" />
     <ClCompile Include="GameInput.cpp" />
     <ClCompile Include="GameInputContext.cpp" />
     <ClCompile Include="GameInputMapper.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="File.h" />
     <ClInclude Include="GameConfiguration.h" />
     <ClInclude Include="GameCore.h" />
+    <ClInclude Include="GameImage.h" />
     <ClInclude Include="GameInput.h" />
     <ClInclude Include="GameInputContext.h" />
     <ClInclude Include="GameInputMapper.h" />
@@ -172,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ContextList.txt" />
+    <None Include="healthBar.png" />
     <None Include="LevelOneTileMap.tmx" />
     <None Include="MainContext.txt" />
     <None Include="Meerkat - SpriteSheet.png" />

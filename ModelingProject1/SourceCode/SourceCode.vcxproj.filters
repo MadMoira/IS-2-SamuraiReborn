@@ -222,6 +222,9 @@
     <ClCompile Include="ComparatorFunctions.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="GameImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -371,6 +374,9 @@
     <ClInclude Include="ComparatorFunctions.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="GameImage.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="nubes.png">
@@ -389,6 +395,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="MainContext.txt">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="healthBar.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

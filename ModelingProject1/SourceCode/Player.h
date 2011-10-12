@@ -43,7 +43,7 @@ protected:
 	int currentHealth, currentStamina;
 	Sprite *playerSprite;
 	InputMapping::GameInputMapper *inputMapper;
-	Stats *stats;
+	PlayerStats::Stats *stats;
 	Weapon *playerWeapon;
 };
 

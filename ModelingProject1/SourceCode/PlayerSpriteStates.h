@@ -13,9 +13,7 @@ namespace GameCoreStates
 
   enum Action
   {
-    FAST_ATTACK,
-    STRONG_ATTACK,
-    MELEE_ATTACK,
+    FAST_ATTACK_WALKING,
   };
 
   enum ChangeStateResult

@@ -65,6 +65,7 @@ private:
 	GLuint texture;
 	Animation *handlerAnimation;
 	PlayerStateManager *playerStateManager;
+	GameCoreStates::Action currentAction, previousAction;
 	Vector2f position, delay;
 	std::vector< Vector2f > speed;
 	std::vector< int > maxFramesPerAnimation;
