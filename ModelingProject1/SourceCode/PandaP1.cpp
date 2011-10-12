@@ -28,7 +28,7 @@ void PandaP1::noAction()
 
 void PandaP1::walk()
 {
-  playerSprite->setSpeedX(playerSprite->getStateXSpeed());
+  playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
   if ( playerSprite->movePosXWithSpeed() )
   {
     playerSprite->getHandlerAnimation()->animate() ;
@@ -40,7 +40,7 @@ void PandaP1::walk()
 
 void PandaP1::run()
 {
-  playerSprite->setSpeedX(playerSprite->getStateXSpeed());
+  playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
   if ( playerSprite->movePosXWithSpeed() )
   {
     playerSprite->getHandlerAnimation()->animate() ;
@@ -52,7 +52,7 @@ void PandaP1::run()
 
 void PandaP1::jump()
 {
-  playerSprite->setSpeedX(playerSprite->getPreviousStateXSpeed());
+  playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
   if ( playerSprite->movePosXWithSpeed() && playerSprite->movePosYWithSpeed() )
   {
     playerSprite->getHandlerAnimation()->animate() ;
@@ -65,6 +65,4 @@ void PandaP1::jump()
 void PandaP1::draw()
 {
   playerSprite->drawTexture();
-  stats->drawHealthBar();
-  stats->drawHealth();
 }

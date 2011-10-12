@@ -27,6 +27,8 @@ namespace PlayerStats
 	void drawHealthBar();
 	void drawHealth();
 
+	void updatePositionHealthBar(GLfloat positionX);
+
    private:
     Health health;
     int stamina;

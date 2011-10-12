@@ -24,6 +24,7 @@ public:
 	virtual void draw() = 0;
 	virtual void noAction() = 0;
 	void executeAction();
+	void drawUIStats();
 	void stop();
 
 	static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
@@ -32,10 +33,11 @@ public:
 	bool isReadyToPace();
 	bool isReadyToDoubleJump();
 
-	InputMapping::GameInputMapper *getInputMapper() { return inputMapper; }
+	InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
+
+	PlayerStats::Stats* getPlayerStats() { return stats; }
 
 	void changeFightStyle();
-	void getPlayerStats();
 	bool isAlive();
 
 protected:

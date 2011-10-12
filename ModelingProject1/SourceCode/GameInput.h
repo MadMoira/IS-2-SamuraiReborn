@@ -7,6 +7,8 @@
 #include "Sprite.h"
 #include "GameInputMapper.h"
 
+#include "Camera.h"
+
 class GameInput
 {
 public:

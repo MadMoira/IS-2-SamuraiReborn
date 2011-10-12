@@ -42,47 +42,49 @@ Sprite::~Sprite(void)
 
 bool Sprite::movePosXWithSpeed()
 {
-	if ( position.x + getSpeedX() + width < 1280.f )
-	{
-		position.x += getSpeedX();
-		return true;
-	}
+  if ( position.x + getSpeedX() + width < 6368.f )
+  {
+    position.x += getSpeedX();
+    return true;
+  }
 
-	return false;
+  return false;
 }
 
 bool Sprite::movePosYWithSpeed()
 {
-	if(position.y + getSpeedY()+height < 600.f){
-		position.y += getSpeedY();
-		return true;
-	}
-	return false;
+  if( position.y + getSpeedY()+height < 550.f )
+  {
+    position.y += getSpeedY();
+    return true;
+  }
+
+  return false;
 }
 
 void Sprite::setSpeedX(GLfloat speedX)
 {
-	if ( getCurrentState() == GameCoreStates::JUMPING || getCurrentState() == GameCoreStates::DOUBLE_JUMP)
-	{
-		speed.at(getCurrentState()).x = speedX;
-	}
+  if ( getCurrentState() == GameCoreStates::JUMPING || getCurrentState() == GameCoreStates::DOUBLE_JUMP)
+  {
+    speed.at(getCurrentState()).x = speedX;
+  }
 
-	currentXSpeed = speedX;
+  currentXSpeed = speedX;
 }
 
 void Sprite::setConstantSpeedX(int constant)
 {
-	for(std::string::size_type i = 0; i < speed.size(); i++)
-	{
-		speed.at(i).x *= constant;
-	}
+  for(std::string::size_type i = 0; i < speed.size(); i++)
+  {
+    speed.at(i).x *= constant;
+  }
 
-	currentXSpeed *= constant;
+  currentXSpeed *= constant;
 }
 
 void Sprite::changeCurrentFrame(int frame)
 {
-	handlerAnimation->setCurrentFrame(frame);
+  handlerAnimation->setCurrentFrame(frame);
 }
 
 void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
