@@ -51,7 +51,7 @@ void SLevelTutorial::init()
   returnFrameVector.push_back( 1 );
 
   gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
-						speedMeerkat, Vector2f(50.0f, 400.0f), 0, maxFrameVector, returnFrameVector,
+						speedMeerkat, Vector2f(50.0f, 350.0f), 0, maxFrameVector, returnFrameVector,
 						204.0f, 187.0f);
 
   /*gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
@@ -63,7 +63,7 @@ void SLevelTutorial::init()
 						STILL, 204.0f, 187.0f);*/
 
   tutorialLevel = new Level(LEVELZEROTUTORIAL);
-  tutorialLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");	
+  tutorialLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");
 
   tutorialLevel->addLayerToList("nubes.png", 1600.f, 720.f, Vector2f(1.0f, 0.0f), 0.1f, true);
 
@@ -76,7 +76,8 @@ void SLevelTutorial::init()
 void SLevelTutorial::handleEvents()
 {
   gameCore->getPlayersList().at(0).getInputMapper()->clearCurrentMappedInput(
-		GameCoreStates::SpriteState(gameCore->getPlayersList().at(0).getPlayerSprite()->getCurrentState()) );
+		   GameCoreStates::SpriteState(
+		                        gameCore->getPlayersList().at(0).getPlayerSprite()->getCurrentState() ) );
 
   bool isRunning = gameInput->handleWindowEvents();
   gameCore->setIsRunning( isRunning );
@@ -91,14 +92,29 @@ void SLevelTutorial::logic()
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();
+    gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX());
     checkGravity(i); 
   }
 
-  tutorialLevel->checkLayersSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
+  tutorialLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
   tutorialLevel->scrollBackgroundLayers();
 
-  tutorialLevel->checkTilemapsSpeed( gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX() );
+  tutorialLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
   tutorialLevel->scrollTilemap();
+
+
+  if( gameCore->getCamera()->getOnePlayer() )
+  {
+    gameCore->getCamera()->moveCamera( gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX() );
+  }
+
+  else
+  {
+    gameCore->getCamera()->moveCamera( gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX(),
+			                           gameCore->getPlayersList().at(1).getPlayerSprite()->getPosX() );
+  }
+
+  gameCore->getCamera()->restartCameraSpeed();
 }
 
 void SLevelTutorial::checkGravity(int vPosition)
@@ -117,13 +133,23 @@ void SLevelTutorial::checkGravity(int vPosition)
 void SLevelTutorial::render()
 {
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);	
 
   tutorialLevel->drawLevelMap();
+
+  glPushMatrix();
+  gameCore->getCamera()->renderCamera();
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {
     gameCore->getPlayersList().at(i).draw();
+  }
+
+  glPopMatrix();
+
+  for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
+  {
+    gameCore->getPlayersList().at(i).drawUIStats();
   }
 
   SDL_GL_SwapBuffers();

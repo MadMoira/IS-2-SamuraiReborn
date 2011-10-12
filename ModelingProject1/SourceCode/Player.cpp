@@ -39,6 +39,12 @@ void Player::executeAction()
   }
 }
 
+void Player::drawUIStats()
+{
+  stats->drawHealthBar();
+  stats->drawHealth();
+}
+
 bool Player::isReadyToPace()
 {
   if ( playerSprite->getCurrentState() != GameCoreStates::JUMPING && 
