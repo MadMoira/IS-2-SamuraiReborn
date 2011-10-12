@@ -1,6 +1,8 @@
 
 #include "Player.h"
 
+Player::Player(){
+}
 void Player::executeAction()
 {
 	switch( playerSprite->getCurrentState() )

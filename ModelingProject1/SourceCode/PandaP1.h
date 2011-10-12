@@ -7,6 +7,7 @@
 class PandaP1 : public Player
 {
 public:
+	PandaP1::PandaP1();
 	~PandaP1();
 
 	void initializePlayer(IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX,

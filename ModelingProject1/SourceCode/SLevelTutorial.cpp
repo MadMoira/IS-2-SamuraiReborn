@@ -51,6 +51,7 @@ void SLevelTutorial::init()
 
 	tutorialLevel = new Level(LEVELZEROTUTORIAL);
 	tutorialLevel->loadTMXTileMapFile("untitled2.tmx");	
+	tutorialLevel->loadTMXTileMapFile("TutorialMapTest.tmx");
 
 	tutorialLevel->addLayerToList("BackGround1.png", 1280.f, 720.f, 2.0f, 0.0f, 0.3f, true);
 

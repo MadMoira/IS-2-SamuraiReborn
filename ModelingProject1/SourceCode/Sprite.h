@@ -6,8 +6,9 @@
 #include <GL/gl.h>
 
 #include "GameRender.h"
-
+#include "CollisionBox.h"
 #include "Animation.h"
+//#include "Collider.h"
 
 enum IDSprites 
 { 
@@ -36,6 +37,8 @@ public:
 	bool movePosXWithSpeed();
 
 	GLfloat getPosY() { return posY; }
+	GLfloat getWidth() { return width; }
+	GLfloat getHeight() { return height; }
 
 	GLfloat getSpeedX() { return speedXVector.at(currentState); }
 	void setSpeedX(GLfloat speedX) { speedXVector.at(currentState) = speedX; }
@@ -48,6 +51,8 @@ public:
 	GLfloat getDelayY() { return delayY; }
 
 	GLuint getTexture() { return texture; }
+
+	CollisionBox *getCollisionBox(){return spriteCollisionBox; }
 
 	Animation *getHandlerAnimation() { return handlerAnimation; }
 	void changeCurrentFrame(int frame);
@@ -70,5 +75,7 @@ private:
 	GLfloat speedY, countX, countY;
 	GLfloat delayX, delayY;
 	int frameCount, frameDelay;
+	CollisionBox *spriteCollisionBox;
+//	Collider cHandler;
 };
 

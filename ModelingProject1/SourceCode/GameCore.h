@@ -8,6 +8,7 @@
 #include "GameTimer.h"
 #include "GameSound.h"
 #include "Player.h"
+#include "Collider.h"
 
 class GameCore
 {
@@ -44,6 +45,8 @@ private:
 	GameTimer *timer;
 	GameSound *sound;
 	boost::ptr_vector< Player > playersList;
+	boost::ptr_vector< Enemy > enemiesList;
 	bool isRunning;
+	static Collider *collider;
 };
 

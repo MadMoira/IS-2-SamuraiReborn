@@ -1,4 +1,3 @@
-
 #include "Sprite.h"
 
 Sprite::Sprite(IDSprites id, std::string filename, std::vector<GLfloat> speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
@@ -19,6 +18,7 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector<GLfloat> speedX, 
 	speedXVector = speedX;
 	this->speedY = speedY;
 	currentState = state;
+	spriteCollisionBox = new CollisionBox(posX,posY,width,height);
 }
 
 Sprite::~Sprite(void)
@@ -31,12 +31,14 @@ Sprite::~Sprite(void)
 
 bool Sprite::movePosXWithSpeed()
 {
-	if ( posX + getSpeedX() + width < 1280.f )
+	spriteCollisionBox->setx(posX+getSpeedX());
+	if (( posX + getSpeedX() + width < 1280.f ) && ( posX + getSpeedX() > 0.f ))
 	{
 		posX += getSpeedX();
+		spriteCollisionBox->setx(posX);
 		return true;
 	}
-
+	spriteCollisionBox->setx(posX- getSpeedX());
 	return false;
 }
 
