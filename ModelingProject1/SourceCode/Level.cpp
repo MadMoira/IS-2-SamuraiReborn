@@ -1,13 +1,11 @@
 
 #include <fstream>
-
 #include "Level.h"
-
 #include "TmxParser/Tmx.h"
 
-
-Level::Level(void)
+Level::Level(Levels id)
 {
+	IDLevel = id;
 }
 
 Level::~Level(void)
@@ -44,7 +42,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 		tilemapList.push_back( new Tilemap(map->GetLayer(i)->GetName().c_str(), 
 							  layer->GetWidth(), layer->GetHeight()) );
 
-		std::vector< std::vector <int> > tempLayerMap = tilemapList.at(i).getLayerMap();
+		std::vector< std::vector < Tile > > tempLayerMap = tilemapList.at(i).getLayerMap();
+
 		int width = layer->GetWidth();
 		int height = layer->GetHeight();
 
@@ -58,15 +57,18 @@ int Level::loadTMXTileMapFile(std::string filename)
 				int tileID = layer->GetTileGid(x, y);
 				
 				if (tileID == 0){
-					tempLayerMap[y][x] = 0;
+					tempLayerMap[y][x].setID( 0 );
 				}
 				
-				else{
-					tempLayerMap[y][x] = tileID;}
+				else
+				{
+					tempLayerMap[y][x].setID( tileID );
+				}
 			}
 		}
 
 		tilemapList.at(i).setLayerMap(tempLayerMap);
+		tempLayerMap.clear();
 	}
 
 	
@@ -86,9 +88,12 @@ int Level::loadTMXTileMapFile(std::string filename)
 		log << "Image Source: " << tileset->GetImage()->GetSource().c_str() << std::endl;
 		log << "Transparent Color (hex): " << tileset->GetImage()->GetTransparentColor().c_str() << std::endl;
 		
-		tilemapList.at(i).addTileset( i, tileset->GetImage()->GetSource().c_str(),
+		for (std::string::size_type j = 0; j < tilemapList.size(); j++)
+		{
+			tilemapList.at(j).addTileset( j, tileset->GetImage()->GetSource().c_str(),
 			32.0f, 32.0f, (GLfloat) tileset->GetImage()->GetWidth(), (GLfloat)tileset->GetImage()->GetHeight(), 
 			tileset->GetTiles().size() );
+		}
 	
 		if (tileset->GetTiles().size() > 0) 
 		{
@@ -120,6 +125,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 			}
 
 			tilemapList.at(i).getTilesetList().at(i).setListCollisionTiles(tempListTilesCollision);
+			tempListTilesCollision.clear();
 		}
 	}
 
@@ -140,19 +146,18 @@ bool Level::drawLevelMap()
 		layersList.at(i).drawLayerTexture(1280.f, 720.f);
 	}
 
-	GLfloat sizeTile = 32.0f;
-
-	for (std::string::size_type i = 0; i < tilemapList.size(); i++)
+	for (std::string::size_type j = 0; j < tilemapList.size(); j++)
 	{
-		tilemapList.at(i).drawTilemap(32.0f, i);
+		tilemapList.at(j).drawTilemap(0);
 	}
 	
 	return true;
 }
 
-void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, GLfloat velX, GLfloat velY)
+void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
+				 GLfloat constantX, bool hasRepetition)
 {
-	layersList.push_back( new Layer(name, widthLayer, heightLayer, velX, velY) );
+	layersList.push_back( new Layer(name, widthLayer, heightLayer, vel, constantX, hasRepetition) );
 }
 
 void Level::scrollBackgroundLayers()
@@ -160,5 +165,29 @@ void Level::scrollBackgroundLayers()
 	for (std::string::size_type i = 0; i < layersList.size(); i++)
 	{
 		layersList.at(i).scrollLayer();
+	}
+}
+
+void Level::checkLayersSpeed(GLfloat speedX)
+{
+	for (std::string::size_type i = 1; i < layersList.size(); i++)
+	{
+		layersList.at(i).setSpeedX(speedX);
+	}
+}
+
+void Level::scrollTilemap()
+{
+	for (std::string::size_type i = 0; i < tilemapList.size(); i++)
+	{
+		tilemapList.at(i).scrollTilemap();
+	}
+}
+
+void Level::checkTilemapsSpeed(GLfloat speedX)
+{
+	for (std::string::size_type i = 0; i < tilemapList.size(); i++)
+	{
+		tilemapList.at(i).setVelocityX(speedX);
 	}
 }

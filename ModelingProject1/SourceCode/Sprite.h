@@ -2,65 +2,79 @@
 
 #include <windows.h>
 #include <string>
+#include <vector>
 #include <GL/gl.h>
 
 #include "GameRender.h"
 
-#define INITIAL_POSITION 0
+#include "Animation.h"
+#include "PlayerStateManager.h"
+
+#include "Vector.h"
 
 enum IDSprites 
 { 
 	PANDA, 
 	MEERKAT, 
-	JAPANESEMONKEY 
-};
-
-enum IDSpriteStates
-{
-	STILL,
-	WALKING
+	JAPANESEMONKEY, 
 };
 
 class Sprite
 {
 public:
-	Sprite(IDSprites id, std::string filename, GLfloat speedX, GLfloat speedY, GLfloat posX, GLfloat posY, 
-			int initialFrame, int maxFrame, GLfloat widthSprite, GLfloat heightSprite);
+	Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
+				GLfloat widthSprite, GLfloat heightSprite);
 	~Sprite(void);
 
-	GLfloat getPosX() { return posX; }
+	GLfloat getPosX() { return position.x; }
 	bool movePosXWithSpeed();
+	GLfloat getPosY() { return position.y; }
+	bool movePosYWithSpeed();
 
-	GLfloat getPosY() { return posY; }
+	GLfloat getSpeedX() { return currentXSpeed; }
+	GLfloat getStateXSpeed() { return speed.at(getCurrentState()).x; }
+	GLfloat getPreviousStateXSpeed() { return speed.at(getPreviousState()).x; }
 
-	GLfloat getSpeedX() { return speedX; }
+	void setSpeedX(GLfloat speedX);
+	void setConstantSpeedX(int constant);
 
-	GLfloat getSpeedY() { return speedY; }
+	GLfloat getSpeedY() { return currentYSpeed; }
+	void setSpeedY(GLfloat newSpeedY){currentYSpeed=newSpeedY;}
 
-	GLfloat getDelayX() { return delayX; }
+	GLfloat getDelayX() { return delay.x; }
 
-	GLfloat getDelayY() { return delayY; }
+	GLfloat getDelayY() { return delay.y; }
 
 	GLuint getTexture() { return texture; }
 
-	int getCurrentFrame() { return currentFrame; }
-	void setCurrentFrame(int frame) { currentFrame = frame; }
+	GLfloat getWidthTexture(){ return width;}
 
-	int getCurrentState() { return currentState; }
-	void setCurrentState(int state);
+	Animation *getHandlerAnimation() { return handlerAnimation; }
+	void changeCurrentFrame(int frame);
 
-	void updateCurrentSpriteFrame();
+	int getCurrentState() { return playerStateManager->getCurrentState(); }
+
+	void changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
+		                         std::list<InputMapping::Key> keys);
+
+	int getPreviousState() { return playerStateManager->getPreviousState(); }
 
 	void drawTexture();
 
 private:
+	IDSprites ID;
 	GLuint texture;
-	int ID;
+	Animation *handlerAnimation;
+	PlayerStateManager *playerStateManager;
+	GameCoreStates::Action currentAction, previousAction;
+	Vector2f position, delay;
+	std::vector< Vector2f > speed;
+	std::vector< int > maxFramesPerAnimation;
+	std::vector< int > returnFramesPerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
-	GLfloat posX, posY;
-	GLfloat speedX, speedY, countX, countY;
-	GLfloat delayX, delayY;
-	int frameCount, frameDelay, animationDirection;
-	int currentFrame, currentState, maxFrameFromCurrentState;
+	GLfloat currentXSpeed, currentYSpeed;
+	GLfloat countX, countY;
+	int frameCount, frameDelay;
 };
 

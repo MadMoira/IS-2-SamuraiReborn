@@ -40,7 +40,7 @@ void GameSound::loadChunk(std::string name)
 	ERRCHECK(result);
 	result = system->playSound(FMOD_CHANNEL_FREE, chunks[0], false, &channel[1]);
 	ERRCHECK(result);
-	result = channel[1]->setVolume(0.1);
+	result = channel[1]->setVolume(0.1f);
 }
 
 void GameSound::ERRCHECK(FMOD_RESULT result)

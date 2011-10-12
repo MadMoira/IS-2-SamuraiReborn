@@ -1,7 +1,5 @@
-#include "GameScreen.h"
-#include <iostream>
 
-using namespace std;
+#include "GameScreen.h"
 
 GameScreen::GameScreen(void)
 {
@@ -21,14 +19,16 @@ bool GameScreen::initializeScreen()
         return false;
     }
 	
-	if( SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ) != 0)
+	if( !initializeSDLGLState() )
 	{
 		return false;
 	}
 
 	width = 1280;	height = 720;
 
-	if( (screen = SDL_SetVideoMode(width, height, 32, SDL_OPENGL ) ) == NULL) 
+
+	if( (screen = SDL_SetVideoMode(width, height, 32, SDL_OPENGL) ) == NULL) 
+
     {
         return false;
     }
@@ -83,6 +83,37 @@ bool GameScreen::initializeOpenGL()
     }
 
     return true;
+}
+
+bool GameScreen::initializeSDLGLState()
+{
+	if ( SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ) != 0 )
+	{
+		return false;
+	}
+
+	SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
+	SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
+	SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
+	SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 8 );
+ 
+	SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 32 );
+	SDL_GL_SetAttribute( SDL_GL_BUFFER_SIZE, 32 );
+ 
+	SDL_GL_SetAttribute( SDL_GL_ACCUM_RED_SIZE, 8 );
+	SDL_GL_SetAttribute( SDL_GL_ACCUM_GREEN_SIZE, 8 );
+	SDL_GL_SetAttribute( SDL_GL_ACCUM_BLUE_SIZE, 8 );
+	SDL_GL_SetAttribute( SDL_GL_ACCUM_ALPHA_SIZE, 8 );
+ 
+	SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 );
+	SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 2 );
+
+	return true;
+}
+
+GLfloat GameScreen::getWidth(){
+	defaultResolution = SDL_GetVideoInfo();
+	return (GLfloat)defaultResolution->current_w;
 }
 
 

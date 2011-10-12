@@ -13,8 +13,6 @@ public:
 			int size, GLuint tex);
 	~Tileset(void);
 
-	void getTileWithID();
-
 	GLuint getTexture() { return texture; }
 
 	std::map< int, std::string > getListCollisionTiles() { return listCollisionTiles; }

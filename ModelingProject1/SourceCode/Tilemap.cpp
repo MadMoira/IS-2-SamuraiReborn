@@ -1,12 +1,14 @@
-#include "Tilemap.h"
 
+#include "Tilemap.h"
+#include <math.h>
 
 Tilemap::Tilemap(std::string name, int widthInTiles, int heightInTiles)
 {
 	nameLayer = name;
 	widthLevelInTiles = widthInTiles;
 	heightLevelInTiles = heightInTiles;
-	offsetX = offsetY = 0.0f;
+	offset.x = offset.y = 0.0f;
+	sizeTiles = 32.f;
 
 	layerMap.resize(heightLevelInTiles);
 	
@@ -21,16 +23,19 @@ Tilemap::~Tilemap(void)
 	layerMap.clear();
 }
 
-bool Tilemap::drawTilemap(GLfloat sizeTile, int indexTileset)
+void Tilemap::drawTilemap(int indexTileset)
 {
-	offsetX++;
-	if (offsetX >= 320.f) offsetX = 320.f;
+	GLfloat offsetXTemp = offset.x;
+	
+	offsetXTemp = transformOffsetXToIntervalValues(offset.x);
+	
+	GLfloat variableSizeTile = 32.f;
 
 	GLfloat widthTilesetImage = tilesetList.at(indexTileset).getWidthImage();
 	GLfloat heightTilesetImage = tilesetList.at(indexTileset).getHeightImage();
 
-	int widthMap = 40 + (int)offsetX/32;
-	int heigthMap = 23;
+	int widthMap = (1280 / (int)sizeTiles) + 1;
+	int heigthMap = (int) ceil( 720.0f / sizeTiles );
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -39,36 +44,71 @@ bool Tilemap::drawTilemap(GLfloat sizeTile, int indexTileset)
 	
 	glBindTexture( GL_TEXTURE_2D, tilesetList.at(indexTileset).getTexture() );
 
+	GLfloat posXPrevious = 0.0f, posXPreviousOnTexture = 0.0f;
+
 	for (int i = 0; i < heigthMap; i++)
 	{
-		int startX = (int)offsetX/32;
+		int startX = (int)floor(offset.x/sizeTiles);
+		posXPrevious = 0.0f;
 
-		for (int j = 0; j < 40; j++) 
+		posXPrevious -= offsetXTemp;
+		variableSizeTile = 32.f;
+
+		for (int j = 0; j < widthMap; j++) 
 		{
-			int frameIndex = layerMap[i][startX];
+			if ( startX == widthLevelInTiles )
+			{
+				break;
+			}
 			
-			if (frameIndex == 0)
+			int frameIndex = layerMap[i][startX].getID();
+
+			if ( frameIndex == 0 )
 			{ 
+				startX++;
+				variableSizeTile = 32.f;
+				posXPrevious = posXPrevious + variableSizeTile;
+				
 				continue; 
+			}
+
+			if ( j == 0 && offsetXTemp != sizeTiles)
+			{
+				posXPreviousOnTexture = offsetXTemp/widthTilesetImage;
+				variableSizeTile -= offsetXTemp;
+				posXPrevious = 0.0f;
+			}
+
+			else 
+			{ 
+				variableSizeTile = 32.f; 
+				posXPreviousOnTexture = 0.0f;
+			}
+
+			if ( j == 40 )
+			{
+				variableSizeTile = offsetXTemp;
 			}
 
 			frameIndex -= 1;
 
-			const GLfloat tileX = 0.0f + (sizeTile*j);
-			const GLfloat tileY = 0.0f + (sizeTile*i);
+			const GLfloat tileX = posXPrevious;
+			const GLfloat tileY = sizeTiles * i;
+			posXPrevious = tileX + variableSizeTile;
 
 			const GLfloat verts[] = {
 					tileX, tileY,
-					tileX + sizeTile, tileY,
-					tileX + sizeTile, tileY + sizeTile,
-					tileX, tileY + sizeTile
+					tileX + variableSizeTile, tileY,
+					tileX + variableSizeTile, tileY + sizeTiles,
+					tileX, tileY + sizeTiles
 			};
 
-			const GLfloat textureWidth = sizeTile / (GLfloat)widthTilesetImage;
-			const GLfloat textureHeight = sizeTile / (GLfloat)heightTilesetImage;
-			const int numFramePerRow = (int)widthTilesetImage / (int)sizeTile;
-			const GLfloat textureX = ((frameIndex % numFramePerRow) * textureWidth);
-			const GLfloat textureY = (frameIndex / numFramePerRow ) * textureHeight;
+			const GLfloat textureWidth = variableSizeTile / (GLfloat)widthTilesetImage;
+			const GLfloat textureHeight = sizeTiles / (GLfloat)heightTilesetImage;
+			const int numFramePerRow = (int)widthTilesetImage / (int)sizeTiles;
+			const GLfloat textureX = ( (frameIndex % numFramePerRow) * sizeTiles/(GLfloat)widthTilesetImage ) 
+									+ posXPreviousOnTexture;
+			const GLfloat textureY = ( frameIndex / numFramePerRow ) * textureHeight;
 
 			const GLfloat texVerts[] = {
 					textureX, textureY,
@@ -87,8 +127,48 @@ bool Tilemap::drawTilemap(GLfloat sizeTile, int indexTileset)
 
 	glDisableClientState( GL_VERTEX_ARRAY );			
 	glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+}
 
-	return true;
+GLfloat Tilemap::transformOffsetXToIntervalValues(GLfloat offX)
+{
+	int modForTextureCoordinates = (int)sizeTiles* (int)( floor(offX/sizeTiles) );
+
+	if (offX > sizeTiles*2 ) 
+	{ 
+		return offX - modForTextureCoordinates; 
+	}
+
+	else if ( offX > sizeTiles && offX <= sizeTiles*2 )
+	{
+		return offX - sizeTiles;
+	} 
+
+	return offX;
+}
+
+void Tilemap::scrollTilemap()
+{
+	offset.x += speed.x;
+	offset.y += speed.y;
+
+	checkScreenBoundaries();
+}
+
+bool Tilemap::checkScreenBoundaries()
+{
+	if (offset.x > widthLevelInTiles*sizeTiles - 1280.f)
+	{
+		offset.x = widthLevelInTiles*sizeTiles - 1280.f; 
+		return true;
+	}
+
+	if ( offset.x < 0 )
+	{
+		offset.x = 0;
+		return true;
+	}
+
+	return false;
 }
 
 void Tilemap::addTileset(int id, std::string name, GLfloat widthTile, GLfloat heightTile, GLfloat imageWidth, GLfloat imageHeight, 
