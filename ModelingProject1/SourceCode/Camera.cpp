@@ -21,7 +21,7 @@ void Camera::initCamera()
 
 void Camera::moveCamera(GLfloat posx1)
 {
-  if ( checkMidCam(posx1) )
+  if ( checkCam(posx1) )
   {
     posx += speedx;
     midPoint += speedx;
@@ -35,7 +35,7 @@ void Camera::moveCamera(GLfloat posx1)
 
 void Camera::moveCamera(GLfloat posx1, GLfloat posx2)
 {
-  if ( checkMidCam(posx1, posx2) )
+  if(checkCam(posx1, posx2))
   {
     posx += speedx;
     midPoint += speedx;
@@ -70,9 +70,9 @@ void Camera::restartCameraSpeed()
   speedx = 0;
 }
 
-bool Camera::checkMidCam(GLfloat posx1)
+bool Camera::checkCam(GLfloat posx1)
 {
-  if( posx1 - midPoint > 0 )
+  if( (posx1 - midPoint > 0 && posx < 4600) || posx - posx1 > -75)
   {
     return true;
   }	
@@ -80,9 +80,9 @@ bool Camera::checkMidCam(GLfloat posx1)
   return false;
 }
 
-bool Camera::checkMidCam(GLfloat posx1, GLfloat posx2)
+bool Camera::checkCam(GLfloat posx1, GLfloat posx2)
 {
-  if( posx1- midPoint > 0 || posx2 - midPoint > 0 )
+  if( ((posx1- midPoint > 0 || posx2 - midPoint > 0) && posx < 4600) || (posx - posx1 > -75 || posx - posx2 > -75) )
   {
     return true;
   }	

@@ -51,7 +51,7 @@ void SLevelTutorial::init()
   returnFrameVector.push_back( 1 );
 
   gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
-						speedMeerkat, Vector2f(50.0f, 350.0f), 0, maxFrameVector, returnFrameVector,
+						speedMeerkat, Vector2f(150.0f, 350.0f), 0, maxFrameVector, returnFrameVector,
 						204.0f, 187.0f);
 
   /*gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
