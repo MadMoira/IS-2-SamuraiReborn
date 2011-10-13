@@ -15,7 +15,7 @@ void Score::PlayerScore::drawDisplayPoints()
   GameRender::drawText(pointsDisplay.getFont(), this->pointsDisplay);
 }
 
-void Score::PlayerScore::initializeTextAndFonts(Font::GameFont *font, std::string text, Vector2f pos, Vector2f off)
+void Score::PlayerScore::initializeTextAndFonts(Font::GameFont* font, std::string text, Vector2f pos, Vector2f off)
 {
   pointsDisplay = Text::GameText( font, text, pos, off);
   pointsDisplay.setDataText( points );

@@ -40,9 +40,6 @@ public:
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
 				GLfloat widthSprite, GLfloat heightSprite);
 
-    boost::ptr_vector< Font::GameFont >& getFontsList() { return fontsList; }
-	void addFontToGame(Font::GameFont* gameFont);
-
 	bool getIsRunning() { return isRunning; }
 	void setIsRunning(bool running) { isRunning = running; };
 	
@@ -54,7 +51,6 @@ private:
 	GameSound *sound;
 	Camera *camera;
 	boost::ptr_vector< Player > playersList;
-	boost::ptr_vector< Font::GameFont > fontsList;
 	bool isRunning;
 };
 

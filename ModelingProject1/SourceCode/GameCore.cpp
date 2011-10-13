@@ -21,7 +21,6 @@ GameCore::~GameCore(void)
   delete sound;
   delete camera;
   playersList.clear();
-  
 }
 
 bool GameCore::initializeGameCore()
@@ -70,11 +69,6 @@ void GameCore::addPlayerToGame(Player *player, IDSprites id, std::string filenam
   playersList.at(id).initializePlayer(id, filename, speed, 
 									  pos, initialFrame, maxFrame, returnFrame,
 									  widthSprite, heightSprite);
-}
-
-void GameCore::addFontToGame(Font::GameFont *gameFont)
-{
-  fontsList.push_back( gameFont );
 }
 
 

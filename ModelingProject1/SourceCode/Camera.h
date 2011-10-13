@@ -17,8 +17,8 @@ public:
 	
 	void renderCamera();
 
-	bool checkMidCam(GLfloat posx1);
-	bool checkMidCam(GLfloat posx1, GLfloat posx2);
+	bool checkCam(GLfloat posx1);
+	bool checkCam(GLfloat posx1, GLfloat posx2);
 
 	void setCameraSpeed(GLfloat newSpeedx);
 	void restartCameraSpeed();

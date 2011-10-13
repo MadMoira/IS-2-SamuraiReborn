@@ -56,16 +56,13 @@ void SLevelTutorial::init()
   int sizeFont = 25;
   std::string filenameFont = "orbitron-black.ttf";
 
-  gameCore->addFontToGame(new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
-		                   color, filenameFont, sizeFont, 0) );
-
   gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
-						speedMeerkat, Vector2f(50.0f, 350.0f), 0, maxFrameVector, returnFrameVector,
+						speedMeerkat, Vector2f(150.0f, 350.0f), 0, maxFrameVector, returnFrameVector,
 						204.0f, 187.0f);
 
-  Font::GameFont* fontPlayerOne = &gameCore->getFontsList().at(0);
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(
-		                           fontPlayerOne,  "", Vector2f(170.0f, 15.0f), 
+		     new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
+		                   color, filenameFont, sizeFont, 0),  "", Vector2f(170.0f, 15.0f), 
 								   Vector2f(200.0f, 20.0f) );
 
   /*gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
