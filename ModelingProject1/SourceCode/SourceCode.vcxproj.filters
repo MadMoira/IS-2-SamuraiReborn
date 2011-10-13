@@ -85,6 +85,12 @@
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{2b62b77f-74f0-4e6a-b9c1-17d94d20a0bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Graphics\Fonts">
+      <UniqueIdentifier>{bc3ca2c2-f804-4df8-8ecd-48b6f84e4ab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Font">
+      <UniqueIdentifier>{5fbd43d6-fb0c-4c98-adbf-bd8f0829055b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -112,9 +118,6 @@
       <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="GameTimer.cpp">
-      <Filter>Source Files\Game Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Score.cpp">
       <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp">
@@ -228,6 +231,15 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="GameFont.cpp">
+      <Filter>Source Files\Graphics\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="GameText.cpp">
+      <Filter>Source Files\Graphics\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerScore.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -252,9 +264,6 @@
       <Filter>Header Files\Game Core</Filter>
     </ClInclude>
     <ClInclude Include="GameTimer.h">
-      <Filter>Header Files\Game Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Score.h">
       <Filter>Header Files\Game Core</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
@@ -383,6 +392,18 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="StringParser.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFont.h">
+      <Filter>Header Files\Graphics\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="GameText.h">
+      <Filter>Header Files\Graphics\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerScore.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="nubes.png">
@@ -404,6 +425,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="healthBar.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="orbitron-black.ttf">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

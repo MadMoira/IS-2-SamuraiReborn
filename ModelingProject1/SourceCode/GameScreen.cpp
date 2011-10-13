@@ -1,5 +1,6 @@
 
 #include "GameScreen.h"
+#include <SDL/SDL_ttf.h>
 
 GameScreen::GameScreen(void)
 {
@@ -37,6 +38,11 @@ bool GameScreen::initializeScreen()
     {
         return false;
     }
+
+	if ( TTF_Init() == -1 )
+	{
+	  return false;
+	}
 
 	SDL_WM_SetCaption( windowName.c_str(), NULL );
 

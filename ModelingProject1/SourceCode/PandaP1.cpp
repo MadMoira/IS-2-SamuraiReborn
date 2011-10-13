@@ -14,6 +14,7 @@ void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector< 
 							widthSprite, heightSprite);
 
   stats = new PlayerStats::Stats();
+  score = new Score::PlayerScore();
 
   inputMapper = new InputMapping::GameInputMapper();
   inputMapper->pushContext("maincontext");

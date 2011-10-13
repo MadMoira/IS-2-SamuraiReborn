@@ -45,6 +45,11 @@ void Player::drawUIStats()
   stats->drawHealth();
 }
 
+void Player::drawScore()
+{
+  score->drawDisplayPoints();
+}
+
 bool Player::isReadyToPace()
 {
   if ( playerSprite->getCurrentState() != GameCoreStates::JUMPING && 

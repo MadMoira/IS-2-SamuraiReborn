@@ -82,6 +82,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameConfiguration.cpp" />
     <ClCompile Include="GameCore.cpp" />
+    <ClCompile Include="GameFont.cpp" />
     <ClCompile Include="GameImage.cpp" />
     <ClCompile Include="GameInput.cpp" />
     <ClCompile Include="GameInputContext.cpp" />
@@ -92,6 +93,7 @@
     <ClCompile Include="GameSound.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="GameText.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="JapaneseMonkey.cpp" />
     <ClCompile Include="JumpingState.cpp" />
@@ -102,10 +104,10 @@
     <ClCompile Include="MovementPhys.cpp" />
     <ClCompile Include="PandaP1.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerScore.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayerStateManager.cpp" />
     <ClCompile Include="RunningState.cpp" />
-    <ClCompile Include="Score.cpp" />
     <ClCompile Include="SLevelOneJapan.cpp" />
     <ClCompile Include="SLevelTutorial.cpp" />
     <ClCompile Include="SMainMenu.cpp" />
@@ -132,6 +134,7 @@
     <ClInclude Include="File.h" />
     <ClInclude Include="GameConfiguration.h" />
     <ClInclude Include="GameCore.h" />
+    <ClInclude Include="GameFont.h" />
     <ClInclude Include="GameImage.h" />
     <ClInclude Include="GameInput.h" />
     <ClInclude Include="GameInputContext.h" />
@@ -141,6 +144,7 @@
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="GameText.h" />
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="JapaneseMonkey.h" />
     <ClInclude Include="JumpingState.h" />
@@ -150,12 +154,12 @@
     <ClInclude Include="MovementPhys.h" />
     <ClInclude Include="PandaP1.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerScore.h" />
     <ClInclude Include="PlayerSpriteStates.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayerStateManager.h" />
     <ClInclude Include="RawInputConstants.h" />
     <ClInclude Include="RunningState.h" />
-    <ClInclude Include="Score.h" />
     <ClInclude Include="SLevelOneJapan.h" />
     <ClInclude Include="SLevelTutorial.h" />
     <ClInclude Include="SMainMenu.h" />
@@ -166,6 +170,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="Stats.h" />
     <ClInclude Include="StillState.h" />
+    <ClInclude Include="StringParser.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Tilemap.h" />
@@ -181,6 +186,7 @@
     <None Include="MainContext.txt" />
     <None Include="Meerkat - SpriteSheet.png" />
     <None Include="nubes.png" />
+    <None Include="orbitron-black.ttf" />
     <None Include="Panda - SpriteSheet.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

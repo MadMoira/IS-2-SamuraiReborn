@@ -1,6 +1,8 @@
 
 #include "GameRender.h"
 
+#include <math.h>
+
 GameRender::GameRender(void)
 {
 }
@@ -179,3 +181,87 @@ void GameRender::drawLayerTexture(GLuint texture, Vector2f offset, GLfloat width
 	glDisableClientState( GL_VERTEX_ARRAY );			
 	glDisableClientState( GL_TEXTURE_COORD_ARRAY );	
 }
+
+int round(double x)
+{
+	return (int)(x + 0.5);
+}
+
+int nextpoweroftwo(int x)
+{
+	double logbase2 = log(double(x)) / log(double(2));
+	return round(pow(2,ceil(logbase2)));
+}
+
+void GameRender::drawText(Font::GameFont* font, Text::GameText text)
+{
+  SDL_Surface *initial;
+  SDL_Surface *intermediary;
+  SDL_Rect rect;
+  int w, h;
+  GLuint texture;
+	
+  rect.h = rect.w = rect.x = rect.y = 0;
+
+	GLfloat x = text.getPosition().x;
+	GLfloat y = text.getPosition().y;
+
+	
+	/* Use SDL_TTF to render our text */
+	initial = TTF_RenderText_Blended(font->getFont(), 
+	                                 text.getDataText().c_str(), 
+									 font->getColor());
+	
+	w = nextpoweroftwo(initial->w);
+	h = nextpoweroftwo(initial->h);
+
+	/* Convert the rendered text to a known format */
+	text.setOffset( Vector2f( GLfloat(nextpoweroftwo(initial->w)) ,
+		GLfloat(nextpoweroftwo(initial->h)) ) );
+
+
+	GLfloat offsetX = text.getOffset().x + x;
+	GLfloat offsetY = text.getOffset().y + y;
+	
+	intermediary = SDL_CreateRGBSurface(0, w, h, 32, 
+			0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+
+	SDL_SetAlpha(intermediary, 0, 0);
+	SDL_BlitSurface(initial, 0, intermediary, 0);
+	
+	/* Tell GL about our new texture */
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexImage2D(GL_TEXTURE_2D, 0, 4, w, h, 0, GL_RGBA, 
+			GL_UNSIGNED_BYTE, intermediary->pixels );
+	
+	/* GL_NEAREST looks horrible, if scaled... */
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);	
+
+	glBlendFunc(GL_ONE, GL_ONE);
+
+	glBindTexture( GL_TEXTURE_2D, texture );
+	glBegin( GL_QUADS );
+				//Top-left vertex (corner)
+				glTexCoord2i( 0, 0 );
+				glVertex3f( x, y, 0.f );
+
+				//Bottom-left vertex (corner)
+				glTexCoord2i( 1, 0 );
+				glVertex3f( offsetX, y, 0.f );
+			 
+				//Bottom-right vertex (corner)
+				glTexCoord2i( 1, 1 );
+				glVertex3f( offsetX, offsetY, 0.f );
+			 
+				//Top-right vertex (corner)
+				glTexCoord2i( 0, 1 );
+				glVertex3f( x,  offsetY, 0.f );
+	glEnd();
+
+	SDL_FreeSurface(initial);
+	SDL_FreeSurface(intermediary);
+	glDeleteTextures(1, &texture);
+}
+

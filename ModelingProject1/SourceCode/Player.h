@@ -5,6 +5,7 @@
 #include "Sprite.h"
 #include "Weapon.h"
 #include "Stats.h"
+#include "PlayerScore.h"
 #include "GameInputMapper.h"
 
 #include "Vector.h"
@@ -25,6 +26,7 @@ public:
 	virtual void noAction() = 0;
 	void executeAction();
 	void drawUIStats();
+	void drawScore();
 	void stop();
 
 	static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
@@ -37,6 +39,8 @@ public:
 
 	PlayerStats::Stats* getPlayerStats() { return stats; }
 
+	Score::PlayerScore* getScore() { return score; }
+
 	void changeFightStyle();
 	bool isAlive();
 
@@ -46,6 +50,7 @@ protected:
 	Sprite *playerSprite;
 	InputMapping::GameInputMapper *inputMapper;
 	PlayerStats::Stats *stats;
+	Score::PlayerScore *score;
 	Weapon *playerWeapon;
 };
 
