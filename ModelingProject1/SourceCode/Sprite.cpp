@@ -42,7 +42,16 @@ Sprite::~Sprite(void)
 
 bool Sprite::movePosXWithSpeed()
 {
-  if ( position.x + getSpeedX() + width < 6368.f )
+  if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
+  {
+    if ( position.x + getSpeedX() + width < 6368.f )
+    {
+      position.x += getSpeedX();
+      return true;
+    }
+  }
+  
+  else if ( position.x + getSpeedX() + width  > 0 )
   {
     position.x += getSpeedX();
     return true;
@@ -53,7 +62,7 @@ bool Sprite::movePosXWithSpeed()
 
 bool Sprite::movePosYWithSpeed()
 {
-  if( position.y + getSpeedY()+height < 550.f )
+  if( position.y + getSpeedY() + height < 550.f )
   {
     position.y += getSpeedY();
     return true;

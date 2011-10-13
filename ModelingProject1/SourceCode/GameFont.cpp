@@ -4,6 +4,7 @@
 Font::GameFont::GameFont(TTF_Font *newFont, SDL_Color color, std::string filename, int sizeFont, int idFont)
 {
   id = idFont;
+  font = NULL;
   font = newFont;
   this->color = color;
   this->filename = filename;
@@ -29,6 +30,7 @@ Font::GameFont& Font::GameFont::operator=(const Font::GameFont& cSource)
   color = cSource.color;
   sizeFont = cSource.sizeFont;
   filename = cSource.filename;
+  font = NULL;
   font = TTF_OpenFont(filename.c_str(), sizeFont);
 
   return *this;
