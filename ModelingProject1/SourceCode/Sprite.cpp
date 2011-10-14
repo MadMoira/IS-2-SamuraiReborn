@@ -99,11 +99,18 @@ void Sprite::changeCurrentFrame(int frame)
 void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
                                      std::list<InputMapping::Key> keys)
 {
-  if ( playerStateManager->getCurrentState() == newState->getCurrentID() )
+  int resultCheckingEqualStates = newState->checkIfEqualStates(keys, getCurrentState(),
+		                            getPreviousState(), newState);
+  if ( resultCheckingEqualStates == GameCoreStates::NO_CHANGE )
   {
     return;
   }
 
+  /*if ( playerStateManager->getCurrentState() == newState->getCurrentID() )
+  {
+    return;
+  }
+  */
   int result = newState->checkMovementRestrictions(keyPreviouslyPressed, getPreviousState(), 
                                                    getCurrentState(), keys );
 

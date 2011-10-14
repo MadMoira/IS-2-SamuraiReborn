@@ -6,23 +6,23 @@
 
 class GameTimer
 {
-public:
-	GameTimer(void);
-	~GameTimer(void);
+  public:
+   GameTimer(void);
+   ~GameTimer(void);
 
-	void start();
-	void stop();
-	void delay();
-	void pause();
-	void unpause();
+   void start();
+   void stop();
+   void delay();
+   void pause();
+   void unpause();
 
-	int getTicks();
+   int getTicks();
 
-    bool isStarted();
-    bool isPaused();
+   bool isStarted();
+   bool isPaused();
 
-private:
-	int startTicks, pausedTicks;
-    bool paused, started;
+  private:
+   int startTicks, pausedTicks;
+   bool paused, started;
 };
 

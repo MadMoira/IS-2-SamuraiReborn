@@ -10,9 +10,9 @@ public:
 	GameStateManager(void);
 	~GameStateManager(void);
 	
-	void pushState( GameState *gameState );
+	void pushState( GameState* gameState );
 	void popState();
-	void changeState( GameState *gameState ) ;
+	void changeState( GameState* gameState ) ;
 
 	void init();
 	void handleEvents();

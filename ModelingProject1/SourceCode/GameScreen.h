@@ -1,24 +1,25 @@
 #pragma once
 
+#include <string>
+
 #include "SDL/SDL.h"
 #include "SDL/SDL_opengl.h"
-#include <string>
 
 class GameScreen
 {
-public:
-	GameScreen(void);
-	~GameScreen(void);
+  public:
+   GameScreen(void);
+   ~GameScreen(void);
 
-	bool initializeScreen();
-	bool initializeOpenGL();
-	bool initializeSDLGLState();
-	GLfloat getWidth();
+   bool initializeScreen();
+   bool initializeOpenGL();
+   bool initializeSDLGLState();
+   GLfloat getWidth();
 	
-private:
-	SDL_Surface *screen;
-	int width, height;
-	std::string windowName;
-	const SDL_VideoInfo* defaultResolution;
+  private:
+   SDL_Surface* screen;
+   int width, height;
+   std::string windowName;
+   const SDL_VideoInfo* defaultResolution;
 };
 

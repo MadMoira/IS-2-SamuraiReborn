@@ -31,7 +31,7 @@ public:
 
 	static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
 
-	Sprite *getPlayerSprite() { return playerSprite; }
+	Sprite* getPlayerSprite() { return playerSprite; }
 	bool isReadyToPace();
 	bool isReadyToDoubleJump();
 
@@ -47,10 +47,10 @@ public:
 protected:
 	int currentFightMode;
 	int currentHealth, currentStamina;
-	Sprite *playerSprite;
-	InputMapping::GameInputMapper *inputMapper;
+	Sprite* playerSprite;
+	InputMapping::GameInputMapper* inputMapper;
 	PlayerStats::Stats *stats;
 	Score::PlayerScore *score;
-	Weapon *playerWeapon;
+	Weapon* playerWeapon;
 };
 

@@ -49,3 +49,9 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
 
   return GameCoreStates::NO_CHANGE;
 }
+
+int GameCoreStates::RunningState::checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
+		                   int previousState, GameCoreStates::PlayerState* newState)
+{
+  return checkMovement(0, previousState, currentState, keys);
+}
