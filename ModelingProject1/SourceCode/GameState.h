@@ -25,10 +25,10 @@ public:
 	GameStates getNameState() { return nameState; }
 
 protected:
-	GameState( GameRender *gR, GameCore *gC, GameInput *gI, GameStates stateName );
-	GameRender *gameRender;
-	GameCore *gameCore;
-	GameInput *gameInput;
+	GameState( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
+	GameRender* gameRender;
+	GameCore* gameCore;
+	GameInput* gameInput;
 	GameStates nameState;
 };
 

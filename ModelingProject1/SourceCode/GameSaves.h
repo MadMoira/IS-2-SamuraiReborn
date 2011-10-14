@@ -4,15 +4,15 @@
 
 class GameSaves
 {
-public:
-	GameSaves(void);
-	~GameSaves(void);
+  public:
+   GameSaves(void);
+   ~GameSaves(void);
 
-	void changePlayersStats();
-	void loadFileInformation();
-	void saveFileInformation();
+   void changePlayersStats();
+   void loadFileInformation();
+   void saveFileInformation();
 
-private:
-	FILE *saveFile;
+  private:
+   FILE* saveFile;
 };
 

@@ -4,9 +4,9 @@
 
 GameScreen::GameScreen(void)
 {
-	screen = NULL;
-	width = height = 0;
-	windowName = "Unnamed 2D Game";
+  screen = NULL;
+  width = height = 0;
+  windowName = "Samurai Reborn";
 }
 
 GameScreen::~GameScreen(void)
@@ -15,111 +15,110 @@ GameScreen::~GameScreen(void)
 
 bool GameScreen::initializeScreen()
 {
-    if( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_TIMER ) < 0 )
-    {
-        return false;
-    }
+  if( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_TIMER ) < 0 )
+  {
+    return false;
+  }
 	
-	if( !initializeSDLGLState() )
-	{
-		return false;
-	}
+  if( !initializeSDLGLState() )
+  {
+    return false;
+  }
 
-	width = 1280;	height = 720;
+  width = 1280;	height = 720;
 
+  if( (screen = SDL_SetVideoMode(width, height, 32, SDL_OPENGL) ) == NULL) 
+  {
+    return false;
+  }
 
-	if( (screen = SDL_SetVideoMode(width, height, 32, SDL_OPENGL) ) == NULL) 
+  if( !initializeOpenGL() )
+  {
+    return false;
+  }
 
-    {
-        return false;
-    }
+  if ( TTF_Init() < 0 )
+  {
+    return false;
+  }
 
-    if( initializeOpenGL() == false )
-    {
-        return false;
-    }
+  SDL_WM_SetCaption( windowName.c_str(), NULL );
 
-	if ( TTF_Init() == -1 )
-	{
-	  return false;
-	}
-
-	SDL_WM_SetCaption( windowName.c_str(), NULL );
-
-    return true;
+  return true;
 }
 
 bool GameScreen::initializeOpenGL()
 {	
-	defaultResolution = SDL_GetVideoInfo();
-	float proportion = ((float)defaultResolution->current_w / (float)defaultResolution->current_h);
+  defaultResolution = SDL_GetVideoInfo();
+  float proportion = ( (float)defaultResolution->current_w / (float)defaultResolution->current_h );
 	
-	glViewport(0, 0, defaultResolution->current_w, defaultResolution->current_h);
-    glMatrixMode( GL_PROJECTION );
-    glLoadIdentity();
+  glViewport(0, 0, defaultResolution->current_w, defaultResolution->current_h);
+  glMatrixMode( GL_PROJECTION );
+  glLoadIdentity();
 		
-	if(proportion > 1.5 && proportion < 1.7)
-	{
-		glOrtho( 0, 1280,800, 0, -1, 1 );
-	}
+  if(proportion > 1.5 && proportion < 1.7)
+  {
+    glOrtho( 0, 1280,800, 0, -1, 1 );
+  }
 
-	else if(proportion > 1.7 && proportion < 1.8)
-	{
-		glOrtho( 0, 1280,720, 0, -1, 1 );
-	}
+  else if(proportion > 1.7 && proportion < 1.8)
+  {
+    glOrtho( 0, 1280,720, 0, -1, 1 );
+  }
 
-	else
-	{
-		glOrtho( 0, 1280,960, 0, -1, 1 );
-	}
+  else
+  {
+    glOrtho( 0, 1280,960, 0, -1, 1 );
+  }
 	
-	glMatrixMode( GL_MODELVIEW );
-    glLoadIdentity();
+  glMatrixMode( GL_MODELVIEW );
+  glLoadIdentity();
 
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_BLEND);
+  glEnable(GL_TEXTURE_2D);
+  glEnable(GL_BLEND);
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-    if( glGetError() != GL_NO_ERROR )
-    {
-        return false;
-    }
+  if( glGetError() != GL_NO_ERROR )
+  {
+    return false;
+  }
 
-    return true;
+  return true;
 }
 
 bool GameScreen::initializeSDLGLState()
 {
-	if ( SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ) != 0 )
-	{
-		return false;
-	}
+  if ( SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ) != 0 )
+  {
+    return false;
+  }
 
-	SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
-	SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
-	SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
-	SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 8 );
+  SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
+  SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
+  SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
+  SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 8 );
  
-	SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 32 );
-	SDL_GL_SetAttribute( SDL_GL_BUFFER_SIZE, 32 );
+  SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 32 );
+  SDL_GL_SetAttribute( SDL_GL_BUFFER_SIZE, 32 );
  
-	SDL_GL_SetAttribute( SDL_GL_ACCUM_RED_SIZE, 8 );
-	SDL_GL_SetAttribute( SDL_GL_ACCUM_GREEN_SIZE, 8 );
-	SDL_GL_SetAttribute( SDL_GL_ACCUM_BLUE_SIZE, 8 );
-	SDL_GL_SetAttribute( SDL_GL_ACCUM_ALPHA_SIZE, 8 );
+  SDL_GL_SetAttribute( SDL_GL_ACCUM_RED_SIZE, 8 );
+  SDL_GL_SetAttribute( SDL_GL_ACCUM_GREEN_SIZE, 8 );
+  SDL_GL_SetAttribute( SDL_GL_ACCUM_BLUE_SIZE, 8 );
+  SDL_GL_SetAttribute( SDL_GL_ACCUM_ALPHA_SIZE, 8 );
  
-	SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 );
-	SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 2 );
+  SDL_GL_SetAttribute( SDL_GL_MULTISAMPLEBUFFERS, 1 );
+  SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 2 );
 
-	return true;
+  return true;
 }
 
-GLfloat GameScreen::getWidth(){
-	defaultResolution = SDL_GetVideoInfo();
-	return (GLfloat)defaultResolution->current_w;
+GLfloat GameScreen::getWidth()
+{
+  defaultResolution = SDL_GetVideoInfo();
+  return (GLfloat)defaultResolution->current_w;
 }
 
 

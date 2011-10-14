@@ -44,12 +44,12 @@ public:
 	void setIsRunning(bool running) { isRunning = running; };
 	
 private:
-	GameConfiguration *configuration;
-	GameSaves *saves;
-	GameScreen *screen;
-	GameTimer *timer;
-	GameSound *sound;
-	Camera *camera;
+	GameConfiguration* configuration;
+	GameSaves* saves;
+	GameScreen* screen;
+	GameTimer* timer;
+	GameSound* sound;
+	Camera* camera;
 	boost::ptr_vector< Player > playersList;
 	bool isRunning;
 };

@@ -8,7 +8,7 @@
 class SLevelTutorial : public GameState
 {
 public:
-	SLevelTutorial( GameRender *gR, GameCore *gC, GameInput *gI, GameStates stateName );
+	SLevelTutorial( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
 	~SLevelTutorial();
 
 	void init();
@@ -18,7 +18,7 @@ public:
     void checkGravity(int vPosition);
 
 private:
-	Level *tutorialLevel;
-	MovementPhys *movPhysics;
+	Level* tutorialLevel;
+	MovementPhys* movPhysics;
 };
 
