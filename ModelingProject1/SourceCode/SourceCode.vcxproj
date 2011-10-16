@@ -189,6 +189,7 @@
     <None Include="LevelOneTileMap.tmx" />
     <None Include="MainContext.txt" />
     <None Include="Meerkat - SpriteSheet.png" />
+    <None Include="Mountains0.png" />
     <None Include="orbitron-black.ttf" />
     <None Include="Panda - SpriteSheet.png" />
   </ItemGroup>

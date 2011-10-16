@@ -454,5 +454,8 @@
     <None Include="FirstLevelZoneOneBG.png">
       <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
     </None>
+    <None Include="Mountains0.png">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
+    </None>
   </ItemGroup>
 </Project>
