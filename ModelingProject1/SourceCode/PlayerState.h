@@ -6,6 +6,13 @@
 
 namespace GameCoreStates
 {
+
+  struct ConditionsPlayerRunning
+  {
+	bool directionButtonPressed;
+	bool runningButtonPressed;
+  };
+
   class PlayerState : public State
   {
    public:
@@ -17,6 +24,8 @@ namespace GameCoreStates
 		                   int previousState, GameCoreStates::PlayerState* newState);
 	int checkMovementRestrictions(int keyPreviouslyPressed, int previousState, 
 		                          int currentState, std::list<InputMapping::Key> keys);
+	ConditionsPlayerRunning checkIfPlayerIsRunning(std::list<InputMapping::Key> keys);
+
    protected:
 	virtual int checkMovement(int keyPreviouslyPressed, int previousState, 
                               int currentState, std::list<InputMapping::Key> keys);

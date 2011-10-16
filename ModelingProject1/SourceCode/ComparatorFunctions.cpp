@@ -21,3 +21,8 @@ bool isJumpingKeyPressed(InputMapping::Key key)
 {
   return key.button == InputMapping::RAW_INPUT_BUTTON_LSHIFT;
 }
+
+bool isFastAttackKeyPressed(InputMapping::Key key)
+{
+  return key.button == InputMapping::RAW_INPUT_BUTTON_X;
+}

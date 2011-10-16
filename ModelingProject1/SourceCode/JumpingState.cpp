@@ -22,7 +22,7 @@ int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int pr
 
   if ( keyPreviouslyPressed != InputMapping::RAW_INPUT_NO_BUTTON && !jumpingButtonIsPressed )
   {
-	  return GameCoreStates::NO_CHANGE;
+    return GameCoreStates::NO_CHANGE;
   }
 
   if ( (currentState != GameCoreStates::JUMPING && currentState != GameCoreStates::DOUBLE_JUMP) ||

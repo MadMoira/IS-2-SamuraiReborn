@@ -2,11 +2,13 @@
 #include "GameInputContext.h"
 #include "File.h"
 
-InputMapping::Key::Key(InputMapping::RawInputButton buttonValue, bool pressed, bool released)
+InputMapping::Key::Key(InputMapping::RawInputButton buttonValue, bool pressed, bool released, 
+	                   bool previously)
 {
   button = buttonValue;	
   isPressed = pressed;
   isReleased = released;
+  wasPreviouslyPressed = previously; 
 }
 
 InputMapping::Key::Key()
@@ -21,7 +23,7 @@ InputMapping::GameInputContext::GameInputContext(const std::string filename)
   for(unsigned i = 0; i < stateCount; i++)
   {
 	RawInputButton button = static_cast<RawInputButton>(readDataTypeFromFile<unsigned>(inputContextFile));
-	Key newKey = Key(button, false, false);
+	Key newKey = Key(button, false, false, false);
 	keysList.push_back(newKey);
 	GameCoreStates::SpriteState state = static_cast<GameCoreStates::SpriteState>(readDataTypeFromFile<unsigned>(inputContextFile));
 	stateMap[button] = state;
@@ -31,7 +33,7 @@ InputMapping::GameInputContext::GameInputContext(const std::string filename)
   for(unsigned i = 0; i < actionCount; i++)
   {
     RawInputButton button = static_cast<RawInputButton>(readDataTypeFromFile<unsigned>(inputContextFile));
-	Key newKey = Key(button, false, false);
+	Key newKey = Key(button, false, false, false);
 	keysList.push_back(newKey);
 	GameCoreStates::Action action = static_cast<GameCoreStates::Action>(readDataTypeFromFile<unsigned>(inputContextFile));
 	actionMap[button] = action;

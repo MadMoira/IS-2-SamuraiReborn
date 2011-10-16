@@ -136,6 +136,13 @@ void InputMapping::GameInputMapper::convertRawSDLToRawButtons(InputMapping::Key&
       key.button = InputMapping::RAW_INPUT_BUTTON_Z; 
       break;
 	}
+
+	case SDLK_x:
+	{
+      key.button = InputMapping::RAW_INPUT_BUTTON_X; 
+      break;
+	}
+
   }
 }
 
@@ -176,7 +183,7 @@ void InputMapping::GameInputMapper::setRawButtonState(InputMapping::Key key)
     }
   }
 
-  if ( key.button == InputMapping::RAW_INPUT_NO_BUTTON && countStatesInMapper(GameCoreStates::JUMPING) != 1)
+  if ( key.button == InputMapping::RAW_INPUT_NO_BUTTON && checkIfCanCleanStateVector() )
   {
     currentMappedInput.eatStates();
     if( mapButtonToState(key.button, state) )
@@ -185,6 +192,13 @@ void InputMapping::GameInputMapper::setRawButtonState(InputMapping::Key key)
       return;
     }
   }
+}
+
+bool InputMapping::GameInputMapper::checkIfCanCleanStateVector()
+{
+  bool canClean = countStatesInMapper(GameCoreStates::JUMPING) != 1;
+  canClean = canClean && countStatesInMapper(GameCoreStates::FAST_ATTACK_WALKING) != 1; 
+  return canClean;
 }
 
 void InputMapping::GameInputMapper::countAndClearStates()
@@ -228,18 +242,12 @@ void InputMapping::GameInputMapper::pushBackNewState(int state, int valueButton)
 void InputMapping::GameInputMapper::returnKeyForMappedInput(Uint8* keystate) 
 {
   InputMapping::GameInputContext* gameInputActiveContext = activeContexts.front();
-  std::list<InputMapping::Key> *keys = gameInputActiveContext->getKeysList();
+  std::list<InputMapping::Key>* keys = gameInputActiveContext->getKeysList();
   std::list<InputMapping::Key>::iterator iter = keys->begin();
   
   iter++;
 
   bool anyKeyIsPressed = false;
-  InputMapping::Key jumpKey = *std::find_if(keys->begin(), keys->end(), isJumpingKeyPressed);
-
-  if ( jumpKey.button != 0 )
-  {
-    currentMappedInput.jumpKeyPreviouslyPressed = jumpKey.isPressed;
-  }
 
   for ( iter; iter != keys->end(); iter++)
   {
@@ -248,12 +256,14 @@ void InputMapping::GameInputMapper::returnKeyForMappedInput(Uint8* keystate)
     {
       iter->isPressed = true;
 	  iter->isReleased = false;
+	  iter->wasPreviouslyPressed = false;
 	  anyKeyIsPressed = true;
     }
     else if( iter->isPressed && !keyStateIterButton )
     {
       iter->isPressed = false;
       iter->isReleased = true;
+	  iter->wasPreviouslyPressed = true;
     }
 	else
 	{
@@ -262,7 +272,8 @@ void InputMapping::GameInputMapper::returnKeyForMappedInput(Uint8* keystate)
         anyKeyIsPressed = true;
 	  }
 
-      iter->isReleased = false;
+      iter->isReleased = false;  
+	  iter->wasPreviouslyPressed = true;
 	}
 
 	convertRawSDLToRawButtons(*iter);

@@ -1,14 +1,30 @@
 
 #include <algorithm>
+#include "ComparatorFunctions.h"
 
 #include "Player.h"
 #include "PlayerState.h"
 
+
 void Player::stop()
 {
-  playerSprite->changeStatePlayerSprite(STILL_STATE, 0, this->getInputMapper()->getListKeys());
+  playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
   getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
   playerSprite->changeCurrentFrame(GameCoreStates::STILL);
+}
+
+void Player::returnToPreviousState()
+{
+  switch( playerSprite->getPreviousState() )
+  {
+    case GameCoreStates::WALKING:
+    {
+	  playerSprite->changeStatePlayerSprite(WALKING_STATE, 0, getInputMapper()->getListKeys());
+    }
+  }
+
+  getInputMapper()->pushBackStateOnMappedInput( GameCoreStates::SpriteState( playerSprite->getCurrentState() ) );
+  playerSprite->changeCurrentFrame( playerSprite->getCurrentState() ); 
 }
 
 void Player::executeAction()
@@ -35,6 +51,11 @@ void Player::executeAction()
     {
       jump();
       break;
+	}
+	case GameCoreStates::FAST_ATTACK_WALKING:
+	{
+	  fastAttack();
+	  break;
 	}
   }
 }
@@ -73,7 +94,7 @@ bool Player::isReadyToDoubleJump()
 
 void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys)
 {
-  Sprite *playerSprite = player.getPlayerSprite();
+  Sprite* playerSprite = player.getPlayerSprite();
 
   playerSprite->setConstantSpeedX ( 
 		        playerSprite->getHandlerAnimation()->changeAnimationDirection(inputs.directionKeyPressed) );
@@ -86,6 +107,10 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
 		                     != inputs.states.end();
   bool findRunningInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::RUNNING) 
 		                     != inputs.states.end();
+  bool findFastAttackWalkingInStates = find(inputs.states.begin(), inputs.states.end(), 
+	                                   GameCoreStates::FAST_ATTACK_WALKING) != inputs.states.end();
+
+  InputMapping::Key checkKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
 
   if ( findWalkingInStates && player.isReadyToPace() )
   {
@@ -99,16 +124,22 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
 
   if ( findJumpingInStates )
   {
-    playerSprite->changeStatePlayerSprite(JUMPING_STATE, inputs.jumpKeyPreviouslyPressed, keys);
+    playerSprite->changeStatePlayerSprite(JUMPING_STATE, checkKey.wasPreviouslyPressed, keys);
 
     if ( player.isReadyToDoubleJump() )
     {
-      playerSprite->changeStatePlayerSprite(DOUBLE_JUMP_STATE, inputs.jumpKeyPreviouslyPressed, keys);
+      playerSprite->changeStatePlayerSprite(DOUBLE_JUMP_STATE, checkKey.wasPreviouslyPressed, keys);
     }
   }
 
   if ( findStillInStates )
   {
     playerSprite->changeStatePlayerSprite(STILL_STATE, inputs.buttonPreviouslyPressed, keys);
+  }
+
+  if ( findFastAttackWalkingInStates )
+  {
+	  checkKey = *std::find_if(keys.begin(), keys.end(), isFastAttackKeyPressed);
+    playerSprite->changeStatePlayerSprite(FAST_ATTACK_WALKING_STATE, checkKey.wasPreviouslyPressed, keys);
   }
 }

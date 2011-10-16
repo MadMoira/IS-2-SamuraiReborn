@@ -162,7 +162,7 @@ void GameRender::drawLayerTexture(GLuint texture, Vector2f offset, GLfloat width
 			vertX, vertY + heightScreen
 	};
 
-	const GLfloat textureX = offset.x/widthScreen;
+	const GLfloat textureX = offset.x/widthTexture;
 	const GLfloat textureY = 0.0f;
 	const GLfloat textureWidth = (widthScreen + offset.x) / widthTexture;
 	const GLfloat textureHeight = (heightScreen + offset.y) / heightTexture;

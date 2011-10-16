@@ -63,6 +63,18 @@ void PandaP1::jump()
   stop();
 }
 
+void PandaP1::fastAttack()
+{
+  playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
+  if ( playerSprite->movePosXWithSpeed() && playerSprite->getHandlerAnimation()->getCurrentFrame()+1 < 8 )
+  {
+    playerSprite->getHandlerAnimation()->animate() ;
+    return;
+  }
+
+  returnToPreviousState();
+}
+
 void PandaP1::draw()
 {
   playerSprite->drawTexture();

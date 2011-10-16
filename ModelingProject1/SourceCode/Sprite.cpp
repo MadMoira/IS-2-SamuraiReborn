@@ -10,7 +10,7 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
   glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &this->widthTexture);
   glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &this->heightTexture);
 
-  playerStateManager = new PlayerStateManager();
+  playerStateManager = new GameCoreStates::PlayerStateManager();
   playerStateManager->pushState( new GameCoreStates::PlayerState(GameCoreStates::STILL) );
 
   handlerAnimation = new Animation(initialFrame, maxFrame.at(getCurrentState()), 
@@ -106,11 +106,6 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
     return;
   }
 
-  /*if ( playerStateManager->getCurrentState() == newState->getCurrentID() )
-  {
-    return;
-  }
-  */
   int result = newState->checkMovementRestrictions(keyPreviouslyPressed, getPreviousState(), 
                                                    getCurrentState(), keys );
 
@@ -119,6 +114,7 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
     playerStateManager->changeState(newState);
 
     setSpeedY(speed.at(getCurrentState()).y);
+	handlerAnimation->restartCurrentFrame();
     handlerAnimation->setLoopPerAnimation(0);
     handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
     handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );	

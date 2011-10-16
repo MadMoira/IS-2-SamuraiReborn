@@ -15,6 +15,7 @@ public:
  
 	int getCurrentFrame() { return currentFrame; }
     void setCurrentFrame(int frame);
+	void restartCurrentFrame() { currentFrame = 1; }
 
 	void setMaxFrame(int max) { maxFrames = max; }
 

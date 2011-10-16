@@ -12,9 +12,10 @@ namespace InputMapping
   {
     bool isPressed;
     bool isReleased;
+	bool wasPreviouslyPressed;
     RawInputButton button;
 
-	Key(RawInputButton buttonValue, bool pressed, bool released);
+	Key(RawInputButton buttonValue, bool pressed, bool released, bool previously);
 	Key();
   };
 

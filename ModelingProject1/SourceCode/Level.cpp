@@ -155,9 +155,10 @@ bool Level::drawLevelMap()
 }
 
 void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
-				 GLfloat constantX, bool hasRepetition)
+				 GLfloat constantX, bool hasRepetition, bool continuousScroll)
 {
-	layersList.push_back( new Layer(name, widthLayer, heightLayer, vel, constantX, hasRepetition) );
+	layersList.push_back( new Layer(name, widthLayer, heightLayer, vel, constantX, hasRepetition,
+		                  continuousScroll) );
 }
 
 void Level::scrollBackgroundLayers()

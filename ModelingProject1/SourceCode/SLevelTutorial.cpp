@@ -36,6 +36,7 @@ void SLevelTutorial::init()
   speedMeerkat.push_back( Vector2f(0.0f, -22.0f) );
   speedMeerkat.push_back( Vector2f(28.0f, 0.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, -16.0f) );
+  speedMeerkat.push_back( Vector2f(10.0f, 0.0f) );
 
   std::vector < int > maxFrameVector;
   maxFrameVector.push_back( 1 );
@@ -43,9 +44,11 @@ void SLevelTutorial::init()
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 8 );
+  maxFrameVector.push_back( 8 );
 
   std::vector < int > returnFrameVector;
   returnFrameVector.push_back( 0 );
+  returnFrameVector.push_back( 1 );
   returnFrameVector.push_back( 1 );
   returnFrameVector.push_back( 1 );
   returnFrameVector.push_back( 1 );
@@ -76,7 +79,9 @@ void SLevelTutorial::init()
   tutorialLevel = new Level(LEVELZEROTUTORIAL);
   tutorialLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");
 
-  tutorialLevel->addLayerToList("nubes.png", 1600.f, 720.f, Vector2f(1.0f, 0.0f), 0.1f, true);
+  tutorialLevel->addLayerToList("FirstLevelZoneOneBG.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
+  tutorialLevel->addLayerToList("Clouds.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.1f, true, true);
+  tutorialLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
 
   speedPanda.clear();
   speedMeerkat.clear();
@@ -113,7 +118,6 @@ void SLevelTutorial::logic()
   tutorialLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
   tutorialLevel->scrollTilemap();
 
-
   if( gameCore->getCamera()->getOnePlayer() )
   {
     gameCore->getCamera()->moveCamera( gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX() );
@@ -149,12 +153,13 @@ void SLevelTutorial::render()
   tutorialLevel->drawLevelMap();
 
   glPushMatrix();
-  gameCore->getCamera()->renderCamera();
 
-  for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
-  {
-    gameCore->getPlayersList().at(i).draw();
-  }
+    gameCore->getCamera()->renderCamera();
+
+    for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
+    {
+      gameCore->getPlayersList().at(i).draw();
+    }
 
   glPopMatrix();
 
