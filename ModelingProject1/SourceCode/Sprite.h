@@ -65,9 +65,8 @@ public:
 private:
 	IDSprites ID;
 	GLuint texture;
-	Animation *handlerAnimation;
-	PlayerStateManager *playerStateManager;
-	GameCoreStates::Action currentAction, previousAction;
+	Animation* handlerAnimation;
+	GameCoreStates::PlayerStateManager* playerStateManager;
 	Vector2f position, delay;
 	std::vector< Vector2f > speed;
 	std::vector< int > maxFramesPerAnimation;

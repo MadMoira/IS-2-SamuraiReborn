@@ -16,5 +16,6 @@ public:
 	void draw();
 	void noAction();
 	void executeAction();
+	void fastAttack();
 };
 

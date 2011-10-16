@@ -9,6 +9,7 @@
 #include "RunningState.h"
 #include "JumpingState.h"
 #include "DoubleJumpState.h"
+#include "FastAttackWalkingState.h"
 
 #include "PlayerSpriteStates.h"
 
@@ -17,23 +18,27 @@
 #define JUMPING_STATE new GameCoreStates::JumpingState(GameCoreStates::JUMPING)
 #define RUNNING_STATE new GameCoreStates::RunningState(GameCoreStates::RUNNING)
 #define DOUBLE_JUMP_STATE new GameCoreStates::DoubleJumpState(GameCoreStates::DOUBLE_JUMP)
+#define FAST_ATTACK_WALKING_STATE new GameCoreStates::FastAttackWalkingState(GameCoreStates::FAST_ATTACK_WALKING)
 
-class PlayerStateManager
+namespace GameCoreStates
 {
-public:
-	PlayerStateManager(void);
-	~PlayerStateManager(void);
+  class PlayerStateManager
+  {
+    public:
+	 PlayerStateManager(void);
+	 ~PlayerStateManager(void);
 
-	void pushState( GameCoreStates::PlayerState* playerState );
-	void popState();
-	void changeState( GameCoreStates::PlayerState* newState );
+	 void pushState( GameCoreStates::PlayerState* playerState );
+	 void popState();
+	 void changeState( GameCoreStates::PlayerState* newState );
 
-	int getCurrentState() { return currentState.getCurrentID(); }
-	int getPreviousState() { return previousState; }
+	 int getCurrentState() { return currentState.getCurrentID(); }
+	 int getPreviousState() { return previousState; }
 
-private:
-	boost::ptr_vector< State > statesStack;
-	GameCoreStates::SpriteState previousState;
-	GameCoreStates::PlayerState currentState;
-};
+    private:
+	 boost::ptr_vector< State > statesStack;
+	 GameCoreStates::SpriteState previousState;
+	 GameCoreStates::PlayerState currentState;
+  };
+}
 

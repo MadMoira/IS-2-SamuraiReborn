@@ -24,6 +24,7 @@ namespace InputMapping
 	int directionKeyPressed;
     int buttonPreviouslyPressed;
 	int jumpKeyPreviouslyPressed;
+	int fastAttackKeyPreviouslyPressed;
 
     void eatAction(GameCoreStates::Action action);
     void eatStates();
@@ -50,6 +51,7 @@ namespace InputMapping
 	 void processNewInput();
      void setRawButtonState(Key key);
 
+	 bool checkIfCanCleanStateVector();
 	 void countAndClearStates();
 	 int countStatesInMapper(int state);
 	 bool verifyDoubleTappingForJumping(GameCoreStates::SpriteState state);

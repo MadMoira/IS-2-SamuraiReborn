@@ -80,6 +80,7 @@
     <ClCompile Include="ComparatorFunctions.cpp" />
     <ClCompile Include="DoubleJumpState.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="FastAttackWalkingState.cpp" />
     <ClCompile Include="GameConfiguration.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameFont.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="ComparatorFunctions.h" />
     <ClInclude Include="DoubleJumpState.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="FastAttackWalkingState.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="GameConfiguration.h" />
     <ClInclude Include="GameCore.h" />
@@ -180,12 +182,13 @@
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Clouds.png" />
     <None Include="ContextList.txt" />
+    <None Include="FirstLevelZoneOneBG.png" />
     <None Include="healthBar.png" />
     <None Include="LevelOneTileMap.tmx" />
     <None Include="MainContext.txt" />
     <None Include="Meerkat - SpriteSheet.png" />
-    <None Include="nubes.png" />
     <None Include="orbitron-black.ttf" />
     <None Include="Panda - SpriteSheet.png" />
   </ItemGroup>

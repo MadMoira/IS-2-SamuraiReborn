@@ -11,7 +11,7 @@ class Layer
 {
 public:
 	Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
-		  GLfloat constantX, bool hasRepetition);
+		  GLfloat constantX, bool hasRepetition, bool isContinuous);
 	~Layer(void);
 
 	void drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen);
@@ -26,7 +26,7 @@ public:
 	void setHeightLevelLayer(GLfloat height) { heightLevelLayer = height; }
 
 	GLfloat getSpeedX() { return speed.x; }
-	void setSpeedX(GLfloat velX) { speed.x = velX*constantVelX; }
+	void setSpeedX(GLfloat velX);
 
 	void scrollLayer();
 
@@ -47,4 +47,5 @@ private:
 	Vector2f speed, offset;
 	GLfloat constantVelX;
 	bool repeat;
+	bool continuous;
 };

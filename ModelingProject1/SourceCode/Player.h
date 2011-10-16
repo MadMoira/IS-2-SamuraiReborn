@@ -24,10 +24,12 @@ public:
 	virtual void jump() = 0;
 	virtual void draw() = 0;
 	virtual void noAction() = 0;
+	virtual void fastAttack() = 0;
 	void executeAction();
 	void drawUIStats();
 	void drawScore();
 	void stop();
+	void returnToPreviousState();
 
 	static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
 

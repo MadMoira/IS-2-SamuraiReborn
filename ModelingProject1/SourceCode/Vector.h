@@ -4,17 +4,16 @@
 
 struct Vector2f
 {
-	GLfloat x, y;
+  GLfloat x, y;
 
-	Vector2f(GLfloat pointX, GLfloat pointY) 
-	{
-		x = pointX;	
-		y = pointY; 
-	}
+  Vector2f(GLfloat pointX, GLfloat pointY) 
+  {
+    x = pointX;	
+    y = pointY; 
+  }
 
-	Vector2f()
-	{
-		x = y = 0;
-	}
-
+  Vector2f()
+  {
+    x = y = 0;
+  }
 };

@@ -91,6 +91,21 @@
     <Filter Include="Header Files\Graphics\Font">
       <UniqueIdentifier>{5fbd43d6-fb0c-4c98-adbf-bd8f0829055b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Input System">
+      <UniqueIdentifier>{503671e6-0561-4199-9365-8c23ddf96463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\UI">
+      <UniqueIdentifier>{579c1e31-f90f-458b-8851-2c630153f8c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\LevelOneJapan">
+      <UniqueIdentifier>{5e7dfdef-b86f-48b0-b297-ad9cdd1dcdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\LevelOneJapan\Zone1">
+      <UniqueIdentifier>{ea6a8e68-1bf6-4386-9888-e85db34de87f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Players">
+      <UniqueIdentifier>{927bd692-a5e9-45d4-99f5-804d4fdb6d02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -239,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="PlayerScore.cpp">
       <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="FastAttackWalkingState.cpp">
+      <Filter>Source Files\Player\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -404,31 +422,37 @@
     <ClInclude Include="PlayerScore.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
+    <ClInclude Include="FastAttackWalkingState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="nubes.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Panda - SpriteSheet.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Meerkat - SpriteSheet.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="LevelOneTileMap.tmx">
-      <Filter>Resource Files</Filter>
+    <None Include="MainContext.txt">
+      <Filter>Resource Files\Input System</Filter>
     </None>
     <None Include="ContextList.txt">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="MainContext.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Input System</Filter>
     </None>
     <None Include="healthBar.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\UI</Filter>
     </None>
     <None Include="orbitron-black.ttf">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\UI</Filter>
+    </None>
+    <None Include="LevelOneTileMap.tmx">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
+    </None>
+    <None Include="Meerkat - SpriteSheet.png">
+      <Filter>Resource Files\Players</Filter>
+    </None>
+    <None Include="Panda - SpriteSheet.png">
+      <Filter>Resource Files\Players</Filter>
+    </None>
+    <None Include="Clouds.png">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
+    </None>
+    <None Include="FirstLevelZoneOneBG.png">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
     </None>
   </ItemGroup>
 </Project>
