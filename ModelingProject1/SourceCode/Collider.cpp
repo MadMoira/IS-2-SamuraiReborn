@@ -1,11 +1,28 @@
 #include "Collider.h"
 
-Collider::Collider(boost::ptr_vector< Enemy > *enemiesList, boost::ptr_vector< Player > *playersList){
-	enemies=enemiesList;
-	players=playersList;
+Collider::Collider(){
 }
 
-Collider::~Collider(void){
+/*Collider::Collider(boost::ptr_vector< Enemy > *enemiesList, boost::ptr_vector< Player > *playersList){
+	enemies=enemiesList;
+	players=playersList;
+}*/
+
+bool Collider::instanceFlag = false;
+Collider* Collider::collider = NULL;
+
+Collider::~Collider(){
+}
+
+Collider* Collider::getInstance(){
+    if(!instanceFlag)    {
+        collider = new Collider();
+        instanceFlag = true;
+        return collider;
+    }
+    else{
+        return collider;
+    }
 }
 
 //Method to check for collisions between two collision boxes
@@ -21,7 +38,8 @@ Collider::~Collider(void){
 bool Collider::checkTileCollision( Sprite &A, float directionX){
 	for(int i=A.getPosX();i<=A.getWidth();i++){
 		for(int j=A.getPosY();j<=A.getHeight();j++){
-			if(true/*Function to handle the collisions*/){
+			Tile x = layerMap[i][j];
+			if(x.getID()!=0){
 				return true;
 			}
 		}
@@ -49,7 +67,7 @@ boost::ptr_vector< Enemy > Collider::checkAttackCollision( CollisionBox &A, floa
 	return enemiesCollided;
 }
 
-boost::ptr_vector< Player > Collider::checkEnemiesAttackCollision( CollisionBox &A, float directionX){
+/*boost::ptr_vector< Player > Collider::checkEnemiesAttackCollision( CollisionBox &A, float directionX){
 	boost::ptr_vector< Player > playersCollided;
 	for(int i=0; i==players->size(); i++){
 		if(checkCollision( A, *players->at(i).getPlayerSprite()->getCollisionBox(), directionX)){
@@ -57,11 +75,12 @@ boost::ptr_vector< Player > Collider::checkEnemiesAttackCollision( CollisionBox 
 		}
 	}
 	return playersCollided;
-}
+}*/
 
 bool Collider::onTheGround( Sprite &A, float directionX){
 	for(int i=A.getPosX();i<=A.getWidth();i++){
-		if(true/*Function to handle the Tile collisions*/){
+		Tile x = layerMap[i][A.getPosY()];
+		if(x.getID()==0){
 			return true;	}
 	}	
 	return false;

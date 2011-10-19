@@ -5,9 +5,7 @@
 #include "GameCore.h"
 #include "GameRender.h"
 #include "GameInput.h"
-
 #include "GameStateManager.h"
-
 #include "SLevelTutorial.h"
 
 int main( int argc, char* args[] )

@@ -35,6 +35,7 @@ public:
 	void setVelocityX(GLfloat velX) { speedX = velX; }
 
 	boost::ptr_vector< Tileset > getTilesetList() { return tilesetList; }
+
 	void addTileset(int id, std::string name, GLfloat widthTile, GLfloat heightTile, GLfloat imageWidth, GLfloat imageHeight, 
 					int size);
 
