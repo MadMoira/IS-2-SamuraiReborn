@@ -106,6 +106,9 @@
     <Filter Include="Resource Files\Players">
       <UniqueIdentifier>{927bd692-a5e9-45d4-99f5-804d4fdb6d02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Main Menu">
+      <UniqueIdentifier>{27e1eabb-3063-4e35-bfe6-1e3ad4d7c020}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -255,7 +258,7 @@
     <ClCompile Include="PlayerScore.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
-    <ClCompile Include="FastAttackWalkingState.cpp">
+    <ClCompile Include="FastAttackState.cpp">
       <Filter>Source Files\Player\States</Filter>
     </ClCompile>
   </ItemGroup>
@@ -422,7 +425,7 @@
     <ClInclude Include="PlayerScore.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
-    <ClInclude Include="FastAttackWalkingState.h">
+    <ClInclude Include="FastAttackState.h">
       <Filter>Header Files\Player\States</Filter>
     </ClInclude>
   </ItemGroup>
@@ -451,11 +454,29 @@
     <None Include="Clouds.png">
       <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
     </None>
-    <None Include="FirstLevelZoneOneBG.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
     <None Include="Mountains0.png">
       <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
+    </None>
+    <None Include="Tileset.png">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
+    </None>
+    <None Include="Mountains1.png">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
+    </None>
+    <None Include="SkyBackground.png">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
+    </None>
+    <None Include="MenuBackground.jpg">
+      <Filter>Resource Files\Main Menu</Filter>
+    </None>
+    <None Include="MenuButtons.png">
+      <Filter>Resource Files\Main Menu</Filter>
+    </None>
+    <None Include="datafiles\imagesets\MainMenuBackground.imageset">
+      <Filter>Resource Files\Main Menu</Filter>
+    </None>
+    <None Include="datafiles\imagesets\MainMenuButtons.imageset">
+      <Filter>Resource Files\Main Menu</Filter>
     </None>
   </ItemGroup>
 </Project>

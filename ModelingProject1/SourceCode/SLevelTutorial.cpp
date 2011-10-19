@@ -5,7 +5,7 @@
 #include "MeerkatP2.h"
 
 
-SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, GameStates stateName) 
+SLevelTutorial::SLevelTutorial(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
 	: GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
@@ -13,6 +13,8 @@ SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, Game
   gameInput = gI;
   nameState = stateName;
   movPhysics = new MovementPhys(-4.0f);
+  gameCore->getGameTimer()->setFramesPerSecond(60);
+  setHasEnded(STATE_LEVELZEROTUTORIAL);
 }
 
 SLevelTutorial::~SLevelTutorial(void)
@@ -36,7 +38,7 @@ void SLevelTutorial::init()
   speedMeerkat.push_back( Vector2f(0.0f, -22.0f) );
   speedMeerkat.push_back( Vector2f(28.0f, 0.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, -16.0f) );
-  speedMeerkat.push_back( Vector2f(10.0f, 0.0f) );
+  speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
 
   std::vector < int > maxFrameVector;
   maxFrameVector.push_back( 1 );
@@ -44,7 +46,7 @@ void SLevelTutorial::init()
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 8 );
-  maxFrameVector.push_back( 8 );
+  maxFrameVector.push_back( 10 );
 
   std::vector < int > returnFrameVector;
   returnFrameVector.push_back( 0 );
@@ -54,6 +56,22 @@ void SLevelTutorial::init()
   returnFrameVector.push_back( 1 );
   returnFrameVector.push_back( 1 );
 
+  std::vector < Vector2f > delayMovementVector;
+  delayMovementVector.push_back( Vector2f(0.0f, 0.0f) );
+  delayMovementVector.push_back( Vector2f(3.0f, 0.0f) );
+  delayMovementVector.push_back( Vector2f(5.0f, 4.0f) );
+  delayMovementVector.push_back( Vector2f(5.0f, 0.0f) );
+  delayMovementVector.push_back( Vector2f(5.0f, 4.0f) );
+  delayMovementVector.push_back( Vector2f(4.0f, 5.0f) );
+
+  std::vector < int > framerateAnimationsVector;
+  framerateAnimationsVector.push_back( 0 );
+  framerateAnimationsVector.push_back( 100 );
+  framerateAnimationsVector.push_back( 100 );
+  framerateAnimationsVector.push_back( 100 );
+  framerateAnimationsVector.push_back( 100 );
+  framerateAnimationsVector.push_back( 70 );
+
   SDL_Color color;
   color.r = color.g = color.b = 255;
   int sizeFont = 25;
@@ -61,7 +79,7 @@ void SLevelTutorial::init()
 
   gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
 						speedMeerkat, Vector2f(150.0f, 350.0f), 0, maxFrameVector, returnFrameVector,
-						204.0f, 187.0f);
+						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
 
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(
 		     new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
@@ -79,9 +97,10 @@ void SLevelTutorial::init()
   tutorialLevel = new Level(LEVELZEROTUTORIAL);
   tutorialLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");
 
-  tutorialLevel->addLayerToList("FirstLevelZoneOneBG.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
+  tutorialLevel->addLayerToList("SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
   tutorialLevel->addLayerToList("Clouds.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.1f, true, true);
   tutorialLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
+  tutorialLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
   speedPanda.clear();
   speedMeerkat.clear();
@@ -113,9 +132,9 @@ void SLevelTutorial::logic()
   }
 
   tutorialLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
-  tutorialLevel->scrollBackgroundLayers();
-
   tutorialLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
+  
+  tutorialLevel->scrollBackgroundLayers();
   tutorialLevel->scrollTilemap();
 
   if( gameCore->getCamera()->getOnePlayer() )

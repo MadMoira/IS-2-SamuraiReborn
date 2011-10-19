@@ -63,12 +63,14 @@ void GameCore::startSoundEffect(std::string filename)
 
 void GameCore::addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed, 
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
-				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite)
+				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
+				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
   playersList.push_back( player );
   playersList.at(id).initializePlayer(id, filename, speed, 
 									  pos, initialFrame, maxFrame, returnFrame,
-									  widthSprite, heightSprite);
+									  widthSprite, heightSprite, framerateAnimations,
+									  delayMovement);
 }
 
 

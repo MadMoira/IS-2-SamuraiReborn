@@ -8,9 +8,12 @@
 
 void Player::stop()
 {
-  playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
-  getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
-  playerSprite->changeCurrentFrame(GameCoreStates::STILL);
+  if ( !playerSprite->getPlayerMoveInX() && !playerSprite->getPlayerMoveInY() )
+  {
+    playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
+    getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
+    playerSprite->changeCurrentFrame(GameCoreStates::STILL);
+  }
 }
 
 void Player::returnToPreviousState()
@@ -20,6 +23,13 @@ void Player::returnToPreviousState()
     case GameCoreStates::WALKING:
     {
 	  playerSprite->changeStatePlayerSprite(WALKING_STATE, 0, getInputMapper()->getListKeys());
+	  break;
+    }
+	case GameCoreStates::JUMPING:
+    {
+	  playerSprite->changeStatePlayerSprite(JUMPING_STATE, 0, getInputMapper()->getListKeys());
+	  playerSprite->setSpeedY(0.0f);
+	  break;
     }
   }
 
@@ -52,7 +62,7 @@ void Player::executeAction()
       jump();
       break;
 	}
-	case GameCoreStates::FAST_ATTACK_WALKING:
+	case GameCoreStates::FAST_ATTACK:
 	{
 	  fastAttack();
 	  break;
@@ -108,7 +118,7 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
   bool findRunningInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::RUNNING) 
 		                     != inputs.states.end();
   bool findFastAttackWalkingInStates = find(inputs.states.begin(), inputs.states.end(), 
-	                                   GameCoreStates::FAST_ATTACK_WALKING) != inputs.states.end();
+	                                   GameCoreStates::FAST_ATTACK) != inputs.states.end();
 
   InputMapping::Key checkKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
 
@@ -139,7 +149,7 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
 
   if ( findFastAttackWalkingInStates )
   {
-	  checkKey = *std::find_if(keys.begin(), keys.end(), isFastAttackKeyPressed);
-    playerSprite->changeStatePlayerSprite(FAST_ATTACK_WALKING_STATE, checkKey.wasPreviouslyPressed, keys);
+    checkKey = *std::find_if(keys.begin(), keys.end(), isFastAttackKeyPressed);
+    playerSprite->changeStatePlayerSprite(FAST_ATTACK_STATE, checkKey.wasPreviouslyPressed, keys);
   }
 }

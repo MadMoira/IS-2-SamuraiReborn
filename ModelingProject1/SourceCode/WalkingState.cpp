@@ -24,7 +24,7 @@ int GameCoreStates::WalkingState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::CHANGE;
   }
 
-  if( (currentState == GameCoreStates::DOUBLE_JUMP || currentState == GameCoreStates::FAST_ATTACK_WALKING || 
+  if( (currentState == GameCoreStates::DOUBLE_JUMP || currentState == GameCoreStates::FAST_ATTACK || 
 	  currentState == GameCoreStates::RUNNING) && keyPreviouslyPressed != InputMapping::RAW_INPUT_NO_BUTTON )
   {
     return GameCoreStates::NO_CHANGE;

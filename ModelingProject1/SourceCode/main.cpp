@@ -7,6 +7,7 @@
 #include "GameStateManager.h"
 
 #include "SLevelTutorial.h"
+#include "SMainMenu.h"
 
 int main( int argc, char* args[] )
 {
@@ -20,12 +21,13 @@ int main( int argc, char* args[] )
     return 1;
   }
 
-  StateManager->changeState( new SLevelTutorial( &Render, &Core, &Input, STATE_LEVELZEROTUTORIAL ) );
-	
+  StateManager->changeState( new SMainMenu( &Render, &Core, &Input, STATE_MAINMENU ) );
   StateManager->init();
 
   while( Core.getIsRunning() )
   {
+    StateManager->changeCurrentState( &Render, &Core, &Input );
+
     Core.getGameTimer()->start();
 
     StateManager->handleEvents();

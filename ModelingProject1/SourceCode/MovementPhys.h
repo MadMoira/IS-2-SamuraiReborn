@@ -23,6 +23,7 @@ public:
 private:
 	float gravityVal;
 	void parabolicShot(GLfloat* speedY);
+	int countY, delayY;
 
 };
 

@@ -18,7 +18,8 @@ public:
 
 	virtual void initializePlayer(IDSprites id, std::string filename, std::vector< Vector2f > speed, 
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
-				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite) = 0;
+				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
+				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement) = 0;
 	virtual void walk() = 0;
 	virtual void run() = 0;
 	virtual void jump() = 0;
@@ -47,12 +48,10 @@ public:
 	bool isAlive();
 
 protected:
-	int currentFightMode;
-	int currentHealth, currentStamina;
 	Sprite* playerSprite;
 	InputMapping::GameInputMapper* inputMapper;
-	PlayerStats::Stats *stats;
-	Score::PlayerScore *score;
+	PlayerStats::Stats* stats;
+	Score::PlayerScore* score;
 	Weapon* playerWeapon;
 };
 

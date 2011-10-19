@@ -4,7 +4,8 @@
 
 Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
-				GLfloat widthSprite, GLfloat heightSprite)
+				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+				std::vector< Vector2f> delayMovement)
 {
   texture = GameRender::loadTexture(filename);
   glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &this->widthTexture);
@@ -15,10 +16,13 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
 
   handlerAnimation = new Animation(initialFrame, maxFrame.at(getCurrentState()), 
 		                           returnFrame.at(getCurrentState()), 
+								   framerateAnimations.at(getCurrentState()),
 								   SpriteData::RIGHT );
 
   maxFramesPerAnimation = maxFrame;
   returnFramesPerAnimation = returnFrame;
+  frameratePerAnimation =  framerateAnimations;
+  delayMovementSprite = delayMovement;
 
   width = widthSprite;	
   height = heightSprite;
@@ -27,8 +31,12 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
   this->speed = speed;
   currentXSpeed = speed.at(getCurrentState()).x;
   currentYSpeed = speed.at(getCurrentState()).y;
-  delay.x = 0;
-  delay.y = 0;
+
+  countX = 0;
+  countY = 0;
+
+  playerMoveInX = false;
+  playerMoveInY = false;
 }
 
 Sprite::~Sprite(void)
@@ -40,35 +48,51 @@ Sprite::~Sprite(void)
   delete playerStateManager;
 }
 
-bool Sprite::movePosXWithSpeed()
+void Sprite::movePosXWithSpeed()
 {
-  if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
+  playerMoveInX = false || playerMoveInX;
+
+  countX++;
+  if ( countX > delayMovementSprite.at(getCurrentState()).x )
   {
-    if ( position.x + getSpeedX() + width < 6368.f )
+    countX = 0;
+    if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
+    {
+      if ( position.x + getSpeedX() + width < 6368.f )
+      {
+        position.x += getSpeedX();
+		playerMoveInX = true;
+		return;
+      }
+    }
+  
+    else if ( position.x + getSpeedX() + width  > 0 )
     {
       position.x += getSpeedX();
-      return true;
+	  playerMoveInX = true;
+	  return;
     }
+	playerMoveInX = false;
   }
-  
-  else if ( position.x + getSpeedX() + width  > 0 )
-  {
-    position.x += getSpeedX();
-    return true;
-  }
-
-  return false;
 }
 
-bool Sprite::movePosYWithSpeed()
+void Sprite::movePosYWithSpeed()
 {
-  if( position.y + getSpeedY() + height < 550.f )
-  {
-    position.y += getSpeedY();
-    return true;
-  }
+  playerMoveInY = false || playerMoveInY;
 
-  return false;
+  countY++;
+  if ( countY > delayMovementSprite.at(getCurrentState()).y )
+  {
+    countY = 0;
+    if( position.y + getSpeedY() + height < 550.f )
+    {
+      position.y += getSpeedY();
+	  playerMoveInY = true;
+	  return;
+    }
+	playerMoveInY = false;
+	playerMoveInX = false;
+  }
 }
 
 void Sprite::setSpeedX(GLfloat speedX)
@@ -78,7 +102,30 @@ void Sprite::setSpeedX(GLfloat speedX)
     speed.at(getCurrentState()).x = speedX;
   }
 
-  currentXSpeed = speedX;
+  if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
+  {
+	speed.at(getCurrentState()).x = speed.at(getPreviousState()).x;
+  }
+
+  currentXSpeed = speed.at(getCurrentState()).x;
+  
+}
+
+void Sprite::setSpeedY(GLfloat speedY)
+{
+  if ( getPreviousState() == GameCoreStates::FAST_ATTACK &&
+	   getCurrentState() == GameCoreStates::JUMPING)
+  {
+	currentYSpeed = speedY;
+  }
+  if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
+  {
+	speed.at(getCurrentState()).y = currentYSpeed;
+	speedY = currentYSpeed;
+  }
+
+  currentYSpeed = speedY;
+  
 }
 
 void Sprite::setConstantSpeedX(int constant)
@@ -114,8 +161,10 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
     playerStateManager->changeState(newState);
 
     setSpeedY(speed.at(getCurrentState()).y);
+
+	handlerAnimation->restartOldTime();
 	handlerAnimation->restartCurrentFrame();
-    handlerAnimation->setLoopPerAnimation(0);
+	handlerAnimation->setFrameRate( frameratePerAnimation.at(getCurrentState()) );
     handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
     handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );	
     return;
@@ -124,8 +173,11 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
   else if( result == GameCoreStates::RETURN_STILL )
   {
     playerStateManager->changeState(STILL_STATE);
+
     setSpeedY(speed.at(getCurrentState()).y);
-    handlerAnimation->setLoopPerAnimation(0);
+	handlerAnimation->restartOldTime();
+	handlerAnimation->restartCurrentFrame();
+	handlerAnimation->setFrameRate( frameratePerAnimation.at(getCurrentState()) );
     handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
     handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );
 	return;
@@ -134,9 +186,17 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
 
 void Sprite::drawTexture()
 {
+	if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
+	{
+	 GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), 
+                                widthTexture, heightTexture, width, height, 
+								handlerAnimation->getAnimationDirection(), getCurrentState() + (getPreviousState()-1) );
+	}
+	else
+	{
   GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), 
                                 widthTexture, heightTexture, width, height, 
-                                handlerAnimation->getAnimationDirection(), getCurrentState() );
+								handlerAnimation->getAnimationDirection(), getCurrentState() );}
 }
 
 

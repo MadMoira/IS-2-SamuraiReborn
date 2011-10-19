@@ -6,11 +6,11 @@
 
 enum GameStates 
 {
-	STATE_NULL,
-	STATE_INTRO, 
-	STATE_MAINMENU, 
-	STATE_LEVELZEROTUTORIAL, 
-	STATE_EXIT,
+  STATE_NULL,
+  STATE_INTRO, 
+  STATE_MAINMENU, 
+  STATE_LEVELZEROTUTORIAL, 
+  STATE_EXIT,
 };
 
 class GameState
@@ -24,11 +24,20 @@ public:
 
 	GameStates getNameState() { return nameState; }
 
+	int checkIfStateEnd() { return hasEnded; }
+	void setHasEnded(int stateHasEnded) { hasEnded = stateHasEnded; }
+
+private:
+	int hasEnded;
+
 protected:
 	GameState( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
 	GameRender* gameRender;
 	GameCore* gameCore;
 	GameInput* gameInput;
 	GameStates nameState;
+
+		
+	
 };
 

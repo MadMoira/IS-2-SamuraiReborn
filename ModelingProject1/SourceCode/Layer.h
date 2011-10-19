@@ -46,6 +46,7 @@ private:
 	GLfloat widthLevelLayer, heightLevelLayer;
 	Vector2f speed, offset;
 	GLfloat constantVelX;
+	int countX, delayX;
 	bool repeat;
 	bool continuous;
 };

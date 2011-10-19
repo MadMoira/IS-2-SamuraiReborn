@@ -24,13 +24,20 @@ class Sprite
 public:
 	Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
-				GLfloat widthSprite, GLfloat heightSprite);
+				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+				std::vector< Vector2f> delayMovement);
 	~Sprite(void);
 
 	GLfloat getPosX() { return position.x; }
-	bool movePosXWithSpeed();
+	void movePosXWithSpeed();
 	GLfloat getPosY() { return position.y; }
-	bool movePosYWithSpeed();
+	void movePosYWithSpeed();
+
+	void setPlayerMoveInX(bool moveX) { playerMoveInX = moveX; }
+	bool getPlayerMoveInX() { return playerMoveInX; }
+
+	void setPlayerMoveInY(bool moveY) { playerMoveInY = moveY; }
+	bool getPlayerMoveInY() { return playerMoveInY; }
 
 	GLfloat getSpeedX() { return currentXSpeed; }
 	GLfloat getStateXSpeed() { return speed.at(getCurrentState()).x; }
@@ -40,11 +47,7 @@ public:
 	void setConstantSpeedX(int constant);
 
 	GLfloat getSpeedY() { return currentYSpeed; }
-	void setSpeedY(GLfloat newSpeedY){currentYSpeed=newSpeedY;}
-
-	GLfloat getDelayX() { return delay.x; }
-
-	GLfloat getDelayY() { return delay.y; }
+	void setSpeedY(GLfloat speedY);
 
 	GLuint getTexture() { return texture; }
 
@@ -67,13 +70,15 @@ private:
 	GLuint texture;
 	Animation* handlerAnimation;
 	GameCoreStates::PlayerStateManager* playerStateManager;
-	Vector2f position, delay;
+	Vector2f position;
 	std::vector< Vector2f > speed;
+	std::vector< Vector2f > delayMovementSprite;
 	std::vector< int > maxFramesPerAnimation;
 	std::vector< int > returnFramesPerAnimation;
+	std::vector< int > frameratePerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
 	GLfloat currentXSpeed, currentYSpeed;
 	GLfloat countX, countY;
-	int frameCount, frameDelay;
+	bool playerMoveInX, playerMoveInY;
 };
 

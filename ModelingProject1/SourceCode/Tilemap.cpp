@@ -4,23 +4,26 @@
 
 Tilemap::Tilemap(std::string name, int widthInTiles, int heightInTiles)
 {
-	nameLayer = name;
-	widthLevelInTiles = widthInTiles;
-	heightLevelInTiles = heightInTiles;
-	offset.x = offset.y = 0.0f;
-	sizeTiles = 32.f;
+  nameLayer = name;
+  widthLevelInTiles = widthInTiles;
+  heightLevelInTiles = heightInTiles;
+  offset.x = offset.y = 0.0f;
+  sizeTiles = 32.f;
 
-	layerMap.resize(heightLevelInTiles);
+  countX = 0;
+  delayX = 2;
+
+  layerMap.resize(heightLevelInTiles);
 	
-	for (int i = 0; i < heightLevelInTiles; i++)
-	{
-		layerMap[i].resize(widthLevelInTiles);
-	}
+  for (int i = 0; i < heightLevelInTiles; i++)
+  {
+    layerMap[i].resize(widthLevelInTiles);
+  }
 }
 
 Tilemap::~Tilemap(void)
 {
-	layerMap.clear();
+  layerMap.clear();
 }
 
 void Tilemap::drawTilemap(int indexTileset)
@@ -131,48 +134,53 @@ void Tilemap::drawTilemap(int indexTileset)
 
 GLfloat Tilemap::transformOffsetXToIntervalValues(GLfloat offX)
 {
-	int modForTextureCoordinates = (int)sizeTiles* (int)( floor(offX/sizeTiles) );
+  int modForTextureCoordinates = (int)sizeTiles* (int)( floor(offX/sizeTiles) );
 
-	if (offX > sizeTiles*2 ) 
-	{ 
-		return offX - modForTextureCoordinates; 
-	}
+  if (offX > sizeTiles*2 ) 
+  { 
+    return offX - modForTextureCoordinates; 
+  }
 
-	else if ( offX > sizeTiles && offX <= sizeTiles*2 )
-	{
-		return offX - sizeTiles;
-	} 
+  else if ( offX > sizeTiles && offX <= sizeTiles*2 )
+  {
+    return offX - sizeTiles;
+  } 
 
-	return offX;
+  return offX;
 }
 
 void Tilemap::scrollTilemap()
 {
+  countX++;
+  if ( countX > delayX )
+  {
+    countX = 0;
 	offset.x += speed.x;
 	offset.y += speed.y;
+  }
 
-	checkScreenBoundaries();
+  checkScreenBoundaries();
 }
 
 bool Tilemap::checkScreenBoundaries()
 {
-	if (offset.x > widthLevelInTiles*sizeTiles - 1280.f)
-	{
-		offset.x = widthLevelInTiles*sizeTiles - 1280.f; 
-		return true;
-	}
+  if (offset.x > widthLevelInTiles*sizeTiles - 1280.f)
+  {
+    offset.x = widthLevelInTiles*sizeTiles - 1280.f; 
+    return true;
+  }
 
-	if ( offset.x < 0 )
-	{
-		offset.x = 0;
-		return true;
-	}
+  if ( offset.x < 0 )
+  {
+    offset.x = 0;
+    return true;
+  }
 
-	return false;
+  return false;
 }
 
 void Tilemap::addTileset(int id, std::string name, GLfloat widthTile, GLfloat heightTile, GLfloat imageWidth, GLfloat imageHeight, 
 			int size)
 {
-	tilesetList.push_back( new Tileset(id, name, widthTile, heightTile, imageWidth, imageHeight, size, GameRender::loadTexture(name)) );
+  tilesetList.push_back( new Tileset(id, name, widthTile, heightTile, imageWidth, imageHeight, size, GameRender::loadTexture(name)) );
 }

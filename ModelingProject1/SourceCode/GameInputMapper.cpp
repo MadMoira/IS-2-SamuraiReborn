@@ -197,7 +197,7 @@ void InputMapping::GameInputMapper::setRawButtonState(InputMapping::Key key)
 bool InputMapping::GameInputMapper::checkIfCanCleanStateVector()
 {
   bool canClean = countStatesInMapper(GameCoreStates::JUMPING) != 1;
-  canClean = canClean && countStatesInMapper(GameCoreStates::FAST_ATTACK_WALKING) != 1; 
+  canClean = canClean && countStatesInMapper(GameCoreStates::FAST_ATTACK) != 1; 
   return canClean;
 }
 

@@ -1,6 +1,11 @@
 
 #include "GameScreen.h"
+
+#include <CEGUI.h>
+#include <RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
+
 #include <SDL/SDL_ttf.h>
+
 
 GameScreen::GameScreen(void)
 {
@@ -32,6 +37,8 @@ bool GameScreen::initializeScreen()
     return false;
   }
 
+  initializeSDLFeatures();
+
   if( !initializeOpenGL() )
   {
     return false;
@@ -52,6 +59,8 @@ bool GameScreen::initializeOpenGL()
   defaultResolution = SDL_GetVideoInfo();
   float proportion = ( (float)defaultResolution->current_w / (float)defaultResolution->current_h );
 	
+  CEGUI::OpenGLRenderer::bootstrapSystem();
+  
   glViewport(0, 0, defaultResolution->current_w, defaultResolution->current_h);
   glMatrixMode( GL_PROJECTION );
   glLoadIdentity();
@@ -113,6 +122,13 @@ bool GameScreen::initializeSDLGLState()
   SDL_GL_SetAttribute( SDL_GL_MULTISAMPLESAMPLES, 2 );
 
   return true;
+}
+
+void GameScreen::initializeSDLFeatures()
+{
+  SDL_ShowCursor( SDL_DISABLE );
+  SDL_EnableUNICODE( 1 );
+  SDL_EnableKeyRepeat( SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL );
 }
 
 GLfloat GameScreen::getWidth()

@@ -9,12 +9,11 @@ namespace GameCoreStates
 	JUMPING,
 	RUNNING,
     DOUBLE_JUMP,
-	FAST_ATTACK_WALKING,
+	FAST_ATTACK,
   };
 
   enum Action
   {
-    FAST_ATTACK,
   };
 
   enum ChangeStateResult

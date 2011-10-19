@@ -21,8 +21,11 @@ class GameTimer
    bool isStarted();
    bool isPaused();
 
+   void setFramesPerSecond(int fps) { framesPerSecond = fps; }
+
   private:
    int startTicks, pausedTicks;
    bool paused, started;
+   int framesPerSecond;
 };
 

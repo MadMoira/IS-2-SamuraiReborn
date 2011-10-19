@@ -1,17 +1,17 @@
 
 #include "Animation.h"
 
-Animation::Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, SpriteData::AnimationDirection direction)
+Animation::Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, int framerate,
+	                 SpriteData::AnimationDirection direction)
 {
-	currentFrame = actualFrame;
-    maxFrames = maxFramesFromCurrentState;
-	animationDirection = direction;
-    incrementFrame = 1;
-    frameRate = 30;
-    oldTime = 0;
-	numberCyclesPerFrame = 0;
-	loopPerAnimation = 0;
-	this->returnFrame = returnFrame;
+  currentFrame = actualFrame;
+  maxFrames = maxFramesFromCurrentState;
+  animationDirection = direction;
+  incrementFrame = 1;
+  frameRate = framerate;
+  oldTime = SDL_GetTicks();
+  this->returnFrame = returnFrame;
+  animationAlreadyEnd = false;
 }
 
 Animation::~Animation(void)
@@ -20,52 +20,45 @@ Animation::~Animation(void)
 
 int Animation::animate() 
 {
-    if( oldTime + frameRate > SDL_GetTicks() ) 
-	{
-        return -1;
-    }
+  if( oldTime + frameRate > SDL_GetTicks() ) 
+  {
+    return -1;
+  }
  
-    oldTime += frameRate;
- 
-	
-	if ( loopPerAnimation == numberCyclesPerFrame )
-	{
-		currentFrame += incrementFrame;
-		loopPerAnimation = 0;
+  oldTime += frameRate;
 
-		if( currentFrame > maxFrames)
-		{
-			currentFrame = returnFrame;
-		}
-	}
+  animationAlreadyEnd = false;
+  currentFrame += incrementFrame;
+  
+  if( currentFrame > maxFrames)
+  {
+    animationAlreadyEnd = true;
+    currentFrame = returnFrame;
+  }
 
-	else
-	{
-	  loopPerAnimation += 1;
-	}
-	return currentFrame;
+  return currentFrame;
 }
 
 void Animation::setCurrentFrame(int frame)
 {
-    if( frame < 0 || frame > maxFrames) 
-	{
-		currentFrame = returnFrame;
-		return;
-	}
+  if( frame < 0 || frame > maxFrames) 
+  {
+    currentFrame = returnFrame;
+    return;
+  }
  
-    currentFrame = frame;
+  currentFrame = frame;
 }
 
 int Animation::changeAnimationDirection(int direction)
 {
-	if ( animationDirection != direction )
-	{
-		animationDirection = direction;
-		return -1;
-	}
+  if ( animationDirection != direction )
+  {
+    animationDirection = direction;
+    return -1;
+  }
 
-	return 1;
+  return 1;
 }
 
 

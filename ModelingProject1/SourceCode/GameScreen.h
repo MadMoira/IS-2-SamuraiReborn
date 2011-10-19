@@ -14,7 +14,10 @@ class GameScreen
    bool initializeScreen();
    bool initializeOpenGL();
    bool initializeSDLGLState();
+   void initializeSDLFeatures();
+
    GLfloat getWidth();
+   SDL_Surface& getScreenReference() { return *screen; }
 	
   private:
    SDL_Surface* screen;

@@ -3,19 +3,19 @@
 
 #include "ComparatorFunctions.h"
 
-#include "FastAttackWalkingState.h"
+#include "FastAttackState.h"
 
 
-GameCoreStates::FastAttackWalkingState::FastAttackWalkingState(int id) : PlayerState( id )
+GameCoreStates::FastAttackState::FastAttackState(int id) : PlayerState( id )
 {
   currentID = id;
 }
 
-GameCoreStates::FastAttackWalkingState::~FastAttackWalkingState(void)
+GameCoreStates::FastAttackState::~FastAttackState(void)
 {
 }
 
-int GameCoreStates::FastAttackWalkingState::checkMovement(int keyPreviouslyPressed, int previousState, 
+int GameCoreStates::FastAttackState::checkMovement(int keyPreviouslyPressed, int previousState, 
                                                 int currentState, std::list<InputMapping::Key> keys)
 {
   GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
@@ -27,7 +27,8 @@ int GameCoreStates::FastAttackWalkingState::checkMovement(int keyPreviouslyPress
 	return GameCoreStates::RETURN_STILL;
   }
 
-  if ( currentState == GameCoreStates::WALKING && keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON 
+  if ( (currentState == GameCoreStates::WALKING || currentState == GameCoreStates::JUMPING)
+	  && keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON 
 	  && fastAttackButtonIsPressed )
   {
     return GameCoreStates::CHANGE;

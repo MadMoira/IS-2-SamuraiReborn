@@ -41,22 +41,23 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\SDL - DLL, INC, LIB\include files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;$(IncludePath)</IncludePath>
+    <IncludePath>D:\SDL - DLL, INC, LIB\include files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\CEGUI 0.7.5\cegui\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\CEGUI 0.7.5\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;D:\CEGUI 0.7.5\dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>fmodex_vc.lib;TmxParserd.lib;opengl32.lib;SDL.lib;SDLmain.lib;SDL_image.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmodex_vc.lib;TmxParserd.lib;opengl32.lib;SDL.lib;SDLmain.lib;SDL_image.lib;SDL_ttf.lib;CEGUIBase_d.lib;CEGUIOpenGLRenderer_d.lib;CEGUIDirect3D9Renderer_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>fmodex_vc.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>D:\CEGUI 0.7.5\dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,7 +81,7 @@
     <ClCompile Include="ComparatorFunctions.cpp" />
     <ClCompile Include="DoubleJumpState.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="FastAttackWalkingState.cpp" />
+    <ClCompile Include="FastAttackState.cpp" />
     <ClCompile Include="GameConfiguration.cpp" />
     <ClCompile Include="GameCore.cpp" />
     <ClCompile Include="GameFont.cpp" />
@@ -132,7 +133,7 @@
     <ClInclude Include="ComparatorFunctions.h" />
     <ClInclude Include="DoubleJumpState.h" />
     <ClInclude Include="Enemy.h" />
-    <ClInclude Include="FastAttackWalkingState.h" />
+    <ClInclude Include="FastAttackState.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="GameConfiguration.h" />
     <ClInclude Include="GameCore.h" />
@@ -184,14 +185,20 @@
   <ItemGroup>
     <None Include="Clouds.png" />
     <None Include="ContextList.txt" />
-    <None Include="FirstLevelZoneOneBG.png" />
+    <None Include="datafiles\imagesets\MainMenuBackground.imageset" />
+    <None Include="datafiles\imagesets\MainMenuButtons.imageset" />
     <None Include="healthBar.png" />
     <None Include="LevelOneTileMap.tmx" />
     <None Include="MainContext.txt" />
     <None Include="Meerkat - SpriteSheet.png" />
+    <None Include="MenuBackground.jpg" />
+    <None Include="MenuButtons.png" />
     <None Include="Mountains0.png" />
+    <None Include="Mountains1.png" />
     <None Include="orbitron-black.ttf" />
     <None Include="Panda - SpriteSheet.png" />
+    <None Include="SkyBackground.png" />
+    <None Include="Tileset.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

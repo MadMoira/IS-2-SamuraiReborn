@@ -9,7 +9,8 @@ public:
 
 	void initializePlayer(IDSprites id, std::string filename, std::vector< Vector2f > speed, 
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
-				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite);
+				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
+				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement);
 	
 	void walk();
 	void run();

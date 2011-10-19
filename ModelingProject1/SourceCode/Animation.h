@@ -6,12 +6,13 @@
 class Animation
 {
 public:
-	Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, SpriteData::AnimationDirection direction);
+	Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, int framerate,
+		      SpriteData::AnimationDirection direction);
 	~Animation(void);
  
     int animate();
 
-	void setFrameRate(int rate) { frameRate = rate; }
+	bool getAnimationAlreadyEnd() { return animationAlreadyEnd; }
  
 	int getCurrentFrame() { return currentFrame; }
     void setCurrentFrame(int frame);
@@ -21,9 +22,9 @@ public:
 
 	void setReturnFrame(int returnFrame) { this->returnFrame = returnFrame; }
 
-	void setCyclesPerFrame(int cycles) { numberCyclesPerFrame = cycles; }
+	void setFrameRate(int frame) { frameRate = frame; }
 
-	void setLoopPerAnimation(int loop) { loopPerAnimation = loop; }
+	void restartOldTime() { oldTime = SDL_GetTicks(); }
 
 	int getAnimationDirection() { return animationDirection; }
 	int changeAnimationDirection(int direction);
@@ -31,8 +32,8 @@ public:
 private:
 	int currentFrame, incrementFrame;
 	int maxFrames, returnFrame;
-	int numberCyclesPerFrame, loopPerAnimation;
 	Uint32 frameRate, oldTime;
 	int animationDirection;
+	bool animationAlreadyEnd;
 };
 

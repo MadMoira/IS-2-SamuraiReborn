@@ -44,5 +44,6 @@ private:
 	int widthLevelInTiles, heightLevelInTiles;
 	GLfloat sizeTiles;
 	boost::ptr_vector< Tileset > tilesetList;
+	int countX, delayX;
 };
 

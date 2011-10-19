@@ -3,11 +3,11 @@
 
 namespace GameCoreStates
 {
-  class FastAttackWalkingState : public PlayerState
+  class FastAttackState : public PlayerState
   {
     public:
-	 FastAttackWalkingState(int id);
-	 ~FastAttackWalkingState(void);
+	 FastAttackState(int id);
+	 ~FastAttackState(void);
 
 	 int checkMovement(int keyPreviouslyPressed, int previousState, 
 		              int currentState, std::list<InputMapping::Key> keys);

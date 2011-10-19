@@ -3,8 +3,9 @@
 
 GameTimer::GameTimer(void)
 {
-	startTicks = pausedTicks = 0;
-	paused = started = false;
+  startTicks = pausedTicks = 0;
+  paused = started = false;
+  framesPerSecond = 10;
 }
 
 GameTimer::~GameTimer(void)
@@ -13,22 +14,22 @@ GameTimer::~GameTimer(void)
 
 void GameTimer::start()
 {
-    started = true;
-    paused = false;
+  started = true;
+  paused = false;
 
-    startTicks = SDL_GetTicks();
+  startTicks = SDL_GetTicks();
 }
 
 void GameTimer::stop()
 {
-    started = paused = false;
+  started = paused = false;
 }
 
 void GameTimer::delay()
 {
-	if( getTicks() < 1000 / FRAMES_PER_SECOND )
+	if( getTicks() < 1000 / framesPerSecond )
     {
-		SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - getTicks() );
+		SDL_Delay( ( 1000 / framesPerSecond ) - getTicks() );
     }
 }
 
@@ -71,11 +72,11 @@ int GameTimer::getTicks()
 
 bool GameTimer::isStarted()
 {
-    return started;
+  return started;
 }
 
 bool GameTimer::isPaused()
 {
-    return paused;
+  return paused;
 }
 

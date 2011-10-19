@@ -13,15 +13,18 @@ public:
 	void pushState( GameState* gameState );
 	void popState();
 	void changeState( GameState* gameState ) ;
+	void changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI);
 
 	void init();
 	void handleEvents();
 	void logic();
 	void render();
 
-protected:
+private:
 	boost::ptr_vector< GameState > statesStack;
 	GameStates currentState;
 	int currentID;
+
+    int checkIfCurrentStateHasEnd();
 };
 
