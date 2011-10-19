@@ -19,6 +19,7 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector<GLfloat> speedX, 
 	this->speedY = speedY;
 	currentState = state;
 	spriteCollisionBox = new CollisionBox(posX,posY,width,height);
+	cHandler = Collider::getInstance();
 }
 
 Sprite::~Sprite(void)

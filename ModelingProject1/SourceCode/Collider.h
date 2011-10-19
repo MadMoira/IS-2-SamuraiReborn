@@ -4,15 +4,16 @@
 #include "CollisionBox.h"
 #include "Enemy.h"
 #include "Player.h"
+#include "Tile.h"
 
-class Collider
-{
+class Collider{
 public:
-	
-	Collider::Collider();
-	Collider::Collider(boost::ptr_vector< Enemy > *enemies, boost::ptr_vector< Player > *players);
+
+	Collider();
+	//Collider::Collider(boost::ptr_vector< Enemy > *enemies, boost::ptr_vector< Player > *players);
 	~Collider(void);
-	
+
+	static Collider* getInstance();
 	bool checkCollision( CollisionBox &A, CollisionBox &B , float direction);
 	bool checkTileCollision( Sprite &A, float directionX);
 	bool checkEnemiesCollision( CollisionBox &A, float directionX);
@@ -21,6 +22,9 @@ public:
 	bool onTheGround(Sprite &A, float directionX);
 	
 private:
+	static bool instanceFlag;
+    static Collider *collider;
+	std::vector< std::vector < Tile > > layerMap;
 	boost::ptr_vector< Enemy > *enemies;
 	boost::ptr_vector< Player > *players;
 };

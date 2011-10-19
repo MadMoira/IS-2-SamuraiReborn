@@ -10,8 +10,7 @@
 #include "Player.h"
 #include "Collider.h"
 
-class GameCore
-{
+class GameCore{
 public:
 	GameCore(void);
 	~GameCore(void);
@@ -47,6 +46,6 @@ private:
 	boost::ptr_vector< Player > playersList;
 	boost::ptr_vector< Enemy > enemiesList;
 	bool isRunning;
-	static Collider *collider;
+	Collider *collider;
 };
 

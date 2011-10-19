@@ -4,11 +4,10 @@
 #include <string>
 #include <vector>
 #include <GL/gl.h>
-
 #include "GameRender.h"
 #include "CollisionBox.h"
 #include "Animation.h"
-//#include "Collider.h"
+class Collider;
 
 enum IDSprites 
 { 
@@ -76,6 +75,6 @@ private:
 	GLfloat delayX, delayY;
 	int frameCount, frameDelay;
 	CollisionBox *spriteCollisionBox;
-//	Collider cHandler;
+	Collider *cHandler;
 };
 
