@@ -35,9 +35,9 @@ void SLevelTutorial::init()
   std::vector< Vector2f > speedMeerkat;
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
   speedMeerkat.push_back( Vector2f(10.0f, 0.0f) );
-  speedMeerkat.push_back( Vector2f(0.0f, -22.0f) );
+  speedMeerkat.push_back( Vector2f(0.0f, -24.0f) );
   speedMeerkat.push_back( Vector2f(28.0f, 0.0f) );
-  speedMeerkat.push_back( Vector2f(0.0f, -16.0f) );
+  speedMeerkat.push_back( Vector2f(0.0f, -18.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
 
   std::vector < int > maxFrameVector;
@@ -59,9 +59,9 @@ void SLevelTutorial::init()
   std::vector < Vector2f > delayMovementVector;
   delayMovementVector.push_back( Vector2f(0.0f, 0.0f) );
   delayMovementVector.push_back( Vector2f(3.0f, 0.0f) );
-  delayMovementVector.push_back( Vector2f(5.0f, 4.0f) );
+  delayMovementVector.push_back( Vector2f(5.0f, 5.0f) );
   delayMovementVector.push_back( Vector2f(5.0f, 0.0f) );
-  delayMovementVector.push_back( Vector2f(5.0f, 4.0f) );
+  delayMovementVector.push_back( Vector2f(5.0f, 5.0f) );
   delayMovementVector.push_back( Vector2f(4.0f, 5.0f) );
 
   std::vector < int > framerateAnimationsVector;
@@ -78,7 +78,7 @@ void SLevelTutorial::init()
   std::string filenameFont = "orbitron-black.ttf";
 
   gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
-						speedMeerkat, Vector2f(150.0f, 350.0f), 0, maxFrameVector, returnFrameVector,
+						speedMeerkat, Vector2f(150.0f, 382.0f), 0, maxFrameVector, returnFrameVector,
 						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
 
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(
@@ -106,6 +106,8 @@ void SLevelTutorial::init()
   speedMeerkat.clear();
   maxFrameVector.clear();
   returnFrameVector.clear();
+  delayMovementVector.clear();
+  framerateAnimationsVector.clear();
 }
 
 void SLevelTutorial::handleEvents()
