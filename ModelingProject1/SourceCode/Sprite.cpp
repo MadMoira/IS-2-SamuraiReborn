@@ -84,12 +84,14 @@ void Sprite::movePosYWithSpeed()
   if ( countY > delayMovementSprite.at(getCurrentState()).y )
   {
     countY = 0;
-    if( position.y + getSpeedY() + height < 550.f )
+    if( position.y + getSpeedY() + height < 582.f )
     {
       position.y += getSpeedY();
 	  playerMoveInY = true;
 	  return;
     }
+	currentYSpeed = 0.0f;
+	position.y = 382.0f;
 	playerMoveInY = false;
 	playerMoveInX = false;
   }
@@ -113,19 +115,22 @@ void Sprite::setSpeedX(GLfloat speedX)
 
 void Sprite::setSpeedY(GLfloat speedY)
 {
-  if ( getPreviousState() == GameCoreStates::FAST_ATTACK &&
-	   getCurrentState() == GameCoreStates::JUMPING)
-  {
-	currentYSpeed = speedY;
-  }
   if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
   {
-	speed.at(getCurrentState()).y = currentYSpeed;
-	speedY = currentYSpeed;
+    if ( getPreviousState() == GameCoreStates::JUMPING )
+    {
+	  speedY = -4.0f;
+      speed.at(getCurrentState()).y = speedY;
+    }
+
+	else
+	{
+	  speed.at(getCurrentState()).y = currentYSpeed;
+	  speedY = currentYSpeed;
+    }
   }
 
   currentYSpeed = speedY;
-  
 }
 
 void Sprite::setConstantSpeedX(int constant)
@@ -186,17 +191,15 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
 
 void Sprite::drawTexture()
 {
-	if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
-	{
-	 GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), 
-                                widthTexture, heightTexture, width, height, 
-								handlerAnimation->getAnimationDirection(), getCurrentState() + (getPreviousState()-1) );
-	}
-	else
-	{
+  int currentState = getCurrentState();
+  if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
+  {
+    currentState += getPreviousState() - 1;
+  }
+
   GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), 
                                 widthTexture, heightTexture, width, height, 
-								handlerAnimation->getAnimationDirection(), getCurrentState() );}
+								handlerAnimation->getAnimationDirection(), currentState );
 }
 
 
