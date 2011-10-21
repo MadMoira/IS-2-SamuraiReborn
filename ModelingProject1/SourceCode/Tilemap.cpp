@@ -11,7 +11,7 @@ Tilemap::Tilemap(std::string name, int widthInTiles, int heightInTiles)
   sizeTiles = 32.f;
 
   countX = 0;
-  delayX = 2;
+  delayX = 3;
 
   layerMap.resize(heightLevelInTiles);
 	

@@ -1,9 +1,6 @@
 
 #include "GameScreen.h"
 
-#include <CEGUI.h>
-#include <RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
-
 #include <SDL/SDL_ttf.h>
 
 
@@ -58,8 +55,6 @@ bool GameScreen::initializeOpenGL()
 {	
   defaultResolution = SDL_GetVideoInfo();
   float proportion = ( (float)defaultResolution->current_w / (float)defaultResolution->current_h );
-	
-  CEGUI::OpenGLRenderer::bootstrapSystem();
   
   glViewport(0, 0, defaultResolution->current_w, defaultResolution->current_h);
   glMatrixMode( GL_PROJECTION );

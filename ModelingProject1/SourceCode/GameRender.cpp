@@ -106,8 +106,8 @@ void GameRender::drawSpriteTexture(GLuint texture, Vector2f pos, int currentFram
 
 	if ( direction == 1 )
 	{
-		verts[0] = verts[6] = pos.x + widthSprite;
-		verts[2] = verts[4] = pos.x;
+		verts[0] = verts[6] = pos.x + widthSprite/2;
+		verts[2] = verts[4] = pos.x - widthSprite/2;
 	}
 	
 	const GLfloat textureWidth = widthSprite / widthTexture;

@@ -42,6 +42,9 @@ InputMapping::GameInputContext::GameInputContext(const std::string filename)
 
 InputMapping::GameInputContext::~GameInputContext(void)
 {
+  actionMap.clear();
+  stateMap.clear();
+  keysList.clear();
 }
 
 bool InputMapping::GameInputContext::mapButtonToAction(InputMapping::RawInputButton button, 

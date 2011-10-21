@@ -109,6 +109,30 @@
     <Filter Include="Resource Files\Main Menu">
       <UniqueIdentifier>{27e1eabb-3063-4e35-bfe6-1e3ad4d7c020}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game States\Levels">
+      <UniqueIdentifier>{9c650fc0-4bdc-4544-bb48-bed34161c119}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game States\Menus">
+      <UniqueIdentifier>{be375521-2709-4e73-99ff-6ed7a2fe2886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game States\Menus">
+      <UniqueIdentifier>{de83d952-3bc8-4990-8a01-2cb68a390a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game States\Levels">
+      <UniqueIdentifier>{4d02fece-53e4-4673-90a6-b73b76735404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Main Menu\Imagesets">
+      <UniqueIdentifier>{bf79511d-b0bb-427e-8787-99b41be3ddfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Main Menu\Layout">
+      <UniqueIdentifier>{f87a4f0d-2f7d-4d94-b6c0-418866c4771e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Main Menu\Imagesets\Images">
+      <UniqueIdentifier>{dc4fb80c-98ef-4bbb-92c2-70bc8b4c71a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Intro">
+      <UniqueIdentifier>{625dfe93-cdee-4f51-9f62-291ae2e7b966}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -139,12 +163,6 @@
       <Filter>Source Files\Game Core</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp">
-      <Filter>Source Files\Game States</Filter>
-    </ClCompile>
-    <ClCompile Include="SMainMenu.cpp">
-      <Filter>Source Files\Game States</Filter>
-    </ClCompile>
-    <ClCompile Include="SLevelOneJapan.cpp">
       <Filter>Source Files\Game States</Filter>
     </ClCompile>
     <ClCompile Include="MeerkatP2.cpp">
@@ -188,9 +206,6 @@
     </ClCompile>
     <ClCompile Include="GameSound.cpp">
       <Filter>Source Files\Game Core</Filter>
-    </ClCompile>
-    <ClCompile Include="SLevelTutorial.cpp">
-      <Filter>Source Files\Game States</Filter>
     </ClCompile>
     <ClCompile Include="GameRender.cpp">
       <Filter>Source Files\Graphics</Filter>
@@ -261,6 +276,18 @@
     <ClCompile Include="FastAttackState.cpp">
       <Filter>Source Files\Player\States</Filter>
     </ClCompile>
+    <ClCompile Include="SLevelOneJapan.cpp">
+      <Filter>Source Files\Game States\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="SLevelTutorial.cpp">
+      <Filter>Source Files\Game States\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="SIntro.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="SMainMenu.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -288,12 +315,6 @@
       <Filter>Header Files\Game Core</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
-      <Filter>Header Files\Game States</Filter>
-    </ClInclude>
-    <ClInclude Include="SMainMenu.h">
-      <Filter>Header Files\Game States</Filter>
-    </ClInclude>
-    <ClInclude Include="SLevelOneJapan.h">
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
     <ClInclude Include="MeerkatP2.h">
@@ -334,9 +355,6 @@
     </ClInclude>
     <ClInclude Include="GameSound.h">
       <Filter>Header Files\Game Core</Filter>
-    </ClInclude>
-    <ClInclude Include="SLevelTutorial.h">
-      <Filter>Header Files\Game States</Filter>
     </ClInclude>
     <ClInclude Include="GameStateManager.h">
       <Filter>Header Files\Game States</Filter>
@@ -428,6 +446,18 @@
     <ClInclude Include="FastAttackState.h">
       <Filter>Header Files\Player\States</Filter>
     </ClInclude>
+    <ClInclude Include="SIntro.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="SMainMenu.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="SLevelOneJapan.h">
+      <Filter>Header Files\Game States\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="SLevelTutorial.h">
+      <Filter>Header Files\Game States\Levels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MainContext.txt">
@@ -466,17 +496,44 @@
     <None Include="SkyBackground.png">
       <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
     </None>
-    <None Include="MenuBackground.jpg">
-      <Filter>Resource Files\Main Menu</Filter>
+    <None Include="CollisionListLevelZeroSectionOne.csv">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
     </None>
-    <None Include="MenuButtons.png">
-      <Filter>Resource Files\Main Menu</Filter>
+    <None Include="datafiles\imagesets\CreditsButton.imageset">
+      <Filter>Resource Files\Main Menu\Imagesets</Filter>
+    </None>
+    <None Include="datafiles\imagesets\HistoryModeButton.imageset">
+      <Filter>Resource Files\Main Menu\Imagesets</Filter>
     </None>
     <None Include="datafiles\imagesets\MainMenuBackground.imageset">
-      <Filter>Resource Files\Main Menu</Filter>
+      <Filter>Resource Files\Main Menu\Imagesets</Filter>
     </None>
-    <None Include="datafiles\imagesets\MainMenuButtons.imageset">
-      <Filter>Resource Files\Main Menu</Filter>
+    <None Include="datafiles\imagesets\MenuCursor.imageset">
+      <Filter>Resource Files\Main Menu\Imagesets</Filter>
+    </None>
+    <None Include="datafiles\imagesets\QuitButton.imageset">
+      <Filter>Resource Files\Main Menu\Imagesets</Filter>
+    </None>
+    <None Include="datafiles\imagesets\TutorialButton.imageset">
+      <Filter>Resource Files\Main Menu\Imagesets</Filter>
+    </None>
+    <None Include="datafiles\layouts\MainMenu.layout">
+      <Filter>Resource Files\Main Menu\Layout</Filter>
+    </None>
+    <None Include="MenuBackground.png">
+      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    </None>
+    <None Include="MenuButtons.png">
+      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    </None>
+    <None Include="MenuCursor.png">
+      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    </None>
+    <None Include="MenuHighlighter.png">
+      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    </None>
+    <None Include="logoSamuraiReborn.png">
+      <Filter>Resource Files\Intro</Filter>
     </None>
   </ItemGroup>
 </Project>

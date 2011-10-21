@@ -6,8 +6,10 @@
 
 #include "GameStateManager.h"
 
-#include "SLevelTutorial.h"
+#include "SIntro.h"
 #include "SMainMenu.h"
+#include "SLevelTutorial.h"
+
 
 int main( int argc, char* args[] )
 {
@@ -36,8 +38,11 @@ int main( int argc, char* args[] )
 
     Core.getGameTimer()->delay();
   }
-	
+  
+  StateManager->cleanUp();
+
   delete StateManager;
+
   Core.cleanUpGameCore();
 
   return 0;
