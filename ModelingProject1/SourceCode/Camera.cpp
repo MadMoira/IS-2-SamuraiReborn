@@ -3,8 +3,8 @@
 
 Camera::Camera()
 {
-  posx = 0;
-  speedx = 0;	
+  posX = 0;
+  speedX = 0;	
   midPoint = 0;
   onePlayer = true;	
 }
@@ -21,58 +21,58 @@ void Camera::initCamera()
 
 void Camera::moveCamera(GLfloat posx1)
 {
-  if ( checkCam(posx1) )
+  if ( checkCamera(posx1) )
   {
-    posx += speedx;
-    midPoint += speedx;
+    posX += speedX;
+    midPoint += speedX;
   }
 
   else
   {
-    speedx = 0;
+    speedX = 0;
   }
 }
 
 void Camera::moveCamera(GLfloat posx1, GLfloat posx2)
 {
-  if(checkCam(posx1, posx2))
+  if( checkCamera(posx1, posx2) )
   {
-    posx += speedx;
-    midPoint += speedx;
+    posX += speedX;
+    midPoint += speedX;
   }
 
   else
   {
-    speedx = 0;
+    speedX = 0;
   }
 }
 
 void Camera::renderCamera()
 {
-  glTranslatef(-posx, 0, 0);
+  glTranslatef(-posX, 0, 0);
 }
 
 void Camera::setCameraSpeed(GLfloat newSpeedx)
 {
   if( onePlayer )
   {
-    speedx += newSpeedx;
+    speedX += newSpeedx;
   }
 
   else
   {
-    speedx += newSpeedx/2;
+    speedX += newSpeedx/2;
   }
 }
 
 void Camera::restartCameraSpeed()
 {
-  speedx = 0;
+  speedX = 0;
 }
 
-bool Camera::checkCam(GLfloat posx1)
+bool Camera::checkCamera(GLfloat posx1)
 {
-  if( (posx1 - midPoint > 0 && posx < 4600) || posx - posx1 > -75)
+  if( (posx1 - midPoint > 0 && posX < 4600) || posX - posx1 > -75)
   {
     return true;
   }	
@@ -80,9 +80,9 @@ bool Camera::checkCam(GLfloat posx1)
   return false;
 }
 
-bool Camera::checkCam(GLfloat posx1, GLfloat posx2)
+bool Camera::checkCamera(GLfloat posx1, GLfloat posx2)
 {
-  if( ((posx1- midPoint > 0 || posx2 - midPoint > 0) && posx < 4600) || (posx - posx1 > -75 || posx - posx2 > -75) )
+  if( ((posx1- midPoint > 0 || posx2 - midPoint > 0) && posX < 4600) || (posX - posx1 > -75 || posx - posx2 > -75) )
   {
     return true;
   }	

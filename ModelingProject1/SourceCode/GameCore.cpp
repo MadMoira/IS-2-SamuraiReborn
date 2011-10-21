@@ -9,7 +9,7 @@ GameCore::GameCore(void)
   timer = new GameTimer();
   sound = new GameSound();
   camera = new Camera();
-  //collider= new Collider(/*&enemiesList, &playersList*/);
+  collider = Collider::getInstance();
   isRunning = true;
 }
 
@@ -21,24 +21,28 @@ GameCore::~GameCore(void)
   delete timer;
   delete sound;
   delete camera;
+  delete collider;
   playersList.clear();
 }
 
 bool GameCore::initializeGameCore()
 {	
-	sound->initSound();
+  sound->initSound();
 	
-	if( screen->initializeScreen())
-	{
-		camera->initCamera();
-		return true;
-    }
+  if( screen->initializeScreen())
+  {
+   camera->initCamera();
+   return true;
+  }
+
+  collider->initializeColliderSprites(&enemiesList, &playersList);
 	
-	return false;
+  return true;
 }
 
 bool GameCore::cleanUpGameCore()
 {
+  collider->cleanUpResources();
   sound->closeAll();
 
   TTF_Quit();

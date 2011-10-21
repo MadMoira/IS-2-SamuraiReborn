@@ -10,7 +10,9 @@
 #include "Animation.h"
 #include "PlayerStateManager.h"
 
-#include "Vector.h
+#include "CollisionBox.h"
+
+#include "Vector.h"
 
 class Collider;
 
@@ -53,7 +55,11 @@ public:
 
 	GLuint getTexture() { return texture; }
 
-	GLfloat getWidthTexture(){ return width;}
+	GLfloat getWidthTexture(){ return widthTexture;}
+
+	GLfloat getWidth() { return width; }
+
+	GLfloat getHeight() { return height; }
 
 	Animation *getHandlerAnimation() { return handlerAnimation; }
 	void changeCurrentFrame(int frame);
@@ -65,6 +71,8 @@ public:
 
 	int getPreviousState() { return playerStateManager->getPreviousState(); }
 
+	CollisionBox* getCollisionBox() {return spriteCollisionBox; }
+
 	void drawTexture();
 
 private:
@@ -72,6 +80,7 @@ private:
 	GLuint texture;
 	Animation* handlerAnimation;
 	GameCoreStates::PlayerStateManager* playerStateManager;
+	CollisionBox* spriteCollisionBox;
 	Collider* cHandler;
 	Vector2f position;
 	std::vector< Vector2f > speed;

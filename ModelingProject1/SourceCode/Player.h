@@ -44,9 +44,6 @@ public:
 
 	Score::PlayerScore* getScore() { return score; }
 
-	void changeFightStyle();
-	bool isAlive();
-
 protected:
 	Sprite* playerSprite;
 	InputMapping::GameInputMapper* inputMapper;

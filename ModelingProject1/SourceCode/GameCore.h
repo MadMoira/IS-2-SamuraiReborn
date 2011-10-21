@@ -5,55 +5,55 @@
 #include "GameScreen.h"
 #include "GameTimer.h"
 #include "GameSound.h"
+
 #include "Camera.h"
 #include "Player.h"
 #include "Camera.h"
-#include "GameFont.h"
 #include "Collider.h"
 
 #include "Vector.h"
 
 class GameCore
 {
-public:
-	GameCore(void);
-	~GameCore(void);
+  public:
+   GameCore(void);
+   ~GameCore(void);
 
-	void close();
+   bool initializeGameCore();
+   bool cleanUpGameCore();
 
-	bool initializeGameCore();
-	bool cleanUpGameCore();
+   void initializePlayers();
 
-	void initializePlayers();
+   GameTimer* getGameTimer() { return timer; }
+   void startTimer();
 
-	GameTimer* getGameTimer() { return timer; }
-	void startTimer();
+   GameSound* getGameSound() { return sound; };
+   void startMusic(std::string filename);
+   void startSoundEffect(std::string filename);
 
-	GameSound* getGameSound() { return sound; };
-	void startMusic(std::string filename);
-	void startSoundEffect(std::string filename);
+   Camera* getCamera() { return camera; };
+   GameScreen* getGameScreen() { return screen; };
 
-	Camera* getCamera() {return camera;};
-	GameScreen* getGameScreen() {return screen;};
-
-	boost::ptr_vector< Player >& getPlayersList() { return playersList; }
-	void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed,
+   boost::ptr_vector< Player >& getPlayersList() { return playersList; }
+   void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement);
 
-	bool getIsRunning() { return isRunning; }
-	void setIsRunning(bool running) { isRunning = running; };
+   bool getIsRunning() { return isRunning; }
+   void setIsRunning(bool running) { isRunning = running; };
 	
-private:
-	GameConfiguration* configuration;
-	GameSaves* saves;
-	GameScreen* screen;
-	GameTimer* timer;
-	GameSound* sound;
-	Camera* camera;
-	Collider* collider;
-	boost::ptr_vector< Player > playersList;
-	bool isRunning;
+  private:
+   GameConfiguration* configuration;
+   GameSaves* saves;
+   GameScreen* screen;
+   GameTimer* timer;
+   GameSound* sound;
+   Camera* camera;
+   Collider* collider;
+
+   boost::ptr_vector< Player > playersList;
+   boost::ptr_vector< Enemy > enemiesList;
+   bool isRunning;
 };
 

@@ -8,7 +8,6 @@ class GameSaves
    GameSaves(void);
    ~GameSaves(void);
 
-   void changePlayersStats();
    void loadFileInformation();
    void saveFileInformation();
 
