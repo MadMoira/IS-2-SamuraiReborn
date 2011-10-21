@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+  <Imageset Name="Quit" Imagefile="MenuButtons.png" NativeHorzRes="1280" NativeVertRes="720" AutoScaled="true">
+ 	<Image Name="ButtonUp" XPos="0.0" YPos="192.0" Width="512" Height="64" />
+ 	<Image Name="ButtonDown" XPos="0.0" YPos="192.0" Width="512" Height="64" />
+ 	<Image Name="ButtonHighlighted" XPos="0.0" YPos="192.0" Width="512" Height="64" />
+ 	<Image Name="ButtonDisabled" XPos="0.0" YPos="192.0" Width="512" Height="64" />
+  </Imageset>

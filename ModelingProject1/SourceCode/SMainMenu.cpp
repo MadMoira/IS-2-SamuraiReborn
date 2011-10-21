@@ -1,6 +1,19 @@
 
 #include "SMainMenu.h"
 
+#include <RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
+#include <CEGUIScriptModule.h>
+
+
+void Image::ArrowMenu::updatePositionArrow()
+{
+  if ( optionSelected == NOTHING_SELECTED )
+  {
+	return;
+  } 
+
+  arrow->setPosition(420.0f, 280.0f + ( (optionSelected-1)*60.0f) );
+}
 
 SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
 	: GameState( gR, gC, gI, stateName )
@@ -18,11 +31,17 @@ SMainMenu::~SMainMenu(void)
 
 void SMainMenu::init()
 {
-  CEGUI::WindowManager& windowManager = initializeCEGUI( gameCore->getGameScreen()->getScreenReference() ) ;
- 
-  createGUI( windowManager ) ;
+  CEGUI::OpenGLRenderer::bootstrapSystem();
 
-  gameCore->getGameTimer()->setFramesPerSecond(20);
+  CEGUI::WindowManager& windowManager = initializeCEGUI( gameCore->getGameScreen()->getScreenReference() );
+ 
+  createGUI( windowManager );
+
+  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
+	                                Vector2f(0.0f, 0.0f), "MenuHighlighter.png");
+  arrowImage.optionSelected = NOTHING_SELECTED;
+
+  gameCore->getGameTimer()->setFramesPerSecond(30);
 }
 
 void SMainMenu::handleEvents()
@@ -35,8 +54,10 @@ void SMainMenu::handleEvents()
 	{
 	  case SDL_MOUSEMOTION:
       {
-        CEGUI::System::getSingleton().injectMousePosition(static_cast<float>(e.motion.x),static_cast<float>(e.motion.y));
-        break;
+        CEGUI::System::getSingleton().injectMousePosition( static_cast<float>(e.motion.x),
+			                                               static_cast<float>(e.motion.y) );
+        verifyCurrentlySelectedItem();
+		break;
       }
       case SDL_MOUSEBUTTONDOWN:
       {
@@ -73,6 +94,7 @@ void SMainMenu::handleEvents()
 
 void SMainMenu::logic()
 {
+  arrowImage.updatePositionArrow();
 }
 
 void SMainMenu::render()
@@ -81,7 +103,27 @@ void SMainMenu::render()
 
   CEGUI::System::getSingleton().renderGUI();
 
+  if ( arrowImage.optionSelected != NOTHING_SELECTED )
+  {
+    gameRender->drawFullTexture(arrowImage.arrow->getTexture(), arrowImage.arrow->getPosition(),
+		                        arrowImage.arrow->getOffset().x, arrowImage.arrow->getOffset().y );
+  }
+
   SDL_GL_SwapBuffers();
+}
+
+void SMainMenu::cleanUp()
+{
+  delete arrowImage.arrow;
+
+  std::vector< MenuButton >::iterator iter = menuItems.begin();
+  for ( iter; iter != menuItems.end(); iter++)
+  {
+    delete iter->button;
+  }
+
+  CEGUI::ImagesetManager::getSingleton().destroyAll();
+  CEGUI::SchemeManager::getSingleton().destroyAll();
 }
 
 CEGUI::WindowManager& SMainMenu::initializeCEGUI( SDL_Surface& surface )
@@ -101,14 +143,17 @@ CEGUI::WindowManager& SMainMenu::initializeCEGUI( SDL_Surface& surface )
   CEGUI::Scheme::setDefaultResourceGroup( "schemes" ); 
   CEGUI::WidgetLookManager::setDefaultResourceGroup( "looknfeels" ); 
   CEGUI::WindowManager::setDefaultResourceGroup( "layouts" ); 
-  CEGUI::ScriptModule::setDefaultResourceGroup( "lua_scripts" );
  
-  CEGUI::ImagesetManager::getSingleton().create( "MainMenuBackground.imageset");
-  CEGUI::ImagesetManager::getSingleton().create( "MainMenuButtons.imageset");
+  CEGUI::ImagesetManager::getSingleton().create( "MainMenuBackground.imageset" );
+  CEGUI::ImagesetManager::getSingleton().create( "HistoryModeButton.imageset" );
+  CEGUI::ImagesetManager::getSingleton().create( "TutorialButton.imageset" );
+  CEGUI::ImagesetManager::getSingleton().create( "CreditsButton.imageset" );
+  CEGUI::ImagesetManager::getSingleton().create( "QuitButton.imageset" );
+  CEGUI::ImagesetManager::getSingleton().create( "MenuCursor.imageset" );
 
   CEGUI::SchemeManager::getSingleton().create( "TaharezLook.scheme" ) ;
  
-  CEGUI::System::getSingleton().setDefaultMouseCursor( "TaharezLook", "MouseArrow" ) ;
+  CEGUI::System::getSingleton().setDefaultMouseCursor( "Objects", "Cursor" ) ;
  
   return CEGUI::WindowManager::getSingleton() ;
 }
@@ -121,11 +166,44 @@ void SMainMenu::createGUI( CEGUI::WindowManager& winManager )
   CEGUI::Window* mainMenu = winManager.loadWindowLayout("MainMenu.layout");
   rootWin.addChildWindow(mainMenu);
 
-  CEGUI::PushButton* Button1 = (CEGUI::PushButton*)winManager.getWindow("MainMenu/NewGame");
-  Button1->subscribeEvent( CEGUI::PushButton::EventClicked, 
-	                       CEGUI::Event::Subscriber(&SMainMenu::handleHistoryMode, this) );
-
   CEGUI::System::getSingleton().setGUISheet( &rootWin ) ;
+
+  menuItems.push_back(MenuButton());
+  menuItems.at(0).button = (CEGUI::PushButton*)winManager.getWindow("MainMenu/HistoryMode");
+  menuItems.at(0).button->subscribeEvent( CEGUI::PushButton::EventClicked, 
+	                                      CEGUI::Event::Subscriber(&SMainMenu::handleHistoryMode, 
+										  this) );
+  menuItems.at(0).id = HISTORY_MODE;
+
+  menuItems.push_back(MenuButton());
+  menuItems.at(1).button = (CEGUI::PushButton*)winManager.getWindow("MainMenu/Tutorial");
+  menuItems.at(1).id = TUTORIAL;
+
+  menuItems.push_back(MenuButton());
+  menuItems.at(2).button = (CEGUI::PushButton*)winManager.getWindow("MainMenu/Credits");
+  menuItems.at(2).id = CREDITS;
+
+  menuItems.push_back(MenuButton());
+  menuItems.at(3).button = (CEGUI::PushButton*)winManager.getWindow("MainMenu/Quit");
+  menuItems.at(3).button->subscribeEvent( CEGUI::PushButton::EventClicked, 
+	                                      CEGUI::Event::Subscriber(&SMainMenu::handleQuit, 
+										  this) );
+  menuItems.at(3).id = QUIT;
+}
+
+void SMainMenu::verifyCurrentlySelectedItem()
+{
+  std::vector< MenuButton >::iterator iter = menuItems.begin();
+  for ( iter; iter != menuItems.end(); iter++)
+  {
+    if ( iter->button->isHovering() )
+    {
+      arrowImage.optionSelected = iter->id;
+      return;
+    }
+  }
+
+  arrowImage.optionSelected = NOTHING_SELECTED;
 }
 
 void SMainMenu::handleMouseDown(Uint8 button)
@@ -184,6 +262,13 @@ void SMainMenu::handleMouseUp(Uint8 button)
 
 bool SMainMenu::handleHistoryMode(const CEGUI::EventArgs& e)
 {
-  setHasEnded(STATE_LEVELZEROTUTORIAL);
+  setHasEnded(STATE_LEVELONEJAPAN);
+  return true;
+}
+
+bool SMainMenu::handleQuit(const CEGUI::EventArgs& e)
+{
+  setHasEnded(STATE_EXIT);
+  gameCore->setIsRunning(false);
   return true;
 }

@@ -19,6 +19,7 @@ namespace Image
 	GLuint getTexture() { return texture; }
 
 	Vector2f getPosition() { return position; }
+	void setPosition(GLfloat x, GLfloat y) { position = Vector2f(x, y); }
 
 	Vector2f getOffset() { return offset; }
 

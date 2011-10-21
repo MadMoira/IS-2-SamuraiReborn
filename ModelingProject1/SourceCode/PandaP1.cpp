@@ -4,6 +4,9 @@
 PandaP1::~PandaP1()
 {
   delete playerSprite;
+  delete inputMapper;
+  delete stats;
+  delete score;
 }
 
 void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector< Vector2f > speed,  

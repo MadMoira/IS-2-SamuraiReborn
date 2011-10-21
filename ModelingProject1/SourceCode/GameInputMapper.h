@@ -23,8 +23,6 @@ namespace InputMapping
 
 	int directionKeyPressed;
     int buttonPreviouslyPressed;
-	int jumpKeyPreviouslyPressed;
-	int fastAttackKeyPreviouslyPressed;
 
     void eatAction(GameCoreStates::Action action);
     void eatStates();

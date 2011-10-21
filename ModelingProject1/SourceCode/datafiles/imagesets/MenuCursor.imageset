@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+  <Imageset Name="Objects" Imagefile="MenuCursor.png" NativeHorzRes="1280" NativeVertRes="720" AutoScaled="true">
+ 	<Image Name="Cursor" XPos="0.0" YPos="0.0" Width="64" Height="64" />
+  </Imageset>

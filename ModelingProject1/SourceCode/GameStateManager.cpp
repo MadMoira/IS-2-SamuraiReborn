@@ -1,7 +1,9 @@
 
 #include "GameStateManager.h"
 
-#include "SLevelTutorial.h"
+#include "SIntro.h"
+#include "SMainMenu.h"
+#include "SLevelOneJapan.h"
 
 GameStateManager::GameStateManager(void)
 {
@@ -43,9 +45,24 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
   {
     switch(newChangeState)
 	{
-	  case STATE_LEVELZEROTUTORIAL:
+	  case STATE_INTRO:
 	  {
-        changeState(new SLevelTutorial( gR, gC, gI, STATE_LEVELZEROTUTORIAL ) );
+		cleanUp();
+        changeState(new SIntro( gR, gC, gI, STATE_INTRO ) );
+        break;
+      }
+
+	  case STATE_MAINMENU:
+	  {
+		cleanUp();
+        changeState(new SMainMenu( gR, gC, gI, STATE_MAINMENU ) );
+        break;
+      }
+	  
+	  case STATE_LEVELONEJAPAN:
+	  {
+		cleanUp();
+        changeState(new SLevelOneJapan( gR, gC, gI, STATE_LEVELONEJAPAN ) );
         break;
       }
 	}
@@ -72,6 +89,11 @@ void GameStateManager::logic()
 void GameStateManager::render()
 {
   statesStack.at(currentID).render();
+}
+
+void GameStateManager::cleanUp()
+{
+  statesStack.at(currentID).cleanUp();
 }
 
 int GameStateManager::checkIfCurrentStateHasEnd()

@@ -19,6 +19,7 @@ public:
 	void handleEvents();
 	void logic();
 	void render();
+	void cleanUp();
 
 private:
 	boost::ptr_vector< GameState > statesStack;

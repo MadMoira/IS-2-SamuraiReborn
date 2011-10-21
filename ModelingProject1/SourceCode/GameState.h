@@ -10,6 +10,7 @@ enum GameStates
   STATE_INTRO, 
   STATE_MAINMENU, 
   STATE_LEVELZEROTUTORIAL, 
+  STATE_LEVELONEJAPAN,
   STATE_EXIT,
 };
 
@@ -20,6 +21,7 @@ public:
 	virtual void handleEvents() = 0;
 	virtual void logic() = 0;
 	virtual void render() = 0;
+	virtual void cleanUp() = 0;
 	virtual ~GameState(){};
 
 	GameStates getNameState() { return nameState; }

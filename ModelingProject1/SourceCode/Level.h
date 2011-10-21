@@ -17,7 +17,7 @@
 enum Levels 
 { 
 	LEVELZEROTUTORIAL, 
-	LEVELONEJAPAN
+	LEVELONEJAPAN,
 };
 
 class Level
@@ -36,6 +36,9 @@ public:
 	void scrollBackgroundLayers();
 	void checkLayersSpeed(GLfloat speedX);
 
+	std::vector< int > getCollisionTilesList() { return collisionTilesList; }
+	void setCollisionTilesList(std::vector< int > listCollision) { collisionTilesList = listCollision; }
+
 	boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
 	void scrollTilemap();
 	void checkTilemapsSpeed(GLfloat speedX);
@@ -44,5 +47,6 @@ private:
 	Levels IDLevel;
 	boost::ptr_vector< Layer > layersList;
 	boost::ptr_vector< Tilemap > tilemapList;
+	std::vector< int > collisionTilesList;
 };
 

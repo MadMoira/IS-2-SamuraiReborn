@@ -110,6 +110,7 @@
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayerStateManager.cpp" />
     <ClCompile Include="RunningState.cpp" />
+    <ClCompile Include="SIntro.cpp" />
     <ClCompile Include="SLevelOneJapan.cpp" />
     <ClCompile Include="SLevelTutorial.cpp" />
     <ClCompile Include="SMainMenu.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="PlayerStateManager.h" />
     <ClInclude Include="RawInputConstants.h" />
     <ClInclude Include="RunningState.h" />
+    <ClInclude Include="SIntro.h" />
     <ClInclude Include="SLevelOneJapan.h" />
     <ClInclude Include="SLevelTutorial.h" />
     <ClInclude Include="SMainMenu.h" />
@@ -184,15 +186,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Clouds.png" />
+    <None Include="CollisionListLevelZeroSectionOne.csv" />
     <None Include="ContextList.txt" />
+    <None Include="datafiles\imagesets\CreditsButton.imageset" />
+    <None Include="datafiles\imagesets\HistoryModeButton.imageset" />
     <None Include="datafiles\imagesets\MainMenuBackground.imageset" />
-    <None Include="datafiles\imagesets\MainMenuButtons.imageset" />
+    <None Include="datafiles\imagesets\MenuCursor.imageset" />
+    <None Include="datafiles\imagesets\QuitButton.imageset" />
+    <None Include="datafiles\imagesets\TutorialButton.imageset" />
+    <None Include="datafiles\layouts\MainMenu.layout" />
     <None Include="healthBar.png" />
     <None Include="LevelOneTileMap.tmx" />
+    <None Include="logoSamuraiReborn.png" />
     <None Include="MainContext.txt" />
     <None Include="Meerkat - SpriteSheet.png" />
-    <None Include="MenuBackground.jpg" />
+    <None Include="MenuBackground.png" />
     <None Include="MenuButtons.png" />
+    <None Include="MenuCursor.png" />
+    <None Include="MenuHighlighter.png" />
     <None Include="Mountains0.png" />
     <None Include="Mountains1.png" />
     <None Include="orbitron-black.ttf" />
