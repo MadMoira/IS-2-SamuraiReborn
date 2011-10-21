@@ -1,5 +1,6 @@
 #pragma once
-#include "gamestate.h"
+
+#include "GameState.h"
 
 class SIntro : public GameState
 {

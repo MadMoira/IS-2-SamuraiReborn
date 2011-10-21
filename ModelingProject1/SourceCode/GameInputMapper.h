@@ -28,7 +28,7 @@ namespace InputMapping
     void eatStates();
   };
 
-  typedef void (*inputCallback)(MappedInput& inputs, Player& playe, std::list<Key> keys);
+  typedef void (*inputCallback)(MappedInput& inputs, Player& player, std::list<Key> keys);
   
   class GameInputContext;
   
