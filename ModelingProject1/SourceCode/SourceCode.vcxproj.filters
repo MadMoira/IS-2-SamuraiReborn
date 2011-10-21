@@ -133,6 +133,12 @@
     <Filter Include="Resource Files\Intro">
       <UniqueIdentifier>{625dfe93-cdee-4f51-9f62-291ae2e7b966}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game Physics\Collisions">
+      <UniqueIdentifier>{3d373aa9-77a9-4be1-a464-6aac57a0007c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game Physics\Collisions">
+      <UniqueIdentifier>{763fff60-7751-4f8f-aa26-d30a21cbf53d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -142,9 +148,6 @@
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
     <ClCompile Include="Tileset.cpp">
-      <Filter>Source Files\Level Design</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionObject.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
     <ClCompile Include="GameConfiguration.cpp">
@@ -288,15 +291,21 @@
     <ClCompile Include="SMainMenu.cpp">
       <Filter>Source Files\Game States\Menus</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionBox.cpp">
+      <Filter>Source Files\Game Physics\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionObserver.cpp">
+      <Filter>Source Files\Game Physics\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionObject.cpp">
+      <Filter>Source Files\Game Physics\Collisions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
       <Filter>Header Files\Level Design</Filter>
     </ClInclude>
     <ClInclude Include="Tileset.h">
-      <Filter>Header Files\Level Design</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionObject.h">
       <Filter>Header Files\Level Design</Filter>
     </ClInclude>
     <ClInclude Include="GameConfiguration.h">
@@ -457,6 +466,15 @@
     </ClInclude>
     <ClInclude Include="SLevelTutorial.h">
       <Filter>Header Files\Game States\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionBox.h">
+      <Filter>Header Files\Game Physics\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionObserver.h">
+      <Filter>Header Files\Game Physics\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionObject.h">
+      <Filter>Header Files\Game Physics\Collisions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
