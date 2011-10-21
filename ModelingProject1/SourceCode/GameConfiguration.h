@@ -8,11 +8,7 @@ public:
 	void getConfiguration(void);
 
 private:
-	int width;
-	int height;
 	int difficultyLevel;
 	int soundMode;
-	int screenWidth;
-	int screenHeight;
 };
 

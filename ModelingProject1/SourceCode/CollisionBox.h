@@ -2,21 +2,22 @@
 
 #include "SDL/SDL_image.h"
 
-class CollisionBox{
-private:
-	SDL_Rect box;
+class CollisionBox
+{
+  public:
+   CollisionBox();
+   CollisionBox(float x, float y ,float w, float h);
+   ~CollisionBox(void);
 
-public:
-	//Initializes the variables
-	CollisionBox();
-	CollisionBox(float x, float y ,float w, float h);
-	~CollisionBox(void);
+   float getX() { return box.x; }
+   void setX(float x) { box.x = (Sint16)x; }
 
-	//Takes key presses and adjusts the dot's velocity
-	void setx(float n);
-	void sety(float n);
-	float getx();
-	float gety();
-	float geth();
-	float getw();
+   float getY() { return box.y; }
+   void setY(float y) { box.y = (Sint16)y; }
+
+   float getHeight() { return box.h; }
+   float getWidth() { return box.w; }
+
+  private:
+   SDL_Rect box;
 };

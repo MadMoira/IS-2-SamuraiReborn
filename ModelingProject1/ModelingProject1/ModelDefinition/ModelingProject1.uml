@@ -818,44 +818,6 @@
             </relationshipOwnedElementsInternal>
           </association>
         </targetEnds>
-        <ownedAttributesInternal>
-          <property
-            Id="922a0fe0-0450-4bf2-9093-d31c9eb96399"
-            name="health"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="1a90bb74-15cf-4360-9115-a0fcf9dcd8e5"
-            name="pointsForDeath"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="4403332c-9a54-485e-834f-a16b5223b81a"
-            name="modeIA"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-        </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -968,44 +930,6 @@
         </targetEnds>
         <ownedAttributesInternal>
           <property
-            Id="d2455991-7ee7-4c91-9dac-dedf763b90a4"
-            name="widthLevelInTiles"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="220a3521-e091-4221-bae9-3ef9018e845c"
-                LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="c39b3cdd-292f-4dae-8e33-86488bf7382f"
-            name="heightLevelInTiles"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="220a3521-e091-4221-bae9-3ef9018e845c"
-                LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="c1c313bf-bab7-45d2-9c69-72ca33c1b217"
             name="layerList"
             visibility="Private"
@@ -1040,6 +964,25 @@
               <undefinedTypeMoniker
                 Id="33ba2655-ae5b-4a7a-b94d-0086a37be0cc"
                 LastKnownName="boost::ptr_vector&lt;Tile&gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="d965e77a-7888-487b-b767-ea0fe9eb9d70"
+            name="collisionListTiles"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="7577904d-487e-4f2f-bdd5-cb7f94d2c65c"
+                LastKnownName="std::vector&lt; int &gt;"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -1476,6 +1419,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="b2b8f05d-8e6b-49c7-bad6-a32cfaa97a03"
+            isDerived="false"
+            sourceEndRoleName="GameCore"
+            targetEndRoleName="Camera"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="0147bd1b-091d-4beb-9c65-64676d641928"
+              LastKnownName="Camera"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1199a2fe-fe73-4e24-aa0e-649a235b6b8e"
+                  name="GameCore"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="696aaa7e-0d1a-4505-ab64-8dc49200abfe"
+                  name="Camera"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -1513,6 +1495,25 @@
               <undefinedTypeMoniker
                 Id="11af973a-d48c-4297-96ea-c85e5cc3d2f2"
                 LastKnownName="boost::ptr_vector&lt; Player &gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="9b080f41-4cac-4943-aecf-0e321f3ecd17"
+            name="enemiesList"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="fae0eb08-be2a-4116-8771-5a0100a29f84"
+                LastKnownName="boost::ptr_vector&lt; Enemy &gt;"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -1734,48 +1735,10 @@
             </relationshipOwnedElementsInternal>
           </association>
         </targetEnds>
-        <ownedAttributesInternal>
-          <property
-            Id="4048c427-0313-4d67-963a-a168fefa195f"
-            name="currentFightMode"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="85d27eba-246c-4e9e-af4a-0a6c5c101d82"
-            name="currentHealth"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="1dd10ce3-6df8-4ff6-b8f2-aea56797b9cd"
-            name="currentStamina"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-        </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
             Id="a8f2b70e-519b-4033-a7f2-8241582cd36e"
-            name="attack"
+            name="fastAttack"
             isLeaf="false"
             isStatic="false"
             isAbstract="true"
@@ -1790,22 +1753,6 @@
             concurrency="Sequential"
             isQuery="false" />
           <operation
-            Id="d797790a-bf37-434a-b94b-546fb96b6e4c"
-            name="getPlayerStats"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="850bd1b9-3f97-4bd5-bb30-266c58c06add"
-            name="changeFightStyle"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
             Id="b5c0686a-ecd2-4373-b363-d27f1a042676"
             name="jump"
             isLeaf="false"
@@ -1813,37 +1760,6 @@
             isAbstract="true"
             concurrency="Sequential"
             isQuery="false" />
-          <operation
-            Id="e0b77e38-af51-4b20-8fdb-a127818b277f"
-            name="block"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="true"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="76547ab0-65cd-4516-8695-81464ba2032b"
-            name="isAlive"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="04354687-f36e-473a-8693-cd272c5e9a14"
-                  direction="Return">
-                  <type_NamedElement>
-                    <primitiveTypeMoniker
-                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
-                      LastKnownName="Boolean"
-                      LastKnownLocation="ModelingProject1.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
           <operation
             Id="63fb8312-a92f-4b6c-87c1-a5fe404b414a"
             name="executeAction"
@@ -1868,6 +1784,108 @@
             isAbstract="true"
             concurrency="Sequential"
             isQuery="false" />
+          <operation
+            Id="6cad8183-144f-4a53-84ca-bda37a412249"
+            name="noAction"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="dfa57a99-e606-4f18-aab6-ffe684b0f393"
+            name="run"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="575cb21f-1e5b-442a-84c9-2b9b6e15268c"
+            name="inputCallback"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="8d707ff4-bd7e-4d0d-9800-2e01864b64d6"
+            name="drawUIStats"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="b335a428-7a2c-4dd3-81aa-295e1023b422"
+            name="drawScore"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="26df73a9-4ffa-4008-a294-24fc04dcf83d"
+            name="stop"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="d330228f-b4c6-4603-8bc9-75547c26c3bc"
+            name="returnToPreviousState"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="eab00947-2b86-4259-87f7-87eeabdd8fa9"
+            name="isReadyToPace"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3dc9bd69-0051-425f-9f30-1e74c2d8f41b"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="3fa88af2-3dad-4cfc-bdab-80ace472148d"
+            name="isReadyToDoubleJump"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="917f9209-8209-456b-90ee-1f8ad6c47278"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="ModelingProject1.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -2516,80 +2534,73 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
-        <ownedAttributesInternal>
-          <property
-            Id="b68dea28-54f3-4b2e-a0ad-744f7db30086"
-            name="health"
-            visibility="Private"
+        <targetEnds>
+          <association
+            Id="f05e050b-f256-4f85-b191-ae46bff218de"
+            isDerived="false"
+            sourceEndRoleName="Stats"
+            targetEndRoleName="Health"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="7061a670-423f-425e-a1cb-6593ffdf73aa"
+              LastKnownName="Health"
+              LastKnownLocation="ModelingProject1.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5c9fcac9-b91c-477b-a494-96c56c935f69"
+                  name="Stats"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5d0174ef-71ea-403c-ac62-031e54b95321"
+                  name="Health"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedOperationsInternal>
+          <operation
+            Id="9f7c343f-f38d-423b-a78f-398bed2ac123"
+            name="drawHealthBar"
             isLeaf="false"
             isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="20f1fbcc-b16b-49c2-9661-9e3f28dd9d1d"
-            name="stamina"
-            visibility="Private"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="d6e92201-a145-4b80-8404-c3d5c3224834"
+            name="drawHealth"
             isLeaf="false"
             isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="619c4f5f-213e-4d88-92e2-e50fde5117e4"
-            name="strength"
-            visibility="Private"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="bec1bd48-b5af-4398-9122-155e2811c945"
+            name="updatePositionHealthBar"
             isLeaf="false"
             isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="7553ffea-0151-4b34-982f-734651727717"
-            name="speedAttack"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="ccc58504-f38f-493c-aafc-2b215d42bf16"
-            name="fastStyle"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-          <property
-            Id="49e8d337-5310-4aba-9d66-595b67c91a5d"
-            name="strongStyle"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false" />
-        </ownedAttributesInternal>
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2694,6 +2705,25 @@
               <primitiveTypeMoniker
                 Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
                 LastKnownName="Boolean"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0af6d7e7-d8a9-4e0f-87d5-5d17a6868913"
+            name="framesPerSecond"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -2851,44 +2881,6 @@
             isDerivedUnion="false"
             aggregation="None"
             isComposite="false" />
-          <property
-            Id="8942953d-a19d-479e-addd-fc6739222751"
-            name="width"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="220a3521-e091-4221-bae9-3ef9018e845c"
-                LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="83ed73c0-202f-44b9-b757-0cacf1322c60"
-            name="height"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="220a3521-e091-4221-bae9-3ef9018e845c"
-                LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
@@ -2927,7 +2919,7 @@
             isAbstract="false">
             <classMoniker
               Id="77ecc7f4-4a8b-4a12-a220-d055575552d0"
-              LastKnownName="SLevelTutorial"
+              LastKnownName="SLevelOneJapan"
               LastKnownLocation="ModelingProject1.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -3052,6 +3044,24 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="ae1180ea-bcbb-42d3-bd37-2efd845ef55d"
+            name="hasEnded"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributes>
         <ownedOperations>
           <operation
@@ -3094,20 +3104,28 @@
             isAbstract="true"
             concurrency="Sequential"
             isQuery="false" />
+          <operation
+            Id="8b858322-7cae-41fb-9491-ad203db355a8"
+            name="cleanUp"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false" />
         </ownedOperations>
       </Interface>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
         Id="77ecc7f4-4a8b-4a12-a220-d055575552d0"
-        name="SLevelTutorial"
+        name="SLevelOneJapan"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <ownedAttributesInternal>
           <property
             Id="bbde4420-6394-473a-9977-38dab8aab2c6"
-            name="tutorialLevel"
+            name="japanLevel"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -3124,7 +3142,36 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="e0fa4183-c4bc-4316-8840-169542e81a98"
+            name="movPhysics"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="0a736e4b-cb77-4b6a-99ea-f3d9c4063a52"
+                LastKnownName="MovementPhys*"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="b8166f8b-61ed-4a77-96c0-d095a96d6d8b"
+            name="checkGravity"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -3202,7 +3249,7 @@
               <literalInteger
                 Id="dd1e327d-6a0a-4032-8137-3b440233a090"
                 name="Integer"
-                value="4" />
+                value="5" />
             </specification>
           </enumerationLiteral>
           <enumerationLiteral
@@ -3223,6 +3270,16 @@
                 Id="f5c7cc01-05e8-4b4f-88e8-91e4ca1f3068"
                 name="Integer"
                 value="0" />
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="bc306c39-06f5-47ad-9bcd-acf570770af9"
+            name="STATE_LEVELONEJAPAN">
+            <specification>
+              <literalInteger
+                Id="c40a2b7a-9752-4685-a2aa-9d76cb41a42b"
+                name="Integer"
+                value="4" />
             </specification>
           </enumerationLiteral>
         </ownedLiterals>
@@ -3601,14 +3658,6 @@
           <operation
             Id="88c91d33-95b5-44d2-b33c-d2ae6028ca88"
             name="saveFileInformation"
-            isLeaf="false"
-            isStatic="false"
-            isAbstract="false"
-            concurrency="Sequential"
-            isQuery="false" />
-          <operation
-            Id="6cef2597-cd77-4a24-ae23-a235d06cb564"
-            name="changePlayersState"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -4858,63 +4907,6 @@
             </type_NamedElement>
           </property>
           <property
-            Id="90526e11-18c7-4f7f-bde0-7afcd1526c8d"
-            name="layerMap"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="433f70f1-079c-42d2-8aad-b43f3549fa4c"
-                LastKnownName="vector&lt; vector &lt;int&gt; &gt;"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="8d64afd5-0a2c-4fd7-8dc6-151e1f507024"
-            name="widthLevelLayer"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="220a3521-e091-4221-bae9-3ef9018e845c"
-                LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="57bcd8db-bdc9-4187-b8d6-ede02156149f"
-            name="heightLevelLayer"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="220a3521-e091-4221-bae9-3ef9018e845c"
-                LastKnownName="Integer"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="e74192c6-84ef-40ee-8277-5f238dc11fe2"
             name="texture"
             visibility="Private"
@@ -4972,65 +4964,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="47884bc7-4c6b-46da-97b1-0b1004f7243d"
-            name="velocityX"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="abfb9cd0-093a-48b8-b164-ae0ba78e42be"
-                LastKnownName="GLfloat"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="083fa676-617a-45c5-9fec-071a69189a42"
             name="constantVelX"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="abfb9cd0-093a-48b8-b164-ae0ba78e42be"
-                LastKnownName="GLfloat"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="70b91337-7cca-409b-8f05-4baa8c68f36a"
-            name="offsetX"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="abfb9cd0-093a-48b8-b164-ae0ba78e42be"
-                LastKnownName="GLfloat"
-                LastKnownLocation="ModelingProject1.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="184b2f7f-f651-4471-9ae2-4465e7027f52"
-            name="offsetY"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -5063,6 +4998,101 @@
               <primitiveTypeMoniker
                 Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
                 LastKnownName="Boolean"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="4ff839ee-ecd3-4f8a-bba8-132b322f5c12"
+            name="countX"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0c830386-3325-445d-9b41-193a3ebead1d"
+            name="delayX"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5eb36e57-13ef-4f93-ace5-a500bcfe04a6"
+            name="continuous"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                LastKnownName="Boolean"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3a2d9310-5cf8-4d30-948e-2e2f9fc500d4"
+            name="speed"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="ec560e23-1182-4f7f-b64c-d643e3e2f0b5"
+                LastKnownName="Vector2f"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="982d5156-6233-49ff-9526-6fc01bca2ba1"
+            name="offset"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="ec560e23-1182-4f7f-b64c-d643e3e2f0b5"
+                LastKnownName="Vector2f"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -5304,6 +5334,14 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="2ddd7b37-a319-44d8-8c98-74c142c12a4d"
+            name="initializeSDLFeatures();"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -5758,6 +5796,26 @@
                 value="2" />
             </specification>
           </enumerationLiteral>
+          <enumerationLiteral
+            Id="71bc9d3b-8eaf-4c64-ba0b-8bd139706d68"
+            name="DOUBLE_JUMP">
+            <specification>
+              <literalInteger
+                Id="490b2b31-1ba4-4aec-8f78-9798005c7750"
+                name="Integer"
+                value="4" />
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="10623b89-7abe-4a7e-9499-786c74d23e86"
+            name="FAST_ATTACK">
+            <specification>
+              <literalInteger
+                Id="d1229896-c040-4071-8123-3c64487a0dff"
+                name="Integer"
+                value="5" />
+            </specification>
+          </enumerationLiteral>
         </ownedLiterals>
       </enumeration>
     </packageHasNamedElement>
@@ -5891,6 +5949,44 @@
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="cd9949b5-6391-46be-b886-04a761ed5537"
+            name="statesStack"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="8091c2f2-3768-406e-91fb-cc1e418ca57f"
+                LastKnownName="boost::ptr_vector&lt; GameState &gt;"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="198676f7-6ad8-42b5-98b0-9a679199d0c3"
+            name="currentState"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <enumerationMoniker
+                Id="63d8dc22-9d99-496c-b2e8-c61b459a1f98"
+                LastKnownName="GameStates"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -5944,6 +6040,31 @@
           <operation
             Id="f70fa43c-fedb-4893-9aca-acf7c5d3ef8c"
             name="changeState"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="94cf08d6-e312-4b97-9ddc-d60dc216a223"
+            name="changeCurrentState"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="17eca227-4e8b-4333-bd96-dd1b148f9b7a"
+            name="checkIfCurrentStateHasEnd"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="4d968ff8-0d19-4745-bd05-083d36317429"
+            name="cleanUp"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -6048,6 +6169,14 @@
             isAbstract="false"
             concurrency="Sequential"
             isQuery="false" />
+          <operation
+            Id="ce28cc2a-831e-450b-8f73-681db34c27b8"
+            name="drawText"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -6125,27 +6254,12 @@
           </operation>
           <operation
             Id="a70f6e12-6d82-41ca-b3ad-db5c2135d26e"
-            name="handleKeyStatesPlayers"
+            name="handleKeyEvents"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false">
-            <ownedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="367038fe-7486-4f60-8b94-e567bb7c7cb7"
-                  direction="Return">
-                  <type_NamedElement>
-                    <primitiveTypeMoniker
-                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
-                      LastKnownName="Boolean"
-                      LastKnownLocation="ModelingProject1.uml" />
-                  </type_NamedElement>
-                </parameter>
-              </operationHasOwnedParameters>
-            </ownedParameters>
-          </operation>
+            isQuery="false" />
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -6762,8 +6876,8 @@
             </type_NamedElement>
           </property>
           <property
-            Id="76266373-18d2-4c24-a35c-eab6745b58b1"
-            name="offsetX"
+            Id="fe89d08d-437a-4d3a-b4cb-67802caa1583"
+            name="countX"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -6774,15 +6888,34 @@
             aggregation="None"
             isComposite="false">
             <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="abfb9cd0-093a-48b8-b164-ae0ba78e42be"
-                LastKnownName="GLfloat"
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
           <property
-            Id="f5028274-399c-442e-bbb4-6114d429f67a"
-            name="offsetY"
+            Id="bed78ed2-dc2f-430a-93bf-23e53efc6c61"
+            name="delayX"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="de4e2531-1ec3-4486-98b7-0c5a44545e6e"
+            name="offset"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -6794,8 +6927,27 @@
             isComposite="false">
             <type_NamedElement>
               <undefinedTypeMoniker
-                Id="abfb9cd0-093a-48b8-b164-ae0ba78e42be"
-                LastKnownName="GLfloat"
+                Id="ec560e23-1182-4f7f-b64c-d643e3e2f0b5"
+                LastKnownName="Vector2f"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="2c0850f0-d941-498e-9b3e-7cb09b603182"
+            name="speed"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="ec560e23-1182-4f7f-b64c-d643e3e2f0b5"
+                LastKnownName="Vector2f"
                 LastKnownLocation="ModelingProject1.uml" />
             </type_NamedElement>
           </property>
@@ -6883,6 +7035,325 @@
       <undefinedType
         Id="1217e7f4-3e19-4fa1-9210-3a994d1bb383"
         name="boost::ptr_vector&lt; Tileset &gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="0a736e4b-cb77-4b6a-99ea-f3d9c4063a52"
+        name="MovementPhys*" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="8091c2f2-3768-406e-91fb-cc1e418ca57f"
+        name="boost::ptr_vector&lt; GameState &gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0147bd1b-091d-4beb-9c65-64676d641928"
+        name="Camera"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="4ccf2618-6258-43a7-8167-a8dd468884aa"
+            name="posX"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="abfb9cd0-093a-48b8-b164-ae0ba78e42be"
+                LastKnownName="GLfloat"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3febddff-387e-4285-8333-76aade508c53"
+            name="midPoint"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="abfb9cd0-093a-48b8-b164-ae0ba78e42be"
+                LastKnownName="GLfloat"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="1685b512-3abd-4200-ac3f-bda4a8b5699a"
+            name="onePlayer"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                LastKnownName="Boolean"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="da14aa12-d8de-4fb7-91f2-4f3fde34a009"
+            name="speedX"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="abfb9cd0-093a-48b8-b164-ae0ba78e42be"
+                LastKnownName="GLfloat"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ec8bdd01-2a9b-4ac3-bf43-8eeda321e529"
+            name="defaultResolution"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="d99b1314-745e-4b5d-94eb-75c2dea1ca90"
+                LastKnownName="const SDL_VideoInfo*"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="e4826e50-626b-47fe-9bf4-98b4c3d51db0"
+            name="initCamera"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="9d124dde-9da6-4d8c-a2a6-3955377da458"
+            name="moveCamera"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="1b84eafd-b3d4-46d3-8625-6e78e5bfb50a"
+            name="renderCamera"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="61a221e1-b099-44bf-9ab2-5b2a45b7de99"
+            name="checkCamera"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="eb95a6b8-7c01-44c1-9d02-0f192c06b235"
+            name="restartCameraSpeed"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="fae0eb08-be2a-4116-8771-5a0100a29f84"
+        name="boost::ptr_vector&lt; Enemy &gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="7577904d-487e-4f2f-bdd5-cb7f94d2c65c"
+        name="std::vector&lt; int &gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="ec560e23-1182-4f7f-b64c-d643e3e2f0b5"
+        name="Vector2f" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7061a670-423f-425e-a1cb-6593ffdf73aa"
+        name="Health"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="f0722293-7739-4b9a-ac75-eec230be181b"
+            name="lifeQuadPosition"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="ec560e23-1182-4f7f-b64c-d643e3e2f0b5"
+                LastKnownName="Vector2f"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="2ccecae8-b3a7-4e69-a698-b4b1dbed96aa"
+            name="lifeQuadOffset"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="ec560e23-1182-4f7f-b64c-d643e3e2f0b5"
+                LastKnownName="Vector2f"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f85604ed-3869-40b9-8b54-544b5565e0e2"
+            name="lifeInitialPosition"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="ec560e23-1182-4f7f-b64c-d643e3e2f0b5"
+                LastKnownName="Vector2f"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="d580a7ac-57d9-4652-8296-a78ec515dc0b"
+            name="lifeInitialOffset"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="ec560e23-1182-4f7f-b64c-d643e3e2f0b5"
+                LastKnownName="Vector2f"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b8d7edac-6db3-4022-8249-915f542a207e"
+            name="pointsOfLife"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                LastKnownName="Integer"
+                LastKnownLocation="ModelingProject1.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="0c3dd62f-8302-4e5f-8321-9d1cab705917"
+        name="ChangeStateResult"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="2dcc0edb-82e8-41f9-8d16-14f5ac3b9444"
+            name="NO_CHANGE">
+            <specification>
+              <literalInteger
+                Id="e4c8ba5a-6ce9-4d70-9b6e-f91513a2330b"
+                name="Integer"
+                value="0" />
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="91002f73-da50-44d1-a3ae-aa4d1d61639f"
+            name="CHANGE">
+            <specification>
+              <literalInteger
+                Id="5680dd5a-7131-4a7f-aa01-a8660fdcbc9b"
+                name="Integer"
+                value="1" />
+            </specification>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="e5560e0a-2b73-4296-91be-43d600ba6ceb"
+            name="RETURN_TO_STILL">
+            <specification>
+              <literalInteger
+                Id="e5de5853-4144-4697-93a4-8a35dbac43d5"
+                name="Integer"
+                value="2" />
+            </specification>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

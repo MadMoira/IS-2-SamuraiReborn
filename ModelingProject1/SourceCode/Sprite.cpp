@@ -1,6 +1,7 @@
 
 #include "Sprite.h"
 #include "PlayerState.h"
+#include "Collider.h"
 
 Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
@@ -34,6 +35,8 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
   currentXSpeed = speed.at(getCurrentState()).x;
   currentYSpeed = speed.at(getCurrentState()).y;
 
+  spriteCollisionBox = new CollisionBox(position.x, position.y, width, height);
+
   countX = 0;
   countY = 0;
 
@@ -58,11 +61,13 @@ void Sprite::movePosXWithSpeed()
   if ( countX > delayMovementSprite.at(getCurrentState()).x )
   {
     countX = 0;
+	spriteCollisionBox->setX( position.x + getSpeedX() );
     if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
     {
       if ( position.x + getSpeedX() + width < 6368.f )
       {
         position.x += getSpeedX();
+		spriteCollisionBox->setX(position.x);
 		playerMoveInX = true;
 		return;
       }
@@ -71,9 +76,11 @@ void Sprite::movePosXWithSpeed()
     else if ( position.x + getSpeedX() + width  > 0 )
     {
       position.x += getSpeedX();
+	  spriteCollisionBox->setX(position.x);
 	  playerMoveInX = true;
 	  return;
     }
+	spriteCollisionBox->setX( position.x - getSpeedX() );
 	playerMoveInX = false;
   }
 }

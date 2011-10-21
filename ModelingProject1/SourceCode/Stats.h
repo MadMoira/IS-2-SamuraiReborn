@@ -31,8 +31,5 @@ namespace PlayerStats
 
    private:
     Health health;
-    int stamina;
-	int strength, speedAttack;
-	int strongStyle, fastStyle;
    };
 }
