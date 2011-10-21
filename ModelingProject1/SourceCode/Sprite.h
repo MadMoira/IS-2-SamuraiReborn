@@ -10,7 +10,9 @@
 #include "Animation.h"
 #include "PlayerStateManager.h"
 
-#include "Vector.h"
+#include "Vector.h
+
+class Collider;
 
 enum IDSprites 
 { 
@@ -70,6 +72,7 @@ private:
 	GLuint texture;
 	Animation* handlerAnimation;
 	GameCoreStates::PlayerStateManager* playerStateManager;
+	Collider* cHandler;
 	Vector2f position;
 	std::vector< Vector2f > speed;
 	std::vector< Vector2f > delayMovementSprite;

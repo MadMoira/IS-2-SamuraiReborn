@@ -300,6 +300,9 @@
     <ClCompile Include="CollisionObject.cpp">
       <Filter>Source Files\Game Physics\Collisions</Filter>
     </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Source Files\Game Physics\Collisions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -474,6 +477,9 @@
       <Filter>Header Files\Game Physics\Collisions</Filter>
     </ClInclude>
     <ClInclude Include="CollisionObject.h">
+      <Filter>Header Files\Game Physics\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
       <Filter>Header Files\Game Physics\Collisions</Filter>
     </ClInclude>
   </ItemGroup>

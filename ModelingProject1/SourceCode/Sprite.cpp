@@ -19,6 +19,8 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
 								   framerateAnimations.at(getCurrentState()),
 								   SpriteData::RIGHT );
 
+  cHandler = Collider::getInstance();
+
   maxFramesPerAnimation = maxFrame;
   returnFramesPerAnimation = returnFrame;
   frameratePerAnimation =  framerateAnimations;
