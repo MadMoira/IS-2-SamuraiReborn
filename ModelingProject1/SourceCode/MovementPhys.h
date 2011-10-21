@@ -18,12 +18,11 @@ public:
 	MovementPhys(float gravityVal);
 	~MovementPhys(void);
 	
-	void physicManager(Vector2f *speed, int state);
+	void physicManager(Vector2f* speed, int state);
 
 private:
 	float gravityVal;
 	void parabolicShot(GLfloat* speedY);
 	int countY, delayY;
-
 };
 

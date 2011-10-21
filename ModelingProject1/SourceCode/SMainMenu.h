@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gamestate.h"
+#include "GameState.h"
 
 #include <CEGUI.h>
 

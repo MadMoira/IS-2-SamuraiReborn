@@ -82,7 +82,7 @@ bool Camera::checkCamera(GLfloat posx1)
 
 bool Camera::checkCamera(GLfloat posx1, GLfloat posx2)
 {
-  if( ((posx1- midPoint > 0 || posx2 - midPoint > 0) && posX < 4600) || (posX - posx1 > -75 || posx - posx2 > -75) )
+  if( ((posx1- midPoint > 0 || posx2 - midPoint > 0) && posX < 4600) || (posX - posx1 > -75 || posX - posx2 > -75) )
   {
     return true;
   }	

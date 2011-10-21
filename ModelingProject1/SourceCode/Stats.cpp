@@ -12,12 +12,6 @@ PlayerStats::Health::Health(Vector2f lifeQPos, Vector2f lifeQOff, Vector2f lifeI
 
 PlayerStats::Stats::Stats(void)
 {
-  stamina = 0;
-  strength = 0;
-  speedAttack = 0;
-  strongStyle = 0;
-  fastStyle = 0;
-
   Vector2f lifeIPos(0.0f, 0.0f); //Coordinates X-Y First Quad Of The Health Bar
   Vector2f lifeIOff(19.53f, 10.53f); //Width And Height Of The First Quad Of The Health Bar
   Vector2f lifeQPos(2.3f, 13.97f); //Coordinates X-Y Common Quad Of The Health Bar
