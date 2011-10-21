@@ -6,8 +6,9 @@
 class Enemy
 {
 public:
-	Enemy(void);
+	Enemy::Enemy();
 	~Enemy(void);
+	Sprite *getSprite() { return enemySprite; }
 
 private:
 	Sprite *enemySprite;

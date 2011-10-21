@@ -9,6 +9,7 @@ GameCore::GameCore(void)
   timer = new GameTimer();
   sound = new GameSound();
   camera = new Camera();
+  //collider= new Collider(/*&enemiesList, &playersList*/);
   isRunning = true;
 }
 

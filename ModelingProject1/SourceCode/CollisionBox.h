@@ -1,12 +1,14 @@
 #pragma once
 
 #include "SDL/SDL_image.h"
+
 class CollisionBox{
 private:
 	SDL_Rect box;
 
 public:
 	//Initializes the variables
+	CollisionBox();
 	CollisionBox(float x, float y ,float w, float h);
 	~CollisionBox(void);
 

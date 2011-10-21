@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Camera.h"
 #include "GameFont.h"
+#include "Collider.h"
 
 #include "Vector.h"
 
@@ -51,6 +52,7 @@ private:
 	GameTimer* timer;
 	GameSound* sound;
 	Camera* camera;
+	Collider* collider;
 	boost::ptr_vector< Player > playersList;
 	bool isRunning;
 };

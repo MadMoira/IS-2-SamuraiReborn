@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy(void)
+Enemy::Enemy()
 {
 	//enemySprite = new Sprite();
 	enemyWeapon = new Weapon();
