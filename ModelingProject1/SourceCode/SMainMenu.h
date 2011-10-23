@@ -49,6 +49,8 @@ class SMainMenu : public GameState
 
    void handleMouseDown(Uint8 button);
    void handleMouseUp(Uint8 button);
+   void handleKeyDown(SDLKey key);
+   void handleEnterPressed();
 
    bool handleHistoryMode( const CEGUI::EventArgs& e );
    bool handleQuit( const CEGUI::EventArgs& e );

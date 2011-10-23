@@ -3,6 +3,8 @@
 #include "Level.h"
 #include "TmxParser/Tmx.h"
 
+#include "Collider.h"
+
 #include "File.h"
 
 Level::Level(Levels id)
@@ -69,6 +71,8 @@ int Level::loadTMXTileMapFile(std::string filename)
       }
     }
 
+	Collider::getInstance()->setLayerMap(tempLayerMap);
+
     tilemapList.at(i).setLayerMap(tempLayerMap);
     tempLayerMap.clear();
   }
@@ -108,6 +112,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 	}
 
 	setCollisionTilesList(tempCollisionTilesList);
+
+	Collider::getInstance()->setCollisionTilesList(tempCollisionTilesList);
 
 	tempCollisionTilesList.clear();
   }

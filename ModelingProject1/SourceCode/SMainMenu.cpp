@@ -71,16 +71,7 @@ void SMainMenu::handleEvents()
       }
       case SDL_KEYDOWN:
       {
-        CEGUI::System::getSingleton().injectKeyDown(e.key.keysym.scancode);
-        if ( (e.key.keysym.unicode & 0xFF80) == 0 )
-		{
-          CEGUI::System::getSingleton().injectChar(e.key.keysym.unicode & 0x7F);
-        }
-        break;
-      }
-      case SDL_KEYUP:
-      {
-        CEGUI::System::getSingleton().injectKeyUp(e.key.keysym.scancode);
+		handleKeyDown(e.key.keysym.sym);
         break;
       }
       case SDL_QUIT:
@@ -164,6 +155,7 @@ void SMainMenu::createGUI( CEGUI::WindowManager& winManager )
 	                                 winManager.createWindow( "DefaultWindow", "Root" ) ) ;
  
   CEGUI::Window* mainMenu = winManager.loadWindowLayout("MainMenu.layout");
+
   rootWin.addChildWindow(mainMenu);
 
   CEGUI::System::getSingleton().setGUISheet( &rootWin ) ;
@@ -174,6 +166,7 @@ void SMainMenu::createGUI( CEGUI::WindowManager& winManager )
 	                                      CEGUI::Event::Subscriber(&SMainMenu::handleHistoryMode, 
 										  this) );
   menuItems.at(0).id = HISTORY_MODE;
+
 
   menuItems.push_back(MenuButton());
   menuItems.at(1).button = (CEGUI::PushButton*)winManager.getWindow("MainMenu/Tutorial");
@@ -255,6 +248,59 @@ void SMainMenu::handleMouseUp(Uint8 button)
     case SDL_BUTTON_RIGHT:
     {
       CEGUI::System::getSingleton().injectMouseButtonUp(CEGUI::RightButton);
+      break;
+    }
+  }
+}
+
+void SMainMenu::handleKeyDown(SDLKey key)
+{
+  if ( key == SDLK_DOWN )
+  {
+    if ( arrowImage.optionSelected + 1 > QUIT )
+    {
+      arrowImage.optionSelected = 1;
+      return;
+    }
+
+    arrowImage.optionSelected += 1;
+  }
+
+  if ( key == SDLK_UP )
+  {
+    if ( arrowImage.optionSelected - 1 == NOTHING_SELECTED )
+    {
+      arrowImage.optionSelected = QUIT;
+      return;
+    }
+
+    arrowImage.optionSelected -= 1;
+  }
+
+  if ( key == SDLK_RETURN )
+  {
+    handleEnterPressed();
+  }
+
+  if ( key == SDLK_ESCAPE )
+  {
+    arrowImage.optionSelected = QUIT;
+  }
+}
+
+void SMainMenu::handleEnterPressed()
+{
+  CEGUI::EventArgs e;
+  switch( arrowImage.optionSelected )
+  {
+    case HISTORY_MODE:
+    {
+      handleHistoryMode(e);
+      break;
+    }
+    case QUIT:
+    {
+      handleQuit(e);
       break;
     }
   }

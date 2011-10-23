@@ -6,32 +6,41 @@
 class Camera
 {
   public:
+   static Camera* getInstance();
+
    Camera();
    ~Camera();
 
    void initCamera();
 
-   void moveCamera(GLfloat posx1);
-   void moveCamera(GLfloat posx1, GLfloat posx2);
+   void moveCamera();
 	
    void renderCamera();
 
-   bool checkCamera(GLfloat posx1);
-   bool checkCamera(GLfloat posx1, GLfloat posx2);
+   bool checkCamera(GLfloat posx1, GLfloat newSpeedx);
+   bool checkCamera(GLfloat posx1, GLfloat posx2, GLfloat newSpeedx);
 
-   void setCameraSpeed(GLfloat newSpeedx);
+   void setCameraSpeed(GLfloat newSpeedx, GLfloat posx1);
+   void setCameraSpeed(GLfloat newSpeedx, GLfloat posx1, GLfloat posx2);
    void restartCameraSpeed();
 
    GLfloat getCameraPosition() { return posX; }
 
-   GLfloat getCameraSpeed() {return speedX;};
+   GLfloat getCameraSpeed() {return speedX;}
 
-   bool getOnePlayer() {return onePlayer;};
+   bool getOnePlayer() { return onePlayer;}
+
+   bool isPlayerOnMidpoint(GLfloat posX);
+   bool isLimit(GLfloat position, GLfloat speedX);
 
   private:
+   static bool instanceFlag;
+   static Camera* camera;
    GLfloat posX;	
    GLfloat speedX;
    GLfloat midPoint;
+   GLfloat levelLenght;
+   bool playerOnMidpoint;
    bool onePlayer;
    const SDL_VideoInfo* defaultResolution;
 };

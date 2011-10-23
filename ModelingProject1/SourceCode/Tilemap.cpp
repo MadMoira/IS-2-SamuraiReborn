@@ -10,9 +10,6 @@ Tilemap::Tilemap(std::string name, int widthInTiles, int heightInTiles)
   offset.x = offset.y = 0.0f;
   sizeTiles = 32.f;
 
-  countX = 0;
-  delayX = 3;
-
   layerMap.resize(heightLevelInTiles);
 	
   for (int i = 0; i < heightLevelInTiles; i++)
@@ -151,13 +148,8 @@ GLfloat Tilemap::transformOffsetXToIntervalValues(GLfloat offX)
 
 void Tilemap::scrollTilemap()
 {
-  countX++;
-  if ( countX > delayX )
-  {
-    countX = 0;
-	offset.x += speed.x;
-	offset.y += speed.y;
-  }
+  offset.x += speed.x;
+  offset.y += speed.y;
 
   checkScreenBoundaries();
 }

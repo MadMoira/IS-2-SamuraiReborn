@@ -18,24 +18,23 @@ class Collider;
 
 enum IDSprites 
 { 
-	PANDA, 
-	MEERKAT, 
-	JAPANESEMONKEY, 
+  PANDA, 
+  MEERKAT, 
 };
 
 class Sprite
 {
-public:
-	Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+  public:
+   Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement);
-	~Sprite(void);
+   ~Sprite(void);
 
-	GLfloat getPosX() { return position.x; }
-	void movePosXWithSpeed();
-	GLfloat getPosY() { return position.y; }
-	void movePosYWithSpeed();
+   GLfloat getPosX() { return position.x; }
+   void movePosXWithSpeed();
+   GLfloat getPosY() { return position.y; }
+   void movePosYWithSpeed();
 
 	void setPlayerMoveInX(bool moveX) { playerMoveInX = moveX; }
 	bool getPlayerMoveInX() { return playerMoveInX; }
@@ -49,6 +48,8 @@ public:
 
 	void setSpeedX(GLfloat speedX);
 	void setConstantSpeedX(int constant);
+
+	void restartCountX() { countX = 0; }
 
 	GLfloat getSpeedY() { return currentYSpeed; }
 	void setSpeedY(GLfloat speedY);
@@ -71,7 +72,12 @@ public:
 
 	int getPreviousState() { return playerStateManager->getPreviousState(); }
 
+	GLfloat getCurrentDelayFromCurrentState() { return delayMovementSprite.at(getCurrentState()).x; }
+	int getCountX() { return countX; }
+
 	CollisionBox* getCollisionBox() {return spriteCollisionBox; }
+
+	bool getPlayerMoveInXCurrentFrame() { return playerMoveInXInCurrentFrame; }
 
 	void drawTexture();
 
@@ -90,7 +96,7 @@ private:
 	std::vector< int > frameratePerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
 	GLfloat currentXSpeed, currentYSpeed;
-	GLfloat countX, countY;
-	bool playerMoveInX, playerMoveInY;
+	int countX, countY;
+	bool playerMoveInX, playerMoveInY, playerMoveInXInCurrentFrame;
 };
 

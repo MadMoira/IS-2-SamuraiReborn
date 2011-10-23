@@ -4,6 +4,7 @@
      <Property Name="UnifiedSize" Value="{{1.0,0},{1.0,0}}" />
      <Property Name="Image" Value="set:Background image:Background" />
      <Property Name="FrameEnabled" Value="false" />
+     
          <Window Type="TaharezLook/ImageButton" Name="MainMenu/HistoryMode">
              <Property Name="UnifiedAreaRect" Value="{{0.4,0.0},{0.4,0.0},{0.58,0.0},{0.48,0.0}" />
              <Property Name="NormalImage" Value="set:HistoryMode image:ButtonUp" />
