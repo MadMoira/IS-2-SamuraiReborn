@@ -1,5 +1,6 @@
 #include "Collider.h"
 
+#include <algorithm>
 
 Collider::Collider()
 {
@@ -25,19 +26,21 @@ void Collider::initializeColliderSprites(boost::ptr_vector< Enemy >* enemiesList
   players = playersList;
 }
 
-void Collider::initializeColliderTiles(std::vector< std::vector < Tile > > tilemap)
+void Collider::initializeColliderTiles(std::vector< std::vector < Tile > > tilemap,
+	                                   std::vector< int > tilesList)
 {
+  layerMap = tilemap;
+  collisionTilesList = tilesList;
 }
 
 void Collider::cleanUpResources()
 {
   layerMap.clear();
+  collisionTilesList.clear();
 }
 
-//Method to check for collisions between two collision boxes
-bool Collider::checkCollision( CollisionBox& A, CollisionBox& B, float directionX)
+bool Collider::checkCollision(CollisionBox& A, CollisionBox& B, float directionX)
 {
-	//Collisions for left to right, right to left and up to down
   if( ( ( ((A.getY() + A.getHeight()) > B.getY()) && 
 		( (A.getX() + A.getWidth()) > (B.getX()) ) && 
 		( A.getX() < (B.getX() + B.getWidth()))) || 
@@ -54,15 +57,30 @@ bool Collider::checkCollision( CollisionBox& A, CollisionBox& B, float direction
 
 bool Collider::checkTileCollision(Sprite& A, float directionX)
 {
-  for(int i = (int)A.getPosX(); i <= (int)A.getWidth(); i++)
+  for(int i = (int)A.getPosX(); i <= (int)A.getPosX() + (int)A.getWidth(); i += 32)
   {
-    for(int j = (int)A.getPosY(); j <= (int)A.getHeight(); j++)
+    for(int j = (int)A.getPosY(); j <= (int)A.getPosY() + (int)A.getHeight(); j += 32)
 	{
-      Tile foundTile = layerMap[i][j];
-      if( foundTile.getID() != 0 )
+      int x = (int)i/32;
+      int y = (int)j/32;
+
+      Tile foundTile = layerMap[y][x];
+	  if ( foundTile.getID() == 0 )
+	  {
+		continue;
+	  }
+
+	  /*bool wasFind = find( collisionTilesList.begin(), collisionTilesList.end(), 
+		                     foundTile.getID() ) != collisionTilesList.end();
+	  if ( x == 74 && y == 15)
+	  {
+		  wasFind = true;
+	  }*/
+
+	  /*if( wasFind )
 	  {
         return true;
-      }
+      }*/
     }
   }
 
@@ -111,9 +129,9 @@ boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float
 
 bool Collider::onTheGround(Sprite&A, float directionX)
 {
-  for(int i = (int)A.getPosX();i <= (int)A.getWidth(); i++)
+  for(int i = (int)A.getPosX();i <= (int)A.getPosX() + (int)A.getWidth(); i++)
   {
-    Tile groundTile = layerMap[i][(int)A.getPosY()];
+    Tile groundTile = layerMap[(int)A.getPosY()][i];
     if( groundTile.getID() == 0 )
 	{
       return true;

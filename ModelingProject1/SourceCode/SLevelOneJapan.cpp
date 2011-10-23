@@ -57,11 +57,11 @@ void SLevelOneJapan::init()
 
   std::vector < Vector2f > delayMovementVector;
   delayMovementVector.push_back( Vector2f(0.0f, 0.0f) );
-  delayMovementVector.push_back( Vector2f(3.0f, 0.0f) );
-  delayMovementVector.push_back( Vector2f(5.0f, 5.0f) );
-  delayMovementVector.push_back( Vector2f(5.0f, 0.0f) );
-  delayMovementVector.push_back( Vector2f(5.0f, 5.0f) );
-  delayMovementVector.push_back( Vector2f(4.0f, 5.0f) );
+  delayMovementVector.push_back( Vector2f(2.0f, 0.0f) );
+  delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
+  delayMovementVector.push_back( Vector2f(2.0f, 0.0f) );
+  delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
+  delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
 
   std::vector < int > framerateAnimationsVector;
   framerateAnimationsVector.push_back( 0 );
@@ -128,25 +128,25 @@ void SLevelOneJapan::logic()
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();
-    gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX());
+	
+    /*if ( Collider::getInstance()->checkTileCollision( *gameCore->getPlayersList().at(i).getPlayerSprite(), 0 ) )
+    {
+      gameCore->getPlayersList().at(i).noAction();
+    }*/
+
+    gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX(), 
+		                                  gameCore->getPlayersList().at(i).getPlayerSprite()->getPosX()  );
     checkGravity(i); 
   }
 
   japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
   japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
-  
   japanLevel->scrollBackgroundLayers();
-  japanLevel->scrollTilemap();
-
-  if( gameCore->getCamera()->getOnePlayer() )
+  
+  if ( gameCore->getPlayersList().at(0).getPlayerSprite()->getPlayerMoveInXCurrentFrame() )
   {
-    gameCore->getCamera()->moveCamera( gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX() );
-  }
-
-  else
-  {
-    gameCore->getCamera()->moveCamera( gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX(),
-			                           gameCore->getPlayersList().at(1).getPlayerSprite()->getPosX() );
+    japanLevel->scrollTilemap();
+	gameCore->getCamera()->moveCamera();
   }
 
   gameCore->getCamera()->restartCameraSpeed();

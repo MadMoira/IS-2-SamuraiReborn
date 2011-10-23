@@ -13,7 +13,8 @@ class Collider
    static Collider* getInstance();
    
    void initializeColliderSprites(boost::ptr_vector< Enemy >* enemies, boost::ptr_vector< Player >* players);
-   void initializeColliderTiles(std::vector< std::vector < Tile > > tilemap);
+   void initializeColliderTiles(std::vector< std::vector < Tile > > tilemap,
+	                            std::vector< int > tilesList);
 
    void cleanUpResources();
    
@@ -26,6 +27,10 @@ class Collider
 
    bool onTheGround(Sprite& A, float directionX);
 
+   void setLayerMap(std::vector< std::vector < Tile > > tilemap) { layerMap = tilemap; }
+
+   void setCollisionTilesList(std::vector< int > tilesList) { collisionTilesList = tilesList; }
+
   protected:
    Collider();
 
@@ -33,6 +38,7 @@ class Collider
    static bool instanceFlag;
    static Collider* collider;
    std::vector< std::vector < Tile > > layerMap;
+   std::vector< int > collisionTilesList;
    boost::ptr_vector< Enemy >* enemies;
    boost::ptr_vector< Player >* players;
 };
