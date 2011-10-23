@@ -8,7 +8,7 @@ GameCore::GameCore(void)
   screen = new GameScreen();
   timer = new GameTimer();
   sound = new GameSound();
-  camera = new Camera();
+  camera = Camera::getInstance();
   collider = Collider::getInstance();
   isRunning = true;
 }
@@ -78,7 +78,15 @@ void GameCore::addPlayerToGame(Player *player, IDSprites id, std::string filenam
 									  delayMovement);
 }
 
-
+void GameCore::addEnemyToGame(Enemy *enemy, IDSprites id, std::string filename, std::vector< Vector2f> speed,
+				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
+				GLfloat widthSprite, GLfloat heightSprite)
+{
+	 enemiesList.push_back( enemy );
+	 enemiesList.back().initializeEnemy(id, filename, speed, 
+									  pos, initialFrame, maxFrame, returnFrame,
+									  widthSprite, heightSprite);
+}
 
 
 

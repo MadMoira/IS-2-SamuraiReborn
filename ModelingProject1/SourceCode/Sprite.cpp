@@ -70,7 +70,6 @@ void Sprite::movePosXWithSpeed()
 	  playerMoveInX = false;
 	  return;
 	}
-
     if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
     {
       if ( position.x + getSpeedX() + width < 6368.f )
@@ -207,6 +206,21 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
     handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );
 	return;
   }
+}
+
+void Sprite::changeStateEnemySprite(GameCoreStates::PlayerState* newState){
+	int resultCheckingEqualStates = newState->checkIfEqualStates(std::list<InputMapping::Key>(), getCurrentState(),
+		                            getPreviousState(), newState);
+	  if ( resultCheckingEqualStates == GameCoreStates::NO_CHANGE )
+	  {
+		return;
+	  }
+
+    playerStateManager->changeState(newState);
+    setSpeedY(speed.at(getCurrentState()).y);
+	handlerAnimation->restartCurrentFrame();
+    handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
+    handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );
 }
 
 void Sprite::drawTexture()
