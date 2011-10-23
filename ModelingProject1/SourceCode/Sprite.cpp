@@ -1,6 +1,7 @@
 
 #include "Sprite.h"
 #include "PlayerState.h"
+#include "Camera.h"
 
 Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
@@ -42,18 +43,26 @@ Sprite::~Sprite(void)
 
 bool Sprite::movePosXWithSpeed()
 {
-  if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
-  {
-    if ( position.x + getSpeedX() + width < 6368.f )
+	 if (position.x>2366.f )
     {
-      position.x += getSpeedX();
+		getSpeedX();
+	 }
+	 Camera* cam = Camera::getInstance();
+	 if(cam->isLimit(position.x,getSpeedX()) || cam->isLimit(position.x+width,getSpeedX())){
+		 return false;
+	 }
+  if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
+  {	  
+	  if ( position.x + getSpeedX() + width < 6368.f)
+    {
+		position.x += getSpeedX();
       return true;
     }
   }
   
   else if ( position.x + getSpeedX() + width  > 0 )
   {
-    position.x += getSpeedX();
+	  position.x += getSpeedX();
     return true;
   }
 
@@ -130,6 +139,22 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
     handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );
 	return;
   }
+}
+
+void Sprite::changeStateEnemySprite(GameCoreStates::PlayerState* newState){
+	int resultCheckingEqualStates = newState->checkIfEqualStates(std::list<InputMapping::Key>(), getCurrentState(),
+		                            getPreviousState(), newState);
+	  if ( resultCheckingEqualStates == GameCoreStates::NO_CHANGE )
+	  {
+		return;
+	  }
+
+    playerStateManager->changeState(newState);
+    setSpeedY(speed.at(getCurrentState()).y);
+	handlerAnimation->restartCurrentFrame();
+    handlerAnimation->setLoopPerAnimation(0);
+    handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
+    handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );
 }
 
 void Sprite::drawTexture()

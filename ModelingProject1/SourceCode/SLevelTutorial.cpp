@@ -3,6 +3,8 @@
 
 #include "PandaP1.h"
 #include "MeerkatP2.h"
+#include "JapaneseMonkey.h"
+#include "Pathfinding.h"
 
 
 SLevelTutorial::SLevelTutorial(GameRender *gR, GameCore *gC, GameInput *gI, GameStates stateName) 
@@ -63,6 +65,10 @@ void SLevelTutorial::init()
 						speedMeerkat, Vector2f(150.0f, 350.0f), 0, maxFrameVector, returnFrameVector,
 						204.0f, 187.0f);
 
+  gameCore->addEnemyToGame( new JapaneseMonkey(), JAPANESEMONKEY, "Panda - SpriteSheet.png", 
+						speedMeerkat, Vector2f(150.0f, 350.0f), 0, maxFrameVector, returnFrameVector,
+						187.0f, 187.0f);
+
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(
 		     new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
 		                   color, filenameFont, sizeFont, 0),  "", Vector2f(170.0f, 15.0f), 
@@ -103,31 +109,37 @@ void SLevelTutorial::handleEvents()
 
 void SLevelTutorial::logic()
 {
+  Pathfinding pathf;
   gameCore->getPlayersList().at(0).getInputMapper()->dispatchInput( gameCore->getPlayersList().at(0) );
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();
-    gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX());
+	pathf.goToPlayer(&gameCore->getEnemyList().at(0),&gameCore->getPlayersList().at(0));//this goes on AI
+	gameCore->getEnemyList().at(0).getEnemySprite()->getPosX();
     checkGravity(i); 
   }
-
+  if( gameCore->getCamera()->getOnePlayer() )
+	{
+		gameCore->getCamera()->setCameraSpeed(	gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX(),
+												gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX()+
+												gameCore->getPlayersList().at(0).getPlayerSprite()->getWidthTexture()/2);
+	}
+	else{
+		gameCore->getCamera()->setCameraSpeed(	gameCore->getPlayersList().at(0).getPlayerSprite()->getSpeedX(),
+												gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX(),
+												gameCore->getPlayersList().at(1).getPlayerSprite()->getPosX());
+	}
+	if(gameCore->getCamera()->getCameraSpeed()<0){
+		gameCore->getCamera()->getCameraSpeed();
+	}
   tutorialLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
   tutorialLevel->scrollBackgroundLayers();
 
   tutorialLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
   tutorialLevel->scrollTilemap();
 
-  if( gameCore->getCamera()->getOnePlayer() )
-  {
-    gameCore->getCamera()->moveCamera( gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX() );
-  }
-
-  else
-  {
-    gameCore->getCamera()->moveCamera( gameCore->getPlayersList().at(0).getPlayerSprite()->getPosX(),
-			                           gameCore->getPlayersList().at(1).getPlayerSprite()->getPosX() );
-  }
+  gameCore->getCamera()->moveCamera(  );
 
   gameCore->getCamera()->restartCameraSpeed();
 }
@@ -159,6 +171,10 @@ void SLevelTutorial::render()
     for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
     {
       gameCore->getPlayersList().at(i).draw();
+    }
+	for (std::string::size_type i = 0; i < gameCore->getEnemyList().size(); i++)
+    {
+      gameCore->getEnemyList().at(i).draw();
     }
 
   glPopMatrix();
