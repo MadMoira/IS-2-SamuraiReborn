@@ -7,7 +7,7 @@
 #include "GameSound.h"
 #include "Camera.h"
 #include "Player.h"
-#include "Camera.h"
+#include "Enemy.h"
 #include "GameFont.h"
 
 #include "Vector.h"
@@ -36,7 +36,11 @@ public:
 	GameScreen* getGameScreen() {return screen;};
 
 	boost::ptr_vector< Player >& getPlayersList() { return playersList; }
+	boost::ptr_vector< Enemy >& getEnemyList() { return enemyList; }
 	void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed,
+				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
+				GLfloat widthSprite, GLfloat heightSprite);
+	void addEnemyToGame(Enemy *enemy, IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
 				GLfloat widthSprite, GLfloat heightSprite);
 
@@ -51,6 +55,7 @@ private:
 	GameSound* sound;
 	Camera* camera;
 	boost::ptr_vector< Player > playersList;
+	boost::ptr_vector< Enemy > enemyList;
 	bool isRunning;
 };
 

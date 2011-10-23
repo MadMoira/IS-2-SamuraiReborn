@@ -43,6 +43,7 @@ public:
 	void setSpeedY(GLfloat newSpeedY){currentYSpeed=newSpeedY;}
 
 	GLfloat getDelayX() { return delay.x; }
+	void setDelayX(GLfloat newDelay){delay.x=newDelay;}
 
 	GLfloat getDelayY() { return delay.y; }
 
@@ -57,6 +58,8 @@ public:
 
 	void changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
 		                         std::list<InputMapping::Key> keys);
+
+	void changeStateEnemySprite(GameCoreStates::PlayerState* newState);
 
 	int getPreviousState() { return playerStateManager->getPreviousState(); }
 
