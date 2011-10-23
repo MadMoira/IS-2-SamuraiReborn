@@ -8,7 +8,7 @@
 
 #include "Camera.h"
 #include "Player.h"
-#include "Camera.h"
+#include "Enemy.h"
 #include "Collider.h"
 
 #include "Vector.h"
@@ -35,10 +35,14 @@ class GameCore
    GameScreen* getGameScreen() { return screen; };
 
    boost::ptr_vector< Player >& getPlayersList() { return playersList; }
+	boost::ptr_vector< Enemy >& getEnemyList() { return enemiesList; }
    void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement);
+	void addEnemyToGame(Enemy *enemy, IDSprites id, std::string filename, std::vector< Vector2f> speed,
+				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
+				GLfloat widthSprite, GLfloat heightSprite);
 
    bool getIsRunning() { return isRunning; }
    void setIsRunning(bool running) { isRunning = running; };

@@ -70,6 +70,8 @@ class Sprite
 	void changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
 		                         std::list<InputMapping::Key> keys);
 
+	void changeStateEnemySprite(GameCoreStates::PlayerState* newState);
+
 	int getPreviousState() { return playerStateManager->getPreviousState(); }
 
 	GLfloat getCurrentDelayFromCurrentState() { return delayMovementSprite.at(getCurrentState()).x; }
