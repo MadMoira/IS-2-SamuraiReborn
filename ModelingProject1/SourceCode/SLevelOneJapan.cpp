@@ -3,7 +3,7 @@
 
 #include "PandaP1.h"
 #include "MeerkatP2.h"
-
+#include "JapaneseMonkey.h"
 
 SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
 	: GameState( gR, gC, gI, stateName )
@@ -85,6 +85,10 @@ void SLevelOneJapan::init()
 		                   color, filenameFont, sizeFont, 0),  "", Vector2f(170.0f, 15.0f), 
 								   Vector2f(200.0f, 20.0f) );
 
+  gameCore->addEnemyToGame( new JapaneseMonkey(), PANDA, "Enemy - SpriteSheet.png", 
+						speedMeerkat, Vector2f(150.0f, 382.0f), 0, maxFrameVector, returnFrameVector,
+						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
+
   /*gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
 						speedPanda, 0.0f, Vector2f(50.0f, 400.0f), 0, maxFrameVector, returnFrameVector,
 						STILL, 187.0f, 187.0f);*/
@@ -136,6 +140,9 @@ void SLevelOneJapan::logic()
 
     gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX(), 
 		                                  gameCore->getPlayersList().at(i).getPlayerSprite()->getPosX()  );
+
+	levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
+
     checkGravity(i); 
   }
 
@@ -179,6 +186,10 @@ void SLevelOneJapan::render()
     for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
     {
       gameCore->getPlayersList().at(i).draw();
+    }
+	for (std::string::size_type i = 0; i < gameCore->getEnemyList().size(); i++)
+    {
+		gameCore->getEnemyList().at(i).draw();
     }
 
   glPopMatrix();

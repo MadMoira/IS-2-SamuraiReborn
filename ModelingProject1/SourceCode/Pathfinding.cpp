@@ -107,12 +107,14 @@ void Pathfinding::setVariablesByPosition(int x, int y, int cost, int heuristic, 
 }
 
 void Pathfinding::goToPosition(Enemy* enemy){
+	//temporal code
 	enemy->getEnemySprite()->changeStateEnemySprite(WALKING_STATE);	
 	if(enemy->getEnemySprite()->getHandlerAnimation()->getAnimationDirection()!=direction){
 		enemy->getEnemySprite()->getHandlerAnimation()->changeAnimationDirection(direction);
 		enemy->getEnemySprite()->setConstantSpeedX(-1);
 	}		
 	enemy->walk();
+	//temporal code, here is suposed to go the decision function
 }
 
 Pathfinding::~Pathfinding(void)

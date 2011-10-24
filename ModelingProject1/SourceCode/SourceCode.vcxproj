@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\SDL - DLL, INC, LIB\include files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\CEGUI 0.7.5\cegui\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;C:\Program Files\Boost\boost_1_47_0;C:\Users\Sebastian\Documents\Librerias\CEGUI-SDK-0.7.5-vc10\cegui\include;C:\Users\Sebastian\Documents\Librerias;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\SDL - DLL, INC, LIB\lib files;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\CEGUI 0.7.5\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;C:\Users\Sebastian\Documents\Librerias\CEGUI-SDK-0.7.5-vc10\lib;C:\Users\Sebastian\Documents\Librerias;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,15 +98,19 @@
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="GameText.cpp" />
     <ClCompile Include="GameTimer.cpp" />
+    <ClCompile Include="HeapCompare.cpp" />
     <ClCompile Include="JapaneseMonkey.cpp" />
     <ClCompile Include="JumpingState.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelGraph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathFunctions.cpp" />
     <ClCompile Include="MeerkatP2.cpp" />
     <ClCompile Include="MovementPhys.cpp" />
     <ClCompile Include="PandaP1.cpp" />
+    <ClCompile Include="Pathfinding.cpp" />
+    <ClCompile Include="PathNode.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerScore.cpp" />
     <ClCompile Include="PlayerState.cpp" />
@@ -153,14 +157,18 @@
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameText.h" />
     <ClInclude Include="GameTimer.h" />
+    <ClInclude Include="HeapCompare.h" />
     <ClInclude Include="JapaneseMonkey.h" />
     <ClInclude Include="JumpingState.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelGraph.h" />
     <ClInclude Include="MathFunctions.h" />
     <ClInclude Include="MeerkatP2.h" />
     <ClInclude Include="MovementPhys.h" />
     <ClInclude Include="PandaP1.h" />
+    <ClInclude Include="Pathfinding.h" />
+    <ClInclude Include="PathNode.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerScore.h" />
     <ClInclude Include="PlayerSpriteStates.h" />
@@ -199,6 +207,7 @@
     <None Include="datafiles\imagesets\QuitButton.imageset" />
     <None Include="datafiles\imagesets\TutorialButton.imageset" />
     <None Include="datafiles\layouts\MainMenu.layout" />
+    <None Include="Enemy - SpriteSheet.png" />
     <None Include="healthBar.png" />
     <None Include="LevelOneTileMap.tmx" />
     <None Include="logoSamuraiReborn.png" />

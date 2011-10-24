@@ -72,7 +72,7 @@ void Sprite::movePosXWithSpeed()
 	}
     if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
     {
-      if ( position.x + getSpeedX() + width < 6368.f )
+      if ( position.x + getSpeedX() + width < 6400.f )
       {
         position.x += getSpeedX();
 		spriteCollisionBox->setX(position.x);
@@ -218,9 +218,11 @@ void Sprite::changeStateEnemySprite(GameCoreStates::PlayerState* newState){
 
     playerStateManager->changeState(newState);
     setSpeedY(speed.at(getCurrentState()).y);
+	handlerAnimation->restartOldTime();
 	handlerAnimation->restartCurrentFrame();
+	handlerAnimation->setFrameRate( frameratePerAnimation.at(getCurrentState()) );
     handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
-    handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );
+    handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );	
 }
 
 void Sprite::drawTexture()

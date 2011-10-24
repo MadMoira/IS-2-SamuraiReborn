@@ -19,7 +19,7 @@ Camera::Camera()
   posX = 0;
   speedX = 0;	
   midPoint = 0;
-  levelLenght = 6368;
+  levelLenght = 6400;
   onePlayer = true;	
   playerOnMidpoint=false;
 }
@@ -90,7 +90,7 @@ void Camera::restartCameraSpeed()
 
 bool Camera::checkCamera(GLfloat posx1, GLfloat newSpeedx)
 {	
-  if( isPlayerOnMidpoint(posx1) && !isLimit(posX,newSpeedx) )
+  if( isPlayerOnMidpoint(posx1) && !isLimit(posX,newSpeedx) && !isLimit(posX+(GLfloat)defaultResolution->current_w,newSpeedx) )
   {
     return true;
   }	
@@ -130,8 +130,8 @@ bool Camera::isPlayerOnMidpoint(GLfloat posX){
 	}
 }
 
-bool Camera::isLimit(GLfloat position, GLfloat speedX){
-	if(position+speedX<0 || position+speedX>levelLenght){
+bool Camera::isLimit(GLfloat position, GLfloat speed){
+	if(position+speed<0 || position+speed>levelLenght){
 		return true;
 	}
 	return false;
