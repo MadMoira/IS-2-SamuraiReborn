@@ -80,12 +80,14 @@ void GameCore::addPlayerToGame(Player *player, IDSprites id, std::string filenam
 
 void GameCore::addEnemyToGame(Enemy *enemy, IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
-				GLfloat widthSprite, GLfloat heightSprite)
+				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+				std::vector< Vector2f> delayMovement)
 {
 	 enemiesList.push_back( enemy );
 	 enemiesList.back().initializeEnemy(id, filename, speed, 
 									  pos, initialFrame, maxFrame, returnFrame,
-									  widthSprite, heightSprite);
+									  widthSprite, heightSprite, framerateAnimations,
+									  delayMovement);
 }
 
 

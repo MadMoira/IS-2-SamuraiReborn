@@ -8,9 +8,10 @@ class Enemy
 public:
 	Sprite *getSprite() { return enemySprite; }
 
-	virtual void initializeEnemy(IDSprites id, std::string filename, std::vector< Vector2f > speed, 
-				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
-				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite) = 0;
+	virtual void initializeEnemy(IDSprites id, std::string filename, std::vector< Vector2f> speed,
+				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
+				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+				std::vector< Vector2f> delayMovement) = 0;
 	virtual void walk() = 0;
 	virtual void run() = 0;
 	virtual void jump() = 0;

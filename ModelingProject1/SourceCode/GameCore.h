@@ -42,7 +42,8 @@ class GameCore
 				std::vector< Vector2f> delayMovement);
 	void addEnemyToGame(Enemy *enemy, IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
-				GLfloat widthSprite, GLfloat heightSprite);
+				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+				std::vector< Vector2f> delayMovement);
 
    bool getIsRunning() { return isRunning; }
    void setIsRunning(bool running) { isRunning = running; };

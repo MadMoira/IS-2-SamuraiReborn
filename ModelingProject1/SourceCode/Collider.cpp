@@ -89,20 +89,21 @@ bool Collider::checkTileCollision(Sprite& A, float directionX)
 
 bool Collider::checkEnemiesCollision(CollisionBox& A, float directionX)
 {
-  for(int i = 0; i == enemies->size(); i++)
+ /* for(int i = 0; i == enemies->size(); i++)
   {
     if( checkCollision(A, *enemies->at(i).getSprite()->getCollisionBox(), directionX) )
 	{
       return true;
     }
   }
-
+  */
   return false;
 }
-
+/*
 boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float directionX)
 {
   boost::ptr_vector< Enemy > enemiesCollided;
+
   for(int i = 0; i == enemies->size(); i++)
   {
     if( checkCollision( A, *enemies->at(i).getSprite()->getCollisionBox(), directionX) )
@@ -110,9 +111,9 @@ boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float
       enemiesCollided.push_back(&enemies->at(i));
     }
   }
-
+  
   return enemiesCollided;
-}
+}*/
 
 /*boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX)
 {

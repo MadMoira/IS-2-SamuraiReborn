@@ -300,6 +300,18 @@
     <ClCompile Include="MathFunctions.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="PathNode.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Pathfinding.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelGraph.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="HeapCompare.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -476,6 +488,18 @@
     <ClInclude Include="MathFunctions.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="PathNode.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="HeapCompare.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelGraph.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Pathfinding.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MainContext.txt">
@@ -552,6 +576,9 @@
     </None>
     <None Include="logoSamuraiReborn.png">
       <Filter>Resource Files\Intro</Filter>
+    </None>
+    <None Include="Enemy - SpriteSheet.png">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
 </Project>

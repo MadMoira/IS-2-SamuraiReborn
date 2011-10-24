@@ -4,6 +4,7 @@
 
 #include "Level.h"
 #include "MovementPhys.h"
+#include "AI.h"
 
 class SLevelOneJapan : public GameState
 {
@@ -21,5 +22,6 @@ class SLevelOneJapan : public GameState
   private:
    Level* japanLevel;
    MovementPhys* movPhysics;
+   AI levelAI;
 };
 

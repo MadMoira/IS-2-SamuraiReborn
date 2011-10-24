@@ -22,8 +22,8 @@ class Collider
    bool checkTileCollision(Sprite& A, float directionX);
    bool checkEnemiesCollision( CollisionBox& A, float directionX);
 
-   boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
-   boost::ptr_vector< Enemy > checkAttackCollision(CollisionBox& A, float directionX);
+   //boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
+   //boost::ptr_vector< Enemy > checkAttackCollision(CollisionBox& A, float directionX);
 
    bool onTheGround(Sprite& A, float directionX);
 

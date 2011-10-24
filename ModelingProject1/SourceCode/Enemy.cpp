@@ -3,8 +3,11 @@
 
 void Enemy::stop()
 {
-  enemySprite->changeStateEnemySprite(STILL_STATE);
-  enemySprite->changeCurrentFrame(GameCoreStates::STILL);
+  if ( !enemySprite->getPlayerMoveInX() && !enemySprite->getPlayerMoveInY() )
+  {
+    enemySprite->changeStateEnemySprite(STILL_STATE);
+    enemySprite->changeCurrentFrame(GameCoreStates::STILL);
+  }
 }
 
 void Enemy::returnToPreviousState()
