@@ -21,8 +21,8 @@ int GameCoreStates::FastAttackState::checkMovement(int keyPreviouslyPressed, int
   InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isFastAttackKeyPressed);
   bool fastAttackButtonIsPressed = findKey.isPressed;
 
-  if ( !isPacing.directionButtonPressed && currentState != GameCoreStates::STILL &&
-	                                       currentState != GameCoreStates::JUMPING)
+  if ( !isPacing.directionButtonPressed && ( currentState == GameCoreStates::WALKING ||
+	                                         currentState == GameCoreStates::RUNNING ) )
   {
 	return GameCoreStates::RETURN_STILL;
   }
