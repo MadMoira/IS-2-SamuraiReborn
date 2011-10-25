@@ -28,12 +28,14 @@ int Animation::animate()
   oldTime += frameRate;
 
   animationAlreadyEnd = false;
-  currentFrame += incrementFrame;
-  
-  if( currentFrame > maxFrames)
+  if ( maxFrames > 0 )
   {
-    animationAlreadyEnd = true;
-    currentFrame = returnFrame;
+    currentFrame += incrementFrame;
+    if( currentFrame > maxFrames )
+    {
+      animationAlreadyEnd = true;
+	  currentFrame = returnFrame;
+	}
   }
 
   return currentFrame;

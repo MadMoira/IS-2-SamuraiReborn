@@ -6,7 +6,7 @@
      <Property Name="FrameEnabled" Value="false" />
      
          <Window Type="TaharezLook/ImageButton" Name="MainMenu/HistoryMode">
-             <Property Name="UnifiedAreaRect" Value="{{0.4,0.0},{0.4,0.0},{0.58,0.0},{0.48,0.0}" />
+             <Property Name="UnifiedAreaRect" Value="{{0.415,0.0},{0.4,0.0},{0.58,0.0},{0.46,0.0}" />
              <Property Name="NormalImage" Value="set:HistoryMode image:ButtonUp" />
              <Property Name="HoverImage" Value="set:HistoryMode image:ButtonHighlighted" />
              <Property Name="PushedImage" Value="set:HistoryMode image:ButtonDown" />
@@ -15,7 +15,7 @@
          </Window>
 
          <Window Type="TaharezLook/ImageButton" Name="MainMenu/Tutorial">
-             <Property Name="UnifiedAreaRect" Value="{{0.4,0.0},{0.48,0.0},{0.58,0.0},{0.56,0.0}}" />
+             <Property Name="UnifiedAreaRect" Value="{{0.415,0.0},{0.48,0.0},{0.58,0.0},{0.54,0.0}}" />
              <Property Name="NormalImage" Value="set:Tutorial image:ButtonUp" />
              <Property Name="HoverImage" Value="set:Tutorial image:ButtonHighlighted" />
              <Property Name="PushedImage" Value="set:Tutorial image:ButtonDown" />
@@ -23,7 +23,7 @@
           </Window>
 
          <Window Type="TaharezLook/ImageButton" Name="MainMenu/Credits">
-             <Property Name="UnifiedAreaRect" Value="{{0.4,0.0},{0.56,0.0},{0.58,0.0},{0.64,0.0}}" />
+             <Property Name="UnifiedAreaRect" Value="{{0.415,0.0},{0.56,0.0},{0.58,0.0},{0.62,0.0}}" />
              <Property Name="NormalImage" Value="set:Credits image:ButtonUp" />
              <Property Name="HoverImage" Value="set:Credits image:ButtonHighlighted" />
              <Property Name="PushedImage" Value="set:Credits image:ButtonDown" />
@@ -31,7 +31,7 @@
           </Window>
 
          <Window Type="TaharezLook/ImageButton" Name="MainMenu/Quit">
-             <Property Name="UnifiedAreaRect" Value="{{0.4,0.0},{0.64,0.0},{0.58,0.0},{0.72,0.0}}" />
+             <Property Name="UnifiedAreaRect" Value="{{0.415,0.0},{0.64,0.0},{0.58,0.0},{0.70,0.0}}" />
              <Property Name="NormalImage" Value="set:Quit image:ButtonUp" />
              <Property Name="HoverImage" Value="set:Quit image:ButtonHighlighted" />
              <Property Name="PushedImage" Value="set:Quit image:ButtonDown" />

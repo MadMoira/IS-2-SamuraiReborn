@@ -33,7 +33,7 @@ struct MenuButton
 class SMainMenu : public GameState
 {
   public:
-   SMainMenu( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
+   SMainMenu( GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, GameStates stateName );
    ~SMainMenu();
 
    void init();

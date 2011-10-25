@@ -225,9 +225,6 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
-    <ClCompile Include="MovementPhys.cpp">
-      <Filter>Source Files\Game Physics</Filter>
-    </ClCompile>
     <ClCompile Include="GameInputMapper.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
@@ -312,6 +309,12 @@
     <ClCompile Include="HeapCompare.cpp">
       <Filter>Source Files\AI</Filter>
     </ClCompile>
+    <ClCompile Include="FallingState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsCore.cpp">
+      <Filter>Source Files\Game Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -391,9 +394,6 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Level Design</Filter>
-    </ClInclude>
-    <ClInclude Include="MovementPhys.h">
-      <Filter>Header Files\Game Physics</Filter>
     </ClInclude>
     <ClInclude Include="Tilemap.h">
       <Filter>Header Files\Level Design</Filter>
@@ -499,6 +499,15 @@
     </ClInclude>
     <ClInclude Include="Pathfinding.h">
       <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="FallingState.h">
+      <Filter>Header Files\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsCore.h">
+      <Filter>Header Files\Game Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicStates.h">
+      <Filter>Header Files\Game Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

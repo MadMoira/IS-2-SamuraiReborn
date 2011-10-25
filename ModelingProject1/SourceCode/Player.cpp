@@ -20,9 +20,19 @@ void Player::returnToPreviousState()
 {
   switch( playerSprite->getPreviousState() )
   {
+    case GameCoreStates::STILL:
+    {
+	  playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
+	  break;
+    }
     case GameCoreStates::WALKING:
     {
 	  playerSprite->changeStatePlayerSprite(WALKING_STATE, 0, getInputMapper()->getListKeys());
+	  break;
+    }
+	case GameCoreStates::RUNNING:
+    {
+      playerSprite->changeStatePlayerSprite(RUNNING_STATE, 1, getInputMapper()->getListKeys());
 	  break;
     }
 	case GameCoreStates::JUMPING:
@@ -67,6 +77,11 @@ void Player::executeAction()
 	  fastAttack();
 	  break;
 	}
+	case GameCoreStates::FALLING:
+    {
+      falling();
+      break;
+    }
   }
 }
 
@@ -84,7 +99,8 @@ void Player::drawScore()
 bool Player::isReadyToPace()
 {
   if ( playerSprite->getCurrentState() != GameCoreStates::JUMPING && 
-	   playerSprite->getCurrentState() != GameCoreStates::DOUBLE_JUMP )
+	   playerSprite->getCurrentState() != GameCoreStates::DOUBLE_JUMP && 
+	   playerSprite->getCurrentState() != GameCoreStates::FALLING )
   {
 	  return true;
   }
@@ -94,9 +110,24 @@ bool Player::isReadyToPace()
 
 bool Player::isReadyToDoubleJump()
 {
-  if ( playerSprite->getSpeedY() >= -8 )
+  if ( playerSprite->getSpeedY() >= -8 && playerSprite->getSpeedY() <= 0  )
   {
     return true;
+  }
+
+  return false;
+}
+
+bool Player::isFalling()
+{
+  if ( playerSprite->getSpeedY() >= 4 )
+  {
+    return true;
+  }
+
+  if ( playerSprite->getPosY() >= 382.0f )
+  {
+	return false;
   }
 
   return false;
@@ -139,6 +170,11 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
     if ( player.isReadyToDoubleJump() )
     {
       playerSprite->changeStatePlayerSprite(DOUBLE_JUMP_STATE, checkKey.wasPreviouslyPressed, keys);
+    }
+
+    if ( player.isFalling() )
+    {
+      playerSprite->changeStatePlayerSprite(FALLING_STATE, checkKey.wasPreviouslyPressed, keys);
     }
   }
 

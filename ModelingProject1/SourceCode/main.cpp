@@ -3,6 +3,7 @@
 #include "GameCore.h"
 #include "GameRender.h"
 #include "GameInput.h"
+#include "PhysicsCore.h"
 
 #include "GameStateManager.h"
 
@@ -16,6 +17,7 @@ int main( int argc, char* args[] )
   GameCore Core;
   GameRender Render;
   GameInput Input;
+  GamePhysics::PhysicsCore* Physics;
   GameStateManager *StateManager = new GameStateManager();
 	
   if( !Core.initializeGameCore() )
@@ -23,12 +25,16 @@ int main( int argc, char* args[] )
     return 1;
   }
 
-  StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, STATE_LEVELONEJAPAN ) );
+  Physics = GamePhysics::PhysicsCore::getInstance();
+  Physics->initializePhysicValues(-4.0f);
+
+  //StateManager->changeState( new SMainMenu( &Render, &Core, &Input, STATE_MAINMENU ) );
+  StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, Physics, STATE_LEVELONEJAPAN ) );
   StateManager->init();
 
   while( Core.getIsRunning() )
   {
-    StateManager->changeCurrentState( &Render, &Core, &Input );
+    StateManager->changeCurrentState( &Render, &Core, &Input, Physics );
 
     Core.getGameTimer()->start();
 

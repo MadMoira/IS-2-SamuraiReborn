@@ -37,7 +37,7 @@ void PandaP1::walk()
 {
   playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
   playerSprite->movePosXWithSpeed();
-  playerSprite->getHandlerAnimation()->animate() ;
+  playerSprite->getHandlerAnimation()->animate();
   stop();
 }
 
@@ -55,7 +55,7 @@ void PandaP1::jump()
   playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
   playerSprite->movePosXWithSpeed();
   playerSprite->movePosYWithSpeed();
-  playerSprite->getHandlerAnimation()->animate() ;
+  playerSprite->getHandlerAnimation()->animate();
   stop();
 }
 
@@ -74,6 +74,16 @@ void PandaP1::fastAttack()
   {
     playerSprite->getHandlerAnimation()->animate(); 
   }
+}
+
+void PandaP1::falling()
+{
+  playerSprite->setPlayerMoveInY(true);
+  playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
+  playerSprite->movePosXWithSpeed();
+  playerSprite->movePosYWithSpeed();
+  playerSprite->getHandlerAnimation()->animate();
+  stop();
 }
 
 void PandaP1::draw()

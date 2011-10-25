@@ -11,13 +11,15 @@ GameCoreStates::PlayerState::PlayerState(int id) : State( id )
 }
 
 int GameCoreStates::PlayerState::checkIfEqualStates(std::list<InputMapping::Key> keys, int currentState,
-	                                                int previousState, GameCoreStates::PlayerState* newState)
+	                                                int previousState, GameCoreStates::PlayerState* newState,
+													int keyPreviouslyPressed)
 {
-  return checkChangeOfState(keys, currentState, previousState, newState);
+  return checkChangeOfState(keys, currentState, previousState, newState, keyPreviouslyPressed);
 }
 
 int GameCoreStates::PlayerState::checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
-		                                            int previousState, GameCoreStates::PlayerState* newState)
+		                                            int previousState, GameCoreStates::PlayerState* newState,
+													int keyPreviouslyPressed)
 {
   if ( currentState == newState->getCurrentID() )
   {

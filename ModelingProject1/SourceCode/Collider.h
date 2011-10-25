@@ -19,7 +19,7 @@ class Collider
    void cleanUpResources();
    
    bool checkCollision(CollisionBox& A, CollisionBox& B , float direction);
-   bool checkTileCollision(Sprite& A, float directionX);
+   bool checkTileCollision(CollisionBox& A, float directionX);
    bool checkEnemiesCollision( CollisionBox& A, float directionX);
 
    //boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);

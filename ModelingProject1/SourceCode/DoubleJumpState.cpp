@@ -1,9 +1,8 @@
 
 #include <algorithm>
+#include "ComparatorFunctions.h"
 
 #include "DoubleJumpState.h"
-
-#include "ComparatorFunctions.h"
 
 GameCoreStates::DoubleJumpState::DoubleJumpState(int id) : PlayerState( id )
 {

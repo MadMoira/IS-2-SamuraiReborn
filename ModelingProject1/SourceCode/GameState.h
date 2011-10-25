@@ -3,6 +3,7 @@
 #include "GameCore.h"
 #include "GameRender.h"
 #include "GameInput.h"
+#include "PhysicsCore.h"
 
 enum GameStates 
 {
@@ -33,10 +34,11 @@ private:
 	int hasEnded;
 
 protected:
-	GameState( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
+	GameState( GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, GameStates stateName );
 	GameRender* gameRender;
 	GameCore* gameCore;
 	GameInput* gameInput;
+	GamePhysics::PhysicsCore* gamePhysics;
 	GameStates nameState;
 
 		

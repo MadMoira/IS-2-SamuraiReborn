@@ -80,6 +80,7 @@ class Sprite
 	CollisionBox* getCollisionBox() {return spriteCollisionBox; }
 
 	bool getPlayerMoveInXCurrentFrame() { return playerMoveInXInCurrentFrame; }
+	bool getPlayerMoveInYCurrentFrame() { return playerMoveInYInCurrentFrame; }
 
 	void drawTexture();
 
@@ -89,7 +90,7 @@ private:
 	Animation* handlerAnimation;
 	GameCoreStates::PlayerStateManager* playerStateManager;
 	CollisionBox* spriteCollisionBox;
-	Collider* cHandler;
+	Collider* collisionHandler;
 	Vector2f position;
 	std::vector< Vector2f > speed;
 	std::vector< Vector2f > delayMovementSprite;
@@ -99,6 +100,6 @@ private:
 	GLfloat width, height, widthTexture, heightTexture;
 	GLfloat currentXSpeed, currentYSpeed;
 	int countX, countY;
-	bool playerMoveInX, playerMoveInY, playerMoveInXInCurrentFrame;
+	bool playerMoveInX, playerMoveInY, playerMoveInXInCurrentFrame, playerMoveInYInCurrentFrame;
 };
 

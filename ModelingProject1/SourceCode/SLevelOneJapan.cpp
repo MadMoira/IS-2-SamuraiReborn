@@ -5,14 +5,15 @@
 #include "MeerkatP2.h"
 #include "JapaneseMonkey.h"
 
-SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
-	: GameState( gR, gC, gI, stateName )
+SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, 
+	                                                                        GameStates stateName) 
+	: GameState( gR, gC, gI, gP, stateName )
 {
   gameCore = gC;
   gameRender = gR;
   gameInput = gI;
+  gamePhysics = gP;
   nameState = stateName;
-  movPhysics = new MovementPhys(-4.0f);
   gameCore->getGameTimer()->setFramesPerSecond(60);
   setHasEnded(STATE_LEVELONEJAPAN);
 }
@@ -38,6 +39,7 @@ void SLevelOneJapan::init()
   speedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, -18.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
+  speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
 
   std::vector < int > maxFrameVector;
   maxFrameVector.push_back( 1 );
@@ -46,6 +48,7 @@ void SLevelOneJapan::init()
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 10 );
+  maxFrameVector.push_back( 3 );
 
   std::vector < int > returnFrameVector;
   returnFrameVector.push_back( 0 );
@@ -53,13 +56,15 @@ void SLevelOneJapan::init()
   returnFrameVector.push_back( 1 );
   returnFrameVector.push_back( 1 );
   returnFrameVector.push_back( 1 );
-  returnFrameVector.push_back( 1 );
+  returnFrameVector.push_back( 0 );
+  returnFrameVector.push_back( 0 );
 
   std::vector < Vector2f > delayMovementVector;
   delayMovementVector.push_back( Vector2f(0.0f, 0.0f) );
   delayMovementVector.push_back( Vector2f(2.0f, 0.0f) );
   delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
   delayMovementVector.push_back( Vector2f(2.0f, 0.0f) );
+  delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
   delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
   delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
 
@@ -70,6 +75,7 @@ void SLevelOneJapan::init()
   framerateAnimationsVector.push_back( 100 );
   framerateAnimationsVector.push_back( 100 );
   framerateAnimationsVector.push_back( 70 );
+  framerateAnimationsVector.push_back( 100 );
 
   SDL_Color color;
   color.r = color.g = color.b = 255;
@@ -85,9 +91,9 @@ void SLevelOneJapan::init()
 		                   color, filenameFont, sizeFont, 0),  "", Vector2f(170.0f, 15.0f), 
 								   Vector2f(200.0f, 20.0f) );
 
-  gameCore->addEnemyToGame( new JapaneseMonkey(), PANDA, "Enemy - SpriteSheet.png", 
+ /* gameCore->addEnemyToGame( new JapaneseMonkey(), PANDA, "Enemy - SpriteSheet.png", 
 						speedMeerkat, Vector2f(150.0f, 382.0f), 0, maxFrameVector, returnFrameVector,
-						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
+						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);*/
 
   /*gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
 						speedPanda, 0.0f, Vector2f(50.0f, 400.0f), 0, maxFrameVector, returnFrameVector,
@@ -137,13 +143,11 @@ void SLevelOneJapan::logic()
     {
       gameCore->getPlayersList().at(i).noAction();
     }*/
+	//levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
 
     gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX(), 
 		                                  gameCore->getPlayersList().at(i).getPlayerSprite()->getPosX()  );
 
-	levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
-
-    checkGravity(i); 
   }
 
   japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
@@ -166,7 +170,7 @@ void SLevelOneJapan::checkGravity(int vPosition)
   speed.x = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedX();
   speed.y = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedY();
 
-  movPhysics->physicManager(&speed, PARABOLIC);
+  //movPhysics->physicManager(&speed, PARABOLIC);
 
   gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedX(speed.x);
   gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedY(speed.y);
@@ -205,6 +209,5 @@ void SLevelOneJapan::render()
 
 void SLevelOneJapan::cleanUp()
 {
-  delete movPhysics;
   delete japanLevel;
 }

@@ -55,11 +55,11 @@ bool Collider::checkCollision(CollisionBox& A, CollisionBox& B, float directionX
   return false;
 }
 
-bool Collider::checkTileCollision(Sprite& A, float directionX)
+bool Collider::checkTileCollision(CollisionBox& A, float directionX)
 {
-  for(int i = (int)A.getPosX(); i <= (int)A.getPosX() + (int)A.getWidth(); i += 32)
+  for(int i = (int)A.getX(); i <= (int)A.getX() + (int)A.getWidth(); i += 32)
   {
-    for(int j = (int)A.getPosY(); j <= (int)A.getPosY() + (int)A.getHeight(); j += 32)
+    for(int j = (int)A.getY(); j <= (int)A.getY() + (int)A.getHeight(); j += 32)
 	{
       int x = (int)i/32;
       int y = (int)j/32;

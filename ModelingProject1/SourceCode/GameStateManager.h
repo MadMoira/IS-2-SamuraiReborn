@@ -13,7 +13,7 @@ public:
 	void pushState( GameState* gameState );
 	void popState();
 	void changeState( GameState* gameState ) ;
-	void changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI);
+	void changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP);
 
 	void init();
 	void handleEvents();

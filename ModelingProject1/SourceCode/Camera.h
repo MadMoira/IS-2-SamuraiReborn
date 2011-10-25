@@ -13,7 +13,7 @@ class Camera
 
    void initCamera();
 
-	void moveCamera();
+   void moveCamera();
 	
    void renderCamera();
 
@@ -28,8 +28,8 @@ class Camera
 
    GLfloat getCameraSpeed() {return speedX;}
 
-	bool isPlayerOnMidpoint(GLfloat posX);
-	bool isLimit(GLfloat position, GLfloat speedX);
+   bool isPlayerOnMidpoint(GLfloat posX);
+   bool isLimit(GLfloat position, GLfloat speedX);
 
   private:
 	static bool instanceFlag;

@@ -4,6 +4,8 @@
 #include "Collider.h"
 #include "Camera.h"
 
+#include "PhysicsCore.h"
+
 Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
@@ -21,7 +23,7 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
 								   framerateAnimations.at(getCurrentState()),
 								   SpriteData::RIGHT );
 
-  cHandler = Collider::getInstance();
+  collisionHandler = Collider::getInstance();
 
   maxFramesPerAnimation = maxFrame;
   returnFramesPerAnimation = returnFrame;
@@ -65,7 +67,8 @@ void Sprite::movePosXWithSpeed()
     countX = 0;
 	spriteCollisionBox->setX( position.x + getSpeedX() );
 
-	if ( Camera::getInstance()->isLimit(position.x, getSpeedX()) )
+	if ( Camera::getInstance()->isLimit(position.x, getSpeedX()) ||
+		 collisionHandler->checkTileCollision( *getCollisionBox(), 0 ))
 	{ 
 	  playerMoveInX = false;
 	  return;
@@ -99,7 +102,7 @@ void Sprite::movePosXWithSpeed()
 void Sprite::movePosYWithSpeed()
 {
   playerMoveInY = false || playerMoveInY;
-
+  playerMoveInYInCurrentFrame = false;
   countY++;
   if ( countY > delayMovementSprite.at(getCurrentState()).y )
   {
@@ -107,7 +110,10 @@ void Sprite::movePosYWithSpeed()
     if( position.y + getSpeedY() + height < 582.f )
     {
       position.y += getSpeedY();
+	  GamePhysics::PhysicsCore::getInstance()->physicManager(&currentYSpeed, 
+		                         GamePhysics::PARABOLIC, getCurrentState() );
 	  playerMoveInY = true;
+	  playerMoveInYInCurrentFrame = true;
 	  return;
     }
 	currentYSpeed = 0.0f;
@@ -119,7 +125,8 @@ void Sprite::movePosYWithSpeed()
 
 void Sprite::setSpeedX(GLfloat speedX)
 {
-  if ( getCurrentState() == GameCoreStates::JUMPING || getCurrentState() == GameCoreStates::DOUBLE_JUMP)
+  if ( getCurrentState() == GameCoreStates::JUMPING || getCurrentState() == GameCoreStates::DOUBLE_JUMP ||
+	   getCurrentState() == GameCoreStates::FALLING )
   {
     speed.at(getCurrentState()).x = speedX;
   }
@@ -145,8 +152,8 @@ void Sprite::setSpeedY(GLfloat speedY)
 
 	else
 	{
-	  speed.at(getCurrentState()).y = currentYSpeed;
-	  speedY = currentYSpeed;
+	  speedY = 0.0f;
+	  speed.at(getCurrentState()).y = speedY;	  
     }
   }
 
@@ -172,7 +179,7 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
                                      std::list<InputMapping::Key> keys)
 {
   int resultCheckingEqualStates = newState->checkIfEqualStates(keys, getCurrentState(),
-		                            getPreviousState(), newState);
+		                            getPreviousState(), newState, keyPreviouslyPressed);
   if ( resultCheckingEqualStates == GameCoreStates::NO_CHANGE )
   {
     return;
@@ -181,56 +188,69 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
   int result = newState->checkMovementRestrictions(keyPreviouslyPressed, getPreviousState(), 
                                                    getCurrentState(), keys );
 
-  if ( result == GameCoreStates::CHANGE )
+  switch(result)
   {
-    playerStateManager->changeState(newState);
+    case GameCoreStates::NO_CHANGE:
+    {
+      return;
+    }
+    case GameCoreStates::CHANGE:
+    {
+      playerStateManager->changeState(newState);
+      break;
+    }
+    case GameCoreStates::RETURN_STILL:
+    {
+      playerStateManager->changeState(STILL_STATE);
+	  break;
+    }
+  }
 
-    setSpeedY(speed.at(getCurrentState()).y);
-	handlerAnimation->restartOldTime();
-	handlerAnimation->restartCurrentFrame();
-	handlerAnimation->setFrameRate( frameratePerAnimation.at(getCurrentState()) );
-    handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
-    handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );	
+  setSpeedY(speed.at(getCurrentState()).y);
+  handlerAnimation->restartOldTime();
+  handlerAnimation->restartCurrentFrame();
+  handlerAnimation->restartAnimationBegin();
+  handlerAnimation->setFrameRate( frameratePerAnimation.at(getCurrentState()) );
+  handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
+  handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );
+}
+
+void Sprite::changeStateEnemySprite(GameCoreStates::PlayerState* newState)
+{
+  int resultCheckingEqualStates = newState->checkIfEqualStates(std::list<InputMapping::Key>(), getCurrentState(),
+		                          getPreviousState(), newState, 0);
+  if ( resultCheckingEqualStates == GameCoreStates::NO_CHANGE )
+  {
     return;
   }
 
-  else if( result == GameCoreStates::RETURN_STILL )
-  {
-    playerStateManager->changeState(STILL_STATE);
-
-    setSpeedY(speed.at(getCurrentState()).y);
-	handlerAnimation->restartOldTime();
-	handlerAnimation->restartCurrentFrame();
-	handlerAnimation->setFrameRate( frameratePerAnimation.at(getCurrentState()) );
-    handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
-    handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );
-	return;
-  }
-}
-
-void Sprite::changeStateEnemySprite(GameCoreStates::PlayerState* newState){
-	int resultCheckingEqualStates = newState->checkIfEqualStates(std::list<InputMapping::Key>(), getCurrentState(),
-		                            getPreviousState(), newState);
-	  if ( resultCheckingEqualStates == GameCoreStates::NO_CHANGE )
-	  {
-		return;
-	  }
-
-    playerStateManager->changeState(newState);
-    setSpeedY(speed.at(getCurrentState()).y);
-	handlerAnimation->restartOldTime();
-	handlerAnimation->restartCurrentFrame();
-	handlerAnimation->setFrameRate( frameratePerAnimation.at(getCurrentState()) );
-    handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
-    handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );	
+  playerStateManager->changeState(newState);
+  setSpeedY(speed.at(getCurrentState()).y);
+  handlerAnimation->restartOldTime();
+  handlerAnimation->restartCurrentFrame();
+  handlerAnimation->restartAnimationBegin();
+  handlerAnimation->setFrameRate( frameratePerAnimation.at(getCurrentState()) );
+  handlerAnimation->setMaxFrame( maxFramesPerAnimation.at(getCurrentState()) );
+  handlerAnimation->setReturnFrame( returnFramesPerAnimation.at(getCurrentState()) );	
 }
 
 void Sprite::drawTexture()
 {
   int currentState = getCurrentState();
+
+  if ( currentState == GameCoreStates::DOUBLE_JUMP )
+  {
+    currentState = GameCoreStates::JUMPING;
+  }
+
   if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
   {
-    currentState += getPreviousState() - 1;
+    currentState = ( GameCoreStates::FAST_ATTACK - 1 ) + getPreviousState();
+  }
+
+  if ( getCurrentState() == GameCoreStates::FALLING )
+  {
+	currentState = 8;
   }
 
   GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), 

@@ -1,10 +1,8 @@
 
 #include <algorithm>
-
-#include "JumpingState.h"
-
 #include "ComparatorFunctions.h"
 
+#include "JumpingState.h"
 
 GameCoreStates::JumpingState::JumpingState(int id) : PlayerState( id )
 {
@@ -15,7 +13,8 @@ GameCoreStates::JumpingState::~JumpingState(void)
 {
 }
 
-int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int previousState, int currentState, std::list<InputMapping::Key> keys)
+int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int previousState, 
+	                                            int currentState, std::list<InputMapping::Key> keys)
 {
   InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
   bool jumpingButtonIsPressed = findKey.isPressed;
@@ -25,8 +24,9 @@ int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::NO_CHANGE;
   }
 
-  if ( (currentState != GameCoreStates::JUMPING && currentState != GameCoreStates::DOUBLE_JUMP) ||
-	   (previousState == GameCoreStates::JUMPING && currentState == GameCoreStates::STILL) )
+  if ( (currentState != GameCoreStates::JUMPING && currentState != GameCoreStates::DOUBLE_JUMP
+	                                            && currentState != GameCoreStates::FALLING) || 
+       (previousState == GameCoreStates::JUMPING && currentState == GameCoreStates::STILL) )
   {
     return GameCoreStates::CHANGE;
   }

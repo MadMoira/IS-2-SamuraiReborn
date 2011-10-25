@@ -13,8 +13,12 @@ public:
 	int getID() { return ID; }
 	void setID(int id) { ID = id; }
 
+	bool getHasCollision() { return hasCollision; }
+	void setHasCollision(bool collision) { hasCollision = collision; }
+
 private:
 	int IDTileset;
 	int ID;
+	bool hasCollision;
 };
 

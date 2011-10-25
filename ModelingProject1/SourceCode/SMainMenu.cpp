@@ -12,15 +12,17 @@ void Image::ArrowMenu::updatePositionArrow()
 	return;
   } 
 
-  arrow->setPosition(420.0f, 280.0f + ( (optionSelected-1)*60.0f) );
+  arrow->setPosition(420.0f, 280.0f + ( (optionSelected-1)*55.0f) );
 }
 
-SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
-	: GameState( gR, gC, gI, stateName )
+SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, 
+	                                                              GameStates stateName) 
+	: GameState( gR, gC, gI, gP, stateName )
 {
   gameCore = gC;
   gameRender = gR;
   gameInput = gI;
+  gamePhysics = gP;
   nameState = stateName;
   setHasEnded(STATE_MAINMENU);
 }
@@ -268,7 +270,8 @@ void SMainMenu::handleKeyDown(SDLKey key)
 
   if ( key == SDLK_UP )
   {
-    if ( arrowImage.optionSelected - 1 == NOTHING_SELECTED )
+    if ( arrowImage.optionSelected - 1 == NOTHING_SELECTED || 
+		 arrowImage.optionSelected == NOTHING_SELECTED )
     {
       arrowImage.optionSelected = QUIT;
       return;

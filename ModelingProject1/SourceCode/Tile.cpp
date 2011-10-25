@@ -3,12 +3,16 @@
 
 Tile::Tile(void)
 {
-  IDTileset = ID = 0;
+  IDTileset = 0;
+  ID = 0;
+  hasCollision = false;
 }
+
 Tile::Tile(int idTileset, int id)
 {
   IDTileset = idTileset;
   ID = id;
+  hasCollision = false;
 }
 
 Tile::~Tile(void)

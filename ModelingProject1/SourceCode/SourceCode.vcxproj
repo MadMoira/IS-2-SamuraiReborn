@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;C:\Program Files\Boost\boost_1_47_0;C:\Users\Sebastian\Documents\Librerias\CEGUI-SDK-0.7.5-vc10\cegui\include;C:\Users\Sebastian\Documents\Librerias;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\CEGUI 0.7.5\cegui\include;D:\SDL - DLL, INC, LIB\include files;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;C:\Users\Sebastian\Documents\Librerias\CEGUI-SDK-0.7.5-vc10\lib;C:\Users\Sebastian\Documents\Librerias;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\CEGUI 0.7.5\lib;D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -82,6 +82,7 @@
     <ClCompile Include="ComparatorFunctions.cpp" />
     <ClCompile Include="DoubleJumpState.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="FallingState.cpp" />
     <ClCompile Include="FastAttackState.cpp" />
     <ClCompile Include="GameConfiguration.cpp" />
     <ClCompile Include="GameCore.cpp" />
@@ -107,7 +108,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathFunctions.cpp" />
     <ClCompile Include="MeerkatP2.cpp" />
-    <ClCompile Include="MovementPhys.cpp" />
+    <ClCompile Include="PhysicsCore.cpp" />
     <ClCompile Include="PandaP1.cpp" />
     <ClCompile Include="Pathfinding.cpp" />
     <ClCompile Include="PathNode.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="ComparatorFunctions.h" />
     <ClInclude Include="DoubleJumpState.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="FallingState.h" />
     <ClInclude Include="FastAttackState.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="GameConfiguration.h" />
@@ -165,10 +167,11 @@
     <ClInclude Include="LevelGraph.h" />
     <ClInclude Include="MathFunctions.h" />
     <ClInclude Include="MeerkatP2.h" />
-    <ClInclude Include="MovementPhys.h" />
+    <ClInclude Include="PhysicsCore.h" />
     <ClInclude Include="PandaP1.h" />
     <ClInclude Include="Pathfinding.h" />
     <ClInclude Include="PathNode.h" />
+    <ClInclude Include="PhysicStates.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerScore.h" />
     <ClInclude Include="PlayerSpriteStates.h" />
