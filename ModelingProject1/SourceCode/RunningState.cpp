@@ -21,18 +21,19 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
 	                                            int currentState, std::list<InputMapping::Key> keys)
 {
   GameCoreStates::ConditionsPlayerRunning isRunning = checkIfPlayerIsRunning(keys);
+  const int RETURNING_FROM_PREVIOUS_STATE = 1;
 
-
-  if ( currentState == GameCoreStates::RUNNING && isRunning.directionButtonPressed && 
-	  isRunning.runningButtonPressed )
+  if ( ( currentState == GameCoreStates::RUNNING || currentState == GameCoreStates::FAST_ATTACK ) &&
+	     isRunning.directionButtonPressed && isRunning.runningButtonPressed && 
+	     keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE  )
   {
 	  return GameCoreStates::NO_CHANGE;
   }
 
-  if ( (currentState == GameCoreStates::WALKING || currentState == GameCoreStates::STILL ||
-	  ( currentState == GameCoreStates::FAST_ATTACK && keyPreviouslyPressed == 1 )
-	  || previousState == GameCoreStates::JUMPING) && isRunning.directionButtonPressed && 
-	  isRunning.runningButtonPressed)
+  if ( ( currentState == GameCoreStates::WALKING || currentState == GameCoreStates::STILL ||
+	   ( currentState == GameCoreStates::FAST_ATTACK && keyPreviouslyPressed == RETURNING_FROM_PREVIOUS_STATE ) ||
+	     previousState == GameCoreStates::JUMPING ) && 
+	     isRunning.directionButtonPressed && isRunning.runningButtonPressed )
   {
     return GameCoreStates::CHANGE;
   }

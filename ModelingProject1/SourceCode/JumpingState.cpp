@@ -24,9 +24,10 @@ int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::NO_CHANGE;
   }
 
-  if ( (currentState != GameCoreStates::JUMPING && currentState != GameCoreStates::DOUBLE_JUMP
-	                                            && currentState != GameCoreStates::FALLING) || 
-       (previousState == GameCoreStates::JUMPING && currentState == GameCoreStates::STILL) )
+  if ( ( currentState != GameCoreStates::JUMPING  && currentState != GameCoreStates::DOUBLE_JUMP
+	                                              && currentState != GameCoreStates::FALLING
+												  && currentState != GameCoreStates::FAST_ATTACK ) || 
+       ( previousState == GameCoreStates::JUMPING && currentState == GameCoreStates::STILL ) )
   {
     return GameCoreStates::CHANGE;
   }

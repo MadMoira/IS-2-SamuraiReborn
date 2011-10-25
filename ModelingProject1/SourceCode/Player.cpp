@@ -37,8 +37,7 @@ void Player::returnToPreviousState()
     }
 	case GameCoreStates::JUMPING:
     {
-	  playerSprite->changeStatePlayerSprite(JUMPING_STATE, 0, getInputMapper()->getListKeys());
-	  playerSprite->setSpeedY(0.0f);
+	  playerSprite->changeStatePlayerSprite(FALLING_STATE, 0, getInputMapper()->getListKeys());
 	  break;
     }
   }

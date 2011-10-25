@@ -14,6 +14,7 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Game
   gameInput = gI;
   gamePhysics = gP;
   nameState = stateName;
+
   gameCore->getGameTimer()->setFramesPerSecond(60);
   setHasEnded(STATE_LEVELONEJAPAN);
 }
@@ -161,19 +162,6 @@ void SLevelOneJapan::logic()
   }
 
   gameCore->getCamera()->restartCameraSpeed();
-}
-
-void SLevelOneJapan::checkGravity(int vPosition)
-{
-  Vector2f speed;
-
-  speed.x = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedX();
-  speed.y = gameCore->getPlayersList().at(vPosition).getPlayerSprite()->getSpeedY();
-
-  //movPhysics->physicManager(&speed, PARABOLIC);
-
-  gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedX(speed.x);
-  gameCore->getPlayersList().at(vPosition).getPlayerSprite()->setSpeedY(speed.y);
 }
 
 void SLevelOneJapan::render()

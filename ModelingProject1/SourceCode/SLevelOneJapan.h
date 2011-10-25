@@ -16,7 +16,6 @@ class SLevelOneJapan : public GameState
    void logic();
    void render();
    void cleanUp();
-   void checkGravity(int vPosition);
 
   private:
    Level* japanLevel;
