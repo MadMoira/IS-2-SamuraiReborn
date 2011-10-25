@@ -13,11 +13,17 @@
 #include "Layer.h"
 #include "Tilemap.h"
 
-
 enum Levels 
 { 
-	LEVELZEROTUTORIAL, 
-	LEVELONEJAPAN,
+  LEVELZEROTUTORIAL, 
+  LEVELONEJAPAN,
+};
+
+enum CollisionProperties
+{
+  EMPTY,
+  NO_COLLISION,
+  COLLISION,
 };
 
 class Level
@@ -27,6 +33,7 @@ public:
 	~Level(void);
 
 	int loadTMXTileMapFile(std::string filename);
+	bool initializeCollisionData(int tileID, std::vector< int > listCollisionTiles);
 
 	bool drawLevelMap();
 

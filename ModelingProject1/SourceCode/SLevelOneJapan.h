@@ -3,13 +3,12 @@
 #include "GameState.h"
 
 #include "Level.h"
-#include "MovementPhys.h"
 #include "AI.h"
 
 class SLevelOneJapan : public GameState
 {
   public:
-   SLevelOneJapan( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
+   SLevelOneJapan( GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, GameStates stateName );
    ~SLevelOneJapan();
 
    void init();
@@ -21,7 +20,6 @@ class SLevelOneJapan : public GameState
 
   private:
    Level* japanLevel;
-   MovementPhys* movPhysics;
    AI levelAI;
 };
 

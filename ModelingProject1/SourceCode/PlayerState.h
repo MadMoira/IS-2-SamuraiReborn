@@ -21,7 +21,8 @@ namespace GameCoreStates
 	~PlayerState(){};
 
 	int checkIfEqualStates(std::list<InputMapping::Key> keys, int currentState,
-		                   int previousState, GameCoreStates::PlayerState* newState);
+		                   int previousState, GameCoreStates::PlayerState* newState,
+                           int keyPreviouslyPressed);
 	int checkMovementRestrictions(int keyPreviouslyPressed, int previousState, 
 		                          int currentState, std::list<InputMapping::Key> keys);
 	ConditionsPlayerRunning checkIfPlayerIsRunning(std::list<InputMapping::Key> keys);
@@ -30,6 +31,7 @@ namespace GameCoreStates
 	virtual int checkMovement(int keyPreviouslyPressed, int previousState, 
                               int currentState, std::list<InputMapping::Key> keys);
 	virtual int checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
-		                   int previousState, GameCoreStates::PlayerState* newState);
+		                   int previousState, GameCoreStates::PlayerState* newState,
+                           int keyPreviouslyPressed);
   };
 }

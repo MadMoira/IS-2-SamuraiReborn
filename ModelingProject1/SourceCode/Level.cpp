@@ -35,6 +35,26 @@ int Level::loadTMXTileMapFile(std::string filename)
     return map->GetErrorCode();
   }
 
+  log << "Loading List Collision Tiles... " << std::endl;
+  std::ifstream collisionListFile("CollisionListLevelZeroSectionOne.csv");
+	
+  unsigned countTiles = readDataTypeFromFile<unsigned>(collisionListFile);
+  log << "Number Of Tiles With Collision:  " << countTiles << std::endl;
+  std::vector< int > tempCollisionTilesList = getCollisionTilesList();
+  for(unsigned i = 0; i < countTiles; i++)
+  {
+    int tileID = readDataTypeFromFile<int>(collisionListFile);
+    tempCollisionTilesList.push_back(tileID);
+  }
+
+  collisionListFile.close();
+  log << "Finish Loading List Collision Tiles... " << std::endl;
+	/*setCollisionTilesList(tempCollisionTilesList);
+
+	Collider::getInstance()->setCollisionTilesList(tempCollisionTilesList);
+
+	tempCollisionTilesList.clear();*/
+
   log << "Loading Layers... " << std::endl;
 
   for (int i = 0; i < map->GetNumLayers(); i++) 
@@ -59,15 +79,8 @@ int Level::loadTMXTileMapFile(std::string filename)
       for (int y = 0; y < height; y++) 
       {
         int tileID = layer->GetTileGid(x, y);
-				
-        if ( tileID == 0 )
-		{
-          tempLayerMap[y][x].setID( 0 );
-        }
-        else
-        {
-          tempLayerMap[y][x].setID( tileID );
-        }
+        tempLayerMap[y][x].setID( tileID );
+		tempLayerMap[y][x].setHasCollision( initializeCollisionData( tileID, tempCollisionTilesList ) );
       }
     }
 
@@ -100,22 +113,6 @@ int Level::loadTMXTileMapFile(std::string filename)
 									(GLfloat)tileset->GetImage()->GetHeight(), 
 			                        tileset->GetTiles().size() );
 	}
-
-	std::ifstream collisionListFile("CollisionListLevelZeroSectionOne.csv");
-	
-	unsigned countTiles = readDataTypeFromFile<unsigned>(collisionListFile);
-	std::vector< int > tempCollisionTilesList = getCollisionTilesList();
-	for(unsigned i = 0; i < countTiles; i++)
-    {
-	  int tileID = readDataTypeFromFile<int>(collisionListFile);
-	  tempCollisionTilesList.push_back(tileID);
-	}
-
-	setCollisionTilesList(tempCollisionTilesList);
-
-	Collider::getInstance()->setCollisionTilesList(tempCollisionTilesList);
-
-	tempCollisionTilesList.clear();
   }
 
   log << "Load Of Map Finished... " << std::endl;
@@ -126,6 +123,29 @@ int Level::loadTMXTileMapFile(std::string filename)
   delete map;
 
   return 0;
+}
+
+bool Level::initializeCollisionData(int tileID, std::vector< int > listCollisionTiles)
+{
+  if ( tileID == EMPTY )
+  {
+    return false;
+  }
+
+  for (int i = 0; i < listCollisionTiles.size(); i++)
+  {
+	if ( listCollisionTiles.at(i) > tileID )
+	{
+	  return false;
+	}
+
+	if ( tileID == listCollisionTiles.at(i) )
+	{
+	  return true;
+	}
+  }
+
+  return false;
 }
 
 bool Level::drawLevelMap()

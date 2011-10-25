@@ -13,6 +13,7 @@ public:
     int animate();
 
 	bool getAnimationAlreadyEnd() { return animationAlreadyEnd; }
+	void restartAnimationBegin() { animationAlreadyEnd = false; }
  
 	int getCurrentFrame() { return currentFrame; }
     void setCurrentFrame(int frame);

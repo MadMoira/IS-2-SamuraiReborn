@@ -16,7 +16,7 @@ Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f
   repeat = hasRepetition;
   continuous = isContinuous;
   countX = 0;
-  delayX = 4;
+  delayX = 2;
 }
 
 Layer::~Layer(void)

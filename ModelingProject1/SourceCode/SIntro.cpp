@@ -1,12 +1,14 @@
 #include "SIntro.h"
 
 
-SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
-	: GameState( gR, gC, gI, stateName )
+SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, 
+	                                                        GameStates stateName) 
+	: GameState( gR, gC, gI, gP, stateName )
 {
   gameCore = gC;
   gameRender = gR;
   gameInput = gI;
+  gamePhysics = gP;
   nameState = stateName;
   setHasEnded(STATE_INTRO);
 

@@ -26,6 +26,7 @@ public:
 	virtual void draw() = 0;
 	virtual void noAction() = 0;
 	virtual void fastAttack() = 0;
+	virtual void falling() = 0;
 	void executeAction();
 	void drawUIStats();
 	void drawScore();
@@ -37,6 +38,7 @@ public:
 	Sprite* getPlayerSprite() { return playerSprite; }
 	bool isReadyToPace();
 	bool isReadyToDoubleJump();
+	bool isFalling();
 
 	InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
 

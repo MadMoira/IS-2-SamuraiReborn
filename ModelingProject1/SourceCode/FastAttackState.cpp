@@ -1,6 +1,5 @@
 
 #include <algorithm>
-
 #include "ComparatorFunctions.h"
 
 #include "FastAttackState.h"
@@ -22,14 +21,14 @@ int GameCoreStates::FastAttackState::checkMovement(int keyPreviouslyPressed, int
   InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isFastAttackKeyPressed);
   bool fastAttackButtonIsPressed = findKey.isPressed;
 
-  if ( !isPacing.directionButtonPressed )
+  if ( !isPacing.directionButtonPressed && currentState != GameCoreStates::STILL &&
+	                                       currentState != GameCoreStates::JUMPING)
   {
 	return GameCoreStates::RETURN_STILL;
   }
 
-  if ( (currentState == GameCoreStates::WALKING || currentState == GameCoreStates::JUMPING)
-	  && keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON 
-	  && fastAttackButtonIsPressed )
+  if ( (currentState != GameCoreStates::DOUBLE_JUMP && currentState != GameCoreStates::FALLING) &&
+	   keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && fastAttackButtonIsPressed )
   {
     return GameCoreStates::CHANGE;
   }

@@ -10,6 +10,7 @@
 #include "JumpingState.h"
 #include "DoubleJumpState.h"
 #include "FastAttackState.h"
+#include "FallingState.h"
 
 #include "PlayerSpriteStates.h"
 
@@ -19,6 +20,7 @@
 #define RUNNING_STATE new GameCoreStates::RunningState(GameCoreStates::RUNNING)
 #define DOUBLE_JUMP_STATE new GameCoreStates::DoubleJumpState(GameCoreStates::DOUBLE_JUMP)
 #define FAST_ATTACK_STATE new GameCoreStates::FastAttackState(GameCoreStates::FAST_ATTACK)
+#define FALLING_STATE new GameCoreStates::FallingState(GameCoreStates::FALLING)
 
 namespace GameCoreStates
 {

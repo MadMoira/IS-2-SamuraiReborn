@@ -35,12 +35,13 @@ class GameCore
    GameScreen* getGameScreen() { return screen; };
 
    boost::ptr_vector< Player >& getPlayersList() { return playersList; }
-	boost::ptr_vector< Enemy >& getEnemyList() { return enemiesList; }
+   boost::ptr_vector< Enemy >& getEnemyList() { return enemiesList; }
+
    void addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement);
-	void addEnemyToGame(Enemy *enemy, IDSprites id, std::string filename, std::vector< Vector2f> speed,
+   void addEnemyToGame(Enemy *enemy, IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement);

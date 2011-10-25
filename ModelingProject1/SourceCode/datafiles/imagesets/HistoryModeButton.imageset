@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
-  <Imageset Name="HistoryMode" Imagefile="MenuButtons.png" NativeHorzRes="1280" NativeVertRes="720" AutoScaled="true">
- 	<Image Name="ButtonUp" XPos="0.0" YPos="0.0" Width="512" Height="64" />
- 	<Image Name="ButtonDown" XPos="0.0" YPos="0.0" Width="512" Height="64" />
- 	<Image Name="ButtonHighlighted" XPos="0.0" YPos="0.0" Width="512" Height="64" />
- 	<Image Name="ButtonDisabled" XPos="0.0" YPos="0.0" Width="512" Height="64" />
+  <Imageset Name="HistoryMode" Imagefile="HistoryModeOption.png" NativeHorzRes="1280" NativeVertRes="720" AutoScaled="true">
+ 	<Image Name="ButtonUp" XPos="0.0" YPos="0.0" Width="256" Height="32" />
+ 	<Image Name="ButtonDown" XPos="0.0" YPos="0.0" Width="256" Height="32" />
+ 	<Image Name="ButtonHighlighted" XPos="0.0" YPos="0.0" Width="256" Height="32" />
+ 	<Image Name="ButtonDisabled" XPos="0.0" YPos="0.0" Width="512" Height="32" />
   </Imageset>
 

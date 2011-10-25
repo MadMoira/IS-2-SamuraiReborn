@@ -90,7 +90,8 @@ void Camera::restartCameraSpeed()
 
 bool Camera::checkCamera(GLfloat posx1, GLfloat newSpeedx)
 {	
-  if( isPlayerOnMidpoint(posx1) && !isLimit(posX,newSpeedx) && !isLimit(posX+(GLfloat)defaultResolution->current_w,newSpeedx) )
+  if( isPlayerOnMidpoint(posx1) && !isLimit(posX,newSpeedx) && 
+	  !isLimit(posX + (GLfloat)defaultResolution->current_w, newSpeedx))
   {
     return true;
   }	
@@ -108,31 +109,40 @@ bool Camera::checkCamera(GLfloat posx1, GLfloat posx2, GLfloat newSpeedx)
   return false;
 }
 
-bool Camera::isPlayerOnMidpoint(GLfloat posX){
-	int distanceToMid = posX- midPoint;
-	if(playerOnMidpoint){
-		if(abs(distanceToMid) <250){
-			return true;
-		}
-		else{
-			playerOnMidpoint=false;
-			return false;
-		}
-	}
-	else{
-		if(abs(distanceToMid) < 40	){
-			playerOnMidpoint=true;
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
+bool Camera::isPlayerOnMidpoint(GLfloat posX)
+{
+  int distanceToMid = posX- midPoint;
+  if(playerOnMidpoint)
+  {
+    if(abs(distanceToMid) < 250)
+	{
+      return true;
+    }
+    else
+	{
+      playerOnMidpoint=false;
+      return false;
+    }
+  }
+  else
+  {
+    if(abs(distanceToMid) < 40)
+	{
+      playerOnMidpoint=true;
+      return true;
+    }
+    else
+	{
+      return false;
+    }
+  }
 }
 
-bool Camera::isLimit(GLfloat position, GLfloat speed){
-	if(position+speed<0 || position+speed>levelLenght){
-		return true;
-	}
-	return false;
+bool Camera::isLimit(GLfloat position, GLfloat speed)
+{
+  if(position + speed < 0 || position + speed > levelLenght)
+  {
+    return true;
+  }
+  return false;
 }

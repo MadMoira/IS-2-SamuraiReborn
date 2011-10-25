@@ -52,7 +52,7 @@ void InputMapping::GameInputMapper::clearCurrentMappedInput(GameCoreStates::Spri
 
   if ( !currentMappedInput.states.empty() )
   {
-    if (activeState == GameCoreStates::DOUBLE_JUMP)
+    if (activeState == GameCoreStates::DOUBLE_JUMP || activeState == GameCoreStates::FALLING)
     {
       activeState = GameCoreStates::JUMPING;
     }
