@@ -18,7 +18,7 @@ class GameRender
    ~GameRender(void);
 
    static GLuint loadTexture(std::string name);
-   void drawFullTexture(GLuint texture, Vector2f pos, GLfloat widthTexture, GLfloat heightTexture);
+   static void drawFullTexture(GLuint texture, Vector2f pos, GLfloat widthTexture, GLfloat heightTexture);
    static void drawSpriteTexture(GLuint texture, Vector2f pos, int currentFrame, 
 								 GLfloat widthTexture, GLfloat heightTexture, 
 								 GLfloat widthSprite, GLfloat heightSprite,

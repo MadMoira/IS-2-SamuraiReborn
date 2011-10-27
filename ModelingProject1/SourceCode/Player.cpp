@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "PlayerState.h"
 
+#include "Collider.h"
+
 
 void Player::stop()
 {
@@ -44,6 +46,17 @@ void Player::returnToPreviousState()
 
   getInputMapper()->pushBackStateOnMappedInput( GameCoreStates::SpriteState( playerSprite->getCurrentState() ) );
   playerSprite->changeCurrentFrame( playerSprite->getCurrentState() ); 
+}
+
+bool Player::isOnGround()
+{
+  if ( playerSprite->getCollisionHandler()->onTheGround(*playerSprite->getCollisionBox(), 
+	  playerSprite->getHandlerAnimation()->getAnimationDirection()) 
+	  )
+  {
+    return true;
+  }
+  return false;
 }
 
 void Player::executeAction()
@@ -119,14 +132,18 @@ bool Player::isReadyToDoubleJump()
 
 bool Player::isFalling()
 {
-  if ( playerSprite->getSpeedY() >= 4 )
-  {
-    return true;
-  }
-
-  if ( playerSprite->getPosY() >= 382.0f )
+  if ( isOnGround() )
   {
 	return false;
+  }
+
+  if ( playerSprite->getSpeedY() >= 4)
+  {
+	  /*if ( playerSprite->getSpeedY() >= 36 )
+	  {
+		return false;
+	  }*/
+    return true;
   }
 
   return false;

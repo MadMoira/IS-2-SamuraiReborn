@@ -25,9 +25,9 @@ class Collider
    //boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
    //boost::ptr_vector< Enemy > checkAttackCollision(CollisionBox& A, float directionX);
 
-   bool onTheGround(Sprite& A, float directionX);
+   bool onTheGround(CollisionBox& A, float directionX);
 
-   void setLayerMap(std::vector< std::vector < Tile > > tilemap) { layerMap = tilemap; }
+   void setLayerMap(std::vector< std::vector < Tile > > tilemap) { layerMap = tilemap; val = 0; }
 
    void setCollisionTilesList(std::vector< int > tilesList) { collisionTilesList = tilesList; }
 
@@ -37,7 +37,9 @@ class Collider
   private:
    static bool instanceFlag;
    static Collider* collider;
+   GLfloat val;
    std::vector< std::vector < Tile > > layerMap;
+   std::vector< std::vector < Tile > > layerMapGround;
    std::vector< int > collisionTilesList;
    boost::ptr_vector< Enemy >* enemies;
    boost::ptr_vector< Player >* players;

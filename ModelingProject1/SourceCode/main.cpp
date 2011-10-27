@@ -11,7 +11,6 @@
 #include "SMainMenu.h"
 #include "SLevelOneJapan.h"
 
-
 int main( int argc, char* args[] )
 {
   GameCore Core;
@@ -28,7 +27,7 @@ int main( int argc, char* args[] )
   Physics = GamePhysics::PhysicsCore::getInstance();
   Physics->initializePhysicValues(-4.0f);
 
-  //StateManager->changeState( new SMainMenu( &Render, &Core, &Input, STATE_MAINMENU ) );
+  //StateManager->changeState( new SMainMenu( &Render, &Core, &Input, Physics, STATE_MAINMENU ) );
   StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, Physics, STATE_LEVELONEJAPAN ) );
   StateManager->init();
 

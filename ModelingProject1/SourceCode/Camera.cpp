@@ -140,7 +140,7 @@ bool Camera::isPlayerOnMidpoint(GLfloat posX)
 
 bool Camera::isLimit(GLfloat position, GLfloat speed)
 {
-  if(position + speed < 0 || position + speed > levelLenght)
+  if(position + speed < -15|| position + speed > levelLenght)
   {
     return true;
   }

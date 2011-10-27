@@ -77,7 +77,15 @@ class Sprite
 	GLfloat getCurrentDelayFromCurrentState() { return delayMovementSprite.at(getCurrentState()).x; }
 	int getCountX() { return countX; }
 
+	Collider* getCollisionHandler() { return collisionHandler; }
+
 	CollisionBox* getCollisionBox() {return spriteCollisionBox; }
+
+	int getBoxX() { return spriteCollisionBox->getX(); }
+	int getBoxY() { return spriteCollisionBox->getY(); }
+	int getBoxWidth() { return spriteCollisionBox->getWidth(); }
+	int getBoxHeight() { return spriteCollisionBox->getHeight(); }
+
 
 	bool getPlayerMoveInXCurrentFrame() { return playerMoveInXInCurrentFrame; }
 	bool getPlayerMoveInYCurrentFrame() { return playerMoveInYInCurrentFrame; }
@@ -101,5 +109,6 @@ private:
 	GLfloat currentXSpeed, currentYSpeed;
 	int countX, countY;
 	bool playerMoveInX, playerMoveInY, playerMoveInXInCurrentFrame, playerMoveInYInCurrentFrame;
+	bool onG;
 };
 
