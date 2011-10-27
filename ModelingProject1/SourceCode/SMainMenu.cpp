@@ -1,8 +1,6 @@
 
 #include "SMainMenu.h"
 
-#include <RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
-#include <CEGUIScriptModule.h>
 
 
 void Image::ArrowMenu::updatePositionArrow()
@@ -33,8 +31,7 @@ SMainMenu::~SMainMenu(void)
 
 void SMainMenu::init()
 {
-  CEGUI::OpenGLRenderer::bootstrapSystem();
-
+ 
   CEGUI::WindowManager& windowManager = initializeCEGUI( gameCore->getGameScreen()->getScreenReference() );
  
   createGUI( windowManager );
@@ -94,6 +91,9 @@ void SMainMenu::render()
 {
   glClear( GL_COLOR_BUFFER_BIT );
 
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
   CEGUI::System::getSingleton().renderGUI();
 
   if ( arrowImage.optionSelected != NOTHING_SELECTED )
@@ -117,6 +117,9 @@ void SMainMenu::cleanUp()
 
   CEGUI::ImagesetManager::getSingleton().destroyAll();
   CEGUI::SchemeManager::getSingleton().destroyAll();
+
+  //CEGUI::OpenGLRenderer::destroySystem();
+  //CEGUI::System::getSingletonPtr()->destroy();
 }
 
 CEGUI::WindowManager& SMainMenu::initializeCEGUI( SDL_Surface& surface )
@@ -148,7 +151,7 @@ CEGUI::WindowManager& SMainMenu::initializeCEGUI( SDL_Surface& surface )
  
   CEGUI::System::getSingleton().setDefaultMouseCursor( "Objects", "Cursor" ) ;
  
-  return CEGUI::WindowManager::getSingleton() ;
+  return CEGUI::WindowManager::getSingleton();
 }
 
 void SMainMenu::createGUI( CEGUI::WindowManager& winManager )

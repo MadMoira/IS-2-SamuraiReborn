@@ -19,6 +19,7 @@ class Camera
 
    bool checkCamera(GLfloat posx1, GLfloat newSpeedx);
    bool checkCamera(GLfloat posx1, GLfloat posx2, GLfloat newSpeedx);
+   void restartCamera(GLfloat level);
 	
    void setCameraSpeed(GLfloat newSpeedx, GLfloat posx1);
    void setCameraSpeed(GLfloat newSpeedx, GLfloat posx1, GLfloat posx2);

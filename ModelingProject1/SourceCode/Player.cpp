@@ -59,6 +59,16 @@ bool Player::isOnGround()
   return false;
 }
 
+bool Player::isAlive()
+{
+  if ( playerSprite->getPosY() > 720.0f )
+  {
+    return false;
+  }
+
+  return true;
+}
+
 void Player::executeAction()
 {
   switch( playerSprite->getCurrentState() )

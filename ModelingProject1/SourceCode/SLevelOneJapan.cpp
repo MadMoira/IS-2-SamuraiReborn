@@ -38,7 +38,7 @@ void SLevelOneJapan::init()
   speedMeerkat.push_back( Vector2f(10.0f, 0.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, -24.0f) );
   speedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
-  speedMeerkat.push_back( Vector2f(0.0f, -16.0f) );
+  speedMeerkat.push_back( Vector2f(0.0f, -20.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
 
@@ -112,6 +112,8 @@ void SLevelOneJapan::init()
   japanLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
   japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
+  gameCore->restartCamera(6400.0f);
+
   speedPanda.clear();
   speedMeerkat.clear();
   maxFrameVector.clear();
@@ -139,12 +141,11 @@ void SLevelOneJapan::logic()
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();
-	
-	/*if ( Collider::getInstance()->checkTileCollision( *gameCore->getPlayersList().at(i).getPlayerSprite()->getCollisionBox(), 
-		gameCore->getPlayersList().at(i).getPlayerSprite()->getHandlerAnimation()->getAnimationDirection()) )
-    {
-      gameCore->getPlayersList().at(i).noAction();
-    }*/
+	if ( !gameCore->getPlayersList().at(i).isAlive() )
+	{
+	  setHasEnded(STATE_MAINMENU);
+	}
+
 	//levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
 
     gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX(), 
@@ -199,4 +200,6 @@ void SLevelOneJapan::render()
 void SLevelOneJapan::cleanUp()
 {
   delete japanLevel;
+  gameCore->getPlayersList().clear();
+  gameCore->getEnemyList().clear();
 }

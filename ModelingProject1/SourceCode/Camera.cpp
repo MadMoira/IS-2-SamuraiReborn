@@ -109,9 +109,19 @@ bool Camera::checkCamera(GLfloat posx1, GLfloat posx2, GLfloat newSpeedx)
   return false;
 }
 
+void Camera::restartCamera(GLfloat level)
+{
+  initCamera();
+  posX = 0;
+  speedX = 0;	
+  levelLenght = level;
+  onePlayer = true;	
+  playerOnMidpoint = false;
+}
+
 bool Camera::isPlayerOnMidpoint(GLfloat posX)
 {
-  int distanceToMid = posX- midPoint;
+  int distanceToMid = posX - midPoint;
   if(playerOnMidpoint)
   {
     if(abs(distanceToMid) < 250)

@@ -81,11 +81,10 @@ class Sprite
 
 	CollisionBox* getCollisionBox() {return spriteCollisionBox; }
 
-	int getBoxX() { return spriteCollisionBox->getX(); }
-	int getBoxY() { return spriteCollisionBox->getY(); }
-	int getBoxWidth() { return spriteCollisionBox->getWidth(); }
-	int getBoxHeight() { return spriteCollisionBox->getHeight(); }
-
+	GLfloat getBoxX() { return spriteCollisionBox->getX(); }
+	GLfloat getBoxY() { return spriteCollisionBox->getY(); }
+	GLfloat getBoxWidth() { return spriteCollisionBox->getWidth(); }
+	GLfloat getBoxHeight() { return spriteCollisionBox->getHeight(); }
 
 	bool getPlayerMoveInXCurrentFrame() { return playerMoveInXInCurrentFrame; }
 	bool getPlayerMoveInYCurrentFrame() { return playerMoveInYInCurrentFrame; }

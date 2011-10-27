@@ -169,6 +169,10 @@ bool Collider::onTheGround(CollisionBox& A, float directionX)
 	  {
 		  int d = 4;
 	  }
+		  if ( y > 720.0f/32 )
+		  {
+			return false;
+		  }
     Tile groundTile = layerMap[y][x];
 		  if ( x == 125 && y == 21)
 	  {

@@ -32,6 +32,8 @@ class GameCore
    void startSoundEffect(std::string filename);
 
    Camera* getCamera() { return camera; };
+   void restartCamera(GLfloat leve);
+
    GameScreen* getGameScreen() { return screen; };
 
    boost::ptr_vector< Player >& getPlayersList() { return playersList; }
