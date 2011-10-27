@@ -31,7 +31,6 @@ SMainMenu::~SMainMenu(void)
 
 void SMainMenu::init()
 {
- 
   CEGUI::WindowManager& windowManager = initializeCEGUI( gameCore->getGameScreen()->getScreenReference() );
  
   createGUI( windowManager );
@@ -116,10 +115,7 @@ void SMainMenu::cleanUp()
   }
 
   CEGUI::ImagesetManager::getSingleton().destroyAll();
-  CEGUI::SchemeManager::getSingleton().destroyAll();
-
-  //CEGUI::OpenGLRenderer::destroySystem();
-  //CEGUI::System::getSingletonPtr()->destroy();
+  //CEGUI::SchemeManager::getSingleton().destroyAll();
 }
 
 CEGUI::WindowManager& SMainMenu::initializeCEGUI( SDL_Surface& surface )
@@ -147,7 +143,7 @@ CEGUI::WindowManager& SMainMenu::initializeCEGUI( SDL_Surface& surface )
   CEGUI::ImagesetManager::getSingleton().create( "QuitButton.imageset" );
   CEGUI::ImagesetManager::getSingleton().create( "MenuCursor.imageset" );
 
-  CEGUI::SchemeManager::getSingleton().create( "TaharezLook.scheme" ) ;
+  CEGUI::SchemeManager::getSingleton().create( "TaharezLook.scheme" );
  
   CEGUI::System::getSingleton().setDefaultMouseCursor( "Objects", "Cursor" ) ;
  
