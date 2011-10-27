@@ -3,6 +3,7 @@
 #include "GameState.h"
 
 #include <CEGUI.h>
+#include <RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
 
 enum MainMenuOptions
 {

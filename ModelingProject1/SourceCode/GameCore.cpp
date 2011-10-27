@@ -66,6 +66,11 @@ void GameCore::startSoundEffect(std::string filename)
   sound->loadChunk(filename);
 }
 
+void GameCore::restartCamera(GLfloat level)
+{
+  camera->restartCamera(level);
+}
+
 void GameCore::addPlayerToGame(Player *player, IDSprites id, std::string filename, std::vector< Vector2f> speed, 
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
 				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,

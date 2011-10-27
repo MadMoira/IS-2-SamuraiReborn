@@ -39,6 +39,8 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
   currentYSpeed = speed.at(getCurrentState()).y;
 
   spriteCollisionBox = new CollisionBox(position.x, position.y, 44.0f, 135.0f);
+  spriteCollisionBox->setX(position.x);
+  spriteCollisionBox->setY(position.y);
 
   countX = 0;
   countY = 0;
@@ -218,7 +220,7 @@ void Sprite::movePosYWithSpeed()
 	  //}
     countY = 0;
 	spriteCollisionBox->setY( position.y + getSpeedY() );
-    if( position.y + getSpeedY() + height <= 720.0f )
+    if( position.y + getSpeedY() + height <= 1000.0f )
     {
 		      position.y += getSpeedY();
 	  spriteCollisionBox->setY(position.y);

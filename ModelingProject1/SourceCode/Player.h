@@ -40,6 +40,7 @@ public:
 	bool isReadyToPace();
 	bool isReadyToDoubleJump();
 	bool isFalling();
+	bool isAlive();
 
 	InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
 
