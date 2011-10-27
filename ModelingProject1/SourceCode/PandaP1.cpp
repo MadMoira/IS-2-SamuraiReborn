@@ -83,7 +83,11 @@ void PandaP1::falling()
   playerSprite->movePosXWithSpeed();
   playerSprite->movePosYWithSpeed();
   playerSprite->getHandlerAnimation()->animate();
-  stop();
+
+  if ( !isFalling() )
+  {
+	  stop();
+  }
 }
 
 void PandaP1::draw()

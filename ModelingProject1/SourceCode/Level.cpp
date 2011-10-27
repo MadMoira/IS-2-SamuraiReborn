@@ -84,7 +84,8 @@ int Level::loadTMXTileMapFile(std::string filename)
       }
     }
 
-	Collider::getInstance()->setLayerMap(tempLayerMap);
+	if ( i == 0 ){
+		Collider::getInstance()->setLayerMap(tempLayerMap);}
 
     tilemapList.at(i).setLayerMap(tempLayerMap);
     tempLayerMap.clear();

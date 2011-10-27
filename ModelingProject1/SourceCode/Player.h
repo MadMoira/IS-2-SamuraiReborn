@@ -32,6 +32,7 @@ public:
 	void drawScore();
 	void stop();
 	void returnToPreviousState();
+	bool isOnGround();
 
 	static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
 

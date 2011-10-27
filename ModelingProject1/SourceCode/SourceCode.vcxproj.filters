@@ -589,5 +589,8 @@
     <None Include="Enemy - SpriteSheet.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="box.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
