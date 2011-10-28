@@ -4,7 +4,6 @@
 #include <RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
 #include <SDL/SDL_ttf.h>
 
-
 GameScreen::GameScreen(void)
 {
   screen = NULL;

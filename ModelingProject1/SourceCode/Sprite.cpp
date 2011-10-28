@@ -16,7 +16,6 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
   glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &this->heightTexture);
 
   playerStateManager = new GameCoreStates::PlayerStateManager();
-  playerStateManager->pushState( new GameCoreStates::PlayerState(GameCoreStates::FALLING) );
 
   handlerAnimation = new Animation(initialFrame, maxFrame.at(getCurrentState()), 
 		                           returnFrame.at(getCurrentState()), 
@@ -41,6 +40,9 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
   spriteCollisionBox = new CollisionBox(position.x, position.y, 44.0f, 135.0f);
   spriteCollisionBox->setX(position.x, handlerAnimation->getAnimationDirection());
   spriteCollisionBox->setY(position.y);
+
+  changeStatePlayerSprite( new GameCoreStates::FallingState(GameCoreStates::STILL) , 0,
+	                       std::list< InputMapping::Key >());
 
   countX = 0;
   countY = 0;
@@ -297,7 +299,7 @@ void Sprite::movePosYWithSpeed()
 		bool collision = collisionHandler->onTheGround(*getCollisionBox(),
 			handlerAnimation->getAnimationDirection());
 						bool collisionTiles = collisionHandler->checkTileCollision(*getCollisionBox(), 
-					handlerAnimation->getAnimationDirection() );
+					handlerAnimation->getAnimationDirection() , 1);
 		onG = collision;
 
 										if ( collisionTiles && !onG && getCurrentState() != GameCoreStates::FALLING)

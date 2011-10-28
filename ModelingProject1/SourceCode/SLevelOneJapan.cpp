@@ -84,7 +84,7 @@ void SLevelOneJapan::init()
   std::string filenameFont = "orbitron-black.ttf";
 
   gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
-						speedMeerkat, Vector2f(400.0f, 400.0f), 0, maxFrameVector, returnFrameVector,
+						speedMeerkat, Vector2f(100.0f, 300.0f), 0, maxFrameVector, returnFrameVector,
 						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
 
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(

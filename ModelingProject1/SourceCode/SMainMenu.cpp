@@ -1,8 +1,6 @@
 
 #include "SMainMenu.h"
 
-
-
 void Image::ArrowMenu::updatePositionArrow()
 {
   if ( optionSelected == NOTHING_SELECTED )
@@ -115,7 +113,7 @@ void SMainMenu::cleanUp()
   }
 
   CEGUI::ImagesetManager::getSingleton().destroyAll();
-  //CEGUI::SchemeManager::getSingleton().destroyAll();
+  CEGUI::SchemeManager::getSingleton().destroyAll();
 }
 
 CEGUI::WindowManager& SMainMenu::initializeCEGUI( SDL_Surface& surface )

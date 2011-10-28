@@ -55,7 +55,7 @@ bool Collider::checkCollision(CollisionBox& A, CollisionBox& B, float directionX
   return false;
 }
 
-bool Collider::checkTileCollision(CollisionBox& A, float directionX)
+bool Collider::checkTileCollision(CollisionBox& A, float directionX, int mov)
 {
 	int dir = 1;
 	int initialX  = 0;
@@ -66,7 +66,15 @@ bool Collider::checkTileCollision(CollisionBox& A, float directionX)
 
 		if ( dir == -1 )
 	{
-	  initialX = (int)A.getX() - (int)A.getWidth()/2;
+		if ( mov == 0 )
+		{
+			initialX = (int)A.getX() - (int)A.getWidth()/2;
+		}
+		else
+		{
+			initialX = (int)A.getX();
+		}
+	  
 	}
 	else
 	{
