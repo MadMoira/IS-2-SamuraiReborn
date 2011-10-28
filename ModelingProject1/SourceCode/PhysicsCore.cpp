@@ -36,6 +36,10 @@ void GamePhysics::PhysicsCore::parabolicShot(GLfloat* yVelocity, int playerState
   if( playerState == 2 || playerState == 4 || playerState == 6 )
   {
     *yVelocity -= gravityVal;
+	if ( *yVelocity > 36.0f )
+	{
+	  *yVelocity = 36.0f;
+	}
 	return;
   }
   *yVelocity = 0.0f;

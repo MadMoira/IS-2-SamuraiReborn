@@ -28,6 +28,8 @@ bool GameScreen::initializeScreen()
     return false;
   }
 
+  SDL_putenv("SDL_VIDEO_CENTERED=center");
+
   width = 1280;	height = 720;
 
   if( (screen = SDL_SetVideoMode(width, height, 32, SDL_OPENGL) ) == NULL) 

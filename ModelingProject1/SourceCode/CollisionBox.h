@@ -10,7 +10,13 @@ class CollisionBox
    ~CollisionBox(void);
 
    float getX() { return box.x; }
-   void setX(float x) { box.x = (Sint16)x + 42; }
+   void setX(float x, int i) { 
+	   if ( i == 0 ) {
+		   box.x = (Sint16)x + 42; }
+	   else
+   {
+	   box.x = x; }
+   }
 
    float getY() { return box.y; }
    void setY(float y) { box.y = (Sint16)y + 45; }

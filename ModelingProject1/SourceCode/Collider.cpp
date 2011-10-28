@@ -58,22 +58,41 @@ bool Collider::checkCollision(CollisionBox& A, CollisionBox& B, float directionX
 bool Collider::checkTileCollision(CollisionBox& A, float directionX)
 {
 	int dir = 1;
+	int initialX  = 0;
 	if ( directionX == 1)
 	{
 	  dir = -1;
 	}
-  for(int i = (int)A.getX(); i <= (int)A.getX() + (dir)*(int)A.getWidth(); i += 32)
+
+		if ( dir == -1 )
+	{
+	  initialX = (int)A.getX() - (int)A.getWidth()/2;
+	}
+	else
+	{
+	  initialX = (int)A.getX();
+	}
+  for(int i = initialX;i <= initialX + (int)A.getWidth(); i += 32)
   {
-    for(int j = (int)A.getY(); j <= (int)A.getY() + (dir)*(int)A.getHeight(); j += 32)
+    for(int j = (int)A.getY(); j <= (int)A.getY() + (int)A.getHeight(); j += 32)
 	{
       int x = (int)i/32;
       int y = (int)j/32;
 
+	  		  if ( y > 720.0f/32 )
+		  {
+			y = 22;
+		  }
+	  if ( x == 130 && y == 18 )
+	  {
+		int d =4;
+	  }
       Tile foundTile = layerMap[y][x];
 	  if ( foundTile.getID() == 0 )
 	  {
 		continue;
 	  }
+
 
 	  if( foundTile.getHasCollision() )
 	  {
@@ -130,33 +149,28 @@ bool Collider::onTheGround(CollisionBox& A, float directionX)
 {
   	int dir = 1;
 	int initialX  = 0;
-	if ( directionX == 1)
+		if ( directionX == 1)
 	{
 	  dir = -1;
 	}
 	if ( dir == -1 )
 	{
-	  initialX = (int)A.getX() - (int)A.getWidth();
+	  initialX = (int)A.getX() - (int)A.getWidth()/2;
 	}
 	else
 	{
 	  initialX = (int)A.getX();
 	}
 
-	if ( initialX > 32 )
-	{
-	  int d = 4;
-	}
-
 	int posY = (int)A.getY() + (int)A.getHeight() ;
 	int y = ( posY  )/32;
 
-	if ( val + 1 != y && val != 0)
+	/*if ( val + 1 != y && val != 0)
 	{
 
 		int d = 4;
 	}
-	val = y;
+	val = y;*/
 	if ( initialX < 0 )
 	{
 	  initialX = 0;
@@ -165,19 +179,16 @@ bool Collider::onTheGround(CollisionBox& A, float directionX)
   {
 
     int x = (int)i/32;
-		  if ( dir == -1 )
-	  {
-		  int d = 4;
-	  }
 		  if ( y > 720.0f/32 )
 		  {
 			return false;
 		  }
+		  if ( x == 130 && y == 17 )
+		  {
+			int d = 4;
+		  }
     Tile groundTile = layerMap[y][x];
-		  if ( x == 125 && y == 21)
-	  {
-		int d = 4;
-	  }
+
 	if( groundTile.getHasCollision() == false)
 	{
       return false;

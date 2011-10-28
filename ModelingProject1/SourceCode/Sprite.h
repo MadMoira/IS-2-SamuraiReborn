@@ -90,7 +90,8 @@ class Sprite
 	bool getPlayerMoveInYCurrentFrame() { return playerMoveInYInCurrentFrame; }
 
 	void drawTexture();
-
+	bool canMove;
+	bool pCanMove;
 private:
 	IDSprites ID;
 	GLuint texture;
@@ -109,5 +110,6 @@ private:
 	int countX, countY;
 	bool playerMoveInX, playerMoveInY, playerMoveInXInCurrentFrame, playerMoveInYInCurrentFrame;
 	bool onG;
+	
 };
 
