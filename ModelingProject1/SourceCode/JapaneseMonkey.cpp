@@ -12,41 +12,41 @@ void JapaneseMonkey::initializeEnemy(IDSprites id, std::string filename, std::ve
 
 void JapaneseMonkey::noAction()
 {
-  enemySprite->setSpeedX(0);
+  /*enemySprite->setSpeedX(0);
   enemySprite->setPlayerMoveInX(false);
   enemySprite->setPlayerMoveInY(false);
-  stop();		
+  stop();	*/	
 }
 
 void JapaneseMonkey::walk()
 {
-  enemySprite->setSpeedX( enemySprite->getStateXSpeed() );
+  /*enemySprite->setSpeedX( enemySprite->getStateXSpeed() );
   enemySprite->movePosXWithSpeed();
   enemySprite->getHandlerAnimation()->animate() ;
-  stop();
+  stop();*/
 }
 
 void JapaneseMonkey::run()
 {
-  enemySprite->setSpeedX( enemySprite->getStateXSpeed() );
+  /*enemySprite->setSpeedX( enemySprite->getStateXSpeed() );
   enemySprite->movePosXWithSpeed();
   enemySprite->getHandlerAnimation()->animate();
-  stop();
+  stop();*/
 }
 
 void JapaneseMonkey::jump()
 {
-  enemySprite->setPlayerMoveInY(true);
+  /*enemySprite->setPlayerMoveInY(true);
   enemySprite->setSpeedX( enemySprite->getPreviousStateXSpeed() );
   enemySprite->movePosXWithSpeed();
   enemySprite->movePosYWithSpeed();
   enemySprite->getHandlerAnimation()->animate() ;
-  stop();
+  stop();*/
 }
 
 void JapaneseMonkey::attack()
 {
-  enemySprite->setPlayerMoveInY(true);
+  /*enemySprite->setPlayerMoveInY(true);
   enemySprite->setSpeedX( enemySprite->getPreviousStateXSpeed() );
   enemySprite->movePosXWithSpeed();
   enemySprite->movePosYWithSpeed();
@@ -58,7 +58,7 @@ void JapaneseMonkey::attack()
   else
   {
     enemySprite->getHandlerAnimation()->animate(); 
-  }
+  }*/
 }
 
 void JapaneseMonkey::draw()

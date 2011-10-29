@@ -46,9 +46,9 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
 
   countX = 0;
   countY = 0;
-  playerMoveInXInCurrentFrame = false;
-  playerMoveInX = false;
-  playerMoveInY = false;
+  characterMovement.playerMoveInXInCurrentFrame = false;
+  characterMovement.playerMoveInX = false;
+  characterMovement.playerMoveInY = false;
 
   canMove = true;
   pCanMove = true;
@@ -65,8 +65,8 @@ Sprite::~Sprite(void)
 
 void Sprite::movePosXWithSpeed()
 {
-  playerMoveInX = false || playerMoveInX;
-  playerMoveInXInCurrentFrame = false;
+  characterMovement.playerMoveInX = false || characterMovement.playerMoveInX;
+  characterMovement.playerMoveInXInCurrentFrame = false;
   countX++;
 
   	if ( getCollisionBox()->getY() > 550.0f )
@@ -81,8 +81,8 @@ void Sprite::movePosXWithSpeed()
 
 	if ( Camera::getInstance()->isLimit(position.x, getSpeedX()) )
 	{ 
-	  playerMoveInX = false;
-	  playerMoveInXInCurrentFrame = false;
+	  characterMovement.playerMoveInX = false;
+	  characterMovement.playerMoveInXInCurrentFrame = false;
 	  return;
 	}
     if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
@@ -91,8 +91,8 @@ void Sprite::movePosXWithSpeed()
       {
 		  		        position.x += getSpeedX();
 		spriteCollisionBox->setX(position.x, handlerAnimation->getAnimationDirection());
-        playerMoveInX = true;
-		playerMoveInXInCurrentFrame = true;
+        characterMovement.playerMoveInX = true;
+		characterMovement.playerMoveInXInCurrentFrame = true;
 
 				
 				bool collision = collisionHandler->onTheGround(*getCollisionBox(), 
@@ -137,8 +137,8 @@ void Sprite::movePosXWithSpeed()
 							changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
 													 std::list<InputMapping::Key>() );
 							canMove = false;
-								playerMoveInY = false;
-					playerMoveInX = false;
+								characterMovement.playerMoveInY = false;
+					characterMovement.playerMoveInX = false;
 					return;
 						}
 
@@ -154,8 +154,8 @@ void Sprite::movePosXWithSpeed()
 			position.y -= (result);
 			changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                      std::list<InputMapping::Key>() );
-							playerMoveInY = false;
-	         playerMoveInX = false;
+							characterMovement.playerMoveInY = false;
+	         characterMovement.playerMoveInX = false;
 		   return;
 		}
 
@@ -196,8 +196,8 @@ void Sprite::movePosXWithSpeed()
 	  
 	  
 	  canMove = true;
-	  playerMoveInX = true;
-	  playerMoveInXInCurrentFrame = true;
+	  characterMovement.playerMoveInX = true;
+	  characterMovement.playerMoveInXInCurrentFrame = true;
 
 	  			bool collision = collisionHandler->onTheGround(*getCollisionBox(), 
 					handlerAnimation->getAnimationDirection() );
@@ -235,8 +235,8 @@ void Sprite::movePosXWithSpeed()
                                      std::list<InputMapping::Key>() );
 			pCanMove = canMove;
 			canMove = false;
-				playerMoveInY = false;
-	playerMoveInX = false;
+				characterMovement.playerMoveInY = false;
+	characterMovement.playerMoveInX = false;
 	return;
 		}
 
@@ -251,8 +251,8 @@ void Sprite::movePosXWithSpeed()
 			changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                      std::list<InputMapping::Key>() );
 
-				playerMoveInY = false;
-	playerMoveInX = false;
+				characterMovement.playerMoveInY = false;
+	characterMovement.playerMoveInX = false;
 		   return;
 		}
 		if ( !collision &&
@@ -268,15 +268,15 @@ void Sprite::movePosXWithSpeed()
     }
 
 	//spriteCollisionBox->setX( position.x - getSpeedX() );
-	playerMoveInX = false;
+	characterMovement.playerMoveInX = false;
   }
 }
 
 void Sprite::movePosYWithSpeed()
 {
 
-  playerMoveInY = false || playerMoveInY;
-  playerMoveInYInCurrentFrame = false;
+  characterMovement.playerMoveInY = false || characterMovement.playerMoveInY;
+  characterMovement.playerMoveInYInCurrentFrame = false;
   countY++;
   if ( countY > delayMovementSprite.at(getCurrentState()).y )
   {
@@ -288,8 +288,8 @@ void Sprite::movePosYWithSpeed()
 	  GamePhysics::PhysicsCore::getInstance()->physicManager(&currentYSpeed, 
 		                                       GamePhysics::PARABOLIC, getCurrentState() );
 
-	  playerMoveInY = true;
-	  playerMoveInYInCurrentFrame = true;
+	  characterMovement.playerMoveInY = true;
+	  characterMovement.playerMoveInYInCurrentFrame = true;
 
 	  if ( getCurrentState() == GameCoreStates::JUMPING )
 	  {
@@ -320,8 +320,8 @@ void Sprite::movePosYWithSpeed()
 			position.y -= (result);
 		   changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                      std::list<InputMapping::Key>() );
-		   playerMoveInY = false;
-	       playerMoveInX = false;
+		   characterMovement.playerMoveInY = false;
+	       characterMovement.playerMoveInX = false;
 
 		   return;
 		}
@@ -340,8 +340,8 @@ void Sprite::movePosYWithSpeed()
     }
 	//spriteCollisionBox->setY( position.y - getSpeedY() );
 	currentYSpeed = 0.0f;
-	playerMoveInY = false;
-	playerMoveInX = false;
+	characterMovement.playerMoveInY = false;
+	characterMovement.playerMoveInX = false;
   }
 }
 

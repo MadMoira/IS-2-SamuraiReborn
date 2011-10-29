@@ -37,11 +37,13 @@ class Sprite
    GLfloat getPosY() { return position.y; }
    void movePosYWithSpeed();
 
-	void setPlayerMoveInX(bool moveX) { playerMoveInX = moveX; }
-	bool getPlayerMoveInX() { return playerMoveInX; }
+   CollisionSystem::CharacterMovement getCharacterMovement() { return characterMovement; }
 
-	void setPlayerMoveInY(bool moveY) { playerMoveInY = moveY; }
-	bool getPlayerMoveInY() { return playerMoveInY; }
+	bool getPlayerMoveInX() { return characterMovement.playerMoveInX; }
+	void setPlayerMoveInX(bool moveX) { characterMovement.setMoveX(moveX); }
+
+	bool getPlayerMoveInY() { return characterMovement.playerMoveInY; }
+	void setPlayerMoveInY(bool moveY) { characterMovement.setMoveY(moveY); }
 
 	GLfloat getSpeedX() { return currentXSpeed; }
 	GLfloat getStateXSpeed() { return speed.at(getCurrentState()).x; }
@@ -87,8 +89,8 @@ class Sprite
 	GLfloat getBoxWidth() { return spriteCollisionBox->getWidth(); }
 	GLfloat getBoxHeight() { return spriteCollisionBox->getHeight(); }
 
-	bool getPlayerMoveInXCurrentFrame() { return playerMoveInXInCurrentFrame; }
-	bool getPlayerMoveInYCurrentFrame() { return playerMoveInYInCurrentFrame; }
+	bool getPlayerMoveInXCurrentFrame() { return characterMovement.playerMoveInXInCurrentFrame; }
+	bool getPlayerMoveInYCurrentFrame() { return characterMovement.playerMoveInYInCurrentFrame; }
 
 	void drawTexture();
 	bool canMove;
