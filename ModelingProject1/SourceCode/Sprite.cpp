@@ -69,6 +69,11 @@ void Sprite::movePosXWithSpeed()
   playerMoveInXInCurrentFrame = false;
   countX++;
 
+  	if ( getCollisionBox()->getY() > 550.0f )
+	{
+	   int d = 6;
+	}
+
   if ( countX > delayMovementSprite.at(getCurrentState()).x )
   {
     countX = 0;
@@ -269,25 +274,20 @@ void Sprite::movePosXWithSpeed()
 
 void Sprite::movePosYWithSpeed()
 {
+
   playerMoveInY = false || playerMoveInY;
   playerMoveInYInCurrentFrame = false;
   countY++;
   if ( countY > delayMovementSprite.at(getCurrentState()).y )
   {
-
     countY = 0;
-	//spriteCollisionBox->setY( position.y + getSpeedY() );
     if( position.y + getSpeedY() + height <= 1000.0f )
     {
-		      position.y += getSpeedY();
+	  position.y += getSpeedY();
 	  spriteCollisionBox->setY(position.y);
 	  GamePhysics::PhysicsCore::getInstance()->physicManager(&currentYSpeed, 
-		                         GamePhysics::PARABOLIC, getCurrentState() );
+		                                       GamePhysics::PARABOLIC, getCurrentState() );
 
-	  if ( position.y > 650.0f )
-	  {
-		  int d = 4;
-	  }
 	  playerMoveInY = true;
 	  playerMoveInYInCurrentFrame = true;
 
@@ -355,7 +355,14 @@ void Sprite::setSpeedX(GLfloat speedX)
 
   if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
   {
-	speed.at(getCurrentState()).x = speed.at(getPreviousState()).x;
+	if ( getPreviousState() == GameCoreStates::JUMPING )
+	{
+      speed.at(getCurrentState()).x = speed.at(getPreviousState()).x/2;
+	}
+	else
+	{
+	  speed.at(getCurrentState()).x = speed.at(getPreviousState()).x;
+	}
   }
 
   currentXSpeed = speed.at(getCurrentState()).x;
@@ -406,6 +413,14 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
   {
     return;
   }
+
+  if ( resultCheckingEqualStates == GameCoreStates::UPDATE_SPEEDX )
+		{
+			playerStateManager->changePreviousState( GameCoreStates::WALKING );
+
+			setSpeedX( speed.at( GameCoreStates::WALKING ).x );
+			return;
+		}
 
   int result = newState->checkMovementRestrictions(keyPreviouslyPressed, getPreviousState(), 
                                                    getCurrentState(), keys );

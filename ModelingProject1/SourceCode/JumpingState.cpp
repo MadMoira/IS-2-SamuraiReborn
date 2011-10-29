@@ -17,7 +17,15 @@ int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int pr
 	                                            int currentState, std::list<InputMapping::Key> keys)
 {
   InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
+  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
   bool jumpingButtonIsPressed = findKey.isPressed;
+
+
+  /*if ( currentState == GameCoreStates::WALKING && previousState == GameCoreStates::JUMPING &&
+	  !isPacing.directionButtonPressed && !jumpingButtonIsPressed)
+  {
+    return GameCoreStates::CHANGE;
+  }*/
 
   if ( keyPreviouslyPressed != InputMapping::RAW_INPUT_NO_BUTTON && !jumpingButtonIsPressed )
   {
@@ -32,5 +40,25 @@ int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::CHANGE;
   }
 
+  return GameCoreStates::NO_CHANGE;
+}
+
+int GameCoreStates::JumpingState::checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
+		                   int previousState, GameCoreStates::PlayerState* newState,
+                           int keyPreviouslyPressed)
+{
+  InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
+  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
+  bool jumpingButtonIsPressed = findKey.isPressed;
+
+  if ( currentState == GameCoreStates::JUMPING && isPacing.directionButtonPressed && !isPacing.runningButtonPressed)
+  {
+    return GameCoreStates::UPDATE_SPEEDX;
+  }
+
+  if ( currentState != previousState)
+  {
+    return GameCoreStates::CHANGE;
+  }
   return GameCoreStates::NO_CHANGE;
 }

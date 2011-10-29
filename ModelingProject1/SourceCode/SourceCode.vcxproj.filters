@@ -509,6 +509,9 @@
     <ClInclude Include="PhysicStates.h">
       <Filter>Header Files\Game Physics</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionStructs.h">
+      <Filter>Header Files\Game Physics\Collisions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MainContext.txt">
