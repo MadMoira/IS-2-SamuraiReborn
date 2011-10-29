@@ -80,6 +80,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionBox.cpp" />
+    <ClCompile Include="CollisionStructs.cpp" />
     <ClCompile Include="ComparatorFunctions.cpp" />
     <ClCompile Include="DoubleJumpState.cpp" />
     <ClCompile Include="Enemy.cpp" />

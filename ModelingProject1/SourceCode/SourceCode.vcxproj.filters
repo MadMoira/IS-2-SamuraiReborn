@@ -315,6 +315,9 @@
     <ClCompile Include="PhysicsCore.cpp">
       <Filter>Source Files\Game Physics</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionStructs.cpp">
+      <Filter>Source Files\Game Physics\Collisions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">

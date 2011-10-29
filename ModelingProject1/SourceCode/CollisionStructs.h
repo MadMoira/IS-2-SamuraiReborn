@@ -17,5 +17,10 @@ namespace CollisionSystem
 	bool playerMoveInY;
 	bool playerMoveInXInCurrentFrame;
 	bool playerMoveInYInCurrentFrame;
+
+	void setMoveX(bool moveX);
+	void setMoveY(bool moveY);
+	void setMoveXFrame(bool moveX);
+	void setMoveYFrame(bool moveY);
   };
 }
