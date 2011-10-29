@@ -63,5 +63,15 @@ int Animation::changeAnimationDirection(int direction)
   return 1;
 }
 
+int Animation::returnAnimationDirectionAxisValue()
+{
+  if ( animationDirection == SpriteData::RIGHT )
+  {
+    return 1;
+  }
+
+  return -1;
+}
+
 
 

@@ -34,3 +34,8 @@ void GameCoreStates::PlayerStateManager::changeState(GameCoreStates::PlayerState
   pushState(newState);
   currentState = *newState;
 }
+
+void GameCoreStates::PlayerStateManager::changePreviousState(GameCoreStates::SpriteState previousID)
+{
+  previousState = GameCoreStates::SpriteState(previousID);
+}

@@ -29,7 +29,7 @@ void Player::returnToPreviousState()
     }
     case GameCoreStates::WALKING:
     {
-	  playerSprite->changeStatePlayerSprite(WALKING_STATE, 0, getInputMapper()->getListKeys());
+	  playerSprite->changeStatePlayerSprite(WALKING_STATE, 1, getInputMapper()->getListKeys());
 	  break;
     }
 	case GameCoreStates::RUNNING:
@@ -120,7 +120,7 @@ void Player::drawScore()
 
 bool Player::isReadyToPace()
 {
-  if ( playerSprite->getCurrentState() != GameCoreStates::JUMPING && 
+  if ( playerSprite->getCurrentState() != GameCoreStates::JUMPING &&
 	   playerSprite->getCurrentState() != GameCoreStates::DOUBLE_JUMP && 
 	   playerSprite->getCurrentState() != GameCoreStates::FALLING )
   {
@@ -176,6 +176,11 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
 		                     != inputs.states.end();
   bool findFastAttackWalkingInStates = find(inputs.states.begin(), inputs.states.end(), 
 	                                   GameCoreStates::FAST_ATTACK) != inputs.states.end();
+
+  if ( findWalkingInStates && findJumpingInStates )
+  {
+	int c = 4;
+  }
 
   InputMapping::Key checkKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
 

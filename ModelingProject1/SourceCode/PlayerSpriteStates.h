@@ -22,5 +22,6 @@ namespace GameCoreStates
     NO_CHANGE,
 	CHANGE,
 	RETURN_STILL,
+	UPDATE_SPEEDX,
   };
 }

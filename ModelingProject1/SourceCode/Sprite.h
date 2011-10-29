@@ -11,6 +11,7 @@
 #include "PlayerStateManager.h"
 
 #include "CollisionBox.h"
+#include "CollisionStructs.h"
 
 #include "Vector.h"
 
@@ -99,6 +100,7 @@ private:
 	GameCoreStates::PlayerStateManager* playerStateManager;
 	CollisionBox* spriteCollisionBox;
 	Collider* collisionHandler;
+	CollisionSystem::DirectionsMove directionsMove;
 	Vector2f position;
 	std::vector< Vector2f > speed;
 	std::vector< Vector2f > delayMovementSprite;
@@ -107,9 +109,8 @@ private:
 	std::vector< int > frameratePerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
 	GLfloat currentXSpeed, currentYSpeed;
+	CollisionSystem::CharacterMovement characterMovement;
 	int countX, countY;
-	bool playerMoveInX, playerMoveInY, playerMoveInXInCurrentFrame, playerMoveInYInCurrentFrame;
 	bool onG;
-	
 };
 

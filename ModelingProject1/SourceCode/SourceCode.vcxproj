@@ -140,6 +140,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionBox.h" />
+    <ClInclude Include="CollisionStructs.h" />
     <ClInclude Include="ComparatorFunctions.h" />
     <ClInclude Include="DoubleJumpState.h" />
     <ClInclude Include="Enemy.h" />

@@ -33,6 +33,7 @@ namespace GameCoreStates
 	 void pushState( GameCoreStates::PlayerState* playerState );
 	 void popState();
 	 void changeState( GameCoreStates::PlayerState* newState );
+	 void changePreviousState( GameCoreStates::SpriteState previousID );
 
 	 int getCurrentState() { return currentState.getCurrentID(); }
 	 int getPreviousState() { return previousState; }

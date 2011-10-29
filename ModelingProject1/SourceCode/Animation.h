@@ -30,6 +30,8 @@ public:
 	int getAnimationDirection() { return animationDirection; }
 	int changeAnimationDirection(int direction);
 
+	int returnAnimationDirectionAxisValue();
+
 private:
 	int currentFrame, incrementFrame;
 	int maxFrames, returnFrame;

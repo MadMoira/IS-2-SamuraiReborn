@@ -45,7 +45,7 @@ void SLevelOneJapan::init()
   std::vector < int > maxFrameVector;
   maxFrameVector.push_back( 1 );
   maxFrameVector.push_back( 8 );
-  maxFrameVector.push_back( 8 );
+  maxFrameVector.push_back( 4 );
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 10 );
