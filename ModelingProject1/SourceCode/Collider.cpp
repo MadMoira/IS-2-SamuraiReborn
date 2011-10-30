@@ -65,6 +65,7 @@ bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directio
 
 	int dir = 1;
 	int initialX  = 0;
+	int initial = 0;
 	if ( directionX == 1)
 	{
 	  dir = -1;
@@ -72,19 +73,22 @@ bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directio
 
     if ( dir == -1 )
 	{
-		if ( directionY == SpriteData::NO_DIRECTION )
-		{
+		/*if ( directionY == SpriteData::NO_DIRECTION )
+		{*/
 			initialX = (int)A.getX() - (int)A.getWidth()/2;
-		}
+			initial = initialX;
+		/*}
 		else
 		{
 			initialX = (int)A.getX();
-		}
+			initial = initialX;
+		}*/
 	  
 	}
 	else
 	{
 	  initialX = (int)A.getX();
+	  initial = initialX;
 	}
   for(int i = initialX;i <= initialX + (int)A.getWidth(); i += 32)
   {
@@ -108,6 +112,19 @@ bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directio
 
 	  if( foundTile.getHasCollision() )
 	  {
+
+		  if ( initial == initialX && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+		  {
+			  directionsMove.setCanMoveLeft(false);
+			  directionsMove.setCanMoveRight(true);
+		  }
+
+		  if ( initial+32 == initialX && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+		  {
+			  directionsMove.setCanMoveLeft(true);
+			  directionsMove.setCanMoveRight(false);
+
+		  }
 		  			  if ( y == (int)A.getY()/32 )
 			  {
 				  if ( directionY == SpriteData::UP )
@@ -117,12 +134,12 @@ bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directio
 				  }
 				  else
 				  {
-directionsMove.setCanMoveUp(true);
+                      directionsMove.setCanMoveUp(true);
 					  directionsMove.setCanMoveDown(false);
 				  }
 			  }
 
-					  if ( y == ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+					/*  if ( y == ( (int)A.getY() + (int)A.getHeight() ) / 32 )
 					  {
 
 						  				  if ( directionY == SpriteData::UP )
@@ -132,10 +149,11 @@ directionsMove.setCanMoveUp(true);
 				  }
 				  else
 				  {
+
                       directionsMove.setCanMoveUp(true);
 					  directionsMove.setCanMoveDown(false);
 				  }
-					  }
+					  }*/
 
 		  if ( directionX == SpriteData::RIGHT && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
 		  {
@@ -144,8 +162,21 @@ directionsMove.setCanMoveUp(true);
 		  }
 		  else if ( directionX == SpriteData::LEFT && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
 		  {
+			  						  				  if ( directionY == SpriteData::UP )
+				  {
+					   directionsMove.setCanMoveRight(true);
+			  directionsMove.setCanMoveLeft(false);
+				  }
+				  else if ( directionY == SpriteData::DOWN )
+				  {
+                      directionsMove.setCanMoveRight(true);
+			  directionsMove.setCanMoveLeft(false);
+				  }
+				  else
+				  {
 			  directionsMove.setCanMoveRight(true);
 			  directionsMove.setCanMoveLeft(false);
+				  }
 		  }
         return true;
       }
@@ -234,6 +265,10 @@ bool Collider::onTheGround(CollisionBox& A, int directionX, int directionY)
   {
 
     int x = (int)i/32;
+	if ( x == 9 && y == 17)
+	{
+	   int d = 4;
+	}
 		  if ( y > 720.0f/32 )
 		  {
 			return false;
