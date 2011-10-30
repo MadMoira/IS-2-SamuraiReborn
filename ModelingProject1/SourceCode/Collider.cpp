@@ -254,8 +254,9 @@ bool Collider::onTheGround(CollisionBox& A, int directionX, int directionY)
 	  initialX = (int)A.getX();
 	}
 
-	int posY = (int)A.getY() + (int)A.getHeight() ;
-	int y = ( posY  )/32;
+	float posY = A.getY() + A.getHeight();
+	int pe = (int)posY;
+	int y = ( pe  )/32;
 
 	if ( initialX < 0 )
 	{
