@@ -109,7 +109,7 @@ void Sprite::movePosXWithSpeed()
 				onG = collision;
 				canMove = !collisionTiles;
 
-								if ( collisionTiles && !onG && getCurrentState() == GameCoreStates::FALLING )
+				if ( !directionsMove.canMoveXRight /*collisionTiles*/ && !onG && getCurrentState() == GameCoreStates::FALLING )
 				{
 					GLfloat temp =  (spriteCollisionBox->getX() + spriteCollisionBox->getWidth())/32;
 			int parteEntera = (int)temp;
@@ -125,7 +125,7 @@ void Sprite::movePosXWithSpeed()
 				  return;
 				}
 
-								if ( collisionTiles && !onG && getCurrentState() != GameCoreStates::FALLING)
+								if ( !directionsMove.canMoveYUp /*collisionTiles*/ && !onG && getCurrentState() != GameCoreStates::FALLING)
 								{
 									changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
                                      std::list<InputMapping::Key>() );
@@ -133,7 +133,7 @@ void Sprite::movePosXWithSpeed()
 									return;
 								}
 
-				if ( collisionTiles && onG && getCurrentState() != GameCoreStates::STILL)
+								if ( !directionsMove.canMoveXRight/*collisionTiles*/ && onG && getCurrentState() != GameCoreStates::STILL)
 					{
 							GLfloat temp =  (spriteCollisionBox->getX()+spriteCollisionBox->getWidth())/32;
 							int parteEntera = (int)temp;
@@ -186,7 +186,7 @@ void Sprite::movePosXWithSpeed()
   
     else if ( position.x + getSpeedX() + width  > 0 )
     {
-		if ( /*!canMove*/ !directionsMove.canMoveXLeft )
+		if ( !directionsMove.canMoveXLeft )
 				{
 				   return;
 				}
@@ -207,7 +207,7 @@ void Sprite::movePosXWithSpeed()
 				onG = collision;
 				canMove = !collisionTiles;
 
-				if ( collisionTiles && !onG && getCurrentState() == GameCoreStates::FALLING )
+				if ( !directionsMove.canMoveXLeft/*collisionTiles*/ && !onG && getCurrentState() == GameCoreStates::FALLING )
 				{
 					changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                      std::list<InputMapping::Key>() );
@@ -215,7 +215,7 @@ void Sprite::movePosXWithSpeed()
                                      std::list<InputMapping::Key>() );
 				  return;
 				}
-								if ( /*collisionTiles*/ 
+								if (
 									!directionsMove.canMoveYUp && !onG && getCurrentState() != GameCoreStates::FALLING)
 								{
 									changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
@@ -223,7 +223,7 @@ void Sprite::movePosXWithSpeed()
 									setSpeedX(0.0f);
 									return;
 								}
-				if ( collisionTiles && getCurrentState() != GameCoreStates::STILL)
+								if ( !directionsMove.canMoveXLeft && getCurrentState() != GameCoreStates::STILL)
 		{
 			GLfloat temp =  (spriteCollisionBox->getX())/32;
 			int parteEntera = (int)temp;
@@ -252,11 +252,11 @@ void Sprite::movePosXWithSpeed()
 			changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                      std::list<InputMapping::Key>() );
 
-				characterMovement.playerMoveInY = false;
-	characterMovement.playerMoveInX = false;
+		   characterMovement.playerMoveInY = false;
+	       characterMovement.playerMoveInX = false;
 		   return;
 		}
-		if ( !collision &&
+		if ( !collision && !directionsMove.canMoveYUp &&
 					(getCurrentState() != GameCoreStates::JUMPING && 
 					getCurrentState() != GameCoreStates::DOUBLE_JUMP && getCurrentState() != GameCoreStates::FALLING &&
 					 !(getPreviousState() == GameCoreStates::JUMPING && getCurrentState() == GameCoreStates::FAST_ATTACK) ) )
@@ -279,6 +279,12 @@ void Sprite::movePosYWithSpeed()
   countY++;
   if ( countY > delayMovementSprite.at(getCurrentState()).y )
   {
+     if ( getPreviousState() == GameCoreStates::FALLING
+		  && getCurrentState() == GameCoreStates::STILL)
+	  {
+		  int c = 5;
+	  }
+
     countY = 0;
     if( position.y + getSpeedY() + height <= 1000.0f )
     {
@@ -315,7 +321,7 @@ void Sprite::movePosYWithSpeed()
 													  ydirection, directionsMove);
      onG = collision;
 
-										if ( collisionTiles && !onG && getCurrentState() != GameCoreStates::FALLING)
+	 if ( !directionsMove.canMoveYUp && !onG && getCurrentState() != GameCoreStates::FALLING)
 								{
 									changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
                                      std::list<InputMapping::Key>() );

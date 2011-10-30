@@ -151,7 +151,7 @@ bool Player::isFalling()
 	return false;
   }
 
-  if ( playerSprite->getSpeedY() >= 4)
+  if ( playerSprite->getSpeedY() >= 0)
   {
     return true;
   }
