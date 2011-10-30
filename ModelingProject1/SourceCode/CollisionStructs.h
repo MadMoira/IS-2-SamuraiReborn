@@ -9,6 +9,11 @@ namespace CollisionSystem
     bool canMoveXLeft;
     bool canMoveYUp;
     bool canMoveYDown;
+
+	void setCanMoveRight(bool moveXR);
+	void setCanMoveLeft(bool moveXL);
+	void setCanMoveUp(bool moveUp);
+	void setCanMoveDown(bool moveDown);
   };
 
   struct CharacterMovement

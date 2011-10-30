@@ -19,15 +19,16 @@ class Collider
    void cleanUpResources();
    
    bool checkCollision(CollisionBox& A, CollisionBox& B , float direction);
-   bool checkTileCollision(CollisionBox& A, float directionX, int mov = 0);
+   bool checkTileCollision(CollisionBox& A, int directionX,  int directionY, 
+	                       CollisionSystem::DirectionsMove& directionsMove);
    bool checkEnemiesCollision( CollisionBox& A, float directionX);
 
    //boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
    //boost::ptr_vector< Enemy > checkAttackCollision(CollisionBox& A, float directionX);
 
-   bool onTheGround(CollisionBox& A, float directionX);
+   bool onTheGround(CollisionBox& A, int directionX, int directionY);
 
-   void setLayerMap(std::vector< std::vector < Tile > > tilemap) { layerMap = tilemap; val = 0; }
+   void setLayerMap(std::vector< std::vector < Tile > > tilemap) { layerMap = tilemap; }
 
    void setCollisionTilesList(std::vector< int > tilesList) { collisionTilesList = tilesList; }
 
@@ -37,7 +38,6 @@ class Collider
   private:
    static bool instanceFlag;
    static Collider* collider;
-   GLfloat val;
    std::vector< std::vector < Tile > > layerMap;
    std::vector< std::vector < Tile > > layerMapGround;
    std::vector< int > collisionTilesList;

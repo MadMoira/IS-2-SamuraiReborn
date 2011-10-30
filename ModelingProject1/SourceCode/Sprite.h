@@ -94,7 +94,7 @@ class Sprite
 
 	void drawTexture();
 	bool canMove;
-	bool pCanMove;
+
 private:
 	IDSprites ID;
 	GLuint texture;
@@ -103,6 +103,7 @@ private:
 	CollisionBox* spriteCollisionBox;
 	Collider* collisionHandler;
 	CollisionSystem::DirectionsMove directionsMove;
+	CollisionSystem::CharacterMovement characterMovement;
 	Vector2f position;
 	std::vector< Vector2f > speed;
 	std::vector< Vector2f > delayMovementSprite;
@@ -111,7 +112,6 @@ private:
 	std::vector< int > frameratePerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
 	GLfloat currentXSpeed, currentYSpeed;
-	CollisionSystem::CharacterMovement characterMovement;
 	int countX, countY;
 	bool onG;
 };

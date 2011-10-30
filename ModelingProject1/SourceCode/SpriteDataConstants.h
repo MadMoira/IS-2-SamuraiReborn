@@ -6,5 +6,8 @@ namespace SpriteData
   {
     RIGHT,
     LEFT,
+	UP,
+	DOWN,
+	NO_DIRECTION,
   };
 }

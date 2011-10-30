@@ -50,9 +50,13 @@ void Player::returnToPreviousState()
 
 bool Player::isOnGround()
 {
+		  	  int ydirection = SpriteData::UP;
+	  if ( playerSprite->getSpeedY() > 0 )
+	  {
+		  ydirection = SpriteData::DOWN;
+	  }
   if ( playerSprite->getCollisionHandler()->onTheGround(*playerSprite->getCollisionBox(), 
-	  playerSprite->getHandlerAnimation()->getAnimationDirection()) 
-	  )
+	  playerSprite->getHandlerAnimation()->getAnimationDirection(), ydirection) )
   {
     return true;
   }
@@ -149,10 +153,6 @@ bool Player::isFalling()
 
   if ( playerSprite->getSpeedY() >= 4)
   {
-	  /*if ( playerSprite->getSpeedY() >= 36 )
-	  {
-		return false;
-	  }*/
     return true;
   }
 
@@ -176,11 +176,6 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
 		                     != inputs.states.end();
   bool findFastAttackWalkingInStates = find(inputs.states.begin(), inputs.states.end(), 
 	                                   GameCoreStates::FAST_ATTACK) != inputs.states.end();
-
-  if ( findWalkingInStates && findJumpingInStates )
-  {
-	int c = 4;
-  }
 
   InputMapping::Key checkKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
 

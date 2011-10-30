@@ -55,8 +55,14 @@ bool Collider::checkCollision(CollisionBox& A, CollisionBox& B, float directionX
   return false;
 }
 
-bool Collider::checkTileCollision(CollisionBox& A, float directionX, int mov)
+bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directionY,
+	                              CollisionSystem::DirectionsMove& directionsMove)
 {
+  directionsMove.setCanMoveRight(true);
+  directionsMove.setCanMoveLeft(true);
+  directionsMove.setCanMoveUp(true);
+  directionsMove.setCanMoveDown(true);
+
 	int dir = 1;
 	int initialX  = 0;
 	if ( directionX == 1)
@@ -64,9 +70,9 @@ bool Collider::checkTileCollision(CollisionBox& A, float directionX, int mov)
 	  dir = -1;
 	}
 
-		if ( dir == -1 )
+    if ( dir == -1 )
 	{
-		if ( mov == 0 )
+		if ( directionY == SpriteData::NO_DIRECTION )
 		{
 			initialX = (int)A.getX() - (int)A.getWidth()/2;
 		}
@@ -89,12 +95,8 @@ bool Collider::checkTileCollision(CollisionBox& A, float directionX, int mov)
 
 	  		  if ( y > 720.0f/32 )
 		  {
-			y = 22;
+			return false;
 		  }
-	  if ( x == 130 && y == 18 )
-	  {
-		int d =4;
-	  }
       Tile foundTile = layerMap[y][x];
 	  if ( foundTile.getID() == 0 )
 	  {
@@ -102,12 +104,56 @@ bool Collider::checkTileCollision(CollisionBox& A, float directionX, int mov)
 	  }
 
 
+
+
 	  if( foundTile.getHasCollision() )
 	  {
+		  			  if ( y == (int)A.getY()/32 )
+			  {
+				  if ( directionY == SpriteData::UP )
+				  {
+					  directionsMove.setCanMoveUp(false);
+					  directionsMove.setCanMoveDown(true);
+				  }
+				  else
+				  {
+directionsMove.setCanMoveUp(true);
+					  directionsMove.setCanMoveDown(false);
+				  }
+			  }
+
+					  if ( y == ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+					  {
+
+						  				  if ( directionY == SpriteData::UP )
+				  {
+					  directionsMove.setCanMoveUp(false);
+					  directionsMove.setCanMoveDown(true);
+				  }
+				  else
+				  {
+                      directionsMove.setCanMoveUp(true);
+					  directionsMove.setCanMoveDown(false);
+				  }
+					  }
+
+		  if ( directionX == SpriteData::RIGHT && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+		  {
+			  directionsMove.setCanMoveRight(false);
+			  directionsMove.setCanMoveLeft(true);
+		  }
+		  else if ( directionX == SpriteData::LEFT && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+		  {
+			  directionsMove.setCanMoveRight(true);
+			  directionsMove.setCanMoveLeft(false);
+		  }
         return true;
       }
     }
   }
+
+  directionsMove.setCanMoveRight(true);
+  directionsMove.setCanMoveLeft(true);
 
   return false;
 }
@@ -153,7 +199,7 @@ boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float
   return playersCollided;
 }*/
 
-bool Collider::onTheGround(CollisionBox& A, float directionX)
+bool Collider::onTheGround(CollisionBox& A, int directionX, int directionY)
 {
   	int dir = 1;
 	int initialX  = 0;
@@ -163,7 +209,14 @@ bool Collider::onTheGround(CollisionBox& A, float directionX)
 	}
 	if ( dir == -1 )
 	{
-	  initialX = (int)A.getX() - (int)A.getWidth()/2;
+        if ( directionY == SpriteData::NO_DIRECTION )
+		{
+			initialX = (int)A.getX() - (int)A.getWidth()/2;
+		}
+		else
+		{
+			initialX = (int)A.getX();
+		}
 	}
 	else
 	{
@@ -173,12 +226,6 @@ bool Collider::onTheGround(CollisionBox& A, float directionX)
 	int posY = (int)A.getY() + (int)A.getHeight() ;
 	int y = ( posY  )/32;
 
-	/*if ( val + 1 != y && val != 0)
-	{
-
-		int d = 4;
-	}
-	val = y;*/
 	if ( initialX < 0 )
 	{
 	  initialX = 0;
@@ -190,10 +237,6 @@ bool Collider::onTheGround(CollisionBox& A, float directionX)
 		  if ( y > 720.0f/32 )
 		  {
 			return false;
-		  }
-		  if ( x == 130 && y == 17 )
-		  {
-			int d = 4;
 		  }
     Tile groundTile = layerMap[y][x];
 
