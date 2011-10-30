@@ -51,6 +51,13 @@ void PandaP1::run()
 
 void PandaP1::jump()
 {
+	if ( playerSprite->getPreviousState() == GameCoreStates::STILL &&
+		playerSprite->getCurrentState() == GameCoreStates::JUMPING 
+		&& playerSprite->getHandlerAnimation()->getCurrentFrame() == 1)
+	{
+		int d = 4;
+	}
+
   playerSprite->setPlayerMoveInY(true);
   playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
   playerSprite->movePosXWithSpeed();
