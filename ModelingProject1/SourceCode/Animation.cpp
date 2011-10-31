@@ -1,51 +1,60 @@
 
 #include "Animation.h"
 
-Animation::Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, int framerate,
-	                 SpriteData::AnimationDirection direction)
+Animation::Animation(int actualFrame, int currentState, SpriteData::AnimationDirection direction, 
+	                 std::vector< int > maxFrames, std::vector< int > returnFrames, std::vector< int > framerates)
 {
   currentFrame = actualFrame;
-  maxFrames = maxFramesFromCurrentState;
+  this->currentState = currentState;
   animationDirection = direction;
   incrementFrame = 1;
-  frameRate = framerate;
   oldTime = SDL_GetTicks();
-  this->returnFrame = returnFrame;
   animationAlreadyEnd = false;
+  maxFramesPerAnimation = maxFrames;
+  returnFramesPerAnimation = returnFrames;
+  frameratePerAnimation = framerates;
 }
 
 Animation::~Animation(void)
 {
+  maxFramesPerAnimation.clear();
+  returnFramesPerAnimation.clear();
+  frameratePerAnimation.clear();
 }
 
 int Animation::animate() 
 {
-  if( oldTime + frameRate > SDL_GetTicks() ) 
+  if( oldTime + frameratePerAnimation.at(currentState) > SDL_GetTicks() ) 
   {
     return -1;
   }
  
-  oldTime += frameRate;
+  oldTime += frameratePerAnimation.at(currentState);
 
   animationAlreadyEnd = false;
-  if ( maxFrames > 0 )
+  if ( maxFramesPerAnimation.at(currentState) > 0 )
   {
     currentFrame += incrementFrame;
-    if( currentFrame > maxFrames )
+    if( currentFrame > maxFramesPerAnimation.at(currentState) )
     {
       animationAlreadyEnd = true;
-	  currentFrame = returnFrame;
+	  currentFrame = returnFramesPerAnimation.at(currentState);
 	}
   }
 
   return currentFrame;
 }
 
+void Animation::setCurrentStateForAnimation(int state)
+{
+  currentState = state;
+}
+
 void Animation::setCurrentFrame(int frame)
 {
-  if( frame < 0 || frame > maxFrames) 
+  if( frame < 0 || frame > maxFramesPerAnimation.at(currentState)) 
   {
-    currentFrame = returnFrame;
+    currentFrame = returnFramesPerAnimation.at(currentState);
     return;
   }
  
