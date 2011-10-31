@@ -208,11 +208,15 @@
     <None Include="CollisionListLevelZeroSectionOne.csv" />
     <None Include="ContextList.txt" />
     <None Include="datafiles\imagesets\CreditsButton.imageset" />
+    <None Include="datafiles\imagesets\CreditsOption.png" />
+    <None Include="datafiles\imagesets\ExitOption.png" />
     <None Include="datafiles\imagesets\HistoryModeButton.imageset" />
+    <None Include="datafiles\imagesets\HistoryModeOption.png" />
     <None Include="datafiles\imagesets\MainMenuBackground.imageset" />
     <None Include="datafiles\imagesets\MenuCursor.imageset" />
     <None Include="datafiles\imagesets\QuitButton.imageset" />
     <None Include="datafiles\imagesets\TutorialButton.imageset" />
+    <None Include="datafiles\imagesets\TutorialOption.png" />
     <None Include="datafiles\layouts\MainMenu.layout" />
     <None Include="Enemy - SpriteSheet.png" />
     <None Include="healthBar.png" />
@@ -221,7 +225,6 @@
     <None Include="MainContext.txt" />
     <None Include="Meerkat - SpriteSheet.png" />
     <None Include="MenuBackground.png" />
-    <None Include="MenuButtons.png" />
     <None Include="MenuCursor.png" />
     <None Include="MenuHighlighter.png" />
     <None Include="Mountains0.png" />
