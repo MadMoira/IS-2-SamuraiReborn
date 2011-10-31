@@ -146,7 +146,7 @@ bool Player::isReadyToDoubleJump()
 
 bool Player::isFalling()
 {
-  if ( isOnGround() )
+  if ( playerSprite->getIsOnGround() )
   {
 	return false;
   }

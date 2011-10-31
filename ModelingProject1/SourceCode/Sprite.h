@@ -37,13 +37,13 @@ class Sprite
    GLfloat getPosY() { return position.y; }
    void movePosYWithSpeed();
 
+   bool getPlayerMoveInX() { return characterMovement.playerMoveInX; }
+   void setPlayerMoveInX(bool moveX) { characterMovement.setMoveX(moveX); }
+
+   bool getPlayerMoveInY() { return characterMovement.playerMoveInY; }
+   void setPlayerMoveInY(bool moveY) { characterMovement.setMoveY(moveY); }
+
    CollisionSystem::CharacterMovement getCharacterMovement() { return characterMovement; }
-
-	bool getPlayerMoveInX() { return characterMovement.playerMoveInX; }
-	void setPlayerMoveInX(bool moveX) { characterMovement.setMoveX(moveX); }
-
-	bool getPlayerMoveInY() { return characterMovement.playerMoveInY; }
-	void setPlayerMoveInY(bool moveY) { characterMovement.setMoveY(moveY); }
 
 	GLfloat getSpeedX() { return currentXSpeed; }
 	GLfloat getStateXSpeed() { return speed.at(getCurrentState()).x; }
@@ -95,6 +95,8 @@ class Sprite
 	void drawTexture();
 	bool canMove;
 
+	bool getIsOnGround() { return onG; }
+
 private:
 	IDSprites ID;
 	GLuint texture;
@@ -104,12 +106,10 @@ private:
 	Collider* collisionHandler;
 	CollisionSystem::DirectionsMove directionsMove;
 	CollisionSystem::CharacterMovement characterMovement;
+	
 	Vector2f position;
 	std::vector< Vector2f > speed;
 	std::vector< Vector2f > delayMovementSprite;
-	std::vector< int > maxFramesPerAnimation;
-	std::vector< int > returnFramesPerAnimation;
-	std::vector< int > frameratePerAnimation;
 	GLfloat width, height, widthTexture, heightTexture;
 	GLfloat currentXSpeed, currentYSpeed;
 	int countX, countY;

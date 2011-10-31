@@ -134,26 +134,10 @@ bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directio
 				  }
 				  else
 				  {
-                      directionsMove.setCanMoveUp(true);
-					  directionsMove.setCanMoveDown(false);
-				  }
-			  }
-
-					/*  if ( y == ( (int)A.getY() + (int)A.getHeight() ) / 32 )
-					  {
-
-						  				  if ( directionY == SpriteData::UP )
-				  {
-					  directionsMove.setCanMoveUp(false);
+                      directionsMove.setCanMoveUp(false);
 					  directionsMove.setCanMoveDown(true);
 				  }
-				  else
-				  {
-
-                      directionsMove.setCanMoveUp(true);
-					  directionsMove.setCanMoveDown(false);
-				  }
-					  }*/
+			  }
 
 		  if ( directionX == SpriteData::RIGHT && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
 		  {
@@ -266,10 +250,6 @@ bool Collider::onTheGround(CollisionBox& A, int directionX, int directionY)
   {
 
     int x = (int)i/32;
-	if ( x == 9 && y == 17)
-	{
-	   int d = 4;
-	}
 		  if ( y > 720.0f/32 )
 		  {
 			return false;

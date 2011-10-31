@@ -112,8 +112,8 @@ void SMainMenu::cleanUp()
     delete iter->button;
   }
 
-  CEGUI::ImagesetManager::getSingleton().destroyAll();
   CEGUI::SchemeManager::getSingleton().destroyAll();
+  CEGUI::ImagesetManager::getSingleton().destroyAll();
 }
 
 CEGUI::WindowManager& SMainMenu::initializeCEGUI( SDL_Surface& surface )

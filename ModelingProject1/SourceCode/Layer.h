@@ -15,6 +15,7 @@ public:
 	~Layer(void);
 
 	void drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen);
+
 	
 	GLuint getTexture() { return texture; }
 	void setLayerTexture(GLuint layerTexture) { texture = layerTexture; }

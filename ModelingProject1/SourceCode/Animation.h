@@ -1,13 +1,16 @@
 #pragma once
 
 #include "SDL/SDL.h"
+
+#include <vector>
+
 #include "SpriteDataConstants.h"
 
 class Animation
 {
 public:
-	Animation(int actualFrame, int maxFramesFromCurrentState, int returnFrame, int framerate,
-		      SpriteData::AnimationDirection direction);
+	Animation(int actualFrame, int currentState, SpriteData::AnimationDirection direction, std::vector< int > maxFrames,
+		      std::vector< int > returnFrames, std::vector< int > framerates);
 	~Animation(void);
  
     int animate();
@@ -17,13 +20,9 @@ public:
  
 	int getCurrentFrame() { return currentFrame; }
     void setCurrentFrame(int frame);
-	void restartCurrentFrame() { currentFrame = 1; }
+	void restartCurrentFrame() { currentFrame = returnFramesPerAnimation.at(currentState); }
 
-	void setMaxFrame(int max) { maxFrames = max; }
-
-	void setReturnFrame(int returnFrame) { this->returnFrame = returnFrame; }
-
-	void setFrameRate(int frame) { frameRate = frame; }
+	void setCurrentStateForAnimation(int state);
 
 	void restartOldTime() { oldTime = SDL_GetTicks(); }
 
@@ -34,9 +33,12 @@ public:
 
 private:
 	int currentFrame, incrementFrame;
-	int maxFrames, returnFrame;
-	Uint32 frameRate, oldTime;
+	int currentState;
+	Uint32 oldTime;
 	int animationDirection;
 	bool animationAlreadyEnd;
+    std::vector< int > maxFramesPerAnimation;
+	std::vector< int > returnFramesPerAnimation;
+	std::vector< int > frameratePerAnimation;
 };
 
