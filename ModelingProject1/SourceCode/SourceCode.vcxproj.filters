@@ -580,9 +580,6 @@
     <None Include="MenuBackground.png">
       <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
     </None>
-    <None Include="MenuButtons.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
     <None Include="MenuCursor.png">
       <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
     </None>
@@ -597,6 +594,18 @@
     </None>
     <None Include="box.png">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="datafiles\imagesets\CreditsOption.png">
+      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    </None>
+    <None Include="datafiles\imagesets\ExitOption.png">
+      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    </None>
+    <None Include="datafiles\imagesets\HistoryModeOption.png">
+      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    </None>
+    <None Include="datafiles\imagesets\TutorialOption.png">
+      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
     </None>
   </ItemGroup>
 </Project>
