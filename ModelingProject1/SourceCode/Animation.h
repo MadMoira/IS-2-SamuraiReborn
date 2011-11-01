@@ -8,37 +8,39 @@
 
 class Animation
 {
-public:
-	Animation(int actualFrame, int currentState, SpriteData::AnimationDirection direction, std::vector< int > maxFrames,
+  public:
+   Animation(int actualFrame, int currentState, SpriteData::AnimationDirection direction, std::vector< int > maxFrames,
 		      std::vector< int > returnFrames, std::vector< int > framerates);
-	~Animation(void);
+   ~Animation(void);
  
-    int animate();
+   int animate();
 
-	bool getAnimationAlreadyEnd() { return animationAlreadyEnd; }
-	void restartAnimationBegin() { animationAlreadyEnd = false; }
+   bool getAnimationAlreadyEnd() { return animationAlreadyEnd; }
+   void restartAnimationBegin() { animationAlreadyEnd = false; }
  
-	int getCurrentFrame() { return currentFrame; }
-    void setCurrentFrame(int frame);
-	void restartCurrentFrame() { currentFrame = returnFramesPerAnimation.at(currentState); }
+   int getCurrentFrame() { return currentFrame; }
+   void setCurrentFrame(int frame);
+   void restartCurrentFrame() { currentFrame = returnFramesPerAnimation.at(currentState); }
 
-	void setCurrentStateForAnimation(int state);
+   void setCurrentStateForAnimation(int state);
 
-	void restartOldTime() { oldTime = SDL_GetTicks(); }
+   void restartOldTime() { oldTime = SDL_GetTicks(); }
 
-	int getAnimationDirection() { return animationDirection; }
-	int changeAnimationDirection(int direction);
+   int getAnimationDirection() { return animationDirectionX; }
+   int changeAnimationDirection(int direction);
+   int returnAnimationDirectionAxisValue();
 
-	int returnAnimationDirectionAxisValue();
+   int getDirectionY() { return animationDirectionY; }
+   void changeDirectionY(float speed);
 
-private:
-	int currentFrame, incrementFrame;
-	int currentState;
-	Uint32 oldTime;
-	int animationDirection;
-	bool animationAlreadyEnd;
-    std::vector< int > maxFramesPerAnimation;
-	std::vector< int > returnFramesPerAnimation;
-	std::vector< int > frameratePerAnimation;
+  private:
+   int currentFrame, incrementFrame;
+   int currentState;
+   Uint32 oldTime;
+   int animationDirectionX, animationDirectionY;
+   bool animationAlreadyEnd;
+   std::vector< int > maxFramesPerAnimation;
+   std::vector< int > returnFramesPerAnimation;
+   std::vector< int > frameratePerAnimation;
 };
 

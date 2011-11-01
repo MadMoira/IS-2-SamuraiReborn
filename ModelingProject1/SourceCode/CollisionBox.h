@@ -1,29 +1,33 @@
 #pragma once
 
 #include "SDL/SDL_image.h"
+#include "Vector.h"
 
-class CollisionBox
+namespace CollisionSystem
 {
-  public:
-   CollisionBox();
-   CollisionBox(float x, float y ,float w, float h);
-   ~CollisionBox(void);
+  class CollisionBox
+  {
+    public:
+     CollisionBox();
+     CollisionBox(float x, float y ,float w, float h, Vector2f offset);
+     ~CollisionBox(void);
 
-   float getX() { return box.x; }
-   void setX(float x, int i) { 
-	   if ( i == 0 ) {
-		   box.x = (Sint16)x + 42; }
-	   else
-   {
-	   box.x = x; }
-   }
+     float getX() { return box.x; }
+	 float getOffsetXPosition(int direction);
 
-   float getY() { return box.y; }
-   void setY(float y) { box.y = (Sint16)y + 45; }
+     void setX(float x, int direction);
 
-   float getHeight() { return box.h; }
-   float getWidth() { return box.w; }
+     float getY() { return box.y; }
+     void setY(float y);
 
-  private:
-   SDL_Rect box;
-};
+     float getHeight() { return box.h; }
+     float getWidth() { return box.w; }
+
+	 Vector2f getOffset() { return offsetBox; }
+	 GLfloat getOffsetXBasedOnDirection(int direction);
+
+    private:
+     SDL_Rect box;
+     Vector2f offsetBox;
+  };
+}

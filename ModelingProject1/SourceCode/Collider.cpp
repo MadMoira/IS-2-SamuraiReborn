@@ -1,6 +1,9 @@
-#include "Collider.h"
 
 #include <algorithm>
+
+#include "Collider.h"
+
+#include "PlayerSpriteStates.h"
 
 Collider::Collider()
 {
@@ -39,7 +42,7 @@ void Collider::cleanUpResources()
   collisionTilesList.clear();
 }
 
-bool Collider::checkCollision(CollisionBox& A, CollisionBox& B, float directionX)
+bool Collider::checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B, float directionX)
 {
   if( ( ( ((A.getY() + A.getHeight()) > B.getY()) && 
 		( (A.getX() + A.getWidth()) > (B.getX()) ) && 
@@ -55,7 +58,7 @@ bool Collider::checkCollision(CollisionBox& A, CollisionBox& B, float directionX
   return false;
 }
 
-bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directionY,
+void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directionX,  int directionY,
 	                              CollisionSystem::DirectionsMove& directionsMove)
 {
   directionsMove.setCanMoveRight(true);
@@ -73,17 +76,8 @@ bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directio
 
     if ( dir == -1 )
 	{
-		/*if ( directionY == SpriteData::NO_DIRECTION )
-		{*/
 			initialX = (int)A.getX() - (int)A.getWidth()/2;
 			initial = initialX;
-		/*}
-		else
-		{
-			initialX = (int)A.getX();
-			initial = initialX;
-		}*/
-	  
 	}
 	else
 	{
@@ -99,7 +93,7 @@ bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directio
 
 	  		  if ( y > 720.0f/32 )
 		  {
-			return false;
+			return;
 		  }
       Tile foundTile = layerMap[y][x];
 	  if ( foundTile.getID() == 0 )
@@ -162,18 +156,105 @@ bool Collider::checkTileCollision(CollisionBox& A, int directionX,  int directio
 			  directionsMove.setCanMoveLeft(false);
 				  }
 		  }
-        return true;
+        return;
       }
     }
   }
 
   directionsMove.setCanMoveRight(true);
   directionsMove.setCanMoveLeft(true);
+}
+
+bool Collider::checkStateCollisionPlayer(Sprite& playerSprite)
+{
+  if ( !playerSprite.getDirectionsMove().canMoveYUp && !playerSprite.getIsOnGround() && 
+        playerSprite.getCurrentState() != GameCoreStates::FALLING )
+  {
+    playerSprite.changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
+                                         std::list<InputMapping::Key>() );
+    playerSprite.setSpeedX(0.0f);
+	return true;
+  }
+
+  if ( playerSprite.getIsOnGround() && playerSprite.getCurrentState() == GameCoreStates::FALLING )
+  {
+    GLfloat offsetPosition = recalculateSpriteBoxPosition( playerSprite.getCollisionBox()->getY(), 
+		                                                   playerSprite.getCollisionBox()->getHeight() );
+	playerSprite.setPositionY(offsetPosition);
+    playerSprite.getCollisionBox()->setY( playerSprite.getCollisionBox()->getY() - playerSprite.getCollisionBox()->getOffset().y - 
+		                                  offsetPosition );
+
+    playerSprite.changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
+                                         std::list<InputMapping::Key>() );
+
+	playerSprite.setPlayerMoveInX(false);
+	playerSprite.setPlayerMoveInY(false);
+    return true;
+  }
+
+  if ( !playerSprite.getIsOnGround() && !playerSprite.isPlayerOnTheAir() )
+  {
+    playerSprite.changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
+                                         std::list<InputMapping::Key>() );
+    return true;
+  }
 
   return false;
 }
 
-bool Collider::checkEnemiesCollision(CollisionBox& A, float directionX)
+bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
+{
+  checkStateCollisionPlayer(playerSprite);
+
+  if ( !playerSprite.getPlayerMoveBasedInDirection() && !playerSprite.getIsOnGround() && 
+	    playerSprite.getCurrentState() == GameCoreStates::FALLING )
+  {
+    int animationDirection = playerSprite.getHandlerAnimation()->getAnimationDirection();
+    GLfloat offsetPosition = recalculateSpriteBoxPosition(playerSprite.getCollisionBox()->getX(),
+		                                                  playerSprite.getCollisionBox()->getOffsetXPosition(animationDirection) );
+	playerSprite.setPositionX(offsetPosition);
+	playerSprite.getCollisionBox()->setX( playerSprite.getCollisionBox()->getX() - 
+		                                  playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection) - 
+		                                  offsetPosition, animationDirection );
+							
+	playerSprite.changePreviousPlayerState(GameCoreStates::STILL);
+    playerSprite.changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
+                                         std::list<InputMapping::Key>() );
+	return true;
+  }
+
+  if ( !playerSprite.getPlayerMoveBasedInDirection() && playerSprite.getIsOnGround() && 
+	     playerSprite.getCurrentState() != GameCoreStates::STILL)
+  {
+    int animationDirection = playerSprite.getHandlerAnimation()->getAnimationDirection();
+    GLfloat offsetPosition = recalculateSpriteBoxPosition(playerSprite.getCollisionBox()->getX(),
+		                                                  playerSprite.getCollisionBox()->getOffsetXPosition(animationDirection) );
+
+	playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1) * offsetPosition);
+    playerSprite.getCollisionBox()->setX( playerSprite.getCollisionBox()->getX() - 
+		                                  playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection) - 
+                                          offsetPosition, animationDirection );
+    						
+    playerSprite.changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
+                                         std::list<InputMapping::Key>() );
+	playerSprite.setPlayerMoveInX(false);
+	playerSprite.setPlayerMoveInY(false);
+    return true;
+  }
+
+  return false;
+}
+
+GLfloat Collider::recalculateSpriteBoxPosition(float initialPosition, float offsetPosition)
+{
+  GLfloat startingPosition = (initialPosition + offsetPosition)/32;
+  int integerPart = (int)startingPosition;
+  GLfloat positionOffsetBox = ( (startingPosition - integerPart)*32 );
+  
+  return positionOffsetBox;
+}
+
+bool Collider::checkEnemiesCollision(CollisionSystem::CollisionBox& A, float directionX)
 {
  /* for(int i = 0; i == enemies->size(); i++)
   {
@@ -214,52 +295,43 @@ boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float
   return playersCollided;
 }*/
 
-bool Collider::onTheGround(CollisionBox& A, int directionX, int directionY)
+bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY)
 {
-  	int dir = 1;
-	int initialX  = 0;
-		if ( directionX == 1)
-	{
-	  dir = -1;
-	}
-	if ( dir == -1 )
-	{
-        if ( directionY == SpriteData::NO_DIRECTION )
-		{
-			initialX = (int)A.getX() - (int)A.getWidth()/2;
-		}
-		else
-		{
-			initialX = (int)A.getX();
-		}
-	}
-	else
-	{
-	  initialX = (int)A.getX();
-	}
-
-	float posY = A.getY() + A.getHeight();
-	int pe = (int)posY;
-	int y = ( pe  )/32;
-
-	if ( initialX < 0 )
-	{
-	  initialX = 0;
-	}
-  for(int i = initialX;i <= initialX + (int)A.getWidth(); i += 32)
+  int directionPlayer = SpriteData::RIGHT;
+  int initialX  = 0;
+  
+  if ( directionX == SpriteData::LEFT)
   {
+    directionPlayer = -1;
+    if ( directionY == SpriteData::NO_DIRECTION )
+    {
+      initialX = (int)A.getX() - (int)A.getWidth()/2;
+    }
+  }
 
+  initialX = (int)A.getX();
+  int positionY = ( (int)A.getY() + (int)A.getHeight() )/32;
+
+  if ( initialX < 0 )
+  {
+    initialX = 0;
+  }
+
+  for(int i = initialX; i <= initialX + (int)A.getWidth(); i += 32)
+  {
     int x = (int)i/32;
-		  if ( y > 720.0f/32 )
-		  {
-			return false;
-		  }
-    Tile groundTile = layerMap[y][x];
+    if ( positionY > 720.0f/32 )
+    {
+      return false;
+    }
 
-	if( groundTile.getHasCollision() == false)
+    Tile groundTile = layerMap[positionY][x];
+
+	if( !groundTile.getHasCollision())
 	{
       return false;
 	}
-  }	
+  }
+
   return true;
 }

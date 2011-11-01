@@ -33,9 +33,14 @@ class Sprite
    ~Sprite(void);
 
    GLfloat getPosX() { return position.x; }
+   void setPositionX(GLfloat x) { position.x -= x; }
    void movePosXWithSpeed();
+
    GLfloat getPosY() { return position.y; }
+   void setPositionY(GLfloat y) { position.y -= y; }
    void movePosYWithSpeed();
+
+   bool getPlayerMoveBasedInDirection();
 
    bool getPlayerMoveInX() { return characterMovement.playerMoveInX; }
    void setPlayerMoveInX(bool moveX) { characterMovement.setMoveX(moveX); }
@@ -45,74 +50,73 @@ class Sprite
 
    CollisionSystem::CharacterMovement getCharacterMovement() { return characterMovement; }
 
-	GLfloat getSpeedX() { return currentXSpeed; }
-	GLfloat getStateXSpeed() { return speed.at(getCurrentState()).x; }
-	GLfloat getPreviousStateXSpeed() { return speed.at(getPreviousState()).x; }
+   CollisionSystem::DirectionsMove getDirectionsMove() { return directionsMove; }
 
-	void setSpeedX(GLfloat speedX);
-	void setConstantSpeedX(int constant);
+   GLfloat getSpeedX() { return currentXSpeed; }
+   GLfloat getStateXSpeed() { return speed.at(getCurrentState()).x; }
+   GLfloat getPreviousStateXSpeed() { return speed.at(getPreviousState()).x; }
 
-	void restartCountX() { countX = 0; }
+   void setSpeedX(GLfloat speedX);
+   void setConstantSpeedX(int constant);
 
-	GLfloat getSpeedY() { return currentYSpeed; }
-	void setSpeedY(GLfloat speedY);
+   void restartCountX() { countX = 0; }
 
-	GLuint getTexture() { return texture; }
+   GLfloat getSpeedY() { return currentYSpeed; }
+   void setSpeedY(GLfloat speedY);
 
-	GLfloat getWidthTexture(){ return widthTexture;}
+   GLuint getTexture() { return texture; }
 
-	GLfloat getWidth() { return width; }
+   GLfloat getWidthTexture(){ return widthTexture;}
+   GLfloat getWidth() { return width; }
+   GLfloat getHeight() { return height; }
 
-	GLfloat getHeight() { return height; }
+   Animation *getHandlerAnimation() { return handlerAnimation; }
+   void changeCurrentFrame(int frame);
 
-	Animation *getHandlerAnimation() { return handlerAnimation; }
-	void changeCurrentFrame(int frame);
+   int getCurrentState() { return playerStateManager->getCurrentState(); }
 
-	int getCurrentState() { return playerStateManager->getCurrentState(); }
-
-	void changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
+   void changePreviousPlayerState(int stateID);
+   void changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
 		                         std::list<InputMapping::Key> keys);
 
-	void changeStateEnemySprite(GameCoreStates::PlayerState* newState);
+   void changeStateEnemySprite(GameCoreStates::PlayerState* newState);
+   
+   int getPreviousState() { return playerStateManager->getPreviousState(); }
 
-	int getPreviousState() { return playerStateManager->getPreviousState(); }
+   GLfloat getCurrentDelayFromCurrentState() { return delayMovementSprite.at(getCurrentState()).x; }
 
-	GLfloat getCurrentDelayFromCurrentState() { return delayMovementSprite.at(getCurrentState()).x; }
-	int getCountX() { return countX; }
+   Collider* getCollisionHandler() { return collisionHandler; }
+   CollisionSystem::CollisionBox* getCollisionBox() {return spriteCollisionBox; }
 
-	Collider* getCollisionHandler() { return collisionHandler; }
+   GLfloat getBoxX() { return spriteCollisionBox->getX(); }
+   GLfloat getBoxY() { return spriteCollisionBox->getY(); }
+   GLfloat getBoxWidth() { return spriteCollisionBox->getWidth(); }
+   GLfloat getBoxHeight() { return spriteCollisionBox->getHeight(); }
 
-	CollisionBox* getCollisionBox() {return spriteCollisionBox; }
+   bool isPlayerOnTheAir();
+   bool getIsOnGround() { return isOnGround; }
 
-	GLfloat getBoxX() { return spriteCollisionBox->getX(); }
-	GLfloat getBoxY() { return spriteCollisionBox->getY(); }
-	GLfloat getBoxWidth() { return spriteCollisionBox->getWidth(); }
-	GLfloat getBoxHeight() { return spriteCollisionBox->getHeight(); }
+   bool getPlayerMoveInXCurrentFrame() { return characterMovement.playerMoveInXInCurrentFrame; }
+   bool getPlayerMoveInYCurrentFrame() { return characterMovement.playerMoveInYInCurrentFrame; }
 
-	bool getPlayerMoveInXCurrentFrame() { return characterMovement.playerMoveInXInCurrentFrame; }
-	bool getPlayerMoveInYCurrentFrame() { return characterMovement.playerMoveInYInCurrentFrame; }
+   void drawTexture();
 
-	void drawTexture();
-	bool canMove;
-
-	bool getIsOnGround() { return onG; }
-
-private:
-	IDSprites ID;
-	GLuint texture;
-	Animation* handlerAnimation;
-	GameCoreStates::PlayerStateManager* playerStateManager;
-	CollisionBox* spriteCollisionBox;
-	Collider* collisionHandler;
-	CollisionSystem::DirectionsMove directionsMove;
-	CollisionSystem::CharacterMovement characterMovement;
+  private:
+   IDSprites ID;
+   GLuint texture;
+   Animation* handlerAnimation;
+   GameCoreStates::PlayerStateManager* playerStateManager;
+   Collider* collisionHandler;
+   CollisionSystem::CollisionBox* spriteCollisionBox;
+   CollisionSystem::DirectionsMove directionsMove;
+   CollisionSystem::CharacterMovement characterMovement;
 	
-	Vector2f position;
-	std::vector< Vector2f > speed;
-	std::vector< Vector2f > delayMovementSprite;
-	GLfloat width, height, widthTexture, heightTexture;
-	GLfloat currentXSpeed, currentYSpeed;
-	int countX, countY;
-	bool onG;
+   Vector2f position;
+   std::vector< Vector2f > speed;
+   std::vector< Vector2f > delayMovementSprite;
+   GLfloat width, height, widthTexture, heightTexture;
+   GLfloat currentXSpeed, currentYSpeed;
+   int countX, countY;
+   bool isOnGround;
 };
 

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "CollisionBox.h"
 
 class Weapon
@@ -10,6 +11,6 @@ public:
 private:
 	int damage;
 	bool actived;
-	CollisionBox *weaponCollisionBox;
+	CollisionSystem::CollisionBox* weaponCollisionBox;
 };
 

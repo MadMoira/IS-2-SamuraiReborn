@@ -6,6 +6,10 @@ namespace SpriteData
   {
     RIGHT,
     LEFT,
+  };
+
+  enum DirectionAxisY
+  {
 	UP,
 	DOWN,
 	NO_DIRECTION,
