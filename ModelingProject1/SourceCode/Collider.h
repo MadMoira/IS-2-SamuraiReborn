@@ -18,15 +18,18 @@ class Collider
 
    void cleanUpResources();
    
-   bool checkCollision(CollisionBox& A, CollisionBox& B , float direction);
-   bool checkTileCollision(CollisionBox& A, int directionX,  int directionY, 
+   bool checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B , float direction);
+   void checkTileCollision(CollisionSystem::CollisionBox& A, int directionX,  int directionY, 
 	                       CollisionSystem::DirectionsMove& directionsMove);
-   bool checkEnemiesCollision( CollisionBox& A, float directionX);
+   bool checkStateCollisionPlayer( Sprite& playerSprite );
+   bool checkStateCollisionXAxis( Sprite& playerSprite );
+   GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition );
+   bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX);
 
    //boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
    //boost::ptr_vector< Enemy > checkAttackCollision(CollisionBox& A, float directionX);
 
-   bool onTheGround(CollisionBox& A, int directionX, int directionY);
+   bool onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY);
 
    void setLayerMap(std::vector< std::vector < Tile > > tilemap) { layerMap = tilemap; }
 

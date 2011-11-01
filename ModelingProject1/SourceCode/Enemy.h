@@ -6,7 +6,7 @@
 class Enemy
 {
 public:
-	Sprite *getSprite() { return enemySprite; }
+	Sprite* getSprite() { return enemySprite; }
 
 	virtual void initializeEnemy(IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
