@@ -1,9 +1,8 @@
 
 #include <algorithm>
+#include "PlayerSpriteStates.h"
 
 #include "Collider.h"
-
-#include "PlayerSpriteStates.h"
 
 Collider::Collider()
 {
@@ -61,29 +60,25 @@ bool Collider::checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem:
 void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directionX,  int directionY,
 	                              CollisionSystem::DirectionsMove& directionsMove)
 {
+  int initialX  = 0;
+  int initial = 0;
+  
+  if ( directionX == SpriteData::LEFT )
+  {
+    initialX = (int)A.getX() - (int)A.getWidth()/2;
+  }
+  else
+  {
+    initialX = (int)A.getX();
+  }
+
+  initial = initialX;
+
   directionsMove.setCanMoveRight(true);
   directionsMove.setCanMoveLeft(true);
   directionsMove.setCanMoveUp(true);
   directionsMove.setCanMoveDown(true);
 
-	int dir = 1;
-	int initialX  = 0;
-	int initial = 0;
-	if ( directionX == 1)
-	{
-	  dir = -1;
-	}
-
-    if ( dir == -1 )
-	{
-			initialX = (int)A.getX() - (int)A.getWidth()/2;
-			initial = initialX;
-	}
-	else
-	{
-	  initialX = (int)A.getX();
-	  initial = initialX;
-	}
   for(int i = initialX;i <= initialX + (int)A.getWidth(); i += 32)
   {
     for(int j = (int)A.getY(); j <= (int)A.getY() + (int)A.getHeight(); j += 32)
@@ -91,78 +86,27 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
       int x = (int)i/32;
       int y = (int)j/32;
 
-	  		  if ( y > 720.0f/32 )
-		  {
-			return;
-		  }
+      if ( y > 720.0f/32 )
+      {
+        return;
+      }
+
       Tile foundTile = layerMap[y][x];
+
 	  if ( foundTile.getID() == 0 )
 	  {
 		continue;
 	  }
-
-
-
-
-	  if( foundTile.getHasCollision() )
+ 
+	  if ( foundTile.getHasCollision() )
 	  {
-
-		  if ( initial == initialX && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
-		  {
-			  directionsMove.setCanMoveLeft(false);
-			  directionsMove.setCanMoveRight(true);
-		  }
-
-		  if ( initial+32 == initialX && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
-		  {
-			  directionsMove.setCanMoveLeft(true);
-			  directionsMove.setCanMoveRight(false);
-
-		  }
-		  			  if ( y == (int)A.getY()/32 )
-			  {
-				  if ( directionY == SpriteData::UP )
-				  {
-					  directionsMove.setCanMoveUp(false);
-					  directionsMove.setCanMoveDown(true);
-				  }
-				  else
-				  {
-                      directionsMove.setCanMoveUp(false);
-					  directionsMove.setCanMoveDown(true);
-				  }
-			  }
-
-		  if ( directionX == SpriteData::RIGHT && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
-		  {
-			  directionsMove.setCanMoveRight(false);
-			  directionsMove.setCanMoveLeft(true);
-		  }
-		  else if ( directionX == SpriteData::LEFT && y != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
-		  {
-			  						  				  if ( directionY == SpriteData::UP )
-				  {
-					   directionsMove.setCanMoveRight(true);
-			  directionsMove.setCanMoveLeft(false);
-				  }
-				  else if ( directionY == SpriteData::DOWN )
-				  {
-                      directionsMove.setCanMoveRight(true);
-			  directionsMove.setCanMoveLeft(false);
-				  }
-				  else
-				  {
-			  directionsMove.setCanMoveRight(true);
-			  directionsMove.setCanMoveLeft(false);
-				  }
-		  }
+        checkBoxBordersCollision(A, directionsMove, initial, initialX, y);
+		checkTopBoxCollision(directionsMove, (int)A.getY()/32, directionY, y);
+		checkBodyBoxCollision(A, directionsMove, directionX, directionY, y);
         return;
       }
     }
   }
-
-  directionsMove.setCanMoveRight(true);
-  directionsMove.setCanMoveLeft(true);
 }
 
 bool Collider::checkStateCollisionPlayer(Sprite& playerSprite)
@@ -254,6 +198,60 @@ GLfloat Collider::recalculateSpriteBoxPosition(float initialPosition, float offs
   return positionOffsetBox;
 }
 
+void Collider::checkBoxBordersCollision(CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove,
+	                                    int leftPositionBorder, int currentPosition, int positionY)
+{
+  if ( leftPositionBorder == currentPosition && 
+	   positionY != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+  {
+    directionsMove.setCanMoveLeft(false);
+    directionsMove.setCanMoveRight(true);
+  }
+
+  if ( leftPositionBorder + (int)A.getWidth()/32 == currentPosition && 
+	   positionY != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+  {
+    directionsMove.setCanMoveLeft(true);
+    directionsMove.setCanMoveRight(false);
+  }
+}
+
+void Collider::checkTopBoxCollision(CollisionSystem::DirectionsMove& directionsMove, int topY, int directionY,
+	                                int currentPositionY)
+{
+  if ( currentPositionY == topY )
+  {
+    if ( directionY == SpriteData::UP )
+    {
+      directionsMove.setCanMoveUp(false);
+      directionsMove.setCanMoveDown(true);
+    }
+    else
+    {
+      directionsMove.setCanMoveUp(false);
+      directionsMove.setCanMoveDown(true);
+    }
+  }
+}
+
+void Collider::checkBodyBoxCollision(CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, 
+	                                 int directionX, int directionY, int currentPositionY)
+{
+  if ( directionX == SpriteData::RIGHT && 
+	   currentPositionY != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+  {
+    directionsMove.setCanMoveRight(false);
+    directionsMove.setCanMoveLeft(true);
+  }
+
+  else if ( directionX == SpriteData::LEFT && 
+	        currentPositionY != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
+  {
+    directionsMove.setCanMoveRight(true);
+    directionsMove.setCanMoveLeft(false);
+  }
+}
+
 bool Collider::checkEnemiesCollision(CollisionSystem::CollisionBox& A, float directionX)
 {
  /* for(int i = 0; i == enemies->size(); i++)
@@ -299,17 +297,9 @@ bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int
 {
   int directionPlayer = SpriteData::RIGHT;
   int initialX  = 0;
-  
-  if ( directionX == SpriteData::LEFT)
-  {
-    directionPlayer = -1;
-    if ( directionY == SpriteData::NO_DIRECTION )
-    {
-      initialX = (int)A.getX() - (int)A.getWidth()/2;
-    }
-  }
 
   initialX = (int)A.getX();
+
   int positionY = ( (int)A.getY() + (int)A.getHeight() )/32;
 
   if ( initialX < 0 )
