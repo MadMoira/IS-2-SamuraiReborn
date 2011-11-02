@@ -40,7 +40,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 	
   unsigned countTiles = readDataTypeFromFile<unsigned>(collisionListFile);
   log << "Number Of Tiles With Collision:  " << countTiles << std::endl;
-  std::vector< int > tempCollisionTilesList = getCollisionTilesList();
+  std::vector< int > tempCollisionTilesList;
   for(unsigned i = 0; i < countTiles; i++)
   {
     int tileID = readDataTypeFromFile<int>(collisionListFile);
@@ -48,12 +48,8 @@ int Level::loadTMXTileMapFile(std::string filename)
   }
 
   collisionListFile.close();
+
   log << "Finish Loading List Collision Tiles... " << std::endl;
-	/*setCollisionTilesList(tempCollisionTilesList);
-
-	Collider::getInstance()->setCollisionTilesList(tempCollisionTilesList);
-
-	tempCollisionTilesList.clear();*/
 
   log << "Loading Layers... " << std::endl;
 
@@ -84,8 +80,7 @@ int Level::loadTMXTileMapFile(std::string filename)
       }
     }
 
-	if ( i == 0 ){
-		Collider::getInstance()->setLayerMap(tempLayerMap);}
+	Collider::getInstance()->addLayerTilemap(tempLayerMap);
 
     tilemapList.at(i).setLayerMap(tempLayerMap);
     tempLayerMap.clear();
@@ -133,7 +128,7 @@ bool Level::initializeCollisionData(int tileID, std::vector< int > listCollision
     return false;
   }
 
-  for (int i = 0; i < listCollisionTiles.size(); i++)
+  for (std::string::size_type i = 0; i < listCollisionTiles.size(); i++)
   {
 	if ( listCollisionTiles.at(i) > tileID )
 	{

@@ -28,17 +28,17 @@ void Collider::initializeColliderSprites(boost::ptr_vector< Enemy >* enemiesList
   players = playersList;
 }
 
-void Collider::initializeColliderTiles(std::vector< std::vector < Tile > > tilemap,
-	                                   std::vector< int > tilesList)
+void Collider::addLayerTilemap(std::vector< std::vector < Tile > > layer)
 {
-  layerMap = tilemap;
-  collisionTilesList = tilesList;
+  layers.push_back(layer);
 }
 
 void Collider::cleanUpResources()
 {
-  layerMap.clear();
-  collisionTilesList.clear();
+  for (std::string::size_type i = 0; i < layers.size(); i++)
+  {
+	layers.at(i).clear();
+  }
 }
 
 bool Collider::checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B, float directionX)
@@ -79,31 +79,35 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
   directionsMove.setCanMoveUp(true);
   directionsMove.setCanMoveDown(true);
 
-  for(int i = initialX;i <= initialX + (int)A.getWidth(); i += 32)
+
+  for (std::string::size_type indexLayer = 0; indexLayer < layers.size(); indexLayer++)
   {
-    for(int j = (int)A.getY(); j <= (int)A.getY() + (int)A.getHeight(); j += 32)
-	{
-      int x = (int)i/32;
-      int y = (int)j/32;
-
-      if ( y > 720.0f/32 )
-      {
-        return;
-      }
-
-      Tile foundTile = layerMap[y][x];
-
-	  if ( foundTile.getID() == 0 )
+    for(int i = initialX;i <= initialX + (int)A.getWidth(); i += 32)
+    {
+      for(int j = (int)A.getY(); j <= (int)A.getY() + (int)A.getHeight(); j += 32)
 	  {
-		continue;
-	  }
+        int x = (int)i/32;
+        int y = (int)j/32;
+
+        if ( y > 720.0f/32 )
+        {
+          return;
+        }
+
+        Tile foundTile = layers.at(indexLayer)[y][x];
+
+	    if ( foundTile.getID() == 0 )
+	    {
+		  continue;
+	    }
  
-	  if ( foundTile.getHasCollision() )
-	  {
-        checkBoxBordersCollision(A, directionsMove, initial, initialX, y);
-		checkTopBoxCollision(directionsMove, (int)A.getY()/32, directionY, y);
-		checkBodyBoxCollision(A, directionsMove, directionX, directionY, y);
-        return;
+	    if ( foundTile.getHasCollision() )
+	    {
+          checkBoxBordersCollision(A, directionsMove, initial, initialX, y);
+		  checkTopBoxCollision(directionsMove, (int)A.getY()/32, directionY, y);
+		  checkBodyBoxCollision(A, directionsMove, directionX, directionY, y);
+		  return;
+        }
       }
     }
   }
@@ -307,21 +311,33 @@ bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int
     initialX = 0;
   }
 
-  for(int i = initialX; i <= initialX + (int)A.getWidth(); i += 32)
+  bool isOnGround = false;
+
+  for (std::string::size_type indexLayer = 0; indexLayer < layers.size(); indexLayer++)
   {
-    int x = (int)i/32;
-    if ( positionY > 720.0f/32 )
+    if ( isOnGround )
     {
-      return false;
+      break;
     }
 
-    Tile groundTile = layerMap[positionY][x];
+    isOnGround = true;
 
-	if( !groundTile.getHasCollision())
-	{
-      return false;
-	}
+    for(int i = initialX; i <= initialX + (int)A.getWidth(); i += 32)
+    {
+      int x = (int)i/32;
+      if ( positionY > 720.0f/32 )
+      {
+        return false;
+      }
+
+      Tile groundTile = layers.at(indexLayer)[positionY][x];
+
+	  if( !groundTile.getHasCollision())
+	  {
+        isOnGround = isOnGround && false;
+	  }
+    }
   }
 
-  return true;
+  return isOnGround;
 }
