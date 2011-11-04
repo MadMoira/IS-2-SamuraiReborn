@@ -124,7 +124,7 @@ bool Camera::isPlayerOnMidpoint(GLfloat posX)
   int distanceToMid = (int)posX - (int)midPoint;
   if(playerOnMidpoint)
   {
-    if(abs(distanceToMid) < 250)
+    if(abs(distanceToMid) < 300)
 	{
       return true;
     }

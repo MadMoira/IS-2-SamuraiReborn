@@ -23,7 +23,7 @@ class Collider
 
    bool checkStateCollisionPlayer( Sprite& playerSprite );
    bool checkStateCollisionXAxis( Sprite& playerSprite );
-   GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition );
+   GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition, int direction );
 
    void checkBoxBordersCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove,
 	                              int leftPositionBorder, int currentPosition, int positionY );

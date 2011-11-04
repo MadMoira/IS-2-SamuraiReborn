@@ -7,7 +7,6 @@
 
 #include "Collider.h"
 
-
 void Player::stop()
 {
   if ( !playerSprite->getPlayerMoveInX() && !playerSprite->getPlayerMoveInY() )

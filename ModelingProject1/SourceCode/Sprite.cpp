@@ -67,7 +67,6 @@ void Sprite::movePosXWithSpeed()
   if ( countX > delayMovementSprite.at(getCurrentState()).x )
   {
     countX = 0;
-
 	handlerAnimation->changeDirectionY( getSpeedY() );
 
 	if ( Camera::getInstance()->isLimit(position.x, getSpeedX()) )
@@ -81,7 +80,7 @@ void Sprite::movePosXWithSpeed()
     {
       if ( position.x + getSpeedX() + width < 6400.f )
       {
-        if ( !directionsMove.canMoveXRight )
+        if ( !directionsMove.canMoveXRight || getSpeedX() == 0.0f)
         {
           return;
         }
@@ -99,14 +98,13 @@ void Sprite::movePosXWithSpeed()
 									   directionsMove );
 
 		collisionHandler->checkStateCollisionXAxis(*this);
-
-		return;
+        return;
       }
     }
 
     else if ( position.x + getSpeedX() + width  > 0 )
     {
-      if ( !directionsMove.canMoveXLeft )
+      if ( !directionsMove.canMoveXLeft || getSpeedX() == 0.0f )
       {
         return;
       }
@@ -144,7 +142,12 @@ void Sprite::movePosYWithSpeed()
     {
       handlerAnimation->changeDirectionY( getSpeedY() );
       
-	  if ( !directionsMove.canMoveYDown || !directionsMove.canMoveYUp )
+	  	if ( getCurrentState() == GameCoreStates::JUMPING && getSpeedY() == -4.0f)
+	{
+		int d = 4;
+	}
+
+		if ( /*!directionsMove.canMoveYDown || !directionsMove.canMoveYUp*/ !getPlayerDirectionYBasedInDirection() )
       {
         return;
       }
@@ -183,28 +186,45 @@ bool Sprite::getPlayerMoveBasedInDirection()
   return directionsMove.canMoveXLeft;
 }
 
+bool Sprite::getPlayerDirectionYBasedInDirection()
+{
+	if ( handlerAnimation->getDirectionY() == SpriteData::UP )
+	{
+		return directionsMove.canMoveYUp;
+	}
+	return directionsMove.canMoveYDown;
+}
+
 void Sprite::setSpeedX(GLfloat speedX)
 {
-  if ( getCurrentState() == GameCoreStates::JUMPING || getCurrentState() == GameCoreStates::DOUBLE_JUMP ||
-	   getCurrentState() == GameCoreStates::FALLING )
+  switch( getCurrentState() )
   {
-    speed.at(getCurrentState()).x = speedX;
+    case GameCoreStates::JUMPING:
+    case GameCoreStates::DOUBLE_JUMP:
+    case GameCoreStates::FALLING:
+    {
+      speed.at(getCurrentState()).x = speedX;
+      break;
+    }
+    case GameCoreStates::FAST_ATTACK:
+    {
+      if ( getPreviousState() == GameCoreStates::JUMPING )
+      {
+        speed.at(getCurrentState()).x = speed.at(getPreviousState()).x/2;
+        break;
+      }
+      speed.at(getCurrentState()).x = speed.at(getPreviousState()).x;
+      break;
+    }
   }
 
-  if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
+  if ( !getPlayerMoveBasedInDirection() )
   {
-	if ( getPreviousState() == GameCoreStates::JUMPING )
-	{
-      speed.at(getCurrentState()).x = speed.at(getPreviousState()).x/2;
-	}
-	else
-	{
-	  speed.at(getCurrentState()).x = speed.at(getPreviousState()).x;
-	}
+    currentXSpeed = 0.0f;
+    return;
   }
 
   currentXSpeed = speed.at(getCurrentState()).x;
-  
 }
 
 void Sprite::setSpeedY(GLfloat speedY)
