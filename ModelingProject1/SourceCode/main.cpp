@@ -13,11 +13,8 @@
 #include "SMainMenu.h"
 #include "SLevelOneJapan.h"
 
-//#include <vld.h>
-
 int main( int argc, char* args[] )
 {
-	int bgX = 0, bgY = 0;
   GameCore Core;
   GameRender Render;
   GameInput Input;
@@ -56,7 +53,5 @@ int main( int argc, char* args[] )
 
   Core.cleanUpGameCore();
 
-	Core.cleanUpGameCore();
-	_CrtDumpMemoryLeaks();
   return 0;
 }

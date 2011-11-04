@@ -142,12 +142,7 @@ void Sprite::movePosYWithSpeed()
     {
       handlerAnimation->changeDirectionY( getSpeedY() );
       
-	  	if ( getCurrentState() == GameCoreStates::JUMPING && getSpeedY() == -4.0f)
-	{
-		int d = 4;
-	}
-
-		if ( /*!directionsMove.canMoveYDown || !directionsMove.canMoveYUp*/ !getPlayerDirectionYBasedInDirection() )
+      if ( !getPlayerDirectionYBasedInDirection() )
       {
         return;
       }
@@ -188,11 +183,11 @@ bool Sprite::getPlayerMoveBasedInDirection()
 
 bool Sprite::getPlayerDirectionYBasedInDirection()
 {
-	if ( handlerAnimation->getDirectionY() == SpriteData::UP )
-	{
-		return directionsMove.canMoveYUp;
-	}
-	return directionsMove.canMoveYDown;
+  if ( handlerAnimation->getDirectionY() == SpriteData::UP )
+  {
+    return directionsMove.canMoveYUp;
+  }
+  return directionsMove.canMoveYDown;
 }
 
 void Sprite::setSpeedX(GLfloat speedX)
