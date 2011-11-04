@@ -49,13 +49,8 @@ void Player::returnToPreviousState()
 
 bool Player::isOnGround()
 {
-		  	  int ydirection = SpriteData::UP;
-	  if ( playerSprite->getSpeedY() > 0 )
-	  {
-		  ydirection = SpriteData::DOWN;
-	  }
   if ( playerSprite->getCollisionHandler()->onTheGround(*playerSprite->getCollisionBox(), 
-	  playerSprite->getHandlerAnimation()->getAnimationDirection(), ydirection) )
+	   playerSprite->getHandlerAnimation()->getAnimationDirection(), playerSprite->getHandlerAnimation()->getDirectionY()) )
   {
     return true;
   }
