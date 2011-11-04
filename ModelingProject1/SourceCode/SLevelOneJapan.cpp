@@ -43,7 +43,7 @@ void SLevelOneJapan::init()
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
 
   std::vector < int > maxFrameVector;
-  maxFrameVector.push_back( 1 );
+  maxFrameVector.push_back( 0 );
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 4 );
   maxFrameVector.push_back( 8 );

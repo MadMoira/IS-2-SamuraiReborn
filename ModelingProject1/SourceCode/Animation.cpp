@@ -75,10 +75,10 @@ int Animation::changeAnimationDirection(int direction)
 
 int Animation::returnAnimationDirectionAxisValue()
 {
-  if ( animationDirectionX == SpriteData::RIGHT )
+  /*if ( animationDirectionX == SpriteData::RIGHT )
   {
     return 1;
-  }
+  }*/
 
   return -1;
 }

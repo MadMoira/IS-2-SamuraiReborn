@@ -41,12 +41,16 @@ class Sprite
    void movePosYWithSpeed();
 
    bool getPlayerMoveBasedInDirection();
+   bool getPlayerDirectionYBasedInDirection();
 
    bool getPlayerMoveInX() { return characterMovement.playerMoveInX; }
    void setPlayerMoveInX(bool moveX) { characterMovement.setMoveX(moveX); }
 
    bool getPlayerMoveInY() { return characterMovement.playerMoveInY; }
    void setPlayerMoveInY(bool moveY) { characterMovement.setMoveY(moveY); }
+
+   void setPlayerCanMoveYUp(bool moveYUp) { directionsMove.setCanMoveUp(moveYUp); }
+   void setPlayerCanMoveYDown(bool moveYDown) { directionsMove.setCanMoveDown(moveYDown); }
 
    CollisionSystem::CharacterMovement getCharacterMovement() { return characterMovement; }
 
