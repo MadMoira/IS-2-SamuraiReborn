@@ -46,41 +46,41 @@ void Camera::renderCamera()
 }
 
 void Camera::setCameraSpeed(GLfloat newSpeedx, GLfloat posx1)
+{
+  if( checkCamera(posx1, newSpeedx) )
   {
-	 if(checkCamera(posx1,newSpeedx))
-	 {
-		if( onePlayer )
-		{
-		speedX += newSpeedx;
-		}
-		else
-		{
-		speedX += newSpeedx/2;
-		}
-	 }
-	 else{
-		 speedX=0;
-	 }
+    if( onePlayer )
+    {
+      speedX += newSpeedx;
+    }
+    else
+    {
+      speedX += newSpeedx/2;
+    }
   }
+  else
+  {
+    speedX = 0;
+  }
+}
 
 void Camera::setCameraSpeed(GLfloat newSpeedx, GLfloat posx1, GLfloat posx2)
 {
-  if(checkCamera(posx1, posx2, newSpeedx))
-	 {
-		if( onePlayer )
-		{
-			speedX += newSpeedx;
-		}
-		else
-		{
-			speedX += newSpeedx/2;
-		}
-	 }
-	else
-	{
-		speedX=0;
-	}
-
+  if( checkCamera(posx1, posx2, newSpeedx) )
+  {
+    if( onePlayer )
+    {
+      speedX += newSpeedx;
+    }
+    else
+    {
+      speedX += newSpeedx/2;
+    }
+  }
+  else
+  {
+    speedX = 0;
+  }
 }
 
 void Camera::restartCameraSpeed()
@@ -101,7 +101,8 @@ bool Camera::checkCamera(GLfloat posx1, GLfloat newSpeedx)
 
 bool Camera::checkCamera(GLfloat posx1, GLfloat posx2, GLfloat newSpeedx)
 {
-  if( ((posx1- midPoint > 0 || posx2 - midPoint > 0) && posX < 4600) || (posX - posx1 > -75 || posX - posx2 > -75) )
+  if( ( (posx1- midPoint > 0 || posx2 - midPoint > 0) && posX < 4600) || 
+	    (posX - posx1 > -75 || posX - posx2 > -75) )
   {
     return true;
   }	
@@ -122,9 +123,9 @@ void Camera::restartCamera(GLfloat level)
 bool Camera::isPlayerOnMidpoint(GLfloat posX)
 {
   int distanceToMid = (int)posX - (int)midPoint;
-  if(playerOnMidpoint)
+  if( playerOnMidpoint )
   {
-    if(abs(distanceToMid) < 300)
+    if( abs(distanceToMid) < 300 )
 	{
       return true;
     }
@@ -136,7 +137,7 @@ bool Camera::isPlayerOnMidpoint(GLfloat posX)
   }
   else
   {
-    if(abs(distanceToMid) < 40)
+    if( abs(distanceToMid) < 40 )
 	{
       playerOnMidpoint=true;
       return true;
@@ -150,7 +151,7 @@ bool Camera::isPlayerOnMidpoint(GLfloat posX)
 
 bool Camera::isLimit(GLfloat position, GLfloat speed)
 {
-  if(position + speed < -15|| position + speed > levelLenght)
+  if(position + speed < -15 || position + speed > levelLenght)
   {
     return true;
   }

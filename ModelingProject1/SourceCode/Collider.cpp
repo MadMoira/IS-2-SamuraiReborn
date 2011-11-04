@@ -191,6 +191,7 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
     						
     playerSprite.changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                          std::list<InputMapping::Key>() );
+	playerSprite.setSpeedX(0.0f);
 	playerSprite.setPlayerMoveInX(false);
 	playerSprite.setPlayerMoveInY(false);
     return true;
@@ -202,17 +203,8 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
 GLfloat Collider::recalculateSpriteBoxPosition(float initialPosition, float offsetPosition, int direction )
 {
   GLfloat startingPosition = (initialPosition + offsetPosition)/32;
-	if ( direction == SpriteData::RIGHT )
-	{
-	  startingPosition -= 1;
-	}
-  
   int integerPart = (int)startingPosition;
   GLfloat positionOffsetBox = ( (startingPosition - integerPart)*32 );
-  	if ( direction == SpriteData::RIGHT )
-	{
-
-	}
   
   return positionOffsetBox;
 }
@@ -220,7 +212,6 @@ GLfloat Collider::recalculateSpriteBoxPosition(float initialPosition, float offs
 void Collider::checkBoxBordersCollision(CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove,
 	                                    int leftPositionBorder, int currentPosition, int positionY)
 {
-	//
   if ( leftPositionBorder == currentPosition && 
 	   positionY != ( (int)A.getY() + (int)A.getHeight() ) / 32 )
   {

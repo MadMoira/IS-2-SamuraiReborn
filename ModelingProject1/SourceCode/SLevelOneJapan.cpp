@@ -108,7 +108,7 @@ void SLevelOneJapan::init()
   japanLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");
 
   japanLevel->addLayerToList("SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
-  japanLevel->addLayerToList("Clouds.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.1f, true, true);
+  japanLevel->addLayerToList("Clouds.png", 2400.f, 720.f, Vector2f(0.2f, 0.0f), 0.1f, true, true);
   japanLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
   japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
