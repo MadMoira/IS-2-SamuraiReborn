@@ -5,7 +5,7 @@
 class SIntro : public GameState
 {
   public:
-   SIntro( GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, GameStates stateName );
+   SIntro( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
    ~SIntro();
 
    void init();

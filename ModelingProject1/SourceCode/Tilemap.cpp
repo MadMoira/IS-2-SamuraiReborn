@@ -25,108 +25,107 @@ Tilemap::~Tilemap(void)
 
 void Tilemap::drawTilemap(int indexTileset)
 {
-	GLfloat offsetXTemp = offset.x;
+  GLfloat offsetXTemp = offset.x;
 	
-	offsetXTemp = transformOffsetXToIntervalValues(offset.x);
+  offsetXTemp = transformOffsetXToIntervalValues(offset.x);
 	
-	GLfloat variableSizeTile = 32.f;
+  GLfloat variableSizeTile = 32.f;
 
-	GLfloat widthTilesetImage = tilesetList.at(indexTileset).getWidthImage();
-	GLfloat heightTilesetImage = tilesetList.at(indexTileset).getHeightImage();
+  GLfloat widthTilesetImage = tilesetList.at(indexTileset).getWidthImage();
+  GLfloat heightTilesetImage = tilesetList.at(indexTileset).getHeightImage();
 
-	int widthMap = (1280 / (int)sizeTiles) + 1;
-	int heigthMap = (int) ceil( 720.0f / sizeTiles );
+  int widthMap = (1280 / (int)sizeTiles) + 1;
+  int heigthMap = (int) ceil( 720.0f / sizeTiles );
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glEnableClientState( GL_VERTEX_ARRAY );
-	glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
+  glEnableClientState( GL_VERTEX_ARRAY );
+  glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
 	
-	glBindTexture( GL_TEXTURE_2D, tilesetList.at(indexTileset).getTexture() );
+  glBindTexture( GL_TEXTURE_2D, tilesetList.at(indexTileset).getTexture() );
 
-	GLfloat posXPrevious = 0.0f, posXPreviousOnTexture = 0.0f;
+  GLfloat posXPrevious = 0.0f, posXPreviousOnTexture = 0.0f;
 
-	for (int i = 0; i < heigthMap; i++)
-	{
-		int startX = (int)floor(offset.x/sizeTiles);
-		posXPrevious = 0.0f;
+  for (int i = 0; i < heigthMap; i++)
+  {
+    int startX = (int)floor(offset.x/sizeTiles);
+    posXPrevious = 0.0f;
 
-		posXPrevious -= offsetXTemp;
-		variableSizeTile = 32.f;
+    posXPrevious -= offsetXTemp;
+    variableSizeTile = 32.f;
 
-		for (int j = 0; j < widthMap; j++) 
-		{
-			if ( startX == widthLevelInTiles )
-			{
-				break;
-			}
+    for (int j = 0; j < widthMap; j++) 
+    {
+      if ( startX == widthLevelInTiles )
+      {
+        break;
+      }
 			
-			int frameIndex = layerMap[i][startX].getID();
+      int frameIndex = layerMap[i][startX].getID();
 
-			if ( frameIndex == 0 )
-			{ 
-				startX++;
-				variableSizeTile = 32.f;
-				posXPrevious = posXPrevious + variableSizeTile;
-				
-				continue; 
-			}
+      if ( frameIndex == 0 )
+      { 
+        startX++;
+        variableSizeTile = 32.f;
+        posXPrevious = posXPrevious + variableSizeTile;
+        continue; 
+      }
 
-			if ( j == 0 && offsetXTemp != sizeTiles)
-			{
-				posXPreviousOnTexture = offsetXTemp/widthTilesetImage;
-				variableSizeTile -= offsetXTemp;
-				posXPrevious = 0.0f;
-			}
+      if ( j == 0 && offsetXTemp != sizeTiles)
+      {
+        posXPreviousOnTexture = offsetXTemp/widthTilesetImage;
+        variableSizeTile -= offsetXTemp;
+        posXPrevious = 0.0f;
+      }
 
-			else 
-			{ 
-				variableSizeTile = 32.f; 
-				posXPreviousOnTexture = 0.0f;
-			}
+      else 
+      { 
+        variableSizeTile = 32.f; 
+        posXPreviousOnTexture = 0.0f;
+      }
 
-			if ( j == 40 )
-			{
-				variableSizeTile = offsetXTemp;
-			}
+      if ( j == 40 )
+      {
+        variableSizeTile = offsetXTemp;
+      }
 
-			frameIndex -= 1;
+      frameIndex -= 1;
 
-			const GLfloat tileX = posXPrevious;
-			const GLfloat tileY = sizeTiles * i;
-			posXPrevious = tileX + variableSizeTile;
+      const GLfloat tileX = posXPrevious;
+      const GLfloat tileY = sizeTiles * i;
+      posXPrevious = tileX + variableSizeTile;
 
-			const GLfloat verts[] = {
-					tileX, tileY,
+      const GLfloat verts[] = {
+                    tileX, tileY,
 					tileX + variableSizeTile, tileY,
 					tileX + variableSizeTile, tileY + sizeTiles,
 					tileX, tileY + sizeTiles
-			};
+      };
 
-			const GLfloat textureWidth = variableSizeTile / (GLfloat)widthTilesetImage;
-			const GLfloat textureHeight = sizeTiles / (GLfloat)heightTilesetImage;
-			const int numFramePerRow = (int)widthTilesetImage / (int)sizeTiles;
-			const GLfloat textureX = ( (frameIndex % numFramePerRow) * sizeTiles/(GLfloat)widthTilesetImage ) 
+      const GLfloat textureWidth = variableSizeTile / (GLfloat)widthTilesetImage;
+      const GLfloat textureHeight = sizeTiles / (GLfloat)heightTilesetImage;
+      const int numFramePerRow = (int)widthTilesetImage / (int)sizeTiles;
+      const GLfloat textureX = ( (frameIndex % numFramePerRow) * sizeTiles/(GLfloat)widthTilesetImage ) 
 									+ posXPreviousOnTexture;
-			const GLfloat textureY = ( frameIndex / numFramePerRow ) * textureHeight;
+      const GLfloat textureY = ( frameIndex / numFramePerRow ) * textureHeight;
 
-			const GLfloat texVerts[] = {
+      const GLfloat texVerts[] = {
 					textureX, textureY,
 					textureX + textureWidth, textureY,
 					textureX + textureWidth, textureY + textureHeight,
 					textureX, textureY + textureHeight
-			};
+      };
 			
-			glVertexPointer(2, GL_FLOAT, 0, verts);
-			glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
-			glDrawArrays(GL_QUADS, 0, 4);
+      glVertexPointer(2, GL_FLOAT, 0, verts);
+      glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
+      glDrawArrays(GL_QUADS, 0, 4);
 
-			startX++;
-		}	
-	}
+      startX++;
+    }	
+  }
 
-	glDisableClientState( GL_VERTEX_ARRAY );			
-	glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+  glDisableClientState( GL_VERTEX_ARRAY );			
+  glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 }
 
 GLfloat Tilemap::transformOffsetXToIntervalValues(GLfloat offX)
