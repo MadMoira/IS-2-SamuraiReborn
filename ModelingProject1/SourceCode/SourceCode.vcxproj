@@ -118,6 +118,7 @@
     <ClCompile Include="PlayerScore.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayerStateManager.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="RunningState.cpp" />
     <ClCompile Include="SIntro.cpp" />
     <ClCompile Include="SLevelOneJapan.cpp" />
@@ -174,13 +175,14 @@
     <ClInclude Include="PandaP1.h" />
     <ClInclude Include="Pathfinding.h" />
     <ClInclude Include="PathNode.h" />
-    <ClInclude Include="PhysicStates.h" />
+    <ClInclude Include="PhysicModes.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerScore.h" />
     <ClInclude Include="PlayerSpriteStates.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayerStateManager.h" />
     <ClInclude Include="RawInputConstants.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="RunningState.h" />
     <ClInclude Include="SIntro.h" />
     <ClInclude Include="SLevelOneJapan.h" />

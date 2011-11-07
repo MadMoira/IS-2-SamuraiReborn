@@ -11,14 +11,12 @@ void Image::ArrowMenu::updatePositionArrow()
   arrow->setPosition(420.0f, 280.0f + ( (optionSelected-1)*55.0f) );
 }
 
-SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, 
-	                                                              GameStates stateName) 
-	: GameState( gR, gC, gI, gP, stateName )
+SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
+	: GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
   gameRender = gR;
   gameInput = gI;
-  gamePhysics = gP;
   nameState = stateName;
   setHasEnded(STATE_MAINMENU);
 }

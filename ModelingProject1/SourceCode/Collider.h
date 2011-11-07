@@ -30,6 +30,8 @@ class Collider
    void checkTopBoxCollision( CollisionSystem::DirectionsMove& directionsMove, int topY, int directionY, int currentPositionY );
    void checkBodyBoxCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, int directionX, 
 	                           int directionY, int currentPositionY );
+   void checkBottomBoxCollision( CollisionSystem::DirectionsMove& directionsMove, int bottomY, int directionX, 
+	                             int directionY, int currentPositionY );
    bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
    //boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);

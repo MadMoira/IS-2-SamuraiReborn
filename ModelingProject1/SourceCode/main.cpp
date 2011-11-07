@@ -18,7 +18,6 @@ int main( int argc, char* args[] )
   GameCore Core;
   GameRender Render;
   GameInput Input;
-  GamePhysics::PhysicsCore* Physics;
   GameStateManager *StateManager = new GameStateManager();
 	
   if( !Core.initializeGameCore() )
@@ -26,17 +25,14 @@ int main( int argc, char* args[] )
     return 1;
   }
 
-  Physics = GamePhysics::PhysicsCore::getInstance();
-  Physics->initializePhysicValues(-4.0f);
-
   //StateManager->changeState( new SMainMenu( &Render, &Core, &Input, Physics, STATE_MAINMENU ) );
-  StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, Physics, STATE_LEVELONEJAPAN ) );
+  StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, STATE_LEVELONEJAPAN ) );
   StateManager->init();
 
 
   while( Core.getIsRunning() )
   {
-    StateManager->changeCurrentState( &Render, &Core, &Input, Physics );
+    StateManager->changeCurrentState( &Render, &Core, &Input );
 
     Core.getGameTimer()->start();
 

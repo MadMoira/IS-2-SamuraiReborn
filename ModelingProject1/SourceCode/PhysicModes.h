@@ -2,8 +2,8 @@
 
 namespace GamePhysics
 {
-  enum PhysicState
+  enum PhysicModes
   {
-    PARABOLIC
+    RIGID_BODY
   };
 }

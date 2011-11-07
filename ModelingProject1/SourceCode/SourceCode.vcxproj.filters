@@ -139,6 +139,12 @@
     <Filter Include="Header Files\Game Physics\Collisions">
       <UniqueIdentifier>{763fff60-7751-4f8f-aa26-d30a21cbf53d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game Physics\Physics Modes">
+      <UniqueIdentifier>{1728db0d-b4b3-42ab-80ed-dc32446f52df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Physics\Physics Modes">
+      <UniqueIdentifier>{99a1e128-3efb-4054-b76c-36201f86166a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -312,11 +318,14 @@
     <ClCompile Include="FallingState.cpp">
       <Filter>Source Files\Player\States</Filter>
     </ClCompile>
-    <ClCompile Include="PhysicsCore.cpp">
-      <Filter>Source Files\Game Physics</Filter>
-    </ClCompile>
     <ClCompile Include="CollisionStructs.cpp">
       <Filter>Source Files\Game Physics\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>Source Files\Game Physics\Physics Modes</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsCore.cpp">
+      <Filter>Source Files\Game Physics\Physics Modes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -506,14 +515,17 @@
     <ClInclude Include="FallingState.h">
       <Filter>Header Files\Player\States</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsCore.h">
-      <Filter>Header Files\Game Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicStates.h">
-      <Filter>Header Files\Game Physics</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionStructs.h">
       <Filter>Header Files\Game Physics\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsCore.h">
+      <Filter>Header Files\Game Physics\Physics Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Header Files\Game Physics\Physics Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicModes.h">
+      <Filter>Header Files\Game Physics\Physics Modes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

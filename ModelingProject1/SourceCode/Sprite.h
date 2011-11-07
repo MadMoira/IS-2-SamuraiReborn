@@ -10,6 +10,8 @@
 #include "Animation.h"
 #include "PlayerStateManager.h"
 
+#include "RigidBody.h"
+
 #include "CollisionBox.h"
 #include "CollisionStructs.h"
 
@@ -114,6 +116,7 @@ class Sprite
    CollisionSystem::CollisionBox* spriteCollisionBox;
    CollisionSystem::DirectionsMove directionsMove;
    CollisionSystem::CharacterMovement characterMovement;
+   GamePhysics::PhysicsCore* rigidBody;
 	
    Vector2f position;
    std::vector< Vector2f > speed;

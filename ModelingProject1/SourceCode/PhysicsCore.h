@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <GL/gl.h>
 
-#include "PhysicStates.h"
+#include "PhysicModes.h"
 #include "Vector.h"
 
 namespace GamePhysics
@@ -11,18 +11,13 @@ namespace GamePhysics
   class PhysicsCore
   {
     public:
-     static PhysicsCore* getInstance();
-	 PhysicsCore(float gravityVal);
-	 PhysicsCore();
+	 PhysicsCore(int mode);
 	 ~PhysicsCore(void);
 	
-	 void initializePhysicValues(float gravity);
-	 void physicManager(GLfloat* speedY, int state, int playerState);
+	 virtual void initializeNaturalPhysicsForces(float forceOne) = 0;
+	 virtual void applyNaturalPhysicForces(GLfloat* speedY, int playerState) = 0;
 
-    private:
-     static bool instanceFlag;
-	 static PhysicsCore* physics;
-	 float gravityVal;
-	 void parabolicShot(GLfloat* speedY, int playerState); 
+    protected:
+	 PhysicModes nameMode;
   };
 }

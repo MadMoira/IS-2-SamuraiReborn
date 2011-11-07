@@ -104,6 +104,7 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
 	    {
           checkBoxBordersCollision(A, directionsMove, initial, initialX, y);
 		  checkTopBoxCollision(directionsMove, (int)A.getY()/32, directionY, y);
+		  checkBottomBoxCollision(directionsMove, ((int)A.getY() + (int)A.getHeight()) / 32, directionX, directionY, y);
 		  checkBodyBoxCollision(A, directionsMove, directionX, directionY, y);
 		  return;
         }
@@ -224,6 +225,32 @@ void Collider::checkBoxBordersCollision(CollisionSystem::CollisionBox& A, Collis
   {
     directionsMove.setCanMoveLeft(true);
     directionsMove.setCanMoveRight(false);
+  }
+}
+
+void Collider::checkBottomBoxCollision(CollisionSystem::DirectionsMove& directionsMove, int bottomY, 
+	                                   int directionX, int directionY, int currentPositionY)
+{
+  if ( currentPositionY == bottomY )
+  {
+    if ( directionY == SpriteData::UP )
+    {
+      switch(directionY)
+	  {
+	    case SpriteData::RIGHT:
+        {
+          directionsMove.setCanMoveLeft(true);
+          directionsMove.setCanMoveRight(false);
+          break;
+        }
+	    case SpriteData::LEFT:
+        {
+          directionsMove.setCanMoveLeft(false);
+          directionsMove.setCanMoveRight(true);
+          break;
+        }
+	  }
+    }
   }
 }
 

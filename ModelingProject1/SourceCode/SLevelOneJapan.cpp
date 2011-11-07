@@ -5,14 +5,12 @@
 #include "MeerkatP2.h"
 #include "JapaneseMonkey.h"
 
-SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, 
-	                                                                        GameStates stateName) 
-	: GameState( gR, gC, gI, gP, stateName )
+SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
+	: GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
   gameRender = gR;
   gameInput = gI;
-  gamePhysics = gP;
   nameState = stateName;
 
   gameCore->getGameTimer()->setFramesPerSecond(60);
