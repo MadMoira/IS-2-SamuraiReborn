@@ -45,8 +45,14 @@ void Camera::renderCamera()
   glTranslatef(-posX, 0, 0);
 }
 
-void Camera::setCameraSpeed(GLfloat newSpeedx, GLfloat posx1)
+void Camera::setCameraSpeed(GLfloat newSpeedx, GLfloat posx1, bool inColliderCheck)
 {
+  if ( !inColliderCheck && setCallInCollider )
+  {
+    setCallInCollider = inColliderCheck;
+    return;
+  }
+
   if( checkCamera(posx1, newSpeedx) )
   {
     if( onePlayer )
@@ -62,6 +68,8 @@ void Camera::setCameraSpeed(GLfloat newSpeedx, GLfloat posx1)
   {
     speedX = 0;
   }
+
+  setCallInCollider = inColliderCheck;
 }
 
 void Camera::setCameraSpeed(GLfloat newSpeedx, GLfloat posx1, GLfloat posx2)
@@ -86,6 +94,7 @@ void Camera::setCameraSpeed(GLfloat newSpeedx, GLfloat posx1, GLfloat posx2)
 void Camera::restartCameraSpeed()
 {
   speedX = 0;
+  setCallInCollider = false;
 }
 
 bool Camera::checkCamera(GLfloat posx1, GLfloat newSpeedx)
@@ -131,7 +140,7 @@ bool Camera::isPlayerOnMidpoint(GLfloat posX)
     }
     else
 	{
-      playerOnMidpoint=false;
+      playerOnMidpoint = false;
       return false;
     }
   }
@@ -139,7 +148,7 @@ bool Camera::isPlayerOnMidpoint(GLfloat posX)
   {
     if( abs(distanceToMid) < 40 )
 	{
-      playerOnMidpoint=true;
+      playerOnMidpoint = true;
       return true;
     }
     else

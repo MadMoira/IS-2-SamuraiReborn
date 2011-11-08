@@ -21,7 +21,7 @@ class Camera
    bool checkCamera(GLfloat posx1, GLfloat posx2, GLfloat newSpeedx);
    void restartCamera(GLfloat level);
 	
-   void setCameraSpeed(GLfloat newSpeedx, GLfloat posx1);
+   void setCameraSpeed(GLfloat newSpeedx, GLfloat posx1, bool inColliderCheck);
    void setCameraSpeed(GLfloat newSpeedx, GLfloat posx1, GLfloat posx2);
    void restartCameraSpeed();
 
@@ -41,5 +41,6 @@ class Camera
 	GLfloat levelLenght;
 	bool onePlayer;
 	bool playerOnMidpoint;
+	bool setCallInCollider;
 	const SDL_VideoInfo* defaultResolution;
 };

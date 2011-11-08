@@ -103,6 +103,7 @@ class Sprite
    bool getIsOnGround() { return isOnGround; }
 
    bool getPlayerMoveInXCurrentFrame() { return characterMovement.playerMoveInXInCurrentFrame; }
+   void setPlayerMoveInXCurrentFrame(bool moveX) { characterMovement.setMoveXFrame(moveX); }
    bool getPlayerMoveInYCurrentFrame() { return characterMovement.playerMoveInYInCurrentFrame; }
 
    void drawTexture();

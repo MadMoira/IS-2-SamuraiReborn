@@ -30,6 +30,7 @@ void PandaP1::noAction()
   playerSprite->setSpeedX(0.0f);
   playerSprite->setPlayerMoveInX(false);
   playerSprite->setPlayerMoveInY(false);
+  playerSprite->setPlayerMoveInXCurrentFrame(false);
   stop();		
 }
 
