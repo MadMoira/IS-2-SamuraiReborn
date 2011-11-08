@@ -1,11 +1,9 @@
 
-
 #include <crtdbg.h>
 
 #include "GameCore.h"
 #include "GameRender.h"
 #include "GameInput.h"
-#include "PhysicsCore.h"
 
 #include "GameStateManager.h"
 
@@ -25,10 +23,9 @@ int main( int argc, char* args[] )
     return 1;
   }
 
-  //StateManager->changeState( new SMainMenu( &Render, &Core, &Input, Physics, STATE_MAINMENU ) );
+  //StateManager->changeState( new SMainMenu( &Render, &Core, &Input, STATE_MAINMENU ) );
   StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, STATE_LEVELONEJAPAN ) );
   StateManager->init();
-
 
   while( Core.getIsRunning() )
   {

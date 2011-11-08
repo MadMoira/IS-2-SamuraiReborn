@@ -66,6 +66,11 @@ void Sprite::movePosXWithSpeed()
   characterMovement.playerMoveInXInCurrentFrame = false;
   countX++;
 
+  if ( position.x >= 2000 && countX == 3 )
+  {
+	  int d = 4;
+  }
+
   if ( countX > delayMovementSprite.at(getCurrentState()).x )
   {
     countX = 0;
@@ -100,6 +105,7 @@ void Sprite::movePosXWithSpeed()
 									   directionsMove);
 
 		collisionHandler->checkStateCollisionXAxis(*this);
+
         return;
       }
     }

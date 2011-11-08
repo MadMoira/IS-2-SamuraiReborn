@@ -147,7 +147,7 @@ void SLevelOneJapan::logic()
 	//levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
 
     gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX(), 
-		                                  gameCore->getPlayersList().at(i).getPlayerSprite()->getPosX()  );
+		                                  gameCore->getPlayersList().at(i).getPlayerSprite()->getPosX(), false);
 
   }
 
