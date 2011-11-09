@@ -11,6 +11,7 @@ namespace GameCoreStates
     DOUBLE_JUMP,
 	FAST_ATTACK,
 	FALLING,
+	STOPPING,
   };
 
   enum Action

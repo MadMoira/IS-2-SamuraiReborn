@@ -45,7 +45,7 @@ void PandaP1::walk()
 
 void PandaP1::run()
 {
-  playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
+  //playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
   playerSprite->movePosXWithSpeed();
   playerSprite->getHandlerAnimation()->animate();
   playerSprite->setPlayerMoveInY(false);
@@ -91,6 +91,19 @@ void PandaP1::falling()
   {
     stop();
   }
+}
+
+void PandaP1::stopping()
+{
+  playerSprite->setPlayerMoveInY(false);
+  playerSprite->movePosXWithSpeed();
+  playerSprite->getHandlerAnimation()->animate();
+
+  if ( playerSprite->getSpeedX() == 0.0f )
+  {
+	playerSprite->setPlayerMoveInX(false);
+  }
+  stop();
 }
 
 void PandaP1::draw()

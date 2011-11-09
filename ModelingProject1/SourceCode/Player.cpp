@@ -11,9 +11,17 @@ void Player::stop()
 {
   if ( !playerSprite->getPlayerMoveInX() && !playerSprite->getPlayerMoveInY() )
   {
-    playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
-    getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
-    playerSprite->changeCurrentFrame(GameCoreStates::STILL);
+	if ( playerSprite->getSpeedX() == 0.0f )
+	{
+      playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
+      getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
+      playerSprite->changeCurrentFrame(GameCoreStates::STILL);
+	}
+	else
+	{
+      playerSprite->changeStatePlayerSprite(STOPPING_STATE, 0, getInputMapper()->getListKeys());
+      getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STOPPING);
+	}
   }
 }
 
@@ -47,10 +55,24 @@ void Player::returnToPreviousState()
   playerSprite->changeCurrentFrame( playerSprite->getCurrentState() ); 
 }
 
+bool Player::isStoppingMovement(std::list<InputMapping::Key> keys)
+{
+  GameCoreStates::ConditionsPlayerRunning inputDirection = 
+	              playerSprite->getPlayerStateManager()->getObjectState().checkIfPlayerIsRunning(keys);
+
+  if ( !inputDirection.directionButtonPressed && !inputDirection.runningButtonPressed )
+  {
+    return true;
+  }
+
+  return false;
+}
+
 bool Player::isOnGround()
 {
   if ( playerSprite->getCollisionHandler()->onTheGround(*playerSprite->getCollisionBox(), 
-	   playerSprite->getHandlerAnimation()->getAnimationDirection(), playerSprite->getHandlerAnimation()->getDirectionY()) )
+	                 playerSprite->getHandlerAnimation()->getAnimationDirection(), 
+					 playerSprite->getHandlerAnimation()->getDirectionY()) )
   {
     return true;
   }
@@ -100,6 +122,11 @@ void Player::executeAction()
 	case GameCoreStates::FALLING:
     {
       falling();
+      break;
+    }
+	case GameCoreStates::STOPPING:
+    {
+      stopping();
       break;
     }
   }
@@ -196,6 +223,11 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
     {
       playerSprite->changeStatePlayerSprite(FALLING_STATE, checkKey.wasPreviouslyPressed, keys);
     }
+  }
+
+  if ( player.isStoppingMovement(keys) )
+  {
+	playerSprite->changeStatePlayerSprite(STOPPING_STATE, inputs.buttonPreviouslyPressed, keys);
   }
 
   if ( findStillInStates )

@@ -27,10 +27,12 @@ public:
 	virtual void noAction() = 0;
 	virtual void fastAttack() = 0;
 	virtual void falling() = 0;
+	virtual void stopping() = 0;
 	void executeAction();
 	void drawUIStats();
 	void drawScore();
 	void stop();
+	bool isStoppingMovement(std::list<InputMapping::Key> keys);
 	void returnToPreviousState();
 	bool isOnGround();
 

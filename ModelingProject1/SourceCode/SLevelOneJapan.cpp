@@ -39,6 +39,7 @@ void SLevelOneJapan::init()
   speedMeerkat.push_back( Vector2f(0.0f, -20.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
+  speedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
 
   std::vector < int > maxFrameVector;
   maxFrameVector.push_back( 0 );
@@ -48,6 +49,7 @@ void SLevelOneJapan::init()
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 10 );
   maxFrameVector.push_back( 3 );
+  maxFrameVector.push_back( 8 );
 
   std::vector < int > returnFrameVector;
   returnFrameVector.push_back( 0 );
@@ -57,6 +59,7 @@ void SLevelOneJapan::init()
   returnFrameVector.push_back( 1 );
   returnFrameVector.push_back( 0 );
   returnFrameVector.push_back( 0 );
+  returnFrameVector.push_back( 1 );
 
   std::vector < Vector2f > delayMovementVector;
   delayMovementVector.push_back( Vector2f(0.0f, 0.0f) );
@@ -66,6 +69,7 @@ void SLevelOneJapan::init()
   delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
   delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
   delayMovementVector.push_back( Vector2f(2.0f, 4.0f) );
+  delayMovementVector.push_back( Vector2f(2.0f, 0.0f) );
 
   std::vector < int > framerateAnimationsVector;
   framerateAnimationsVector.push_back( 0 );
@@ -74,6 +78,7 @@ void SLevelOneJapan::init()
   framerateAnimationsVector.push_back( 100 );
   framerateAnimationsVector.push_back( 100 );
   framerateAnimationsVector.push_back( 70 );
+  framerateAnimationsVector.push_back( 100 );
   framerateAnimationsVector.push_back( 100 );
 
   SDL_Color color;

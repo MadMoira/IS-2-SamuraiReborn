@@ -54,6 +54,8 @@ class Sprite
    void setPlayerCanMoveYUp(bool moveYUp) { directionsMove.setCanMoveUp(moveYUp); }
    void setPlayerCanMoveYDown(bool moveYDown) { directionsMove.setCanMoveDown(moveYDown); }
 
+   GameCoreStates::PlayerStateManager* getPlayerStateManager() { return playerStateManager; }
+
    CollisionSystem::CharacterMovement getCharacterMovement() { return characterMovement; }
 
    CollisionSystem::DirectionsMove getDirectionsMove() { return directionsMove; }

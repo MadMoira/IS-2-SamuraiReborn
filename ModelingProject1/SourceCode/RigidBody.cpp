@@ -1,6 +1,7 @@
 
 #include "RigidBody.h"
 
+#include "SpriteDataConstants.h"
 #include "PlayerSpriteStates.h"
 
 GamePhysics::RigidBody::RigidBody(int mode) : PhysicsCore( mode )
@@ -12,14 +13,28 @@ GamePhysics::RigidBody::~RigidBody(void)
 {
 }
 
-void GamePhysics::RigidBody::initializeNaturalPhysicsForces(float forceOne)
+void GamePhysics::RigidBody::initializeNaturalPhysicsForces(float forceOne, float forceTwo)
 {
   gravityValue = forceOne;
+  groundFrictionValue = forceTwo;
 }
 
-void GamePhysics::RigidBody::applyNaturalPhysicForces(GLfloat* speedY, int playerState)
+void GamePhysics::RigidBody::applyNaturalPhysicForces(int currentMovement, GLfloat* speedX, GLfloat* speedY, 
+	                                                  int playerState, int direction)
 {
-  parabolicShot(speedY, playerState);
+  switch(currentMovement)
+  {
+    case GamePhysics::X:
+    {
+      groundFriction(speedX, playerState, direction);
+	  break;
+    }
+	case GamePhysics::Y:
+    {
+	  parabolicShot(speedY, playerState);
+	  break;
+    }
+  }
 }
 
 void GamePhysics::RigidBody::parabolicShot(GLfloat* yVelocity, int playerState)
@@ -35,4 +50,23 @@ void GamePhysics::RigidBody::parabolicShot(GLfloat* yVelocity, int playerState)
 	return;
   }
   *yVelocity = 0.0f;
+}
+
+void GamePhysics::RigidBody::groundFriction(GLfloat* xVelocity, int playerState, int direction)
+{
+  int axisValue = 1;
+
+  if ( direction == SpriteData::LEFT )
+  {
+	axisValue = -1;
+  }
+
+  if( playerState == GameCoreStates::STOPPING )
+  {
+    *xVelocity -= (axisValue)*groundFrictionValue;
+    if( *xVelocity == 0.0f )
+    {
+      *xVelocity = 0.0f;
+    }
+  }
 }

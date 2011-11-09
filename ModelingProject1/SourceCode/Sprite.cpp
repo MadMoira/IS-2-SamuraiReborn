@@ -19,7 +19,7 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
 	                               maxFrame, returnFrame, framerateAnimations );
 
   rigidBody = new GamePhysics::RigidBody(GamePhysics::RIGID_BODY);
-  rigidBody->initializeNaturalPhysicsForces(-4.0f);
+  rigidBody->initializeNaturalPhysicsForces(-4.0f, 2.0f);
 
   collisionHandler = Collider::getInstance();
 
@@ -66,11 +66,6 @@ void Sprite::movePosXWithSpeed()
   characterMovement.playerMoveInXInCurrentFrame = false;
   countX++;
 
-  if ( position.x >= 2000 && countX == 3 )
-  {
-	  int d = 4;
-  }
-
   if ( countX > delayMovementSprite.at(getCurrentState()).x )
   {
     countX = 0;
@@ -98,6 +93,9 @@ void Sprite::movePosXWithSpeed()
         characterMovement.playerMoveInX = true;
 		characterMovement.playerMoveInXInCurrentFrame = true;
 
+		rigidBody->applyNaturalPhysicForces(GamePhysics::X, &currentXSpeed, &currentYSpeed, 
+			                                getCurrentState(), handlerAnimation->getAnimationDirection());
+
         isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
 					                   handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
 		collisionHandler->checkTileCollision(*getCollisionBox(), 
@@ -119,6 +117,9 @@ void Sprite::movePosXWithSpeed()
 
       position.x += getSpeedX();
 	  spriteCollisionBox->setX(position.x + (spriteCollisionBox->getWidth()/2), handlerAnimation->getAnimationDirection());
+
+	  rigidBody->applyNaturalPhysicForces(GamePhysics::X, &currentXSpeed, &currentYSpeed, 
+		                                  getCurrentState(), handlerAnimation->getAnimationDirection());
 
 	  characterMovement.playerMoveInX = true;
 	  characterMovement.playerMoveInXInCurrentFrame = true;
@@ -158,7 +159,8 @@ void Sprite::movePosYWithSpeed()
 	  position.y += getSpeedY();
 	  spriteCollisionBox->setY(position.y);
 
-	  rigidBody->applyNaturalPhysicForces(&currentYSpeed, getCurrentState());
+	  rigidBody->applyNaturalPhysicForces(GamePhysics::Y, &currentXSpeed, &currentYSpeed, 
+		                                  getCurrentState(), handlerAnimation->getAnimationDirection());
 
 	  characterMovement.playerMoveInY = true;
 	  characterMovement.playerMoveInYInCurrentFrame = true;
@@ -310,6 +312,7 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
     }
   }
 
+  setSpeedX(speed.at(getCurrentState()).x);
   setSpeedY(speed.at(getCurrentState()).y);
   handlerAnimation->setCurrentStateForAnimation(getCurrentState());
   handlerAnimation->restartOldTime();
@@ -327,6 +330,7 @@ void Sprite::changeStateEnemySprite(GameCoreStates::PlayerState* newState)
   }
 
   playerStateManager->changeState(newState);
+  setSpeedX(speed.at(getCurrentState()).x);
   setSpeedY(speed.at(getCurrentState()).y);
   handlerAnimation->setCurrentStateForAnimation(getCurrentState());
   handlerAnimation->restartOldTime();
@@ -359,6 +363,11 @@ void Sprite::drawTexture()
   GameRender::drawFullTexture(GameRender::loadTexture("box.png"), Vector2f(x, y), 44, 135);
 
   int currentState = getCurrentState();
+  
+  if ( currentState == GameCoreStates::STOPPING )
+  {
+    currentState = GameCoreStates::WALKING;
+  }
 
   if ( currentState == GameCoreStates::DOUBLE_JUMP )
   {

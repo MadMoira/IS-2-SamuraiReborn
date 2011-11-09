@@ -19,5 +19,6 @@ class PandaP1 : public Player
    void executeAction();
    void fastAttack();
    void falling();
+   void stopping();
 };
 
