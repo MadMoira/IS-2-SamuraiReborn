@@ -327,6 +327,9 @@
     <ClCompile Include="PhysicsCore.cpp">
       <Filter>Source Files\Game Physics\Physics Modes</Filter>
     </ClCompile>
+    <ClCompile Include="StoppingState.cpp">
+      <Filter>Source Files\Player\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -526,6 +529,9 @@
     </ClInclude>
     <ClInclude Include="PhysicModes.h">
       <Filter>Header Files\Game Physics\Physics Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="StoppingState.h">
+      <Filter>Header Files\Player\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

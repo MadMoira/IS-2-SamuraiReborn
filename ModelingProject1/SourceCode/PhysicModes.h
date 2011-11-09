@@ -6,4 +6,10 @@ namespace GamePhysics
   {
     RIGID_BODY
   };
+
+  enum PhysicMovements
+  {
+	X,
+	Y,
+  };
 }

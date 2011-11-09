@@ -129,6 +129,7 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Stats.cpp" />
     <ClCompile Include="StillState.cpp" />
+    <ClCompile Include="StoppingState.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tilemap.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="Stats.h" />
     <ClInclude Include="StillState.h" />
+    <ClInclude Include="StoppingState.h" />
     <ClInclude Include="StringParser.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="Tile.h" />
