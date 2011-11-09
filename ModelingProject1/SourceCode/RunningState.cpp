@@ -4,7 +4,6 @@
 #include "RunningState.h"
 
 #include "PlayerSpriteStates.h"
-
 #include "ComparatorFunctions.h"
 
 
@@ -27,7 +26,7 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
 	     isRunning.directionButtonPressed && isRunning.runningButtonPressed && 
 	     keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE  )
   {
-	  return GameCoreStates::NO_CHANGE;
+    return GameCoreStates::NO_CHANGE;
   }
 
   if ( ( currentState == GameCoreStates::WALKING || currentState == GameCoreStates::STILL ||
@@ -38,16 +37,16 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::CHANGE;
   }
 
-  if ( currentState == GameCoreStates::FAST_ATTACK && previousState == GameCoreStates::JUMPING 
-	  &&  keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE)
+  if ( currentState == GameCoreStates::FAST_ATTACK && previousState == GameCoreStates::JUMPING && 
+	   keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE)
   {
-
-	  return GameCoreStates::NO_CHANGE;
+    return GameCoreStates::NO_CHANGE;
   }
 
-  if ( isRunning.runningButtonPressed && !isRunning.directionButtonPressed )
+  if ( isRunning.runningButtonPressed && !isRunning.directionButtonPressed && 
+	   currentState != GameCoreStates::STILL)
   {
-    return GameCoreStates::RETURN_STILL;
+    return GameCoreStates::RETURN_STOPPING;
   }
 
   return GameCoreStates::NO_CHANGE;

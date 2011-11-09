@@ -11,17 +11,9 @@ void Player::stop()
 {
   if ( !playerSprite->getPlayerMoveInX() && !playerSprite->getPlayerMoveInY() )
   {
-	if ( playerSprite->getSpeedX() == 0.0f )
-	{
-      playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
-      getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
-      playerSprite->changeCurrentFrame(GameCoreStates::STILL);
-	}
-	else
-	{
-      playerSprite->changeStatePlayerSprite(STOPPING_STATE, 0, getInputMapper()->getListKeys());
-      getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STOPPING);
-	}
+    playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
+    getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
+    playerSprite->changeCurrentFrame(GameCoreStates::STILL);
   }
 }
 
@@ -149,7 +141,7 @@ bool Player::isReadyToPace()
 	   playerSprite->getCurrentState() != GameCoreStates::DOUBLE_JUMP && 
 	   playerSprite->getCurrentState() != GameCoreStates::FALLING )
   {
-	  return true;
+    return true;
   }
 
   return false;

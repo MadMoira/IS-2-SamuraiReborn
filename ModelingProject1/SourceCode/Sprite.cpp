@@ -310,6 +310,11 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
       playerStateManager->changeState(STILL_STATE);
 	  break;
     }
+	case GameCoreStates::RETURN_STOPPING:
+    {
+      playerStateManager->changeState(STOPPING_STATE);
+	  break;
+    }
   }
 
   setSpeedX(speed.at(getCurrentState()).x);
@@ -347,7 +352,6 @@ bool Sprite::isPlayerOnTheAir()
   {
     return false;
   }
-
   return true;
 }
 
@@ -356,7 +360,7 @@ void Sprite::drawTexture()
   GLfloat x = getBoxX();
   if( x < 0 )
   {
-	  x = 0;
+    x = 0;
   }
   GLfloat y = getBoxY();
   

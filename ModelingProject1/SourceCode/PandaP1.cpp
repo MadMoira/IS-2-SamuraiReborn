@@ -45,7 +45,6 @@ void PandaP1::walk()
 
 void PandaP1::run()
 {
-  //playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
   playerSprite->movePosXWithSpeed();
   playerSprite->getHandlerAnimation()->animate();
   playerSprite->setPlayerMoveInY(false);

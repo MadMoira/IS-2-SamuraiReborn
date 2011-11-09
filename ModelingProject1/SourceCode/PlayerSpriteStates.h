@@ -23,6 +23,7 @@ namespace GameCoreStates
     NO_CHANGE,
 	CHANGE,
 	RETURN_STILL,
+	RETURN_STOPPING,
 	UPDATE_SPEEDX,
   };
 }
