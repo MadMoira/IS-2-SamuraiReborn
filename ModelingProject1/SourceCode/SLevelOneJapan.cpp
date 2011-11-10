@@ -115,7 +115,7 @@ void SLevelOneJapan::init()
   japanLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
   japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
-  gameCore->restartCamera(6400.0f);
+  gameCore->resetCamera(6400.0f,100.0f);
 
   speedPanda.clear();
   speedMeerkat.clear();
@@ -148,13 +148,10 @@ void SLevelOneJapan::logic()
 	{
 	  setHasEnded(STATE_MAINMENU);
 	}
-
-	//levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
-
-    gameCore->getCamera()->setCameraSpeed(gameCore->getPlayersList().at(i).getPlayerSprite()->getSpeedX(), 
-		                                  gameCore->getPlayersList().at(i).getPlayerSprite()->getPosX(), false);
-
   }
+  
+  //levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
+  gameCore->getCamera()->updateCamera(&gameCore->getPlayersList());
 
   japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
   japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
@@ -163,32 +160,30 @@ void SLevelOneJapan::logic()
   if ( gameCore->getPlayersList().at(0).getPlayerSprite()->getPlayerMoveInXCurrentFrame() )
   {
     japanLevel->scrollTilemap();
-	gameCore->getCamera()->moveCamera();
   }
-
-  gameCore->getCamera()->restartCameraSpeed();
+  gameCore->getCamera()->setCameraSpeed(0.f);
 }
 
 void SLevelOneJapan::render()
 {
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
   glClearColor(1.0f, 1.0f, 1.0f, 1.0f);	
-
-  japanLevel->drawLevelMap();
+  
+	japanLevel->drawLevelMap();
 
   glPushMatrix();
-
+    
     gameCore->getCamera()->renderCamera();
-
+	  
     for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
     {
-      gameCore->getPlayersList().at(i).draw();
+		gameCore->getPlayersList().at(i).draw();
     }
 	for (std::string::size_type i = 0; i < gameCore->getEnemyList().size(); i++)
     {
 		gameCore->getEnemyList().at(i).draw();
     }
-
+	
   glPopMatrix();
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)

@@ -32,7 +32,7 @@ class GameCore
    void startSoundEffect(std::string filename);
 
    Camera* getCamera() { return camera; };
-   void restartCamera(GLfloat leve);
+   void resetCamera(GLfloat level, GLfloat spawningPoint);
 
    GameScreen* getGameScreen() { return screen; };
 
