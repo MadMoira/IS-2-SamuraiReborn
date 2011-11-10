@@ -15,7 +15,6 @@ public:
 	~Layer(void);
 
 	void drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen);
-
 	
 	GLuint getTexture() { return texture; }
 	void setLayerTexture(GLuint layerTexture) { texture = layerTexture; }
@@ -41,6 +40,8 @@ public:
 	bool getRepeat() { return repeat; }
 	void setRepeat(bool hasRepetition) { repeat = hasRepetition; }
 
+	bool getIsContinuous() { return continuous; }
+
 private:
 	std::string nameLayer;
 	GLuint texture;
@@ -49,5 +50,4 @@ private:
 	GLfloat constantVelX;
 	bool repeat;
 	bool continuous;
-	int countX, delayX;
 };
