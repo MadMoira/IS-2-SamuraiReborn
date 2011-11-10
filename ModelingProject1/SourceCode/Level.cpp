@@ -166,11 +166,25 @@ void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightL
 		                continuousScroll) );
 }
 
+void Level::scrollContinuousBackgroundLayers()
+{
+  for (std::string::size_type i = 0; i < layersList.size(); i++)
+  {
+    if ( layersList.at(i).getIsContinuous() )
+	{
+      layersList.at(i).scrollLayer();
+	}
+  }
+}
+
 void Level::scrollBackgroundLayers()
 {
   for (std::string::size_type i = 0; i < layersList.size(); i++)
   {
-    layersList.at(i).scrollLayer();
+    if ( !layersList.at(i).getIsContinuous() )
+	{
+      layersList.at(i).scrollLayer();
+	}
   }
 }
 

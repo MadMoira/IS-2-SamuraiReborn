@@ -111,11 +111,11 @@ void SLevelOneJapan::init()
   japanLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");
 
   japanLevel->addLayerToList("SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
-  japanLevel->addLayerToList("Clouds.png", 2400.f, 720.f, Vector2f(0.2f, 0.0f), 0.1f, true, true);
+  japanLevel->addLayerToList("Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);
   japanLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
   japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
-  gameCore->resetCamera(6400.0f,100.0f);
+  gameCore->resetCamera(6400.0f, 100.0f);
 
   speedPanda.clear();
   speedMeerkat.clear();
@@ -155,10 +155,11 @@ void SLevelOneJapan::logic()
 
   japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
   japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
-  japanLevel->scrollBackgroundLayers();
+  japanLevel->scrollContinuousBackgroundLayers();
   
   if ( gameCore->getPlayersList().at(0).getPlayerSprite()->getPlayerMoveInXCurrentFrame() )
   {
+    japanLevel->scrollBackgroundLayers();
     japanLevel->scrollTilemap();
   }
   gameCore->getCamera()->setCameraSpeed(0.f);
