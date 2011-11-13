@@ -7,6 +7,7 @@ class Weapon
 public:
 	Weapon(void);
 	~Weapon(void);
+	int getDamage();
 
 private:
 	int damage;

@@ -1,4 +1,3 @@
-
 #include "GameInput.h"
 
 GameInput::GameInput(void)

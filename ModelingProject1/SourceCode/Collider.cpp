@@ -264,8 +264,8 @@ bool Collider::checkEnemiesCollision(CollisionSystem::CollisionBox& A, float dir
   */
   return false;
 }
-/*
-boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float directionX)
+
+/*boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionSystem::CollisionBox& A, float directionX)
 {
   boost::ptr_vector< Enemy > enemiesCollided;
 
@@ -276,7 +276,7 @@ boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float
       enemiesCollided.push_back(&enemies->at(i));
     }
   }
-  
+
   return enemiesCollided;
 }*/
 

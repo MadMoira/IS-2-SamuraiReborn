@@ -41,16 +41,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\CEGUI 0.7.5\cegui\include;D:\SDL - DLL, INC, LIB\include files;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Esteban\Programas\FMOD Programmers API Win32\api\inc;D:\Esteban\Programas\CEGUI-SDK-0.7.5-vc10\cegui\include;D:\Esteban\Programas\CEGUI-0.7.5\cegui\include;D:\Esteban\Dropbox\Ingenieria De Software II\External Libraries\SDL - DLL, INC, LIB\include files;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\CEGUI 0.7.5\lib;D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Esteban\Programas\FMOD Programmers API Win32\api\lib;D:\Esteban\Programas\CEGUI-SDK-0.7.5-vc10\lib;D:\Esteban\Dropbox\Ingenieria De Software II\External Libraries\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;D:\CEGUI 0.7.5\dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Esteban\Programas\boost_1_47;D:\Esteban\Programas\CEGUI-0.7.5\dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -58,7 +58,7 @@
       <AdditionalDependencies>fmodex_vc.lib;TmxParserd.lib;opengl32.lib;SDL.lib;SDLmain.lib;SDL_image.lib;SDL_ttf.lib;CEGUIBase_d.lib;CEGUIOpenGLRenderer_d.lib;CEGUIDirect3D9Renderer_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <AdditionalOptions>fmodex_vc.lib %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>D:\CEGUI 0.7.5\dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Esteban\Programas\CEGUI-0.7.5\dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

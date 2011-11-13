@@ -186,9 +186,6 @@
     <ClCompile Include="Weapon.cpp">
       <Filter>Source Files\Weapons</Filter>
     </ClCompile>
-    <ClCompile Include="Spear.cpp">
-      <Filter>Source Files\Weapons</Filter>
-    </ClCompile>
     <ClCompile Include="Sword.cpp">
       <Filter>Source Files\Weapons</Filter>
     </ClCompile>
@@ -317,6 +314,9 @@
     </ClCompile>
     <ClCompile Include="CollisionStructs.cpp">
       <Filter>Source Files\Game Physics\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Spear.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

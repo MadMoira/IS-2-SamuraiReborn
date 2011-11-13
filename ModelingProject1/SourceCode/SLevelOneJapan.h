@@ -20,5 +20,6 @@ class SLevelOneJapan : public GameState
   private:
    Level* japanLevel;
    AI levelAI;
+   GameSound* sound;
 };
 

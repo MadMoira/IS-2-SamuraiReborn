@@ -33,8 +33,8 @@ class Collider
 	                           int directionY, int currentPositionY );
    bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
-   //boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
-   //boost::ptr_vector< Enemy > checkAttackCollision(CollisionBox& A, float directionX);
+   //boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionSystem::CollisionBox& A, float directionX);
+   //boost::ptr_vector< Enemy > checkAttackCollision(CollisionSystem::CollisionBox& A, float directionX);
 
    bool onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY);
 

@@ -58,8 +58,7 @@ Sprite::~Sprite(void)
   delete spriteCollisionBox;
 }
 
-void Sprite::movePosXWithSpeed()
-{
+void Sprite::movePosXWithSpeed(){
   characterMovement.playerMoveInX = false || characterMovement.playerMoveInX;
   characterMovement.playerMoveInXInCurrentFrame = false;
   countX++;

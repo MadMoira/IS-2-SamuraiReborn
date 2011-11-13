@@ -3,6 +3,7 @@
 GameSound::GameSound(void)
 {
 	result = FMOD::System_Create(&system);
+	printf("FMOD created");
 	ERRCHECK(result);
 }
 
@@ -27,8 +28,10 @@ bool GameSound::initSound()
 void GameSound::loadSound(std::string name)
 {
 	const char* MusicName = name.c_str();
-	result = system->createStream(MusicName, /*FMOD_HARDWARE |*/ FMOD_LOOP_NORMAL/* | FMOD_2D*/, 0, &sound);
+	printf("Loading");
+	result = system->createStream(MusicName, FMOD_HARDWARE | FMOD_LOOP_NORMAL | FMOD_2D, 0, &sound);
 	ERRCHECK(result);
+	printf("PLaying");
 	result = system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel[0]);
 	ERRCHECK(result);	
 }
@@ -47,7 +50,7 @@ void GameSound::ERRCHECK(FMOD_RESULT result)
 {
     if (result != FMOD_OK)
     {
-        printf("FMOD error! (%d) %s\n", result, FMOD_ErrorString(result));
+		printf("FMOD error! (%d) %s\n", result, FMOD_ErrorString(result));
         exit(-1);
     }
 }
