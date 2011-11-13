@@ -1,0 +1,41 @@
+
+#include <algorithm>
+#include "ComparatorFunctions.h"
+
+#include "WalkingState.h"
+
+GameCoreStates::WalkingState::WalkingState(int id) : PlayerState( id )
+{
+  currentID = id;
+}
+
+GameCoreStates::WalkingState::~WalkingState(void)
+{
+}
+
+int GameCoreStates::WalkingState::checkMovement(int keyPreviouslyPressed, int previousState, 
+                                                int currentState, std::list<InputMapping::Key> keys)
+{
+  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
+
+  if ( currentState == GameCoreStates::FAST_ATTACK && isPacing.directionButtonPressed &&
+	  keyPreviouslyPressed != 1)
+  {
+	  return GameCoreStates::NO_CHANGE;
+  }
+
+  if ( currentState != GameCoreStates::STILL &&
+
+	  keyPreviouslyPressed != InputMapping::RAW_INPUT_NO_BUTTON 
+	  && ( isPacing.runningButtonPressed ) )
+  {
+    return GameCoreStates::NO_CHANGE;
+  }
+
+  if ( !isPacing.directionButtonPressed && isPacing.runningButtonPressed )
+  {
+    return GameCoreStates::RETURN_STILL;
+  }
+
+  return GameCoreStates::CHANGE;
+}
