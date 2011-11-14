@@ -43,6 +43,12 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::NO_CHANGE;
   }
 
+  if ( !isRunning.runningButtonPressed && isRunning.directionButtonPressed && 
+	   keyPreviouslyPressed == RETURNING_FROM_PREVIOUS_STATE)
+  {
+    return GameCoreStates::RETURN_WALKING;
+  }
+
   if ( isRunning.runningButtonPressed && !isRunning.directionButtonPressed && 
 	   currentState != GameCoreStates::STILL)
   {

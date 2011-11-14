@@ -315,6 +315,11 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
       playerStateManager->changeState(STOPPING_STATE);
 	  break;
     }
+	case GameCoreStates::RETURN_WALKING:
+    {
+      playerStateManager->changeState(WALKING_STATE);
+      break;
+    }
   }
 
   setSpeedX(speed.at(getCurrentState()).x);
