@@ -24,6 +24,7 @@ namespace GameCoreStates
 	CHANGE,
 	RETURN_STILL,
 	RETURN_STOPPING,
+	RETURN_WALKING,
 	UPDATE_SPEEDX,
   };
 }

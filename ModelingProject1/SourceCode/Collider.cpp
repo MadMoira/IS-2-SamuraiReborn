@@ -2,8 +2,6 @@
 #include <algorithm>
 #include "PlayerSpriteStates.h"
 
-#include "Camera.h"
-
 #include "Collider.h"
 
 Collider::Collider()
@@ -369,7 +367,7 @@ bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int
       break;
     }
 
-    isOnGround = true;
+    isOnGround = false;
 
     for(int i = initialX; i <= initialX + (int)A.getWidth(); i += 32)
     {
@@ -383,7 +381,11 @@ bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int
 
 	  if( !groundTile.getHasCollision())
 	  {
-        isOnGround = isOnGround && false;
+        isOnGround = false;
+	  }
+	  else
+	  {
+        isOnGround = true;
 	  }
     }
   }
