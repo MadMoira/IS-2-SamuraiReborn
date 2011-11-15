@@ -12,6 +12,7 @@ class Camera
 
    Camera();
    ~Camera();
+
    void initCamera();
    	
    void renderCamera();

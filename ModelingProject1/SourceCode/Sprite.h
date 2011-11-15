@@ -67,8 +67,6 @@ class Sprite
    void setSpeedX(GLfloat speedX);
    void setConstantSpeedX(int constant);
 
-   void restartCountX() { countX = 0; }
-
    GLfloat getSpeedY() { return currentYSpeed; }
    void setSpeedY(GLfloat speedY);
 
