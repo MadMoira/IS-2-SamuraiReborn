@@ -28,29 +28,29 @@ enum CollisionProperties
 
 class Level
 {
-public:
-	Level(Levels id);
-	~Level(void);
+  public:
+   Level(Levels id);
+   ~Level(void);
 
-	int loadTMXTileMapFile(std::string filename);
-	bool initializeCollisionData(int tileID, std::vector< int > listCollisionTiles);
+   int loadTMXTileMapFile(std::string filename);
+   bool initializeCollisionData(int tileID, std::vector< int > listCollisionTiles);
 
-	bool drawLevelMap();
+   bool drawLevelMap();
 
-	boost::ptr_vector< Layer > getLayersList() { return layersList; }
-	void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
-				 GLfloat constantX, bool hasRepetition, bool continuousScroll);
-	void scrollContinuousBackgroundLayers();
-	void scrollBackgroundLayers();
-	void checkLayersSpeed(GLfloat speedX);
+   boost::ptr_vector< Layer > getLayersList() { return layersList; }
+   void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
+				      GLfloat constantX, bool hasRepetition, bool continuousScroll);
+   void scrollContinuousBackgroundLayers();
+   void scrollBackgroundLayers();
+   void checkLayersSpeed(GLfloat speedX);
 
-	boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
-	void scrollTilemap();
-	void checkTilemapsSpeed(GLfloat speedX);
+   boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
+   void scrollTilemap();
+   void checkTilemapsSpeed(GLfloat speedX);
 
-private:
-	Levels IDLevel;
-	boost::ptr_vector< Layer > layersList;
-	boost::ptr_vector< Tilemap > tilemapList;
+  private:
+   Levels IDLevel;
+   boost::ptr_vector< Layer > layersList;
+   boost::ptr_vector< Tilemap > tilemapList;
 };
 

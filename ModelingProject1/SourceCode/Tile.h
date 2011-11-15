@@ -2,23 +2,23 @@
 
 class Tile
 {
-public:
-	Tile(void);
-	Tile(int idTileset, int id);
-	~Tile(void);
+  public:
+   Tile(void);
+   Tile(int idTileset, int id);
+   ~Tile(void);
 
-	int getIDTileset() { return IDTileset; }
-	void setIDTileset(int id) { IDTileset = id; }
+   int getIDTileset() { return IDTileset; }
+   void setIDTileset(int id) { IDTileset = id; }
 
-	int getID() { return ID; }
-	void setID(int id) { ID = id; }
+   int getID() { return ID; }
+   void setID(int id) { ID = id; }
 
-	bool getHasCollision() { return hasCollision; }
-	void setHasCollision(bool collision) { hasCollision = collision; }
+   bool getHasCollision() { return hasCollision; }
+   void setHasCollision(bool collision) { hasCollision = collision; }
 
-private:
-	int IDTileset;
-	int ID;
-	bool hasCollision;
+  private:
+   int IDTileset;
+   int ID;
+   bool hasCollision;
 };
 
