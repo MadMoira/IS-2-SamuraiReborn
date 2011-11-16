@@ -15,6 +15,11 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Game
   gamePhysics = gP;
   nameState = stateName;
 
+  std::string ambience = "Wind.mp3";
+  std::string background ="IntoDust.mp3";
+  sounds.push_back(ambience);
+  sounds.push_back(background);
+
   gameCore->getGameTimer()->setFramesPerSecond(60);
   setHasEnded(STATE_LEVELONEJAPAN);
 }
@@ -106,16 +111,18 @@ void SLevelOneJapan::init()
 
   japanLevel = new Level(LEVELONEJAPAN);
   japanLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");
-  sound = new GameSound();
-  sound->initSound();
+  sound = GameSound::getInstance();
   japanLevel->addLayerToList("SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
   japanLevel->addLayerToList("Clouds.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.1f, true, true);
   japanLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
   japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
   gameCore->restartCamera(6400.0f);
-
-  sound->loadSound("IntoDust.mp3");
+  
+ /* sound->loadSound(sounds.at(1));
+  sound->downVolumeMUS();
+  sound->loadSound(sounds.at(0));
+  sound->upVolumeMUS();*/
 
   speedPanda.clear();
   speedMeerkat.clear();

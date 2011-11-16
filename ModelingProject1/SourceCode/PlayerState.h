@@ -1,8 +1,8 @@
 #pragma once
 
 #include "State.h"
-
 #include "GameInputContext.h"
+#include "GameSound.h"
 
 namespace GameCoreStates
 {

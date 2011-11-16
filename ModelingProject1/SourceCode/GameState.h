@@ -40,8 +40,7 @@ protected:
 	GameInput* gameInput;
 	GamePhysics::PhysicsCore* gamePhysics;
 	GameStates nameState;
-
-		
+    std::vector< std::string > sounds;	
 	
 };
 

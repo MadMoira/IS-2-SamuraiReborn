@@ -58,6 +58,7 @@ void SMainMenu::handleEvents()
       case SDL_MOUSEBUTTONDOWN:
       {
         handleMouseDown (e.button.button);
+		GameSound::getInstance()->loadChunk("Menu Slection (1).mp3");
         break;
       }
       case SDL_MOUSEBUTTONUP:

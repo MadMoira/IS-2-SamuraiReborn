@@ -2,7 +2,7 @@
 #include <algorithm>
 
 #include "RunningState.h"
-
+#include "GameSound.h"
 #include "PlayerSpriteStates.h"
 
 #include "ComparatorFunctions.h"
@@ -11,6 +11,7 @@
 GameCoreStates::RunningState::RunningState(int id) : PlayerState( id )
 {
   currentID = id;
+  runningSound = "Running.mp3";
 }
 
 GameCoreStates::RunningState::~RunningState(void)
@@ -35,18 +36,20 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
 	     previousState == GameCoreStates::JUMPING ) && 
 	     isRunning.directionButtonPressed && isRunning.runningButtonPressed )
   {
+   GameSound::getInstance()->PlaySound(runningSound);
     return GameCoreStates::CHANGE;
   }
 
   if ( currentState == GameCoreStates::FAST_ATTACK && previousState == GameCoreStates::JUMPING 
 	  &&  keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE)
   {
-
+      
 	  return GameCoreStates::NO_CHANGE;
   }
 
   if ( isRunning.runningButtonPressed && !isRunning.directionButtonPressed )
   {
+	
     return GameCoreStates::RETURN_STILL;
   }
 
