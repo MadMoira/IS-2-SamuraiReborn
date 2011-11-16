@@ -1,7 +1,7 @@
 
 #include <algorithm>
 #include "ComparatorFunctions.h"
-
+#include "GameSound.h"
 #include "WalkingState.h"
 
 GameCoreStates::WalkingState::WalkingState(int id) : PlayerState( id )
@@ -36,6 +36,5 @@ int GameCoreStates::WalkingState::checkMovement(int keyPreviouslyPressed, int pr
   {
     return GameCoreStates::RETURN_STILL;
   }
-
   return GameCoreStates::CHANGE;
 }

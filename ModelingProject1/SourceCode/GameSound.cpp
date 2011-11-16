@@ -7,6 +7,20 @@ GameSound::GameSound(void)
 	ERRCHECK(result);
 }
 
+bool GameSound::instanceFlag = false;
+GameSound* GameSound::gameSound = NULL;
+
+GameSound* GameSound::getInstance()
+{
+  if( !instanceFlag )
+  {
+    gameSound = new GameSound();
+    gameSound->initSound();
+    instanceFlag = true;
+  }
+  return gameSound;
+}
+
 GameSound::~GameSound()
 {
 }
@@ -35,6 +49,21 @@ void GameSound::loadSound(std::string name)
 	result = system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel[0]);
 	ERRCHECK(result);	
 }
+//
+void GameSound::PlaySound(std::string name)
+{   
+    currentSound = name.c_str();
+	result = system->createStream( currentSound, FMOD_DEFAULT, 0, &sound );
+	ERRCHECK(result);
+	result = system->playSound( FMOD_CHANNEL_REUSE, sound, false, &channel[2]);
+	ERRCHECK(result);
+}
+
+void GameSound::closeSound(){
+	channel[2]->setVolume( 0.0 );
+	currentSound = "NULL";
+	}
+//
 
 void GameSound::loadChunk(std::string name)
 {

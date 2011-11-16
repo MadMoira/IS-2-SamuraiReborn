@@ -3,12 +3,10 @@
 #include "ComparatorFunctions.h"
 
 #include "FastAttackState.h"
-#include "GameSound.h"
 
 GameCoreStates::FastAttackState::FastAttackState(int id) : PlayerState( id )
 {
   currentID = id;
-
 }
 
 GameCoreStates::FastAttackState::~FastAttackState(void)
@@ -19,8 +17,7 @@ GameCoreStates::FastAttackState::~FastAttackState(void)
 int GameCoreStates::FastAttackState::checkMovement(int keyPreviouslyPressed, int previousState, 
                                                 int currentState, std::list<InputMapping::Key> keys)
 { 
-  GameSound* sound = new GameSound();
-  sound->initSound();
+  
   GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
   InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isFastAttackKeyPressed);
   bool fastAttackButtonIsPressed = findKey.isPressed;
@@ -34,7 +31,8 @@ int GameCoreStates::FastAttackState::checkMovement(int keyPreviouslyPressed, int
   if ( (currentState != GameCoreStates::DOUBLE_JUMP && currentState != GameCoreStates::FALLING) &&
 	   keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && fastAttackButtonIsPressed )
   {
-    sound->loadChunk("Sword (2).mp3");
+
+    GameSound::getInstance()->loadChunk("Sword (2).mp3");
     return GameCoreStates::CHANGE;
   }
 

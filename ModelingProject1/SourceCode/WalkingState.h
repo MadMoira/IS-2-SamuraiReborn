@@ -1,7 +1,7 @@
 #pragma once
 
 #include "PlayerState.h"
-
+#include "GameSound.h"
 namespace GameCoreStates
 {
   class WalkingState : public PlayerState
