@@ -62,16 +62,8 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
 {
   int initialX  = 0;
   int initial = 0;
-  
-  if ( directionX == SpriteData::LEFT )
-  {
-    initialX = (int)A.getX() /*- (int)A.getWidth()/2*/;
-  }
-  else
-  {
-    initialX = (int)A.getX();
-  }
 
+  initialX = (int)A.getX();
   initial = initialX;
 
   directionsMove.setCanMoveRight(true);
@@ -83,7 +75,7 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
   {
     for(int i = initialX; i <= initialX + (int)A.getWidth(); i += 2)
     {
-      for(int j = (int)A.getY(); j < (int)A.getY() + (int)A.getHeight(); j += 2)
+      for(int j = (int)A.getY(); j < (int)A.getY() + (int)A.getHeight(); j += 16)
 	  {
         int x = (int)i/32;
         int y = (int)j/32;
@@ -93,8 +85,8 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
           return;
         }
 
-		if ( x == 73 && y == 15 && indexLayer == 1 )
-			int d = 4;
+		/*if ( x == 73 && y == 15 && indexLayer == 1 )
+			int d = 4;*/
 
         Tile foundTile = layers.at(indexLayer)[y][x];
 
@@ -212,14 +204,6 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
 	playerSprite.getCollisionBox()->setX( playerSprite.getPosX() - (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1)*
 		playerSprite.getCollisionBox()->getOffset().x + 
 		playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), animationDirection );
-
-			    	/*if ( animationDirection == 0 )
-	{
-			playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1) * offsetPosition);
-	playerSprite.getCollisionBox()->setX( playerSprite.getPosX() - (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1)*
-		playerSprite.getCollisionBox()->getOffset().x + 
-		playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), animationDirection );
-					}*/
     						
     playerSprite.changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                          std::list<InputMapping::Key>() );
@@ -245,14 +229,6 @@ GLfloat Collider::recalculateSpriteBoxPosition(float initialPosition, float offs
 	positionOffsetBox = ( (integerPart - startingPosition)*32 );
 	return positionOffsetBox;
   }
-
-  /*else if ( direction == SpriteData::RIGHT )
-  {
-
-    integerPart += 1;
-	positionOffsetBox = ( (integerPart - startingPosition)*32 );
-	return positionOffsetBox;
-  }*/
   
   return positionOffsetBox;
 }
@@ -381,7 +357,7 @@ boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float
 bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY)
 {
   int directionPlayer = SpriteData::RIGHT;
-  int initialX  = 0;
+  int initialX = 0;
 
   initialX = (int)A.getX();
 
@@ -403,7 +379,7 @@ bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int
 
     isOnGround = false;
 
-    for(int i = initialX; i <= initialX + (int)A.getWidth(); i += 32)
+    for(int i = initialX; i <= initialX + (int)A.getWidth(); i += 4)
     {
       int x = (int)i/32;
       if ( positionY > 720.0f/32 )
@@ -420,6 +396,7 @@ bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int
 	  else
 	  {
         isOnGround = true;
+		break;
 	  }
     }
   }
