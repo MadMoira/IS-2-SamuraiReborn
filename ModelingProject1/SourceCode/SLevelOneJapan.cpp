@@ -28,11 +28,11 @@ void SLevelOneJapan::init()
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
   speedPanda.push_back( Vector2f(10.0f, 0.0f) );
   speedPanda.push_back( Vector2f(0.0f, -24.0f) );
-  speedPanda.push_back( Vector2f(20.0f, 0.0f) );
+  speedPanda.push_back( Vector2f(18.0f, 0.0f) );
   speedPanda.push_back( Vector2f(0.0f, -20.0f) );
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
-  speedPanda.push_back( Vector2f(20.0f, 0.0f) );
+  speedPanda.push_back( Vector2f(18.0f, 0.0f) );
 
   std::vector< Vector2f > speedMeerkat;
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
@@ -104,7 +104,7 @@ void SLevelOneJapan::init()
 						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);*/
 						
   gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
-						speedPanda, Vector2f(100.0f, 270.0f), 0, maxFrameVectorPanda, returnFrameVector,
+						speedPanda, Vector2f(50.0f, 280.0f), 0, maxFrameVectorPanda, returnFrameVector,
 						280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
 
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(
@@ -188,7 +188,7 @@ void SLevelOneJapan::render()
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
   glClearColor(1.0f, 1.0f, 1.0f, 1.0f);	
   
-	japanLevel->drawLevelMap();
+  japanLevel->drawLevelMap();
 
   glPushMatrix();
     
@@ -196,11 +196,12 @@ void SLevelOneJapan::render()
 	  
     for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
     {
-		gameCore->getPlayersList().at(i).draw();
+      gameCore->getPlayersList().at(i).draw();
     }
+
 	for (std::string::size_type i = 0; i < gameCore->getEnemyList().size(); i++)
     {
-		gameCore->getEnemyList().at(i).draw();
+      gameCore->getEnemyList().at(i).draw();
     }
 	
   glPopMatrix();

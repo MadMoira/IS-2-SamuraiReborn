@@ -72,7 +72,7 @@ void Sprite::movePosXWithSpeed()
     countX = 0;
 	handlerAnimation->changeDirectionY( getSpeedY() );
 
-	if ( Camera::getInstance()->isLimit(position.x, getSpeedX()) )
+	if ( Camera::getInstance()->isLimit(spriteCollisionBox->getX(), getSpeedX()) )
 	{ 
 	  characterMovement.playerMoveInX = false;
 	  characterMovement.playerMoveInXInCurrentFrame = false;
@@ -81,7 +81,7 @@ void Sprite::movePosXWithSpeed()
 
     if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
     {
-      if ( position.x + getSpeedX() + width < 6400.f )
+      if ( getBoxX() + getSpeedX() + getBoxWidth() < 6400.f )
       {
         if ( !directionsMove.canMoveXRight || getSpeedX() == 0.0f)
         {
@@ -114,7 +114,7 @@ void Sprite::movePosXWithSpeed()
       }
     }
 
-    else if ( position.x + getSpeedX() + width  > 0 )
+    else if ( getBoxX() + getSpeedX() > 0 )
     {
       if ( !directionsMove.canMoveXLeft || getSpeedX() == 0.0f )
       {
