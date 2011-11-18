@@ -44,7 +44,7 @@ void Camera::updateCamera(boost::ptr_vector<Player>* players)
 { 	
 	if( players->size()==1 )
 	{
-		GLfloat playerPosition=players->at(0).getPlayerSprite()->getPosX();
+		GLfloat playerPosition=players->at(0).getPlayerSprite()->getBoxX()+players->at(0).getPlayerSprite()->getBoxWidth()/2;
 		speedX=playerPosition-interactionPoint;
 		interactionPoint=playerPosition;
 	}
@@ -67,6 +67,7 @@ void Camera::updateCamera(boost::ptr_vector<Player>* players)
 	if( !checkCamera(players) || !isOnMidpoint(interactionPoint) )
 	{
 		speedX=0;
+        onMidpoint = false;
 	}
 	else
 	{
@@ -108,7 +109,6 @@ bool Camera::isOnMidpoint(GLfloat posX)
     }
     else
 	{
-      onMidpoint = false;
       return false;
     }
   }

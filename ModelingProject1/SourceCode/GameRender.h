@@ -22,7 +22,7 @@ class GameRender
    static void drawSpriteTexture(GLuint texture, Vector2f pos, int currentFrame, 
 								 GLfloat widthTexture, GLfloat heightTexture, 
 								 GLfloat widthSprite, GLfloat heightSprite,
-								 int direction, int state);
+								 GLfloat widthCollisionBox, int direction, int state);
    static void drawLayerTexture(GLuint texture, Vector2f offset, GLfloat widthScreen, 
 								GLfloat heightScreen);
    static void drawText(Font::GameFont* font, Text::GameText text);

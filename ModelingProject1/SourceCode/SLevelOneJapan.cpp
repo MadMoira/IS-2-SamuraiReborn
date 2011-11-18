@@ -27,9 +27,12 @@ void SLevelOneJapan::init()
   std::vector< Vector2f > speedPanda;
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
   speedPanda.push_back( Vector2f(10.0f, 0.0f) );
+  speedPanda.push_back( Vector2f(0.0f, -24.0f) );
+  speedPanda.push_back( Vector2f(20.0f, 0.0f) );
+  speedPanda.push_back( Vector2f(0.0f, -20.0f) );
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
-  speedPanda.push_back( Vector2f(35.0f, 0.0f) );
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
+  speedPanda.push_back( Vector2f(20.0f, 0.0f) );
 
   std::vector< Vector2f > speedMeerkat;
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
@@ -50,6 +53,16 @@ void SLevelOneJapan::init()
   maxFrameVector.push_back( 10 );
   maxFrameVector.push_back( 3 );
   maxFrameVector.push_back( 8 );
+
+  std::vector < int > maxFrameVectorPanda;
+  maxFrameVectorPanda.push_back( 0 );
+  maxFrameVectorPanda.push_back( 8 );
+  maxFrameVectorPanda.push_back( 5 );
+  maxFrameVectorPanda.push_back( 8 );
+  maxFrameVectorPanda.push_back( 8 );
+  maxFrameVectorPanda.push_back( 5 );
+  maxFrameVectorPanda.push_back( 2 );
+  maxFrameVectorPanda.push_back( 8 );
 
   std::vector < int > returnFrameVector;
   returnFrameVector.push_back( 0 );
@@ -86,9 +99,13 @@ void SLevelOneJapan::init()
   int sizeFont = 25;
   std::string filenameFont = "orbitron-black.ttf";
 
-  gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
+  /*gameCore->addPlayerToGame( new PandaP1(), PANDA, "Meerkat - SpriteSheet.png", 
 						speedMeerkat, Vector2f(100.0f, 300.0f), 0, maxFrameVector, returnFrameVector,
-						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
+						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);*/
+						
+  gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
+						speedPanda, Vector2f(100.0f, 270.0f), 0, maxFrameVectorPanda, returnFrameVector,
+						280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
 
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(
 		     new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
@@ -115,7 +132,8 @@ void SLevelOneJapan::init()
   japanLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
   japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
-  gameCore->resetCamera(6400.0f, 100.0f);
+  gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getPlayerSprite()->getBoxX()+
+									gameCore->getPlayersList().at(0).getPlayerSprite()->getBoxWidth()/2 );
 
   speedPanda.clear();
   speedMeerkat.clear();

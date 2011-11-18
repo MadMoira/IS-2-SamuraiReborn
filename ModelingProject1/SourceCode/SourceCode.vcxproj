@@ -208,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="box.png" />
+    <None Include="boxPanda.png" />
     <None Include="Clouds.png" />
     <None Include="CollisionListLevelZeroSectionOne.csv" />
     <None Include="ContextList.txt" />

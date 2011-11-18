@@ -90,7 +90,7 @@ void GameRender::drawFullTexture(GLuint texture, Vector2f pos, GLfloat widthText
 
 void GameRender::drawSpriteTexture(GLuint texture, Vector2f pos, int currentFrame, 
 								GLfloat widthTexture, GLfloat heightTexture, GLfloat widthSprite, GLfloat heightSprite,
-								int direction, int state)
+								GLfloat widthCollisionBox, int direction, int state)
 {
 	glEnableClientState( GL_VERTEX_ARRAY );
 	glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
@@ -106,8 +106,8 @@ void GameRender::drawSpriteTexture(GLuint texture, Vector2f pos, int currentFram
 
 	if ( direction == 1 )
 	{
-		verts[0] = verts[6] = pos.x + widthSprite/2;
-		verts[2] = verts[4] = pos.x - widthSprite/2;
+		verts[0] = verts[6] = pos.x + widthSprite /*+ widthCollisionBox*/;
+		verts[2] = verts[4] = pos.x /*- widthSprite/2*/ /*+ widthCollisionBox*/;
 	}
 	
 	const GLfloat textureWidth = widthSprite / widthTexture;
