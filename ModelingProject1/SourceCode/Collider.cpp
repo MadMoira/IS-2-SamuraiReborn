@@ -65,7 +65,7 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
   
   if ( directionX == SpriteData::LEFT )
   {
-    initialX = (int)A.getX() - (int)A.getWidth()/2;
+    initialX = (int)A.getX() /*- (int)A.getWidth()/2*/;
   }
   else
   {
@@ -81,9 +81,9 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
 
   for (std::string::size_type indexLayer = 0; indexLayer < layers.size(); indexLayer++)
   {
-    for(int i = initialX;i <= initialX + (int)A.getWidth(); i += 32)
+    for(int i = initialX; i <= initialX + (int)A.getWidth(); i += 2)
     {
-      for(int j = (int)A.getY(); j <= (int)A.getY() + (int)A.getHeight(); j += 32)
+      for(int j = (int)A.getY(); j < (int)A.getY() + (int)A.getHeight(); j += 2)
 	  {
         int x = (int)i/32;
         int y = (int)j/32;
@@ -92,6 +92,9 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
         {
           return;
         }
+
+		if ( x == 73 && y == 15 && indexLayer == 1 )
+			int d = 4;
 
         Tile foundTile = layers.at(indexLayer)[y][x];
 
@@ -104,7 +107,7 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
 	    {
           checkBoxBordersCollision(A, directionsMove, initial, initialX, y);
 		  checkTopBoxCollision(directionsMove, (int)A.getY()/32, directionY, y);
-		  checkBottomBoxCollision(directionsMove, ((int)A.getY() + (int)A.getHeight()) / 32, directionX, directionY, y);
+		  checkBottomBoxCollision(directionsMove, ((int)A.getY() + (int)A.getHeight() - 32.0f) / 32, directionX, directionY, y);
 		  checkBodyBoxCollision(A, directionsMove, directionX, directionY, y);
 		  return;
         }
@@ -131,7 +134,7 @@ bool Collider::checkStateCollisionPlayer(Sprite& playerSprite)
     GLfloat previousPosition = playerSprite.getPosX();
     GLfloat offsetPosition = recalculateSpriteBoxPosition( playerSprite.getCollisionBox()->getY(), 
 		                                                   playerSprite.getCollisionBox()->getHeight(),
-														   playerSprite.getHandlerAnimation()->getAnimationDirection() );
+														   playerSprite.getHandlerAnimation()->getDirectionY() + 5 );
 	playerSprite.setPositionY(offsetPosition);
     playerSprite.getCollisionBox()->setY( playerSprite.getCollisionBox()->getY() - playerSprite.getCollisionBox()->getOffset().y - 
 		                                  offsetPosition );
@@ -168,10 +171,10 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
     GLfloat offsetPosition = recalculateSpriteBoxPosition(playerSprite.getCollisionBox()->getX(),
 		                                                  playerSprite.getCollisionBox()->getOffsetXPosition(animationDirection),
 														  animationDirection);
-	playerSprite.setPositionX(offsetPosition);
-	playerSprite.getCollisionBox()->setX( playerSprite.getCollisionBox()->getX() - 
-		                                  playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection) - 
-		                                  offsetPosition, animationDirection );
+		playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1) * offsetPosition);
+	playerSprite.getCollisionBox()->setX( playerSprite.getPosX() - (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1)*
+		playerSprite.getCollisionBox()->getOffset().x + 
+		playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), animationDirection );
 							
 	playerSprite.changePreviousPlayerState(GameCoreStates::STILL);
     playerSprite.changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
@@ -183,28 +186,43 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
 	     playerSprite.getCurrentState() != GameCoreStates::STILL)
   {
     int animationDirection = playerSprite.getHandlerAnimation()->getAnimationDirection();
+
+	if ( animationDirection == 0 )
+	{
+		int d = 4;
+	}
 	GLfloat previousPosition = playerSprite.getPosX();
-	GLfloat cameraSpeed;
     GLfloat offsetPosition = recalculateSpriteBoxPosition(playerSprite.getCollisionBox()->getX(),
 		                                                  playerSprite.getCollisionBox()->getOffsetXPosition(animationDirection),
 														  animationDirection);
 
+	if ( playerSprite.getCollisionBox()->getX() >= 71*32 )
+	{
+		int c = 4;
+	}
+    	if ( animationDirection == 0 )
+	{
+	offsetPosition = recalculateSpriteBoxPosition(playerSprite.getCollisionBox()->getX(),
+		                                                  playerSprite.getCollisionBox()->getWidth(),
+														  animationDirection);
+	}
+
+
 	playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1) * offsetPosition);
-    playerSprite.getCollisionBox()->setX( playerSprite.getCollisionBox()->getX() - 
-		                                  playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection) - 
-                                          offsetPosition, animationDirection );
+	playerSprite.getCollisionBox()->setX( playerSprite.getPosX() - (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1)*
+		playerSprite.getCollisionBox()->getOffset().x + 
+		playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), animationDirection );
+
+			    	/*if ( animationDirection == 0 )
+	{
+			playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1) * offsetPosition);
+	playerSprite.getCollisionBox()->setX( playerSprite.getPosX() - (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1)*
+		playerSprite.getCollisionBox()->getOffset().x + 
+		playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), animationDirection );
+					}*/
     						
     playerSprite.changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                          std::list<InputMapping::Key>() );
-	if ( offsetPosition <= 0 )
-	{
-      cameraSpeed = playerSprite.getSpeedX();
-	}
-	else
-	{
-      cameraSpeed = playerSprite.getSpeedX() - offsetPosition;
-	}
-
 	playerSprite.setSpeedX(0.0f);
 	playerSprite.setPlayerMoveInX(false);
 	playerSprite.setPlayerMoveInY(false);
@@ -214,11 +232,27 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
   return false;
 }
 
-GLfloat Collider::recalculateSpriteBoxPosition(float initialPosition, float offsetPosition, int direction )
+GLfloat Collider::recalculateSpriteBoxPosition(float initialPosition, float offsetPosition, int direction)
 {
   GLfloat startingPosition = (initialPosition + offsetPosition)/32;
   int integerPart = (int)startingPosition;
+  GLfloat d = startingPosition - integerPart;
   GLfloat positionOffsetBox = ( (startingPosition - integerPart)*32 );
+
+  if ( direction == SpriteData::LEFT )
+  {
+	integerPart += 1;
+	positionOffsetBox = ( (integerPart - startingPosition)*32 );
+	return positionOffsetBox;
+  }
+
+  /*else if ( direction == SpriteData::RIGHT )
+  {
+
+    integerPart += 1;
+	positionOffsetBox = ( (integerPart - startingPosition)*32 );
+	return positionOffsetBox;
+  }*/
   
   return positionOffsetBox;
 }

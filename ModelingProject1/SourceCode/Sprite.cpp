@@ -33,7 +33,8 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
   currentXSpeed = speed.at(getCurrentState()).x;
   currentYSpeed = speed.at(getCurrentState()).y;
 
-  spriteCollisionBox = new CollisionSystem::CollisionBox(0.0f, 0.0f, 44.0f, 135.0f, Vector2f(42.0f, 45.0f));
+  //spriteCollisionBox = new CollisionSystem::CollisionBox(0.0f, 0.0f, 44.0f, 135.0f, Vector2f(42.0f, 45.0f)); //- Meerkat
+  spriteCollisionBox = new CollisionSystem::CollisionBox(0.0f, 0.0f, 90.0f, 160.0f, Vector2f(92.0f, 42.0f));
   spriteCollisionBox->setX(position.x, handlerAnimation->getAnimationDirection());
   spriteCollisionBox->setY(position.y);
 
@@ -90,6 +91,11 @@ void Sprite::movePosXWithSpeed()
         position.x += getSpeedX();
 		spriteCollisionBox->setX(position.x, handlerAnimation->getAnimationDirection());
 
+		if ( spriteCollisionBox->getX() + spriteCollisionBox->getWidth() >= 73*32 )
+		{
+			int d = 4;
+		}
+
         characterMovement.playerMoveInX = true;
 		characterMovement.playerMoveInXInCurrentFrame = true;
 
@@ -116,7 +122,7 @@ void Sprite::movePosXWithSpeed()
       }
 
       position.x += getSpeedX();
-	  spriteCollisionBox->setX(position.x + (spriteCollisionBox->getWidth()/2), handlerAnimation->getAnimationDirection());
+	  spriteCollisionBox->setX(position.x + spriteCollisionBox->getOffset().x, handlerAnimation->getAnimationDirection());
 
 	  rigidBody->applyNaturalPhysicForces(GamePhysics::X, &currentXSpeed, &currentYSpeed, 
 		                                  getCurrentState(), handlerAnimation->getAnimationDirection());
@@ -369,7 +375,8 @@ void Sprite::drawTexture()
   }
   GLfloat y = getBoxY();
   
-  GameRender::drawFullTexture(GameRender::loadTexture("box.png"), Vector2f(x, y), 44, 135);
+  //GameRender::drawFullTexture(GameRender::loadTexture("box.png"), Vector2f(x, y), 44, 135);
+  GameRender::drawFullTexture(GameRender::loadTexture("boxPanda.png"), Vector2f(x, y), 90, 160);
 
   int currentState = getCurrentState();
   
@@ -394,7 +401,7 @@ void Sprite::drawTexture()
   }
 
   GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), 
-                                widthTexture, heightTexture, width, height, 
+	                            widthTexture, heightTexture, width, height, spriteCollisionBox->getWidth(), 
 								handlerAnimation->getAnimationDirection(), currentState );
 }
 

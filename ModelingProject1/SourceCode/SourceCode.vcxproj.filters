@@ -625,5 +625,8 @@
     <None Include="datafiles\imagesets\TutorialOption.png">
       <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
     </None>
+    <None Include="boxPanda.png">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
