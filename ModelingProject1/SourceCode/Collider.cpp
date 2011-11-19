@@ -85,8 +85,8 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
           return;
         }
 
-		/*if ( x == 73 && y == 15 && indexLayer == 1 )
-			int d = 4;*/
+		if ( x == 73 && y == 15 && indexLayer == 1 && A.getY() <= 11*32)
+			int d = 4;
 
         Tile foundTile = layers.at(indexLayer)[y][x];
 
@@ -99,7 +99,7 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
 	    {
           checkBoxBordersCollision(A, directionsMove, initial, initialX, y);
 		  checkTopBoxCollision(directionsMove, (int)A.getY()/32, directionY, y);
-		  checkBottomBoxCollision(directionsMove, ((int)A.getY() + (int)A.getHeight() - 32.0f) / 32, directionX, directionY, y);
+		  checkBottomBoxCollision(directionsMove, ((int)A.getY() + (int)A.getHeight()) / 32, directionX, directionY, y);
 		  checkBodyBoxCollision(A, directionsMove, directionX, directionY, y);
 		  return;
         }
