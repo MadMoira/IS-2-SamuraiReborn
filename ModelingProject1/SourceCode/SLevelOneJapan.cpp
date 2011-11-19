@@ -104,7 +104,7 @@ void SLevelOneJapan::init()
 						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);*/
 						
   gameCore->addPlayerToGame( new PandaP1(), PANDA, "Panda - SpriteSheet.png", 
-						speedPanda, Vector2f(50.0f, 280.0f), 0, maxFrameVectorPanda, returnFrameVector,
+						speedPanda, Vector2f(50.0f, 250.0f), 0, maxFrameVectorPanda, returnFrameVector,
 						280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
 
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(

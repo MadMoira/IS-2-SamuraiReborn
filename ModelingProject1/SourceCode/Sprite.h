@@ -89,8 +89,6 @@ class Sprite
    
    int getPreviousState() { return playerStateManager->getPreviousState(); }
 
-   GLfloat getCurrentDelayFromCurrentState() { return delayMovementSprite.at(getCurrentState()).x; }
-
    Collider* getCollisionHandler() { return collisionHandler; }
    CollisionSystem::CollisionBox* getCollisionBox() {return spriteCollisionBox; }
 

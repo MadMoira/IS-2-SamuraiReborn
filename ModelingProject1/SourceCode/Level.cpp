@@ -36,7 +36,7 @@ int Level::loadTMXTileMapFile(std::string filename)
   }
 
   log << "Loading List Collision Tiles... " << std::endl;
-  std::ifstream collisionListFile("CollisionListLevelZeroSectionOne.csv");
+  std::ifstream collisionListFile("LevelZeroSectionOneCollisionList.csv");
 	
   unsigned countTiles = readDataTypeFromFile<unsigned>(collisionListFile);
   log << "Number Of Tiles With Collision:  " << countTiles << std::endl;
@@ -50,6 +50,23 @@ int Level::loadTMXTileMapFile(std::string filename)
   collisionListFile.close();
 
   log << "Finish Loading List Collision Tiles... " << std::endl;
+
+  log << "Loading List Walkable Tiles... " << std::endl;
+  std::ifstream tilesWalkableListFile("LevelZeroSectionOneWalkableList.csv");
+	
+  unsigned countWalkableTiles = readDataTypeFromFile<unsigned>(tilesWalkableListFile);
+  log << "Number Of Walkable Tiles:  " << countWalkableTiles << std::endl;
+  std::vector< int > tempWalkableTilesList;
+  for(unsigned i = 0; i < countWalkableTiles; i++)
+  {
+    int tileID = readDataTypeFromFile<int>(tilesWalkableListFile);
+    tempWalkableTilesList.push_back(tileID);
+  }
+
+  tilesWalkableListFile.close();
+
+  log << "Finish Loading List Walkable Tiles... " << std::endl;
+
 
   log << "Loading Layers... " << std::endl;
 
@@ -77,6 +94,7 @@ int Level::loadTMXTileMapFile(std::string filename)
         int tileID = layer->GetTileGid(x, y);
         tempLayerMap[y][x].setID( tileID );
 		tempLayerMap[y][x].setHasCollision( initializeCollisionData( tileID, tempCollisionTilesList ) );
+		tempLayerMap[y][x].setIsWalkable( initializeWalkableData( tileID, tempWalkableTilesList ) );
       }
     }
 
@@ -111,6 +129,8 @@ int Level::loadTMXTileMapFile(std::string filename)
 	}
   }
 
+  tempCollisionTilesList.clear();
+
   log << "Load Of Map Finished... " << std::endl;
   log << "Closing File... " << std::endl;
 
@@ -142,6 +162,29 @@ bool Level::initializeCollisionData(int tileID, std::vector< int > listCollision
   }
 
   return false;
+}
+
+bool Level::initializeWalkableData(int tileID, std::vector< int > listWalkableTiles)
+{
+  if ( tileID == EMPTY )
+  {
+    return false;
+  }
+
+  for (std::string::size_type i = 0; i < listWalkableTiles.size(); i++)
+  {
+	if ( listWalkableTiles.at(i) > tileID )
+	{
+	  return true;
+	}
+
+	if ( tileID == listWalkableTiles.at(i) )
+	{
+	  return false;
+	}
+  }
+
+  return true;
 }
 
 bool Level::drawLevelMap()

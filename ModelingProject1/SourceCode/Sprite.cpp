@@ -377,7 +377,7 @@ void Sprite::drawTexture()
   
   //GameRender::drawFullTexture(GameRender::loadTexture("box.png"), Vector2f(x, y), 44, 135);
   GameRender::drawFullTexture(GameRender::loadTexture("boxPanda.png"), Vector2f(x, y), 90, 160);
-
+  
   int currentState = getCurrentState();
   
   if ( currentState == GameCoreStates::STOPPING )

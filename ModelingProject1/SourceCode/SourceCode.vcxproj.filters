@@ -571,9 +571,6 @@
     <None Include="SkyBackground.png">
       <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
     </None>
-    <None Include="CollisionListLevelZeroSectionOne.csv">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
     <None Include="datafiles\imagesets\CreditsButton.imageset">
       <Filter>Resource Files\Main Menu\Imagesets</Filter>
     </None>
@@ -627,6 +624,12 @@
     </None>
     <None Include="boxPanda.png">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="LevelZeroSectionOneCollisionList.csv">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
+    </None>
+    <None Include="LevelZeroSectionOneWalkableList.csv">
+      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
     </None>
   </ItemGroup>
 </Project>
