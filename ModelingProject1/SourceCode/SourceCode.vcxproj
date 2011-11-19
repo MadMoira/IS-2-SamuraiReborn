@@ -210,7 +210,6 @@
     <None Include="box.png" />
     <None Include="boxPanda.png" />
     <None Include="Clouds.png" />
-    <None Include="CollisionListLevelZeroSectionOne.csv" />
     <None Include="ContextList.txt" />
     <None Include="datafiles\imagesets\CreditsButton.imageset" />
     <None Include="datafiles\imagesets\CreditsOption.png" />
@@ -226,6 +225,8 @@
     <None Include="Enemy - SpriteSheet.png" />
     <None Include="healthBar.png" />
     <None Include="LevelOneTileMap.tmx" />
+    <None Include="LevelZeroSectionOneCollisionList.csv" />
+    <None Include="LevelZeroSectionOneWalkableList.csv" />
     <None Include="logoSamuraiReborn.png" />
     <None Include="MainContext.txt" />
     <None Include="Meerkat - SpriteSheet.png" />

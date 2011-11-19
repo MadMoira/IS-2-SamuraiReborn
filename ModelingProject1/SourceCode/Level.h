@@ -34,6 +34,7 @@ class Level
 
    int loadTMXTileMapFile(std::string filename);
    bool initializeCollisionData(int tileID, std::vector< int > listCollisionTiles);
+   bool initializeWalkableData(int tileID, std::vector< int > listWalkableTiles);
 
    bool drawLevelMap();
 
