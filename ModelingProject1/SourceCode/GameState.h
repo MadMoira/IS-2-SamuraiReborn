@@ -3,7 +3,6 @@
 #include "GameCore.h"
 #include "GameRender.h"
 #include "GameInput.h"
-#include "PhysicsCore.h"
 
 enum GameStates 
 {
@@ -17,30 +16,28 @@ enum GameStates
 
 class GameState
 {
-public:
-	virtual void init() = 0;
-	virtual void handleEvents() = 0;
-	virtual void logic() = 0;
-	virtual void render() = 0;
-	virtual void cleanUp() = 0;
-	virtual ~GameState(){};
+  public:
+   virtual void init() = 0;
+   virtual void handleEvents() = 0;
+   virtual void logic() = 0;
+   virtual void render() = 0;
+   virtual void cleanUp() = 0;
+   virtual ~GameState(){};
 
-	GameStates getNameState() { return nameState; }
+   GameStates getNameState() { return nameState; }
 
-	int checkIfStateEnd() { return hasEnded; }
-	void setHasEnded(int stateHasEnded) { hasEnded = stateHasEnded; }
+   int checkIfStateEnd() { return hasEnded; }
+   void setHasEnded(int stateHasEnded) { hasEnded = stateHasEnded; }
 
-private:
-	int hasEnded;
+  private:
+   int hasEnded;
 
-protected:
-	GameState( GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, GameStates stateName );
-	GameRender* gameRender;
-	GameCore* gameCore;
-	GameInput* gameInput;
-	GamePhysics::PhysicsCore* gamePhysics;
-	GameStates nameState;
-    std::vector< std::string > sounds;	
-	
+  protected:
+   GameState( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
+   GameRender* gameRender;
+   GameCore* gameCore;
+   GameInput* gameInput;
+   GameStates nameState;
+   std::vector< std::string > sounds;
 };
 

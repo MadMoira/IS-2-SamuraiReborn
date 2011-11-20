@@ -37,7 +37,7 @@ void GameStateManager::changeState(GameState *gameState)
   currentState = gameState->getNameState();
 }
 
-void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP)
+void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI)
 {
   int newChangeState = checkIfCurrentStateHasEnd();
 
@@ -48,21 +48,21 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
 	  case STATE_INTRO:
 	  {
 		cleanUp();
-        changeState(new SIntro( gR, gC, gI, gP, STATE_INTRO ) );
+        changeState(new SIntro( gR, gC, gI, STATE_INTRO ) );
         break;
       }
 
 	  case STATE_MAINMENU:
 	  {
 		cleanUp();
-        changeState(new SMainMenu( gR, gC, gI, gP, STATE_MAINMENU ) );
+        changeState(new SMainMenu( gR, gC, gI, STATE_MAINMENU ) );
         break;
       }
 	  
 	  case STATE_LEVELONEJAPAN:
 	  {
 		cleanUp();
-        changeState(new SLevelOneJapan( gR, gC, gI, gP, STATE_LEVELONEJAPAN ) );
+        changeState(new SLevelOneJapan( gR, gC, gI, STATE_LEVELONEJAPAN ) );
         break;
       }
 	}

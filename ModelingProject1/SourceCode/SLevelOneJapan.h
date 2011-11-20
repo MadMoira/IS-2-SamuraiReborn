@@ -8,7 +8,7 @@
 class SLevelOneJapan : public GameState
 {
   public:
-   SLevelOneJapan( GameRender* gR, GameCore* gC, GameInput* gI, GamePhysics::PhysicsCore* gP, GameStates stateName );
+   SLevelOneJapan( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
    ~SLevelOneJapan();
 
    void init();
@@ -19,7 +19,7 @@ class SLevelOneJapan : public GameState
 
   private:
    Level* japanLevel;
-   AI levelAI;
+   AI levelAI;   
    GameSound* sound;
 };
 

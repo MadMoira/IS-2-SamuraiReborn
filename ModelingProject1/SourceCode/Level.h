@@ -28,32 +28,30 @@ enum CollisionProperties
 
 class Level
 {
-public:
-	Level(Levels id);
-	~Level(void);
+  public:
+   Level(Levels id);
+   ~Level(void);
 
-	int loadTMXTileMapFile(std::string filename);
-	bool initializeCollisionData(int tileID, std::vector< int > listCollisionTiles);
+   int loadTMXTileMapFile(std::string filename);
+   bool initializeCollisionData(int tileID, std::vector< int > listCollisionTiles);
+   bool initializeWalkableData(int tileID, std::vector< int > listWalkableTiles);
 
-	bool drawLevelMap();
+   bool drawLevelMap();
 
-	boost::ptr_vector< Layer > getLayersList() { return layersList; }
-	void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
-				 GLfloat constantX, bool hasRepetition, bool continuousScroll);
-	void scrollBackgroundLayers();
-	void checkLayersSpeed(GLfloat speedX);
+   boost::ptr_vector< Layer > getLayersList() { return layersList; }
+   void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
+				      GLfloat constantX, bool hasRepetition, bool continuousScroll);
+   void scrollContinuousBackgroundLayers();
+   void scrollBackgroundLayers();
+   void checkLayersSpeed(GLfloat speedX);
 
-	std::vector< int > getCollisionTilesList() { return collisionTilesList; }
-	void setCollisionTilesList(std::vector< int > listCollision) { collisionTilesList = listCollision; }
+   boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
+   void scrollTilemap();
+   void checkTilemapsSpeed(GLfloat speedX);
 
-	boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
-	void scrollTilemap();
-	void checkTilemapsSpeed(GLfloat speedX);
-
-private:
-	Levels IDLevel;
-	boost::ptr_vector< Layer > layersList;
-	boost::ptr_vector< Tilemap > tilemapList;
-	std::vector< int > collisionTilesList;
+  private:
+   Levels IDLevel;
+   boost::ptr_vector< Layer > layersList;
+   boost::ptr_vector< Tilemap > tilemapList;
 };
 

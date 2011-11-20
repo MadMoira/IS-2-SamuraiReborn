@@ -4,13 +4,12 @@
 #include "Collider.h"
 #include "Camera.h"
 
-#include "PhysicsCore.h"
-
-Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+Sprite::Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement)
 {
+  ID = id;
   texture = GameRender::loadTexture(filename);
   glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &this->widthTexture);
   glGetTexLevelParameterfv( GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &this->heightTexture);
@@ -19,6 +18,9 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
 
   handlerAnimation = new Animation(initialFrame, getCurrentState(), SpriteData::RIGHT, 
 	                               maxFrame, returnFrame, framerateAnimations );
+
+  rigidBody = new GamePhysics::RigidBody(GamePhysics::RIGID_BODY);
+  rigidBody->initializeNaturalPhysicsForces(-4.0f, 2.0f);
 
   collisionHandler = Collider::getInstance();
 
@@ -31,10 +33,6 @@ Sprite::Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed
   this->speed = speed;
   currentXSpeed = speed.at(getCurrentState()).x;
   currentYSpeed = speed.at(getCurrentState()).y;
-
-  spriteCollisionBox = new CollisionSystem::CollisionBox(0.0f, 0.0f, 44.0f, 135.0f, Vector2f(42.0f, 45.0f));
-  spriteCollisionBox->setX(position.x, handlerAnimation->getAnimationDirection());
-  spriteCollisionBox->setY(position.y);
 
   changeStatePlayerSprite( new GameCoreStates::StillState(GameCoreStates::STILL) , 0,
 	                       std::list< InputMapping::Key >());
@@ -53,12 +51,24 @@ Sprite::~Sprite(void)
   glDeleteTextures(1, &texture);
   speed.clear();
   delayMovementSprite.clear();
+  delete rigidBody;
   delete playerStateManager;
   delete handlerAnimation;
   delete spriteCollisionBox;
 }
 
-void Sprite::movePosXWithSpeed(){
+void Sprite::initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY)
+{
+  spriteCollisionBox = new CollisionSystem::CollisionBox(0.0f, 0.0f, width, height, Vector2f(offsetX, offsetY));
+  spriteCollisionBox->setX(position.x, handlerAnimation->getAnimationDirection());
+  spriteCollisionBox->setY(position.y);
+
+  textureBox = GameRender::loadTexture("boxPanda.png");
+  //textureBox = GameRender::loadTexture("box.png"); //Meerkat
+}
+
+void Sprite::movePosXWithSpeed()
+{
   characterMovement.playerMoveInX = false || characterMovement.playerMoveInX;
   characterMovement.playerMoveInXInCurrentFrame = false;
   countX++;
@@ -66,10 +76,9 @@ void Sprite::movePosXWithSpeed(){
   if ( countX > delayMovementSprite.at(getCurrentState()).x )
   {
     countX = 0;
-
 	handlerAnimation->changeDirectionY( getSpeedY() );
 
-	if ( Camera::getInstance()->isLimit(position.x, getSpeedX()) )
+	if ( Camera::getInstance()->isLimit(spriteCollisionBox->getX(), getSpeedX()) )
 	{ 
 	  characterMovement.playerMoveInX = false;
 	  characterMovement.playerMoveInXInCurrentFrame = false;
@@ -78,9 +87,9 @@ void Sprite::movePosXWithSpeed(){
 
     if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
     {
-      if ( position.x + getSpeedX() + width < 6400.f )
+      if ( getBoxX() + getSpeedX() + getBoxWidth() < 6400.f )
       {
-        if ( !directionsMove.canMoveXRight )
+        if ( !directionsMove.canMoveXRight || getSpeedX() == 0.0f)
         {
           return;
         }
@@ -88,42 +97,49 @@ void Sprite::movePosXWithSpeed(){
         position.x += getSpeedX();
 		spriteCollisionBox->setX(position.x, handlerAnimation->getAnimationDirection());
 
+		if ( spriteCollisionBox->getX() + spriteCollisionBox->getWidth() >= 73*32 )
+		{
+			int d = 4;
+		}
+
         characterMovement.playerMoveInX = true;
 		characterMovement.playerMoveInXInCurrentFrame = true;
 
+		rigidBody->applyNaturalPhysicForces(GamePhysics::X, &currentXSpeed, &currentYSpeed, 
+			                                getCurrentState(), handlerAnimation->getAnimationDirection());
+
+        collisionHandler->checkTileCollision(*getCollisionBox(), 
+		                             handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY(), 
+					                 directionsMove);
+        collisionHandler->checkStateCollisionXAxis(*this);
         isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
-					                   handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
-		collisionHandler->checkTileCollision(*getCollisionBox(), 
-					                   handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY(), 
-									   directionsMove );
-
-		collisionHandler->checkStateCollisionXAxis(*this);
-
-		return;
+		                             handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
+        return;
       }
     }
 
-    else if ( position.x + getSpeedX() + width  > 0 )
+    else if ( getBoxX() + getSpeedX() > 0 )
     {
-      if ( !directionsMove.canMoveXLeft )
+      if ( !directionsMove.canMoveXLeft || getSpeedX() == 0.0f )
       {
         return;
       }
 
       position.x += getSpeedX();
-	  spriteCollisionBox->setX(position.x + (spriteCollisionBox->getWidth()/2), handlerAnimation->getAnimationDirection());
+	  spriteCollisionBox->setX(position.x + spriteCollisionBox->getOffset().x, handlerAnimation->getAnimationDirection());
+
+	  rigidBody->applyNaturalPhysicForces(GamePhysics::X, &currentXSpeed, &currentYSpeed, 
+		                                  getCurrentState(), handlerAnimation->getAnimationDirection());
 
 	  characterMovement.playerMoveInX = true;
 	  characterMovement.playerMoveInXInCurrentFrame = true;
 
+	  collisionHandler->checkTileCollision(*getCollisionBox(), 
+		                             handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY(), 
+					                 directionsMove);
+      collisionHandler->checkStateCollisionXAxis(*this);
       isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
-		            handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
-      collisionHandler->checkTileCollision(*getCollisionBox(), 
-		            handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY(), 
-					directionsMove );
-
-	  collisionHandler->checkStateCollisionXAxis(*this);
-
+		                             handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
 	  return;
     }
 	characterMovement.playerMoveInX = false;
@@ -139,29 +155,29 @@ void Sprite::movePosYWithSpeed()
   if ( countY > delayMovementSprite.at(getCurrentState()).y )
   {
     countY = 0;
-    if( position.y + getSpeedY() + height <= 1000.0f )
+    if( getBoxY() + getBoxHeight() <= 880.0f )
     {
       handlerAnimation->changeDirectionY( getSpeedY() );
       
-	  if ( !directionsMove.canMoveYDown || !directionsMove.canMoveYUp )
+      if ( !getPlayerDirectionYBasedInDirection() )
       {
         return;
       }
 
 	  position.y += getSpeedY();
 	  spriteCollisionBox->setY(position.y);
-	  GamePhysics::PhysicsCore::getInstance()->physicManager(&currentYSpeed, 
-		                                       GamePhysics::PARABOLIC, getCurrentState() );
+
+	  rigidBody->applyNaturalPhysicForces(GamePhysics::Y, &currentXSpeed, &currentYSpeed, 
+		                                  getCurrentState(), handlerAnimation->getAnimationDirection());
 
 	  characterMovement.playerMoveInY = true;
 	  characterMovement.playerMoveInYInCurrentFrame = true;
 
 	  isOnGround = collisionHandler->onTheGround(*getCollisionBox(),
-			                                          handlerAnimation->getAnimationDirection(),
-													  handlerAnimation->getDirectionY());
+			                         handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY());
       collisionHandler->checkTileCollision(*getCollisionBox(), 
-					                                  handlerAnimation->getAnimationDirection(), 
-													  handlerAnimation->getDirectionY(), directionsMove);
+                                     handlerAnimation->getAnimationDirection(), 
+                                     handlerAnimation->getDirectionY(), directionsMove);
 
 	  collisionHandler->checkStateCollisionPlayer(*this);
 	  return;
@@ -182,28 +198,45 @@ bool Sprite::getPlayerMoveBasedInDirection()
   return directionsMove.canMoveXLeft;
 }
 
+bool Sprite::getPlayerDirectionYBasedInDirection()
+{
+  if ( handlerAnimation->getDirectionY() == SpriteData::UP )
+  {
+    return directionsMove.canMoveYUp;
+  }
+  return directionsMove.canMoveYDown;
+}
+
 void Sprite::setSpeedX(GLfloat speedX)
 {
-  if ( getCurrentState() == GameCoreStates::JUMPING || getCurrentState() == GameCoreStates::DOUBLE_JUMP ||
-	   getCurrentState() == GameCoreStates::FALLING )
+  switch( getCurrentState() )
   {
-    speed.at(getCurrentState()).x = speedX;
+    case GameCoreStates::JUMPING:
+    case GameCoreStates::DOUBLE_JUMP:
+    case GameCoreStates::FALLING:
+    {
+      speed.at(getCurrentState()).x = speedX;
+      break;
+    }
+    case GameCoreStates::FAST_ATTACK:
+    {
+      if ( getPreviousState() == GameCoreStates::JUMPING )
+      {
+        speed.at(getCurrentState()).x = speed.at(getPreviousState()).x/2;
+        break;
+      }
+      speed.at(getCurrentState()).x = speed.at(getPreviousState()).x;
+      break;
+    }
   }
 
-  if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
+  if ( !getPlayerMoveBasedInDirection() )
   {
-	if ( getPreviousState() == GameCoreStates::JUMPING )
-	{
-      speed.at(getCurrentState()).x = speed.at(getPreviousState()).x/2;
-	}
-	else
-	{
-	  speed.at(getCurrentState()).x = speed.at(getPreviousState()).x;
-	}
+    currentXSpeed = 0.0f;
+    return;
   }
 
   currentXSpeed = speed.at(getCurrentState()).x;
-  
 }
 
 void Sprite::setSpeedY(GLfloat speedY)
@@ -285,8 +318,19 @@ void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int 
       playerStateManager->changeState(STILL_STATE);
 	  break;
     }
+	case GameCoreStates::RETURN_STOPPING:
+    {
+      playerStateManager->changeState(STOPPING_STATE);
+	  break;
+    }
+	case GameCoreStates::RETURN_WALKING:
+    {
+      playerStateManager->changeState(WALKING_STATE);
+      break;
+    }
   }
 
+  setSpeedX(speed.at(getCurrentState()).x);
   setSpeedY(speed.at(getCurrentState()).y);
   handlerAnimation->setCurrentStateForAnimation(getCurrentState());
   handlerAnimation->restartOldTime();
@@ -304,6 +348,7 @@ void Sprite::changeStateEnemySprite(GameCoreStates::PlayerState* newState)
   }
 
   playerStateManager->changeState(newState);
+  setSpeedX(speed.at(getCurrentState()).x);
   setSpeedY(speed.at(getCurrentState()).y);
   handlerAnimation->setCurrentStateForAnimation(getCurrentState());
   handlerAnimation->restartOldTime();
@@ -320,7 +365,6 @@ bool Sprite::isPlayerOnTheAir()
   {
     return false;
   }
-
   return true;
 }
 
@@ -329,13 +373,17 @@ void Sprite::drawTexture()
   GLfloat x = getBoxX();
   if( x < 0 )
   {
-	  x = 0;
+    x = 0;
   }
-  GLfloat y = getBoxY();
-  
-  GameRender::drawFullTexture(GameRender::loadTexture("box.png"), Vector2f(x, y), 44, 135);
 
+  GameRender::drawFullTexture(textureBox, Vector2f(x, getBoxY()), getBoxWidth(), getBoxHeight());
+  
   int currentState = getCurrentState();
+  
+  if ( currentState == GameCoreStates::STOPPING )
+  {
+    currentState = GameCoreStates::WALKING;
+  }
 
   if ( currentState == GameCoreStates::DOUBLE_JUMP )
   {
@@ -353,7 +401,7 @@ void Sprite::drawTexture()
   }
 
   GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), 
-                                widthTexture, heightTexture, width, height, 
+	                            widthTexture, heightTexture, width, height,  
 								handlerAnimation->getAnimationDirection(), currentState );
 }
 

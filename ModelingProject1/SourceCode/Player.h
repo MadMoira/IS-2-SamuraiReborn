@@ -12,47 +12,54 @@
 
 class Player : boost::noncopyable
 {
-public:
+  public:
+   virtual ~Player() { };
 
-	virtual ~Player() { };
-
-	virtual void initializePlayer(IDSprites id, std::string filename, std::vector< Vector2f > speed, 
+   virtual void initializePlayer(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, 
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
 				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
 				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement) = 0;
-	virtual void walk() = 0;
-	virtual void run() = 0;
-	virtual void jump() = 0;
-	virtual void draw() = 0;
-	virtual void noAction() = 0;
-	virtual void fastAttack() = 0;
-	virtual void falling() = 0;
-	void executeAction();
-	void drawUIStats();
-	void drawScore();
-	void stop();
-	void returnToPreviousState();
-	bool isOnGround();
+   virtual void walk() = 0;
+   virtual void run() = 0;
+   virtual void jump() = 0;
+   virtual void draw() = 0;
+   virtual void noAction() = 0;
+   virtual void fastAttack() = 0;
+   virtual void falling() = 0;
+   virtual void stopping() = 0;
 
-	static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
+   void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
 
-	Sprite* getPlayerSprite() { return playerSprite; }
-	bool isReadyToPace();
-	bool isReadyToDoubleJump();
-	bool isFalling();
-	bool isAlive();
+   void executeAction();
+   void drawUIStats();
+   void drawScore();
+   void stop();
 
-	InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
+   bool isStoppingMovement(std::list<InputMapping::Key> keys);
+   void returnToPreviousState();
 
-	PlayerStats::Stats* getPlayerStats() { return stats; }
+   bool isReadyToPace();
+   bool isReadyToDoubleJump();
+   bool isFalling();
+   bool isAlive();
 
-	Score::PlayerScore* getScore() { return score; }
+   static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
 
-protected:
-	Sprite* playerSprite;
-	InputMapping::GameInputMapper* inputMapper;
-	PlayerStats::Stats* stats;
-	Score::PlayerScore* score;
-	Weapon* playerWeapon;
+   SpriteData::IDSprites getID() { return playerSprite->getID(); }
+
+   Sprite* getPlayerSprite() { return playerSprite; }
+
+   InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
+
+   PlayerStats::Stats* getPlayerStats() { return stats; }
+
+   Score::PlayerScore* getScore() { return score; }
+
+  protected:
+   Sprite* playerSprite;
+   InputMapping::GameInputMapper* inputMapper;
+   PlayerStats::Stats* stats;
+   Score::PlayerScore* score;
+   Weapon* playerWeapon;
 };
 

@@ -1,3 +1,5 @@
+#include "SDL/SDL.h"
+
 #include "GameInput.h"
 
 GameInput::GameInput(void)

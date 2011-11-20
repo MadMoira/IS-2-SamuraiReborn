@@ -83,7 +83,7 @@ void GameSound::stateSoundsHandling(GameCoreStates::SpriteState previousState){
   }
   if(previousState == GameCoreStates::FALLING){
 	  GameSound::getInstance()->loadChunk(Sounds.at(1));
-
+  }
 }
 //
 

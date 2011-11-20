@@ -2,6 +2,12 @@
 
 namespace SpriteData
 {
+  enum IDSprites 
+  { 
+    PANDA, 
+    MEERKAT, 
+  };
+
   enum AnimationDirection
   {
     RIGHT,

@@ -15,8 +15,6 @@ Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f
   offset.x = offset.y = 0.0f;
   repeat = hasRepetition;
   continuous = isContinuous;
-  countX = 0;
-  delayX = 2;
 }
 
 Layer::~Layer(void)
@@ -39,13 +37,8 @@ void Layer::setSpeedX(GLfloat velX)
 
 void Layer::scrollLayer()
 {
-  countX++;
-  if ( countX > delayX )
-  {
-    countX = 0;
-    offset.x += speed.x;
-    offset.y += speed.y;
-  }
+  offset.x += speed.x;
+  offset.y += speed.y;
 
   checkScreenBoundaries();
 }

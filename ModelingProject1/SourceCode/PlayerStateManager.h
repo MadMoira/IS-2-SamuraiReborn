@@ -11,6 +11,7 @@
 #include "DoubleJumpState.h"
 #include "FastAttackState.h"
 #include "FallingState.h"
+#include "StoppingState.h"
 
 #include "PlayerSpriteStates.h"
 
@@ -21,6 +22,7 @@
 #define DOUBLE_JUMP_STATE new GameCoreStates::DoubleJumpState(GameCoreStates::DOUBLE_JUMP)
 #define FAST_ATTACK_STATE new GameCoreStates::FastAttackState(GameCoreStates::FAST_ATTACK)
 #define FALLING_STATE new GameCoreStates::FallingState(GameCoreStates::FALLING)
+#define STOPPING_STATE new GameCoreStates::StoppingState(GameCoreStates::STOPPING)
 
 namespace GameCoreStates
 {
@@ -36,6 +38,7 @@ namespace GameCoreStates
 	 void changePreviousState( GameCoreStates::SpriteState previousID );
 
 	 int getCurrentState() { return currentState.getCurrentID(); }
+	 GameCoreStates::PlayerState getObjectState() { return currentState; }
 	 int getPreviousState() { return previousState; }
 
     private:

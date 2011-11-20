@@ -5,16 +5,15 @@
 #include "CollisionBox.h"
 #include "Enemy.h"
 #include "Player.h"
-#include "Tile.h"
+#include "Tilemap.h"
 
 class Collider
 {
   public:
    static Collider* getInstance();
    
-   void initializeColliderSprites(boost::ptr_vector< Enemy >* enemies, boost::ptr_vector< Player >* players);
-   void initializeColliderTiles(std::vector< std::vector < Tile > > tilemap,
-	                            std::vector< int > tilesList);
+   void initializeColliderSprites(boost::ptr_vector< Enemy >* enemiesList, boost::ptr_vector< Player >* playersList);
+   void addLayerTilemap(std::vector< std::vector < Tile > > layer); 
 
    void cleanUpResources();
    
@@ -24,13 +23,15 @@ class Collider
 
    bool checkStateCollisionPlayer( Sprite& playerSprite );
    bool checkStateCollisionXAxis( Sprite& playerSprite );
-   GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition );
+   GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition, int direction );
 
    void checkBoxBordersCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove,
 	                              int leftPositionBorder, int currentPosition, int positionY );
    void checkTopBoxCollision( CollisionSystem::DirectionsMove& directionsMove, int topY, int directionY, int currentPositionY );
    void checkBodyBoxCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, int directionX, 
 	                           int directionY, int currentPositionY );
+   void checkBottomBoxCollision( CollisionSystem::DirectionsMove& directionsMove, int bottomY, int directionX, 
+	                             int directionY, int currentPositionY );
    bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
    //std::vector< Player > checkEnemiesAttackCollision(CollisionSystem::CollisionBox& A, float directionX);
@@ -38,19 +39,13 @@ class Collider
 
    bool onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY);
 
-   void setLayerMap(std::vector< std::vector < Tile > > tilemap) { layerMap = tilemap; }
-
-   void setCollisionTilesList(std::vector< int > tilesList) { collisionTilesList = tilesList; }
-
   protected:
    Collider();
 
   private:
    static bool instanceFlag;
    static Collider* collider;
-   std::vector< std::vector < Tile > > layerMap;
-   std::vector< std::vector < Tile > > layerMapGround;
-   std::vector< int > collisionTilesList;
+   std::vector< std::vector< std::vector < Tile > > > layers;
    boost::ptr_vector< Enemy >* enemies;
    boost::ptr_vector< Player >* players;
 };
