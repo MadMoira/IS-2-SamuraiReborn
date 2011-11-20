@@ -8,11 +8,11 @@ Pathfinding::Pathfinding(void)
 	x=y=0;
 }
 	
-void Pathfinding::goToPlayer(Enemy *enemy, Player* player){							//only function to be called
-	int xPlayer = (int)player->getPlayerSprite()->getPosX();
-	int yPlayer = (int)player->getPlayerSprite()->getPosY();
-	int xEnemy	= (int)enemy->getEnemySprite()->getPosX();
-	int yEnemy	= (int)enemy->getEnemySprite()->getPosY();
+void Pathfinding::goToPlayer(Characters::Enemy* enemy, Characters::Player* player){							//only function to be called
+	int xPlayer = (int)player->getCharacterSprite()->getPosX();
+	int yPlayer = (int)player->getCharacterSprite()->getPosY();
+	int xEnemy	= (int)enemy->getCharacterSprite()->getPosX();
+	int yEnemy	= (int)enemy->getCharacterSprite()->getPosY();
 	if(xEnemy>xPlayer){
 		direction=SpriteData::LEFT;
 	}
@@ -106,12 +106,12 @@ void Pathfinding::setVariablesByPosition(int x, int y, int cost, int heuristic, 
 	level->getNodeByPosition(x,y)->scoreFunction=(GLfloat)score;
 }
 
-void Pathfinding::goToPosition(Enemy* enemy){
+void Pathfinding::goToPosition(Characters::Enemy* enemy){
 	//temporal code
-	enemy->getEnemySprite()->changeStateEnemySprite(WALKING_STATE);	
-	if(enemy->getEnemySprite()->getHandlerAnimation()->getAnimationDirection()!=direction){
-		enemy->getEnemySprite()->getHandlerAnimation()->changeAnimationDirection(direction);
-		enemy->getEnemySprite()->setConstantSpeedX(-1);
+	enemy->getCharacterSprite()->changeStateEnemySprite(WALKING_STATE);	
+	if(enemy->getCharacterSprite()->getHandlerAnimation()->getAnimationDirection()!=direction){
+		enemy->getCharacterSprite()->getHandlerAnimation()->changeAnimationDirection(direction);
+		enemy->getCharacterSprite()->setConstantSpeedX(-1);
 	}		
 	enemy->walk();
 	//temporal code, here is suposed to go the decision function

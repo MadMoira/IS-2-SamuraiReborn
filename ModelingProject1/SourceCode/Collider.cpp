@@ -21,8 +21,8 @@ Collider* Collider::getInstance()
   return collider;
 }
 
-void Collider::initializeColliderSprites(boost::ptr_vector< Enemy >* enemiesList, 
-	                                     boost::ptr_vector< Player >* playersList)
+void Collider::initializeColliderSprites(boost::ptr_vector< Characters::Enemy >* enemiesList, 
+	                                     boost::ptr_vector< Characters::Player >* playersList)
 {
   enemies = enemiesList;
   players = playersList;
@@ -323,9 +323,9 @@ bool Collider::checkEnemiesCollision(CollisionSystem::CollisionBox& A, float dir
   return false;
 }
 /*
-boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float directionX)
+boost::ptr_vector< Characters::Enemy > Collider::checkAttackCollision(CollisionBox& A, float directionX)
 {
-  boost::ptr_vector< Enemy > enemiesCollided;
+  boost::ptr_vector< Characters::Enemy > enemiesCollided;
 
   for(int i = 0; i == enemies->size(); i++)
   {
@@ -338,12 +338,12 @@ boost::ptr_vector< Enemy > Collider::checkAttackCollision(CollisionBox& A, float
   return enemiesCollided;
 }*/
 
-/*boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX)
+/*boost::ptr_vector< Characters::Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX)
 {
-  boost::ptr_vector< Player > playersCollided;
+  boost::ptr_vector< Characters::Player > playersCollided;
   for(int i = 0; i == players->size(); i++)
   {
-    if( checkCollision(A, *players->at(i).getPlayerSprite()->getCollisionBox(), directionX) )
+    if( checkCollision(A, *players->at(i).getCharacterSprite()->getCollisionBox(), directionX) )
 	{
       playersCollided.push_back(&players->at(i));
     }

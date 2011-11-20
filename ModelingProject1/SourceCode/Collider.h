@@ -12,7 +12,8 @@ class Collider
   public:
    static Collider* getInstance();
    
-   void initializeColliderSprites(boost::ptr_vector< Enemy >* enemiesList, boost::ptr_vector< Player >* playersList);
+   void initializeColliderSprites(boost::ptr_vector< Characters::Enemy >* enemiesList, 
+	                              boost::ptr_vector< Characters::Player >* playersList);
    void addLayerTilemap(std::vector< std::vector < Tile > > layer); 
 
    void cleanUpResources();
@@ -34,8 +35,8 @@ class Collider
 	                             int directionY, int currentPositionY );
    bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
-   //boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
-   //boost::ptr_vector< Enemy > checkAttackCollision(CollisionBox& A, float directionX);
+   //boost::ptr_vector< Characters::Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
+   //boost::ptr_vector< Characters::Enemy > checkAttackCollision(CollisionBox& A, float directionX);
 
    bool onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY);
 
@@ -46,6 +47,6 @@ class Collider
    static bool instanceFlag;
    static Collider* collider;
    std::vector< std::vector< std::vector < Tile > > > layers;
-   boost::ptr_vector< Enemy >* enemies;
-   boost::ptr_vector< Player >* players;
+   boost::ptr_vector< Characters::Enemy >* enemies;
+   boost::ptr_vector< Characters::Player >* players;
 };

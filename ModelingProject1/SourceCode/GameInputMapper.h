@@ -12,7 +12,10 @@
 
 #include <SDL\SDL.h>
 
-class Player;
+namespace Characters
+{
+  class Player;
+}
 
 namespace InputMapping 
 {
@@ -28,7 +31,7 @@ namespace InputMapping
     void eatStates();
   };
 
-  typedef void (*inputCallback)(MappedInput& inputs, Player& player, std::list<Key> keys);
+  typedef void (*inputCallback)(MappedInput& inputs, Characters::Player& player, std::list<Key> keys);
   
   class GameInputContext;
   
@@ -40,7 +43,7 @@ namespace InputMapping
 
      void clearCurrentMappedInput(GameCoreStates::SpriteState activeState);
      void addCallback(inputCallback callback, int priorityInMultimap);
-	 void dispatchInput(Player& player) const;
+	 void dispatchInput(Characters::Player& player) const;
 
      void pushContext(const std::string& name);
      void popContext();

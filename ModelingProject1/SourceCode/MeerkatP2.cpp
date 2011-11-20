@@ -1,86 +1,86 @@
 
 #include "MeerkatP2.h"
 
-MeerkatP2::~MeerkatP2()
+Characters::MeerkatP2::~MeerkatP2()
 {
-  delete playerSprite;
+  delete characterSprite;
   delete inputMapper;
   delete stats;
   delete score;
 }
 
-void MeerkatP2::initializePlayer(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed,
+void Characters::MeerkatP2::initializePlayer(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
 				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
 				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
-  playerSprite = new Sprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
+  characterSprite = new Sprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
 							widthSprite, heightSprite, framerateAnimations, delayMovement);
   inputMapper = new InputMapping::GameInputMapper();
   inputMapper->pushContext("maincontext");
   inputMapper->addCallback( Player::inputCallback, 0);
 }
 
-void MeerkatP2::noAction()
+void Characters::MeerkatP2::noAction()
 {
-  playerSprite->setSpeedX(0.0f);
-  playerSprite->setPlayerMoveInX(false);
-  playerSprite->setPlayerMoveInY(false);
-  playerSprite->setPlayerMoveInXCurrentFrame(false);
+  characterSprite->setSpeedX(0.0f);
+  characterSprite->setPlayerMoveInX(false);
+  characterSprite->setPlayerMoveInY(false);
+  characterSprite->setPlayerMoveInXCurrentFrame(false);
   stop();	
 }
 
-void MeerkatP2::walk()
+void Characters::MeerkatP2::walk()
 {
-  playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
-  playerSprite->movePosXWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
-  playerSprite->setPlayerMoveInY(false);
+  characterSprite->setSpeedX( characterSprite->getStateXSpeed() );
+  characterSprite->movePosXWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(false);
   stop();
 }
 
-void MeerkatP2::run()
+void Characters::MeerkatP2::run()
 {
-  playerSprite->movePosXWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
-  playerSprite->setPlayerMoveInY(false);
+  characterSprite->movePosXWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(false);
   stop();
 }
 
-void MeerkatP2::jump()
+void Characters::MeerkatP2::jump()
 {
-  playerSprite->setPlayerMoveInY(true);
-  playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
-  playerSprite->movePosXWithSpeed();
-  playerSprite->movePosYWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(true);
+  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  characterSprite->movePosXWithSpeed();
+  characterSprite->movePosYWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
   stop();
 }
 
-void MeerkatP2::fastAttack()
+void Characters::MeerkatP2::fastAttack()
 {
-  playerSprite->setPlayerMoveInY(true);
-  playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
-  playerSprite->movePosXWithSpeed();
-  playerSprite->movePosYWithSpeed();
+  characterSprite->setPlayerMoveInY(true);
+  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  characterSprite->movePosXWithSpeed();
+  characterSprite->movePosYWithSpeed();
 
-  if ( playerSprite->getHandlerAnimation()->getAnimationAlreadyEnd() )
+  if ( characterSprite->getHandlerAnimation()->getAnimationAlreadyEnd() )
   {
     returnToPreviousState();
   }
   else
   {
-    playerSprite->getHandlerAnimation()->animate(); 
+    characterSprite->getHandlerAnimation()->animate(); 
   }
 }
 
-void MeerkatP2::falling()
+void Characters::MeerkatP2::falling()
 {
-  playerSprite->setPlayerMoveInY(true);
-  playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
-  playerSprite->movePosXWithSpeed();
-  playerSprite->movePosYWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(true);
+  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  characterSprite->movePosXWithSpeed();
+  characterSprite->movePosYWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
 
   if ( !isFalling() )
   {
@@ -88,20 +88,20 @@ void MeerkatP2::falling()
   }
 }
 
-void MeerkatP2::stopping()
+void Characters::MeerkatP2::stopping()
 {
-  playerSprite->setPlayerMoveInY(false);
-  playerSprite->movePosXWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(false);
+  characterSprite->movePosXWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
 
-  if ( playerSprite->getSpeedX() == 0.0f )
+  if ( characterSprite->getSpeedX() == 0.0f )
   {
-	playerSprite->setPlayerMoveInX(false);
+	characterSprite->setPlayerMoveInX(false);
   }
   stop();
 }
 
-void MeerkatP2::draw()
+void Characters::MeerkatP2::draw()
 {
-  playerSprite->drawTexture();
+  characterSprite->drawTexture();
 }

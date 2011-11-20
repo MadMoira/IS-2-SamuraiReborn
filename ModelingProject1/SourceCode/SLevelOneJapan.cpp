@@ -104,7 +104,7 @@ void SLevelOneJapan::init()
 						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
   gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 44.0f, 135.0f, 42.0f, 45.0f);*/
 						
-  gameCore->addPlayerToGame( new PandaP1(), SpriteData::PANDA, "Panda - SpriteSheet.png", 
+  gameCore->addPlayerToGame( new Characters::PandaP1(), SpriteData::PANDA, "Panda - SpriteSheet.png", 
 						speedPanda, Vector2f(50.0f, 250.0f), 0, maxFrameVectorPanda, returnFrameVector,
 						280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
   gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
@@ -126,8 +126,8 @@ void SLevelOneJapan::init()
   japanLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
   japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
-  gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getPlayerSprite()->getBoxX() +
-								 gameCore->getPlayersList().at(0).getPlayerSprite()->getBoxWidth()/2 );
+  gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
+								 gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
 
   speedPanda.clear();
   speedMeerkat.clear();
@@ -141,7 +141,7 @@ void SLevelOneJapan::handleEvents()
 {
   gameCore->getPlayersList().at(0).getInputMapper()->clearCurrentMappedInput(
 		   GameCoreStates::SpriteState(
-		                        gameCore->getPlayersList().at(0).getPlayerSprite()->getCurrentState() ) );
+		                        gameCore->getPlayersList().at(0).getCharacterSprite()->getCurrentState() ) );
 
   bool isRunning = gameInput->handleWindowEvents();
   gameCore->setIsRunning( isRunning );
@@ -169,7 +169,7 @@ void SLevelOneJapan::logic()
   japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
   japanLevel->scrollContinuousBackgroundLayers();
   
-  if ( gameCore->getPlayersList().at(0).getPlayerSprite()->getPlayerMoveInXCurrentFrame() )
+  if ( gameCore->getPlayersList().at(0).getCharacterSprite()->getPlayerMoveInXCurrentFrame() )
   {
     japanLevel->scrollBackgroundLayers();
     japanLevel->scrollTilemap();

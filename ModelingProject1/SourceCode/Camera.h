@@ -17,14 +17,14 @@ class Camera
    	
    void renderCamera();
 
-   bool checkCamera(boost::ptr_vector<Player>* players);
+   bool checkCamera(boost::ptr_vector<Characters::Player>* players);
    void resetCamera(GLfloat level, GLfloat spawningPoint);
 	
-   void updateCamera(boost::ptr_vector<Player>* players);
+   void updateCamera(boost::ptr_vector<Characters::Player>* players);
 
    GLfloat getCameraPosition() { return posX; }
-   void setCameraSpeed(GLfloat newSpeed){speedX=newSpeed;}
-   GLfloat getCameraSpeed() {return speedX;}
+   void setCameraSpeed(GLfloat newSpeed) { speedX = newSpeed; }
+   GLfloat getCameraSpeed() { return speedX; }
 
    bool isOnMidpoint(GLfloat posX);
    bool isLimit(GLfloat position, GLfloat speedX);

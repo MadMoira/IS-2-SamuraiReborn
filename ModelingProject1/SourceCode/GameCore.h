@@ -36,14 +36,14 @@ class GameCore
 
    GameScreen* getGameScreen() { return screen; };
 
-   boost::ptr_vector< Player >& getPlayersList() { return playersList; }
-   boost::ptr_vector< Enemy >& getEnemyList() { return enemiesList; }
+   boost::ptr_vector< Characters::Player >& getPlayersList() { return playersList; }
+   boost::ptr_vector< Characters::Enemy >& getEnemyList() { return enemiesList; }
 
-   void addPlayerToGame(Player *player, SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed,
+   void addPlayerToGame(Characters::Player* player, SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement);
-   void addEnemyToGame(Enemy *enemy, SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed,
+   void addEnemyToGame(Characters::Enemy *enemy, SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed,
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement);
@@ -61,8 +61,8 @@ class GameCore
    Camera* camera;
    Collider* collider;
 
-   boost::ptr_vector< Player > playersList;
-   boost::ptr_vector< Enemy > enemiesList;
+   boost::ptr_vector< Characters::Player > playersList;
+   boost::ptr_vector< Characters::Enemy > enemiesList;
    bool isRunning;
 };
 

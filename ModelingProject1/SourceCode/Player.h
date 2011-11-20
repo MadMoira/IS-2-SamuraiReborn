@@ -1,65 +1,51 @@
 #pragma once
 
-#include <boost\noncopyable.hpp>
+#include "Character.h"
 
-#include "Sprite.h"
-#include "Weapon.h"
 #include "Stats.h"
 #include "PlayerScore.h"
 #include "GameInputMapper.h"
 
-#include "Vector.h"
-
-class Player : boost::noncopyable
+namespace Characters
 {
-  public:
-   virtual ~Player() { };
+  class Player : public Character
+  {
+    public:
+     virtual ~Player() { };
 
-   virtual void initializePlayer(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, 
-				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
-				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
-				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement) = 0;
-   virtual void walk() = 0;
-   virtual void run() = 0;
-   virtual void jump() = 0;
-   virtual void draw() = 0;
-   virtual void noAction() = 0;
-   virtual void fastAttack() = 0;
-   virtual void falling() = 0;
-   virtual void stopping() = 0;
+     virtual void initializeCharacter(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, 
+				                      Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
+				                      std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
+				                      std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement) = 0;
+     virtual void noAction() = 0;
+     virtual void walk() = 0;
+     virtual void run() = 0;
+     virtual void jump() = 0;
+     virtual void fastAttack() = 0;
+     virtual void falling() = 0;
+     virtual void stopping() = 0;
+     virtual void draw() = 0;
 
-   void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
+	 void executeAction();
+   
+     void stop();
 
-   void executeAction();
-   void drawUIStats();
-   void drawScore();
-   void stop();
+     void returnToPreviousState();
 
-   bool isStoppingMovement(std::list<InputMapping::Key> keys);
-   void returnToPreviousState();
+     void drawUIStats();
+     void drawScore();
+	  
+     static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
 
-   bool isReadyToPace();
-   bool isReadyToDoubleJump();
-   bool isFalling();
-   bool isAlive();
+     InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
 
-   static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
+     PlayerStats::Stats* getPlayerStats() { return stats; }
 
-   SpriteData::IDSprites getID() { return playerSprite->getID(); }
+     Score::PlayerScore* getScore() { return score; }
 
-   Sprite* getPlayerSprite() { return playerSprite; }
-
-   InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
-
-   PlayerStats::Stats* getPlayerStats() { return stats; }
-
-   Score::PlayerScore* getScore() { return score; }
-
-  protected:
-   Sprite* playerSprite;
-   InputMapping::GameInputMapper* inputMapper;
-   PlayerStats::Stats* stats;
-   Score::PlayerScore* score;
-   Weapon* playerWeapon;
-};
-
+    protected:
+     InputMapping::GameInputMapper* inputMapper;
+     PlayerStats::Stats* stats;
+     Score::PlayerScore* score;
+  };
+}
