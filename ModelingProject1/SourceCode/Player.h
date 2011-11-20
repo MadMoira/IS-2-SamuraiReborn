@@ -15,7 +15,7 @@ class Player : boost::noncopyable
   public:
    virtual ~Player() { };
 
-   virtual void initializePlayer(IDSprites id, std::string filename, std::vector< Vector2f > speed, 
+   virtual void initializePlayer(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, 
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
 				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
 				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement) = 0;
@@ -28,6 +28,8 @@ class Player : boost::noncopyable
    virtual void falling() = 0;
    virtual void stopping() = 0;
 
+   void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
+
    void executeAction();
    void drawUIStats();
    void drawScore();
@@ -35,7 +37,6 @@ class Player : boost::noncopyable
 
    bool isStoppingMovement(std::list<InputMapping::Key> keys);
    void returnToPreviousState();
-   bool isOnGround();
 
    bool isReadyToPace();
    bool isReadyToDoubleJump();
@@ -43,6 +44,8 @@ class Player : boost::noncopyable
    bool isAlive();
 
    static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
+
+   SpriteData::IDSprites getID() { return playerSprite->getID(); }
 
    Sprite* getPlayerSprite() { return playerSprite; }
 

@@ -6,78 +6,9 @@
 
 #include "Collider.h"
 
-void Player::stop()
+void Player::initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY)
 {
-  if ( !playerSprite->getPlayerMoveInX() && !playerSprite->getPlayerMoveInY() )
-  {
-    playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
-    getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
-    playerSprite->changeCurrentFrame(GameCoreStates::STILL);
-  }
-}
-
-void Player::returnToPreviousState()
-{
-  switch( playerSprite->getPreviousState() )
-  {
-    case GameCoreStates::STILL:
-    {
-	  playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
-	  break;
-    }
-    case GameCoreStates::WALKING:
-    {
-	  playerSprite->changeStatePlayerSprite(WALKING_STATE, 1, getInputMapper()->getListKeys());
-	  break;
-    }
-	case GameCoreStates::RUNNING:
-    {
-      playerSprite->changeStatePlayerSprite(RUNNING_STATE, 1, getInputMapper()->getListKeys());
-	  break;
-    }
-	case GameCoreStates::JUMPING:
-    {
-	  playerSprite->changeStatePlayerSprite(FALLING_STATE, 0, getInputMapper()->getListKeys());
-	  break;
-    }
-  }
-
-  getInputMapper()->pushBackStateOnMappedInput( GameCoreStates::SpriteState( playerSprite->getCurrentState() ) );
-  playerSprite->changeCurrentFrame( playerSprite->getCurrentState() ); 
-}
-
-bool Player::isStoppingMovement(std::list<InputMapping::Key> keys)
-{
-  GameCoreStates::ConditionsPlayerRunning inputDirection = 
-	              playerSprite->getPlayerStateManager()->getObjectState().checkIfPlayerIsRunning(keys);
-
-  if ( !inputDirection.directionButtonPressed && !inputDirection.runningButtonPressed )
-  {
-    return true;
-  }
-
-  return false;
-}
-
-bool Player::isOnGround()
-{
-  if ( playerSprite->getCollisionHandler()->onTheGround(*playerSprite->getCollisionBox(), 
-	                 playerSprite->getHandlerAnimation()->getAnimationDirection(), 
-					 playerSprite->getHandlerAnimation()->getDirectionY()) )
-  {
-    return true;
-  }
-  return false;
-}
-
-bool Player::isAlive()
-{
-  if ( playerSprite->getPosY() > 720.0f )
-  {
-    return false;
-  }
-
-  return true;
+  playerSprite->initializeSpriteCollisionBox(width, height, offsetX, offsetY);
 }
 
 void Player::executeAction()
@@ -134,6 +65,59 @@ void Player::drawScore()
   score->drawDisplayPoints();
 }
 
+void Player::stop()
+{
+  if ( !playerSprite->getPlayerMoveInX() && !playerSprite->getPlayerMoveInY() )
+  {
+    playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
+    getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
+    playerSprite->changeCurrentFrame(GameCoreStates::STILL);
+  }
+}
+
+bool Player::isStoppingMovement(std::list<InputMapping::Key> keys)
+{
+  GameCoreStates::ConditionsPlayerRunning inputDirection = 
+	              playerSprite->getPlayerStateManager()->getObjectState().checkIfPlayerIsRunning(keys);
+
+  if ( !inputDirection.directionButtonPressed && !inputDirection.runningButtonPressed )
+  {
+    return true;
+  }
+
+  return false;
+}
+
+void Player::returnToPreviousState()
+{
+  switch( playerSprite->getPreviousState() )
+  {
+    case GameCoreStates::STILL:
+    {
+	  playerSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
+	  break;
+    }
+    case GameCoreStates::WALKING:
+    {
+	  playerSprite->changeStatePlayerSprite(WALKING_STATE, 1, getInputMapper()->getListKeys());
+	  break;
+    }
+	case GameCoreStates::RUNNING:
+    {
+      playerSprite->changeStatePlayerSprite(RUNNING_STATE, 1, getInputMapper()->getListKeys());
+	  break;
+    }
+	case GameCoreStates::JUMPING:
+    {
+	  playerSprite->changeStatePlayerSprite(FALLING_STATE, 0, getInputMapper()->getListKeys());
+	  break;
+    }
+  }
+
+  getInputMapper()->pushBackStateOnMappedInput( GameCoreStates::SpriteState( playerSprite->getCurrentState() ) );
+  playerSprite->changeCurrentFrame( playerSprite->getCurrentState() ); 
+}
+
 bool Player::isReadyToPace()
 {
   if ( playerSprite->getCurrentState() != GameCoreStates::JUMPING &&
@@ -169,6 +153,16 @@ bool Player::isFalling()
   }
 
   return false;
+}
+
+bool Player::isAlive()
+{
+  if ( playerSprite->getBoxY() > 720.0f )
+  {
+    return false;
+  }
+
+  return true;
 }
 
 void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys)

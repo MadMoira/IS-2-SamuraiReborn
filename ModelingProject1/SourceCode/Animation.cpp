@@ -11,6 +11,7 @@ Animation::Animation(int actualFrame, int currentState, SpriteData::AnimationDir
   incrementFrame = 1;
   oldTime = SDL_GetTicks();
   animationAlreadyEnd = false;
+
   maxFramesPerAnimation = maxFrames;
   returnFramesPerAnimation = returnFrames;
   frameratePerAnimation = framerates;
