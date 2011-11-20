@@ -2,34 +2,11 @@
 
 #include "GameState.h"
 
+#include "MenuData.h"
+#include "MenuStructs.h"
+
 #include <CEGUI.h>
 #include <RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
-
-enum MainMenuOptions
-{
-  NOTHING_SELECTED,
-  HISTORY_MODE,
-  TUTORIAL,
-  CREDITS,
-  QUIT,
-};
-
-namespace Image
-{
-  struct ArrowMenu
-  {
-    Image::GameImage* arrow;
-    int optionSelected;
-
-	void updatePositionArrow();
-  };
-}
-
-struct MenuButton
-{
-  CEGUI::PushButton* button;
-  int id;
-};
 
 class SMainMenu : public GameState
 {
@@ -57,7 +34,7 @@ class SMainMenu : public GameState
    bool handleQuit( const CEGUI::EventArgs& e );
 
   private:
-   Image::ArrowMenu arrowImage;
-   std::vector< MenuButton > menuItems;
+   Image::ArrowMainMenu arrowImage;
+   std::vector< MenuStructs::MenuButton > menuItems;
 };
 

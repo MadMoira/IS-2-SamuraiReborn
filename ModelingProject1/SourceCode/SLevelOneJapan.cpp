@@ -107,7 +107,7 @@ void SLevelOneJapan::init()
   gameCore->addPlayerToGame( new PandaP1(), SpriteData::PANDA, "Panda - SpriteSheet.png", 
 						speedPanda, Vector2f(50.0f, 250.0f), 0, maxFrameVectorPanda, returnFrameVector,
 						280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
-  gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 90.0f, 160.0f, 92.0f, 42.0f);
+  gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
 
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(
 		     new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),

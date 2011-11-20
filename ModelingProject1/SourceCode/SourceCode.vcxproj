@@ -125,6 +125,7 @@
     <ClCompile Include="SLevelTutorial.cpp" />
     <ClCompile Include="SMainMenu.cpp" />
     <ClCompile Include="Spear.cpp" />
+    <ClCompile Include="SPlayerSelection.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Stats.cpp" />
@@ -172,6 +173,8 @@
     <ClInclude Include="LevelGraph.h" />
     <ClInclude Include="MathFunctions.h" />
     <ClInclude Include="MeerkatP2.h" />
+    <ClInclude Include="MenuData.h" />
+    <ClInclude Include="MenuStructs.h" />
     <ClInclude Include="PhysicsCore.h" />
     <ClInclude Include="PandaP1.h" />
     <ClInclude Include="Pathfinding.h" />
@@ -191,6 +194,7 @@
     <ClInclude Include="SMainMenu.h" />
     <ClInclude Include="GameSound.h" />
     <ClInclude Include="Spear.h" />
+    <ClInclude Include="SPlayerSelection.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteDataConstants.h" />
     <ClInclude Include="State.h" />

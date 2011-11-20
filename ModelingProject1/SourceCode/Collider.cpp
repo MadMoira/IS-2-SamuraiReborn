@@ -376,7 +376,7 @@ bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int
 
     isOnGround = false;
 
-    for(int i = initialX; i < initialX + (int)A.getWidth(); i += 16)
+    for(int i = initialX; i < initialX + (int)A.getWidth(); i += 8)
     {
       int x = (int)i/32;
       if ( positionY > 720.0f/32 )
