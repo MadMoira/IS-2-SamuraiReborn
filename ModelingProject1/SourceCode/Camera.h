@@ -2,6 +2,8 @@
 
 #include <SDL\SDL.h>
 #include <SDL\SDL_opengl.h>
+#include <boost/ptr_container/ptr_vector.hpp>
+#include "Player.h"
 
 class Camera
 {
@@ -12,24 +14,19 @@ class Camera
    ~Camera();
 
    void initCamera();
-
-   void moveCamera();
-	
+   	
    void renderCamera();
 
-   bool checkCamera(GLfloat posx1, GLfloat newSpeedx);
-   bool checkCamera(GLfloat posx1, GLfloat posx2, GLfloat newSpeedx);
-   void restartCamera(GLfloat level);
+   bool checkCamera(boost::ptr_vector<Player>* players);
+   void resetCamera(GLfloat level, GLfloat spawningPoint);
 	
-   void setCameraSpeed(GLfloat newSpeedx, GLfloat posx1);
-   void setCameraSpeed(GLfloat newSpeedx, GLfloat posx1, GLfloat posx2);
-   void restartCameraSpeed();
+   void updateCamera(boost::ptr_vector<Player>* players);
 
    GLfloat getCameraPosition() { return posX; }
-
+   void setCameraSpeed(GLfloat newSpeed){speedX=newSpeed;}
    GLfloat getCameraSpeed() {return speedX;}
 
-   bool isPlayerOnMidpoint(GLfloat posX);
+   bool isOnMidpoint(GLfloat posX);
    bool isLimit(GLfloat position, GLfloat speedX);
 
   private:
@@ -38,8 +35,8 @@ class Camera
 	GLfloat posX;	
 	GLfloat speedX;
 	GLfloat midPoint;
+	GLfloat interactionPoint;
 	GLfloat levelLenght;
-	bool onePlayer;
-	bool playerOnMidpoint;
+	bool onMidpoint;
 	const SDL_VideoInfo* defaultResolution;
 };

@@ -10,27 +10,29 @@
 #include "Animation.h"
 #include "PlayerStateManager.h"
 
+#include "RigidBody.h"
+
 #include "CollisionBox.h"
 #include "CollisionStructs.h"
 
 #include "Vector.h"
 
-class Collider;
+#include "SpriteDataConstants.h"
 
-enum IDSprites 
-{ 
-  PANDA, 
-  MEERKAT, 
-};
+class Collider;
 
 class Sprite
 {
   public:
-   Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+   Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement);
    ~Sprite(void);
+
+   void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
+
+   SpriteData::IDSprites getID() { return ID; }
 
    GLfloat getPosX() { return position.x; }
    void setPositionX(GLfloat x) { position.x -= x; }
@@ -41,12 +43,18 @@ class Sprite
    void movePosYWithSpeed();
 
    bool getPlayerMoveBasedInDirection();
+   bool getPlayerDirectionYBasedInDirection();
 
    bool getPlayerMoveInX() { return characterMovement.playerMoveInX; }
    void setPlayerMoveInX(bool moveX) { characterMovement.setMoveX(moveX); }
 
    bool getPlayerMoveInY() { return characterMovement.playerMoveInY; }
    void setPlayerMoveInY(bool moveY) { characterMovement.setMoveY(moveY); }
+
+   void setPlayerCanMoveYUp(bool moveYUp) { directionsMove.setCanMoveUp(moveYUp); }
+   void setPlayerCanMoveYDown(bool moveYDown) { directionsMove.setCanMoveDown(moveYDown); }
+
+   GameCoreStates::PlayerStateManager* getPlayerStateManager() { return playerStateManager; }
 
    CollisionSystem::CharacterMovement getCharacterMovement() { return characterMovement; }
 
@@ -58,8 +66,6 @@ class Sprite
 
    void setSpeedX(GLfloat speedX);
    void setConstantSpeedX(int constant);
-
-   void restartCountX() { countX = 0; }
 
    GLfloat getSpeedY() { return currentYSpeed; }
    void setSpeedY(GLfloat speedY);
@@ -83,8 +89,6 @@ class Sprite
    
    int getPreviousState() { return playerStateManager->getPreviousState(); }
 
-   GLfloat getCurrentDelayFromCurrentState() { return delayMovementSprite.at(getCurrentState()).x; }
-
    Collider* getCollisionHandler() { return collisionHandler; }
    CollisionSystem::CollisionBox* getCollisionBox() {return spriteCollisionBox; }
 
@@ -97,19 +101,21 @@ class Sprite
    bool getIsOnGround() { return isOnGround; }
 
    bool getPlayerMoveInXCurrentFrame() { return characterMovement.playerMoveInXInCurrentFrame; }
+   void setPlayerMoveInXCurrentFrame(bool moveX) { characterMovement.setMoveXFrame(moveX); }
    bool getPlayerMoveInYCurrentFrame() { return characterMovement.playerMoveInYInCurrentFrame; }
 
    void drawTexture();
 
   private:
-   IDSprites ID;
-   GLuint texture;
+   SpriteData::IDSprites ID;
+   GLuint texture, textureBox;
    Animation* handlerAnimation;
    GameCoreStates::PlayerStateManager* playerStateManager;
    Collider* collisionHandler;
    CollisionSystem::CollisionBox* spriteCollisionBox;
    CollisionSystem::DirectionsMove directionsMove;
    CollisionSystem::CharacterMovement characterMovement;
+   GamePhysics::PhysicsCore* rigidBody;
 	
    Vector2f position;
    std::vector< Vector2f > speed;

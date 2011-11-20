@@ -120,6 +120,7 @@
     <ClCompile Include="PlayerScore.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayerStateManager.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="RunningState.cpp" />
     <ClCompile Include="SIntro.cpp" />
     <ClCompile Include="SLevelOneJapan.cpp" />
@@ -130,6 +131,7 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Stats.cpp" />
     <ClCompile Include="StillState.cpp" />
+    <ClCompile Include="StoppingState.cpp" />
     <ClCompile Include="Sword.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tilemap.cpp" />
@@ -176,7 +178,7 @@
     <ClInclude Include="PandaP1.h" />
     <ClInclude Include="Pathfinding.h" />
     <ClInclude Include="PathNode.h" />
-    <ClInclude Include="PhysicStates.h" />
+    <ClInclude Include="PhysicModes.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerScore.h" />
     <ClInclude Include="PlayerSpriteStates.h" />
@@ -184,6 +186,7 @@
     <ClInclude Include="PlayerStateManager.h" />
     <ClInclude Include="RawInputConstants.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="RunningState.h" />
     <ClInclude Include="SIntro.h" />
     <ClInclude Include="SLevelOneJapan.h" />
@@ -196,6 +199,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="Stats.h" />
     <ClInclude Include="StillState.h" />
+    <ClInclude Include="StoppingState.h" />
     <ClInclude Include="StringParser.h" />
     <ClInclude Include="Sword.h" />
     <ClInclude Include="Tile.h" />
@@ -208,8 +212,8 @@
   <ItemGroup>
     <None Include="Ambience.mp3" />
     <None Include="box.png" />
+    <None Include="boxPanda.png" />
     <None Include="Clouds.png" />
-    <None Include="CollisionListLevelZeroSectionOne.csv" />
     <None Include="ContextList.txt" />
     <None Include="datafiles\imagesets\CreditsButton.imageset" />
     <None Include="datafiles\imagesets\CreditsOption.png" />
@@ -225,7 +229,11 @@
     <None Include="Enemy - SpriteSheet.png" />
     <None Include="groundHit.mp3" />
     <None Include="healthBar.png" />
+    <None Include="IntoDust.mp3" />
+    <None Include="Japanese War Music.mp3" />
     <None Include="LevelOneTileMap.tmx" />
+    <None Include="LevelZeroSectionOneCollisionList.csv" />
+    <None Include="LevelZeroSectionOneWalkableList.csv" />
     <None Include="logoSamuraiReborn.png" />
     <None Include="MainContext.txt" />
     <None Include="Meerkat - SpriteSheet.png" />
@@ -239,7 +247,6 @@
     <None Include="Monkeys.mp3" />
     <None Include="Mountains0.png" />
     <None Include="Mountains1.png" />
-    <None Include="mp31.bin" />
     <None Include="orbitron-black.ttf" />
     <None Include="Panda - SpriteSheet.png" />
     <None Include="Running.mp3" />

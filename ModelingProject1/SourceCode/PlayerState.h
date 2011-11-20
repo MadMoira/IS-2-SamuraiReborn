@@ -6,7 +6,6 @@
 
 namespace GameCoreStates
 {
-
   struct ConditionsPlayerRunning
   {
 	bool directionButtonPressed;

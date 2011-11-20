@@ -18,16 +18,16 @@ void CollisionSystem::CollisionBox::setX(float x, int direction)
 {
   if ( direction == SpriteData::RIGHT )
   {
-    box.x = (Sint16)x + offsetBox.x;
+    box.x = (Sint16)x + (Sint16)offsetBox.x;
 	return;
   }
 
-  box.x = x;
+  box.x = (Sint16)x;
 }
 
 void CollisionSystem::CollisionBox::setY(float y)
 {
-  box.y = (Sint16)y + offsetBox.y;
+  box.y = (Sint16)y + (Sint16)offsetBox.y;
 }
 
 float CollisionSystem::CollisionBox::getOffsetXPosition(int direction)

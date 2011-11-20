@@ -9,7 +9,7 @@ PandaP1::~PandaP1()
   delete score;
 }
 
-void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector< Vector2f > speed,  
+void PandaP1::initializePlayer(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed,  
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
 				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
 				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
@@ -27,9 +27,10 @@ void PandaP1::initializePlayer(IDSprites id, std::string filename, std::vector< 
 
 void PandaP1::noAction()
 {
-  playerSprite->setSpeedX(0);
+  playerSprite->setSpeedX(0.0f);
   playerSprite->setPlayerMoveInX(false);
   playerSprite->setPlayerMoveInY(false);
+  playerSprite->setPlayerMoveInXCurrentFrame(false);
   stop();		
 }
 
@@ -38,14 +39,15 @@ void PandaP1::walk()
   playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
   playerSprite->movePosXWithSpeed();
   playerSprite->getHandlerAnimation()->animate();
+  playerSprite->setPlayerMoveInY(false);
   stop();
 }
 
 void PandaP1::run()
 {
-  playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
   playerSprite->movePosXWithSpeed();
   playerSprite->getHandlerAnimation()->animate();
+  playerSprite->setPlayerMoveInY(false);
   stop();
 }
 
@@ -86,8 +88,21 @@ void PandaP1::falling()
 
   if ( !isFalling() )
   {
-	  stop();
+    stop();
   }
+}
+
+void PandaP1::stopping()
+{
+  playerSprite->setPlayerMoveInY(false);
+  playerSprite->movePosXWithSpeed();
+  playerSprite->getHandlerAnimation()->animate();
+
+  if ( playerSprite->getSpeedX() == 0.0f )
+  {
+	playerSprite->setPlayerMoveInX(false);
+  }
+  stop();
 }
 
 void PandaP1::draw()

@@ -2,7 +2,6 @@
 #include <algorithm>
 
 #include "PlayerState.h"
-
 #include "ComparatorFunctions.h"
 
 GameCoreStates::PlayerState::PlayerState(int id) : State( id )
