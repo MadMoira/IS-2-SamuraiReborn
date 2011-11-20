@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Enemy.h"
+#include "GameSound.h"
 
 class JapaneseMonkey : public Enemy
 {

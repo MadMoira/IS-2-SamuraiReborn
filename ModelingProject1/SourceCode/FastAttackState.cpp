@@ -32,7 +32,7 @@ int GameCoreStates::FastAttackState::checkMovement(int keyPreviouslyPressed, int
 	   keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && fastAttackButtonIsPressed )
   {
 
-    GameSound::getInstance()->loadChunk("Sword (2).mp3");
+    GameSound::getInstance()->loadChunk(GameSound::getInstance()->Sounds.at(2));
     return GameCoreStates::CHANGE;
   }
 

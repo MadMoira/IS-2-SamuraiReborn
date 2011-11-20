@@ -25,16 +25,8 @@ void GameCoreStates::PlayerStateManager::popState()
 void GameCoreStates::PlayerStateManager::changeState(GameCoreStates::PlayerState* newState)
 {
   previousState = GameCoreStates::SpriteState(currentState.getCurrentID());
-  if(previousState == GameCoreStates::RUNNING){
-	  GameSound::getInstance()->closeSound();
-  }
-  /*if(previousState == GameCoreStates::FALLING){
-	  GameSound::getInstance()->loadChunk("groundHit.mp3");
-  }*/
-  if(previousState == GameCoreStates::JUMPING/* && newState->getCurrentID() != GameCoreStates::FALLING*/){
-	  GameSound::getInstance()->loadChunk("groundHit.mp3");
-  }
   
+  GameSound::getInstance()->stateSoundsHandling(previousState);
   while( !statesStack.empty() )
   {
     popState();

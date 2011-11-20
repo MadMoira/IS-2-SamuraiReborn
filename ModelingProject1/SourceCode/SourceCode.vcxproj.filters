@@ -139,6 +139,9 @@
     <Filter Include="Header Files\Game Physics\Collisions">
       <UniqueIdentifier>{763fff60-7751-4f8f-aa26-d30a21cbf53d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Audio">
+      <UniqueIdentifier>{8434e9b8-f6cf-45b1-95e7-363976a11fb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -515,6 +518,9 @@
     <ClInclude Include="CollisionStructs.h">
       <Filter>Header Files\Game Physics\Collisions</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MainContext.txt">
@@ -607,5 +613,43 @@
     <None Include="datafiles\imagesets\TutorialOption.png">
       <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
     </None>
+    <None Include="mp31.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Ambience.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Wind.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Sword (2).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Running.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Monkeys.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Menu Seleccion (4).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Menu Seleccion (3).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Menu Seleccion (2).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Menu Seleccion (1).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="groundHit.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SourceCode.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

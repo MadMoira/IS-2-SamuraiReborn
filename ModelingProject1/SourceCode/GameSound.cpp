@@ -5,6 +5,16 @@ GameSound::GameSound(void)
 	result = FMOD::System_Create(&system);
 	printf("FMOD created");
 	ERRCHECK(result);
+
+	//init sounds
+	static std::string runningSound = "Running.mp3";
+	static std::string fallingSound = "groundHit.mp3";
+	static std::string meerkatAttackSound = "Sword (2).mp3";
+	static std::string monkeySound = "Monkeys.mp3";
+	Sounds.push_back(&runningSound);
+	Sounds.push_back(&fallingSound);
+	Sounds.push_back(&meerkatAttackSound);
+	Sounds.push_back(&monkeySound);
 }
 
 bool GameSound::instanceFlag = false;
@@ -49,9 +59,11 @@ void GameSound::loadSound(std::string name)
 	result = system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel[0]);
 	ERRCHECK(result);	
 }
+
 //
-void GameSound::PlaySound(std::string name)
+void GameSound::PlaySound(int i)
 {   
+	std::string name = Sounds.at(i);
     currentSound = name.c_str();
 	result = system->createStream( currentSound, FMOD_DEFAULT, 0, &sound );
 	ERRCHECK(result);
@@ -63,6 +75,16 @@ void GameSound::closeSound(){
 	channel[2]->setVolume( 0.0 );
 	currentSound = "NULL";
 	}
+//
+
+void GameSound::stateSoundsHandling(GameCoreStates::SpriteState previousState){
+	 if(previousState == GameCoreStates::RUNNING){
+	  GameSound::getInstance()->closeSound();
+  }
+  if(previousState == GameCoreStates::FALLING){
+	  GameSound::getInstance()->loadChunk(Sounds.at(1));
+
+}
 //
 
 void GameSound::loadChunk(std::string name)
