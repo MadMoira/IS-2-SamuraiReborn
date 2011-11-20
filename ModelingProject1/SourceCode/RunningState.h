@@ -15,7 +15,5 @@ namespace GameCoreStates
     int checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
 		                   int previousState, GameCoreStates::PlayerState* newState,
                            int keyPreviouslyPressed);
-  private: 
-	  std::string runningSound;
   };
 }

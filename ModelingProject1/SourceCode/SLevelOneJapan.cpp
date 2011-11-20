@@ -119,10 +119,10 @@ void SLevelOneJapan::init()
 
   gameCore->restartCamera(6400.0f);
   
- /* sound->loadSound(sounds.at(1));
+  sound->loadSound(sounds.at(1));
   sound->downVolumeMUS();
   sound->loadSound(sounds.at(0));
-  sound->upVolumeMUS();*/
+  sound->upVolumeMUS();
 
   speedPanda.clear();
   speedMeerkat.clear();

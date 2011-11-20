@@ -32,6 +32,7 @@ void JapaneseMonkey::run()
   enemySprite->movePosXWithSpeed();
   enemySprite->getHandlerAnimation()->animate();
   stop();*/
+  //GameSound::getInstance()->PlaySound(0);
 }
 
 void JapaneseMonkey::jump()
@@ -46,11 +47,12 @@ void JapaneseMonkey::jump()
 
 void JapaneseMonkey::attack()
 {
+	
   /*enemySprite->setPlayerMoveInY(true);
   enemySprite->setSpeedX( enemySprite->getPreviousStateXSpeed() );
   enemySprite->movePosXWithSpeed();
   enemySprite->movePosYWithSpeed();
-
+  GameSound::getInstance()->loadSound(GameSound::getInstance()->Sounds.at(3));
   if ( enemySprite->getHandlerAnimation()->getAnimationAlreadyEnd() )
   {
     returnToPreviousState();

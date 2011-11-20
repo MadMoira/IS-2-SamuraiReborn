@@ -11,7 +11,6 @@
 GameCoreStates::RunningState::RunningState(int id) : PlayerState( id )
 {
   currentID = id;
-  runningSound = "Running.mp3";
 }
 
 GameCoreStates::RunningState::~RunningState(void)
@@ -35,8 +34,8 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
 	   ( currentState == GameCoreStates::FAST_ATTACK && keyPreviouslyPressed == RETURNING_FROM_PREVIOUS_STATE ) ||
 	     previousState == GameCoreStates::JUMPING ) && 
 	     isRunning.directionButtonPressed && isRunning.runningButtonPressed )
-  {
-   GameSound::getInstance()->PlaySound(runningSound);
+  {  
+   GameSound::getInstance()->PlaySound(0);
     return GameCoreStates::CHANGE;
   }
 

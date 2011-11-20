@@ -280,10 +280,10 @@ bool Collider::checkEnemiesCollision(CollisionSystem::CollisionBox& A, float dir
   return enemiesCollided;
 }*/
 
-/*boost::ptr_vector< Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX)
+/*std::vector< Player > checkEnemiesAttackCollision(CollisionSystem::CollisionBox& A, float directionX)
 {
-  boost::ptr_vector< Player > playersCollided;
-  for(int i = 0; i == players->size(); i++)
+  std::vector< Player > playersCollided;
+  for(int i = 0; i == players; i++)
   {
     if( checkCollision(A, *players->at(i).getPlayerSprite()->getCollisionBox(), directionX) )
 	{
