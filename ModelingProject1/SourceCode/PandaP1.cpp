@@ -1,20 +1,20 @@
 
 #include "PandaP1.h"
 
-PandaP1::~PandaP1()
+Characters::PandaP1::~PandaP1()
 {
-  delete playerSprite;
+  delete characterSprite;
   delete inputMapper;
   delete stats;
   delete score;
 }
 
-void PandaP1::initializePlayer(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed,  
+void Characters::PandaP1::initializeCharacter(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed,  
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
 				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
 				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
-  playerSprite = new Sprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
+  characterSprite = new Sprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
 							widthSprite, heightSprite, framerateAnimations, delayMovement);
 
   stats = new PlayerStats::Stats();
@@ -25,66 +25,66 @@ void PandaP1::initializePlayer(SpriteData::IDSprites id, std::string filename, s
   inputMapper->addCallback( Player::inputCallback, 0);
 }
 
-void PandaP1::noAction()
+void Characters::PandaP1::noAction()
 {
-  playerSprite->setSpeedX(0.0f);
-  playerSprite->setPlayerMoveInX(false);
-  playerSprite->setPlayerMoveInY(false);
-  playerSprite->setPlayerMoveInXCurrentFrame(false);
+  characterSprite->setSpeedX(0.0f);
+  characterSprite->setPlayerMoveInX(false);
+  characterSprite->setPlayerMoveInY(false);
+  characterSprite->setPlayerMoveInXCurrentFrame(false);
   stop();		
 }
 
-void PandaP1::walk()
+void Characters::PandaP1::walk()
 {
-  playerSprite->setSpeedX( playerSprite->getStateXSpeed() );
-  playerSprite->movePosXWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
-  playerSprite->setPlayerMoveInY(false);
+  characterSprite->setSpeedX( characterSprite->getStateXSpeed() );
+  characterSprite->movePosXWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(false);
   stop();
 }
 
-void PandaP1::run()
+void Characters::PandaP1::run()
 {
-  playerSprite->movePosXWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
-  playerSprite->setPlayerMoveInY(false);
+  characterSprite->movePosXWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(false);
   stop();
 }
 
-void PandaP1::jump()
+void Characters::PandaP1::jump()
 {
-  playerSprite->setPlayerMoveInY(true);
-  playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
-  playerSprite->movePosXWithSpeed();
-  playerSprite->movePosYWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(true);
+  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  characterSprite->movePosXWithSpeed();
+  characterSprite->movePosYWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
   stop();
 }
 
-void PandaP1::fastAttack()
+void Characters::PandaP1::fastAttack()
 {
-  playerSprite->setPlayerMoveInY(true);
-  playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
-  playerSprite->movePosXWithSpeed();
-  playerSprite->movePosYWithSpeed();
+  characterSprite->setPlayerMoveInY(true);
+  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  characterSprite->movePosXWithSpeed();
+  characterSprite->movePosYWithSpeed();
 
-  if ( playerSprite->getHandlerAnimation()->getAnimationAlreadyEnd() )
+  if ( characterSprite->getHandlerAnimation()->getAnimationAlreadyEnd() )
   {
     returnToPreviousState();
   }
   else
   {
-    playerSprite->getHandlerAnimation()->animate(); 
+    characterSprite->getHandlerAnimation()->animate(); 
   }
 }
 
-void PandaP1::falling()
+void Characters::PandaP1::falling()
 {
-  playerSprite->setPlayerMoveInY(true);
-  playerSprite->setSpeedX( playerSprite->getPreviousStateXSpeed() );
-  playerSprite->movePosXWithSpeed();
-  playerSprite->movePosYWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(true);
+  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  characterSprite->movePosXWithSpeed();
+  characterSprite->movePosYWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
 
   if ( !isFalling() )
   {
@@ -92,20 +92,20 @@ void PandaP1::falling()
   }
 }
 
-void PandaP1::stopping()
+void Characters::PandaP1::stopping()
 {
-  playerSprite->setPlayerMoveInY(false);
-  playerSprite->movePosXWithSpeed();
-  playerSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(false);
+  characterSprite->movePosXWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
 
-  if ( playerSprite->getSpeedX() == 0.0f )
+  if ( characterSprite->getSpeedX() == 0.0f )
   {
-	playerSprite->setPlayerMoveInX(false);
+	characterSprite->setPlayerMoveInX(false);
   }
   stop();
 }
 
-void PandaP1::draw()
+void Characters::PandaP1::draw()
 {
-  playerSprite->drawTexture();
+  characterSprite->drawTexture();
 }

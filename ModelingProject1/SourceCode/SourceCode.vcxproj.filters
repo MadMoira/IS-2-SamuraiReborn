@@ -25,18 +25,6 @@
     <Filter Include="Header Files\Game States">
       <UniqueIdentifier>{2b430e3d-0d2f-4753-a77b-17925e69df3c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Player">
-      <UniqueIdentifier>{a712db92-c0a4-4c2e-9ca7-138e20bf40b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Player">
-      <UniqueIdentifier>{a42d2b20-41c7-446c-b612-d7b84bf8cfb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Enemies">
-      <UniqueIdentifier>{50334c97-5523-4392-be9b-5a8da177c1fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Enemies">
-      <UniqueIdentifier>{b35e103c-528f-4634-b9dd-aceadb1ca085}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{318be1a8-f324-470a-b915-9c68b64915f6}</UniqueIdentifier>
     </Filter>
@@ -75,12 +63,6 @@
     </Filter>
     <Filter Include="Header Files\System">
       <UniqueIdentifier>{855ce3bb-62d9-40e0-b9a9-85a06026bf0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Player\States">
-      <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Player\States">
-      <UniqueIdentifier>{bf076467-bea2-40e9-a8dd-99692646036c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{2b62b77f-74f0-4e6a-b9c1-17d94d20a0bf}</UniqueIdentifier>
@@ -145,6 +127,30 @@
     <Filter Include="Source Files\Game Physics\Physics Modes">
       <UniqueIdentifier>{99a1e128-3efb-4054-b76c-36201f86166a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Characters">
+      <UniqueIdentifier>{87d81ced-86e8-4cea-a1d5-91b58c34e0e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Characters\Players">
+      <UniqueIdentifier>{a42d2b20-41c7-446c-b612-d7b84bf8cfb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Characters\Players\States">
+      <UniqueIdentifier>{bf076467-bea2-40e9-a8dd-99692646036c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Characters\Enemies">
+      <UniqueIdentifier>{50334c97-5523-4392-be9b-5a8da177c1fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters">
+      <UniqueIdentifier>{7c649521-4258-438d-849b-5f457195597d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters\Player">
+      <UniqueIdentifier>{a712db92-c0a4-4c2e-9ca7-138e20bf40b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters\Player\States">
+      <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters\Enemies">
+      <UniqueIdentifier>{b35e103c-528f-4634-b9dd-aceadb1ca085}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -175,19 +181,16 @@
       <Filter>Source Files\Game States</Filter>
     </ClCompile>
     <ClCompile Include="MeerkatP2.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\Characters\Player</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\Characters\Player</Filter>
     </ClCompile>
     <ClCompile Include="PandaP1.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\Characters\Player</Filter>
     </ClCompile>
     <ClCompile Include="Stats.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Characters\Player</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Source Files\Weapons</Filter>
@@ -199,10 +202,10 @@
       <Filter>Source Files\Weapons</Filter>
     </ClCompile>
     <ClCompile Include="JapaneseMonkey.cpp">
-      <Filter>Source Files\Enemies</Filter>
+      <Filter>Source Files\Characters\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
+      <Filter>Source Files\Characters\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>Source Files\AI</Filter>
@@ -238,28 +241,28 @@
       <Filter>Source Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="PlayerStateManager.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="StillState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="WalkingState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="RunningState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="JumpingState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="DoubleJumpState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="ComparatorFunctions.cpp">
       <Filter>Source Files\System</Filter>
@@ -277,10 +280,10 @@
       <Filter>Source Files\Graphics\Fonts</Filter>
     </ClCompile>
     <ClCompile Include="PlayerScore.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\Characters\Player</Filter>
     </ClCompile>
     <ClCompile Include="FastAttackState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="SLevelOneJapan.cpp">
       <Filter>Source Files\Game States\Levels</Filter>
@@ -316,7 +319,7 @@
       <Filter>Source Files\AI</Filter>
     </ClCompile>
     <ClCompile Include="FallingState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="CollisionStructs.cpp">
       <Filter>Source Files\Game Physics\Collisions</Filter>
@@ -328,10 +331,16 @@
       <Filter>Source Files\Game Physics\Physics Modes</Filter>
     </ClCompile>
     <ClCompile Include="StoppingState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Player\States</Filter>
     </ClCompile>
     <ClCompile Include="SPlayerSelection.cpp">
       <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Characters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -360,19 +369,16 @@
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
     <ClInclude Include="MeerkatP2.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="PandaP1.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="Stats.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>Header Files\Weapons</Filter>
@@ -384,10 +390,10 @@
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Header Files\Enemies</Filter>
+      <Filter>Header Files\Characters\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="JapaneseMonkey.h">
-      <Filter>Header Files\Enemies</Filter>
+      <Filter>Header Files\Characters\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="AI.h">
       <Filter>Header Files\AI</Filter>
@@ -432,34 +438,31 @@
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSpriteStates.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteDataConstants.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="WalkingState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="PlayerStateManager.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="RunningState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="StillState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="DoubleJumpState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="JumpingState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="ComparatorFunctions.h">
       <Filter>Header Files\System</Filter>
@@ -480,10 +483,10 @@
       <Filter>Header Files\Graphics\Font</Filter>
     </ClInclude>
     <ClInclude Include="PlayerScore.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="FastAttackState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="SIntro.h">
       <Filter>Header Files\Game States\Menus</Filter>
@@ -519,7 +522,7 @@
       <Filter>Header Files\AI</Filter>
     </ClInclude>
     <ClInclude Include="FallingState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="CollisionStructs.h">
       <Filter>Header Files\Game Physics\Collisions</Filter>
@@ -534,7 +537,7 @@
       <Filter>Header Files\Game Physics\Physics Modes</Filter>
     </ClInclude>
     <ClInclude Include="StoppingState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="SPlayerSelection.h">
       <Filter>Header Files\Game States\Menus</Filter>
@@ -544,6 +547,15 @@
     </ClInclude>
     <ClInclude Include="MenuStructs.h">
       <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteDataConstants.h">
+      <Filter>Header Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

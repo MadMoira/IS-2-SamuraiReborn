@@ -1,16 +1,16 @@
 
 #include "JapaneseMonkey.h"
 
-void JapaneseMonkey::initializeEnemy(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, 
+void Characters::JapaneseMonkey::initializeCharacter(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, 
 				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
 				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
 				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
-  enemySprite = new Sprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
+  characterSprite = new Sprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
 						   widthSprite, heightSprite,framerateAnimations,delayMovement);
 }
 
-void JapaneseMonkey::noAction()
+void Characters::JapaneseMonkey::noAction()
 {
   /*enemySprite->setSpeedX(0);
   enemySprite->setPlayerMoveInX(false);
@@ -18,7 +18,7 @@ void JapaneseMonkey::noAction()
   stop();	*/	
 }
 
-void JapaneseMonkey::walk()
+void Characters::JapaneseMonkey::walk()
 {
   /*enemySprite->setSpeedX( enemySprite->getStateXSpeed() );
   enemySprite->movePosXWithSpeed();
@@ -26,7 +26,7 @@ void JapaneseMonkey::walk()
   stop();*/
 }
 
-void JapaneseMonkey::run()
+void Characters::JapaneseMonkey::run()
 {
   /*enemySprite->setSpeedX( enemySprite->getStateXSpeed() );
   enemySprite->movePosXWithSpeed();
@@ -34,7 +34,7 @@ void JapaneseMonkey::run()
   stop();*/
 }
 
-void JapaneseMonkey::jump()
+void Characters::JapaneseMonkey::jump()
 {
   /*enemySprite->setPlayerMoveInY(true);
   enemySprite->setSpeedX( enemySprite->getPreviousStateXSpeed() );
@@ -44,7 +44,7 @@ void JapaneseMonkey::jump()
   stop();*/
 }
 
-void JapaneseMonkey::attack()
+void Characters::JapaneseMonkey::attack()
 {
   /*enemySprite->setPlayerMoveInY(true);
   enemySprite->setSpeedX( enemySprite->getPreviousStateXSpeed() );
@@ -61,7 +61,7 @@ void JapaneseMonkey::attack()
   }*/
 }
 
-void JapaneseMonkey::draw()
+void Characters::JapaneseMonkey::draw()
 {
-  enemySprite->drawTexture();
+  characterSprite->drawTexture();
 }

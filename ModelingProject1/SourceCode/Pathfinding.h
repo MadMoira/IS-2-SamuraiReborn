@@ -10,19 +10,20 @@ class Pathfinding
 public:
 	Pathfinding(void);
 
-	void goToPlayer(Enemy* enemy, Player* player);
+	void goToPlayer(Characters::Enemy* enemy, Characters::Player* player);
 	
 	~Pathfinding(void);
 
-	int x,y;
+	int x, y;
+
 private:
-	void goToPosition(Enemy* enemy);
-	bool searchNode(PathNode *node, std::vector<PathNode*> vector);
+	void goToPosition(Characters::Enemy* enemy);
+	bool searchNode(PathNode* node, std::vector<PathNode*> vector);
 	void calculatePath(PathNode* node,PathNode* goalNode);
 	void setVariablesByPosition(int x, int y, int cost, int heuristic, int score);
 
 	SpriteData::AnimationDirection direction;
-	LevelGraph *level;
+	LevelGraph* level;
 	std::vector<PathNode*> openNodes;
 	std::vector<PathNode*> closedNodes;
 	std::vector<PathNode*> path;

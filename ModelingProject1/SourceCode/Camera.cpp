@@ -40,11 +40,11 @@ void Camera::renderCamera()
   glTranslatef(-posX, 0, 0);
 }
 
-void Camera::updateCamera(boost::ptr_vector<Player>* players)
+void Camera::updateCamera(boost::ptr_vector<Characters::Player>* players)
 { 	
   if( players->size() == 1 )
   {
-    GLfloat playerPosition = players->at(0).getPlayerSprite()->getBoxX() + players->at(0).getPlayerSprite()->getBoxWidth()/2;
+    GLfloat playerPosition = players->at(0).getCharacterSprite()->getBoxX() + players->at(0).getCharacterSprite()->getBoxWidth()/2;
     speedX = playerPosition - interactionPoint;
     interactionPoint = playerPosition;
   }
@@ -55,13 +55,13 @@ void Camera::updateCamera(boost::ptr_vector<Player>* players)
 		
     for(unsigned i = 0; i < players->size(); i++)
 	{
-      if( players->at(i).getPlayerSprite()->getPosX() > maxPosition )
+      if( players->at(i).getCharacterSprite()->getPosX() > maxPosition )
 	  {
-        maxPosition = players->at(i).getPlayerSprite()->getPosX();
+        maxPosition = players->at(i).getCharacterSprite()->getPosX();
       }
-      else if( players->at(i).getPlayerSprite()->getPosX() < minPosition )
+      else if( players->at(i).getCharacterSprite()->getPosX() < minPosition )
 	  {
-        minPosition = players->at(i).getPlayerSprite()->getPosX();
+        minPosition = players->at(i).getCharacterSprite()->getPosX();
       }
     }
     speedX = ( (maxPosition - minPosition)/2 ) - interactionPoint;
@@ -80,12 +80,12 @@ void Camera::updateCamera(boost::ptr_vector<Player>* players)
   }
 }
 
-bool Camera::checkCamera(boost::ptr_vector<Player>* players)
+bool Camera::checkCamera(boost::ptr_vector<Characters::Player>* players)
 {	
   for(unsigned i = 0; i < players->size(); i++)
   {
-    if( isLimit( posX, players->at(i).getPlayerSprite()->getSpeedX() ) ||
-	    isLimit( posX + (GLfloat)defaultResolution->current_w, players->at(i).getPlayerSprite()->getSpeedX() ) )
+    if( isLimit( posX, players->at(i).getCharacterSprite()->getSpeedX() ) ||
+	    isLimit( posX + (GLfloat)defaultResolution->current_w, players->at(i).getCharacterSprite()->getSpeedX() ) )
     {
       return false;
     }	

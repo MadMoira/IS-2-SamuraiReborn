@@ -5,13 +5,13 @@
 
 class AI
 {
-public:
-	AI(void);
+  public:
+   AI(void);
+   virtual ~AI(void);
 
-	void searchPath(Player* player, Enemy* enemy);
+   void searchPath(Characters::Player* player, Characters::Enemy* enemy);
 
-	virtual ~AI(void);
-private: 
-	Pathfinding pathfinding;
+  private: 
+   Pathfinding pathfinding;
 };
 

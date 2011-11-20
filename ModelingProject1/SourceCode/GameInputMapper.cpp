@@ -67,7 +67,7 @@ void InputMapping::GameInputMapper::addCallback(inputCallback callback, int prio
   callbackTable.insert(std::make_pair(priorityInMultimap, callback));
 }
 
-void InputMapping::GameInputMapper::dispatchInput(Player& player) const
+void InputMapping::GameInputMapper::dispatchInput(Characters::Player& player) const
 {
   MappedInput input = currentMappedInput;
   std::list<InputMapping::Key> keys = getListKeys();
