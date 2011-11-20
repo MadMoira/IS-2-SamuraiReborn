@@ -17,22 +17,22 @@
 
 #include "Vector.h"
 
-class Collider;
+#include "SpriteDataConstants.h"
 
-enum IDSprites 
-{ 
-  PANDA, 
-  MEERKAT, 
-};
+class Collider;
 
 class Sprite
 {
   public:
-   Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+   Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
 				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
 				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
 				std::vector< Vector2f> delayMovement);
    ~Sprite(void);
+
+   void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
+
+   SpriteData::IDSprites getID() { return ID; }
 
    GLfloat getPosX() { return position.x; }
    void setPositionX(GLfloat x) { position.x -= x; }
@@ -107,8 +107,8 @@ class Sprite
    void drawTexture();
 
   private:
-   IDSprites ID;
-   GLuint texture;
+   SpriteData::IDSprites ID;
+   GLuint texture, textureBox;
    Animation* handlerAnimation;
    GameCoreStates::PlayerStateManager* playerStateManager;
    Collider* collisionHandler;
