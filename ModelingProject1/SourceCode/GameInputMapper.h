@@ -24,7 +24,7 @@ namespace InputMapping
     std::set<GameCoreStates::Action> actions;
     std::vector<GameCoreStates::SpriteState> states;
 
-	int directionKeyPressed;
+    int directionKeyPressed;
     int buttonPreviouslyPressed;
 
     void eatAction(GameCoreStates::Action action);
@@ -38,32 +38,32 @@ namespace InputMapping
   class GameInputMapper
   {
     public:
-	 GameInputMapper(void);
-	 ~GameInputMapper(void);
+     GameInputMapper(void);
+     ~GameInputMapper(void);
 
      void clearCurrentMappedInput(GameCoreStates::SpriteState activeState);
      void addCallback(inputCallback callback, int priorityInMultimap);
-	 void dispatchInput(Characters::Player& player) const;
+     void dispatchInput(Characters::Player& player) const;
 
      void pushContext(const std::string& name);
      void popContext();
 
-	 void convertRawSDLToRawButtons(Key& key);
-	 void processNewInput();
+     void convertRawSDLToRawButtons(Key& key);
+     void processNewInput();
      void setRawButtonState(Key key);
 
-	 bool checkIfCanCleanStateVector();
-	 void countAndClearStates();
-	 int countStatesInMapper(int state);
-	 bool verifyDoubleTappingForJumping(GameCoreStates::SpriteState state);
-	 void pushBackNewState(int state, int valueButton);
+     bool checkIfCanCleanStateVector();
+     void countAndClearStates();
+     int countStatesInMapper(int state);
+     bool verifyDoubleTappingForJumping(GameCoreStates::SpriteState state);
+     void pushBackNewState(int state, int valueButton);
 
-	 void returnKeyForMappedInput(Uint8* keystate);
-	 bool checkKeyState(Uint8 key);
+     void returnKeyForMappedInput(Uint8* keystate);
+     bool checkKeyState(Uint8 key);
 
-	 std::list<Key> getListKeys() const; 
+     std::list<Key> getListKeys() const; 
 
-	 void pushBackStateOnMappedInput(GameCoreStates::SpriteState newState);
+     void pushBackStateOnMappedInput(GameCoreStates::SpriteState newState);
 
     private:
      std::map<std::string, GameInputContext*> inputContexts;

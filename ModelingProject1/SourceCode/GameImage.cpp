@@ -3,7 +3,7 @@
 #include "GameRender.h"
 
 Image::GameImage::GameImage(Vector2f imagePosition, Vector2f imageOffset, Vector2f texturePosition, 
-	                        std::string filename)
+                            std::string filename)
 {
   position = imagePosition;
   offset = imageOffset;

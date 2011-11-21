@@ -11,7 +11,7 @@ Tilemap::Tilemap(std::string name, int widthInTiles, int heightInTiles)
   sizeTiles = 32.f;
 
   layerMap.resize(heightLevelInTiles);
-	
+    
   for (int i = 0; i < heightLevelInTiles; i++)
   {
     layerMap[i].resize(widthLevelInTiles);
@@ -26,9 +26,9 @@ Tilemap::~Tilemap(void)
 void Tilemap::drawTilemap(int indexTileset)
 {
   GLfloat offsetXTemp = offset.x;
-	
+    
   offsetXTemp = transformOffsetXToIntervalValues(offset.x);
-	
+    
   GLfloat variableSizeTile = 32.f;
 
   GLfloat widthTilesetImage = tilesetList.at(indexTileset).getWidthImage();
@@ -41,7 +41,7 @@ void Tilemap::drawTilemap(int indexTileset)
 
   glEnableClientState( GL_VERTEX_ARRAY );
   glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
-	
+    
   glBindTexture( GL_TEXTURE_2D, tilesetList.at(indexTileset).getTexture() );
 
   GLfloat posXPrevious = 0.0f, posXPreviousOnTexture = 0.0f;
@@ -60,7 +60,7 @@ void Tilemap::drawTilemap(int indexTileset)
       {
         break;
       }
-			
+            
       int frameIndex = layerMap[i][startX].getID();
 
       if ( frameIndex == 0 )
@@ -97,25 +97,25 @@ void Tilemap::drawTilemap(int indexTileset)
 
       const GLfloat verts[] = {
                     tileX, tileY,
-					tileX + variableSizeTile, tileY,
-					tileX + variableSizeTile, tileY + sizeTiles,
-					tileX, tileY + sizeTiles
+                    tileX + variableSizeTile, tileY,
+                    tileX + variableSizeTile, tileY + sizeTiles,
+                    tileX, tileY + sizeTiles
       };
 
       const GLfloat textureWidth = variableSizeTile / (GLfloat)widthTilesetImage;
       const GLfloat textureHeight = sizeTiles / (GLfloat)heightTilesetImage;
       const int numFramePerRow = (int)widthTilesetImage / (int)sizeTiles;
       const GLfloat textureX = ( (frameIndex % numFramePerRow) * sizeTiles/(GLfloat)widthTilesetImage ) 
-									+ posXPreviousOnTexture;
+                                    + posXPreviousOnTexture;
       const GLfloat textureY = ( frameIndex / numFramePerRow ) * textureHeight;
 
       const GLfloat texVerts[] = {
-					textureX, textureY,
-					textureX + textureWidth, textureY,
-					textureX + textureWidth, textureY + textureHeight,
-					textureX, textureY + textureHeight
+                    textureX, textureY,
+                    textureX + textureWidth, textureY,
+                    textureX + textureWidth, textureY + textureHeight,
+                    textureX, textureY + textureHeight
       };
-			
+            
       glVertexPointer(2, GL_FLOAT, 0, verts);
       glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
       glDrawArrays(GL_QUADS, 0, 4);
@@ -170,8 +170,8 @@ bool Tilemap::checkScreenBoundaries()
   return false;
 }
 
-void Tilemap::addTileset(int id, std::string name, GLfloat widthTile, GLfloat heightTile, GLfloat imageWidth, GLfloat imageHeight, 
-			int size)
+void Tilemap::addTileset(int id, std::string name, GLfloat widthTile, GLfloat heightTile, 
+                         GLfloat imageWidth, GLfloat imageHeight, int size)
 {
   tilesetList.push_back( new Tileset(id, name, widthTile, heightTile, imageWidth, imageHeight, size, GameRender::loadTexture(name)) );
 }

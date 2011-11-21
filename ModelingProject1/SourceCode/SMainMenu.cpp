@@ -5,14 +5,14 @@ void Image::ArrowMainMenu::updatePositionArrow()
 {
   if ( optionSelected == MenuData::NOTHING_SELECTED )
   {
-	return;
+    return;
   } 
 
   arrow->setPosition(420.0f, 280.0f + ( (optionSelected-1)*55.0f) );
 }
 
 SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
-	: GameState( gR, gC, gI, stateName )
+    : GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
   gameRender = gR;
@@ -32,7 +32,7 @@ void SMainMenu::init()
   createGUI( windowManager );
 
   arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
-	                                Vector2f(0.0f, 0.0f), "MenuHighlighter.png");
+                                    Vector2f(0.0f, 0.0f), "MenuHighlighter.png");
   arrowImage.optionSelected = MenuData::NOTHING_SELECTED;
 
   gameCore->getGameTimer()->setFramesPerSecond(30);
@@ -45,13 +45,13 @@ void SMainMenu::handleEvents()
   while ( SDL_PollEvent(&e) )
   {
     switch( e.type )
-	{
-	  case SDL_MOUSEMOTION:
+    {
+      case SDL_MOUSEMOTION:
       {
         CEGUI::System::getSingleton().injectMousePosition( static_cast<float>(e.motion.x),
-			                                               static_cast<float>(e.motion.y) );
+                                                           static_cast<float>(e.motion.y) );
         verifyCurrentlySelectedItem();
-		break;
+        break;
       }
       case SDL_MOUSEBUTTONDOWN:
       {
@@ -65,7 +65,7 @@ void SMainMenu::handleEvents()
       }
       case SDL_KEYDOWN:
       {
-		handleKeyDown(e.key.keysym.sym);
+        handleKeyDown(e.key.keysym.sym);
         break;
       }
       case SDL_QUIT:
@@ -94,7 +94,7 @@ void SMainMenu::render()
   if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
   {
     gameRender->drawFullTexture(arrowImage.arrow->getTexture(), arrowImage.arrow->getPosition(),
-		                        arrowImage.arrow->getOffset().x, arrowImage.arrow->getOffset().y );
+                                arrowImage.arrow->getOffset().x, arrowImage.arrow->getOffset().y );
   }
 
   SDL_GL_SwapBuffers();
@@ -149,7 +149,7 @@ CEGUI::WindowManager& SMainMenu::initializeCEGUI( SDL_Surface& surface )
 void SMainMenu::createGUI( CEGUI::WindowManager& winManager )
 {
   CEGUI::DefaultWindow& rootWin = *static_cast<CEGUI::DefaultWindow*>(
-	                                 winManager.createWindow( "DefaultWindow", "Root" ) ) ;
+                                     winManager.createWindow( "DefaultWindow", "Root" ) ) ;
  
   CEGUI::Window* mainMenu = winManager.loadWindowLayout("MainMenu.layout");
 
@@ -160,8 +160,8 @@ void SMainMenu::createGUI( CEGUI::WindowManager& winManager )
   menuItems.push_back(MenuStructs::MenuButton());
   menuItems.at(0).button = (CEGUI::PushButton*)winManager.getWindow("MainMenu/HistoryMode");
   menuItems.at(0).button->subscribeEvent( CEGUI::PushButton::EventClicked, 
-	                                      CEGUI::Event::Subscriber(&SMainMenu::handleHistoryMode, 
-										  this) );
+                                          CEGUI::Event::Subscriber(&SMainMenu::handleHistoryMode, 
+                                          this) );
   menuItems.at(0).id = MenuData::HISTORY_MODE;
 
 
@@ -176,8 +176,8 @@ void SMainMenu::createGUI( CEGUI::WindowManager& winManager )
   menuItems.push_back(MenuStructs::MenuButton());
   menuItems.at(3).button = (CEGUI::PushButton*)winManager.getWindow("MainMenu/Quit");
   menuItems.at(3).button->subscribeEvent( CEGUI::PushButton::EventClicked, 
-	                                      CEGUI::Event::Subscriber(&SMainMenu::handleQuit, 
-										  this) );
+                                          CEGUI::Event::Subscriber(&SMainMenu::handleQuit, 
+                                          this) );
   menuItems.at(3).id = MenuData::QUIT;
 }
 
@@ -201,10 +201,10 @@ void SMainMenu::handleMouseDown(Uint8 button)
   switch ( button )
   {
     case SDL_BUTTON_LEFT:
-	{
+    {
       CEGUI::System::getSingleton().injectMouseButtonDown(CEGUI::LeftButton);
       break;
-	}
+    }
     case SDL_BUTTON_MIDDLE:
     {
       CEGUI::System::getSingleton().injectMouseButtonDown(CEGUI::MiddleButton);
@@ -266,7 +266,7 @@ void SMainMenu::handleKeyDown(SDLKey key)
   if ( key == SDLK_UP )
   {
     if ( arrowImage.optionSelected - 1 == MenuData::NOTHING_SELECTED || 
-		 arrowImage.optionSelected == MenuData::NOTHING_SELECTED )
+         arrowImage.optionSelected == MenuData::NOTHING_SELECTED )
     {
       arrowImage.optionSelected = MenuData::QUIT;
       return;

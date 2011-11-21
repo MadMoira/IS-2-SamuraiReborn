@@ -19,6 +19,6 @@ namespace Image
     GameImage* arrow;
     int optionSelected;
 
-	void updatePositionArrow();
+    void updatePositionArrow();
   };
 }

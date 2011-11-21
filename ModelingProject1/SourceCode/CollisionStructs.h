@@ -10,22 +10,22 @@ namespace CollisionSystem
     bool canMoveYUp;
     bool canMoveYDown;
 
-	void setCanMoveRight(bool moveXR);
-	void setCanMoveLeft(bool moveXL);
-	void setCanMoveUp(bool moveUp);
-	void setCanMoveDown(bool moveDown);
+    void setCanMoveRight(bool moveXR);
+    void setCanMoveLeft(bool moveXL);
+    void setCanMoveUp(bool moveUp);
+    void setCanMoveDown(bool moveDown);
   };
 
   struct CharacterMovement
   {
-	bool playerMoveInX;
-	bool playerMoveInY;
-	bool playerMoveInXInCurrentFrame;
-	bool playerMoveInYInCurrentFrame;
+    bool playerMoveInX;
+    bool playerMoveInY;
+    bool playerMoveInXInCurrentFrame;
+    bool playerMoveInYInCurrentFrame;
 
-	void setMoveX(bool moveX);
-	void setMoveY(bool moveY);
-	void setMoveXFrame(bool moveX);
-	void setMoveYFrame(bool moveY);
+    void setMoveX(bool moveX);
+    void setMoveY(bool moveY);
+    void setMoveXFrame(bool moveX);
+    void setMoveYFrame(bool moveY);
   };
 }

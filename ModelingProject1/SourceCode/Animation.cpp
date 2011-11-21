@@ -2,7 +2,7 @@
 #include "Animation.h"
 
 Animation::Animation(int actualFrame, int currentState, SpriteData::AnimationDirection direction, 
-	                 std::vector< int > maxFrames, std::vector< int > returnFrames, std::vector< int > framerates)
+                     std::vector< int > maxFrames, std::vector< int > returnFrames, std::vector< int > framerates)
 {
   currentFrame = actualFrame;
   this->currentState = currentState;
@@ -40,8 +40,8 @@ int Animation::animate()
     if( currentFrame > maxFramesPerAnimation.at(currentState) )
     {
       animationAlreadyEnd = true;
-	  currentFrame = returnFramesPerAnimation.at(currentState);
-	}
+      currentFrame = returnFramesPerAnimation.at(currentState);
+    }
   }
 
   return currentFrame;
@@ -78,7 +78,7 @@ int Animation::returnAnimationDirectionAxisValue()
 {
   if ( animationDirectionX == SpriteData::LEFT )
   {
-	return 1;
+    return 1;
   }
   return -1;
 }
@@ -88,12 +88,12 @@ void Animation::changeDirectionY(float speed)
   if ( speed > 0.0f )
   {
     animationDirectionY = SpriteData::DOWN;
-	return;
+    return;
   }
   else if ( speed < 0.0f )
   {
     animationDirectionY = SpriteData::UP;
-	return;
+    return;
   }
 
   animationDirectionY = SpriteData::NO_DIRECTION;

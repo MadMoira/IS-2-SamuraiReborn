@@ -6,7 +6,7 @@
 #include "JapaneseMonkey.h"
 
 SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
-	: GameState( gR, gC, gI, stateName )
+    : GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
   gameRender = gR;
@@ -100,23 +100,23 @@ void SLevelOneJapan::init()
   std::string filenameFont = "orbitron-black.ttf";
 
   /*gameCore->addPlayerToGame( new MeerkatP2(), SpriteData::MEERKAT, "Meerkat - SpriteSheet.png", 
-						speedMeerkat, Vector2f(100.0f, 300.0f), 0, maxFrameVector, returnFrameVector,
-						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
+                        speedMeerkat, Vector2f(100.0f, 300.0f), 0, maxFrameVector, returnFrameVector,
+                        204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
   gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 44.0f, 135.0f, 42.0f, 45.0f);*/
-						
+                        
   gameCore->addPlayerToGame( new Characters::PandaP1(), SpriteData::PANDA, "Panda - SpriteSheet.png", 
-						speedPanda, Vector2f(50.0f, 250.0f), 0, maxFrameVectorPanda, returnFrameVector,
-						280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
+                        speedPanda, Vector2f(50.0f, 250.0f), 0, maxFrameVectorPanda, returnFrameVector,
+                        280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
   gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
 
   gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts(
-		     new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
-		                   color, filenameFont, sizeFont, 0),  "", Vector2f(170.0f, 15.0f), 
-								   Vector2f(200.0f, 20.0f) );
+             new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
+                           color, filenameFont, sizeFont, 0),  "", Vector2f(170.0f, 15.0f), 
+                                   Vector2f(200.0f, 20.0f) );
 
  /* gameCore->addEnemyToGame( new JapaneseMonkey(), PANDA, "Enemy - SpriteSheet.png", 
-						speedMeerkat, Vector2f(150.0f, 382.0f), 0, maxFrameVector, returnFrameVector,
-						204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);*/
+                        speedMeerkat, Vector2f(150.0f, 382.0f), 0, maxFrameVector, returnFrameVector,
+                        204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);*/
 
   japanLevel = new Level(LEVELONEJAPAN);
   japanLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");
@@ -127,7 +127,7 @@ void SLevelOneJapan::init()
   japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
   gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
-								 gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
+                                 gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
 
   speedPanda.clear();
   speedMeerkat.clear();
@@ -140,8 +140,8 @@ void SLevelOneJapan::init()
 void SLevelOneJapan::handleEvents()
 {
   gameCore->getPlayersList().at(0).getInputMapper()->clearCurrentMappedInput(
-		   GameCoreStates::SpriteState(
-		                        gameCore->getPlayersList().at(0).getCharacterSprite()->getCurrentState() ) );
+           GameCoreStates::SpriteState(
+                                gameCore->getPlayersList().at(0).getCharacterSprite()->getCurrentState() ) );
 
   bool isRunning = gameInput->handleWindowEvents();
   gameCore->setIsRunning( isRunning );
@@ -156,10 +156,10 @@ void SLevelOneJapan::logic()
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();
-	if ( !gameCore->getPlayersList().at(i).isAlive() )
-	{
-	  setHasEnded(STATE_MAINMENU);
-	}
+    if ( !gameCore->getPlayersList().at(i).isAlive() )
+    {
+      setHasEnded(STATE_MAINMENU);
+    }
   }
   
   //levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
@@ -187,23 +187,23 @@ void SLevelOneJapan::render()
   glPushMatrix();
     
     gameCore->getCamera()->renderCamera();
-	  
+      
     for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
     {
       gameCore->getPlayersList().at(i).draw();
     }
 
-	for (std::string::size_type i = 0; i < gameCore->getEnemyList().size(); i++)
+    for (std::string::size_type i = 0; i < gameCore->getEnemyList().size(); i++)
     {
       gameCore->getEnemyList().at(i).draw();
     }
-	
+    
   glPopMatrix();
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {
     gameCore->getPlayersList().at(i).drawUIStats();
-	gameCore->getPlayersList().at(i).drawScore();
+    gameCore->getPlayersList().at(i).drawScore();
   }
 
   SDL_GL_SwapBuffers();

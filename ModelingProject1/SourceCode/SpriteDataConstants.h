@@ -16,8 +16,8 @@ namespace SpriteData
 
   enum DirectionAxisY
   {
-	UP,
-	DOWN,
-	NO_DIRECTION,
+    UP,
+    DOWN,
+    NO_DIRECTION,
   };
 }

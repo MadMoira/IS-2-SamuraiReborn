@@ -9,7 +9,7 @@ void Characters::Character::initializeSpriteCollisionBox(float width, float heig
 bool Characters::Character::isStoppingMovement(std::list<InputMapping::Key> keys)
 {
   GameCoreStates::ConditionsPlayerRunning inputDirection = 
-	              characterSprite->getPlayerStateManager()->getObjectState().checkIfPlayerIsRunning(keys);
+                  characterSprite->getPlayerStateManager()->getObjectState().checkIfPlayerIsRunning(keys);
 
   if ( !inputDirection.directionButtonPressed && !inputDirection.runningButtonPressed )
   {
@@ -22,8 +22,8 @@ bool Characters::Character::isStoppingMovement(std::list<InputMapping::Key> keys
 bool Characters::Character::isReadyToPace()
 {
   if ( characterSprite->getCurrentState() != GameCoreStates::JUMPING &&
-	   characterSprite->getCurrentState() != GameCoreStates::DOUBLE_JUMP && 
-	   characterSprite->getCurrentState() != GameCoreStates::FALLING )
+       characterSprite->getCurrentState() != GameCoreStates::DOUBLE_JUMP && 
+       characterSprite->getCurrentState() != GameCoreStates::FALLING )
   {
     return true;
   }
@@ -45,7 +45,7 @@ bool Characters::Character::isFalling()
 {
   if ( characterSprite->getIsOnGround() )
   {
-	return false;
+    return false;
   }
 
   if ( characterSprite->getSpeedY() >= 0)

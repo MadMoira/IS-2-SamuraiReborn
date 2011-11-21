@@ -10,6 +10,6 @@ class EnemySprite : public Sprite
                GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
                std::vector< Vector2f> delayMovement);
    void changeStateSprite( GameCoreStates::PlayerState* newState, int keyPreviouslyPressed = 0, 
-		                   std::list<InputMapping::Key> keys = std::list<InputMapping::Key>() );
+                           std::list<InputMapping::Key> keys = std::list<InputMapping::Key>() );
 };
 

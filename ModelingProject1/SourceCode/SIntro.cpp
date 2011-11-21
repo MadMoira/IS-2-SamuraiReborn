@@ -2,7 +2,7 @@
 
 
 SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
-	: GameState( gR, gC, gI, stateName )
+    : GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
   gameRender = gR;
@@ -20,7 +20,7 @@ SIntro::~SIntro(void)
 void SIntro::init()
 {
   logoGameImage = new Image::GameImage( Vector2f(0.0f, 0.0f), Vector2f(1280.0f, 720.0f),
-		                                Vector2f(0.0f, 0.0f), "logoSamuraiReborn.png");
+                                        Vector2f(0.0f, 0.0f), "logoSamuraiReborn.png");
 
   gameCore->getGameTimer()->setFramesPerSecond(20);
 }
@@ -32,7 +32,7 @@ void SIntro::handleEvents()
 
   if( framerate > SDL_GetTicks() ) 
   {
-	return;
+    return;
   }
 
   setHasEnded(STATE_MAINMENU);
@@ -47,7 +47,7 @@ void SIntro::render()
   glClear( GL_COLOR_BUFFER_BIT );
   
   gameRender->drawFullTexture(logoGameImage->getTexture(), logoGameImage->getPosition(),
-	                          logoGameImage->getOffset().x, logoGameImage->getOffset().y);
+                              logoGameImage->getOffset().x, logoGameImage->getOffset().y);
 
   SDL_GL_SwapBuffers();
 }

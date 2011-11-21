@@ -9,7 +9,7 @@ namespace GamePhysics
 
   enum PhysicMovements
   {
-	X,
-	Y,
+    X,
+    Y,
   };
 }

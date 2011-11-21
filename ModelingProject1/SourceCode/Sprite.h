@@ -27,7 +27,7 @@ class Sprite
    virtual ~Sprite();
 
    virtual void changeStateSprite( GameCoreStates::PlayerState* newState, int keyPreviouslyPressed = 0, 
-		                           std::list<InputMapping::Key> keys = std::list<InputMapping::Key>() ) = 0;
+                                   std::list<InputMapping::Key> keys = std::list<InputMapping::Key>() ) = 0;
 
    void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
 
@@ -103,9 +103,9 @@ class Sprite
 
   protected:
    Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
-				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
-				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
-				std::vector< Vector2f> delayMovement);
+                int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
+                GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+                std::vector< Vector2f> delayMovement);
 
    SpriteData::IDSprites ID;
    GLuint texture, textureBox;
@@ -116,7 +116,7 @@ class Sprite
    CollisionSystem::DirectionsMove directionsMove;
    CollisionSystem::CharacterMovement characterMovement;
    GamePhysics::PhysicsCore* rigidBody;
-	
+    
    Vector2f position;
    std::vector< Vector2f > speed;
    std::vector< Vector2f > delayMovementSprite;

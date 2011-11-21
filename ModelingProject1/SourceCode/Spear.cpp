@@ -1,5 +1,5 @@
-#include "Spear.h"
 
+#include "Spear.h"
 
 Spear::Spear(void)
 {

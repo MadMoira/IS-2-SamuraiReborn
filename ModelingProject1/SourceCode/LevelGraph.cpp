@@ -60,6 +60,3 @@ void AISystem::LevelGraph::addNode(std::vector<int>* parents, int x, int y)
 
   nodes[0].push_back(newNode);
 }
-
-
-

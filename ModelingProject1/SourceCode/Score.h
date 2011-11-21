@@ -10,15 +10,15 @@ namespace PlayerScore
     Score(void);
     ~Score(void);
 
-	void drawDisplayPoints();
+    void drawDisplayPoints();
 
-	void initializeTextAndFonts(Font::GameFont* font, std::string text, Vector2f pos, Vector2f off);
+    void initializeTextAndFonts(Font::GameFont* font, std::string text, Vector2f pos, Vector2f off);
 
-	int getPoints() { return points; }
-	void addPoints(int value);
+    int getPoints() { return points; }
+    void addPoints(int value);
 
    private:
-	Text::GameText pointsDisplay;
+    Text::GameText pointsDisplay;
     int points;
   };
 }

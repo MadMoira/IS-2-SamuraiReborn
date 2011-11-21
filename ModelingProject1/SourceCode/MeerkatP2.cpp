@@ -10,12 +10,12 @@ Characters::MeerkatP2::~MeerkatP2()
 }
 
 void Characters::MeerkatP2::initializePlayer(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed,
-				Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
-				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
-				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
+                Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
+                std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
+                std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
   characterSprite = new PlayerSprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
-							widthSprite, heightSprite, framerateAnimations, delayMovement);
+                            widthSprite, heightSprite, framerateAnimations, delayMovement);
   inputMapper = new InputMapping::GameInputMapper();
   inputMapper->pushContext("maincontext");
   inputMapper->addCallback( Player::inputCallback, 0);
@@ -96,7 +96,7 @@ void Characters::MeerkatP2::stopping()
 
   if ( characterSprite->getSpeedX() == 0.0f )
   {
-	characterSprite->setPlayerMoveInX(false);
+    characterSprite->setPlayerMoveInX(false);
   }
   stop();
 }
