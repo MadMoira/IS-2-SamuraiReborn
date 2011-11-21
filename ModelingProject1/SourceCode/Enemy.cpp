@@ -38,7 +38,7 @@ void Characters::Enemy::stop()
 {
   if ( !characterSprite->getPlayerMoveInX() && !characterSprite->getPlayerMoveInY() )
   {
-    characterSprite->changeStateEnemySprite(STILL_STATE);
+    characterSprite->changeStateSprite(STILL_STATE);
     characterSprite->changeCurrentFrame(GameCoreStates::STILL);
   }
 }
@@ -49,7 +49,7 @@ void Characters::Enemy::returnToPreviousState()
   {
     case GameCoreStates::WALKING:
     {
-	  characterSprite->changeStateEnemySprite(WALKING_STATE);
+	  characterSprite->changeStateSprite(WALKING_STATE);
     }
   }
 

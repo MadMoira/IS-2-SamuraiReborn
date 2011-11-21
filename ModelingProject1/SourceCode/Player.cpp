@@ -51,7 +51,7 @@ void Characters::Player::stop()
 {
   if ( !characterSprite->getPlayerMoveInX() && !characterSprite->getPlayerMoveInY() )
   {
-    characterSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
+    characterSprite->changeStateSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
     getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
     characterSprite->changeCurrentFrame(GameCoreStates::STILL);
   }
@@ -63,22 +63,22 @@ void Characters::Player::returnToPreviousState()
   {
     case GameCoreStates::STILL:
     {
-	  characterSprite->changeStatePlayerSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
+	  characterSprite->changeStateSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
 	  break;
     }
     case GameCoreStates::WALKING:
     {
-	  characterSprite->changeStatePlayerSprite(WALKING_STATE, 1, getInputMapper()->getListKeys());
+	  characterSprite->changeStateSprite(WALKING_STATE, 1, getInputMapper()->getListKeys());
 	  break;
     }
 	case GameCoreStates::RUNNING:
     {
-      characterSprite->changeStatePlayerSprite(RUNNING_STATE, 1, getInputMapper()->getListKeys());
+      characterSprite->changeStateSprite(RUNNING_STATE, 1, getInputMapper()->getListKeys());
 	  break;
     }
 	case GameCoreStates::JUMPING:
     {
-	  characterSprite->changeStatePlayerSprite(FALLING_STATE, 0, getInputMapper()->getListKeys());
+	  characterSprite->changeStateSprite(FALLING_STATE, 0, getInputMapper()->getListKeys());
 	  break;
     }
   }
@@ -120,42 +120,42 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
 
   if ( findWalkingInStates && player.isReadyToPace() )
   {
-    playerSprite->changeStatePlayerSprite(WALKING_STATE, inputs.buttonPreviouslyPressed, keys);
+    playerSprite->changeStateSprite(WALKING_STATE, inputs.buttonPreviouslyPressed, keys);
   }
 
   if ( findRunningInStates && player.isReadyToPace() )
   {
-    playerSprite->changeStatePlayerSprite(RUNNING_STATE, inputs.buttonPreviouslyPressed, keys);
+    playerSprite->changeStateSprite(RUNNING_STATE, inputs.buttonPreviouslyPressed, keys);
   }
 
   if ( findJumpingInStates )
   {
-    playerSprite->changeStatePlayerSprite(JUMPING_STATE, checkKey.wasPreviouslyPressed, keys);
+    playerSprite->changeStateSprite(JUMPING_STATE, checkKey.wasPreviouslyPressed, keys);
 
     if ( player.isReadyToDoubleJump() )
     {
-      playerSprite->changeStatePlayerSprite(DOUBLE_JUMP_STATE, checkKey.wasPreviouslyPressed, keys);
+      playerSprite->changeStateSprite(DOUBLE_JUMP_STATE, checkKey.wasPreviouslyPressed, keys);
     }
 
     if ( player.isFalling() )
     {
-      playerSprite->changeStatePlayerSprite(FALLING_STATE, checkKey.wasPreviouslyPressed, keys);
+      playerSprite->changeStateSprite(FALLING_STATE, checkKey.wasPreviouslyPressed, keys);
     }
   }
 
   if ( player.isStoppingMovement(keys) )
   {
-	playerSprite->changeStatePlayerSprite(STOPPING_STATE, inputs.buttonPreviouslyPressed, keys);
+	playerSprite->changeStateSprite(STOPPING_STATE, inputs.buttonPreviouslyPressed, keys);
   }
 
   if ( findStillInStates )
   {
-    playerSprite->changeStatePlayerSprite(STILL_STATE, inputs.buttonPreviouslyPressed, keys);
+    playerSprite->changeStateSprite(STILL_STATE, inputs.buttonPreviouslyPressed, keys);
   }
 
   if ( findFastAttackWalkingInStates )
   {
     checkKey = *std::find_if(keys.begin(), keys.end(), isFastAttackKeyPressed);
-    playerSprite->changeStatePlayerSprite(FAST_ATTACK_STATE, checkKey.wasPreviouslyPressed, keys);
+    playerSprite->changeStateSprite(FAST_ATTACK_STATE, checkKey.wasPreviouslyPressed, keys);
   }
 }

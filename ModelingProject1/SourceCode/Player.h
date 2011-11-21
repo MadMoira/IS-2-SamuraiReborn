@@ -2,8 +2,9 @@
 
 #include "Character.h"
 
+#include "PlayerSprite.h"
 #include "Stats.h"
-#include "PlayerScore.h"
+#include "Score.h"
 #include "GameInputMapper.h"
 
 namespace Characters
@@ -41,11 +42,11 @@ namespace Characters
 
      PlayerStats::Stats* getPlayerStats() { return stats; }
 
-     Score::PlayerScore* getScore() { return score; }
+     PlayerScore::Score* getScore() { return score; }
 
     protected:
      InputMapping::GameInputMapper* inputMapper;
      PlayerStats::Stats* stats;
-     Score::PlayerScore* score;
+     PlayerScore::Score* score;
   };
 }

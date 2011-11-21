@@ -190,7 +190,7 @@ bool Collider::checkStateCollisionPlayer(Sprite& playerSprite)
   if ( !playerSprite.getDirectionsMove().canMoveYUp && !playerSprite.getIsOnGround() && 
         playerSprite.getCurrentState() != GameCoreStates::FALLING )
   {
-    playerSprite.changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
+    playerSprite.changeStateSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
                                          std::list<InputMapping::Key>() );
     playerSprite.setSpeedX(0.0f);
 	playerSprite.setSpeedY(4.0f);
@@ -207,7 +207,7 @@ bool Collider::checkStateCollisionPlayer(Sprite& playerSprite)
 	playerSprite.setPositionY(offsetPosition);
     playerSprite.getCollisionBox()->setY( playerSprite.getCollisionBox()->getY() - playerSprite.getCollisionBox()->getOffset().y - 
 		                                  offsetPosition );
-    playerSprite.changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
+    playerSprite.changeStateSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                          std::list<InputMapping::Key>() );
 	
 	playerSprite.setSpeedX(0.0f);
@@ -220,7 +220,7 @@ bool Collider::checkStateCollisionPlayer(Sprite& playerSprite)
 
   if ( !playerSprite.getIsOnGround() && !playerSprite.isPlayerOnTheAir() )
   {
-    playerSprite.changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
+    playerSprite.changeStateSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
                                          std::list<InputMapping::Key>() );
     return true;
   }
@@ -247,7 +247,7 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
 										  animationDirection );
 							
 	playerSprite.changePreviousPlayerState(GameCoreStates::STILL);
-    playerSprite.changeStatePlayerSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
+    playerSprite.changeStateSprite(new GameCoreStates::FallingState(GameCoreStates::FALLING), 0, 
                                          std::list<InputMapping::Key>() );
 	return true;
   }
@@ -267,7 +267,7 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
 		                                  playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), 
 										  animationDirection );
     						
-    playerSprite.changeStatePlayerSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
+    playerSprite.changeStateSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                          std::list<InputMapping::Key>() );
 	playerSprite.setPlayerMoveInX(false);
 	playerSprite.setPlayerMoveInY(false);

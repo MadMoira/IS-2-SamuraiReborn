@@ -18,3 +18,19 @@ struct Vector2f
     x = y = 0;
   }
 };
+
+struct Vector2i
+{
+  int x, y;
+
+  Vector2i(int pointX, int pointY) 
+  {
+    x = pointX;	
+    y = pointY; 
+  }
+
+  Vector2i()
+  {
+    x = y = 0;
+  }
+};

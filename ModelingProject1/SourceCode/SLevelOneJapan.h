@@ -19,6 +19,5 @@ class SLevelOneJapan : public GameState
 
   private:
    Level* japanLevel;
-   AI levelAI;
+   AISystem::AI levelAI;
 };
-
