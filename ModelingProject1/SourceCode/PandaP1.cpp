@@ -14,11 +14,11 @@ void Characters::PandaP1::initializeCharacter(SpriteData::IDSprites id, std::str
 				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
 				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
-  characterSprite = new Sprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
+  characterSprite = new PlayerSprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
 							widthSprite, heightSprite, framerateAnimations, delayMovement);
 
   stats = new PlayerStats::Stats();
-  score = new Score::PlayerScore();
+  score = new PlayerScore::Score();
 
   inputMapper = new InputMapping::GameInputMapper();
   inputMapper->pushContext("maincontext");

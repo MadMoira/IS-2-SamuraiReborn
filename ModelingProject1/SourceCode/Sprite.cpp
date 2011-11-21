@@ -34,9 +34,6 @@ Sprite::Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vect
   currentXSpeed = speed.at(getCurrentState()).x;
   currentYSpeed = speed.at(getCurrentState()).y;
 
-  changeStatePlayerSprite( new GameCoreStates::StillState(GameCoreStates::STILL) , 0,
-	                       std::list< InputMapping::Key >());
-
   countX = 0;
   countY = 0;
 
@@ -65,6 +62,9 @@ void Sprite::initializeSpriteCollisionBox(float width, float height, GLfloat off
 
   textureBox = GameRender::loadTexture("boxPanda.png");
   //textureBox = GameRender::loadTexture("box.png"); //Meerkat
+
+  changeStateSprite( new GameCoreStates::StillState(GameCoreStates::STILL), 0,
+                         std::list< InputMapping::Key >() );
 }
 
 void Sprite::movePosXWithSpeed()
@@ -96,11 +96,6 @@ void Sprite::movePosXWithSpeed()
 
         position.x += getSpeedX();
 		spriteCollisionBox->setX(position.x, handlerAnimation->getAnimationDirection());
-
-		if ( spriteCollisionBox->getX() + spriteCollisionBox->getWidth() >= 73*32 )
-		{
-			int d = 4;
-		}
 
         characterMovement.playerMoveInX = true;
 		characterMovement.playerMoveInXInCurrentFrame = true;
@@ -277,83 +272,6 @@ void Sprite::changeCurrentFrame(int frame)
 void Sprite::changePreviousPlayerState(int stateID)
 {
   playerStateManager->changePreviousState( GameCoreStates::SpriteState(stateID) );
-}
-
-void Sprite::changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
-                                     std::list<InputMapping::Key> keys)
-{
-  int resultCheckingEqualStates = newState->checkIfEqualStates(keys, getCurrentState(),
-		                            getPreviousState(), newState, keyPreviouslyPressed);
-
-  switch(resultCheckingEqualStates)
-  {
-    case GameCoreStates::UPDATE_SPEEDX:
-    {
-      playerStateManager->changePreviousState( GameCoreStates::WALKING );
-      setSpeedX( speed.at( GameCoreStates::WALKING ).x );
-      return;
-    }
-    case GameCoreStates::NO_CHANGE:
-    {
-      return;
-    }
-  }
-
-  int result = newState->checkMovementRestrictions(keyPreviouslyPressed, getPreviousState(), 
-                                                   getCurrentState(), keys );
-
-  switch(result)
-  {
-    case GameCoreStates::NO_CHANGE:
-    {
-      return;
-    }
-    case GameCoreStates::CHANGE:
-    {
-      playerStateManager->changeState(newState);
-      break;
-    }
-    case GameCoreStates::RETURN_STILL:
-    {
-      playerStateManager->changeState(STILL_STATE);
-	  break;
-    }
-	case GameCoreStates::RETURN_STOPPING:
-    {
-      playerStateManager->changeState(STOPPING_STATE);
-	  break;
-    }
-	case GameCoreStates::RETURN_WALKING:
-    {
-      playerStateManager->changeState(WALKING_STATE);
-      break;
-    }
-  }
-
-  setSpeedX(speed.at(getCurrentState()).x);
-  setSpeedY(speed.at(getCurrentState()).y);
-  handlerAnimation->setCurrentStateForAnimation(getCurrentState());
-  handlerAnimation->restartOldTime();
-  handlerAnimation->restartCurrentFrame();
-  handlerAnimation->restartAnimationBegin();
-}
-
-void Sprite::changeStateEnemySprite(GameCoreStates::PlayerState* newState)
-{
-  int resultCheckingEqualStates = newState->checkIfEqualStates(std::list<InputMapping::Key>(), getCurrentState(),
-		                          getPreviousState(), newState, 0);
-  if ( resultCheckingEqualStates == GameCoreStates::NO_CHANGE )
-  {
-    return;
-  }
-
-  playerStateManager->changeState(newState);
-  setSpeedX(speed.at(getCurrentState()).x);
-  setSpeedY(speed.at(getCurrentState()).y);
-  handlerAnimation->setCurrentStateForAnimation(getCurrentState());
-  handlerAnimation->restartOldTime();
-  handlerAnimation->restartCurrentFrame();
-  handlerAnimation->restartAnimationBegin();
 }
 
 bool Sprite::isPlayerOnTheAir()

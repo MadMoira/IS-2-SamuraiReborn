@@ -142,14 +142,14 @@
     <Filter Include="Source Files\Characters">
       <UniqueIdentifier>{7c649521-4258-438d-849b-5f457195597d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Characters\Player">
-      <UniqueIdentifier>{a712db92-c0a4-4c2e-9ca7-138e20bf40b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Characters\Player\States">
-      <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Characters\Enemies">
       <UniqueIdentifier>{b35e103c-528f-4634-b9dd-aceadb1ca085}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters\Players">
+      <UniqueIdentifier>{a712db92-c0a4-4c2e-9ca7-138e20bf40b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters\Players\States">
+      <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -181,16 +181,16 @@
       <Filter>Source Files\Game States</Filter>
     </ClCompile>
     <ClCompile Include="MeerkatP2.cpp">
-      <Filter>Source Files\Characters\Player</Filter>
+      <Filter>Source Files\Characters\Players</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Characters\Player</Filter>
+      <Filter>Source Files\Characters\Players</Filter>
     </ClCompile>
     <ClCompile Include="PandaP1.cpp">
-      <Filter>Source Files\Characters\Player</Filter>
+      <Filter>Source Files\Characters\Players</Filter>
     </ClCompile>
     <ClCompile Include="Stats.cpp">
-      <Filter>Source Files\Characters\Player</Filter>
+      <Filter>Source Files\Characters\Players</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Source Files\Weapons</Filter>
@@ -241,28 +241,28 @@
       <Filter>Source Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="PlayerStateManager.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="StillState.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="WalkingState.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="RunningState.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="JumpingState.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="DoubleJumpState.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="ComparatorFunctions.cpp">
       <Filter>Source Files\System</Filter>
@@ -279,11 +279,8 @@
     <ClCompile Include="GameText.cpp">
       <Filter>Source Files\Graphics\Fonts</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerScore.cpp">
-      <Filter>Source Files\Characters\Player</Filter>
-    </ClCompile>
     <ClCompile Include="FastAttackState.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="SLevelOneJapan.cpp">
       <Filter>Source Files\Game States\Levels</Filter>
@@ -319,7 +316,7 @@
       <Filter>Source Files\AI</Filter>
     </ClCompile>
     <ClCompile Include="FallingState.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="CollisionStructs.cpp">
       <Filter>Source Files\Game Physics\Collisions</Filter>
@@ -331,7 +328,7 @@
       <Filter>Source Files\Game Physics\Physics Modes</Filter>
     </ClCompile>
     <ClCompile Include="StoppingState.cpp">
-      <Filter>Source Files\Characters\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="SPlayerSelection.cpp">
       <Filter>Source Files\Game States\Menus</Filter>
@@ -341,6 +338,15 @@
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Source Files\Characters\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSprite.cpp">
+      <Filter>Source Files\Characters\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySprite.cpp">
+      <Filter>Source Files\Characters\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -482,9 +488,6 @@
     <ClInclude Include="GameText.h">
       <Filter>Header Files\Graphics\Font</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerScore.h">
-      <Filter>Header Files\Characters\Players</Filter>
-    </ClInclude>
     <ClInclude Include="FastAttackState.h">
       <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
@@ -556,6 +559,15 @@
     </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>Header Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Header Files\Characters\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySprite.h">
+      <Filter>Header Files\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSprite.h">
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

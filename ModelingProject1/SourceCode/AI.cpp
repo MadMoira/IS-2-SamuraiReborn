@@ -1,15 +1,15 @@
 
 #include "AI.h"
 
-AI::AI(void)
+AISystem::AI::AI(void)
 {
 }
 
-AI::~AI(void)
+AISystem::AI::~AI(void)
 {
 }
 
-void AI::searchPath(Characters::Player* player, Characters::Enemy* enemy)
+void AISystem::AI::searchPath(Characters::Player* player, Characters::Enemy* enemy)
 {
   pathfinding.goToPlayer(enemy, player);
 }

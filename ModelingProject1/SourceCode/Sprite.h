@@ -24,11 +24,10 @@ class Collider;
 class Sprite
 {
   public:
-   Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
-				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
-				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
-				std::vector< Vector2f> delayMovement);
-   ~Sprite(void);
+   virtual ~Sprite();
+
+   virtual void changeStateSprite( GameCoreStates::PlayerState* newState, int keyPreviouslyPressed = 0, 
+		                           std::list<InputMapping::Key> keys = std::list<InputMapping::Key>() ) = 0;
 
    void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
 
@@ -82,10 +81,6 @@ class Sprite
    int getCurrentState() { return playerStateManager->getCurrentState(); }
 
    void changePreviousPlayerState(int stateID);
-   void changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
-		                         std::list<InputMapping::Key> keys);
-
-   void changeStateEnemySprite(GameCoreStates::PlayerState* newState);
    
    int getPreviousState() { return playerStateManager->getPreviousState(); }
 
@@ -106,7 +101,12 @@ class Sprite
 
    void drawTexture();
 
-  private:
+  protected:
+   Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
+				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+				std::vector< Vector2f> delayMovement);
+
    SpriteData::IDSprites ID;
    GLuint texture, textureBox;
    Animation* handlerAnimation;

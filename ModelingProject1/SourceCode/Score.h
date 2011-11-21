@@ -2,13 +2,13 @@
 
 #include "GameText.h"
 
-namespace Score
+namespace PlayerScore
 {
-  class PlayerScore
+  class Score
   {
    public:
-    PlayerScore(void);
-    ~PlayerScore(void);
+    Score(void);
+    ~Score(void);
 
 	void drawDisplayPoints();
 

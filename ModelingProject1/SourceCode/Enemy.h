@@ -2,6 +2,8 @@
 
 #include "Character.h"
 
+#include "EnemySprite.h"
+
 namespace Characters
 {
   class Enemy : public Character

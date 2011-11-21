@@ -6,7 +6,7 @@ void Characters::JapaneseMonkey::initializeCharacter(SpriteData::IDSprites id, s
 				std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
 				std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
-  characterSprite = new Sprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
+  characterSprite = new EnemySprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
 						   widthSprite, heightSprite,framerateAnimations,delayMovement);
 }
 
