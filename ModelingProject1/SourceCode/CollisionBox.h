@@ -13,7 +13,7 @@ namespace CollisionSystem
      ~CollisionBox(void);
 
      float getX() { return box.x; }
-	 float getOffsetXPosition(int direction);
+     float getOffsetXPosition(int direction);
 
      void setX(float x, int direction);
 
@@ -23,8 +23,8 @@ namespace CollisionSystem
      float getHeight() { return box.h; }
      float getWidth() { return box.w; }
 
-	 Vector2f getOffset() { return offsetBox; }
-	 GLfloat getOffsetXBasedOnDirection(int direction);
+     Vector2f getOffset() { return offsetBox; }
+     GLfloat getOffsetXBasedOnDirection(int direction);
 
     private:
      SDL_Rect box;

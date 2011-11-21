@@ -52,15 +52,15 @@ void Camera::updateCamera(boost::ptr_vector<Characters::Player>* players)
   {
     GLfloat minPosition = std::numeric_limits<float>::max();
     GLfloat maxPosition = -std::numeric_limits<float>::max();
-		
+        
     for(unsigned i = 0; i < players->size(); i++)
-	{
+    {
       if( players->at(i).getCharacterSprite()->getPosX() > maxPosition )
-	  {
+      {
         maxPosition = players->at(i).getCharacterSprite()->getPosX();
       }
       else if( players->at(i).getCharacterSprite()->getPosX() < minPosition )
-	  {
+      {
         minPosition = players->at(i).getCharacterSprite()->getPosX();
       }
     }
@@ -85,7 +85,7 @@ bool Camera::checkCamera(boost::ptr_vector<Characters::Player>* players)
   for(unsigned i = 0; i < players->size(); i++)
   {
     if( isLimit( posX, players->at(i).getCharacterSprite()->getSpeedX() ) ||
-	    isLimit( posX + (GLfloat)defaultResolution->current_w, players->at(i).getCharacterSprite()->getSpeedX() ) )
+        isLimit( posX + (GLfloat)defaultResolution->current_w, players->at(i).getCharacterSprite()->getSpeedX() ) )
     {
       return false;
     }	
@@ -111,23 +111,23 @@ bool Camera::isOnMidpoint(GLfloat posX)
   if( onMidpoint )
   {
     if( distanceToMid < RELEASE_CAMERA_RANGE )
-	{
+    {
       return true;
     }
     else
-	{
+    {
       return false;
     }
   }
   else
   {
     if( distanceToMid < GRAB_CAMERA_RANGE )
-	{
+    {
       onMidpoint = true;
       return true;
     }
     else
-	{
+    {
       return false;
     }
   }

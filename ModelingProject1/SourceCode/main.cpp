@@ -17,7 +17,7 @@ int main( int argc, char* args[] )
   GameRender Render;
   GameInput Input;
   GameStateManager* StateManager = new GameStateManager();
-	
+    
   if( !Core.initializeGameCore() )
   {
     return 1;

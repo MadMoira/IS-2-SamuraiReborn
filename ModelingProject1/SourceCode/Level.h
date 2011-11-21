@@ -40,7 +40,7 @@ class Level
 
    boost::ptr_vector< Layer > getLayersList() { return layersList; }
    void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
-				      GLfloat constantX, bool hasRepetition, bool continuousScroll);
+                      GLfloat constantX, bool hasRepetition, bool continuousScroll);
    void scrollContinuousBackgroundLayers();
    void scrollBackgroundLayers();
    void checkLayersSpeed(GLfloat speedX);

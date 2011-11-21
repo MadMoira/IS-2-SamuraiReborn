@@ -7,9 +7,9 @@ namespace AISystem
   class HeapCompare
   {
     public:
-	 HeapCompare(void);
-	 ~HeapCompare(void);
+     HeapCompare(void);
+     ~HeapCompare(void);
 
-	 bool operator() ( const PathNode* x, const PathNode* y ) const;
+     bool operator() ( const PathNode* x, const PathNode* y ) const;
   };
 }

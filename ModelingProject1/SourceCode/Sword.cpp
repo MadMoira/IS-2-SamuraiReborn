@@ -1,5 +1,5 @@
-#include "Sword.h"
 
+#include "Sword.h"
 
 Sword::Sword(void)
 {

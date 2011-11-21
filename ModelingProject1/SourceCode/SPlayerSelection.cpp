@@ -2,7 +2,7 @@
 
 
 SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
-	: GameState( gR, gC, gI, stateName )
+    : GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
   gameRender = gR;

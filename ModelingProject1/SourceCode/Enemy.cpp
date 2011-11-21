@@ -49,7 +49,7 @@ void Characters::Enemy::returnToPreviousState()
   {
     case GameCoreStates::WALKING:
     {
-	  characterSprite->changeStateSprite(WALKING_STATE);
+      characterSprite->changeStateSprite(WALKING_STATE);
     }
   }
 

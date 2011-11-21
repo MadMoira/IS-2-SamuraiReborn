@@ -18,4 +18,3 @@ void AISystem::PathNode::addAdjacentNode(int ID)
 {
   adjacentID.push_back(ID);
 }
-

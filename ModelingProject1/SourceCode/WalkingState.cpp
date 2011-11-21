@@ -20,15 +20,15 @@ int GameCoreStates::WalkingState::checkMovement(int keyPreviouslyPressed, int pr
   GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
 
   if ( currentState == GameCoreStates::FAST_ATTACK && isPacing.directionButtonPressed &&
-	  keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE)
+      keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE)
   {
     return GameCoreStates::NO_CHANGE;
   }
 
   if ( currentState != GameCoreStates::STILL &&
-	  keyPreviouslyPressed != InputMapping::RAW_INPUT_NO_BUTTON &&
-	  keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE &&
-	  ( isPacing.runningButtonPressed ) )
+      keyPreviouslyPressed != InputMapping::RAW_INPUT_NO_BUTTON &&
+      keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE &&
+      ( isPacing.runningButtonPressed ) )
   {
     return GameCoreStates::NO_CHANGE;
   }

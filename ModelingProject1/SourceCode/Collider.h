@@ -13,26 +13,26 @@ class Collider
    static Collider* getInstance();
    
    void initializeColliderSprites(boost::ptr_vector< Characters::Enemy >* enemiesList, 
-	                              boost::ptr_vector< Characters::Player >* playersList);
+                                  boost::ptr_vector< Characters::Player >* playersList);
    void addLayerTilemap(std::vector< std::vector < Tile > > layer); 
 
    void cleanUpResources();
    
    bool checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B , float direction);
    void checkTileCollision(CollisionSystem::CollisionBox& A, int directionX,  int directionY, 
-	                       CollisionSystem::DirectionsMove& directionsMove);
+                           CollisionSystem::DirectionsMove& directionsMove);
 
    bool checkStateCollisionPlayer( Sprite& playerSprite );
    bool checkStateCollisionXAxis( Sprite& playerSprite );
    GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition, int direction );
 
    void checkBoxBordersCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove,
-	                              int leftPositionBorder, int currentPosition, int positionY );
+                                  int leftPositionBorder, int currentPosition, int positionY );
    void checkTopBoxCollision( CollisionSystem::DirectionsMove& directionsMove, int topY, int directionY, int currentPositionY );
    void checkBodyBoxCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, int directionX, 
-	                           int directionY, int currentPositionY );
+                               int directionY, int currentPositionY );
    void checkBottomBoxCollision( CollisionSystem::DirectionsMove& directionsMove, int bottomY, int directionX, 
-	                             int directionY, int currentPositionY );
+                                 int directionY, int currentPositionY );
    bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
    //boost::ptr_vector< Characters::Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);

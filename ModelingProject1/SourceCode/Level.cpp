@@ -37,7 +37,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 
   log << "Loading List Collision Tiles... " << std::endl;
   std::ifstream collisionListFile("LevelZeroSectionOneCollisionList.csv");
-	
+    
   unsigned countTiles = readDataTypeFromFile<unsigned>(collisionListFile);
   log << "Number Of Tiles With Collision:  " << countTiles << std::endl;
   std::vector< int > tempCollisionTilesList;
@@ -53,7 +53,7 @@ int Level::loadTMXTileMapFile(std::string filename)
 
   log << "Loading List Walkable Tiles... " << std::endl;
   std::ifstream tilesWalkableListFile("LevelZeroSectionOneWalkableList.csv");
-	
+    
   unsigned countWalkableTiles = readDataTypeFromFile<unsigned>(tilesWalkableListFile);
   log << "Number Of Walkable Tiles:  " << countWalkableTiles << std::endl;
   std::vector< int > tempWalkableTilesList;
@@ -75,9 +75,9 @@ int Level::loadTMXTileMapFile(std::string filename)
     log << "Loading Layer #0" << i << " - " << map->GetLayer(i)->GetName().c_str() << std::endl;
 
     const Tmx::Layer *layer = map->GetLayer(i);
-		
+        
     tilemapList.push_back( new Tilemap(map->GetLayer(i)->GetName().c_str(), 
-						   layer->GetWidth(), layer->GetHeight()) );
+                           layer->GetWidth(), layer->GetHeight()) );
 
     std::vector< std::vector < Tile > > tempLayerMap = tilemapList.at(i).getLayerMap();
 
@@ -93,12 +93,12 @@ int Level::loadTMXTileMapFile(std::string filename)
       {
         int tileID = layer->GetTileGid(x, y);
         tempLayerMap[y][x].setID( tileID );
-		tempLayerMap[y][x].setHasCollision( initializeCollisionData( tileID, tempCollisionTilesList ) );
-		tempLayerMap[y][x].setIsWalkable( initializeWalkableData( tileID, tempWalkableTilesList ) );
+        tempLayerMap[y][x].setHasCollision( initializeCollisionData( tileID, tempCollisionTilesList ) );
+        tempLayerMap[y][x].setIsWalkable( initializeWalkableData( tileID, tempWalkableTilesList ) );
       }
     }
 
-	Collider::getInstance()->addLayerTilemap(tempLayerMap);
+    Collider::getInstance()->addLayerTilemap(tempLayerMap);
 
     tilemapList.at(i).setLayerMap(tempLayerMap);
     tempLayerMap.clear();
@@ -119,14 +119,14 @@ int Level::loadTMXTileMapFile(std::string filename)
     log << "Image Height: " << tileset->GetImage()->GetHeight() << std::endl;
     log << "Image Source: " << tileset->GetImage()->GetSource().c_str() << std::endl;
     log << "Transparent Color (hex): " << tileset->GetImage()->GetTransparentColor().c_str() << std::endl;
-		
+        
     for (std::string::size_type j = 0; j < tilemapList.size(); j++)
     {
       tilemapList.at(j).addTileset( j, tileset->GetImage()->GetSource().c_str(),
-			                        32.0f, 32.0f, (GLfloat) tileset->GetImage()->GetWidth(), 
-									(GLfloat)tileset->GetImage()->GetHeight(), 
-			                        tileset->GetTiles().size() );
-	}
+                                    32.0f, 32.0f, (GLfloat) tileset->GetImage()->GetWidth(), 
+                                    (GLfloat)tileset->GetImage()->GetHeight(), 
+                                    tileset->GetTiles().size() );
+    }
   }
 
   tempCollisionTilesList.clear();
@@ -150,15 +150,15 @@ bool Level::initializeCollisionData(int tileID, std::vector< int > listCollision
 
   for (std::string::size_type i = 0; i < listCollisionTiles.size(); i++)
   {
-	if ( listCollisionTiles.at(i) > tileID )
-	{
-	  return false;
-	}
+    if ( listCollisionTiles.at(i) > tileID )
+    {
+      return false;
+    }
 
-	if ( tileID == listCollisionTiles.at(i) )
-	{
-	  return true;
-	}
+    if ( tileID == listCollisionTiles.at(i) )
+    {
+      return true;
+    }
   }
 
   return false;
@@ -173,15 +173,15 @@ bool Level::initializeWalkableData(int tileID, std::vector< int > listWalkableTi
 
   for (std::string::size_type i = 0; i < listWalkableTiles.size(); i++)
   {
-	if ( listWalkableTiles.at(i) > tileID )
-	{
-	  return true;
-	}
+    if ( listWalkableTiles.at(i) > tileID )
+    {
+      return true;
+    }
 
-	if ( tileID == listWalkableTiles.at(i) )
-	{
-	  return false;
-	}
+    if ( tileID == listWalkableTiles.at(i) )
+    {
+      return false;
+    }
   }
 
   return true;
@@ -198,15 +198,15 @@ bool Level::drawLevelMap()
   {
     tilemapList.at(j).drawTilemap(0);
   }
-	
+    
   return true;
 }
 
 void Level::addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
-				 GLfloat constantX, bool hasRepetition, bool continuousScroll)
+                 GLfloat constantX, bool hasRepetition, bool continuousScroll)
 {
   layersList.push_back( new Layer(name, widthLayer, heightLayer, vel, constantX, hasRepetition,
-		                continuousScroll) );
+                        continuousScroll) );
 }
 
 void Level::scrollContinuousBackgroundLayers()
@@ -214,9 +214,9 @@ void Level::scrollContinuousBackgroundLayers()
   for (std::string::size_type i = 0; i < layersList.size(); i++)
   {
     if ( layersList.at(i).getIsContinuous() )
-	{
+    {
       layersList.at(i).scrollLayer();
-	}
+    }
   }
 }
 
@@ -225,9 +225,9 @@ void Level::scrollBackgroundLayers()
   for (std::string::size_type i = 0; i < layersList.size(); i++)
   {
     if ( !layersList.at(i).getIsContinuous() )
-	{
+    {
       layersList.at(i).scrollLayer();
-	}
+    }
   }
 }
 

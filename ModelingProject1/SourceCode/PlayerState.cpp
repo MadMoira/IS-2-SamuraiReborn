@@ -10,15 +10,15 @@ GameCoreStates::PlayerState::PlayerState(int id) : State( id )
 }
 
 int GameCoreStates::PlayerState::checkIfEqualStates(std::list<InputMapping::Key> keys, int currentState,
-	                                                int previousState, GameCoreStates::PlayerState* newState,
-													int keyPreviouslyPressed)
+                                                    int previousState, GameCoreStates::PlayerState* newState,
+                                                    int keyPreviouslyPressed)
 {
   return checkChangeOfState(keys, currentState, previousState, newState, keyPreviouslyPressed);
 }
 
 int GameCoreStates::PlayerState::checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
-		                                            int previousState, GameCoreStates::PlayerState* newState,
-													int keyPreviouslyPressed)
+                                                    int previousState, GameCoreStates::PlayerState* newState,
+                                                    int keyPreviouslyPressed)
 {
   if ( currentState == newState->getCurrentID() )
   {
@@ -29,7 +29,7 @@ int GameCoreStates::PlayerState::checkChangeOfState(std::list<InputMapping::Key>
 }
 
 GameCoreStates::ConditionsPlayerRunning GameCoreStates::PlayerState::checkIfPlayerIsRunning(
-	                                        std::list<InputMapping::Key> keys)
+                                            std::list<InputMapping::Key> keys)
 {
   bool directionButtonPressed = false;
   bool directionButtonRightPressed = false;
@@ -53,13 +53,13 @@ GameCoreStates::ConditionsPlayerRunning GameCoreStates::PlayerState::checkIfPlay
 }
 
 int GameCoreStates::PlayerState::checkMovementRestrictions(int keyPreviouslyPressed, int previousState, 
-	                                        int currentState, std::list<InputMapping::Key> keys)
+                                            int currentState, std::list<InputMapping::Key> keys)
 {
   return checkMovement(keyPreviouslyPressed, previousState, currentState, keys);
 }
 
 int GameCoreStates::PlayerState::checkMovement(int keyPreviouslyPressed, int previousState, 
-	                           int currentState, std::list<InputMapping::Key> keys)
+                               int currentState, std::list<InputMapping::Key> keys)
 {
   if ( currentState != previousState)
   {

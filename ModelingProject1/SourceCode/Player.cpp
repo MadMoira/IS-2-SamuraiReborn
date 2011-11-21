@@ -13,33 +13,33 @@ void Characters::Player::executeAction()
       noAction();
       break;
     }
-	case GameCoreStates::WALKING:
+    case GameCoreStates::WALKING:
     {
       walk();
       break;
     }
-	case GameCoreStates::RUNNING:
-	{
+    case GameCoreStates::RUNNING:
+    {
       run();
       break;
     }
-	case GameCoreStates::JUMPING:
-	case GameCoreStates::DOUBLE_JUMP:
+    case GameCoreStates::JUMPING:
+    case GameCoreStates::DOUBLE_JUMP:
     {
       jump();
       break;
-	}
-	case GameCoreStates::FAST_ATTACK:
-	{
-	  fastAttack();
-	  break;
-	}
-	case GameCoreStates::FALLING:
+    }
+    case GameCoreStates::FAST_ATTACK:
+    {
+      fastAttack();
+      break;
+    }
+    case GameCoreStates::FALLING:
     {
       falling();
       break;
     }
-	case GameCoreStates::STOPPING:
+    case GameCoreStates::STOPPING:
     {
       stopping();
       break;
@@ -63,23 +63,23 @@ void Characters::Player::returnToPreviousState()
   {
     case GameCoreStates::STILL:
     {
-	  characterSprite->changeStateSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
-	  break;
+      characterSprite->changeStateSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
+      break;
     }
     case GameCoreStates::WALKING:
     {
-	  characterSprite->changeStateSprite(WALKING_STATE, 1, getInputMapper()->getListKeys());
-	  break;
+      characterSprite->changeStateSprite(WALKING_STATE, 1, getInputMapper()->getListKeys());
+      break;
     }
-	case GameCoreStates::RUNNING:
+    case GameCoreStates::RUNNING:
     {
       characterSprite->changeStateSprite(RUNNING_STATE, 1, getInputMapper()->getListKeys());
-	  break;
+      break;
     }
-	case GameCoreStates::JUMPING:
+    case GameCoreStates::JUMPING:
     {
-	  characterSprite->changeStateSprite(FALLING_STATE, 0, getInputMapper()->getListKeys());
-	  break;
+      characterSprite->changeStateSprite(FALLING_STATE, 0, getInputMapper()->getListKeys());
+      break;
     }
   }
 
@@ -103,18 +103,18 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
   Sprite* playerSprite = player.getCharacterSprite();
 
   playerSprite->setConstantSpeedX ( 
-		        playerSprite->getHandlerAnimation()->changeAnimationDirection(inputs.directionKeyPressed) );
+                playerSprite->getHandlerAnimation()->changeAnimationDirection(inputs.directionKeyPressed) );
 
   bool findStillInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::STILL) 
-		                   != inputs.states.end();
+                           != inputs.states.end();
   bool findWalkingInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::WALKING) 
-		                     != inputs.states.end();
+                             != inputs.states.end();
   bool findJumpingInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::JUMPING) 
-		                     != inputs.states.end();
+                             != inputs.states.end();
   bool findRunningInStates = find(inputs.states.begin(), inputs.states.end(),GameCoreStates::RUNNING) 
-		                     != inputs.states.end();
+                             != inputs.states.end();
   bool findFastAttackWalkingInStates = find(inputs.states.begin(), inputs.states.end(), 
-	                                   GameCoreStates::FAST_ATTACK) != inputs.states.end();
+                                       GameCoreStates::FAST_ATTACK) != inputs.states.end();
 
   InputMapping::Key checkKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
 
@@ -145,7 +145,7 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
 
   if ( player.isStoppingMovement(keys) )
   {
-	playerSprite->changeStateSprite(STOPPING_STATE, inputs.buttonPreviouslyPressed, keys);
+    playerSprite->changeStateSprite(STOPPING_STATE, inputs.buttonPreviouslyPressed, keys);
   }
 
   if ( findStillInStates )

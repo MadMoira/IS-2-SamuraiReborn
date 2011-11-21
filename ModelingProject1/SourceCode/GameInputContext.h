@@ -12,28 +12,28 @@ namespace InputMapping
   {
     bool isPressed;
     bool isReleased;
-	bool wasPreviouslyPressed;
+    bool wasPreviouslyPressed;
     RawInputButton button;
 
-	Key(RawInputButton buttonValue, bool pressed, bool released, bool previously);
-	Key();
+    Key(RawInputButton buttonValue, bool pressed, bool released, bool previously);
+    Key();
   };
 
   class GameInputContext
   {
     public:
-	 GameInputContext(const std::string filename);
-	 ~GameInputContext(void);
-	 
-	 std::list<Key>* getKeysList() { return &keysList; }
+     GameInputContext(const std::string filename);
+     ~GameInputContext(void);
+     
+     std::list<Key>* getKeysList() { return &keysList; }
 
-	 bool mapButtonToAction(RawInputButton button, GameCoreStates::Action& outActiveAction) const;
-	 bool mapButtonToState(RawInputButton button, GameCoreStates::SpriteState& outActiveState) const;
+     bool mapButtonToAction(RawInputButton button, GameCoreStates::Action& outActiveAction) const;
+     bool mapButtonToState(RawInputButton button, GameCoreStates::SpriteState& outActiveState) const;
 
     private:
-	 std::map<RawInputButton, GameCoreStates::Action> actionMap;
-	 std::map<RawInputButton, GameCoreStates::SpriteState> stateMap;
-	 std::list<Key> keysList;
+     std::map<RawInputButton, GameCoreStates::Action> actionMap;
+     std::map<RawInputButton, GameCoreStates::SpriteState> stateMap;
+     std::list<Key> keysList;
   };
 }
 

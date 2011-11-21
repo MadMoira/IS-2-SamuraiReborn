@@ -20,19 +20,19 @@ void GamePhysics::RigidBody::initializeNaturalPhysicsForces(float forceOne, floa
 }
 
 void GamePhysics::RigidBody::applyNaturalPhysicForces(int currentMovement, GLfloat* speedX, GLfloat* speedY, 
-	                                                  int playerState, int direction)
+                                                      int playerState, int direction)
 {
   switch(currentMovement)
   {
     case GamePhysics::X:
     {
       groundFriction(speedX, playerState, direction);
-	  break;
+      break;
     }
-	case GamePhysics::Y:
+    case GamePhysics::Y:
     {
-	  parabolicShot(speedY, playerState);
-	  break;
+      parabolicShot(speedY, playerState);
+      break;
     }
   }
 }
@@ -43,11 +43,11 @@ void GamePhysics::RigidBody::parabolicShot(GLfloat* yVelocity, int playerState)
       playerState == GameCoreStates::FALLING )
   {
     *yVelocity -= gravityValue;
-	if ( *yVelocity >= 30.0f )
-	{
-	  *yVelocity = 30.0f;
-	}
-	return;
+    if ( *yVelocity >= 30.0f )
+    {
+      *yVelocity = 30.0f;
+    }
+    return;
   }
   *yVelocity = 0.0f;
 }
@@ -58,7 +58,7 @@ void GamePhysics::RigidBody::groundFriction(GLfloat* xVelocity, int playerState,
 
   if ( direction == SpriteData::LEFT )
   {
-	axisValue = -1;
+    axisValue = -1;
   }
 
   if( playerState == GameCoreStates::STOPPING )

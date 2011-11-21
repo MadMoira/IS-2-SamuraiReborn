@@ -15,7 +15,7 @@ AISystem::Pathfinding::~Pathfinding(void)
   closedNodes.clear();
   delete level;
 }
-	
+    
 void AISystem::Pathfinding::goToPlayer(Characters::Enemy* enemy, Characters::Player* player)
 {							//only function to be called
   int xPlayer = (int)player->getCharacterSprite()->getPosX();
@@ -51,9 +51,9 @@ void AISystem::Pathfinding::goToPlayer(Characters::Enemy* enemy, Characters::Pla
   {														
     currentNode = openNodes.back();												    //assign the front of the min heap to currentNode,
     if(currentNode->getID() == enemyNode->getID())                                  //if we are there
-	{								 
+    {								 
       if(abs(xPlayer - xEnemy) < 10)                                                //and the distance is to short
-	  {												
+      {												
         return;																        //do nothing
       }																		        //otherwise
       calculatePath(enemyNode,playerNode);									        //calculate the valid path
@@ -61,32 +61,32 @@ void AISystem::Pathfinding::goToPlayer(Characters::Enemy* enemy, Characters::Pla
       return;
     }
     else                                                                            //if not
-	{																			
+    {																			
       PathNode* currentClosedNode = currentNode;
       closedNodes.push_back(currentClosedNode);								        //--the current node is now 
-			
-	  openNodes.pop_back();													        //--closed
-	  std::pop_heap(openNodes.begin(),openNodes.end(), HeapCompare());			    //(rearrange heap after pop)
+            
+      openNodes.pop_back();													        //--closed
+      std::pop_heap(openNodes.begin(),openNodes.end(), HeapCompare());			    //(rearrange heap after pop)
 
       for(unsigned i = 0; i < currentNode->getAdjacentNodes()->size(); i++)         //and for its adjacent nodes
-	  {		
+      {		
         std::vector<int>* vect = currentNode->getAdjacentNodes();
         PathNode* adjacentNode = level->getNodeByID( currentNode->getAdjacentNodes()->at(i) );
 
         if(!searchNode(adjacentNode,openNodes))                                                //if it isnt on the open list
-		{							
+        {							
           if(!searchNode(adjacentNode,closedNodes))                                            //and it isnt in the closed list
-		  {						
+          {						
             //and if it isnt a colision then
             adjacentNode->cost = 1;										                       //asign costs
             adjacentNode->heuristic = (GLfloat)abs(enemyNode->getID() - currentNode->getID()); //and heuristics
             adjacentNode->scoreFunction = (GLfloat)currentNode->scoreFunction + 
-												 adjacentNode->cost +
-												 adjacentNode->heuristic;		               //and finally calculate the score function
+                                                 adjacentNode->cost +
+                                                 adjacentNode->heuristic;		               //and finally calculate the score function
             openNodes.push_back(adjacentNode);							                       //add it to openlist
 
             std::push_heap(openNodes.begin(),openNodes.end(), HeapCompare());                  //rearrange heap
-						//end if colision
+                        //end if colision
           }
         }
       }
@@ -104,7 +104,7 @@ void AISystem::Pathfinding::goToPosition(Characters::Enemy* enemy)
     enemy->getCharacterSprite()->setConstantSpeedX(-1);
   }		
   enemy->walk();
-	//temporal code, here is suposed to go the decision function
+    //temporal code, here is suposed to go the decision function
 }
 
 bool AISystem::Pathfinding::searchNode(AISystem::PathNode* node, std::vector<AISystem::PathNode*> vector)
@@ -112,9 +112,9 @@ bool AISystem::Pathfinding::searchNode(AISystem::PathNode* node, std::vector<AIS
   if(vector.size() > 0)
   {
     for(unsigned i = 0; i < vector.size(); i++)
-	{	
+    {	
       if(vector[i]->getID() == node->getID())
-	  {
+      {
         return true;
       }
     }		
@@ -136,10 +136,10 @@ void AISystem::Pathfinding::calculatePath(AISystem::PathNode* node,AISystem::Pat
     GLfloat tentativeMinScore = FLT_MAX;
     PathNode* tempPathNode;
     for(unsigned i = 0; i < pathNode->getAdjacentNodes()->size(); i++)
-	{
+    {
       PathNode* adjacentNode = level->getNodeByID( pathNode->getAdjacentNodes()->at(i) );
       if(adjacentNode->scoreFunction < tentativeMinScore)
-	  {
+      {
         tentativeMinScore = adjacentNode->scoreFunction;
         tempPathNode = adjacentNode;
       }
@@ -159,6 +159,3 @@ void AISystem::Pathfinding::setVariablesByPosition(int x, int y, int cost, int h
   level->getNodeByPosition(x,y)->heuristic = (GLfloat)heuristic;
   level->getNodeByPosition(x,y)->scoreFunction = (GLfloat)score;
 }
-
-
-

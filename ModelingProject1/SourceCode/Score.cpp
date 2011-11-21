@@ -3,7 +3,7 @@
 
 PlayerScore::Score::Score(void)
 {
-  points = 123456;
+  points = 0000000;
 }
 
 PlayerScore::Score::~Score(void)

@@ -9,7 +9,7 @@ class Animation
 {
   public:
    Animation(int actualFrame, int currentState, SpriteData::AnimationDirection direction, std::vector< int > maxFrames,
-		      std::vector< int > returnFrames, std::vector< int > framerates);
+              std::vector< int > returnFrames, std::vector< int > framerates);
    ~Animation(void);
  
    int animate();

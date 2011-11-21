@@ -9,26 +9,26 @@ namespace Font
   class GameFont
   {
     public:
-	 GameFont(TTF_Font *newFont, SDL_Color color, std::string filename, int sizeFont, int idFont);
-	 GameFont();
+     GameFont(TTF_Font *newFont, SDL_Color color, std::string filename, int sizeFont, int idFont);
+     GameFont();
 
      GameFont(const GameFont& cSource);
-	 GameFont& operator=(const GameFont& cSource);
-	~GameFont(void);
+     GameFont& operator=(const GameFont& cSource);
+    ~GameFont(void);
 
-	 TTF_Font* getFont() { return font; }
-	 void setFont(TTF_Font* f) { font = f; }
+     TTF_Font* getFont() { return font; }
+     void setFont(TTF_Font* f) { font = f; }
 
-	 SDL_Color getColor() { return color; }
-	 void setColor(SDL_Color c) { color = c; }
+     SDL_Color getColor() { return color; }
+     void setColor(SDL_Color c) { color = c; }
 
-	 int getSizeFont() { return sizeFont; }
+     int getSizeFont() { return sizeFont; }
 
     private:
      TTF_Font* font;
-	 SDL_Color color;
-	 std::string filename;
-	 int id;
-	 int sizeFont;
+     SDL_Color color;
+     std::string filename;
+     int id;
+     int sizeFont;
   };
 }
