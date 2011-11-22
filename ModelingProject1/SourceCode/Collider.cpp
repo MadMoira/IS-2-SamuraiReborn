@@ -4,6 +4,8 @@
 
 #include "Collider.h"
 
+#include "PhysicModes.h"
+
 Collider::Collider()
 {
 }
@@ -57,8 +59,8 @@ bool Collider::checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem:
   return false;
 }
 
-void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directionX,  int directionY,
-                                  CollisionSystem::DirectionsMove& directionsMove)
+void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directionX, int directionY,
+                                  CollisionSystem::DirectionsMove& directionsMove, int currentMovement)
 {
   int initialX  = 0;
   int initial = 0;
@@ -96,7 +98,7 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
         {
           checkBoxBordersCollision(A, directionsMove, initial, initialX, y);
           checkTopBoxCollision(directionsMove, (int)A.getY()/32, directionY, y);
-          checkBottomBoxCollision(directionsMove, ((int)A.getY() + (int)A.getHeight()) / 32, directionX, directionY, y);
+          checkBottomBoxCollision(A, directionsMove, directionX, directionY, x, y, currentMovement);
           checkBodyBoxCollision(A, directionsMove, directionX, directionY, y);
           return;
         }
@@ -123,27 +125,35 @@ void Collider::checkBoxBordersCollision(CollisionSystem::CollisionBox& A, Collis
   }
 }
 
-void Collider::checkBottomBoxCollision(CollisionSystem::DirectionsMove& directionsMove, int bottomY, 
-                                       int directionX, int directionY, int currentPositionY)
+void Collider::checkBottomBoxCollision(CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, 
+                                       int directionX, int directionY, int currentPositionX, int currentPositionY,
+                                       int currentMovement)
 {
+  int bottomY = ( (int)A.getY() + (int)A.getHeight() ) / 32;
+
   if ( currentPositionY == bottomY )
   {
-    if ( directionY == SpriteData::UP )
+    switch(directionX)
     {
-      switch(directionX)
+      case SpriteData::RIGHT:
       {
-        case SpriteData::RIGHT:
+        if ( currentPositionX == (int)(A.getX() + A.getWidth())/32 && 
+             currentMovement == GamePhysics::X )
         {
           directionsMove.setCanMoveLeft(true);
           directionsMove.setCanMoveRight(false);
-          break;
         }
-        case SpriteData::LEFT:
+        break;
+      }
+      case SpriteData::LEFT:
+      {
+        if ( currentPositionX == (int)(A.getX())/32 && 
+             currentMovement == GamePhysics::X )
         {
           directionsMove.setCanMoveLeft(false);
           directionsMove.setCanMoveRight(true);
-          break;
         }
+        break;
       }
     }
   }
