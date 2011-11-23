@@ -25,6 +25,11 @@ int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::NO_CHANGE;
   }
 
+  if ( jumpingButtonIsPressed && findKey.wasPreviouslyPressed )
+  {
+    return GameCoreStates::NO_CHANGE;
+  }
+
   if ( ( currentState != GameCoreStates::JUMPING  && currentState != GameCoreStates::DOUBLE_JUMP
                                                   && currentState != GameCoreStates::FALLING
                                                   && currentState != GameCoreStates::FAST_ATTACK ) || 
