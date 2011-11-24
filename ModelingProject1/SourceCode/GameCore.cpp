@@ -24,6 +24,7 @@ GameCore::~GameCore(void)
   delete collider;
   playersList.clear();
   enemiesList.clear();
+  playersInitialized.clear();
 }
 
 bool GameCore::initializeGameCore()

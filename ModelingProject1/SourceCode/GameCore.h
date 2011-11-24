@@ -51,6 +51,9 @@ class GameCore
 
    bool getIsRunning() { return isRunning; }
    void setIsRunning(bool running) { isRunning = running; };
+
+   void pushBackPlayerToInitialize(int id) { playersInitialized.push_back(id); }
+   std::vector< int > getPlayersToInitialize() { return playersInitialized; }
     
   private:
    GameConfiguration* configuration;
@@ -63,6 +66,7 @@ class GameCore
 
    boost::ptr_vector< Characters::Player > playersList;
    boost::ptr_vector< Characters::Enemy > enemiesList;
+   std::vector< int > playersInitialized;
    bool isRunning;
 };
 

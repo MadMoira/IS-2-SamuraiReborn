@@ -8,7 +8,7 @@ SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, 
   gameRender = gR;
   gameInput = gI;
   nameState = stateName;
-  setHasEnded(STATE_MAINMENU);
+  setHasEnded(STATE_MENUSELECTIONPLAYER);
 }
 
 SPlayerSelection::~SPlayerSelection(void)

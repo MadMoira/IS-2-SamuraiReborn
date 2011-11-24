@@ -9,7 +9,7 @@ Characters::MeerkatP2::~MeerkatP2()
   delete score;
 }
 
-void Characters::MeerkatP2::initializePlayer(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed,
+void Characters::MeerkatP2::initializeCharacter(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed,
                 Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
                 std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
                 std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
