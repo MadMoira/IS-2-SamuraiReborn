@@ -62,8 +62,12 @@ void SMainMenu::handleEvents()
       case SDL_MOUSEBUTTONUP:
       {
         handleMouseUp(e.button.button, mousePosition);
-		setHasEnded( guiMainMenu->getListButtons().at( arrowImage.optionSelected - 1 ).eventClicked(&running) );
-		gameCore->setIsRunning(running);
+
+		if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
+		{
+		  setHasEnded( guiMainMenu->getListButtons().at( arrowImage.optionSelected - 1 ).eventClicked(&running) );
+		  gameCore->setIsRunning(running);  
+		}
         break;
       }
       case SDL_MOUSEMOTION:
@@ -246,7 +250,10 @@ void SMainMenu::handleEnterPressed()
 {
   bool running = gameCore->getIsRunning();
 
-  setHasEnded( guiMainMenu->getListButtons().at( arrowImage.optionSelected - 1 ).eventClicked(&running) );
+  if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
+  {
+    setHasEnded( guiMainMenu->getListButtons().at( arrowImage.optionSelected - 1 ).eventClicked(&running) );
+  }
 
   gameCore->setIsRunning(running);
 }
