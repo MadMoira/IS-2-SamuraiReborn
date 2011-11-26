@@ -10,4 +10,17 @@ namespace MenuData
     CREDITS,
     QUIT,
   };
+
+  enum SelectPlayer
+  {
+    NO_SELECTED_PLAYER,
+	PLAYER_ONE,
+	PLAYER_TWO,
+  };
+
+  enum SelectPlayerOptions
+  {
+	BEGIN,
+	BACK,
+  };
 }
