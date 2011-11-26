@@ -2,11 +2,10 @@
 
 #include "GameState.h"
 
+#include "GUIMenu.h"
+
 #include "MenuData.h"
 #include "MenuStructs.h"
-
-#include <CEGUI.h>
-#include <RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
 
 class SMainMenu : public GameState
 {
@@ -20,21 +19,15 @@ class SMainMenu : public GameState
    void render();
    void cleanUp();
 
-   CEGUI::WindowManager& initializeCEGUI( SDL_Surface& surface );
-   void createGUI( CEGUI::WindowManager& winManager );
+   void createGUI( );
 
-   void verifyCurrentlySelectedItem();
-
-   void handleMouseDown(Uint8 button);
-   void handleMouseUp(Uint8 button);
+   void handleMouseDown(Uint8 button, Vector2f mousePosition);
+   void handleMouseUp(Uint8 button, Vector2f mousePosition);
    void handleKeyDown(SDLKey key);
    void handleEnterPressed();
 
-   bool handleHistoryMode( const CEGUI::EventArgs& e );
-   bool handleQuit( const CEGUI::EventArgs& e );
-
   private:
+   RPRGUI::GUIMenu* guiMainMenu;
    Image::ArrowMainMenu arrowImage;
-   std::vector< MenuStructs::MenuButton > menuItems;
 };
 

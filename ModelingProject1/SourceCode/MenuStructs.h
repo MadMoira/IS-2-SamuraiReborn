@@ -1,16 +1,6 @@
 #pragma once
 
-#include <CEGUI.h>
 #include "GameImage.h"
-
-namespace MenuStructs
-{
-  struct MenuButton
-  {
-    CEGUI::PushButton* button;
-    int id;
-  };
-}
 
 namespace Image
 {
@@ -20,5 +10,13 @@ namespace Image
     int optionSelected;
 
     void updatePositionArrow();
+  };
+
+  struct ControllerSelection
+  {
+	GameImage* controller;
+	int selectedPlayer;
+
+	void updatePositionController();
   };
 }

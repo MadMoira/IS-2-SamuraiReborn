@@ -103,15 +103,6 @@
     <Filter Include="Header Files\Game States\Levels">
       <UniqueIdentifier>{4d02fece-53e4-4673-90a6-b73b76735404}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Main Menu\Imagesets">
-      <UniqueIdentifier>{bf79511d-b0bb-427e-8787-99b41be3ddfc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Main Menu\Layout">
-      <UniqueIdentifier>{f87a4f0d-2f7d-4d94-b6c0-418866c4771e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Main Menu\Imagesets\Images">
-      <UniqueIdentifier>{dc4fb80c-98ef-4bbb-92c2-70bc8b4c71a2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Intro">
       <UniqueIdentifier>{625dfe93-cdee-4f51-9f62-291ae2e7b966}</UniqueIdentifier>
     </Filter>
@@ -348,6 +339,15 @@
     <ClCompile Include="EnemySprite.cpp">
       <Filter>Source Files\Characters\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="GUIManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PushButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level.h">
@@ -569,103 +569,25 @@
     <ClInclude Include="PlayerSprite.h">
       <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
+    <ClInclude Include="GUIManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PushButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MainContext.txt">
-      <Filter>Resource Files\Input System</Filter>
-    </None>
-    <None Include="ContextList.txt">
-      <Filter>Resource Files\Input System</Filter>
-    </None>
-    <None Include="healthBar.png">
-      <Filter>Resource Files\UI</Filter>
-    </None>
-    <None Include="orbitron-black.ttf">
-      <Filter>Resource Files\UI</Filter>
-    </None>
-    <None Include="LevelOneTileMap.tmx">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="Meerkat - SpriteSheet.png">
-      <Filter>Resource Files\Players</Filter>
-    </None>
-    <None Include="Panda - SpriteSheet.png">
-      <Filter>Resource Files\Players</Filter>
-    </None>
-    <None Include="Clouds.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="Mountains0.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="Tileset.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="Mountains1.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="SkyBackground.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="datafiles\imagesets\CreditsButton.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\HistoryModeButton.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\MainMenuBackground.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\MenuCursor.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\QuitButton.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\TutorialButton.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\layouts\MainMenu.layout">
-      <Filter>Resource Files\Main Menu\Layout</Filter>
-    </None>
-    <None Include="MenuBackground.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
-    <None Include="MenuCursor.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
-    <None Include="MenuHighlighter.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
-    <None Include="logoSamuraiReborn.png">
-      <Filter>Resource Files\Intro</Filter>
-    </None>
     <None Include="Enemy - SpriteSheet.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="box.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="datafiles\imagesets\CreditsOption.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
-    <None Include="datafiles\imagesets\ExitOption.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
-    <None Include="datafiles\imagesets\HistoryModeOption.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
-    <None Include="datafiles\imagesets\TutorialOption.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
     <None Include="boxPanda.png">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="LevelZeroSectionOneCollisionList.csv">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="LevelZeroSectionOneWalkableList.csv">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
     </None>
   </ItemGroup>
 </Project>

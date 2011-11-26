@@ -7,10 +7,12 @@
 
 GameRender::GameRender(void)
 {
+  guiManager = new RPRGUI::GUIManager();
 }
 
 GameRender::~GameRender(void)
 {
+  delete guiManager;
 }
 
 GLuint GameRender::loadTexture(std::string name)
@@ -121,6 +123,46 @@ void GameRender::drawSpriteTexture(GLuint texture, Vector2f pos, int currentFram
 
   const GLfloat textureX = ( currentFrame % numFramePerRow ) * textureWidth;
   const GLfloat textureY = ( currentFrame / numFramePerRow ) * textureHeight;
+
+  GLfloat texVerts[] = {
+            textureX, textureY,
+            textureX + textureWidth, textureY,
+            textureX + textureWidth, textureY + textureHeight,
+            textureX, textureY + textureHeight
+  };
+
+  glVertexPointer(2, GL_FLOAT, 0, verts);
+  glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
+  glDrawArrays(GL_QUADS, 0, 4);
+
+  glDisableClientState( GL_VERTEX_ARRAY );			
+  glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+}
+
+void GameRender::drawButton(GLuint texture, Vector2f pos, Vector2f dimensions, Vector2f offset)
+{
+  GLfloat widthTexture, heightTexture;
+
+  glEnableClientState( GL_VERTEX_ARRAY );
+  glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
+    
+  glBindTexture( GL_TEXTURE_2D, texture );
+
+  glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widthTexture);
+  glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &heightTexture);
+
+  GLfloat verts[] = {
+                pos.x, pos.y,
+                pos.x + dimensions.x, pos.y,
+                pos.x + dimensions.x, pos.y + dimensions.y,
+                pos.x, pos.y + dimensions.y
+  };
+
+  const GLfloat textureWidth = dimensions.x/widthTexture;
+  const GLfloat textureHeight = dimensions.y/heightTexture;
+
+  const GLfloat textureX = 0.0f;
+  const GLfloat textureY = offset.y/heightTexture;
 
   GLfloat texVerts[] = {
             textureX, textureY,

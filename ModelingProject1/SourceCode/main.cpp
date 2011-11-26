@@ -9,6 +9,7 @@
 
 #include "SIntro.h"
 #include "SMainMenu.h"
+#include "SPlayerSelection.h"
 #include "SLevelOneJapan.h"
 
 int main( int argc, char* args[] )
@@ -23,8 +24,9 @@ int main( int argc, char* args[] )
     return 1;
   }
 
-  //StateManager->changeState( new SMainMenu( &Render, &Core, &Input, STATE_MAINMENU ) );
-  StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, STATE_LEVELONEJAPAN ) );
+  StateManager->changeState( new SMainMenu( &Render, &Core, &Input, STATE_MAINMENU ) );
+  //StateManager->changeState( new SPlayerSelection( &Render, &Core, &Input, STATE_MENUSELECTIONPLAYER ) );
+  //StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, STATE_LEVELONEJAPAN ) );
   StateManager->init();
 
   while( Core.getIsRunning() )
