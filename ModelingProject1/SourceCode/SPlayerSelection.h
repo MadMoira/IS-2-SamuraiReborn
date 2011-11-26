@@ -30,5 +30,6 @@ class SPlayerSelection : public GameState
    RPRGUI::GUIMenu* guiSelectPlayer;
    Image::ControllerSelection controllerImageP1;
    Image::ControllerSelection controllerImageP2;
+   Image::CustomCursor customCursor;
 };
 

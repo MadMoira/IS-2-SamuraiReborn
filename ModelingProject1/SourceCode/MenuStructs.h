@@ -14,9 +14,14 @@ namespace Image
 
   struct ControllerSelection
   {
-	GameImage* controller;
-	int selectedPlayer;
+    GameImage* controller;
+    int selectedPlayer;
 
-	void updatePositionController();
+    void updatePositionController();
+  };
+
+  struct CustomCursor
+  {
+    GameImage* cursor;
   };
 }

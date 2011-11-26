@@ -23,7 +23,7 @@ InputMapping::GameInputMapper::GameInputMapper()
 {
   unsigned countContexts;
     
-  std::ifstream inputContextFile("ContextList.txt");
+  std::ifstream inputContextFile("Resources/Input/ContextList.txt");
   countContexts = readDataTypeFromFile<unsigned>(inputContextFile);
 
   for(unsigned i = 0; i < countContexts; i++)

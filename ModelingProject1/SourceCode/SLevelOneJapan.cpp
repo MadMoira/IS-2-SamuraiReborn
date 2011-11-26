@@ -23,8 +23,6 @@ SLevelOneJapan::~SLevelOneJapan(void)
 
 void SLevelOneJapan::init()
 {
-  gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
-
   initializePlayers();
   initializeLevel();
 
@@ -186,7 +184,7 @@ void SLevelOneJapan::initializePlayers()
   SDL_Color color;
   color.r = color.g = color.b = 255;
   int sizeFont = 25;
-  std::string filenameFont = "orbitron-black.ttf";
+  std::string filenameFont = "Resources/GUI/Fonts/orbitron-black.ttf";
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersToInitialize().size(); i++)
   {
@@ -194,7 +192,8 @@ void SLevelOneJapan::initializePlayers()
     {
       case SpriteData::PANDA:
       {
-        gameCore->addPlayerToGame( new Characters::PandaP1(), SpriteData::PANDA, "Panda - SpriteSheet.png", 
+        gameCore->addPlayerToGame( new Characters::PandaP1(), SpriteData::PANDA, 
+			                 "Resources/Characters/Players/Panda - SpriteSheet.png", 
                              speedPanda, Vector2f(50.0f, 250.0f), 0, maxFrameVectorPanda, returnFrameVector,
                              280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
@@ -202,7 +201,8 @@ void SLevelOneJapan::initializePlayers()
       }
       case SpriteData::MEERKAT:
       {
-        gameCore->addPlayerToGame( new Characters::MeerkatP2(), SpriteData::MEERKAT, "Meerkat - SpriteSheet.png", 
+        gameCore->addPlayerToGame( new Characters::MeerkatP2(), SpriteData::MEERKAT, 
+			                 "Resources/Characters/Players/Meerkat - SpriteSheet.png", 
                              speedMeerkat, Vector2f(100.0f, 300.0f), 0, maxFrameVector, returnFrameVector,
                              204.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 44.0f, 135.0f, 42.0f, 45.0f);
@@ -223,11 +223,12 @@ void SLevelOneJapan::initializePlayers()
 
 void SLevelOneJapan::initializeLevel()
 {
+  std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
   japanLevel = new Level(LEVELONEJAPAN);
-  japanLevel->loadTMXTileMapFile("LevelOneTileMap.tmx");
+  japanLevel->loadTMXTileMapFile(commonPath + "LevelOneSectionOneMap.tmx");
 
-  japanLevel->addLayerToList("SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
-  japanLevel->addLayerToList("Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);
-  japanLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
-  japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
+  japanLevel->addLayerToList(commonPath + "SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
+  japanLevel->addLayerToList(commonPath + "Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);
+  japanLevel->addLayerToList(commonPath + "Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
+  japanLevel->addLayerToList(commonPath + "Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 }

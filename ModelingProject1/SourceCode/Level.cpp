@@ -20,8 +20,9 @@ Level::~Level(void)
 
 int Level::loadTMXTileMapFile(std::string filename)
 {
-  std::fstream log ("logLoadMapFile.txt", std::fstream::out);
-
+  std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
+  std::fstream log (commonPath + "logLoadMapFile.txt", std::fstream::out);
+  
   Tmx::Map *map = new Tmx::Map();
   map->ParseFile(filename);
 
@@ -36,7 +37,7 @@ int Level::loadTMXTileMapFile(std::string filename)
   }
 
   log << "Loading List Collision Tiles... " << std::endl;
-  std::ifstream collisionListFile("LevelZeroSectionOneCollisionList.csv");
+  std::ifstream collisionListFile(commonPath + "LevelOneSectionOneCollisionList.csv");
     
   unsigned countTiles = readDataTypeFromFile<unsigned>(collisionListFile);
   log << "Number Of Tiles With Collision:  " << countTiles << std::endl;
@@ -52,7 +53,7 @@ int Level::loadTMXTileMapFile(std::string filename)
   log << "Finish Loading List Collision Tiles... " << std::endl;
 
   log << "Loading List Walkable Tiles... " << std::endl;
-  std::ifstream tilesWalkableListFile("LevelZeroSectionOneWalkableList.csv");
+  std::ifstream tilesWalkableListFile(commonPath + "LevelOneSectionOneWalkableList.csv");
     
   unsigned countWalkableTiles = readDataTypeFromFile<unsigned>(tilesWalkableListFile);
   log << "Number Of Walkable Tiles:  " << countWalkableTiles << std::endl;
@@ -122,7 +123,7 @@ int Level::loadTMXTileMapFile(std::string filename)
         
     for (std::string::size_type j = 0; j < tilemapList.size(); j++)
     {
-      tilemapList.at(j).addTileset( j, tileset->GetImage()->GetSource().c_str(),
+      tilemapList.at(j).addTileset( j, commonPath + tileset->GetImage()->GetSource().c_str(),
                                     32.0f, 32.0f, (GLfloat) tileset->GetImage()->GetWidth(), 
                                     (GLfloat)tileset->GetImage()->GetHeight(), 
                                     tileset->GetTiles().size() );
