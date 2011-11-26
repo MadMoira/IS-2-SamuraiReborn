@@ -73,23 +73,8 @@
     <Filter Include="Header Files\Graphics\Font">
       <UniqueIdentifier>{5fbd43d6-fb0c-4c98-adbf-bd8f0829055b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Input System">
-      <UniqueIdentifier>{503671e6-0561-4199-9365-8c23ddf96463}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\UI">
       <UniqueIdentifier>{579c1e31-f90f-458b-8851-2c630153f8c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\LevelOneJapan">
-      <UniqueIdentifier>{5e7dfdef-b86f-48b0-b297-ad9cdd1dcdb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\LevelOneJapan\Zone1">
-      <UniqueIdentifier>{ea6a8e68-1bf6-4386-9888-e85db34de87f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Players">
-      <UniqueIdentifier>{927bd692-a5e9-45d4-99f5-804d4fdb6d02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Main Menu">
-      <UniqueIdentifier>{27e1eabb-3063-4e35-bfe6-1e3ad4d7c020}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Game States\Levels">
       <UniqueIdentifier>{9c650fc0-4bdc-4544-bb48-bed34161c119}</UniqueIdentifier>
@@ -102,9 +87,6 @@
     </Filter>
     <Filter Include="Header Files\Game States\Levels">
       <UniqueIdentifier>{4d02fece-53e4-4673-90a6-b73b76735404}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Intro">
-      <UniqueIdentifier>{625dfe93-cdee-4f51-9f62-291ae2e7b966}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Game Physics\Collisions">
       <UniqueIdentifier>{3d373aa9-77a9-4be1-a464-6aac57a0007c}</UniqueIdentifier>
@@ -141,6 +123,54 @@
     </Filter>
     <Filter Include="Source Files\Characters\Players\States">
       <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Characters">
+      <UniqueIdentifier>{f18f43a6-c225-4c48-9968-93923f554859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Characters\Players">
+      <UniqueIdentifier>{ae8bac07-e5be-4078-9a54-f9c3f117fd8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Levels">
+      <UniqueIdentifier>{c4ddd454-b821-4e5f-b9aa-5bb0c732bb25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Levels\LevelOneJapan">
+      <UniqueIdentifier>{5e7dfdef-b86f-48b0-b297-ad9cdd1dcdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Levels\LevelOneJapan\Section1">
+      <UniqueIdentifier>{ea6a8e68-1bf6-4386-9888-e85db34de87f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus">
+      <UniqueIdentifier>{095b1f01-3f8f-4204-ba32-4d11de5f1d31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Main Menu">
+      <UniqueIdentifier>{27e1eabb-3063-4e35-bfe6-1e3ad4d7c020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Menu Selection Player">
+      <UniqueIdentifier>{b443da3a-3220-4c9d-919a-76738157397b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Intro">
+      <UniqueIdentifier>{74d55c77-1c2f-4895-a46d-fc8729ceb4ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Input">
+      <UniqueIdentifier>{503671e6-0561-4199-9365-8c23ddf96463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\GUI">
+      <UniqueIdentifier>{d71f13c4-a1eb-4711-8f10-7b04804946b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\GUI\Fonts">
+      <UniqueIdentifier>{ae5421e8-56d3-4fd2-bfb9-a12bbc7cfde0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{5ce750ca-5e18-4aaa-97c5-7d39ccde5d37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\Elements">
+      <UniqueIdentifier>{6b27b5ff-ed66-473b-8bfd-a084a52d2ded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{1b89402f-678b-4002-b57e-bed682e67a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\Elements">
+      <UniqueIdentifier>{706561e6-0872-44e5-b0fc-6ccc41e562fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -339,14 +369,14 @@
     <ClCompile Include="EnemySprite.cpp">
       <Filter>Source Files\Characters\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="GUIManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PushButton.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GUI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIManager.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GUIMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -570,13 +600,13 @@
       <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="GUIManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PushButton.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GUIMenu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PushButton.h">
+      <Filter>Header Files\GUI\Elements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -588,6 +618,75 @@
     </None>
     <None Include="boxPanda.png">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\Characters\Players\Meerkat - SpriteSheet.png">
+      <Filter>Resource Files\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Characters\Players\Panda - SpriteSheet.png">
+      <Filter>Resource Files\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\Clouds.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\Mountains0.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\Mountains1.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\SkyBackground.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\Tileset.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionList.csv">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneMap.tmx">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneWalkableList.csv">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Menus\Main Menu\MainMenuBackground.png">
+      <Filter>Resource Files\Menus\Main Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Main Menu\MainMenuButtons.png">
+      <Filter>Resource Files\Menus\Main Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Main Menu\MainMenuHighlighter.png">
+      <Filter>Resource Files\Menus\Main Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Menu Selection Player\Gamepad.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Menus\Menu Selection Player\MenuCharacterSelectorBackground.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Menus\Menu Selection Player\PandaSelector.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Menus\Menu Selection Player\SuricataSelector.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Menus\Intro\LogoSamuraiReborn.png">
+      <Filter>Resource Files\Menus\Intro</Filter>
+    </None>
+    <None Include="Resources\UI\HealthBar.png">
+      <Filter>Resource Files\UI</Filter>
+    </None>
+    <None Include="Resources\Input\ContextList.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\MainContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\GUI\Fonts\orbitron-black.ttf">
+      <Filter>Resource Files\GUI\Fonts</Filter>
+    </None>
+    <None Include="Resources\GUI\Cursor.png">
+      <Filter>Resource Files\GUI</Filter>
     </None>
   </ItemGroup>
 </Project>

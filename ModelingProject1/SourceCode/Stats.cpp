@@ -23,7 +23,7 @@ PlayerStats::Stats::Stats(void)
   health.healthBar = new Image::GameImage(Vector2f(10.0f, 10.0f), //X-Y Position Of The Health Bar
                                       Vector2f(353.33f, 145.0f), //Width And Height Of The Health Bar
                                       Vector2f(20.58f, 0.0f), //Texture Position X-Y Of The Health Bar
-                                      "healthBar.png");
+                                      "Resources/UI/HealthBar.png");
 }
 
 PlayerStats::Stats::~Stats(void)

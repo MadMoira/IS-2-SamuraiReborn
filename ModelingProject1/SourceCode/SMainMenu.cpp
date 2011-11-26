@@ -29,13 +29,16 @@ void SMainMenu::init()
 {
   guiMainMenu = new RPRGUI::GUIMenu();
 
-  SDL_ShowCursor( 1 );
+  std::string commonPath = "Resources/Menus/Main Menu/";
 
   createGUI();
 
   arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
-                                    Vector2f(0.0f, 0.0f), "MenuHighlighter.png");
+                                    Vector2f(0.0f, 0.0f), commonPath + "MainMenuHighlighter.png");
   arrowImage.optionSelected = MenuData::NOTHING_SELECTED;
+
+  customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
+                                             Vector2f(0.0f, 0.0f), "Resources/GUI/Cursor.png");  
 
   gameCore->getGameTimer()->setFramesPerSecond(30);
 }
@@ -48,6 +51,7 @@ void SMainMenu::handleEvents()
   while ( SDL_PollEvent(&e) && checkIfStateEnd() == getNameState() )
   {
 	Vector2f mousePosition = Vector2f(static_cast<float>(e.motion.x), static_cast<float>(e.motion.y) );
+
     switch( e.type )
     {
       case SDL_MOUSEBUTTONDOWN:
@@ -64,6 +68,7 @@ void SMainMenu::handleEvents()
       }
       case SDL_MOUSEMOTION:
       {
+        customCursor.cursor->setPosition(mousePosition.x, mousePosition.y);
 		arrowImage.optionSelected = guiMainMenu->checkMousePosition(mousePosition);
         break;
       }
@@ -100,20 +105,22 @@ void SMainMenu::render()
 								guiMainMenu->getListStaticImages().at(i).getOffset().y);
   }
 
-
   for (std::string::size_type i = 0; i < guiMainMenu->getListButtons().size(); i++)
   {
-	  gameRender->drawButton(guiMainMenu->getTextureButtons(),
-		                     guiMainMenu->getListButtons().at(i).getPosition(),
-		                     guiMainMenu->getListButtons().at(i).getDimensions(),
-		                     guiMainMenu->getListButtons().at(i).getTexturePosition());
+    gameRender->drawButton(guiMainMenu->getTextureButtons(),
+		                   guiMainMenu->getListButtons().at(i).getPosition(),
+		                   guiMainMenu->getListButtons().at(i).getDimensions(),
+		                   guiMainMenu->getListButtons().at(i).getTexturePosition());
   }
 
   if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
   {
     gameRender->drawFullTexture(arrowImage.arrow->getTexture(), arrowImage.arrow->getPosition(),
-                                arrowImage.arrow->getOffset().x, arrowImage.arrow->getOffset().y );
+                                arrowImage.arrow->getOffset().x, arrowImage.arrow->getOffset().y);
   }
+
+  gameRender->drawFullTexture(customCursor.cursor->getTexture(), customCursor.cursor->getPosition(),
+                              customCursor.cursor->getOffset().x, customCursor.cursor->getOffset().y);
 
   SDL_GL_SwapBuffers();
 }
@@ -121,6 +128,7 @@ void SMainMenu::render()
 void SMainMenu::cleanUp()
 {
   delete arrowImage.arrow;
+  delete customCursor.cursor;
 
   delete guiMainMenu;
 }
@@ -128,12 +136,13 @@ void SMainMenu::cleanUp()
 void SMainMenu::createGUI()
 {
   RPRGUI::GUIManager* guiManager = gameRender->getGUIManager();
-  
+  std::string commonPath = "Resources/Menus/Main Menu/";
+
   guiMainMenu->addStaticImage( guiManager->createStaticImage(Vector2f(0.0f, 0.0f),
 	                                                         Vector2f(1280.0f, 720.0f),
 															 Vector2f(0.0f, 0.0f),
 															 "") );
-  guiMainMenu->addTextureStaticImages(gameRender->loadTexture("MenuBackground.png"));
+  guiMainMenu->addTextureStaticImages(gameRender->loadTexture(commonPath + "MainMenuBackground.png"));
 
   guiMainMenu->addButton( guiManager->createButton(MenuData::HISTORY_MODE, Vector2f(522.0f, 300.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 0.0f),
@@ -147,8 +156,7 @@ void SMainMenu::createGUI()
   guiMainMenu->addButton( guiManager->createButton(MenuData::QUIT, Vector2f(522.0f, 450.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 86.25f),
 	                                               STATE_EXIT) );
-  guiMainMenu->addTextureButtons( gameRender->loadTexture("MainMenuButtons.png") );                                               
-
+  guiMainMenu->addTextureButtons( gameRender->loadTexture(commonPath + "MainMenuButtons.png") );                                               
 }
 
 void SMainMenu::handleMouseDown(Uint8 button, Vector2f mousePosition)

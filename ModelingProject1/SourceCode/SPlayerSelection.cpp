@@ -5,11 +5,11 @@ void Image::ControllerSelection::updatePositionController()
 {
   if ( selectedPlayer == MenuData::NO_SELECTED_PLAYER )
   {
-        controller->setPosition(590.0f, 500.0f);
-		return;
+    controller->setPosition(590.0f, 430.0f);
+    return;
   }
 
-  controller->setPosition(362.5f + (selectedPlayer-1)*420.0f, 500.0f);
+  controller->setPosition(362.5f + (selectedPlayer-1)*420.0f, 430.0f);
 }
 
 SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
@@ -30,13 +30,14 @@ void SPlayerSelection::init()
 {
   guiSelectPlayer = new RPRGUI::GUIMenu();
 
-  SDL_ShowCursor( 1 );
-
   createGUI();
 
-  controllerImageP1.controller = new Image::GameImage(Vector2f(590.0f, 500.0f), Vector2f(100.0f, 67.0f), 
-                                    Vector2f(0.0f, 0.0f), "Gamepad.png");
+  controllerImageP1.controller = new Image::GameImage(Vector2f(590.0f, 430.0f), Vector2f(100.0f, 67.0f), 
+                                    Vector2f(0.0f, 0.0f), "Resources/Menus/Menu Selection Player/Gamepad.png");
   controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
+
+  customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
+                                             Vector2f(0.0f, 0.0f), "Resources/GUI/Cursor.png");  
 
   gameCore->getGameTimer()->setFramesPerSecond(30);
 }
@@ -47,10 +48,13 @@ void SPlayerSelection::handleEvents()
 
   while ( SDL_PollEvent(&e) )
   {
+	Vector2f mousePosition = Vector2f(static_cast<float>(e.motion.x), static_cast<float>(e.motion.y) );
+
     switch( e.type )
     {
       case SDL_MOUSEMOTION:
       {
+		customCursor.cursor->setPosition(mousePosition.x, mousePosition.y);
         break;
       }
       case SDL_MOUSEBUTTONDOWN:
@@ -105,6 +109,9 @@ void SPlayerSelection::render()
   gameRender->drawFullTexture(controllerImageP1.controller->getTexture(), controllerImageP1.controller->getPosition(),
                               controllerImageP1.controller->getOffset().x, controllerImageP1.controller->getOffset().y );
 
+  gameRender->drawFullTexture(customCursor.cursor->getTexture(), customCursor.cursor->getPosition(),
+                              customCursor.cursor->getOffset().x, customCursor.cursor->getOffset().y);
+
   SDL_GL_SwapBuffers();
 }
 
@@ -119,24 +126,25 @@ void SPlayerSelection::cleanUp()
 void SPlayerSelection::createGUI( )
 {
   RPRGUI::GUIManager* guiManager = gameRender->getGUIManager();
+  std::string commonPath = "Resources/Menus/Menu Selection Player/";
   
   guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(0.0f, 0.0f),
 	                                                         Vector2f(1280.0f, 720.0f),
 															 Vector2f(0.0f, 0.0f),
 															 "") );
-  guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture("MenuCharacterSelectorBackground.png"));
+  guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "MenuCharacterSelectorBackground.png"));
 
-  guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(300.0f, 150.0f),
+  guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(300.0f, 100.0f),
 	                                                         Vector2f(225.0f, 300.0f),
 															 Vector2f(0.0f, 0.0f),
 															 "") );
-  guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture("PandaSelector.png"));
+  guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "PandaSelector.png"));
 
-  guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(700.0f, 150.0f),
+  guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(700.0f, 100.0f),
 	                                                         Vector2f(225.0f, 300.0f),
 															 Vector2f(0.0f, 0.0f),
 															 "") );
-  guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture("SuricataSelector.png"));
+  guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "SuricataSelector.png"));
 
   //guiMainMenu->addTextureButtons( gameRender->loadTexture("MainMenuButtons.png") );                                               
 
@@ -215,8 +223,18 @@ void SPlayerSelection::handleKeyDown(SDLKey key)
       controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
     }
   }
+
+  if ( key == SDLK_RETURN )
+  {
+    handleEnterPressed();
+  }
 }
 
 void SPlayerSelection::handleEnterPressed()
 {
+  if ( controllerImageP1.selectedPlayer != MenuData::NO_SELECTED_PLAYER )
+  {
+    gameCore->pushBackPlayerToInitialize(MenuData::PLAYER_ONE - 1);
+	setHasEnded(STATE_LEVELONEJAPAN);
+  }
 }

@@ -29,5 +29,6 @@ class SMainMenu : public GameState
   private:
    RPRGUI::GUIMenu* guiMainMenu;
    Image::ArrowMainMenu arrowImage;
+   Image::CustomCursor customCursor;
 };
 
