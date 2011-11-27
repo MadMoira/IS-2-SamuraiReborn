@@ -1,20 +1,20 @@
 #include "PathNode.h"
 
-PathNode::PathNode(int ID, int newX, int newY)
+AISystem::PathNode::PathNode(int ID, int newX, int newY)
 {
-	this->ID=ID;
-	cost=FLT_MAX;
-	scoreFunction=FLT_MAX;
-	heuristic=FLT_MAX;
-	this->x=newX;
-	this->y=newY;
+  this->ID = ID;
+  cost = FLT_MAX;
+  scoreFunction = FLT_MAX;
+  heuristic = FLT_MAX;
+  coordinates = Vector2i(newX, newY);
 }
 
-void PathNode::addAdjacentNode(int ID){
-	adjacentID.push_back(ID);
+AISystem::PathNode::~PathNode(void)
+{
+  adjacentID.clear();
 }
 
-PathNode::~PathNode(void)
+void AISystem::PathNode::addAdjacentNode(int ID)
 {
-	adjacentID.clear();
+  adjacentID.push_back(ID);
 }

@@ -1,7 +1,6 @@
 
 #include "GameScreen.h"
 
-#include <RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
 #include <SDL/SDL_ttf.h>
 
 GameScreen::GameScreen(void)
@@ -21,7 +20,7 @@ bool GameScreen::initializeScreen()
   {
     return false;
   }
-	
+    
   if( !initializeSDLGLState() )
   {
     return false;
@@ -58,12 +57,10 @@ bool GameScreen::initializeOpenGL()
   defaultResolution = SDL_GetVideoInfo();
   float proportion = ( (float)defaultResolution->current_w / (float)defaultResolution->current_h );
 
-  CEGUI::OpenGLRenderer::bootstrapSystem();
-
   glViewport(0, 0, defaultResolution->current_w, defaultResolution->current_h);
   glMatrixMode( GL_PROJECTION );
   glLoadIdentity();
-		
+        
   if(proportion > 1.5 && proportion < 1.7)
   {
     glOrtho( 0, 1280,800, 0, -1, 1 );
@@ -78,7 +75,7 @@ bool GameScreen::initializeOpenGL()
   {
     glOrtho( 0, 1280,960, 0, -1, 1 );
   }
-	
+    
   glMatrixMode( GL_MODELVIEW );
   glLoadIdentity();
 

@@ -10,7 +10,7 @@ DataTypeOutput readDataTypeFromFile(std::ifstream& stream)
 
   if( !(stream >> dataOutput) )
   {
-		throw std::exception("Failed To Read A Data Value From A File.");
+        throw std::exception("Failed To Read A Data Value From A File.");
   }
 
   return dataOutput;

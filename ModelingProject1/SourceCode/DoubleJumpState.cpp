@@ -14,13 +14,13 @@ GameCoreStates::DoubleJumpState::~DoubleJumpState(void)
 }
 
 int GameCoreStates::DoubleJumpState::checkMovement(int keyPreviouslyPressed, int previousState, int currentState, 
-	std::list<InputMapping::Key> keys)
+    std::list<InputMapping::Key> keys)
 {
   InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
   bool jumpingButtonIsPressed = findKey.isPressed;
 
   if ( currentState == GameCoreStates::JUMPING && previousState != GameCoreStates::DOUBLE_JUMP && 
-	   keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && jumpingButtonIsPressed)
+       keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && jumpingButtonIsPressed)
   {
     return GameCoreStates::CHANGE;
   }

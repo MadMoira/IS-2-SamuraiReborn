@@ -24,7 +24,7 @@ bool GameInput::handleWindowEvents()
         return false;
       }   
     }
-		
+        
     if( evento.type == SDL_QUIT)
     {
       return false;

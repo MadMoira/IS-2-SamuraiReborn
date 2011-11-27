@@ -9,6 +9,8 @@
 
 #include "GameText.h"
 
+#include "GUIManager.h"
+
 #include "Vector.h"
 
 class GameRender
@@ -20,11 +22,17 @@ class GameRender
    static GLuint loadTexture(std::string name);
    static void drawFullTexture(GLuint texture, Vector2f pos, GLfloat widthTexture, GLfloat heightTexture);
    static void drawSpriteTexture(GLuint texture, Vector2f pos, int currentFrame, 
-								 GLfloat widthTexture, GLfloat heightTexture, 
-								 GLfloat widthSprite, GLfloat heightSprite,
-								 int direction, int state);
+                                 GLfloat widthTexture, GLfloat heightTexture, 
+                                 GLfloat widthSprite, GLfloat heightSprite,
+                                 int direction, int state);
+   static void drawButton(GLuint texture, Vector2f pos, Vector2f dimensions, Vector2f offset);
    static void drawLayerTexture(GLuint texture, Vector2f offset, GLfloat widthScreen, 
-								GLfloat heightScreen);
+                                GLfloat heightScreen);
    static void drawText(Font::GameFont* font, Text::GameText text);
+
+   RPRGUI::GUIManager* getGUIManager() { return guiManager; }
+
+  private:
+   RPRGUI::GUIManager* guiManager;
 };
 

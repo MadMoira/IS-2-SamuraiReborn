@@ -11,7 +11,7 @@ GameCoreStates::StoppingState::~StoppingState(void)
 }
 
 int GameCoreStates::StoppingState::checkMovement(int keyPreviouslyPressed, int previousState,
-	                                             int currentState, std::list<InputMapping::Key> keys)
+                                                 int currentState, std::list<InputMapping::Key> keys)
 {
   if( currentState == GameCoreStates::RUNNING )
   {

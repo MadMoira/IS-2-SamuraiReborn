@@ -25,18 +25,6 @@
     <Filter Include="Header Files\Game States">
       <UniqueIdentifier>{2b430e3d-0d2f-4753-a77b-17925e69df3c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Player">
-      <UniqueIdentifier>{a712db92-c0a4-4c2e-9ca7-138e20bf40b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Player">
-      <UniqueIdentifier>{a42d2b20-41c7-446c-b612-d7b84bf8cfb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Enemies">
-      <UniqueIdentifier>{50334c97-5523-4392-be9b-5a8da177c1fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Enemies">
-      <UniqueIdentifier>{b35e103c-528f-4634-b9dd-aceadb1ca085}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{318be1a8-f324-470a-b915-9c68b64915f6}</UniqueIdentifier>
     </Filter>
@@ -76,12 +64,6 @@
     <Filter Include="Header Files\System">
       <UniqueIdentifier>{855ce3bb-62d9-40e0-b9a9-85a06026bf0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Player\States">
-      <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Player\States">
-      <UniqueIdentifier>{bf076467-bea2-40e9-a8dd-99692646036c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{2b62b77f-74f0-4e6a-b9c1-17d94d20a0bf}</UniqueIdentifier>
     </Filter>
@@ -91,23 +73,8 @@
     <Filter Include="Header Files\Graphics\Font">
       <UniqueIdentifier>{5fbd43d6-fb0c-4c98-adbf-bd8f0829055b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Input System">
-      <UniqueIdentifier>{503671e6-0561-4199-9365-8c23ddf96463}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\UI">
       <UniqueIdentifier>{579c1e31-f90f-458b-8851-2c630153f8c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\LevelOneJapan">
-      <UniqueIdentifier>{5e7dfdef-b86f-48b0-b297-ad9cdd1dcdb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\LevelOneJapan\Zone1">
-      <UniqueIdentifier>{ea6a8e68-1bf6-4386-9888-e85db34de87f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Players">
-      <UniqueIdentifier>{927bd692-a5e9-45d4-99f5-804d4fdb6d02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Main Menu">
-      <UniqueIdentifier>{27e1eabb-3063-4e35-bfe6-1e3ad4d7c020}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Game States\Levels">
       <UniqueIdentifier>{9c650fc0-4bdc-4544-bb48-bed34161c119}</UniqueIdentifier>
@@ -121,18 +88,6 @@
     <Filter Include="Header Files\Game States\Levels">
       <UniqueIdentifier>{4d02fece-53e4-4673-90a6-b73b76735404}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Main Menu\Imagesets">
-      <UniqueIdentifier>{bf79511d-b0bb-427e-8787-99b41be3ddfc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Main Menu\Layout">
-      <UniqueIdentifier>{f87a4f0d-2f7d-4d94-b6c0-418866c4771e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Main Menu\Imagesets\Images">
-      <UniqueIdentifier>{dc4fb80c-98ef-4bbb-92c2-70bc8b4c71a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Intro">
-      <UniqueIdentifier>{625dfe93-cdee-4f51-9f62-291ae2e7b966}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game Physics\Collisions">
       <UniqueIdentifier>{3d373aa9-77a9-4be1-a464-6aac57a0007c}</UniqueIdentifier>
     </Filter>
@@ -144,6 +99,78 @@
     </Filter>
     <Filter Include="Source Files\Game Physics\Physics Modes">
       <UniqueIdentifier>{99a1e128-3efb-4054-b76c-36201f86166a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Characters">
+      <UniqueIdentifier>{87d81ced-86e8-4cea-a1d5-91b58c34e0e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Characters\Players">
+      <UniqueIdentifier>{a42d2b20-41c7-446c-b612-d7b84bf8cfb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Characters\Players\States">
+      <UniqueIdentifier>{bf076467-bea2-40e9-a8dd-99692646036c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Characters\Enemies">
+      <UniqueIdentifier>{50334c97-5523-4392-be9b-5a8da177c1fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters">
+      <UniqueIdentifier>{7c649521-4258-438d-849b-5f457195597d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters\Enemies">
+      <UniqueIdentifier>{b35e103c-528f-4634-b9dd-aceadb1ca085}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters\Players">
+      <UniqueIdentifier>{a712db92-c0a4-4c2e-9ca7-138e20bf40b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Characters\Players\States">
+      <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Characters">
+      <UniqueIdentifier>{f18f43a6-c225-4c48-9968-93923f554859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Characters\Players">
+      <UniqueIdentifier>{ae8bac07-e5be-4078-9a54-f9c3f117fd8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Levels">
+      <UniqueIdentifier>{c4ddd454-b821-4e5f-b9aa-5bb0c732bb25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Levels\LevelOneJapan">
+      <UniqueIdentifier>{5e7dfdef-b86f-48b0-b297-ad9cdd1dcdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Levels\LevelOneJapan\Section1">
+      <UniqueIdentifier>{ea6a8e68-1bf6-4386-9888-e85db34de87f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus">
+      <UniqueIdentifier>{095b1f01-3f8f-4204-ba32-4d11de5f1d31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Main Menu">
+      <UniqueIdentifier>{27e1eabb-3063-4e35-bfe6-1e3ad4d7c020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Menu Selection Player">
+      <UniqueIdentifier>{b443da3a-3220-4c9d-919a-76738157397b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Intro">
+      <UniqueIdentifier>{74d55c77-1c2f-4895-a46d-fc8729ceb4ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Input">
+      <UniqueIdentifier>{503671e6-0561-4199-9365-8c23ddf96463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\GUI">
+      <UniqueIdentifier>{d71f13c4-a1eb-4711-8f10-7b04804946b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\GUI\Fonts">
+      <UniqueIdentifier>{ae5421e8-56d3-4fd2-bfb9-a12bbc7cfde0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{5ce750ca-5e18-4aaa-97c5-7d39ccde5d37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI\Elements">
+      <UniqueIdentifier>{6b27b5ff-ed66-473b-8bfd-a084a52d2ded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{1b89402f-678b-4002-b57e-bed682e67a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\Elements">
+      <UniqueIdentifier>{706561e6-0872-44e5-b0fc-6ccc41e562fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -175,19 +202,16 @@
       <Filter>Source Files\Game States</Filter>
     </ClCompile>
     <ClCompile Include="MeerkatP2.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\Characters\Players</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\Characters\Players</Filter>
     </ClCompile>
     <ClCompile Include="PandaP1.cpp">
-      <Filter>Source Files\Player</Filter>
+      <Filter>Source Files\Characters\Players</Filter>
     </ClCompile>
     <ClCompile Include="Stats.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Characters\Players</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Source Files\Weapons</Filter>
@@ -199,10 +223,10 @@
       <Filter>Source Files\Weapons</Filter>
     </ClCompile>
     <ClCompile Include="JapaneseMonkey.cpp">
-      <Filter>Source Files\Enemies</Filter>
+      <Filter>Source Files\Characters\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
+      <Filter>Source Files\Characters\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>Source Files\AI</Filter>
@@ -238,28 +262,28 @@
       <Filter>Source Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="PlayerStateManager.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="StillState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="WalkingState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="RunningState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="JumpingState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="DoubleJumpState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="ComparatorFunctions.cpp">
       <Filter>Source Files\System</Filter>
@@ -276,11 +300,8 @@
     <ClCompile Include="GameText.cpp">
       <Filter>Source Files\Graphics\Fonts</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerScore.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
     <ClCompile Include="FastAttackState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="SLevelOneJapan.cpp">
       <Filter>Source Files\Game States\Levels</Filter>
@@ -316,7 +337,7 @@
       <Filter>Source Files\AI</Filter>
     </ClCompile>
     <ClCompile Include="FallingState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
     <ClCompile Include="CollisionStructs.cpp">
       <Filter>Source Files\Game Physics\Collisions</Filter>
@@ -328,7 +349,34 @@
       <Filter>Source Files\Game Physics\Physics Modes</Filter>
     </ClCompile>
     <ClCompile Include="StoppingState.cpp">
-      <Filter>Source Files\Player\States</Filter>
+      <Filter>Source Files\Characters\Players\States</Filter>
+    </ClCompile>
+    <ClCompile Include="SPlayerSelection.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Source Files\Characters\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSprite.cpp">
+      <Filter>Source Files\Characters\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemySprite.cpp">
+      <Filter>Source Files\Characters\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="PushButton.cpp">
+      <Filter>Source Files\GUI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIManager.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUIMenu.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -357,19 +405,16 @@
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
     <ClInclude Include="MeerkatP2.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="PandaP1.h">
-      <Filter>Header Files\Player</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="Stats.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>Header Files\Weapons</Filter>
@@ -381,10 +426,10 @@
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Header Files\Enemies</Filter>
+      <Filter>Header Files\Characters\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="JapaneseMonkey.h">
-      <Filter>Header Files\Enemies</Filter>
+      <Filter>Header Files\Characters\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="AI.h">
       <Filter>Header Files\AI</Filter>
@@ -429,34 +474,31 @@
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSpriteStates.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteDataConstants.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Characters\Players</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="WalkingState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="PlayerStateManager.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="RunningState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="StillState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="DoubleJumpState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="JumpingState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="ComparatorFunctions.h">
       <Filter>Header Files\System</Filter>
@@ -476,11 +518,8 @@
     <ClInclude Include="GameText.h">
       <Filter>Header Files\Graphics\Font</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerScore.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
     <ClInclude Include="FastAttackState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="SIntro.h">
       <Filter>Header Files\Game States\Menus</Filter>
@@ -516,7 +555,7 @@
       <Filter>Header Files\AI</Filter>
     </ClInclude>
     <ClInclude Include="FallingState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
     <ClInclude Include="CollisionStructs.h">
       <Filter>Header Files\Game Physics\Collisions</Filter>
@@ -531,99 +570,123 @@
       <Filter>Header Files\Game Physics\Physics Modes</Filter>
     </ClInclude>
     <ClInclude Include="StoppingState.h">
-      <Filter>Header Files\Player\States</Filter>
+      <Filter>Header Files\Characters\Players\States</Filter>
+    </ClInclude>
+    <ClInclude Include="SPlayerSelection.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuData.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuStructs.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteDataConstants.h">
+      <Filter>Header Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Header Files\Characters\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemySprite.h">
+      <Filter>Header Files\Characters\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSprite.h">
+      <Filter>Header Files\Characters\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIManager.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIMenu.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PushButton.h">
+      <Filter>Header Files\GUI\Elements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MainContext.txt">
-      <Filter>Resource Files\Input System</Filter>
-    </None>
-    <None Include="ContextList.txt">
-      <Filter>Resource Files\Input System</Filter>
-    </None>
-    <None Include="healthBar.png">
-      <Filter>Resource Files\UI</Filter>
-    </None>
-    <None Include="orbitron-black.ttf">
-      <Filter>Resource Files\UI</Filter>
-    </None>
-    <None Include="LevelOneTileMap.tmx">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="Meerkat - SpriteSheet.png">
-      <Filter>Resource Files\Players</Filter>
-    </None>
-    <None Include="Panda - SpriteSheet.png">
-      <Filter>Resource Files\Players</Filter>
-    </None>
-    <None Include="Clouds.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="Mountains0.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="Tileset.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="Mountains1.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="SkyBackground.png">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="CollisionListLevelZeroSectionOne.csv">
-      <Filter>Resource Files\LevelOneJapan\Zone1</Filter>
-    </None>
-    <None Include="datafiles\imagesets\CreditsButton.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\HistoryModeButton.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\MainMenuBackground.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\MenuCursor.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\QuitButton.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\imagesets\TutorialButton.imageset">
-      <Filter>Resource Files\Main Menu\Imagesets</Filter>
-    </None>
-    <None Include="datafiles\layouts\MainMenu.layout">
-      <Filter>Resource Files\Main Menu\Layout</Filter>
-    </None>
-    <None Include="MenuBackground.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
-    <None Include="MenuCursor.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
-    <None Include="MenuHighlighter.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
-    </None>
-    <None Include="logoSamuraiReborn.png">
-      <Filter>Resource Files\Intro</Filter>
-    </None>
     <None Include="Enemy - SpriteSheet.png">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="box.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="datafiles\imagesets\CreditsOption.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    <None Include="boxPanda.png">
+      <Filter>Resource Files</Filter>
     </None>
-    <None Include="datafiles\imagesets\ExitOption.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    <None Include="Resources\Characters\Players\Meerkat - SpriteSheet.png">
+      <Filter>Resource Files\Characters\Players</Filter>
     </None>
-    <None Include="datafiles\imagesets\HistoryModeOption.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    <None Include="Resources\Characters\Players\Panda - SpriteSheet.png">
+      <Filter>Resource Files\Characters\Players</Filter>
     </None>
-    <None Include="datafiles\imagesets\TutorialOption.png">
-      <Filter>Resource Files\Main Menu\Imagesets\Images</Filter>
+    <None Include="Resources\Levels\Level One Japan\Section One\Clouds.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\Mountains0.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\Mountains1.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\SkyBackground.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\Tileset.png">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionList.csv">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneMap.tmx">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneWalkableList.csv">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Menus\Main Menu\MainMenuBackground.png">
+      <Filter>Resource Files\Menus\Main Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Main Menu\MainMenuButtons.png">
+      <Filter>Resource Files\Menus\Main Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Main Menu\MainMenuHighlighter.png">
+      <Filter>Resource Files\Menus\Main Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Menu Selection Player\Gamepad.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Menus\Menu Selection Player\MenuCharacterSelectorBackground.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Menus\Menu Selection Player\PandaSelector.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Menus\Menu Selection Player\SuricataSelector.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Menus\Intro\LogoSamuraiReborn.png">
+      <Filter>Resource Files\Menus\Intro</Filter>
+    </None>
+    <None Include="Resources\UI\HealthBar.png">
+      <Filter>Resource Files\UI</Filter>
+    </None>
+    <None Include="Resources\Input\ContextList.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\MainContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\GUI\Fonts\orbitron-black.ttf">
+      <Filter>Resource Files\GUI\Fonts</Filter>
+    </None>
+    <None Include="Resources\GUI\Cursor.png">
+      <Filter>Resource Files\GUI</Filter>
     </None>
   </ItemGroup>
 </Project>

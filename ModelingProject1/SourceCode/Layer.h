@@ -11,11 +11,11 @@ class Layer
 {
   public:
    Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
-		 GLfloat constantX, bool hasRepetition, bool isContinuous);
+         GLfloat constantX, bool hasRepetition, bool isContinuous);
    ~Layer(void);
 
    void drawLayerTexture(GLfloat widthScreen, GLfloat heightScreen);
-	
+    
    GLuint getTexture() { return texture; }
    void setLayerTexture(GLuint layerTexture) { texture = layerTexture; }
 

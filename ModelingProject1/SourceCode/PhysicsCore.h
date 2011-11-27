@@ -11,14 +11,14 @@ namespace GamePhysics
   class PhysicsCore
   {
     public:
-	 PhysicsCore(int mode);
-	 ~PhysicsCore(void);
-	
-	 virtual void initializeNaturalPhysicsForces(float forceOne, float forceTwo) = 0;
-	 virtual void applyNaturalPhysicForces(int currentMovement, GLfloat* speedX, GLfloat* speedY, 
-		                                   int playerState, int direction) = 0;
+     PhysicsCore(int mode);
+     ~PhysicsCore(void);
+    
+     virtual void initializeNaturalPhysicsForces(float forceOne, float forceTwo) = 0;
+     virtual void applyNaturalPhysicForces(int currentMovement, GLfloat* speedX, GLfloat* speedY, 
+                                           int playerState, int direction) = 0;
 
     protected:
-	 PhysicModes nameMode;
+     PhysicModes nameMode;
   };
 }

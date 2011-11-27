@@ -22,13 +22,13 @@ int GameCoreStates::FastAttackState::checkMovement(int keyPreviouslyPressed, int
   bool fastAttackButtonIsPressed = findKey.isPressed;
 
   if ( !isPacing.directionButtonPressed && ( currentState == GameCoreStates::WALKING ||
-	                                         currentState == GameCoreStates::RUNNING ) )
+                                             currentState == GameCoreStates::RUNNING ) )
   {
-	return GameCoreStates::RETURN_STILL;
+    return GameCoreStates::RETURN_STILL;
   }
 
   if ( (currentState != GameCoreStates::DOUBLE_JUMP && currentState != GameCoreStates::FALLING) &&
-	   keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && fastAttackButtonIsPressed )
+       keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && fastAttackButtonIsPressed )
   {
     return GameCoreStates::CHANGE;
   }

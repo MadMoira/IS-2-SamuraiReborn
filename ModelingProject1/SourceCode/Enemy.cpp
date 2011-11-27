@@ -1,78 +1,57 @@
+
 #include "Enemy.h"
 
-
-void Enemy::stop()
+void Characters::Enemy::executeAction()
 {
-  if ( !enemySprite->getPlayerMoveInX() && !enemySprite->getPlayerMoveInY() )
-  {
-    enemySprite->changeStateEnemySprite(STILL_STATE);
-    enemySprite->changeCurrentFrame(GameCoreStates::STILL);
-  }
-}
-
-void Enemy::returnToPreviousState()
-{
-  switch( enemySprite->getPreviousState() )
-  {
-    case GameCoreStates::WALKING:
-    {
-	  enemySprite->changeStateEnemySprite(WALKING_STATE);
-    }
-  }
-  enemySprite->changeCurrentFrame( enemySprite->getCurrentState() ); 
-}
-
-void Enemy::executeAction()
-{
-  switch( enemySprite->getCurrentState() )
+  switch( characterSprite->getCurrentState() )
   {
     case GameCoreStates::STILL:
     {
       noAction();
       break;
     }
-	case GameCoreStates::WALKING:
+    case GameCoreStates::WALKING:
     {
       walk();
       break;
     }
-	case GameCoreStates::RUNNING:
-	{
+    case GameCoreStates::RUNNING:
+    {
       run();
       break;
     }
-	case GameCoreStates::JUMPING:
-	case GameCoreStates::DOUBLE_JUMP:
+    case GameCoreStates::JUMPING:
+    case GameCoreStates::DOUBLE_JUMP:
     {
       jump();
       break;
-	}
-	case GameCoreStates::FAST_ATTACK:
-	{
-	  attack();
-	  break;
-	}
+    }
+    case GameCoreStates::FAST_ATTACK:
+    {
+      attack();
+      break;
+    }
   }
 }
 
-
-bool Enemy::isReadyToPace()
+void Characters::Enemy::stop()
 {
-  if ( enemySprite->getCurrentState() != GameCoreStates::JUMPING && 
-	   enemySprite->getCurrentState() != GameCoreStates::DOUBLE_JUMP )
+  if ( !characterSprite->getPlayerMoveInX() && !characterSprite->getPlayerMoveInY() )
   {
-	  return true;
+    characterSprite->changeStateSprite(STILL_STATE);
+    characterSprite->changeCurrentFrame(GameCoreStates::STILL);
   }
-
-  return false;
 }
 
-bool Enemy::isReadyToDoubleJump()
+void Characters::Enemy::returnToPreviousState()
 {
-  if ( enemySprite->getSpeedY() >= -8 )
+  switch( characterSprite->getPreviousState() )
   {
-    return true;
+    case GameCoreStates::WALKING:
+    {
+      characterSprite->changeStateSprite(WALKING_STATE);
+    }
   }
 
-  return false;
+  characterSprite->changeCurrentFrame( characterSprite->getCurrentState() ); 
 }

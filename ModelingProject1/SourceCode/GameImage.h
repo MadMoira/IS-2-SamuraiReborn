@@ -1,5 +1,7 @@
 #pragma once
 
+#include <boost\noncopyable.hpp>
+
 #include <windows.h>
 #include <gl\GL.h>
 
@@ -9,26 +11,30 @@
 
 namespace Image
 {
-  class GameImage
+  class GameImage : boost::noncopyable
   {
    public:
-	GameImage(Vector2f imagePosition, Vector2f imageOffset, Vector2f texturePosition, std::string filename);
-	GameImage(){};
-	~GameImage(void);
+    GameImage(Vector2f imagePosition, Vector2f imageOffset, Vector2f texturePosition, std::string filename);
+    GameImage(){};
+    
+	GameImage(const GameImage& cSource);
+    GameImage& operator=(const GameImage& cSource);
+    ~GameImage(void);
 
-	GLuint getTexture() { return texture; }
+    GLuint getTexture() { return texture; }
 
-	Vector2f getPosition() { return position; }
-	void setPosition(GLfloat x, GLfloat y) { position = Vector2f(x, y); }
+    Vector2f getPosition() { return position; }
+    void setPosition(GLfloat x, GLfloat y) { position = Vector2f(x, y); }
 
-	Vector2f getOffset() { return offset; }
+    Vector2f getOffset() { return offset; }
 
-	Vector2f getTexturePosition() { return texturePosition; }
+    Vector2f getTexturePosition() { return texturePosition; }
 
    private:
-	GLuint texture;
-	Vector2f position;
-	Vector2f offset;
-	Vector2f texturePosition;
+    GLuint texture;
+    Vector2f position;
+    Vector2f offset;
+    Vector2f texturePosition;
+	std::string filename;
   };
 }

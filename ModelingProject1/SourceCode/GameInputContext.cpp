@@ -3,7 +3,7 @@
 #include "File.h"
 
 InputMapping::Key::Key(InputMapping::RawInputButton buttonValue, bool pressed, bool released, 
-	                   bool previously)
+                       bool previously)
 {
   button = buttonValue;	
   isPressed = pressed;
@@ -22,21 +22,21 @@ InputMapping::GameInputContext::GameInputContext(const std::string filename)
   unsigned stateCount = readDataTypeFromFile<unsigned>(inputContextFile);
   for(unsigned i = 0; i < stateCount; i++)
   {
-	RawInputButton button = static_cast<RawInputButton>(readDataTypeFromFile<unsigned>(inputContextFile));
-	Key newKey = Key(button, false, false, false);
-	keysList.push_back(newKey);
-	GameCoreStates::SpriteState state = static_cast<GameCoreStates::SpriteState>(readDataTypeFromFile<unsigned>(inputContextFile));
-	stateMap[button] = state;
+    RawInputButton button = static_cast<RawInputButton>(readDataTypeFromFile<unsigned>(inputContextFile));
+    Key newKey = Key(button, false, false, false);
+    keysList.push_back(newKey);
+    GameCoreStates::SpriteState state = static_cast<GameCoreStates::SpriteState>(readDataTypeFromFile<unsigned>(inputContextFile));
+    stateMap[button] = state;
   }
 
   unsigned actionCount = readDataTypeFromFile<unsigned>(inputContextFile);
   for(unsigned i = 0; i < actionCount; i++)
   {
     RawInputButton button = static_cast<RawInputButton>(readDataTypeFromFile<unsigned>(inputContextFile));
-	Key newKey = Key(button, false, false, false);
-	keysList.push_back(newKey);
-	GameCoreStates::Action action = static_cast<GameCoreStates::Action>(readDataTypeFromFile<unsigned>(inputContextFile));
-	actionMap[button] = action;
+    Key newKey = Key(button, false, false, false);
+    keysList.push_back(newKey);
+    GameCoreStates::Action action = static_cast<GameCoreStates::Action>(readDataTypeFromFile<unsigned>(inputContextFile));
+    actionMap[button] = action;
   }
 }
 
@@ -48,7 +48,7 @@ InputMapping::GameInputContext::~GameInputContext(void)
 }
 
 bool InputMapping::GameInputContext::mapButtonToAction(InputMapping::RawInputButton button, 
-	                                                   GameCoreStates::Action& outActiveAction) const
+                                                       GameCoreStates::Action& outActiveAction) const
 {
   std::map<RawInputButton, GameCoreStates::Action>::const_iterator iter = actionMap.find(button);
   
@@ -62,7 +62,7 @@ bool InputMapping::GameInputContext::mapButtonToAction(InputMapping::RawInputBut
 }
 
 bool InputMapping::GameInputContext::mapButtonToState(InputMapping::RawInputButton button, 
-	                                                  GameCoreStates::SpriteState& outActiveState) const
+                                                      GameCoreStates::SpriteState& outActiveState) const
 {
   std::map<RawInputButton, GameCoreStates::SpriteState>::const_iterator iter = stateMap.find(button);
 

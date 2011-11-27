@@ -1,14 +1,15 @@
+
 #include "HeapCompare.h"
 
-
-HeapCompare::HeapCompare(void)
+AISystem::HeapCompare::HeapCompare(void)
 {
 }
 
-bool HeapCompare::operator() ( const PathNode* x, const PathNode* y ) const{
-	return x->scoreFunction < y->scoreFunction;
+AISystem::HeapCompare::~HeapCompare(void)
+{
 }
 
-HeapCompare::~HeapCompare(void)
+bool AISystem::HeapCompare::operator() ( const PathNode* x, const PathNode* y ) const
 {
+  return x->scoreFunction < y->scoreFunction;
 }

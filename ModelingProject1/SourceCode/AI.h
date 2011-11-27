@@ -1,17 +1,21 @@
 #pragma once
+
 #include "Player.h"
 #include "Enemy.h"
 #include "Pathfinding.h"
 
-class AI
+namespace AISystem
 {
-public:
-	AI(void);
+  class AI
+  {
+    public:
+     AI();
+     virtual ~AI();
 
-	void searchPath(Player* player, Enemy* enemy);
+     void searchPath(Characters::Player* player, Characters::Enemy* enemy);
 
-	virtual ~AI(void);
-private: 
-	Pathfinding pathfinding;
-};
+    private: 
+     Pathfinding pathfinding;
+  };
+}
 

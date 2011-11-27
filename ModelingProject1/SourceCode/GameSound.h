@@ -13,16 +13,16 @@ class GameSound
    bool initSound();
    void loadSound(std::string name);
    void loadChunk(std::string name);
-		
+        
    void upVolumeSE();
    void downVolumeSE();
    void upVolumeMUS();
    void downVolumeMUS();
-	
+    
    void closeAll();
 
    void ERRCHECK(FMOD_RESULT);
-		
+        
   private:
    FMOD::System* system;
    FMOD::Sound* sound;
