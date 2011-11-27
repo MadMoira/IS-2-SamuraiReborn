@@ -153,10 +153,10 @@ void SMainMenu::createGUI()
 	                                               STATE_MENUSELECTIONPLAYER) );
   guiMainMenu->addButton( guiManager->createButton(MenuData::TUTORIAL, Vector2f(522.0f, 350.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 28.75f),
-	                                               STATE_LEVELONEJAPAN) );
+	                                               STATE_MAINMENU) );
   guiMainMenu->addButton( guiManager->createButton(MenuData::CREDITS, Vector2f(522.0f, 400.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 57.5f),
-	                                               STATE_LEVELONEJAPAN) );
+	                                               STATE_MAINMENU) );
   guiMainMenu->addButton( guiManager->createButton(MenuData::QUIT, Vector2f(522.0f, 450.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 86.25f),
 	                                               STATE_EXIT) );

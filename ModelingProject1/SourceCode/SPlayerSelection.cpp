@@ -30,6 +30,8 @@ void SPlayerSelection::init()
 {
   guiSelectPlayer = new RPRGUI::GUIMenu();
 
+  gameCore->clearPlayerToInitialize();
+
   createGUI();
 
   controllerImageP1.controller = new Image::GameImage(Vector2f(590.0f, 430.0f), Vector2f(100.0f, 67.0f), 
@@ -146,7 +148,14 @@ void SPlayerSelection::createGUI( )
 															 "") );
   guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "SuricataSelector.png"));
 
-  //guiMainMenu->addTextureButtons( gameRender->loadTexture("MainMenuButtons.png") );                                               
+  /*guiSelectPlayer->addButton( guiManager->createButton(MenuData::BEGIN, Vector2f(500.0f, 550.0f), 
+	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 0.0f),
+	                                               STATE_LEVELONEJAPAN) );
+  guiSelectPlayer->addButton( guiManager->createButton(MenuData::BACK, Vector2f(700.0f, 550.0f), 
+	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 28.75f),
+	                                               STATE_MAINMENU) );*/
+
+  //guiSelectPlayer->addTextureButtons( gameRender->loadTexture(commonPath + "MenuSelectionPlayerButtons.png") );                                               
 
 }
 
@@ -234,7 +243,7 @@ void SPlayerSelection::handleEnterPressed()
 {
   if ( controllerImageP1.selectedPlayer != MenuData::NO_SELECTED_PLAYER )
   {
-    gameCore->pushBackPlayerToInitialize(MenuData::PLAYER_ONE - 1);
+    gameCore->pushBackPlayerToInitialize(controllerImageP1.selectedPlayer - 1);
 	setHasEnded(STATE_LEVELONEJAPAN);
   }
 }

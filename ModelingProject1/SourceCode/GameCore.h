@@ -54,6 +54,7 @@ class GameCore
 
    void pushBackPlayerToInitialize(int id) { playersInitialized.push_back(id); }
    std::vector< int > getPlayersToInitialize() { return playersInitialized; }
+   void clearPlayerToInitialize() { playersInitialized.clear(); }
     
   private:
    GameConfiguration* configuration;

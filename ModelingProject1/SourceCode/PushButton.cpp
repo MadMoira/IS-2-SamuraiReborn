@@ -2,7 +2,7 @@
 
 #include "GameState.h"
 
-RPRGUI::PushButton::PushButton(MenuData::MainMenuOptions id, Vector2f pos, Vector2f dim, Vector2f textPos)
+RPRGUI::PushButton::PushButton(int id, Vector2f pos, Vector2f dim, Vector2f textPos)
 {
   this->id = id;
   position = pos;
