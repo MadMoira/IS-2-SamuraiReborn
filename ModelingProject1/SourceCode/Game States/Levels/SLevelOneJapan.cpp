@@ -111,6 +111,9 @@ void SLevelOneJapan::cleanUp()
 
 void SLevelOneJapan::initializePlayers()
 {
+  //gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
+  //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
+
   std::vector< Vector2f > speedPanda;
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
   speedPanda.push_back( Vector2f(10.0f, 0.0f) );
@@ -203,7 +206,7 @@ void SLevelOneJapan::initializePlayers()
       {
         gameCore->addPlayerToGame( new Characters::MeerkatP2(), SpriteData::MEERKAT, 
 			                 "Resources/Characters/Players/Meerkat - SpriteSheet.png", 
-                             speedMeerkat, Vector2f(100.0f, 300.0f), 0, maxFrameVector, returnFrameVector,
+                             speedMeerkat, Vector2f(0.0f, 275.0f), 0, maxFrameVector, returnFrameVector,
                              340.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 32.0f, 135.0f, 153.0f, 42.0f);
       }
