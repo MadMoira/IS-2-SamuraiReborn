@@ -2,6 +2,12 @@
 
 namespace SpriteData
 {
+  enum IDSprites 
+  { 
+    PANDA, 
+    MEERKAT, 
+  };
+
   enum AnimationDirection
   {
     RIGHT,
@@ -10,8 +16,8 @@ namespace SpriteData
 
   enum DirectionAxisY
   {
-	UP,
-	DOWN,
-	NO_DIRECTION,
+    UP,
+    DOWN,
+    NO_DIRECTION,
   };
 }

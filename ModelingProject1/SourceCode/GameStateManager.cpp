@@ -4,6 +4,7 @@
 #include "SIntro.h"
 #include "SMainMenu.h"
 #include "SLevelOneJapan.h"
+#include "SPlayerSelection.h"
 
 GameStateManager::GameStateManager(void)
 {
@@ -44,30 +45,34 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
   if ( newChangeState != statesStack.at(0).getNameState() )
   {
     switch(newChangeState)
-	{
-	  case STATE_INTRO:
-	  {
-		cleanUp();
+    {
+      case STATE_INTRO:
+      {
+        cleanUp();
         changeState(new SIntro( gR, gC, gI, STATE_INTRO ) );
         break;
       }
-
-	  case STATE_MAINMENU:
-	  {
-		cleanUp();
+      case STATE_MAINMENU:
+      {
+        cleanUp();
         changeState(new SMainMenu( gR, gC, gI, STATE_MAINMENU ) );
         break;
       }
-	  
-	  case STATE_LEVELONEJAPAN:
-	  {
-		cleanUp();
+      case STATE_MENUSELECTIONPLAYER:
+      {
+        cleanUp();
+        changeState(new SPlayerSelection( gR, gC, gI, STATE_MENUSELECTIONPLAYER ) );
+        break;
+      }
+      case STATE_LEVELONEJAPAN:
+      {
+        cleanUp();
         changeState(new SLevelOneJapan( gR, gC, gI, STATE_LEVELONEJAPAN ) );
         break;
       }
-	}
+    }
 
-	init();
+    init();
   }
 }
 

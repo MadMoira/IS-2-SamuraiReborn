@@ -21,9 +21,9 @@ PlayerStats::Stats::Stats(void)
 
   health.pointsOfLife = 2800;
   health.healthBar = new Image::GameImage(Vector2f(10.0f, 10.0f), //X-Y Position Of The Health Bar
-	                                  Vector2f(353.33f, 145.0f), //Width And Height Of The Health Bar
-									  Vector2f(20.58f, 0.0f), //Texture Position X-Y Of The Health Bar
-									  "healthBar.png");
+                                      Vector2f(353.33f, 145.0f), //Width And Height Of The Health Bar
+                                      Vector2f(20.58f, 0.0f), //Texture Position X-Y Of The Health Bar
+                                      "Resources/UI/HealthBar.png");
 }
 
 PlayerStats::Stats::~Stats(void)
@@ -35,7 +35,7 @@ void PlayerStats::Stats::drawHealthBar()
   GLfloat widthTexture, heightTexture;
 
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
+    
   glEnableClientState( GL_VERTEX_ARRAY );
   glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
 
@@ -52,12 +52,12 @@ void PlayerStats::Stats::drawHealthBar()
   const GLfloat vertY = position.y;
   const GLfloat vertOffsetX = offset.x;
   const GLfloat vertOffsetY = offset.y;
-	
+    
   const GLfloat verts[] = {
-			vertX, vertY,
-			vertX + vertOffsetX, vertY,
-			vertX + vertOffsetX, vertY + vertOffsetY,
-			vertX, vertY + vertOffsetY
+            vertX, vertY,
+            vertX + vertOffsetX, vertY,
+            vertX + vertOffsetX, vertY + vertOffsetY,
+            vertX, vertY + vertOffsetY
   };
 
   const GLfloat textureX = texturePosition.x / widthTexture;
@@ -66,12 +66,12 @@ void PlayerStats::Stats::drawHealthBar()
   const GLfloat textureHeight = offset.y / heightTexture;
 
   const GLfloat texVerts[] = {
-			textureX, textureY,
-			textureX + textureWidth, textureY,
-			textureX + textureWidth, textureY + textureHeight,
-			textureX, textureY + textureHeight
+            textureX, textureY,
+            textureX + textureWidth, textureY,
+            textureX + textureWidth, textureY + textureHeight,
+            textureX, textureY + textureHeight
   };
-			
+            
   glVertexPointer(2, GL_FLOAT, 0, verts);
   glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
   glDrawArrays(GL_QUADS, 0, 4);
@@ -85,7 +85,7 @@ void PlayerStats::Stats::drawHealth()
   GLfloat widthTexture, heightTexture;
 
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
+    
   glEnableClientState( GL_VERTEX_ARRAY );
   glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
 
@@ -95,16 +95,16 @@ void PlayerStats::Stats::drawHealth()
   glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &heightTexture);
 
   Vector2f initial(131.25f + health.healthBar->getPosition().x, 
-	               52.0f + health.healthBar->getPosition().y);
+                   52.0f + health.healthBar->getPosition().y);
 
   for (int i = health.pointsOfLife/100; i >= -1; i--)
   {
-	GLfloat vertX = initial.x + i*health.lifeQuadOffset.x;
+    GLfloat vertX = initial.x + i*health.lifeQuadOffset.x;
     GLfloat vertY = initial.y;
     GLfloat vertOffsetX = health.lifeQuadOffset.x;
     GLfloat vertOffsetY = health.lifeQuadOffset.y;
 
-	GLfloat textureX = health.lifeQuadPosition.x / widthTexture;
+    GLfloat textureX = health.lifeQuadPosition.x / widthTexture;
     GLfloat textureY = health.lifeQuadPosition.y / heightTexture;
     GLfloat textureWidth = health.lifeQuadOffset.x / widthTexture;
     GLfloat textureHeight = health.lifeQuadOffset.y / heightTexture;
@@ -112,8 +112,8 @@ void PlayerStats::Stats::drawHealth()
     if ( i == -1 )
     {
       initial.x = 111.0f + health.healthBar->getPosition().x;
-	  vertX = initial.x;
-	  vertOffsetX = health.lifeInitialOffset.x;
+      vertX = initial.x;
+      vertOffsetX = health.lifeInitialOffset.x;
       vertOffsetY = health.lifeInitialOffset.y;
 
       textureX = health.lifeInitialPosition.x / widthTexture;
@@ -123,19 +123,19 @@ void PlayerStats::Stats::drawHealth()
     }
 
     const GLfloat verts[] = {
-			vertX, vertY,
-			vertX + vertOffsetX, vertY,
-			vertX + vertOffsetX, vertY + vertOffsetY,
-			vertX, vertY + vertOffsetY
+            vertX, vertY,
+            vertX + vertOffsetX, vertY,
+            vertX + vertOffsetX, vertY + vertOffsetY,
+            vertX, vertY + vertOffsetY
     };
 
     const GLfloat texVerts[] = {
-			textureX, textureY,
-			textureX + textureWidth, textureY,
-			textureX + textureWidth, textureY +textureHeight,
-			textureX, textureY + textureHeight
+            textureX, textureY,
+            textureX + textureWidth, textureY,
+            textureX + textureWidth, textureY +textureHeight,
+            textureX, textureY + textureHeight
     };
-			
+            
     glVertexPointer(2, GL_FLOAT, 0, verts);
     glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
     glDrawArrays(GL_QUADS, 0, 4);

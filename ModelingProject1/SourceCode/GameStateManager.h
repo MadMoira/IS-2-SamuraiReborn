@@ -9,7 +9,7 @@ class GameStateManager
   public:
    GameStateManager(void);
    ~GameStateManager(void);
-	
+    
    void pushState( GameState* gameState );
    void popState();
    void changeState( GameState* gameState ) ;

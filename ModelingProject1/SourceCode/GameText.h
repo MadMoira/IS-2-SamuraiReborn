@@ -13,26 +13,26 @@ namespace Text
   class GameText
   {
     public:
-	 GameText(Font::GameFont* font, std::string text, Vector2f pos, Vector2f off);
-	 GameText(){};
-	 ~GameText(void);
+     GameText(Font::GameFont* font, std::string text, Vector2f pos, Vector2f off);
+     GameText(){};
+     ~GameText(void);
 
-	 Font::GameFont* getFont() { return font; }
+     Font::GameFont* getFont() { return font; }
 
-	 std::string getDataText() { return dataText; }
+     std::string getDataText() { return dataText; }
 
-	 Vector2f getPosition() { return position; }
+     Vector2f getPosition() { return position; }
 
-	 Vector2f getOffset() { return offset; }
-	 void setOffset(Vector2f off) { offset = off; }
+     Vector2f getOffset() { return offset; }
+     void setOffset(Vector2f off) { offset = off; }
 
-	 void setDataText(int data) { dataText = parseDataToString(data); }
+     void setDataText(int data) { dataText = parseDataToString(data); }
 
     private:
      Font::GameFont* font;
      std::string dataText;
-	 Vector2f position;
-	 Vector2f offset;
+     Vector2f position;
+     Vector2f offset;
   };
 }
 

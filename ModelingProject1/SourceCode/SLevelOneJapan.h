@@ -17,8 +17,10 @@ class SLevelOneJapan : public GameState
    void render();
    void cleanUp();
 
+   void initializePlayers();
+   void initializeLevel();
+
   private:
    Level* japanLevel;
-   AI levelAI;
+   AISystem::AI levelAI;
 };
-

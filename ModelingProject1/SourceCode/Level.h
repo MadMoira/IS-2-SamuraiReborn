@@ -34,12 +34,13 @@ class Level
 
    int loadTMXTileMapFile(std::string filename);
    bool initializeCollisionData(int tileID, std::vector< int > listCollisionTiles);
+   bool initializeWalkableData(int tileID, std::vector< int > listWalkableTiles);
 
    bool drawLevelMap();
 
    boost::ptr_vector< Layer > getLayersList() { return layersList; }
    void addLayerToList(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
-				      GLfloat constantX, bool hasRepetition, bool continuousScroll);
+                      GLfloat constantX, bool hasRepetition, bool continuousScroll);
    void scrollContinuousBackgroundLayers();
    void scrollBackgroundLayers();
    void checkLayersSpeed(GLfloat speedX);

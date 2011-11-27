@@ -4,7 +4,7 @@
 
 class SLevelTutorial : public GameState
 {
-public:
-	SLevelTutorial( void );
+  public:
+   SLevelTutorial( void );
 };
 

@@ -1,11 +1,15 @@
 #pragma once
-#include "PathNode.h"
-class HeapCompare
-{
-public:
-	HeapCompare(void);
-public:
-	bool operator() ( const PathNode* x, const PathNode* y ) const;
-	~HeapCompare(void);
-};
 
+#include "PathNode.h"
+
+namespace AISystem
+{
+  class HeapCompare
+  {
+    public:
+     HeapCompare(void);
+     ~HeapCompare(void);
+
+     bool operator() ( const PathNode* x, const PathNode* y ) const;
+  };
+}

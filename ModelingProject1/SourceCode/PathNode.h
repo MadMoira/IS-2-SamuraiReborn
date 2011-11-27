@@ -1,30 +1,40 @@
 #pragma once
+
 #include <windows.h>
 #include <GL/gl.h>
 #include <vector>
 
-class PathNode
+#include "Vector.h"
+
+namespace AISystem
 {
-public:
-	PathNode(int ID, int x, int y);	
+  class PathNode
+  {
+    public:
+     PathNode(int ID, int x, int y);
+     ~PathNode(void);
 
-	void setID(unsigned nuevoID){ID=nuevoID;}
-	int getID(){return ID;}
-	void addAdjacentNode(int ID);
-	std::vector<int>* getAdjacentNodes(){return &adjacentID;}
-	void setCoordinates(int newX, int newY){this->x=newX; this->y=newY;}
-	int getXCoord(){return x;}
-	int getYCoord(){return y;}
+     int getID() { return ID; }
+     void setID(unsigned newID) { ID = newID; }
+    
+     void addAdjacentNode(int ID);
 
-	~PathNode(void);
+     std::vector<int>* getAdjacentNodes() { return &adjacentID; }
 
-	GLfloat cost;
-	GLfloat heuristic;
-	GLfloat scoreFunction;
-private:
-	int x,y;
-	int ID;
-	std::vector<int> adjacentID;
-};
+     void setCoordinates(int newX, int newY) { coordinates = Vector2i(newX, newY); }
+
+     int getXCoord() { return coordinates.x; }
+     int getYCoord() { return coordinates.y; }
+
+     GLfloat cost;
+     GLfloat heuristic;
+     GLfloat scoreFunction;
+
+    private:
+     Vector2i coordinates;
+     int ID;
+     std::vector<int> adjacentID;
+  };
+}
 
 

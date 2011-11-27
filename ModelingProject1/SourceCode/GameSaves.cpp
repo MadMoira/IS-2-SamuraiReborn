@@ -1,13 +1,12 @@
-#include "GameSaves.h"
 
+#include "GameSaves.h"
 
 GameSaves::GameSaves(void)
 {
-	saveFile = NULL;
+  saveFile = NULL;
 }
-
 
 GameSaves::~GameSaves(void)
 {
-	delete saveFile;
+  delete saveFile;
 }

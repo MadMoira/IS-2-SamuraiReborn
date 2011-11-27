@@ -16,9 +16,13 @@ class Tile
    bool getHasCollision() { return hasCollision; }
    void setHasCollision(bool collision) { hasCollision = collision; }
 
+   bool getIsWalkable() { return isWalkable; }
+   void setIsWalkable(bool walkable) { isWalkable = walkable; }
+
   private:
    int IDTileset;
    int ID;
    bool hasCollision;
+   bool isWalkable;
 };
 

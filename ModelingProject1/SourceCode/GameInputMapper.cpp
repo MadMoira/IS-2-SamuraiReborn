@@ -22,8 +22,8 @@ void InputMapping::MappedInput::eatStates()
 InputMapping::GameInputMapper::GameInputMapper()
 {
   unsigned countContexts;
-	
-  std::ifstream inputContextFile("ContextList.txt");
+    
+  std::ifstream inputContextFile("Resources/Input/ContextList.txt");
   countContexts = readDataTypeFromFile<unsigned>(inputContextFile);
 
   for(unsigned i = 0; i < countContexts; i++)
@@ -40,7 +40,7 @@ InputMapping::GameInputMapper::GameInputMapper()
 InputMapping::GameInputMapper::~GameInputMapper()
 {
   for(std::map<std::string, GameInputContext*>::iterator iter = inputContexts.begin(); 
-	                                                    iter != inputContexts.end(); iter++)
+                                                        iter != inputContexts.end(); iter++)
   {
     delete iter->second;
   }
@@ -67,13 +67,13 @@ void InputMapping::GameInputMapper::addCallback(inputCallback callback, int prio
   callbackTable.insert(std::make_pair(priorityInMultimap, callback));
 }
 
-void InputMapping::GameInputMapper::dispatchInput(Player& player) const
+void InputMapping::GameInputMapper::dispatchInput(Characters::Player& player) const
 {
   MappedInput input = currentMappedInput;
   std::list<InputMapping::Key> keys = getListKeys();
 
   for(std::multimap<int, inputCallback>::const_iterator iter = callbackTable.begin(); 
-	                                                   iter != callbackTable.end(); iter++)
+                                                       iter != callbackTable.end(); iter++)
   {
     (*iter->second)(input, player, keys);
   }
@@ -113,35 +113,35 @@ void InputMapping::GameInputMapper::convertRawSDLToRawButtons(InputMapping::Key&
     {
       key.button = InputMapping::RAW_INPUT_BUTTON_RIGHT;
 
-	  if ( key.isPressed )
-	  {
+      if ( key.isPressed )
+      {
         currentMappedInput.directionKeyPressed = SpriteData::RIGHT; 
-	  }
-	  
+      }
+      
       break;
     }
     case SDLK_LEFT:  
     {
       key.button = InputMapping::RAW_INPUT_BUTTON_LEFT;
 
-	  if ( key.isPressed )
-	  {
+      if ( key.isPressed )
+      {
         currentMappedInput.directionKeyPressed = SpriteData::LEFT; 
-	  }
+      }
 
       break;
     }
-	case SDLK_z:
-	{
+    case SDLK_z:
+    {
       key.button = InputMapping::RAW_INPUT_BUTTON_Z; 
       break;
-	}
+    }
 
-	case SDLK_x:
-	{
+    case SDLK_x:
+    {
       key.button = InputMapping::RAW_INPUT_BUTTON_X; 
       break;
-	}
+    }
 
   }
 }
@@ -173,12 +173,12 @@ void InputMapping::GameInputMapper::setRawButtonState(InputMapping::Key key)
   {
     if( mapButtonToState(key.button, state) )
     {
-	  countAndClearStates();
-	  if ( verifyDoubleTappingForJumping(state) )
+      countAndClearStates();
+      if ( verifyDoubleTappingForJumping(state) )
       {
         return;
       }
-	  pushBackNewState(state, key.button);
+      pushBackNewState(state, key.button);
       return;
     }
   }
@@ -187,7 +187,7 @@ void InputMapping::GameInputMapper::setRawButtonState(InputMapping::Key key)
   {
     currentMappedInput.eatStates();
     if( mapButtonToState(key.button, state) )
-	{
+    {
       pushBackNewState(state, key.button);
       return;
     }
@@ -208,8 +208,8 @@ void InputMapping::GameInputMapper::countAndClearStates()
     if ( countStatesInMapper(i) > 1 )
     {
       currentMappedInput.eatStates();
-	  return;
-	}
+      return;
+    }
   }
 
   if ( countStatesInMapper(GameCoreStates::STILL) == 1 )
@@ -251,40 +251,40 @@ void InputMapping::GameInputMapper::returnKeyForMappedInput(Uint8* keystate)
 
   for ( iter; iter != keys->end(); iter++)
   {
-	bool keyStateIterButton = checkKeyState(keystate[iter->button]);
+    bool keyStateIterButton = checkKeyState(keystate[iter->button]);
     if( !iter->isPressed && keyStateIterButton )
     {
       iter->isPressed = true;
-	  iter->isReleased = false;
-	  iter->wasPreviouslyPressed = false;
-	  anyKeyIsPressed = true;
+      iter->isReleased = false;
+      iter->wasPreviouslyPressed = false;
+      anyKeyIsPressed = true;
     }
     else if( iter->isPressed && !keyStateIterButton )
     {
       iter->isPressed = false;
       iter->isReleased = true;
-	  iter->wasPreviouslyPressed = true;
+      iter->wasPreviouslyPressed = true;
     }
-	else
-	{
-	  if ( iter->isPressed = keyStateIterButton )
-	  {
+    else
+    {
+      if ( iter->isPressed = keyStateIterButton )
+      {
         anyKeyIsPressed = true;
-	  }
+      }
 
       iter->isReleased = false;  
-	  iter->wasPreviouslyPressed = true;
-	}
+      iter->wasPreviouslyPressed = true;
+    }
 
-	convertRawSDLToRawButtons(*iter);
-	setRawButtonState(*iter);
+    convertRawSDLToRawButtons(*iter);
+    setRawButtonState(*iter);
   }
 
   if ( !anyKeyIsPressed )
   {
-	iter = keys->begin();
+    iter = keys->begin();
     convertRawSDLToRawButtons(*iter);
-	setRawButtonState(*iter);
+    setRawButtonState(*iter);
   }
 }
 
@@ -310,7 +310,7 @@ void InputMapping::GameInputMapper::pushBackStateOnMappedInput(GameCoreStates::S
 }
 
 bool InputMapping::GameInputMapper::mapButtonToAction(InputMapping::RawInputButton button, 
-	                                                 GameCoreStates::Action& action) const
+                                                     GameCoreStates::Action& action) const
 {
   for(std::list<GameInputContext*>::const_iterator iter = activeContexts.begin(); iter != activeContexts.end(); iter++)
   {
@@ -326,7 +326,7 @@ bool InputMapping::GameInputMapper::mapButtonToAction(InputMapping::RawInputButt
 }
 
 bool InputMapping::GameInputMapper::mapButtonToState(InputMapping::RawInputButton button, 
-	                                                GameCoreStates::SpriteState& state) const
+                                                    GameCoreStates::SpriteState& state) const
 {
   for(std::list<GameInputContext*>::const_iterator iter = activeContexts.begin(); iter != activeContexts.end(); iter++)
   {

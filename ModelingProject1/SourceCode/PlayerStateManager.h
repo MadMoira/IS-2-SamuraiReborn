@@ -29,22 +29,22 @@ namespace GameCoreStates
   class PlayerStateManager
   {
     public:
-	 PlayerStateManager(void);
-	 ~PlayerStateManager(void);
+     PlayerStateManager(void);
+     ~PlayerStateManager(void);
 
-	 void pushState( GameCoreStates::PlayerState* playerState );
-	 void popState();
-	 void changeState( GameCoreStates::PlayerState* newState );
-	 void changePreviousState( GameCoreStates::SpriteState previousID );
+     void pushState( GameCoreStates::PlayerState* playerState );
+     void popState();
+     void changeState( GameCoreStates::PlayerState* newState );
+     void changePreviousState( GameCoreStates::SpriteState previousID );
 
-	 int getCurrentState() { return currentState.getCurrentID(); }
-	 GameCoreStates::PlayerState getObjectState() { return currentState; }
-	 int getPreviousState() { return previousState; }
+     int getCurrentState() { return currentState.getCurrentID(); }
+     GameCoreStates::PlayerState getObjectState() { return currentState; }
+     int getPreviousState() { return previousState; }
 
     private:
-	 boost::ptr_vector< State > statesStack;
-	 GameCoreStates::SpriteState previousState;
-	 GameCoreStates::PlayerState currentState;
+     boost::ptr_vector< State > statesStack;
+     GameCoreStates::SpriteState previousState;
+     GameCoreStates::PlayerState currentState;
   };
 }
 

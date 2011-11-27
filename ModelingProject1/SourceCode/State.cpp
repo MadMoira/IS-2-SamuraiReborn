@@ -3,5 +3,5 @@
 
 State::State(int currentID)
 {
-	this->currentID = currentID;
+  this->currentID = currentID;
 }

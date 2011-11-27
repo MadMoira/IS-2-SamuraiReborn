@@ -3,7 +3,7 @@
 #include "Layer.h"
 
 Layer::Layer(std::string name, GLfloat widthLayer, GLfloat heightLayer, Vector2f vel, 
-		  GLfloat constantX, bool hasRepetition, bool isContinuous)
+          GLfloat constantX, bool hasRepetition, bool isContinuous)
 {
   nameLayer = name;
   widthLevelLayer = widthLayer;

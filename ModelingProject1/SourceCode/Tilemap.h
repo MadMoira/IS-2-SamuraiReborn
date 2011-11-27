@@ -21,7 +21,7 @@ class Tilemap
    GLfloat transformOffsetXToIntervalValues(GLfloat offX);
    void scrollTilemap();
    bool checkScreenBoundaries();
-	
+    
    std::vector< std::vector < Tile > > getLayerMap() { return layerMap; } ;
    void setLayerMap(std::vector< std::vector < Tile > > map) { layerMap = map; };
 
@@ -35,7 +35,7 @@ class Tilemap
 
    boost::ptr_vector< Tileset > getTilesetList() { return tilesetList; }
    void addTileset(int id, std::string name, GLfloat widthTile, GLfloat heightTile, GLfloat imageWidth, 
-		           GLfloat imageHeight, int size);
+                   GLfloat imageHeight, int size);
 
   private:
    std::string nameLayer;

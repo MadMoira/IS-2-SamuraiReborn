@@ -1,39 +1,37 @@
 #pragma once
 
-#include "Sprite.h"
-#include "Weapon.h"
+#include "Character.h"
 
-class Enemy
+#include "EnemySprite.h"
+
+namespace Characters
 {
-public:
-	Sprite* getSprite() { return enemySprite; }
+  class Enemy : public Character
+  {
+    public:
 
-	virtual void initializeEnemy(IDSprites id, std::string filename, std::vector< Vector2f> speed,
-				Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
-				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
-				std::vector< Vector2f> delayMovement) = 0;
-	virtual void walk() = 0;
-	virtual void run() = 0;
-	virtual void jump() = 0;
-	virtual void draw() = 0;
-	virtual void noAction() = 0;
-	virtual void attack() = 0;
-	void executeAction();
-	void stop();
-	void returnToPreviousState();
+     virtual void initializeCharacter(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed,
+                                      Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
+                                      GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+                                      std::vector< Vector2f> delayMovement) = 0;
+     virtual void noAction() = 0;
+     virtual void walk() = 0;
+     virtual void run() = 0;
+     virtual void jump() = 0;
+     virtual void attack() = 0;
+     virtual void falling() = 0;
+     virtual void stopping() = 0;
+     virtual void draw() = 0;
 
-	bool isReadyToPace();
-	bool isReadyToDoubleJump();
+     void executeAction();
+   
+     void stop();
 
-	Sprite* getEnemySprite() { return enemySprite; }
+     void returnToPreviousState();
 
-	~Enemy(void){};
-
-protected:
-	Sprite *enemySprite;
-	Weapon *enemyWeapon;
-	int health;
-	int modeIA;
-	int pointsForDeath;
-};
-
+    protected:
+     int health;
+     int modeIA;
+     int pointsForDeath;
+  };
+}

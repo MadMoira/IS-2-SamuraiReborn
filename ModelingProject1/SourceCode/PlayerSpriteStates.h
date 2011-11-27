@@ -5,13 +5,13 @@ namespace GameCoreStates
   enum SpriteState
   {
     STILL,
-	WALKING,
-	JUMPING,
-	RUNNING,
+    WALKING,
+    JUMPING,
+    RUNNING,
     DOUBLE_JUMP,
-	FAST_ATTACK,
-	FALLING,
-	STOPPING,
+    FAST_ATTACK,
+    FALLING,
+    STOPPING,
   };
 
   enum Action
@@ -21,10 +21,10 @@ namespace GameCoreStates
   enum ChangeStateResult
   {
     NO_CHANGE,
-	CHANGE,
-	RETURN_STILL,
-	RETURN_STOPPING,
-	RETURN_WALKING,
-	UPDATE_SPEEDX,
+    CHANGE,
+    RETURN_STILL,
+    RETURN_STOPPING,
+    RETURN_WALKING,
+    UPDATE_SPEEDX,
   };
 }

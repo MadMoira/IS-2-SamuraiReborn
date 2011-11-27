@@ -17,22 +17,21 @@
 
 #include "Vector.h"
 
-class Collider;
+#include "SpriteDataConstants.h"
 
-enum IDSprites 
-{ 
-  PANDA, 
-  MEERKAT, 
-};
+class Collider;
 
 class Sprite
 {
   public:
-   Sprite(IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
-				int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
-				GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
-				std::vector< Vector2f> delayMovement);
-   ~Sprite(void);
+   virtual ~Sprite();
+
+   virtual void changeStateSprite( GameCoreStates::PlayerState* newState, int keyPreviouslyPressed = 0, 
+                                   std::list<InputMapping::Key> keys = std::list<InputMapping::Key>() ) = 0;
+
+   void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
+
+   SpriteData::IDSprites getID() { return ID; }
 
    GLfloat getPosX() { return position.x; }
    void setPositionX(GLfloat x) { position.x -= x; }
@@ -82,14 +81,8 @@ class Sprite
    int getCurrentState() { return playerStateManager->getCurrentState(); }
 
    void changePreviousPlayerState(int stateID);
-   void changeStatePlayerSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
-		                         std::list<InputMapping::Key> keys);
-
-   void changeStateEnemySprite(GameCoreStates::PlayerState* newState);
    
    int getPreviousState() { return playerStateManager->getPreviousState(); }
-
-   GLfloat getCurrentDelayFromCurrentState() { return delayMovementSprite.at(getCurrentState()).x; }
 
    Collider* getCollisionHandler() { return collisionHandler; }
    CollisionSystem::CollisionBox* getCollisionBox() {return spriteCollisionBox; }
@@ -108,9 +101,14 @@ class Sprite
 
    void drawTexture();
 
-  private:
-   IDSprites ID;
-   GLuint texture;
+  protected:
+   Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+                int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
+                GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+                std::vector< Vector2f> delayMovement);
+
+   SpriteData::IDSprites ID;
+   GLuint texture, textureBox;
    Animation* handlerAnimation;
    GameCoreStates::PlayerStateManager* playerStateManager;
    Collider* collisionHandler;
@@ -118,7 +116,7 @@ class Sprite
    CollisionSystem::DirectionsMove directionsMove;
    CollisionSystem::CharacterMovement characterMovement;
    GamePhysics::PhysicsCore* rigidBody;
-	
+    
    Vector2f position;
    std::vector< Vector2f > speed;
    std::vector< Vector2f > delayMovementSprite;
