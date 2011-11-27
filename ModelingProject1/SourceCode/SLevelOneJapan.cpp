@@ -115,7 +115,8 @@ void SLevelOneJapan::init()
   japanLevel->addLayerToList("Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
   japanLevel->addLayerToList("Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 
-  gameCore->resetCamera(6400.0f, 100.0f);
+  gameCore->resetCamera(6400.0f,	gameCore->getPlayersList().at(0).getPlayerSprite()->getBoxX()+
+									gameCore->getPlayersList().at(0).getPlayerSprite()->getBoxWidth()/2);
 
   speedPanda.clear();
   speedMeerkat.clear();

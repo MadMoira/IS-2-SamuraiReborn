@@ -2,7 +2,7 @@
 #include "Camera.h"
 
 #define GRAB_CAMERA_RANGE 40
-#define RELEASE_CAMERA_RANGE 300
+#define RELEASE_CAMERA_RANGE 250
 
 bool Camera::instanceFlag = false;
 Camera* Camera::camera = NULL;
@@ -44,7 +44,7 @@ void Camera::updateCamera(boost::ptr_vector<Player>* players)
 { 	
 	if( players->size()==1 )
 	{
-		GLfloat playerPosition=players->at(0).getPlayerSprite()->getPosX();
+		GLfloat playerPosition=players->at(0).getPlayerSprite()->getBoxX()+players->at(0).getPlayerSprite()->getBoxWidth()/2;
 		speedX=playerPosition-interactionPoint;
 		interactionPoint=playerPosition;
 	}
@@ -66,6 +66,7 @@ void Camera::updateCamera(boost::ptr_vector<Player>* players)
 	}
 	if( !checkCamera(players) || !isOnMidpoint(interactionPoint) )
 	{
+		onMidpoint = false;
 		speedX=0;
 	}
 	else
@@ -99,16 +100,16 @@ void Camera::resetCamera(GLfloat level, GLfloat spawningPoint)
 
 bool Camera::isOnMidpoint(GLfloat posX)
 {
-  int distanceToMid = abs((int)posX - (int)midPoint);
+  GLfloat distanceToMid = abs(posX - midPoint);
   if( onMidpoint )
-  {
+  {	
     if( distanceToMid < RELEASE_CAMERA_RANGE )
 	{
+	  onMidpoint = true;
       return true;
     }
     else
-	{
-      onMidpoint = false;
+	{      
       return false;
     }
   }
