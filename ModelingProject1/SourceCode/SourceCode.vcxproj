@@ -41,7 +41,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\SDL - DLL, INC, LIB\include files;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\SDL - DLL, INC, LIB\include files;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\AI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
@@ -50,7 +50,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\AI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -75,7 +75,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AI.cpp" />
+    <ClCompile Include="AI\AI.cpp" />
+    <ClCompile Include="AI\HeapCompare.cpp" />
+    <ClCompile Include="AI\LevelGraph.cpp" />
+    <ClCompile Include="AI\Pathfinding.cpp" />
+    <ClCompile Include="AI\PathNode.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -105,19 +109,15 @@
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="GUIMenu.cpp" />
-    <ClCompile Include="HeapCompare.cpp" />
     <ClCompile Include="JapaneseMonkey.cpp" />
     <ClCompile Include="JumpingState.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="Level.cpp" />
-    <ClCompile Include="LevelGraph.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathFunctions.cpp" />
     <ClCompile Include="MeerkatP2.cpp" />
     <ClCompile Include="PhysicsCore.cpp" />
     <ClCompile Include="PandaP1.cpp" />
-    <ClCompile Include="Pathfinding.cpp" />
-    <ClCompile Include="PathNode.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PushButton.cpp" />
     <ClCompile Include="Score.cpp" />
@@ -145,7 +145,11 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AI.h" />
+    <ClInclude Include="AI\AI.h" />
+    <ClInclude Include="AI\HeapCompare.h" />
+    <ClInclude Include="AI\LevelGraph.h" />
+    <ClInclude Include="AI\Pathfinding.h" />
+    <ClInclude Include="AI\PathNode.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Character.h" />
@@ -175,20 +179,16 @@
     <ClInclude Include="GameTimer.h" />
     <ClInclude Include="GUIManager.h" />
     <ClInclude Include="GUIMenu.h" />
-    <ClInclude Include="HeapCompare.h" />
     <ClInclude Include="JapaneseMonkey.h" />
     <ClInclude Include="JumpingState.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Level.h" />
-    <ClInclude Include="LevelGraph.h" />
     <ClInclude Include="MathFunctions.h" />
     <ClInclude Include="MeerkatP2.h" />
     <ClInclude Include="MenuData.h" />
     <ClInclude Include="MenuStructs.h" />
     <ClInclude Include="PhysicsCore.h" />
     <ClInclude Include="PandaP1.h" />
-    <ClInclude Include="Pathfinding.h" />
-    <ClInclude Include="PathNode.h" />
     <ClInclude Include="PhysicModes.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PushButton.h" />
