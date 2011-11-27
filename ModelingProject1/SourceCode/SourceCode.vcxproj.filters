@@ -228,9 +228,6 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Characters\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="AI.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
     <ClCompile Include="Layer.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
@@ -324,18 +321,6 @@
     <ClCompile Include="MathFunctions.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
-    <ClCompile Include="PathNode.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="Pathfinding.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelGraph.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="HeapCompare.cpp">
-      <Filter>Source Files\AI</Filter>
-    </ClCompile>
     <ClCompile Include="FallingState.cpp">
       <Filter>Source Files\Characters\Players\States</Filter>
     </ClCompile>
@@ -377,6 +362,21 @@
     </ClCompile>
     <ClCompile Include="GUIMenu.cpp">
       <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\AI.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\HeapCompare.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\Pathfinding.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\PathNode.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\LevelGraph.cpp">
+      <Filter>Source Files\AI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -430,9 +430,6 @@
     </ClInclude>
     <ClInclude Include="JapaneseMonkey.h">
       <Filter>Header Files\Characters\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="AI.h">
-      <Filter>Header Files\AI</Filter>
     </ClInclude>
     <ClInclude Include="Layer.h">
       <Filter>Header Files\Level Design</Filter>
@@ -542,18 +539,6 @@
     <ClInclude Include="MathFunctions.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="PathNode.h">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="HeapCompare.h">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelGraph.h">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Pathfinding.h">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
     <ClInclude Include="FallingState.h">
       <Filter>Header Files\Characters\Players\States</Filter>
     </ClInclude>
@@ -607,6 +592,21 @@
     </ClInclude>
     <ClInclude Include="PushButton.h">
       <Filter>Header Files\GUI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\AI.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\HeapCompare.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\Pathfinding.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\PathNode.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\LevelGraph.h">
+      <Filter>Header Files\AI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
