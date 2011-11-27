@@ -16,6 +16,10 @@ void Characters::MeerkatP2::initializeCharacter(SpriteData::IDSprites id, std::s
 {
   characterSprite = new PlayerSprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
                             widthSprite, heightSprite, framerateAnimations, delayMovement);
+
+  stats = new PlayerStats::Stats();
+  score = new PlayerScore::Score();
+
   inputMapper = new InputMapping::GameInputMapper();
   inputMapper->pushContext("maincontext");
   inputMapper->addCallback( Player::inputCallback, 0);

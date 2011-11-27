@@ -9,7 +9,7 @@ namespace RPRGUI
   class PushButton
   {
     public:
-	 PushButton(MenuData::MainMenuOptions, Vector2f pos, Vector2f dim, Vector2f textPos);
+	 PushButton(int id, Vector2f pos, Vector2f dim, Vector2f textPos);
 	 ~PushButton(void);
 
 	 Vector2f getPosition() { return position; }
@@ -18,14 +18,14 @@ namespace RPRGUI
 
 	 Vector2f getTexturePosition() { return texturePosition; }
 
-	 MenuData::MainMenuOptions getID() { return id; }
+	 int getID() { return id; }
 
 	 void setIdChangeState(int id) { idChangeState = id; }
 
 	 int eventClicked(bool* isRunning);
 
     private:
-     MenuData::MainMenuOptions id;
+     int id;
 	 Vector2f position;
 	 Vector2f dimensions;
 	 Vector2f texturePosition;

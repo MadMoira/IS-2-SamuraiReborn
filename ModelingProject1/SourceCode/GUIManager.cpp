@@ -10,7 +10,7 @@ RPRGUI::GUIManager::~GUIManager(void)
 {
 }
 
-RPRGUI::PushButton* RPRGUI::GUIManager::createButton(MenuData::MainMenuOptions id, Vector2f pos, Vector2f dimensions, 
+RPRGUI::PushButton* RPRGUI::GUIManager::createButton(int id, Vector2f pos, Vector2f dimensions, 
                                                      Vector2f posTexture, int idChangeState)
 {
   PushButton* newButton = new RPRGUI::PushButton(id, pos, dimensions, posTexture);

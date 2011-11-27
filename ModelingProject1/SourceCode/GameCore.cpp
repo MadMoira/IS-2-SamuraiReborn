@@ -79,10 +79,10 @@ void GameCore::addPlayerToGame(Characters::Player *player, SpriteData::IDSprites
                 std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
   playersList.push_back( player );
-  playersList.at(id).initializeCharacter(id, filename, speed, 
-                                         pos, initialFrame, maxFrame, returnFrame,
-                                         widthSprite, heightSprite, framerateAnimations,
-                                         delayMovement);
+  playersList.at( playersList.size() - 1 ).initializeCharacter(id, filename, speed, 
+                                           pos, initialFrame, maxFrame, returnFrame,
+                                           widthSprite, heightSprite, framerateAnimations,
+                                           delayMovement);
 }
 
 void GameCore::addEnemyToGame(Characters::Enemy *enemy, SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed,

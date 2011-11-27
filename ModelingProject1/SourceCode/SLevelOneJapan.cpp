@@ -51,7 +51,7 @@ void SLevelOneJapan::logic()
     gameCore->getPlayersList().at(i).executeAction();
     if ( !gameCore->getPlayersList().at(i).isAlive() )
     {
-      setHasEnded(STATE_MAINMENU);
+      setHasEnded(STATE_MENUSELECTIONPLAYER);
     }
   }
   
