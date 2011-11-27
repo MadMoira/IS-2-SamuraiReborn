@@ -27,3 +27,21 @@ int GameCoreStates::DoubleJumpState::checkMovement(int keyPreviouslyPressed, int
 
   return GameCoreStates::NO_CHANGE;
 }
+
+int GameCoreStates::DoubleJumpState::checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
+                           int previousState, GameCoreStates::PlayerState* newState,
+                           int keyPreviouslyPressed)
+{
+  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
+
+  if ( currentState == GameCoreStates::DOUBLE_JUMP && isPacing.directionButtonPressed && !isPacing.runningButtonPressed)
+  {
+    return GameCoreStates::UPDATE_SPEEDX;
+  }
+
+  if ( currentState != previousState)
+  {
+    return GameCoreStates::CHANGE;
+  }
+  return GameCoreStates::NO_CHANGE;
+}

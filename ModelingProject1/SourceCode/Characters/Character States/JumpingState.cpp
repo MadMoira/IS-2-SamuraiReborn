@@ -45,9 +45,7 @@ int GameCoreStates::JumpingState::checkChangeOfState(std::list<InputMapping::Key
                            int previousState, GameCoreStates::PlayerState* newState,
                            int keyPreviouslyPressed)
 {
-  InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
   GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
-  bool jumpingButtonIsPressed = findKey.isPressed;
 
   if ( currentState == GameCoreStates::JUMPING && isPacing.directionButtonPressed && !isPacing.runningButtonPressed)
   {
