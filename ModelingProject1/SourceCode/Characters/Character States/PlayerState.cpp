@@ -38,6 +38,13 @@ GameCoreStates::ConditionsPlayerRunning GameCoreStates::PlayerState::checkIfPlay
 
   GameCoreStates::ConditionsPlayerRunning isRunning;
 
+  if ( keys.empty() )
+  {
+    isRunning.directionButtonPressed = false;
+    isRunning.runningButtonPressed = false;
+    return isRunning;
+  }
+
   InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isWalkingKeyRightPressed);
   directionButtonRightPressed = findKey.isPressed;
 
