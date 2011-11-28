@@ -5,16 +5,8 @@ GameSound::GameSound(void)
 	result = FMOD::System_Create(&system);
 	printf("FMOD created");
 	ERRCHECK(result);
-
-	//init sounds
-	static std::string runningSound = "Running.mp3";
-	static std::string fallingSound = "groundHit.mp3";
-	static std::string meerkatAttackSound = "Sword (2).mp3";
-	static std::string monkeySound = "Monkeys.mp3";
-	Sounds.push_back(&runningSound);
-	Sounds.push_back(&fallingSound);
-	Sounds.push_back(&meerkatAttackSound);
-	Sounds.push_back(&monkeySound);
+	//The file structure will be: attackSound;groundhitSound;runningSound;others....
+	filename= "Musics.txt";
 }
 
 bool GameSound::instanceFlag = false;
@@ -63,7 +55,7 @@ void GameSound::loadSound(std::string name)
 //
 void GameSound::PlaySound(int i)
 {   
-	std::string name = Sounds.at(i);
+	std::string name = statesSounds.at(i);
     currentSound = name.c_str();
 	result = system->createStream( currentSound, FMOD_DEFAULT, 0, &sound );
 	ERRCHECK(result);
@@ -75,20 +67,21 @@ void GameSound::closeSound(){
 	channel[2]->setVolume( 0.0 );
 	currentSound = "NULL";
 	}
-//
 
 void GameSound::stateSoundsHandling(GameCoreStates::SpriteState previousState){
 	 if(previousState == GameCoreStates::RUNNING){
 	  GameSound::getInstance()->closeSound();
   }
   if(previousState == GameCoreStates::FALLING){
-	  GameSound::getInstance()->loadChunk(Sounds.at(1));
+	  GameSound::getInstance()->loadChunk(statesSounds.at(1));
   }
 }
-//
 
 void GameSound::loadChunk(std::string name)
 {
+	if(name == "none"){
+		return;
+	}
 	const char* ChunkName = name.c_str();
 	result = system->createSound(ChunkName, FMOD_LOOP_OFF, 0, &chunks[0]);
 	ERRCHECK(result);
@@ -96,6 +89,7 @@ void GameSound::loadChunk(std::string name)
 	ERRCHECK(result);
 	result = channel[1]->setVolume(0.1f);
 }
+
 
 void GameSound::ERRCHECK(FMOD_RESULT result)
 {
@@ -137,3 +131,91 @@ void GameSound::downVolumeMUS()
 	volume -= 0.1f;
 	result = channel[0]->setVolume(volume);
 }
+
+//additions
+std::string GameSound::readLineFromFile(string filename, int row){
+	std::string line;
+	ifstream soundsFile ( filename, ifstream::in );
+	if(!soundsFile.is_open()){
+		exit(1);
+	}
+	char n;
+	int i=0;
+	while (soundsFile.good()){
+        n=soundsFile.get();
+		if(i==row){
+			line+=n;
+		}
+		if(n=='\n'){
+			i++;
+		}
+	}
+	line.erase(line.size()-1);
+	soundsFile.close();
+	return line;
+}
+
+void GameSound::split(std::string line){
+	std::string temp;
+
+	for(int i=0;i<line.size();i++){
+		if(line.at(i)==';' && temp!=""){
+			statesSounds.push_back(temp);
+			temp="";
+		}else{
+			temp+=line.at(i);
+	    }
+	}
+}
+
+void GameSound::initSounds(int CharacterID){
+	std::string line= readLineFromFile(filename ,CharacterID);
+	split(line);
+}
+
+void GameSound::loadChunk(int CharacterID, int soundID){
+	
+	initSounds(CharacterID);
+	std::string name = statesSounds.at(soundID);
+	if(name == "none"){
+		return;
+	}
+
+	const char* ChunkName = name.c_str();
+	result = system->createSound(ChunkName, FMOD_LOOP_OFF, 0, &chunks[0]);
+	ERRCHECK(result);
+	result = system->playSound(FMOD_CHANNEL_FREE, chunks[0], false, &channel[1]);
+	ERRCHECK(result);
+	result = channel[1]->setVolume(0.1f);
+	}
+
+
+   void GameSound::loadSound(int CharacterID, int soundID){
+	initSounds(CharacterID);
+	std::string name = statesSounds.at(soundID);
+	
+	if(name == "none"){
+		return;
+	}
+	   const char* MusicName = name.c_str();
+	printf("Loading");
+	result = system->createStream(MusicName, FMOD_HARDWARE | FMOD_LOOP_NORMAL | FMOD_2D, 0, &sound);
+	ERRCHECK(result);
+	printf("Playing");
+	result = system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel[0]);
+	ERRCHECK(result);
+	}
+  
+   void GameSound::PlaySound(int CharacterID, int soundID){
+	initSounds(CharacterID);
+	std::string name = statesSounds.at(soundID);
+	if(name == "none"){
+		return;
+	}
+    currentSound = name.c_str();
+	result = system->createStream( currentSound, FMOD_DEFAULT, 0, &sound );
+	ERRCHECK(result);
+	result = system->playSound( FMOD_CHANNEL_REUSE, sound, false, &channel[2]);
+	ERRCHECK(result);
+	}
+//statesSounds
