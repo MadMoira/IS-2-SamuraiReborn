@@ -5,11 +5,21 @@ void Image::ControllerSelection::updatePositionController()
 {
   if ( selectedPlayer == MenuData::NO_SELECTED_PLAYER )
   {
-    controller->setPosition(590.0f, 430.0f);
+    controller->setPosition(590.0f, 330.0f);
     return;
   }
 
   controller->setPosition(362.5f + (selectedPlayer-1)*420.0f, 430.0f);
+}
+
+void Image::ArrowSelectMenu::updatePositionArrow()
+{
+  if ( optionSelected == MenuData::NOTHING_SELECTED )
+  {
+    return;
+  } 
+
+  arrow->setPosition(300.0f + (optionSelected - 1)*280.0f, 580.0f );
 }
 
 SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
@@ -34,19 +44,13 @@ void SPlayerSelection::init()
 
   createGUI();
 
-  controllerImageP1.controller = new Image::GameImage(Vector2f(590.0f, 430.0f), Vector2f(100.0f, 67.0f), 
-                                    Vector2f(0.0f, 0.0f), "Resources/Menus/Menu Selection Player/Gamepad.png");
-  controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
-
-  customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
-                                             Vector2f(0.0f, 0.0f), "Resources/GUI/Cursor.png");  
-
   gameCore->getGameTimer()->setFramesPerSecond(30);
 }
 
 void SPlayerSelection::handleEvents()
 {
   SDL_Event e;
+  bool running = gameCore->getIsRunning();
 
   while ( SDL_PollEvent(&e) )
   {
@@ -57,6 +61,7 @@ void SPlayerSelection::handleEvents()
       case SDL_MOUSEMOTION:
       {
 		customCursor.cursor->setPosition(mousePosition.x, mousePosition.y);
+		arrowImage.optionSelected = guiSelectPlayer->checkMousePosition(mousePosition);
         break;
       }
       case SDL_MOUSEBUTTONDOWN:
@@ -65,6 +70,8 @@ void SPlayerSelection::handleEvents()
       }
       case SDL_MOUSEBUTTONUP:
       {
+		handleMouseUp(e.button.button, mousePosition);
+		checkCorrectSelectionPlayer(&running);
         break;
       }
       case SDL_KEYDOWN:
@@ -84,6 +91,7 @@ void SPlayerSelection::handleEvents()
 void SPlayerSelection::logic()
 {
   controllerImageP1.updatePositionController();
+  arrowImage.updatePositionArrow();
 }
 
 void SPlayerSelection::render()
@@ -111,6 +119,13 @@ void SPlayerSelection::render()
   gameRender->drawFullTexture(controllerImageP1.controller->getTexture(), controllerImageP1.controller->getPosition(),
                               controllerImageP1.controller->getOffset().x, controllerImageP1.controller->getOffset().y );
 
+  if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
+  {
+    gameRender->drawFullTexture(arrowImage.arrow->getTexture(), arrowImage.arrow->getPosition(),
+                                arrowImage.arrow->getOffset().x, arrowImage.arrow->getOffset().y);
+  } 
+      
+
   gameRender->drawFullTexture(customCursor.cursor->getTexture(), customCursor.cursor->getPosition(),
                               customCursor.cursor->getOffset().x, customCursor.cursor->getOffset().y);
 
@@ -129,6 +144,17 @@ void SPlayerSelection::createGUI( )
 {
   RPRGUI::GUIManager* guiManager = gameRender->getGUIManager();
   std::string commonPath = "Resources/Menus/Menu Selection Player/";
+
+  controllerImageP1.controller = new Image::GameImage(Vector2f(590.0f, 330.0f), Vector2f(100.0f, 67.0f), 
+                                    Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png");
+  controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
+
+  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
+                                    Vector2f(0.0f, 0.0f),"Resources/Menus/Main Menu/MainMenuHighlighter.png");
+  arrowImage.optionSelected = MenuData::NOTHING_SELECTED;
+
+  customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
+                                             Vector2f(0.0f, 0.0f), "Resources/GUI/Cursor.png");  
   
   guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(0.0f, 0.0f),
 	                                                         Vector2f(1280.0f, 720.0f),
@@ -148,14 +174,14 @@ void SPlayerSelection::createGUI( )
 															 "") );
   guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "SuricataSelector.png"));
 
-  /*guiSelectPlayer->addButton( guiManager->createButton(MenuData::BEGIN, Vector2f(500.0f, 550.0f), 
-	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 0.0f),
+  guiSelectPlayer->addButton( guiManager->createButton(MenuData::BEGIN, Vector2f(380.0f, 600.0f), 
+	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 0.0f),
 	                                               STATE_LEVELONEJAPAN) );
-  guiSelectPlayer->addButton( guiManager->createButton(MenuData::BACK, Vector2f(700.0f, 550.0f), 
-	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 28.75f),
-	                                               STATE_MAINMENU) );*/
+  guiSelectPlayer->addButton( guiManager->createButton(MenuData::BACK, Vector2f(650.0f, 600.0f), 
+	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 32.0f),
+	                                               STATE_MAINMENU) );
 
-  //guiSelectPlayer->addTextureButtons( gameRender->loadTexture(commonPath + "MenuSelectionPlayerButtons.png") );                                               
+  guiSelectPlayer->addTextureButtons( gameRender->loadTexture(commonPath + "MenuSelectionPlayerButtons.png") );                                               
 
 }
 
@@ -192,6 +218,7 @@ void SPlayerSelection::handleMouseUp(Uint8 button, Vector2f mousePosition)
   {
     case SDL_BUTTON_LEFT:
     {
+	  arrowImage.optionSelected = guiSelectPlayer->checkMousePosition(mousePosition);
       break;
     }
     case SDL_BUTTON_MIDDLE:
@@ -207,29 +234,18 @@ void SPlayerSelection::handleMouseUp(Uint8 button, Vector2f mousePosition)
 
 void SPlayerSelection::handleKeyDown(SDLKey key)
 {
-  if ( key == SDLK_LEFT )
-  {
-    if ( controllerImageP1.selectedPlayer == MenuData::NO_SELECTED_PLAYER )
-    {
-      controllerImageP1.selectedPlayer = MenuData::PLAYER_ONE;
-    }
+  checkControlsButtonsSelected(key);
 
-    if ( controllerImageP1.selectedPlayer == MenuData::PLAYER_TWO )
-    {
-      controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
-    }
+  if ( key == SDLK_UP )
+  {
+    arrowImage.optionSelected = MenuData::NOTHING_SELECTED;
   }
 
-  if ( key == SDLK_RIGHT )
+  if ( key == SDLK_DOWN )
   {
-    if ( controllerImageP1.selectedPlayer == MenuData::NO_SELECTED_PLAYER )
+    if ( arrowImage.optionSelected == MenuData::NOTHING_SELECTED )
     {
-	  controllerImageP1.selectedPlayer = MenuData::PLAYER_TWO;
-    }
-
-    if ( controllerImageP1.selectedPlayer == MenuData::PLAYER_ONE )
-    {
-      controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
+      arrowImage.optionSelected = MenuData::BEGIN;
     }
   }
 
@@ -241,9 +257,97 @@ void SPlayerSelection::handleKeyDown(SDLKey key)
 
 void SPlayerSelection::handleEnterPressed()
 {
+  bool running = true;
+
+  if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
+  {
+    if ( arrowImage.optionSelected == MenuData::BEGIN && controllerImageP1.selectedPlayer != MenuData::NOTHING_SELECTED )
+    {
+      gameCore->pushBackPlayerToInitialize(controllerImageP1.selectedPlayer - 1);
+	  setHasEnded( guiSelectPlayer->getListButtons().at( arrowImage.optionSelected - 1 ).eventClicked(&running) );
+    }
+
+    if ( arrowImage.optionSelected == MenuData::BACK)
+    {
+      setHasEnded( guiSelectPlayer->getListButtons().at( arrowImage.optionSelected - 1 ).eventClicked(&running) );
+    }
+  }
+
+  if ( arrowImage.optionSelected == MenuData::NOTHING_SELECTED )
+  {
+    arrowImage.optionSelected = MenuData::BEGIN;
+  }
+}
+
+void SPlayerSelection::checkCorrectSelectionPlayer(bool* running)
+{
   if ( controllerImageP1.selectedPlayer != MenuData::NO_SELECTED_PLAYER )
   {
-    gameCore->pushBackPlayerToInitialize(controllerImageP1.selectedPlayer - 1);
-	setHasEnded(STATE_LEVELONEJAPAN);
+    if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
+    {
+      setHasEnded( guiSelectPlayer->getListButtons().at( arrowImage.optionSelected - 1 ).eventClicked(running) );
+      gameCore->setIsRunning(running);  
+    }
+  }
+}
+
+void SPlayerSelection::checkControlsButtonsSelected(SDLKey key)
+{
+  if ( key == SDLK_RIGHT )
+  {
+    switch(arrowImage.optionSelected)
+	{
+	  case MenuData::BEGIN:
+      {
+        arrowImage.optionSelected = MenuData::BACK;
+        return;
+      }
+	}
+
+    if ( arrowImage.optionSelected == MenuData::NOTHING_SELECTED )
+    {
+      switch(controllerImageP1.selectedPlayer)
+      {
+	    case MenuData::NO_SELECTED_PLAYER:
+        {
+          controllerImageP1.selectedPlayer = MenuData::PLAYER_TWO;
+          break;
+		}
+	    case MenuData::PLAYER_ONE:
+		{
+          controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
+          break;
+		}
+	  }
+    }
+  }
+
+  if ( key == SDLK_LEFT )
+  {
+    switch(arrowImage.optionSelected)
+	{
+	  case MenuData::BACK:
+      {
+	    arrowImage.optionSelected = MenuData::BEGIN;
+        return;
+      }
+	}
+
+    if ( arrowImage.optionSelected == MenuData::NOTHING_SELECTED )
+    {
+      switch(controllerImageP1.selectedPlayer)
+      {
+		case MenuData::NO_SELECTED_PLAYER:
+        {
+          controllerImageP1.selectedPlayer = MenuData::PLAYER_ONE;
+	      break;
+        }
+		case MenuData::PLAYER_TWO:
+        {
+          controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
+	      break;
+        }
+      }
+    }
   }
 }
