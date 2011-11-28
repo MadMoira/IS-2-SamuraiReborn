@@ -4,14 +4,27 @@
 
 namespace Image
 {
-  struct ArrowMainMenu
+  struct ArrowMenu
   {
     GameImage* arrow;
     int optionSelected;
 
-    void updatePositionArrow();
+	virtual void updatePositionArrow() = 0;
   };
 
+  struct ArrowMainMenu : ArrowMenu
+  {
+	void updatePositionArrow();
+  };
+
+  struct ArrowSelectMenu : ArrowMenu
+  {
+	void updatePositionArrow();
+  };
+}
+
+namespace Image
+{
   struct ControllerSelection
   {
     GameImage* controller;

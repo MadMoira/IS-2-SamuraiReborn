@@ -33,12 +33,7 @@ void SMainMenu::init()
 
   createGUI();
 
-  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
-                                    Vector2f(0.0f, 0.0f), commonPath + "MainMenuHighlighter.png");
-  arrowImage.optionSelected = MenuData::NOTHING_SELECTED;
-
-  customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
-                                             Vector2f(0.0f, 0.0f), "Resources/GUI/Cursor.png");  
+  gameCore->clearPlayerToInitialize();
 
   gameCore->getGameTimer()->setFramesPerSecond(30);
 }
@@ -141,6 +136,13 @@ void SMainMenu::createGUI()
 {
   RPRGUI::GUIManager* guiManager = gameRender->getGUIManager();
   std::string commonPath = "Resources/Menus/Main Menu/";
+
+  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
+                                    Vector2f(0.0f, 0.0f), commonPath + "MainMenuHighlighter.png");
+  arrowImage.optionSelected = MenuData::NOTHING_SELECTED;
+
+  customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
+                                             Vector2f(0.0f, 0.0f), "Resources/GUI/Cursor.png");  
 
   guiMainMenu->addStaticImage( guiManager->createStaticImage(Vector2f(0.0f, 0.0f),
 	                                                         Vector2f(1280.0f, 720.0f),

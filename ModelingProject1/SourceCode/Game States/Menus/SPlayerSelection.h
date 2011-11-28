@@ -26,10 +26,14 @@ class SPlayerSelection : public GameState
    void handleKeyDown(SDLKey key);
    void handleEnterPressed();
 
+   void checkCorrectSelectionPlayer(bool* running);
+   void checkControlsButtonsSelected(SDLKey key);
+
   private:
    RPRGUI::GUIMenu* guiSelectPlayer;
    Image::ControllerSelection controllerImageP1;
    Image::ControllerSelection controllerImageP2;
+   Image::ArrowSelectMenu arrowImage;
    Image::CustomCursor customCursor;
 };
 

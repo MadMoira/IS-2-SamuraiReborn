@@ -20,7 +20,7 @@ namespace MenuData
 
   enum SelectPlayerOptions
   {
-	BEGIN,
+	BEGIN = 1,
 	BACK,
   };
 }
