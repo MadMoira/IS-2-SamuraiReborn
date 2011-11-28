@@ -247,11 +247,16 @@
     <None Include="Monkeys.mp3" />
     <None Include="Mountains0.png" />
     <None Include="Mountains1.png" />
+    <None Include="Musics.txt" />
     <None Include="orbitron-black.ttf" />
     <None Include="Panda - SpriteSheet.png" />
+    <None Include="River.mp3" />
     <None Include="Running.mp3" />
     <None Include="SkyBackground.png" />
+    <None Include="Sword (1).mp3" />
     <None Include="Sword (2).mp3" />
+    <None Include="Sword (3).mp3" />
+    <None Include="Sword.mp3" />
     <None Include="Tileset.png" />
     <None Include="Wind.mp3" />
   </ItemGroup>

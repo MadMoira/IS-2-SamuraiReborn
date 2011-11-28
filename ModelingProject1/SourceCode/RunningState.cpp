@@ -34,7 +34,7 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
 	     previousState == GameCoreStates::JUMPING ) && 
 	     isRunning.directionButtonPressed && isRunning.runningButtonPressed )
   {  
-   GameSound::getInstance()->PlaySound(0);
+   GameSound::getInstance()->PlaySound(0/*currentID*/,2);
     return GameCoreStates::CHANGE;
   }
 

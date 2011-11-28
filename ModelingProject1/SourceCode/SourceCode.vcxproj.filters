@@ -670,6 +670,21 @@
     <None Include="Japanese War Music.mp3">
       <Filter>Resource Files\Audio</Filter>
     </None>
+    <None Include="Musics.txt">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="River.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Sword.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Sword (3).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Sword (1).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SourceCode.rc">
