@@ -39,21 +39,18 @@ void Characters::Player::executeAction()
       falling();
       break;
     }
-    case GameCoreStates::STOPPING:
-    {
-      stopping();
-      break;
-    }
   }
 }
 
 void Characters::Player::stop()
 {
-  if ( !characterSprite->getPlayerMoveInX() && !characterSprite->getPlayerMoveInY() )
+  if ( characterSprite->getSpeedX() == 0.0f && characterSprite->getSpeedY() == 0.0f &&
+	   !characterSprite->isPlayerOnTheAir())
   {
     characterSprite->changeStateSprite(STILL_STATE, 0, getInputMapper()->getListKeys());
     getInputMapper()->pushBackStateOnMappedInput(GameCoreStates::STILL);
     characterSprite->changeCurrentFrame(GameCoreStates::STILL);
+	characterSprite->getRigidBody().setAccelerationState(GamePhysics::NO_ACCELERATE);
   }
 }
 
@@ -141,11 +138,6 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
     {
       playerSprite->changeStateSprite(FALLING_STATE, checkKey.wasPreviouslyPressed, keys);
     }
-  }
-
-  if ( player.isStoppingMovement(keys) )
-  {
-    playerSprite->changeStateSprite(STOPPING_STATE, inputs.buttonPreviouslyPressed, keys);
   }
 
   if ( findStillInStates )

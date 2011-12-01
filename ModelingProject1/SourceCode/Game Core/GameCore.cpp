@@ -107,3 +107,14 @@ void GameCore::initializeSpriteCollisionBoxPlayer(SpriteData::IDSprites id, floa
     }
   }
 }
+
+void GameCore::initializeRigidBodyVectors(SpriteData::IDSprites id, std::vector< Vector2f > maxSpeed)
+{
+  for (std::string::size_type i = 0; i < playersList.size(); i++)
+  {
+    if ( playersList.at(i).getCharacterID() == id )
+    {
+      playersList.at(i).initializeRigidBodyVectors(maxSpeed);
+    }
+  } 
+}

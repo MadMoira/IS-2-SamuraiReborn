@@ -12,4 +12,11 @@ namespace GamePhysics
     X,
     Y,
   };
+
+  enum AccelerationState
+  {
+	NO_ACCELERATE,
+	ACCELERATE,
+	DECELERATE,
+  };
 }

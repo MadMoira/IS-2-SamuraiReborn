@@ -6,17 +6,9 @@ void Characters::Character::initializeSpriteCollisionBox(float width, float heig
   characterSprite->initializeSpriteCollisionBox(width, height, offsetX, offsetY);
 }
 
-bool Characters::Character::isStoppingMovement(std::list<InputMapping::Key> keys)
+void Characters::Character::initializeRigidBodyVectors(std::vector< Vector2f > maxSpeed)
 {
-  GameCoreStates::ConditionsPlayerRunning inputDirection = 
-                  characterSprite->getPlayerStateManager()->getObjectState().checkIfPlayerIsRunning(keys);
-
-  if ( !inputDirection.directionButtonPressed && !inputDirection.runningButtonPressed )
-  {
-    return true;
-  }
-
-  return false;
+  characterSprite->getRigidBody().initializeSpeedVectors(maxSpeed);
 }
 
 bool Characters::Character::isReadyToPace()
@@ -33,7 +25,7 @@ bool Characters::Character::isReadyToPace()
 
 bool Characters::Character::isReadyToDoubleJump()
 {
-  if ( characterSprite->getSpeedY() >= -8 && characterSprite->getSpeedY() <= 0  )
+  if ( characterSprite->getSpeedY() >= -16 && characterSprite->getSpeedY() <= 0  )
   {
     return true;
   }

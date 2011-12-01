@@ -71,7 +71,7 @@ void SPlayerSelection::handleEvents()
       case SDL_MOUSEBUTTONUP:
       {
 		handleMouseUp(e.button.button, mousePosition);
-		checkCorrectSelectionPlayer(&running);
+		checkClickedMouse(&running);
         break;
       }
       case SDL_KEYDOWN:
@@ -279,16 +279,9 @@ void SPlayerSelection::handleEnterPressed()
   }
 }
 
-void SPlayerSelection::checkCorrectSelectionPlayer(bool* running)
+void SPlayerSelection::checkClickedMouse(bool* running)
 {
-  if ( controllerImageP1.selectedPlayer != MenuData::NO_SELECTED_PLAYER )
-  {
-    if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
-    {
-      setHasEnded( guiSelectPlayer->getListButtons().at( arrowImage.optionSelected - 1 ).eventClicked(running) );
-      gameCore->setIsRunning(running);  
-    }
-  }
+  handleEnterPressed();
 }
 
 void SPlayerSelection::checkControlsButtonsSelected(SDLKey key)

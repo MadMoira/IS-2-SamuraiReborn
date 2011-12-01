@@ -111,23 +111,33 @@ void SLevelOneJapan::cleanUp()
 
 void SLevelOneJapan::initializePlayers()
 {
-  //gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
+  gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
   //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
 
   std::vector< Vector2f > speedPanda;
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
-  speedPanda.push_back( Vector2f(10.0f, 0.0f) );
-  speedPanda.push_back( Vector2f(0.0f, -24.0f) );
-  speedPanda.push_back( Vector2f(18.0f, 0.0f) );
+  speedPanda.push_back( Vector2f(2.0f, 0.0f) );
+  speedPanda.push_back( Vector2f(0.0f, -26.0f) );
+  speedPanda.push_back( Vector2f(0.0f, 0.0f) );
   speedPanda.push_back( Vector2f(0.0f, -20.0f) );
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
   speedPanda.push_back( Vector2f(0.0f, 0.0f) );
   speedPanda.push_back( Vector2f(18.0f, 0.0f) );
 
+  std::vector< Vector2f > maxSpeedPanda;
+  maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
+  maxSpeedPanda.push_back( Vector2f(10.0f, 0.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -26.0f) );
+  maxSpeedPanda.push_back( Vector2f(18.0f, 0.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -20.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
+  maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
+
+
   std::vector< Vector2f > speedMeerkat;
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
   speedMeerkat.push_back( Vector2f(10.0f, 0.0f) );
-  speedMeerkat.push_back( Vector2f(0.0f, -24.0f) );
+  speedMeerkat.push_back( Vector2f(0.0f, -26.0f) );
   speedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, -20.0f) );
   speedMeerkat.push_back( Vector2f(0.0f, 0.0f) );
@@ -200,6 +210,7 @@ void SLevelOneJapan::initializePlayers()
                              speedPanda, Vector2f(50.0f, 250.0f), 0, maxFrameVectorPanda, returnFrameVector,
                              280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
+		gameCore->initializeRigidBodyVectors(SpriteData::PANDA, maxSpeedPanda);
         break;
       }
       case SpriteData::MEERKAT:

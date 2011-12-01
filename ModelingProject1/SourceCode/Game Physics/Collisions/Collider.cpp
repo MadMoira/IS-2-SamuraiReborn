@@ -217,13 +217,32 @@ bool Collider::checkStateCollisionPlayer(Sprite& playerSprite)
     playerSprite.setPositionY(offsetPosition);
     playerSprite.getCollisionBox()->setY( playerSprite.getCollisionBox()->getY() - playerSprite.getCollisionBox()->getOffset().y - 
                                           offsetPosition );
+	if ( /*( playerSprite.getPreviousState() == GameCoreStates::JUMPING ||  playerSprite.getPreviousState() == GameCoreStates::WALKING)
+		&&*/ playerSprite.getSpeedX() > 0.0f && playerSprite.getSpeedX() <= 10.0f)
+	{
+	      playerSprite.changeStateSprite(new GameCoreStates::WalkingState(GameCoreStates::WALKING), 0, 
+                                         std::list<InputMapping::Key>() );
+		  playerSprite.setPlayerMoveInX(true);
+	}
+		else if ( /*(playerSprite.getPreviousState() == GameCoreStates::JUMPING ||  playerSprite.getPreviousState() == GameCoreStates::RUNNING)
+			&&*/ playerSprite.getSpeedX() > 10.0f && playerSprite.getSpeedX() <= 18.0f)
+	{
+	      playerSprite.changeStateSprite(new GameCoreStates::RunningState(GameCoreStates::RUNNING), 5, 
+                                         std::list<InputMapping::Key>() );
+		  playerSprite.setPlayerMoveInX(true);
+	}
+	else
+	{
     playerSprite.changeStateSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                          std::list<InputMapping::Key>() );
+	playerSprite.setSpeedX(0.0f);
+	playerSprite.setPlayerMoveInX(false);
+	}
     
-    playerSprite.setSpeedX(0.0f);
+    
     playerSprite.setPlayerCanMoveYUp(true);
     playerSprite.setPlayerCanMoveYDown(false);
-    playerSprite.setPlayerMoveInX(false);
+    
     playerSprite.setPlayerMoveInY(false);
     return true;
   }
@@ -276,10 +295,11 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
                                           playerSprite.getCollisionBox()->getOffset().x ) + 
                                           playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), 
                                           animationDirection );
-                            
+
     playerSprite.changeStateSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                          std::list<InputMapping::Key>() );
-    playerSprite.setPlayerMoveInX(false);
+	playerSprite.setSpeedX(0.0f);
+	playerSprite.setPlayerMoveInX(false);
     playerSprite.setPlayerMoveInY(false);
     return true;
   }

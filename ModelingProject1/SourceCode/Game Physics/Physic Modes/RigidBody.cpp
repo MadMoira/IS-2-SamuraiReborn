@@ -16,17 +16,24 @@ GamePhysics::RigidBody::~RigidBody(void)
 void GamePhysics::RigidBody::initializeNaturalPhysicsForces(float forceOne, float forceTwo)
 {
   gravityValue = forceOne;
-  groundFrictionValue = forceTwo;
+  accelerationXValue = forceTwo;
+
+  accState = GamePhysics::NO_ACCELERATE;
+}
+
+void GamePhysics::RigidBody::initializeSpeedVectors(std::vector< Vector2f > maxSpeed)
+{
+  this->maxSpeed = maxSpeed;
 }
 
 void GamePhysics::RigidBody::applyNaturalPhysicForces(int currentMovement, GLfloat* speedX, GLfloat* speedY, 
-                                                      int playerState, int direction)
+                                                      int playerState, int direction, int previousState)
 {
   switch(currentMovement)
   {
     case GamePhysics::X:
     {
-      groundFriction(speedX, playerState, direction);
+	  acceleratePlayer(speedX, playerState, previousState, direction);
       break;
     }
     case GamePhysics::Y:
@@ -52,21 +59,96 @@ void GamePhysics::RigidBody::parabolicShot(GLfloat* yVelocity, int playerState)
   *yVelocity = 0.0f;
 }
 
-void GamePhysics::RigidBody::groundFriction(GLfloat* xVelocity, int playerState, int direction)
+void GamePhysics::RigidBody::acceleratePlayer(GLfloat* xVelocity, int playerState, int previousState, int directionX)
 {
-  int axisValue = 1;
-
-  if ( direction == SpriteData::LEFT )
+  switch( accState )
   {
-    axisValue = -1;
+  case ACCELERATE:
+	  {
+	  }
+  case DECELERATE:
+	  {
+	  }
   }
-
-  if( playerState == GameCoreStates::STOPPING )
+	if ( playerState == GameCoreStates::WALKING && accState == 1 )
+	{
+  *xVelocity += accelerationXValue;
+  if ( *xVelocity >= maxSpeed.at(playerState).x )
   {
-    *xVelocity -= (axisValue)*groundFrictionValue;
-    if( *xVelocity == 0.0f )
-    {
-      *xVelocity = 0.0f;
-    }
+	*xVelocity = maxSpeed.at(playerState).x ;
   }
+	}
+
+
+		if ( playerState == GameCoreStates::WALKING && accState == 2 )
+	{
+  *xVelocity -= accelerationXValue;
+  if ( *xVelocity <= 0.0f )
+  {
+	*xVelocity = 0.0f;
+  }
+	}
+
+		if ( playerState == GameCoreStates::RUNNING && accState == 1)
+	{
+  *xVelocity += accelerationXValue;
+  if ( *xVelocity >= maxSpeed.at(playerState).x  )
+  {
+	*xVelocity = maxSpeed.at(playerState).x ;
+  }
+	}
+
+				if ( playerState == GameCoreStates::RUNNING && accState == 2 )
+	{
+  *xVelocity -= accelerationXValue;
+  if ( *xVelocity <= 0.0f )
+  {
+	*xVelocity = 0.0f;
+  }
+	}
+
+				if ( playerState == GameCoreStates::JUMPING && accState == 1 && previousState == GameCoreStates::WALKING)
+	{
+  *xVelocity += accelerationXValue;
+  if ( *xVelocity >= maxSpeed.at(previousState).x  )
+  {
+	*xVelocity = maxSpeed.at(previousState).x ;
+  }
+	}
+
+								if ( playerState == GameCoreStates::JUMPING && accState == 1 && previousState == GameCoreStates::RUNNING)
+	{
+  *xVelocity += accelerationXValue;
+  if ( *xVelocity >= maxSpeed.at(previousState).x  )
+  {
+	*xVelocity = maxSpeed.at(previousState).x ;
+  }
+	}
+
+												if ( playerState == GameCoreStates::DOUBLE_JUMP && accState == 1 && previousState == GameCoreStates::WALKING)
+	{
+  *xVelocity += accelerationXValue;
+  if ( *xVelocity >= maxSpeed.at(previousState).x)
+  {
+	*xVelocity = maxSpeed.at(previousState).x;
+  }
+	}
+
+								if ( playerState == GameCoreStates::DOUBLE_JUMP && accState == 1 && previousState == GameCoreStates::RUNNING)
+	{
+  *xVelocity += accelerationXValue;
+  if ( *xVelocity >= maxSpeed.at(previousState).x )
+  {
+	*xVelocity = maxSpeed.at(previousState).x;
+  }
+	}
+
+				if ( playerState == GameCoreStates::STILL)
+	{
+  *xVelocity -= accelerationXValue;
+  if ( *xVelocity <= 0.0f )
+  {
+	*xVelocity = 0.0f;
+  }
+	}
 }
