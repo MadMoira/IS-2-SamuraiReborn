@@ -11,7 +11,6 @@ namespace GameCoreStates
     DOUBLE_JUMP,
     FAST_ATTACK,
     FALLING,
-    STOPPING,
   };
 
   enum Action
@@ -23,7 +22,6 @@ namespace GameCoreStates
     NO_CHANGE,
     CHANGE,
     RETURN_STILL,
-    RETURN_STOPPING,
     RETURN_WALKING,
     UPDATE_SPEEDX,
   };

@@ -99,6 +99,8 @@ class Sprite
    void setPlayerMoveInXCurrentFrame(bool moveX) { characterMovement.setMoveXFrame(moveX); }
    bool getPlayerMoveInYCurrentFrame() { return characterMovement.playerMoveInYInCurrentFrame; }
 
+   GamePhysics::RigidBody& getRigidBody() { return *rigidBody; }
+
    void drawTexture();
 
   protected:
@@ -115,7 +117,7 @@ class Sprite
    CollisionSystem::CollisionBox* spriteCollisionBox;
    CollisionSystem::DirectionsMove directionsMove;
    CollisionSystem::CharacterMovement characterMovement;
-   GamePhysics::PhysicsCore* rigidBody;
+   GamePhysics::RigidBody* rigidBody;
     
    Vector2f position;
    std::vector< Vector2f > speed;

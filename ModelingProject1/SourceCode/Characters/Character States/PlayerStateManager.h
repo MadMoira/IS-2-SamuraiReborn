@@ -22,7 +22,6 @@
 #define DOUBLE_JUMP_STATE new GameCoreStates::DoubleJumpState(GameCoreStates::DOUBLE_JUMP)
 #define FAST_ATTACK_STATE new GameCoreStates::FastAttackState(GameCoreStates::FAST_ATTACK)
 #define FALLING_STATE new GameCoreStates::FallingState(GameCoreStates::FALLING)
-#define STOPPING_STATE new GameCoreStates::StoppingState(GameCoreStates::STOPPING)
 
 namespace GameCoreStates
 {

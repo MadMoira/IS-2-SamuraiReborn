@@ -15,12 +15,54 @@ void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState, int 
   int resultCheckingEqualStates = newState->checkIfEqualStates(keys, getCurrentState(),
                                     getPreviousState(), newState, keyPreviouslyPressed);
 
+  if ( getPreviousState() == GameCoreStates::RUNNING && getCurrentState() == GameCoreStates::JUMPING )
+  {
+	  int d = 4;
+  }
+  if ( getSpeedX() > 0.0f)
+  {
+    	  GameCoreStates::ConditionsPlayerRunning isPacing = playerStateManager->getObjectState().checkIfPlayerIsRunning(keys);
+	  if ( isPacing.directionButtonPressed && getCurrentState() == GameCoreStates::WALKING)
+	  {
+		  rigidBody->setAccelerationState(1);
+	  }
+
+	  if ( isPacing.directionButtonPressed && !isPacing.runningButtonPressed && getCurrentState() == GameCoreStates::RUNNING)
+	  {
+		  if ( getSpeedX() > 10.0f )
+		  {
+		  rigidBody->setAccelerationState(2);
+		  return;
+		  }
+		  int d = 4;
+	  }
+	  else if ( !isPacing.directionButtonPressed && getCurrentState() == GameCoreStates::WALKING && newState->getCurrentID() != GameCoreStates::FALLING) 
+	  {
+		  rigidBody->setAccelerationState(2);
+		  return;
+	  }
+
+	  if ( isPacing.directionButtonPressed && isPacing.runningButtonPressed && getCurrentState() == GameCoreStates::RUNNING)
+	  {
+		  rigidBody->setAccelerationState(1);
+	  }
+	  else if ( ( (!isPacing.directionButtonPressed && !isPacing.runningButtonPressed) || (!isPacing.directionButtonPressed && isPacing.runningButtonPressed) )
+		  && getCurrentState() == GameCoreStates::RUNNING && newState->getCurrentID() != GameCoreStates::FALLING) 
+	  {
+		  rigidBody->setAccelerationState(2);
+		  return;
+	  }
+  }
   switch(resultCheckingEqualStates)
   {
     case GameCoreStates::UPDATE_SPEEDX:
     {
+		if ( getSpeedX() == 0.0f )
+		{
       playerStateManager->changePreviousState( GameCoreStates::WALKING );
-      setSpeedX( speed.at( GameCoreStates::WALKING ).x );
+      setSpeedX( speed.at( GameCoreStates::WALKING ).x + 5.0f );
+	  rigidBody->setAccelerationState(1);
+		}
       return;
     }
     case GameCoreStates::NO_CHANGE:
@@ -48,11 +90,6 @@ void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState, int 
       playerStateManager->changeState(STILL_STATE);
       break;
     }
-    case GameCoreStates::RETURN_STOPPING:
-    {
-      playerStateManager->changeState(STOPPING_STATE);
-      break;
-    }
     case GameCoreStates::RETURN_WALKING:
     {
       playerStateManager->changeState(WALKING_STATE);
@@ -60,7 +97,21 @@ void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState, int 
     }
   }
 
+  if ( getCurrentState() == GameCoreStates::WALKING && getSpeedX() == 0.0f )
+  {
+	setSpeedX( speed.at( GameCoreStates::WALKING ).x );
+  }
+
+  if ( getCurrentState() != GameCoreStates::WALKING && getCurrentState() != GameCoreStates::RUNNING && 
+	  getCurrentState() != GameCoreStates::STILL && getCurrentState() != GameCoreStates::FAST_ATTACK && 
+	  getCurrentState() != GameCoreStates::JUMPING && getCurrentState() != GameCoreStates::FALLING && 
+	  getCurrentState() != GameCoreStates::DOUBLE_JUMP)
+  {
   setSpeedX(speed.at(getCurrentState()).x);
+  }
+
+
+
   setSpeedY(speed.at(getCurrentState()).y);
   handlerAnimation->setCurrentStateForAnimation(getCurrentState());
   handlerAnimation->restartOldTime();

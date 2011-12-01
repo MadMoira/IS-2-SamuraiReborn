@@ -340,7 +340,3 @@ bool InputMapping::GameInputMapper::mapButtonToState(InputMapping::RawInputButto
 
   return false;
 }
-
-
-
-

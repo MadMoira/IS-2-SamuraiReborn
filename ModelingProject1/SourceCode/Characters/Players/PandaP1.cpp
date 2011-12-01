@@ -27,16 +27,17 @@ void Characters::PandaP1::initializeCharacter(SpriteData::IDSprites id, std::str
 
 void Characters::PandaP1::noAction()
 {
-  characterSprite->setSpeedX(0.0f);
-  characterSprite->setPlayerMoveInX(false);
+  //characterSprite->setSpeedX(0.0f);
+  characterSprite->movePosXWithSpeed();
+  /*characterSprite->setPlayerMoveInX(false);
   characterSprite->setPlayerMoveInY(false);
-  characterSprite->setPlayerMoveInXCurrentFrame(false);
+  characterSprite->setPlayerMoveInXCurrentFrame(false);*/
   stop();		
 }
 
 void Characters::PandaP1::walk()
 {
-  characterSprite->setSpeedX( characterSprite->getStateXSpeed() );
+  //characterSprite->setSpeedX( characterSprite->getStateXSpeed() );
   characterSprite->movePosXWithSpeed();
   characterSprite->getHandlerAnimation()->animate();
   characterSprite->setPlayerMoveInY(false);
@@ -54,7 +55,7 @@ void Characters::PandaP1::run()
 void Characters::PandaP1::jump()
 {
   characterSprite->setPlayerMoveInY(true);
-  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  //characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
   characterSprite->movePosXWithSpeed();
   characterSprite->movePosYWithSpeed();
   characterSprite->getHandlerAnimation()->animate();
@@ -64,7 +65,7 @@ void Characters::PandaP1::jump()
 void Characters::PandaP1::fastAttack()
 {
   characterSprite->setPlayerMoveInY(true);
-  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  //characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
   characterSprite->movePosXWithSpeed();
   characterSprite->movePosYWithSpeed();
 
@@ -81,7 +82,7 @@ void Characters::PandaP1::fastAttack()
 void Characters::PandaP1::falling()
 {
   characterSprite->setPlayerMoveInY(true);
-  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  //characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
   characterSprite->movePosXWithSpeed();
   characterSprite->movePosYWithSpeed();
   characterSprite->getHandlerAnimation()->animate();

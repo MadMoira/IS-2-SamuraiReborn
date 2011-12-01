@@ -48,6 +48,7 @@ class GameCore
                 GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
                 std::vector< Vector2f> delayMovement);
    void initializeSpriteCollisionBoxPlayer(SpriteData::IDSprites id, float width, float height, GLfloat offsetX, GLfloat offsetY);
+   void initializeRigidBodyVectors(SpriteData::IDSprites id, std::vector< Vector2f > maxSpeed);
 
    bool getIsRunning() { return isRunning; }
    void setIsRunning(bool running) { isRunning = running; };

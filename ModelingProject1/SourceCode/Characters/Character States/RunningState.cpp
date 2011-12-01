@@ -55,6 +55,11 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::RETURN_STILL;
   }
 
+  if ( keyPreviouslyPressed == 5 )
+  {
+	  return GameCoreStates::CHANGE;
+  }
+
   return GameCoreStates::NO_CHANGE;
 }
 

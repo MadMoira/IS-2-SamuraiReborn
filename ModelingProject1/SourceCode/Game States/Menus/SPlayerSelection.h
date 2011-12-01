@@ -26,7 +26,7 @@ class SPlayerSelection : public GameState
    void handleKeyDown(SDLKey key);
    void handleEnterPressed();
 
-   void checkCorrectSelectionPlayer(bool* running);
+   void checkClickedMouse(bool* running);
    void checkControlsButtonsSelected(SDLKey key);
 
   private:

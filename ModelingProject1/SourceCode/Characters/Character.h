@@ -33,8 +33,8 @@ namespace Characters
      virtual void executeAction() = 0;
 
      void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
+	 void initializeRigidBodyVectors(std::vector< Vector2f > maxSpeed);
 
-     bool isStoppingMovement(std::list<InputMapping::Key> keys);
      bool isReadyToPace();
      bool isReadyToDoubleJump();
      bool isFalling();
