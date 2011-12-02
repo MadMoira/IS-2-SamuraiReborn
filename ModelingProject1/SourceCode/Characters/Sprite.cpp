@@ -31,8 +31,7 @@ Sprite::Sprite(SpriteData::IDSprites id, std::string filename, Vector2f pos,
   position.x = pos.x;		
   position.y = pos.y;
 
-  currentXSpeed = 0.0f;
-  currentYSpeed = 0.0f;
+  speed = Vector2f(0.0f, 0.0f);
 
   countX = 0;
   countY = 0;
@@ -84,9 +83,12 @@ void Sprite::movePosXWithSpeed()
       return;
     }
 
+	bool canMove = collisionHandler->checkPositionWithinLevelLength(*spriteCollisionBox, directionsMove, 
+		                             speed, handlerAnimation->getAnimationDirection()); 
+
     if ( handlerAnimation->getAnimationDirection() == SpriteData::RIGHT )
     {
-      if ( getBoxX() + getSpeedX() + getBoxWidth() < 6400.f )
+      if ( canMove )
       {
         if ( !directionsMove.canMoveXRight || getSpeedX() == 0.0f)
         {
@@ -99,7 +101,7 @@ void Sprite::movePosXWithSpeed()
         characterMovement.playerMoveInX = true;
         characterMovement.playerMoveInXInCurrentFrame = true;
 
-        rigidBody->applyNaturalPhysicForces(GamePhysics::X, &currentXSpeed, &currentYSpeed, 
+        rigidBody->applyNaturalPhysicForces(GamePhysics::X, &speed.x, &speed.y, 
                                             getCurrentState(), handlerAnimation->getAnimationDirection(),
 											getPreviousState());
 
@@ -113,7 +115,7 @@ void Sprite::movePosXWithSpeed()
       }
     }
 
-    else if ( getBoxX() + getSpeedX() > 0.0f )
+    else if ( canMove )
     {
       if ( !directionsMove.canMoveXLeft || getSpeedX() == 0.0f )
       {
@@ -123,7 +125,7 @@ void Sprite::movePosXWithSpeed()
       position.x += getSpeedX();
       spriteCollisionBox->setX(position.x + spriteCollisionBox->getOffset().x, handlerAnimation->getAnimationDirection());
 
-      rigidBody->applyNaturalPhysicForces(GamePhysics::X, &currentXSpeed, &currentYSpeed, 
+      rigidBody->applyNaturalPhysicForces(GamePhysics::X, &speed.x, &speed.y, 
                                           getCurrentState(), handlerAnimation->getAnimationDirection(),
 										  getPreviousState());
 
@@ -138,7 +140,9 @@ void Sprite::movePosXWithSpeed()
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
       return;
     }
+
     characterMovement.playerMoveInX = false;
+	speed.x = 0.0f;
   }
 }
 
@@ -163,7 +167,7 @@ void Sprite::movePosYWithSpeed()
       position.y += getSpeedY();
       spriteCollisionBox->setY(position.y);
 
-      rigidBody->applyNaturalPhysicForces(GamePhysics::Y, &currentXSpeed, &currentYSpeed, 
+      rigidBody->applyNaturalPhysicForces(GamePhysics::Y, &speed.x, &speed.y, 
                                           getCurrentState(), handlerAnimation->getAnimationDirection(),
 										  getPreviousState());
 
@@ -180,7 +184,7 @@ void Sprite::movePosYWithSpeed()
       return;
     }
 
-    currentYSpeed = 0.0f;
+    speed.y = 0.0f;
     characterMovement.playerMoveInX = false;
     characterMovement.playerMoveInY = false;
   }
@@ -208,11 +212,11 @@ void Sprite::setSpeedX(GLfloat speedX)
 {
   if ( !getPlayerMoveBasedInDirection() )
   {
-    currentXSpeed = 0.0f;
+    speed.x = 0.0f;
     return;
   }
 
-  currentXSpeed = speedX;
+  speed.x = speedX;
 }
 
 void Sprite::setSpeedY(GLfloat speedY)
@@ -232,7 +236,7 @@ void Sprite::setSpeedY(GLfloat speedY)
     }
   }
 
-  currentYSpeed = speedY;
+  speed.y = speedY;
 }
 
 void Sprite::setConstantSpeedX(int constant)
@@ -241,8 +245,8 @@ void Sprite::setConstantSpeedX(int constant)
 
   if ( constant < 0 )
   {
-    currentXSpeed *= constant;
-	currentXSpeed = rigidBody->getMomentumForce(currentXSpeed, axisDirection);
+    speed.x *= constant;
+	speed.x = rigidBody->getMomentumForce(speed.x, axisDirection);
   }
 }
 

@@ -28,6 +28,8 @@ void SLevelOneJapan::init()
 
   gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
                                  gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
+
+  Collider::getInstance()->setLevelLength(6400);
 }
 
 void SLevelOneJapan::handleEvents()
@@ -111,7 +113,7 @@ void SLevelOneJapan::cleanUp()
 
 void SLevelOneJapan::initializePlayers()
 {
-  //gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
+  gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
   //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
 
   std::vector< Vector2f > maxSpeedPanda;

@@ -59,12 +59,12 @@ class Sprite
 
    CollisionSystem::DirectionsMove getDirectionsMove() { return directionsMove; }
 
-   GLfloat getSpeedX() { return currentXSpeed; }
+   GLfloat getSpeedX() { return speed.x; }
 
    void setSpeedX(GLfloat speedX);
    void setConstantSpeedX(int constant);
 
-   GLfloat getSpeedY() { return currentYSpeed; }
+   GLfloat getSpeedY() { return speed.y; }
    void setSpeedY(GLfloat speedY);
 
    GLuint getTexture() { return texture; }
@@ -117,9 +117,9 @@ class Sprite
    GamePhysics::RigidBody* rigidBody;
     
    Vector2f position;
+   Vector2f speed;
    std::vector< Vector2f > delayMovementSprite;
    GLfloat width, height, widthTexture, heightTexture;
-   GLfloat currentXSpeed, currentYSpeed;
    int countX, countY;
    bool isOnGround;
 };
