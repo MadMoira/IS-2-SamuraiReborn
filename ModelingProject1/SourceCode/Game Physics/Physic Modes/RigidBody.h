@@ -11,11 +11,14 @@ namespace GamePhysics
      ~RigidBody(void);
 
      void initializeNaturalPhysicsForces(float forceOne, float forceTwo);
+	 void initializeSpeedVectors(std::vector< Vector2f > maxSpeed);
      void applyNaturalPhysicForces(int currentMovement, GLfloat* speedX, GLfloat* speedY, int playerState, int direction, 
 		                           int previousState);
-	 void initializeSpeedVectors(std::vector< Vector2f > maxSpeed);
-
+	 
+	 GLfloat getMomentumForce(GLfloat speedX, int axisDirection);
 	 void setAccelerationState(int state) { accState = (AccelerationState)state; }
+
+	 std::vector< Vector2f > getMaxSpeed() { return maxSpeed; }
 
     private:
      float gravityValue;

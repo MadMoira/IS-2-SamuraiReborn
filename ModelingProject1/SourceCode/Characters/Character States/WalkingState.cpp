@@ -33,10 +33,5 @@ int GameCoreStates::WalkingState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::NO_CHANGE;
   }
 
-  if ( !isPacing.directionButtonPressed && isPacing.runningButtonPressed )
-  {
-    return GameCoreStates::RETURN_STILL;
-  }
-
   return GameCoreStates::CHANGE;
 }

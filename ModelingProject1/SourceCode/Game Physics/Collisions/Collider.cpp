@@ -217,32 +217,11 @@ bool Collider::checkStateCollisionPlayer(Sprite& playerSprite)
     playerSprite.setPositionY(offsetPosition);
     playerSprite.getCollisionBox()->setY( playerSprite.getCollisionBox()->getY() - playerSprite.getCollisionBox()->getOffset().y - 
                                           offsetPosition );
-	if ( /*( playerSprite.getPreviousState() == GameCoreStates::JUMPING ||  playerSprite.getPreviousState() == GameCoreStates::WALKING)
-		&&*/ playerSprite.getSpeedX() > 0.0f && playerSprite.getSpeedX() <= 10.0f)
-	{
-	      playerSprite.changeStateSprite(new GameCoreStates::WalkingState(GameCoreStates::WALKING), 0, 
-                                         std::list<InputMapping::Key>() );
-		  playerSprite.setPlayerMoveInX(true);
-	}
-		else if ( /*(playerSprite.getPreviousState() == GameCoreStates::JUMPING ||  playerSprite.getPreviousState() == GameCoreStates::RUNNING)
-			&&*/ playerSprite.getSpeedX() > 10.0f && playerSprite.getSpeedX() <= 18.0f)
-	{
-	      playerSprite.changeStateSprite(new GameCoreStates::RunningState(GameCoreStates::RUNNING), 5, 
-                                         std::list<InputMapping::Key>() );
-		  playerSprite.setPlayerMoveInX(true);
-	}
-	else
-	{
-    playerSprite.changeStateSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
-                                         std::list<InputMapping::Key>() );
-	playerSprite.setSpeedX(0.0f);
-	playerSprite.setPlayerMoveInX(false);
-	}
-    
+
+    checkStatePhysicsModes(playerSprite);
     
     playerSprite.setPlayerCanMoveYUp(true);
     playerSprite.setPlayerCanMoveYDown(false);
-    
     playerSprite.setPlayerMoveInY(false);
     return true;
   }
@@ -268,9 +247,9 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
     GLfloat offsetPosition = recalculateSpriteBoxPosition(playerSprite.getCollisionBox()->getX(),
                                                           playerSprite.getCollisionBox()->getOffsetXPosition(animationDirection),
                                                           animationDirection);
-    playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1) * offsetPosition);
+    playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()) * offsetPosition);
     playerSprite.getCollisionBox()->setX( playerSprite.getPosX() - 
-                                         ( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1 )*
+                                         ( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue() )*
                                           playerSprite.getCollisionBox()->getOffset().x ) + 
                                           playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), 
                                           animationDirection );
@@ -289,9 +268,9 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
                                                           playerSprite.getCollisionBox()->getOffsetXPosition(animationDirection),
                                                           animationDirection);
 
-    playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1) * offsetPosition);
+    playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()) * offsetPosition);
     playerSprite.getCollisionBox()->setX( playerSprite.getPosX() - 
-                                         ( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1 )*
+                                         ( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue() )*
                                           playerSprite.getCollisionBox()->getOffset().x ) + 
                                           playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), 
                                           animationDirection );
@@ -312,13 +291,48 @@ bool Collider::checkStateCollisionXAxis(Sprite& playerSprite)
                                                           playerSprite.getCollisionBox()->getOffsetXPosition(animationDirection),
                                                           animationDirection);
 
-    playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1) * offsetPosition);
+    playerSprite.setPositionX( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()) * offsetPosition);
     playerSprite.getCollisionBox()->setX( playerSprite.getPosX() - 
-                                         ( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue()*-1 )*
+                                         ( (playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue() )*
                                           playerSprite.getCollisionBox()->getOffset().x ) + 
                                           playerSprite.getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), 
                                           animationDirection );
     return true;
+  }
+
+  return false;
+}
+
+bool Collider::checkStatePhysicsModes(Sprite& playerSprite)
+{
+  int directionAxis = playerSprite.getHandlerAnimation()->returnAnimationDirectionAxisValue();
+  std::vector< Vector2f > tempMaxSpeed = playerSprite.getRigidBody().getMaxSpeed();
+
+  if ( playerSprite.getSpeedX()*directionAxis > 0.0f && 
+	   playerSprite.getSpeedX()*directionAxis <= tempMaxSpeed.at(GameCoreStates::WALKING).x )
+  {
+    playerSprite.changeStateSprite(new GameCoreStates::WalkingState(GameCoreStates::WALKING), 0, 
+                                   std::list<InputMapping::Key>() );
+    playerSprite.setPlayerMoveInX(true);
+	return true;
+  }
+
+  else if ( playerSprite.getSpeedX()*directionAxis > tempMaxSpeed.at(GameCoreStates::WALKING).x && 
+	        playerSprite.getSpeedX()*directionAxis <= tempMaxSpeed.at(GameCoreStates::RUNNING).x )
+  {
+    playerSprite.changeStateSprite(new GameCoreStates::RunningState(GameCoreStates::RUNNING), GamePhysics::TO_WALKING, 
+                                   std::list<InputMapping::Key>() );
+    playerSprite.setPlayerMoveInX(true);
+	return true;
+  }
+
+  else
+  {
+    playerSprite.changeStateSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
+                                   std::list<InputMapping::Key>() );
+	playerSprite.setSpeedX(0.0f);
+	playerSprite.setPlayerMoveInX(false);
+	return true;
   }
 
   return false;

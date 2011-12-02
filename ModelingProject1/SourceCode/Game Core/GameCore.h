@@ -39,14 +39,15 @@ class GameCore
    boost::ptr_vector< Characters::Player >& getPlayersList() { return playersList; }
    boost::ptr_vector< Characters::Enemy >& getEnemyList() { return enemiesList; }
 
-   void addPlayerToGame(Characters::Player* player, SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed,
+   void addPlayerToGame(Characters::Player* player, SpriteData::IDSprites id, std::string filename, Vector2f pos, 
+	            int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
+                GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+                std::vector< Vector2f> delayMovement);
+   void addEnemyToGame(Characters::Enemy *enemy, SpriteData::IDSprites id, std::string filename,
                 Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
                 GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
                 std::vector< Vector2f> delayMovement);
-   void addEnemyToGame(Characters::Enemy *enemy, SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed,
-                Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
-                GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
-                std::vector< Vector2f> delayMovement);
+
    void initializeSpriteCollisionBoxPlayer(SpriteData::IDSprites id, float width, float height, GLfloat offsetX, GLfloat offsetY);
    void initializeRigidBodyVectors(SpriteData::IDSprites id, std::vector< Vector2f > maxSpeed);
 

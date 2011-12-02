@@ -11,6 +11,7 @@ GamePhysics::RigidBody::RigidBody(int mode) : PhysicsCore( mode )
 
 GamePhysics::RigidBody::~RigidBody(void)
 {
+  maxSpeed.clear();
 }
 
 void GamePhysics::RigidBody::initializeNaturalPhysicsForces(float forceOne, float forceTwo)
@@ -44,6 +45,17 @@ void GamePhysics::RigidBody::applyNaturalPhysicForces(int currentMovement, GLflo
   }
 }
 
+GLfloat GamePhysics::RigidBody::getMomentumForce(GLfloat speedX, int axisDirection)
+{
+  GLfloat forceMomentum = 9.0f;
+  if ( speedX*(axisDirection) - forceMomentum <= 0.0f )
+  {
+	return speedX;
+  }
+
+  return speedX - (axisDirection)*forceMomentum;
+}
+
 void GamePhysics::RigidBody::parabolicShot(GLfloat* yVelocity, int playerState)
 {
   if( playerState == GameCoreStates::JUMPING || playerState == GameCoreStates::DOUBLE_JUMP || 
@@ -61,94 +73,48 @@ void GamePhysics::RigidBody::parabolicShot(GLfloat* yVelocity, int playerState)
 
 void GamePhysics::RigidBody::acceleratePlayer(GLfloat* xVelocity, int playerState, int previousState, int directionX)
 {
+  int axisDirection = 1;
+  int indexState = playerState;
+
+  if ( (playerState == GameCoreStates::JUMPING || playerState == GameCoreStates::DOUBLE_JUMP) &&
+	   (previousState == GameCoreStates::WALKING || previousState == GameCoreStates::RUNNING) )
+  {
+    indexState = previousState;
+  }
+
+  if ( directionX == SpriteData::LEFT )
+  {
+	axisDirection = -1;
+  }
+
+  bool noAccelerationState = indexState != GameCoreStates::FALLING && indexState != GameCoreStates::FAST_ATTACK &&
+	                        (playerState != GameCoreStates::DOUBLE_JUMP && previousState != GameCoreStates::JUMPING); 
+
   switch( accState )
   {
-  case ACCELERATE:
-	  {
-	  }
-  case DECELERATE:
-	  {
-	  }
-  }
-	if ( playerState == GameCoreStates::WALKING && accState == 1 )
-	{
-  *xVelocity += accelerationXValue;
-  if ( *xVelocity >= maxSpeed.at(playerState).x )
-  {
-	*xVelocity = maxSpeed.at(playerState).x ;
-  }
+    case ACCELERATE:
+    {
+      if ( noAccelerationState )
+      {
+        *xVelocity += accelerationXValue*(axisDirection);
+        if ( *xVelocity*(axisDirection) >= maxSpeed.at(indexState).x )
+        {
+	      *xVelocity = maxSpeed.at(indexState).x * axisDirection;
+        }
+      }
+      break;
+    }
+    case DECELERATE:
+    {
+      if ( noAccelerationState )
+      {
+        *xVelocity -= accelerationXValue*(axisDirection);
+        if ( *xVelocity*(axisDirection) <= 0.0f )
+        {
+	      *xVelocity = 0.0f;
+        }
+	  }				  
+	  break;
 	}
-
-
-		if ( playerState == GameCoreStates::WALKING && accState == 2 )
-	{
-  *xVelocity -= accelerationXValue;
-  if ( *xVelocity <= 0.0f )
-  {
-	*xVelocity = 0.0f;
   }
-	}
-
-		if ( playerState == GameCoreStates::RUNNING && accState == 1)
-	{
-  *xVelocity += accelerationXValue;
-  if ( *xVelocity >= maxSpeed.at(playerState).x  )
-  {
-	*xVelocity = maxSpeed.at(playerState).x ;
-  }
-	}
-
-				if ( playerState == GameCoreStates::RUNNING && accState == 2 )
-	{
-  *xVelocity -= accelerationXValue;
-  if ( *xVelocity <= 0.0f )
-  {
-	*xVelocity = 0.0f;
-  }
-	}
-
-				if ( playerState == GameCoreStates::JUMPING && accState == 1 && previousState == GameCoreStates::WALKING)
-	{
-  *xVelocity += accelerationXValue;
-  if ( *xVelocity >= maxSpeed.at(previousState).x  )
-  {
-	*xVelocity = maxSpeed.at(previousState).x ;
-  }
-	}
-
-								if ( playerState == GameCoreStates::JUMPING && accState == 1 && previousState == GameCoreStates::RUNNING)
-	{
-  *xVelocity += accelerationXValue;
-  if ( *xVelocity >= maxSpeed.at(previousState).x  )
-  {
-	*xVelocity = maxSpeed.at(previousState).x ;
-  }
-	}
-
-												if ( playerState == GameCoreStates::DOUBLE_JUMP && accState == 1 && previousState == GameCoreStates::WALKING)
-	{
-  *xVelocity += accelerationXValue;
-  if ( *xVelocity >= maxSpeed.at(previousState).x)
-  {
-	*xVelocity = maxSpeed.at(previousState).x;
-  }
-	}
-
-								if ( playerState == GameCoreStates::DOUBLE_JUMP && accState == 1 && previousState == GameCoreStates::RUNNING)
-	{
-  *xVelocity += accelerationXValue;
-  if ( *xVelocity >= maxSpeed.at(previousState).x )
-  {
-	*xVelocity = maxSpeed.at(previousState).x;
-  }
-	}
-
-				if ( playerState == GameCoreStates::STILL)
-	{
-  *xVelocity -= accelerationXValue;
-  if ( *xVelocity <= 0.0f )
-  {
-	*xVelocity = 0.0f;
-  }
-	}
 }

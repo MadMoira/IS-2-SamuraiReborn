@@ -6,6 +6,8 @@
 #include "PlayerSpriteStates.h"
 #include "ComparatorFunctions.h"
 
+#include <PhysicModes.h>
+
 
 GameCoreStates::RunningState::RunningState(int id) : PlayerState( id )
 {
@@ -43,21 +45,9 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::NO_CHANGE;
   }
 
-  if ( !isRunning.runningButtonPressed && isRunning.directionButtonPressed && 
-       keyPreviouslyPressed == RETURNING_FROM_PREVIOUS_STATE)
+  if ( keyPreviouslyPressed == GamePhysics::TO_WALKING )
   {
-    return GameCoreStates::RETURN_WALKING;
-  }
-
-  if ( isRunning.runningButtonPressed && !isRunning.directionButtonPressed && 
-       currentState != GameCoreStates::STILL)
-  {
-    return GameCoreStates::RETURN_STILL;
-  }
-
-  if ( keyPreviouslyPressed == 5 )
-  {
-	  return GameCoreStates::CHANGE;
+    return GameCoreStates::CHANGE;
   }
 
   return GameCoreStates::NO_CHANGE;

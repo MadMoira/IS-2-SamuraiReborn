@@ -22,10 +22,6 @@ class Collider
    void checkTileCollision(CollisionSystem::CollisionBox& A, int directionX,  int directionY, 
                            CollisionSystem::DirectionsMove& directionsMove, int currentMovement);
 
-   bool checkStateCollisionPlayer( Sprite& playerSprite );
-   bool checkStateCollisionXAxis( Sprite& playerSprite );
-   GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition, int direction );
-
    void checkBoxBordersCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove,
                                   int leftPositionBorder, int currentPosition, int positionY );
    void checkTopBoxCollision( CollisionSystem::DirectionsMove& directionsMove, int topY, int directionY, int currentPositionY );
@@ -34,6 +30,13 @@ class Collider
    void checkBottomBoxCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, 
                                  int directionX, int directionY, int currentPositionX, int currentPositionY,
                                  int currentMovement);
+
+   bool checkStateCollisionPlayer( Sprite& playerSprite );
+   bool checkStateCollisionXAxis( Sprite& playerSprite );
+   bool checkStatePhysicsModes( Sprite& playerSprite );
+   GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition, int direction );
+
+
    bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
    //boost::ptr_vector< Characters::Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);

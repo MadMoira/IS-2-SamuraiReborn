@@ -73,26 +73,25 @@ void GameCore::resetCamera(GLfloat level, GLfloat spawningPoint)
   camera->resetCamera(level, spawningPoint);
 }
 
-void GameCore::addPlayerToGame(Characters::Player *player, SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed, 
+void GameCore::addPlayerToGame(Characters::Player *player, SpriteData::IDSprites id, std::string filename, 
                 Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
                 std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
                 std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
   playersList.push_back( player );
-  playersList.at( playersList.size() - 1 ).initializeCharacter(id, filename, speed, 
+  playersList.at( playersList.size() - 1 ).initializeCharacter(id, filename, 
                                            pos, initialFrame, maxFrame, returnFrame,
                                            widthSprite, heightSprite, framerateAnimations,
                                            delayMovement);
 }
 
-void GameCore::addEnemyToGame(Characters::Enemy *enemy, SpriteData::IDSprites id, std::string filename, std::vector< Vector2f> speed,
+void GameCore::addEnemyToGame(Characters::Enemy *enemy, SpriteData::IDSprites id, std::string filename,
                 Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
                 GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
                 std::vector< Vector2f> delayMovement)
 {
   enemiesList.push_back( enemy );
-  enemiesList.back().initializeCharacter(id, filename, speed, 
-                                         pos, initialFrame, maxFrame, returnFrame,
+  enemiesList.back().initializeCharacter(id, filename, pos, initialFrame, maxFrame, returnFrame,
                                          widthSprite, heightSprite, framerateAnimations,
                                          delayMovement);
 }

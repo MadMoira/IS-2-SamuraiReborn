@@ -4,7 +4,7 @@
 #include "Collider.h"
 #include "Camera.h"
 
-Sprite::Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
+Sprite::Sprite(SpriteData::IDSprites id, std::string filename, Vector2f pos, 
                 int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
                 GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
                 std::vector< Vector2f> delayMovement)
@@ -30,9 +30,9 @@ Sprite::Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vect
   height = heightSprite;
   position.x = pos.x;		
   position.y = pos.y;
-  this->speed = speed;
-  currentXSpeed = speed.at(getCurrentState()).x;
-  currentYSpeed = speed.at(getCurrentState()).y;
+
+  currentXSpeed = 0.0f;
+  currentYSpeed = 0.0f;
 
   countX = 0;
   countY = 0;
@@ -46,7 +46,6 @@ Sprite::Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vect
 Sprite::~Sprite(void)
 {
   glDeleteTextures(1, &texture);
-  speed.clear();
   delayMovementSprite.clear();
   delete rigidBody;
   delete playerStateManager;
@@ -207,34 +206,13 @@ bool Sprite::getPlayerDirectionYBasedInDirection()
 
 void Sprite::setSpeedX(GLfloat speedX)
 {
-  switch( getCurrentState() )
-  {
-    case GameCoreStates::JUMPING:
-    case GameCoreStates::DOUBLE_JUMP:
-    case GameCoreStates::FALLING:
-    {
-      speed.at(getCurrentState()).x = speedX;
-      break;
-    }
-    case GameCoreStates::FAST_ATTACK:
-    {
-      if ( getPreviousState() == GameCoreStates::JUMPING )
-      {
-        speed.at(getCurrentState()).x = speed.at(getPreviousState()).x/2;
-        break;
-      }
-      speed.at(getCurrentState()).x = speed.at(getPreviousState()).x;
-      break;
-    }
-  }
-
   if ( !getPlayerMoveBasedInDirection() )
   {
     currentXSpeed = 0.0f;
     return;
   }
 
-  currentXSpeed = speed.at(getCurrentState()).x;
+  currentXSpeed = speedX;
 }
 
 void Sprite::setSpeedY(GLfloat speedY)
@@ -244,13 +222,13 @@ void Sprite::setSpeedY(GLfloat speedY)
     if ( getPreviousState() == GameCoreStates::JUMPING )
     {
       speedY = -4.0f;
-      speed.at(getCurrentState()).y = speedY;
+	  rigidBody->getMaxSpeed().at(getCurrentState()).y = speedY;
     }
 
     else
     {
       speedY = 0.0f;
-      speed.at(getCurrentState()).y = speedY;	  
+      rigidBody->getMaxSpeed().at(getCurrentState()).y = speedY;	  
     }
   }
 
@@ -259,12 +237,13 @@ void Sprite::setSpeedY(GLfloat speedY)
 
 void Sprite::setConstantSpeedX(int constant)
 {
-  for(std::string::size_type i = 0; i < speed.size(); i++)
-  {
-    speed.at(i).x *= constant;
-  }
+  int axisDirection = handlerAnimation->returnAnimationDirectionAxisValue();
 
-  currentXSpeed *= constant;
+  if ( constant < 0 )
+  {
+    currentXSpeed *= constant;
+	currentXSpeed = rigidBody->getMomentumForce(currentXSpeed, axisDirection);
+  }
 }
 
 void Sprite::changeCurrentFrame(int frame)
