@@ -45,7 +45,8 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
     return GameCoreStates::NO_CHANGE;
   }
 
-  if ( keyPreviouslyPressed == GamePhysics::TO_WALKING )
+  if ( keyPreviouslyPressed == GamePhysics::TO_WALKING || 
+	  (!isRunning.directionButtonPressed && currentState == GameCoreStates::FAST_ATTACK) )
   {
     return GameCoreStates::CHANGE;
   }

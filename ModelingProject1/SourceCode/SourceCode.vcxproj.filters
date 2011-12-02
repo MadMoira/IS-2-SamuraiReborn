@@ -682,5 +682,8 @@
     <None Include="Resources\GUI\Cursor.png">
       <Filter>Resource Files\GUI</Filter>
     </None>
+    <None Include="Resources\Menus\Menu Selection Player\Keyboard.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -111,7 +111,7 @@ void SLevelOneJapan::cleanUp()
 
 void SLevelOneJapan::initializePlayers()
 {
-  gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
+  //gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
   //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
 
   std::vector< Vector2f > maxSpeedPanda;
@@ -124,13 +124,13 @@ void SLevelOneJapan::initializePlayers()
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   
   std::vector< Vector2f > maxSpeedMeerkat;
-  maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
-  maxSpeedPanda.push_back( Vector2f(10.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -26.0f) );
-  maxSpeedPanda.push_back( Vector2f(20.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -20.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
-  maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
+  maxSpeedMeerkat.push_back( Vector2f(10.0f, 0.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -26.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -20.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
 
   std::vector < int > maxFrameVector;
   maxFrameVector.push_back( 0 );

@@ -243,6 +243,7 @@
     <None Include="Resources\Menus\Main Menu\MainMenuButtons.png" />
     <None Include="Resources\Menus\Main Menu\MainMenuHighlighter.png" />
     <None Include="Resources\Menus\Menu Selection Player\Gamepad.png" />
+    <None Include="Resources\Menus\Menu Selection Player\Keyboard.png" />
     <None Include="Resources\Menus\Menu Selection Player\MenuCharacterSelectorBackground.png" />
     <None Include="Resources\Menus\Menu Selection Player\PandaSelector.png" />
     <None Include="Resources\Menus\Menu Selection Player\SuricataSelector.png" />

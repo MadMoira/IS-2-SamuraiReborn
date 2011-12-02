@@ -113,7 +113,7 @@ void Sprite::movePosXWithSpeed()
       }
     }
 
-    else if ( getBoxX() + getSpeedX() > 0 )
+    else if ( getBoxX() + getSpeedX() > 0.0f )
     {
       if ( !directionsMove.canMoveXLeft || getSpeedX() == 0.0f )
       {
