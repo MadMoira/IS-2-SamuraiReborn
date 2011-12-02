@@ -19,7 +19,7 @@ void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState, int 
 
   int directionAxis = handlerAnimation->returnAnimationDirectionAxisValue();
 
-  bool resultAccelerationForce = rigidBody->updateAccelerationState(keys, isPacing, currentXSpeed, getCurrentState(),
+  bool resultAccelerationForce = rigidBody->updateAccelerationState(keys, isPacing, speed.x, getCurrentState(),
 	                                        newState->getCurrentID(), directionAxis);
 
   if ( resultAccelerationForce )

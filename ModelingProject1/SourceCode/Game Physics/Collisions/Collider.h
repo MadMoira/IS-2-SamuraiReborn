@@ -14,7 +14,9 @@ class Collider
    
    void initializeColliderSprites(boost::ptr_vector< Characters::Enemy >* enemiesList, 
                                   boost::ptr_vector< Characters::Player >* playersList);
-   void addLayerTilemap(std::vector< std::vector < Tile > > layer); 
+   void addLayerTilemap(std::vector< std::vector < Tile > > layer);
+   
+   void setLevelLength(int length) { levelLength = length; }
 
    void cleanUpResources();
    
@@ -36,7 +38,6 @@ class Collider
    bool checkStatePhysicsModes( Sprite& playerSprite );
    GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition, int direction );
 
-
    bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
    //boost::ptr_vector< Characters::Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
@@ -44,12 +45,16 @@ class Collider
 
    bool onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY);
 
+   bool checkPositionWithinLevelLength(CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, 
+	                                   Vector2f speed, int directionX);
+
   protected:
    Collider();
 
   private:
    static bool instanceFlag;
    static Collider* collider;
+   int levelLength;
    std::vector< std::vector< std::vector < Tile > > > layers;
    boost::ptr_vector< Characters::Enemy >* enemies;
    boost::ptr_vector< Characters::Player >* players;

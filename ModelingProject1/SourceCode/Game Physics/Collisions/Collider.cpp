@@ -444,3 +444,25 @@ bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int
 
   return isOnGround;
 }
+
+bool Collider::checkPositionWithinLevelLength(CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, 
+	                                   Vector2f speed, int directionX)
+{
+  if ( directionX == SpriteData::RIGHT )
+  {
+	if ( A.getX() + speed.x + A.getWidth() > levelLength )
+	{
+      directionsMove.setCanMoveRight(false);
+      return false;
+	}
+  }
+  else
+  {
+    if ( A.getX() + speed.x < 0.0f )
+    {
+	  directionsMove.setCanMoveLeft(false);
+	  return false;
+	}
+  }
+  return true;
+}
