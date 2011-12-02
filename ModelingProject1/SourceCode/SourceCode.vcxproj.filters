@@ -282,9 +282,6 @@
     <ClCompile Include="Characters\Character States\StillState.cpp">
       <Filter>Source Files\Characters\States</Filter>
     </ClCompile>
-    <ClCompile Include="Characters\Character States\StoppingState.cpp">
-      <Filter>Source Files\Characters\States</Filter>
-    </ClCompile>
     <ClCompile Include="Characters\Character States\WalkingState.cpp">
       <Filter>Source Files\Characters\States</Filter>
     </ClCompile>
@@ -468,9 +465,6 @@
       <Filter>Header Files\Characters\States</Filter>
     </ClInclude>
     <ClInclude Include="Characters\Character States\StillState.h">
-      <Filter>Header Files\Characters\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Characters\Character States\StoppingState.h">
       <Filter>Header Files\Characters\States</Filter>
     </ClInclude>
     <ClInclude Include="Characters\Character States\WalkingState.h">

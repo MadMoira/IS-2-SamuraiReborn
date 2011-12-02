@@ -78,9 +78,9 @@ int Animation::returnAnimationDirectionAxisValue()
 {
   if ( animationDirectionX == SpriteData::LEFT )
   {
-    return 1;
+    return -1;
   }
-  return -1;
+  return 1;
 }
 
 void Animation::changeDirectionY(float speed)

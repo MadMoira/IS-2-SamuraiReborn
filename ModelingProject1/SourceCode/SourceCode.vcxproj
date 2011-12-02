@@ -89,7 +89,6 @@
     <ClCompile Include="Characters\Character States\RunningState.cpp" />
     <ClCompile Include="Characters\Character States\State.cpp" />
     <ClCompile Include="Characters\Character States\StillState.cpp" />
-    <ClCompile Include="Characters\Character States\StoppingState.cpp" />
     <ClCompile Include="Characters\Character States\WalkingState.cpp" />
     <ClCompile Include="Characters\Character.cpp" />
     <ClCompile Include="Characters\Enemies\Enemy.cpp" />
@@ -159,7 +158,6 @@
     <ClInclude Include="Characters\Character States\RunningState.h" />
     <ClInclude Include="Characters\Character States\State.h" />
     <ClInclude Include="Characters\Character States\StillState.h" />
-    <ClInclude Include="Characters\Character States\StoppingState.h" />
     <ClInclude Include="Characters\Character States\WalkingState.h" />
     <ClInclude Include="Characters\Character.h" />
     <ClInclude Include="Characters\Enemies\Enemy.h" />

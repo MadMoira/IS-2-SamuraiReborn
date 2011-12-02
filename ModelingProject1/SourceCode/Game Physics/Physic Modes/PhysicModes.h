@@ -19,4 +19,9 @@ namespace GamePhysics
 	ACCELERATE,
 	DECELERATE,
   };
+
+  enum AccelerationChange
+  {
+	TO_WALKING = 4,
+  };
 }

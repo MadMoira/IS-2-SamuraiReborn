@@ -9,12 +9,12 @@ Characters::MeerkatP2::~MeerkatP2()
   delete score;
 }
 
-void Characters::MeerkatP2::initializeCharacter(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed,
+void Characters::MeerkatP2::initializeCharacter(SpriteData::IDSprites id, std::string filename,
                 Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
                 std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite,
                 std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
-  characterSprite = new PlayerSprite(id, filename, speed, pos, initialFrame, maxFrame, returnFrame,
+  characterSprite = new PlayerSprite(id, filename, pos, initialFrame, maxFrame, returnFrame,
                             widthSprite, heightSprite, framerateAnimations, delayMovement);
 
   stats = new PlayerStats::Stats();
@@ -36,7 +36,6 @@ void Characters::MeerkatP2::noAction()
 
 void Characters::MeerkatP2::walk()
 {
-  characterSprite->setSpeedX( characterSprite->getStateXSpeed() );
   characterSprite->movePosXWithSpeed();
   characterSprite->getHandlerAnimation()->animate();
   characterSprite->setPlayerMoveInY(false);
@@ -54,7 +53,6 @@ void Characters::MeerkatP2::run()
 void Characters::MeerkatP2::jump()
 {
   characterSprite->setPlayerMoveInY(true);
-  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
   characterSprite->movePosXWithSpeed();
   characterSprite->movePosYWithSpeed();
   characterSprite->getHandlerAnimation()->animate();
@@ -64,7 +62,6 @@ void Characters::MeerkatP2::jump()
 void Characters::MeerkatP2::fastAttack()
 {
   characterSprite->setPlayerMoveInY(true);
-  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
   characterSprite->movePosXWithSpeed();
   characterSprite->movePosYWithSpeed();
 
@@ -81,7 +78,6 @@ void Characters::MeerkatP2::fastAttack()
 void Characters::MeerkatP2::falling()
 {
   characterSprite->setPlayerMoveInY(true);
-  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
   characterSprite->movePosXWithSpeed();
   characterSprite->movePosYWithSpeed();
   characterSprite->getHandlerAnimation()->animate();
@@ -90,19 +86,6 @@ void Characters::MeerkatP2::falling()
   {
     stop();
   }
-}
-
-void Characters::MeerkatP2::stopping()
-{
-  characterSprite->setPlayerMoveInY(false);
-  characterSprite->movePosXWithSpeed();
-  characterSprite->getHandlerAnimation()->animate();
-
-  if ( characterSprite->getSpeedX() == 0.0f )
-  {
-    characterSprite->setPlayerMoveInX(false);
-  }
-  stop();
 }
 
 void Characters::MeerkatP2::draw()

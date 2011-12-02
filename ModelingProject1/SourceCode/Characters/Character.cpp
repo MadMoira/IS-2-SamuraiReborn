@@ -25,7 +25,7 @@ bool Characters::Character::isReadyToPace()
 
 bool Characters::Character::isReadyToDoubleJump()
 {
-  if ( characterSprite->getSpeedY() >= -16 && characterSprite->getSpeedY() <= 0  )
+  if ( characterSprite->getSpeedY() >= -16.0f && characterSprite->getSpeedY() <= 0  )
   {
     return true;
   }

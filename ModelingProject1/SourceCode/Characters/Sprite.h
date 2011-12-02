@@ -60,8 +60,6 @@ class Sprite
    CollisionSystem::DirectionsMove getDirectionsMove() { return directionsMove; }
 
    GLfloat getSpeedX() { return currentXSpeed; }
-   GLfloat getStateXSpeed() { return speed.at(getCurrentState()).x; }
-   GLfloat getPreviousStateXSpeed() { return speed.at(getPreviousState()).x; }
 
    void setSpeedX(GLfloat speedX);
    void setConstantSpeedX(int constant);
@@ -104,10 +102,9 @@ class Sprite
    void drawTexture();
 
   protected:
-   Sprite(SpriteData::IDSprites id, std::string filename, std::vector< Vector2f > speed, Vector2f pos, 
-                int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
-                GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
-                std::vector< Vector2f> delayMovement);
+   Sprite(SpriteData::IDSprites id, std::string filename, Vector2f pos, int initialFrame, std::vector < int > maxFrame, 
+	      std::vector < int > returnFrame, GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
+          std::vector< Vector2f> delayMovement);
 
    SpriteData::IDSprites ID;
    GLuint texture, textureBox;
@@ -120,7 +117,6 @@ class Sprite
    GamePhysics::RigidBody* rigidBody;
     
    Vector2f position;
-   std::vector< Vector2f > speed;
    std::vector< Vector2f > delayMovementSprite;
    GLfloat width, height, widthTexture, heightTexture;
    GLfloat currentXSpeed, currentYSpeed;
