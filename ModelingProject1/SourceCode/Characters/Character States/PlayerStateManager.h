@@ -11,7 +11,6 @@
 #include "DoubleJumpState.h"
 #include "FastAttackState.h"
 #include "FallingState.h"
-#include "StoppingState.h"
 
 #include "PlayerSpriteStates.h"
 

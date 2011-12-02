@@ -118,6 +118,8 @@ void SPlayerSelection::render()
 
   gameRender->drawFullTexture(controllerImageP1.controller->getTexture(), controllerImageP1.controller->getPosition(),
                               controllerImageP1.controller->getOffset().x, controllerImageP1.controller->getOffset().y );
+    gameRender->drawFullTexture(controllerImageP2.controller->getTexture(), controllerImageP2.controller->getPosition(),
+                              controllerImageP2.controller->getOffset().x, controllerImageP2.controller->getOffset().y );
 
   if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
   {
@@ -135,7 +137,7 @@ void SPlayerSelection::render()
 void SPlayerSelection::cleanUp()
 {
   delete controllerImageP1.controller;
-  //delete controllerImageP2.controller;
+  delete controllerImageP2.controller;
 
   delete guiSelectPlayer;
 }
@@ -146,8 +148,13 @@ void SPlayerSelection::createGUI( )
   std::string commonPath = "Resources/Menus/Menu Selection Player/";
 
   controllerImageP1.controller = new Image::GameImage(Vector2f(590.0f, 330.0f), Vector2f(100.0f, 67.0f), 
-                                    Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png");
+                                    Vector2f(0.0f, 0.0f), commonPath + "Keyboard.png");
   controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
+
+  controllerImageP2.controller = new Image::GameImage(Vector2f(590.0f, 420.0f), Vector2f(100.0f, 67.0f), 
+                                    Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png");
+  controllerImageP2.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
+
 
   arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
                                     Vector2f(0.0f, 0.0f),"Resources/Menus/Main Menu/MainMenuHighlighter.png");

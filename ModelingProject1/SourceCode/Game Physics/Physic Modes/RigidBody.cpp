@@ -56,6 +56,43 @@ GLfloat GamePhysics::RigidBody::getMomentumForce(GLfloat speedX, int axisDirecti
   return speedX - (axisDirection)*forceMomentum;
 }
 
+bool GamePhysics::RigidBody::updateAccelerationState(std::list<InputMapping::Key> keys, 
+	                              GameCoreStates::ConditionsPlayerRunning isPacing, GLfloat speedX, int currentState,
+								  int idNewState, int directionX)
+{
+  if ( speedX*directionX > 0.0f)
+  {
+    if ( isPacing.directionButtonPressed && currentState == GameCoreStates::WALKING)
+    {
+      if ( currentState == GameCoreStates::WALKING || 
+          (isPacing.runningButtonPressed && currentState == GameCoreStates::RUNNING) )
+      {
+        setAccelerationState(ACCELERATE);
+      }
+    }
+
+    if ( isPacing.directionButtonPressed && !isPacing.runningButtonPressed && currentState == GameCoreStates::RUNNING)
+    {
+      if ( speedX*directionX > maxSpeed.at(GameCoreStates::WALKING).x )
+      {
+	    setAccelerationState(DECELERATE);
+        return true;
+      }
+    }
+
+	if ( !isPacing.directionButtonPressed && idNewState != GameCoreStates::FALLING )
+	{
+      if ( currentState == GameCoreStates::WALKING || currentState == GameCoreStates::RUNNING ) 
+      {
+        setAccelerationState(DECELERATE);
+        return true;
+      }
+	}
+  }
+
+  return false;
+}
+
 void GamePhysics::RigidBody::parabolicShot(GLfloat* yVelocity, int playerState)
 {
   if( playerState == GameCoreStates::JUMPING || playerState == GameCoreStates::DOUBLE_JUMP || 

@@ -2,6 +2,9 @@
 
 #include "PhysicsCore.h"
 
+#include <GameInputContext.h>
+#include <PlayerState.h>
+
 namespace GamePhysics
 {
   class RigidBody : public PhysicsCore
@@ -17,6 +20,9 @@ namespace GamePhysics
 	 
 	 GLfloat getMomentumForce(GLfloat speedX, int axisDirection);
 	 void setAccelerationState(int state) { accState = (AccelerationState)state; }
+
+	 bool updateAccelerationState(std::list<InputMapping::Key> keys, GameCoreStates::ConditionsPlayerRunning isPacing, 
+		                          GLfloat speedX, int currentState, int idNewState, int directionX);
 
 	 std::vector< Vector2f > getMaxSpeed() { return maxSpeed; }
 
