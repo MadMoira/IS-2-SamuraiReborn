@@ -4,7 +4,6 @@
 #include "RunningState.h"
 
 #include "PlayerSpriteStates.h"
-#include "ComparatorFunctions.h"
 
 #include <PhysicModes.h>
 
@@ -18,10 +17,10 @@ GameCoreStates::RunningState::~RunningState(void)
 {
 }
 
-int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int previousState, 
-                                                int currentState, std::list<InputMapping::Key> keys)
+int GameCoreStates::RunningState::checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, 
+	                                 int previousState, int currentState, std::list<InputMapping::Key> keys)
 {
-  GameCoreStates::ConditionsPlayerRunning isRunning = checkIfPlayerIsRunning(keys);
+  GameCoreStates::ConditionsPlayerRunning isRunning = checkIfPlayerIsRunning(controller, keys);
   const int RETURNING_FROM_PREVIOUS_STATE = 1;
 
   if ( ( currentState == GameCoreStates::RUNNING || currentState == GameCoreStates::FAST_ATTACK ) &&
@@ -54,9 +53,9 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
   return GameCoreStates::NO_CHANGE;
 }
 
-int GameCoreStates::RunningState::checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
-                           int previousState, GameCoreStates::PlayerState* newState,
-                           int keyPreviouslyPressed)
+int GameCoreStates::RunningState::checkChangeOfState(InputMapping::Controller& controller, std::list<InputMapping::Key> keys,
+	                       int currentState, int previousState, GameCoreStates::PlayerState* newState, 
+						   int keyPreviouslyPressed)
 {
-  return checkMovement(keyPreviouslyPressed, previousState, currentState, keys);
+  return checkMovement(controller, keyPreviouslyPressed, previousState, currentState, keys);
 }

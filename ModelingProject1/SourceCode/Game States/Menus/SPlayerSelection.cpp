@@ -19,7 +19,7 @@ void Image::ArrowSelectMenu::updatePositionArrow()
     return;
   } 
 
-  arrow->setPosition(300.0f + (optionSelected - 1)*280.0f, 580.0f );
+  arrow->setPosition(430.0f + (optionSelected - 1)*210.0f, 620.0f );
 }
 
 SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
@@ -156,8 +156,8 @@ void SPlayerSelection::createGUI( )
   controllerImageP2.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
 
 
-  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
-                                    Vector2f(0.0f, 0.0f),"Resources/Menus/Main Menu/MainMenuHighlighter.png");
+  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(208.0f, 65.0f), 
+                                    Vector2f(0.0f, 0.0f), commonPath + "Highlighter.png");
   arrowImage.optionSelected = MenuData::NOTHING_SELECTED;
 
   customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
@@ -181,10 +181,10 @@ void SPlayerSelection::createGUI( )
 															 "") );
   guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "SuricataSelector.png"));
 
-  guiSelectPlayer->addButton( guiManager->createButton(MenuData::BEGIN, Vector2f(380.0f, 600.0f), 
+  guiSelectPlayer->addButton( guiManager->createButton(MenuData::BEGIN, Vector2f(405.0f, 640.0f), 
 	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 0.0f),
 	                                               STATE_LEVELONEJAPAN) );
-  guiSelectPlayer->addButton( guiManager->createButton(MenuData::BACK, Vector2f(650.0f, 600.0f), 
+  guiSelectPlayer->addButton( guiManager->createButton(MenuData::BACK, Vector2f(615.0f, 640.0f), 
 	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 32.0f),
 	                                               STATE_MAINMENU) );
 

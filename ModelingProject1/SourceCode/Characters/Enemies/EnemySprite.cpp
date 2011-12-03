@@ -11,9 +11,9 @@ EnemySprite::EnemySprite(SpriteData::IDSprites id, std::string filename, Vector2
 }
 
 void EnemySprite::changeStateSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
-                                    std::list<InputMapping::Key> keys)
+                                    std::list<InputMapping::Key> keys, InputMapping::Controller& controller)
 {
-  int resultCheckingEqualStates = newState->checkIfEqualStates(keys, getCurrentState(),
+  int resultCheckingEqualStates = newState->checkIfEqualStates(controller, keys, getCurrentState(),
                                   getPreviousState(), newState, keyPreviouslyPressed);
 
   if ( resultCheckingEqualStates == GameCoreStates::NO_CHANGE )

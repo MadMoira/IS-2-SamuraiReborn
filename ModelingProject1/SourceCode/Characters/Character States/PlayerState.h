@@ -1,6 +1,7 @@
 #pragma once
 
 #include "State.h"
+#include <Controller.h>
 
 #include "GameInputContext.h"
 
@@ -19,17 +20,18 @@ namespace GameCoreStates
     PlayerState(){};
     ~PlayerState(){};
 
-    int checkIfEqualStates(std::list<InputMapping::Key> keys, int currentState,
-                           int previousState, GameCoreStates::PlayerState* newState,
+	int checkIfEqualStates(InputMapping::Controller& controller, std::list<InputMapping::Key> keys, 
+		                   int currentState, int previousState, GameCoreStates::PlayerState* newState,
                            int keyPreviouslyPressed);
-    int checkMovementRestrictions(int keyPreviouslyPressed, int previousState, 
+    int checkMovementRestrictions(InputMapping::Controller& controller, int keyPreviouslyPressed, int previousState, 
                                   int currentState, std::list<InputMapping::Key> keys);
-    ConditionsPlayerRunning checkIfPlayerIsRunning(std::list<InputMapping::Key> keys);
+
+    ConditionsPlayerRunning checkIfPlayerIsRunning(InputMapping::Controller& controller, std::list<InputMapping::Key> keys);
 
    protected:
-    virtual int checkMovement(int keyPreviouslyPressed, int previousState, 
+    virtual int checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, int previousState, 
                               int currentState, std::list<InputMapping::Key> keys);
-    virtual int checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
+    virtual int checkChangeOfState(InputMapping::Controller& controller, std::list<InputMapping::Key> keys, int currentState,
                            int previousState, GameCoreStates::PlayerState* newState,
                            int keyPreviouslyPressed);
   };

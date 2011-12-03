@@ -1,6 +1,5 @@
 
 #include <algorithm>
-#include "ComparatorFunctions.h"
 
 #include "JumpingState.h"
 
@@ -13,11 +12,11 @@ GameCoreStates::JumpingState::~JumpingState(void)
 {
 }
 
-int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int previousState, 
-                                                int currentState, std::list<InputMapping::Key> keys)
+int GameCoreStates::JumpingState::checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, 
+	                                 int previousState, int currentState, std::list<InputMapping::Key> keys)
 {
-  InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
-  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
+  InputMapping::Key findKey = controller.getKeyAssociatedToState(GameCoreStates::JUMPING);
+  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(controller, keys);
   bool jumpingButtonIsPressed = findKey.isPressed;
 
   if ( keyPreviouslyPressed != InputMapping::RAW_INPUT_NO_BUTTON && !jumpingButtonIsPressed )
@@ -41,13 +40,12 @@ int GameCoreStates::JumpingState::checkMovement(int keyPreviouslyPressed, int pr
   return GameCoreStates::NO_CHANGE;
 }
 
-int GameCoreStates::JumpingState::checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
-                           int previousState, GameCoreStates::PlayerState* newState,
-                           int keyPreviouslyPressed)
+int GameCoreStates::JumpingState::checkChangeOfState(InputMapping::Controller& controller, std::list<InputMapping::Key> keys,
+	                       int currentState, int previousState, GameCoreStates::PlayerState* newState, int keyPreviouslyPressed)
 {
-  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
+  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(controller, keys);
 
-  if ( currentState == GameCoreStates::JUMPING && isPacing.directionButtonPressed && !isPacing.runningButtonPressed)
+  if ( currentState == GameCoreStates::JUMPING && isPacing.directionButtonPressed )
   {
     return GameCoreStates::UPDATE_SPEEDX;
   }

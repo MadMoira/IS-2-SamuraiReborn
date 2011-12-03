@@ -22,6 +22,6 @@ namespace GamePhysics
 
   enum AccelerationChange
   {
-	TO_WALKING = 4,
+	TO_WALKING = 2,
   };
 }

@@ -1,6 +1,5 @@
 
 #include <algorithm>
-#include "ComparatorFunctions.h"
 
 #include "WalkingState.h"
 
@@ -13,11 +12,11 @@ GameCoreStates::WalkingState::~WalkingState(void)
 {
 }
 
-int GameCoreStates::WalkingState::checkMovement(int keyPreviouslyPressed, int previousState, 
-                                                int currentState, std::list<InputMapping::Key> keys)
+int GameCoreStates::WalkingState::checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, 
+	                                 int previousState, int currentState, std::list<InputMapping::Key> keys)
 {
   const int RETURNING_FROM_PREVIOUS_STATE = 1;
-  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
+  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(controller, keys);
 
   if ( currentState == GameCoreStates::FAST_ATTACK && isPacing.directionButtonPressed &&
       keyPreviouslyPressed != RETURNING_FROM_PREVIOUS_STATE)

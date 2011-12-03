@@ -9,8 +9,8 @@ GameCoreStates::FallingState::~FallingState(void)
 {
 }
 
-int GameCoreStates::FallingState::checkMovement(int keyPreviouslyPressed, int previousState, 
-                                                int currentState, std::list<InputMapping::Key> keys)
+int GameCoreStates::FallingState::checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, 
+	                                 int previousState, int currentState, std::list<InputMapping::Key> keys)
 {
   return CHANGE;
 }

@@ -27,7 +27,8 @@ class Sprite
    virtual ~Sprite();
 
    virtual void changeStateSprite( GameCoreStates::PlayerState* newState, int keyPreviouslyPressed = 0, 
-                                   std::list<InputMapping::Key> keys = std::list<InputMapping::Key>() ) = 0;
+	                               std::list<InputMapping::Key> keys = std::list<InputMapping::Key>(),
+								   InputMapping::Controller& controller = InputMapping::Controller() ) = 0;
 
    void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
 

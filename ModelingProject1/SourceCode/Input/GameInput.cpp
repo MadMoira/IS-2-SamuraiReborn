@@ -34,7 +34,11 @@ bool GameInput::handleWindowEvents()
   return true;
 }
 
-void GameInput::handleKeyEvents(InputMapping::GameInputMapper *gameInputMapper)
+void GameInput::handleKeyEvents(InputMapping::GameInputMapper* gameInputMapper, InputMapping::Controller* controller)
 {
-  gameInputMapper->processNewInput();
+	if ( !controller->getStateMap()->empty() )
+	{
+		int d =4;
+	}
+  gameInputMapper->processNewInput(*controller);
 }

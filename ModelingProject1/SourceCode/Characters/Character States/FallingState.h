@@ -10,8 +10,8 @@ namespace GameCoreStates
     FallingState(int id);
     ~FallingState(void);
 
-    int checkMovement(int keyPreviouslyPressed, int previousState, 
-                       int currentState, std::list<InputMapping::Key> keys);
+    int checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, int previousState, 
+                      int currentState, std::list<InputMapping::Key> keys);
   };
 }
 

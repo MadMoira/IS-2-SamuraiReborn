@@ -1,2 +1,2 @@
 1
-maincontext Resources/Input/MainContext.txt
+gamepadcontext Resources/Input/GamepadContext.txt

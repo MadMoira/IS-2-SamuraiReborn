@@ -101,6 +101,7 @@
     <ClCompile Include="Characters\Players\Score.cpp" />
     <ClCompile Include="Characters\Players\Stats.cpp" />
     <ClCompile Include="Characters\Sprite.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Game Core\GameConfiguration.cpp" />
     <ClCompile Include="Game Core\GameCore.cpp" />
     <ClCompile Include="Game Core\GameSaves.cpp" />
@@ -119,6 +120,8 @@
     <ClCompile Include="Game States\Menus\SIntro.cpp" />
     <ClCompile Include="Game States\Menus\SMainMenu.cpp" />
     <ClCompile Include="Game States\Menus\SPlayerSelection.cpp" />
+    <ClCompile Include="GameInputStructs.cpp" />
+    <ClCompile Include="Gamepad.cpp" />
     <ClCompile Include="Graphics\Animation.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\Font\GameFont.cpp" />
@@ -131,13 +134,13 @@
     <ClCompile Include="Input\GameInput.cpp" />
     <ClCompile Include="Input\GameInputContext.cpp" />
     <ClCompile Include="Input\GameInputMapper.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Level Design\Layer.cpp" />
     <ClCompile Include="Level Design\Level.cpp" />
     <ClCompile Include="Level Design\Tile.cpp" />
     <ClCompile Include="Level Design\Tilemap.cpp" />
     <ClCompile Include="Level Design\Tileset.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="System\ComparatorFunctions.cpp" />
     <ClCompile Include="System\MathFunctions.cpp" />
     <ClCompile Include="Weapons\Spear.cpp" />
     <ClCompile Include="Weapons\Sword.cpp" />
@@ -172,6 +175,7 @@
     <ClInclude Include="Characters\Players\Stats.h" />
     <ClInclude Include="Characters\Sprite.h" />
     <ClInclude Include="Characters\SpriteDataConstants.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="Game Core\GameConfiguration.h" />
     <ClInclude Include="Game Core\GameCore.h" />
     <ClInclude Include="Game Core\GameSaves.h" />
@@ -193,6 +197,8 @@
     <ClInclude Include="Game States\Menus\SIntro.h" />
     <ClInclude Include="Game States\Menus\SMainMenu.h" />
     <ClInclude Include="Game States\Menus\SPlayerSelection.h" />
+    <ClInclude Include="GameInputStructs.h" />
+    <ClInclude Include="Gamepad.h" />
     <ClInclude Include="Graphics\Animation.h" />
     <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\Font\GameFont.h" />
@@ -206,12 +212,12 @@
     <ClInclude Include="Input\GameInputContext.h" />
     <ClInclude Include="Input\GameInputMapper.h" />
     <ClInclude Include="Input\RawInputConstants.h" />
+    <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Level Design\Layer.h" />
     <ClInclude Include="Level Design\Level.h" />
     <ClInclude Include="Level Design\Tile.h" />
     <ClInclude Include="Level Design\Tilemap.h" />
     <ClInclude Include="Level Design\Tileset.h" />
-    <ClInclude Include="System\ComparatorFunctions.h" />
     <ClInclude Include="System\File.h" />
     <ClInclude Include="System\MathFunctions.h" />
     <ClInclude Include="System\StringParser.h" />

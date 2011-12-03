@@ -1,6 +1,5 @@
 
 #include <algorithm>
-#include "ComparatorFunctions.h"
 
 #include "FastAttackState.h"
 
@@ -14,11 +13,11 @@ GameCoreStates::FastAttackState::~FastAttackState(void)
 {
 }
 
-int GameCoreStates::FastAttackState::checkMovement(int keyPreviouslyPressed, int previousState, 
-                                                int currentState, std::list<InputMapping::Key> keys)
+int GameCoreStates::FastAttackState::checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, 
+	                                 int previousState, int currentState, std::list<InputMapping::Key> keys)
 {
-  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
-  InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isFastAttackKeyPressed);
+  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(controller, keys);
+  InputMapping::Key findKey = controller.getKeyAssociatedToState(GameCoreStates::FAST_ATTACK);
   bool fastAttackButtonIsPressed = findKey.isPressed;
 
   if ( (currentState != GameCoreStates::DOUBLE_JUMP && currentState != GameCoreStates::FALLING) &&
