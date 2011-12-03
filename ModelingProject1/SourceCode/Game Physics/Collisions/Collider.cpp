@@ -82,7 +82,7 @@ void Collider::checkTileCollision(CollisionSystem::CollisionBox& A, int directio
         int x = (int)i/32;
         int y = (int)j/32;
 
-        if ( y > 720.0f/32 )
+        if ( x > 6400.0f/32 || y > 720.0f/32 )
         {
           return;
         }

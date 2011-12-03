@@ -47,7 +47,7 @@ void GamePhysics::RigidBody::applyNaturalPhysicForces(int currentMovement, GLflo
 
 GLfloat GamePhysics::RigidBody::getMomentumForce(GLfloat speedX, int axisDirection)
 {
-  GLfloat forceMomentum = 9.0f;
+  GLfloat forceMomentum = 8.0f;
   if ( speedX*(axisDirection) - forceMomentum <= 0.0f )
   {
 	return speedX;
@@ -62,7 +62,7 @@ bool GamePhysics::RigidBody::updateAccelerationState(std::list<InputMapping::Key
 {
   if ( speedX*directionX > 0.0f)
   {
-    if ( isPacing.directionButtonPressed && currentState == GameCoreStates::WALKING)
+    if ( isPacing.directionButtonPressed )
     {
       if ( currentState == GameCoreStates::WALKING || 
           (isPacing.runningButtonPressed && currentState == GameCoreStates::RUNNING) )

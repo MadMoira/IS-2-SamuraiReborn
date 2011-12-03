@@ -45,34 +45,6 @@ void SMainMenu::handleEvents()
   SDL_Event e;
   bool running = gameCore->getIsRunning();
 
-   //DWORD dwResult;    
-/*for (DWORD i=0; i< 4; i++ )
-{
-  XINPUT_STATE state;
-  ZeroMemory( &state, sizeof(XINPUT_STATE) );
-
-        // Simply get the state of the controller from XInput.
-        dwResult = XInputGetState( i, &state );
-
-		WORD d = state.Gamepad.wButtons;
-		if ( state.Gamepad.wButtons & XINPUT_GAMEPAD_A)
-		{
-			dwResult = XInputGetState( i, &state );
-					if ( state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
-		{
-			int d = 4;
-					}
-		}
-        if( dwResult == ERROR_SUCCESS )
-  { 
-      // Controller is connected 
-  }
-        else
-  {
-            // Controller is not connected 
-  }
-}*/
-
   while ( SDL_PollEvent(&e) && checkIfStateEnd() == getNameState() )
   {
 	Vector2f mousePosition = Vector2f(static_cast<float>(e.motion.x), static_cast<float>(e.motion.y) );

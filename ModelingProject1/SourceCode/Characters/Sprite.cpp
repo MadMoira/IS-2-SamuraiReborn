@@ -138,11 +138,12 @@ void Sprite::movePosXWithSpeed()
       collisionHandler->checkStateCollisionXAxis(*this);
       isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
-      return;
-    }
+
+	  return;
+	}
 
     characterMovement.playerMoveInX = false;
-	speed.x = 0.0f;
+    speed.x = 0.0f;
   }
 }
 

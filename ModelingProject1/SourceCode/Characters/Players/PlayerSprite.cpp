@@ -9,13 +9,14 @@ PlayerSprite::PlayerSprite(SpriteData::IDSprites id, std::string filename, Vecto
 {
 }
 
-void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
-                                     std::list<InputMapping::Key> keys)
+void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState, 
+	                                 int keyPreviouslyPressed, std::list<InputMapping::Key> keys,
+									 InputMapping::Controller& controller)
 {
-  int resultCheckingEqualStates = newState->checkIfEqualStates(keys, getCurrentState(),
+  int resultCheckingEqualStates = newState->checkIfEqualStates(controller, keys, getCurrentState(),
                                     getPreviousState(), newState, keyPreviouslyPressed);
 
-  GameCoreStates::ConditionsPlayerRunning isPacing = playerStateManager->getObjectState().checkIfPlayerIsRunning(keys);
+  GameCoreStates::ConditionsPlayerRunning isPacing = playerStateManager->getObjectState().checkIfPlayerIsRunning(controller, keys);
 
   int directionAxis = handlerAnimation->returnAnimationDirectionAxisValue();
 
@@ -34,7 +35,7 @@ void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState, int 
       if ( getSpeedX() == 0.0f )
       {
         playerStateManager->changePreviousState( GameCoreStates::WALKING );
-        setSpeedX( directionAxis*(rigidBody->getMaxSpeed().at( GameCoreStates::WALKING ).x + 5.0f) );
+        setSpeedX( directionAxis*(rigidBody->getMaxSpeed().at( GameCoreStates::WALKING ).x + 3.0f) );
 		rigidBody->setAccelerationState(GamePhysics::ACCELERATE);
       }
       return;
@@ -45,7 +46,7 @@ void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState, int 
     }
   }
 
-  int result = newState->checkMovementRestrictions(keyPreviouslyPressed, getPreviousState(), 
+  int result = newState->checkMovementRestrictions(controller, keyPreviouslyPressed, getPreviousState(), 
                                                    getCurrentState(), keys );
 
   switch(result)

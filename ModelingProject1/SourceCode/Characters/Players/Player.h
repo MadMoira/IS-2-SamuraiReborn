@@ -7,6 +7,8 @@
 #include "Score.h"
 #include "GameInputMapper.h"
 
+#include <Controller.h>
+
 namespace Characters
 {
   class Player : public Character
@@ -39,12 +41,15 @@ namespace Characters
 
      InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
 
+	 InputMapping::Controller* getController() { return controller; }
+
      PlayerStats::Stats* getPlayerStats() { return stats; }
 
      PlayerScore::Score* getScore() { return score; }
 
     protected:
      InputMapping::GameInputMapper* inputMapper;
+	 InputMapping::Controller* controller;
      PlayerStats::Stats* stats;
      PlayerScore::Score* score;
   };

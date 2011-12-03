@@ -1,6 +1,5 @@
 
 #include <algorithm>
-#include "ComparatorFunctions.h"
 
 #include "DoubleJumpState.h"
 
@@ -13,10 +12,10 @@ GameCoreStates::DoubleJumpState::~DoubleJumpState(void)
 {
 }
 
-int GameCoreStates::DoubleJumpState::checkMovement(int keyPreviouslyPressed, int previousState, int currentState, 
-    std::list<InputMapping::Key> keys)
+int GameCoreStates::DoubleJumpState::checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, 
+	                                 int previousState, int currentState, std::list<InputMapping::Key> keys)
 {
-  InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isJumpingKeyPressed);
+  InputMapping::Key findKey = controller.getKeyAssociatedToState(GameCoreStates::JUMPING);
   bool jumpingButtonIsPressed = findKey.isPressed;
 
   if ( currentState == GameCoreStates::JUMPING && previousState != GameCoreStates::DOUBLE_JUMP && 
@@ -28,13 +27,12 @@ int GameCoreStates::DoubleJumpState::checkMovement(int keyPreviouslyPressed, int
   return GameCoreStates::NO_CHANGE;
 }
 
-int GameCoreStates::DoubleJumpState::checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
-                           int previousState, GameCoreStates::PlayerState* newState,
-                           int keyPreviouslyPressed)
+int GameCoreStates::DoubleJumpState::checkChangeOfState(InputMapping::Controller& controller, std::list<InputMapping::Key> keys, 
+	                       int currentState, int previousState, GameCoreStates::PlayerState* newState, int keyPreviouslyPressed)
 {
-  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(keys);
+  GameCoreStates::ConditionsPlayerRunning isPacing = checkIfPlayerIsRunning(controller, keys);
 
-  if ( currentState == GameCoreStates::DOUBLE_JUMP && isPacing.directionButtonPressed && !isPacing.runningButtonPressed)
+  if ( currentState == GameCoreStates::DOUBLE_JUMP && isPacing.directionButtonPressed )
   {
     return GameCoreStates::UPDATE_SPEEDX;
   }

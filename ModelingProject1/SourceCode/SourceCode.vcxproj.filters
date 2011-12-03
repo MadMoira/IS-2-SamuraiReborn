@@ -222,9 +222,6 @@
     <ClCompile Include="Level Design\Tileset.cpp">
       <Filter>Source Files\Level Design</Filter>
     </ClCompile>
-    <ClCompile Include="System\ComparatorFunctions.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
     <ClCompile Include="System\MathFunctions.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
@@ -375,6 +372,18 @@
     <ClCompile Include="Weapons\Weapon.cpp">
       <Filter>Source Files\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInputStructs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gamepad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI\AI.h">
@@ -424,9 +433,6 @@
     </ClInclude>
     <ClInclude Include="Level Design\Tileset.h">
       <Filter>Header Files\Level Design</Filter>
-    </ClInclude>
-    <ClInclude Include="System\ComparatorFunctions.h">
-      <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="System\File.h">
       <Filter>Header Files\System</Filter>
@@ -601,6 +607,18 @@
     </ClInclude>
     <ClInclude Include="Weapons\Weapon.h">
       <Filter>Header Files\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInputStructs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gamepad.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

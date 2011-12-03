@@ -2,23 +2,24 @@
 #include <algorithm>
 
 #include "PlayerState.h"
-#include "ComparatorFunctions.h"
+
+#include <SpriteDataConstants.h>
 
 GameCoreStates::PlayerState::PlayerState(int id) : State( id )
 {
   currentID = id;
 }
 
-int GameCoreStates::PlayerState::checkIfEqualStates(std::list<InputMapping::Key> keys, int currentState,
-                                                    int previousState, GameCoreStates::PlayerState* newState,
-                                                    int keyPreviouslyPressed)
+int GameCoreStates::PlayerState::checkIfEqualStates(InputMapping::Controller& controller, std::list<InputMapping::Key> keys, 
+	                             int currentState, int previousState, GameCoreStates::PlayerState* newState,
+                                 int keyPreviouslyPressed)
 {
-  return checkChangeOfState(keys, currentState, previousState, newState, keyPreviouslyPressed);
+  return checkChangeOfState(controller, keys, currentState, previousState, newState, keyPreviouslyPressed);
 }
 
-int GameCoreStates::PlayerState::checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
-                                                    int previousState, GameCoreStates::PlayerState* newState,
-                                                    int keyPreviouslyPressed)
+int GameCoreStates::PlayerState::checkChangeOfState(InputMapping::Controller& controller, std::list<InputMapping::Key> keys, 
+	                             int currentState, int previousState, GameCoreStates::PlayerState* newState,
+                                 int keyPreviouslyPressed)
 {
   if ( currentState == newState->getCurrentID() )
   {
@@ -29,7 +30,7 @@ int GameCoreStates::PlayerState::checkChangeOfState(std::list<InputMapping::Key>
 }
 
 GameCoreStates::ConditionsPlayerRunning GameCoreStates::PlayerState::checkIfPlayerIsRunning(
-                                            std::list<InputMapping::Key> keys)
+                                InputMapping::Controller& controller, std::list<InputMapping::Key> keys)
 {
   bool directionButtonPressed = false;
   bool directionButtonRightPressed = false;
@@ -45,13 +46,13 @@ GameCoreStates::ConditionsPlayerRunning GameCoreStates::PlayerState::checkIfPlay
     return isRunning;
   }
 
-  InputMapping::Key findKey = *std::find_if(keys.begin(), keys.end(), isWalkingKeyRightPressed);
+  InputMapping::Key findKey = controller.getKeyAssociatedToState(GameCoreStates::WALKING, SpriteData::RIGHT);
   directionButtonRightPressed = findKey.isPressed;
 
-  findKey = *std::find_if(keys.begin(), keys.end(), isWalkingKeyLeftPressed);
+  findKey = controller.getKeyAssociatedToState(GameCoreStates::WALKING, SpriteData::LEFT);
   directionButtonLeftPressed = findKey.isPressed;
 
-  findKey = *std::find_if(keys.begin(), keys.end(), isRunningKeyPressed);
+  findKey = controller.getKeyAssociatedToState(GameCoreStates::RUNNING);
   isRunning.runningButtonPressed = findKey.isPressed;
 
   isRunning.directionButtonPressed = directionButtonRightPressed || directionButtonLeftPressed;
@@ -59,14 +60,14 @@ GameCoreStates::ConditionsPlayerRunning GameCoreStates::PlayerState::checkIfPlay
   return isRunning;
 }
 
-int GameCoreStates::PlayerState::checkMovementRestrictions(int keyPreviouslyPressed, int previousState, 
-                                            int currentState, std::list<InputMapping::Key> keys)
+int GameCoreStates::PlayerState::checkMovementRestrictions(InputMapping::Controller& controller, int keyPreviouslyPressed, 
+	                             int previousState, int currentState, std::list<InputMapping::Key> keys)
 {
-  return checkMovement(keyPreviouslyPressed, previousState, currentState, keys);
+  return checkMovement(controller, keyPreviouslyPressed, previousState, currentState, keys);
 }
 
-int GameCoreStates::PlayerState::checkMovement(int keyPreviouslyPressed, int previousState, 
-                               int currentState, std::list<InputMapping::Key> keys)
+int GameCoreStates::PlayerState::checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, 
+	                             int previousState, int currentState, std::list<InputMapping::Key> keys)
 {
   if ( currentState != previousState)
   {

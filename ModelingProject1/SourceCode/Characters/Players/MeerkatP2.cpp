@@ -1,6 +1,9 @@
 
 #include "MeerkatP2.h"
 
+#include <Keyboard.h>
+#include <Gamepad.h>
+
 Characters::MeerkatP2::~MeerkatP2()
 {
   delete characterSprite;
@@ -21,13 +24,17 @@ void Characters::MeerkatP2::initializeCharacter(SpriteData::IDSprites id, std::s
   score = new PlayerScore::Score();
 
   inputMapper = new InputMapping::GameInputMapper();
-  inputMapper->pushContext("maincontext");
-  inputMapper->addCallback( Player::inputCallback, 0);
+  inputMapper->pushContext("gamepadcontext");
+  //inputMapper->pushContext("maincontext");
+  inputMapper->addCallback(Player::inputCallback, 0);
+
+  controller = new InputMapping::Gamepad(0);
+  //controller = new InputMapping::Keyboard(0);
+  controller->initializeKeys(inputMapper->getListKeys(), inputMapper->getStateMap());
 }
 
 void Characters::MeerkatP2::noAction()
 {
-  characterSprite->setSpeedX(0.0f);
   characterSprite->setPlayerMoveInX(false);
   characterSprite->setPlayerMoveInY(false);
   characterSprite->setPlayerMoveInXCurrentFrame(false);

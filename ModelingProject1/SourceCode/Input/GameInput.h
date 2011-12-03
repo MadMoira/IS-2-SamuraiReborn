@@ -9,6 +9,6 @@ class GameInput
    ~GameInput(void);
 
    bool handleWindowEvents();
-   void handleKeyEvents(InputMapping::GameInputMapper* gameInputMapper);
+   void handleKeyEvents(InputMapping::GameInputMapper* gameInputMapper, InputMapping::Controller* controller);
 };
 

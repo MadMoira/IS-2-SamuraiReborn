@@ -41,12 +41,13 @@ void SLevelOneJapan::handleEvents()
   bool isRunning = gameInput->handleWindowEvents();
   gameCore->setIsRunning( isRunning );
 
-  gameInput->handleKeyEvents( gameCore->getPlayersList().at(0).getInputMapper() );
+  gameInput->handleKeyEvents( gameCore->getPlayersList().at(0).getInputMapper(), gameCore->getPlayersList().at(0).getController() );
 }
 
 void SLevelOneJapan::logic()
 {
-  gameCore->getPlayersList().at(0).getInputMapper()->dispatchInput( gameCore->getPlayersList().at(0) );
+  gameCore->getPlayersList().at(0).getInputMapper()->dispatchInput( gameCore->getPlayersList().at(0),
+	  *gameCore->getPlayersList().at(0).getController()->getListKeys() );
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
@@ -114,7 +115,7 @@ void SLevelOneJapan::cleanUp()
 void SLevelOneJapan::initializePlayers()
 {
   gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
-  //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
+  gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
 
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );

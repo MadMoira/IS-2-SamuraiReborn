@@ -10,8 +10,8 @@ GameCoreStates::StillState::~StillState(void)
 {
 }
 
-int GameCoreStates::StillState::checkMovement(int keyPreviouslyPressed, int previousState,
-                                              int currentState, std::list<InputMapping::Key> keys)
+int GameCoreStates::StillState::checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, 
+	                                 int previousState, int currentState, std::list<InputMapping::Key> keys)
 {
   return GameCoreStates::CHANGE;
 }
