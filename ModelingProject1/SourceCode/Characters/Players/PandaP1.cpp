@@ -25,12 +25,12 @@ void Characters::PandaP1::initializeCharacter(SpriteData::IDSprites id, std::str
   score = new PlayerScore::Score();
 
   inputMapper = new InputMapping::GameInputMapper();
-  inputMapper->pushContext("gamepadcontext");
-  //inputMapper->pushContext("maincontext");
+  //inputMapper->pushContext("gamepadcontext");
+  inputMapper->pushContext("maincontext");
   inputMapper->addCallback(Player::inputCallback, 0);
 
-  controller = new InputMapping::Gamepad(0);
-  //controller = new InputMapping::Keyboard(0);
+  //controller = new InputMapping::Gamepad(0);
+  controller = new InputMapping::Keyboard(0);
   controller->initializeKeys(inputMapper->getListKeys(), inputMapper->getStateMap());
 }
 
