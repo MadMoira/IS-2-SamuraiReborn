@@ -712,5 +712,11 @@
     <None Include="Resources\Input\GamepadContext.txt">
       <Filter>Resource Files\Input</Filter>
     </None>
+    <None Include="Resources\Menus\Menu Selection Player\MenuSelectionPlayerButtons.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Menus\Menu Selection Player\Highlighter.png">
+      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
   </ItemGroup>
 </Project>
