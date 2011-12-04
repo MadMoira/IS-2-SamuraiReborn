@@ -11,9 +11,7 @@ namespace InputMapping
   {
     public:
 	  Controller(){};
-     ~Controller(){ 
-		 keys.clear();  
-		 stateMap.clear();};
+     ~Controller();
 
 	 std::list<Key>* getListKeys() { return &keys; }
 

@@ -8,6 +8,7 @@ Characters::PandaP1::~PandaP1()
 {
   delete characterSprite;
   delete inputMapper;
+  delete controller;
   delete stats;
   delete score;
 }

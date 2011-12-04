@@ -8,6 +8,7 @@ Characters::MeerkatP2::~MeerkatP2()
 {
   delete characterSprite;
   delete inputMapper;
+  delete controller;
   delete stats;
   delete score;
 }
