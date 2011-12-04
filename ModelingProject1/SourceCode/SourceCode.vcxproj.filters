@@ -172,6 +172,12 @@
     <Filter Include="Source Files\Characters\States">
       <UniqueIdentifier>{dbc3b777-87f8-4ddd-90d2-0ef4d8e68294}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Input\Player">
+      <UniqueIdentifier>{55fd48d0-1742-4c3e-bf82-097404eb20a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input\Player">
+      <UniqueIdentifier>{1f64b8fc-1894-49ba-83f8-09cfaab44b69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -372,17 +378,17 @@
     <ClCompile Include="Weapons\Weapon.cpp">
       <Filter>Source Files\Weapons</Filter>
     </ClCompile>
-    <ClCompile Include="Controller.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Input\GameInputStructs.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Keyboard.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Input\Player\Controller.cpp">
+      <Filter>Source Files\Input\Player</Filter>
     </ClCompile>
-    <ClCompile Include="GameInputStructs.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Input\Player\Gamepad.cpp">
+      <Filter>Source Files\Input\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Gamepad.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Input\Player\Keyboard.cpp">
+      <Filter>Source Files\Input\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -608,17 +614,17 @@
     <ClInclude Include="Weapons\Weapon.h">
       <Filter>Header Files\Weapons</Filter>
     </ClInclude>
-    <ClInclude Include="Controller.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Input\Player\Controller.h">
+      <Filter>Header Files\Input\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Keyboard.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Input\Player\Gamepad.h">
+      <Filter>Header Files\Input\Player</Filter>
     </ClInclude>
-    <ClInclude Include="GameInputStructs.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Input\Player\Keyboard.h">
+      <Filter>Header Files\Input\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Gamepad.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Input\GameInputStructs.h">
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -702,6 +708,9 @@
     </None>
     <None Include="Resources\Menus\Menu Selection Player\Keyboard.png">
       <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\Input\GamepadContext.txt">
+      <Filter>Resource Files\Input</Filter>
     </None>
   </ItemGroup>
 </Project>
