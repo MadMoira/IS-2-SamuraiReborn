@@ -9,6 +9,12 @@ InputMapping::Controller::Controller(int id)
   playerID = id;
 }
 
+InputMapping::Controller::~Controller()
+{
+  keys.clear();  
+  stateMap.clear();
+}
+
 void InputMapping::Controller::initializeKeys(std::list<Key> listKeys, 
 	                           std::map<RawInputButton, GameCoreStates::SpriteState> mapKeys)
 {

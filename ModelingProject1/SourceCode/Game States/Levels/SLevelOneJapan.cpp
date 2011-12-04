@@ -114,8 +114,8 @@ void SLevelOneJapan::cleanUp()
 
 void SLevelOneJapan::initializePlayers()
 {
-  gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
-  gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
+  //gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
+  //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
 
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );

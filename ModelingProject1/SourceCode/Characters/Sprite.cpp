@@ -281,7 +281,7 @@ void Sprite::drawTexture()
     x = 0;
   }
 
-  //GameRender::drawFullTexture(textureBox, Vector2f(x, getBoxY()), getBoxWidth(), getBoxHeight());
+  GameRender::drawFullTexture(textureBox, Vector2f(x, getBoxY()), getBoxWidth(), getBoxHeight());
   
   int currentState = getCurrentState();
 

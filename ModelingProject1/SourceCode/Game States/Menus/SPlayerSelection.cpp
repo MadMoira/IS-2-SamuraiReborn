@@ -5,11 +5,11 @@ void Image::ControllerSelection::updatePositionController()
 {
   if ( selectedPlayer == MenuData::NO_SELECTED_PLAYER )
   {
-    controller->setPosition(590.0f, 330.0f);
+    controller->setPosition(590.0f, 315.0f);
     return;
   }
 
-  controller->setPosition(362.5f + (selectedPlayer-1)*420.0f, 430.0f);
+  controller->setPosition(520.0f + (selectedPlayer-1)*135.0f, 315.0f);
 }
 
 void Image::ArrowSelectMenu::updatePositionArrow()
@@ -147,11 +147,11 @@ void SPlayerSelection::createGUI( )
   RPRGUI::GUIManager* guiManager = gameRender->getGUIManager();
   std::string commonPath = "Resources/Menus/Menu Selection Player/";
 
-  controllerImageP1.controller = new Image::GameImage(Vector2f(590.0f, 330.0f), Vector2f(100.0f, 67.0f), 
+  controllerImageP1.controller = new Image::GameImage(Vector2f(590.0f, 315.0f), Vector2f(100.0f, 67.0f), 
                                     Vector2f(0.0f, 0.0f), commonPath + "Keyboard.png");
   controllerImageP1.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
 
-  controllerImageP2.controller = new Image::GameImage(Vector2f(590.0f, 420.0f), Vector2f(100.0f, 67.0f), 
+  controllerImageP2.controller = new Image::GameImage(Vector2f(590.0f, 410.0f), Vector2f(100.0f, 67.0f), 
                                     Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png");
   controllerImageP2.selectedPlayer = MenuData::NO_SELECTED_PLAYER;
 
@@ -169,14 +169,14 @@ void SPlayerSelection::createGUI( )
 															 "") );
   guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "MenuCharacterSelectorBackground.png"));
 
-  guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(300.0f, 100.0f),
-	                                                         Vector2f(225.0f, 300.0f),
+  guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(200.0f, 130.0f),
+	                                                         Vector2f(288.0f, 384.0f),
 															 Vector2f(0.0f, 0.0f),
 															 "") );
   guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "PandaSelector.png"));
 
-  guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(700.0f, 100.0f),
-	                                                         Vector2f(225.0f, 300.0f),
+  guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(770.0f, 130.0f),
+	                                                         Vector2f(288.0f, 384.0f),
 															 Vector2f(0.0f, 0.0f),
 															 "") );
   guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "SuricataSelector.png"));
