@@ -9,6 +9,11 @@ GameCoreStates::PlayerState::PlayerState(int id) : State( id )
   currentID = id;
 }
 
+GameCoreStates::PlayerState::PlayerState(int id, int charID ){
+  currentID = id;
+  characterID = charID;
+}
+
 int GameCoreStates::PlayerState::checkIfEqualStates(std::list<InputMapping::Key> keys, int currentState,
 	                                                int previousState, GameCoreStates::PlayerState* newState,
 													int keyPreviouslyPressed)

@@ -21,8 +21,6 @@ SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, GameStates sta
   setHasEnded(STATE_MAINMENU);
   sound = GameSound::getInstance();
 
-  std::string background = "Japanese War Music";
-  sounds.push_back(background);
 }
 
 SMainMenu::~SMainMenu(void)
@@ -36,7 +34,6 @@ void SMainMenu::init()
   createGUI( windowManager );
 
   sound = GameSound::getInstance();
-  sound->loadSound(sounds.at(0));
   arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
 	                                Vector2f(0.0f, 0.0f), "MenuHighlighter.png");
   arrowImage.optionSelected = NOTHING_SELECTED;
@@ -62,7 +59,6 @@ void SMainMenu::handleEvents()
       case SDL_MOUSEBUTTONDOWN:
       {
         handleMouseDown (e.button.button);
-		GameSound::getInstance()->loadChunk("Menu Slection (1).mp3");
         break;
       }
       case SDL_MOUSEBUTTONUP:

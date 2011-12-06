@@ -26,12 +26,12 @@ class GameSound
    void downVolumeSE();
    void upVolumeMUS();
    void downVolumeMUS();
-   void initSounds(int CharacterID);
+   void initSounds(int CharacterID, int soundType);
    std::string readLineFromFile(string filename, int row);
-   void split(std::string line);
-   void loadChunk(int CharacterID, int soundID);
-   void loadSound(int CharacterID, int soundID);
-   void PlaySound(int CharacterID, int soundID);
+   void split(std::string line, int soundType);
+   void loadChunk(int row, int soundType, int soundID);
+   void loadSound(int row, int soundType, int soundID);
+   void PlaySound(int row, int soundType, int soundID);
    void stateSoundsHandling(GameCoreStates::SpriteState previousState);	
    void closeAll();
 
@@ -40,7 +40,8 @@ class GameSound
   private:
    std::vector< std::string > ambienceSounds;//Yet to implement if needed
    std::vector< std::string > statesSounds;
-   std::string filename;
+   std::string sFilename;
+   std::string lFilename;
    static bool instanceFlag;
    const char* currentSound;
    static GameSound* gameSound;

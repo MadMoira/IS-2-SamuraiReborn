@@ -7,7 +7,7 @@ namespace GameCoreStates
   class JumpingState : public PlayerState
   {
    public:
-    JumpingState(int id);
+    JumpingState(int id, int charID);
     ~JumpingState(void);
 
     int checkMovement(int keyPreviouslyPressed, int previousState, 

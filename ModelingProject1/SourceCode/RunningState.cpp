@@ -6,9 +6,9 @@
 #include "PlayerSpriteStates.h"
 #include "ComparatorFunctions.h"
 
-
-GameCoreStates::RunningState::RunningState(int id) : PlayerState( id )
+GameCoreStates::RunningState::RunningState(int id, int charID)
 {
+  characterID = charID;
   currentID = id;
 }
 
@@ -34,7 +34,7 @@ int GameCoreStates::RunningState::checkMovement(int keyPreviouslyPressed, int pr
 	     previousState == GameCoreStates::JUMPING ) && 
 	     isRunning.directionButtonPressed && isRunning.runningButtonPressed )
   {  
-   GameSound::getInstance()->PlaySound(0/*currentID*/,2);
+   GameSound::getInstance()->PlaySound(characterID,0,2);
     return GameCoreStates::CHANGE;
   }
 

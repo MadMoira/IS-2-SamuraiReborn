@@ -2,7 +2,7 @@
 #include "PlayerStateManager.h"
 #include "PlayerState.h"
 
-GameCoreStates::PlayerStateManager::PlayerStateManager(void)
+GameCoreStates::PlayerStateManager::PlayerStateManager()
 {
   currentState = *STILL_STATE;
 }

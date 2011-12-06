@@ -7,7 +7,7 @@ namespace GameCoreStates
   class RunningState : public PlayerState
   {
    public:
-	RunningState(int id);
+	RunningState(int id, int charID);
 	~RunningState(void);
 
 	int checkMovement(int keyPreviouslyPressed, int previousState, 

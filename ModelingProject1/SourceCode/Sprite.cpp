@@ -404,7 +404,3 @@ void Sprite::drawTexture()
 	                            widthTexture, heightTexture, width, height,  
 								handlerAnimation->getAnimationDirection(), currentState );
 }
-
-
-
-
