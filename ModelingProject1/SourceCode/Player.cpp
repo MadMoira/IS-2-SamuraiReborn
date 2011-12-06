@@ -104,7 +104,7 @@ void Player::returnToPreviousState()
     }
 	case GameCoreStates::RUNNING:
     {
-      playerSprite->changeStatePlayerSprite(RUNNING_STATE, 1, getInputMapper()->getListKeys());
+      playerSprite->changeStatePlayerSprite(RUNNING_STATE(playerSprite->getID()), 1, getInputMapper()->getListKeys());
 	  break;
     }
 	case GameCoreStates::JUMPING:
@@ -192,12 +192,11 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
 
   if ( findRunningInStates && player.isReadyToPace() )
   {
-    playerSprite->changeStatePlayerSprite(RUNNING_STATE, inputs.buttonPreviouslyPressed, keys);
+    playerSprite->changeStatePlayerSprite(RUNNING_STATE(playerSprite->getID()), inputs.buttonPreviouslyPressed, keys);
   }
-
   if ( findJumpingInStates )
   {
-    playerSprite->changeStatePlayerSprite(JUMPING_STATE, checkKey.wasPreviouslyPressed, keys);
+    playerSprite->changeStatePlayerSprite(JUMPING_STATE(playerSprite->getID()), checkKey.wasPreviouslyPressed, keys);
 
     if ( player.isReadyToDoubleJump() )
     {
@@ -223,6 +222,6 @@ void Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, st
   if ( findFastAttackWalkingInStates )
   {
     checkKey = *std::find_if(keys.begin(), keys.end(), isFastAttackKeyPressed);
-    playerSprite->changeStatePlayerSprite(FAST_ATTACK_STATE, checkKey.wasPreviouslyPressed, keys);
+    playerSprite->changeStatePlayerSprite(FAST_ATTACK_STATE(playerSprite->getID()), checkKey.wasPreviouslyPressed, keys);
   }
 }

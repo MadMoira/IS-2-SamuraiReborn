@@ -12,13 +12,6 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Game
   gameRender = gR;
   gameInput = gI;
   nameState = stateName;
-
-  std::string ambience = "Wind.mp3";
- // std::string background ="Into Dust.mp3";
-  std::string background ="Japanese War Music.mp3";
-  sounds.push_back(ambience);
-  sounds.push_back(background);
-
   gameCore->getGameTimer()->setFramesPerSecond(60);
   setHasEnded(STATE_LEVELONEJAPAN);
 }
@@ -134,9 +127,9 @@ void SLevelOneJapan::init()
 
   gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getPlayerSprite()->getBoxX() + gameCore->getPlayersList().at(0).getPlayerSprite()->getBoxWidth()/2 );
   
-  sound->loadSound(sounds.at(1));
+  sound->loadSound(0,1,0);
   sound->downVolumeMUS();
-  sound->loadSound(sounds.at(0));
+  sound->loadSound(0,1,1);
   sound->upVolumeMUS();
 
   speedPanda.clear();

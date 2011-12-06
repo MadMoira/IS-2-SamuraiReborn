@@ -232,6 +232,7 @@
     <None Include="IntoDust.mp3" />
     <None Include="Japanese War Music.mp3" />
     <None Include="LevelOneTileMap.tmx" />
+    <None Include="LevelSounds.txt" />
     <None Include="LevelZeroSectionOneCollisionList.csv" />
     <None Include="LevelZeroSectionOneWalkableList.csv" />
     <None Include="logoSamuraiReborn.png" />

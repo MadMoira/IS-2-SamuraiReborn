@@ -16,6 +16,7 @@ namespace GameCoreStates
   {
    public:
 	PlayerState(int id);
+	PlayerState(int id, int charID);
 	PlayerState(){};
 	~PlayerState(){};
 
@@ -32,5 +33,6 @@ namespace GameCoreStates
 	virtual int checkChangeOfState(std::list<InputMapping::Key> keys, int currentState,
 		                   int previousState, GameCoreStates::PlayerState* newState,
                            int keyPreviouslyPressed);
+	 int characterID;
   };
 }

@@ -1,10 +1,12 @@
 
 #include "StillState.h"
 
-GameCoreStates::StillState::StillState(int id) : PlayerState( id )
+GameCoreStates::StillState::StillState(int id)//, int charID)
 {
+ // characterID = charID;
   currentID = id;
 }
+
 
 GameCoreStates::StillState::~StillState(void)
 {

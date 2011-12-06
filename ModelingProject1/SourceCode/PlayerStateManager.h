@@ -17,10 +17,10 @@
 
 #define STILL_STATE new GameCoreStates::StillState(GameCoreStates::STILL)
 #define WALKING_STATE new GameCoreStates::WalkingState(GameCoreStates::WALKING)
-#define JUMPING_STATE new GameCoreStates::JumpingState(GameCoreStates::JUMPING)
-#define RUNNING_STATE new GameCoreStates::RunningState(GameCoreStates::RUNNING)
+#define JUMPING_STATE(charID) new GameCoreStates::JumpingState(GameCoreStates::JUMPING, charID)
+#define RUNNING_STATE(charID) new GameCoreStates::RunningState(GameCoreStates::RUNNING, charID)
 #define DOUBLE_JUMP_STATE new GameCoreStates::DoubleJumpState(GameCoreStates::DOUBLE_JUMP)
-#define FAST_ATTACK_STATE new GameCoreStates::FastAttackState(GameCoreStates::FAST_ATTACK)
+#define FAST_ATTACK_STATE(charID) new GameCoreStates::FastAttackState(GameCoreStates::FAST_ATTACK, charID)
 #define FALLING_STATE new GameCoreStates::FallingState(GameCoreStates::FALLING)
 #define STOPPING_STATE new GameCoreStates::StoppingState(GameCoreStates::STOPPING)
 
@@ -45,6 +45,7 @@ namespace GameCoreStates
 	 boost::ptr_vector< State > statesStack;
 	 GameCoreStates::SpriteState previousState;
 	 GameCoreStates::PlayerState currentState;
+	// int CharID;
   };
 }
 

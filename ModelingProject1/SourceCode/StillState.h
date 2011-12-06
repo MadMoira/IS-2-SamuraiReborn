@@ -8,6 +8,7 @@ namespace GameCoreStates
   {
    public:
 	StillState(int id);
+	//StillState(int id, int charID);
 	~StillState(void);
 
 	int checkMovement(int keyPreviouslyPressed, int previousState, 

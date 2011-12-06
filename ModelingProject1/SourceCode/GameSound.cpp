@@ -6,7 +6,8 @@ GameSound::GameSound(void)
 	printf("FMOD created");
 	ERRCHECK(result);
 	//The file structure will be: attackSound;groundhitSound;runningSound;others....
-	filename= "Musics.txt";
+	sFilename = "Musics.txt";
+	lFilename = "LevelSounds.txt";
 }
 
 bool GameSound::instanceFlag = false;
@@ -133,9 +134,9 @@ void GameSound::downVolumeMUS()
 }
 
 //additions
-std::string GameSound::readLineFromFile(string filename, int row){
+std::string GameSound::readLineFromFile(string sFilename, int row){
 	std::string line;
-	ifstream soundsFile ( filename, ifstream::in );
+	ifstream soundsFile ( sFilename, ifstream::in );
 	if(!soundsFile.is_open()){
 		exit(1);
 	}
@@ -155,12 +156,16 @@ std::string GameSound::readLineFromFile(string filename, int row){
 	return line;
 }
 
-void GameSound::split(std::string line){
+void GameSound::split(std::string line, int soundType){
 	std::string temp;
 
 	for(int i=0;i<line.size();i++){
 		if(line.at(i)==';' && temp!=""){
-			statesSounds.push_back(temp);
+			if(soundType==0){
+	statesSounds.push_back(temp);
+	}else{
+		ambienceSounds.push_back(temp);
+	}	
 			temp="";
 		}else{
 			temp+=line.at(i);
@@ -168,15 +173,26 @@ void GameSound::split(std::string line){
 	}
 }
 
-void GameSound::initSounds(int CharacterID){
-	std::string line= readLineFromFile(filename ,CharacterID);
-	split(line);
+void GameSound::initSounds(int row, int soundType){
+	std::string line;
+	if(soundType==0){
+	line= readLineFromFile(sFilename ,row);
+	}else{
+		line= readLineFromFile(lFilename ,row);
+	}
+	split(line, soundType);
 }
 
-void GameSound::loadChunk(int CharacterID, int soundID){
-	
-	initSounds(CharacterID);
-	std::string name = statesSounds.at(soundID);
+void GameSound::loadChunk(int row, int soundType, int soundID){
+
+	initSounds(row, soundType);
+	std::string name;
+		if(soundType==0){
+	name = statesSounds.at(soundID);
+	}else{
+	name = ambienceSounds.at(soundID);
+	}
+		
 	if(name == "none"){
 		return;
 	}
@@ -187,35 +203,45 @@ void GameSound::loadChunk(int CharacterID, int soundID){
 	result = system->playSound(FMOD_CHANNEL_FREE, chunks[0], false, &channel[1]);
 	ERRCHECK(result);
 	result = channel[1]->setVolume(0.1f);
+}
+
+
+void GameSound::loadSound(int row, int soundType, int soundID){
+	initSounds(row, soundType);
+	std::string name;
+		if(soundType==0){
+	name = statesSounds.at(soundID);
+	}else{
+	name = ambienceSounds.at(soundID);
 	}
 
-
-   void GameSound::loadSound(int CharacterID, int soundID){
-	initSounds(CharacterID);
-	std::string name = statesSounds.at(soundID);
-	
 	if(name == "none"){
 		return;
 	}
-	   const char* MusicName = name.c_str();
+	const char* MusicName = name.c_str();
 	printf("Loading");
 	result = system->createStream(MusicName, FMOD_HARDWARE | FMOD_LOOP_NORMAL | FMOD_2D, 0, &sound);
 	ERRCHECK(result);
 	printf("Playing");
 	result = system->playSound(FMOD_CHANNEL_FREE, sound, false, &channel[0]);
 	ERRCHECK(result);
+}
+
+void GameSound::PlaySound(int row, int soundType, int soundID){
+	initSounds(row, soundType);
+	std::string name;
+		if(soundType==0){
+	name = statesSounds.at(soundID);
+	}else{
+	name = ambienceSounds.at(soundID);
 	}
-  
-   void GameSound::PlaySound(int CharacterID, int soundID){
-	initSounds(CharacterID);
-	std::string name = statesSounds.at(soundID);
 	if(name == "none"){
 		return;
 	}
-    currentSound = name.c_str();
+	currentSound = name.c_str();
 	result = system->createStream( currentSound, FMOD_DEFAULT, 0, &sound );
 	ERRCHECK(result);
 	result = system->playSound( FMOD_CHANNEL_REUSE, sound, false, &channel[2]);
 	ERRCHECK(result);
-	}
-//statesSounds
+}
+//

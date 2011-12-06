@@ -1,11 +1,10 @@
 
 #include <algorithm>
 #include "ComparatorFunctions.h"
-
 #include "FastAttackState.h"
 
-GameCoreStates::FastAttackState::FastAttackState(int id) : PlayerState( id )
-{
+GameCoreStates::FastAttackState::FastAttackState(int id, int charID){
+  characterID = charID;
   currentID = id;
 }
 
@@ -32,7 +31,7 @@ int GameCoreStates::FastAttackState::checkMovement(int keyPreviouslyPressed, int
 	   keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && fastAttackButtonIsPressed )
   {
 
-    GameSound::getInstance()->loadChunk(0/*currentID*/,0);
+    GameSound::getInstance()->loadChunk(characterID,0,0);
     return GameCoreStates::CHANGE;
   }
 

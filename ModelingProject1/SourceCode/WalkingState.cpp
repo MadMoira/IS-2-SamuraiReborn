@@ -4,8 +4,7 @@
 #include "GameSound.h"
 #include "WalkingState.h"
 
-GameCoreStates::WalkingState::WalkingState(int id) : PlayerState( id )
-{
+GameCoreStates::WalkingState::WalkingState(int id){
   currentID = id;
 }
 

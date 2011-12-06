@@ -38,6 +38,4 @@ class GameState
    GameCore* gameCore;
    GameInput* gameInput;
    GameStates nameState;
-   std::vector< std::string > sounds;
 };
-

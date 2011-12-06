@@ -685,6 +685,9 @@
     <None Include="Sword (1).mp3">
       <Filter>Resource Files\Audio</Filter>
     </None>
+    <None Include="LevelSounds.txt">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SourceCode.rc">

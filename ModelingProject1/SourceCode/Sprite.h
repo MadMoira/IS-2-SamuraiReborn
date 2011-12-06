@@ -125,4 +125,3 @@ class Sprite
    int countX, countY;
    bool isOnGround;
 };
-
