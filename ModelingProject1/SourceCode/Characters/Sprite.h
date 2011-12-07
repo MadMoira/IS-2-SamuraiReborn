@@ -36,6 +36,7 @@ class Sprite
 
    GLfloat getPosX() { return position.x; }
    void setPositionX(GLfloat x) { position.x -= x; }
+   void setNormalPositionX(GLfloat x) { position.x += x; }
    void movePosXWithSpeed();
 
    GLfloat getPosY() { return position.y; }

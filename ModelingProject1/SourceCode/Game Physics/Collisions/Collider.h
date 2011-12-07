@@ -21,11 +21,11 @@ class Collider
    void cleanUpResources();
    
    bool checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B , float direction);
-   void checkTileCollision(CollisionSystem::CollisionBox& A, int directionX,  int directionY, 
+   void checkTileCollision(CollisionSystem::CollisionBox& A, GLfloat* speedX, GLfloat* speedY, int directionX,  int directionY, 
                            CollisionSystem::DirectionsMove& directionsMove, int currentMovement);
 
    void checkBoxBordersCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove,
-                                  int leftPositionBorder, int currentPosition, int positionY );
+                                  int leftPositionBorder, int rightPositionBorder, int currentPosition, int positionY );
    void checkTopBoxCollision( CollisionSystem::DirectionsMove& directionsMove, int topY, int directionY, int currentPositionY );
    void checkBodyBoxCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, int directionX, 
                                int directionY, int currentPositionY );
