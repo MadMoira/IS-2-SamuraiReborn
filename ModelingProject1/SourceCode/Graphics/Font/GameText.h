@@ -26,7 +26,7 @@ namespace Text
      Vector2f getOffset() { return offset; }
      void setOffset(Vector2f off) { offset = off; }
 
-     void setDataText(int data) { dataText = parseDataToString(data); }
+     void setDataText(int data);
 
     private:
      Font::GameFont* font;

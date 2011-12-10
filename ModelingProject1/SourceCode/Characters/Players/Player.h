@@ -39,6 +39,8 @@ namespace Characters
       
      static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
 
+	 void setIDNumberOfPlayer(int id) { idNumberOfPlayer = id; }
+
      InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
 
 	 InputMapping::Controller* getController() { return controller; }
@@ -48,6 +50,7 @@ namespace Characters
      PlayerScore::Score* getScore() { return score; }
 
     protected:
+	 int idNumberOfPlayer;
      InputMapping::GameInputMapper* inputMapper;
 	 InputMapping::Controller* controller;
      PlayerStats::Stats* stats;

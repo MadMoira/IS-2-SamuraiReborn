@@ -256,7 +256,6 @@
     <None Include="Resources\Menus\Menu Selection Player\MenuSelectionPlayerButtons.png" />
     <None Include="Resources\Menus\Menu Selection Player\PandaSelector.png" />
     <None Include="Resources\Menus\Menu Selection Player\SuricataSelector.png" />
-    <None Include="Resources\UI\HealthBar.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

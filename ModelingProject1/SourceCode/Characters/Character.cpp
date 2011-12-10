@@ -25,7 +25,8 @@ bool Characters::Character::isReadyToPace()
 
 bool Characters::Character::isReadyToDoubleJump()
 {
-  if ( characterSprite->getSpeedY() >= -16.0f && characterSprite->getSpeedY() <= 0  )
+  GLfloat speedForDoubleJump = characterSprite->getRigidBody().getMaxSpeed().at(GameCoreStates::JUMPING).y;
+  if ( characterSprite->getSpeedY() >= speedForDoubleJump/1.5f && characterSprite->getSpeedY() <= 0 )
   {
     return true;
   }
