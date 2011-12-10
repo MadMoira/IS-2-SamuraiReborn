@@ -85,8 +85,8 @@ void Characters::Player::returnToPreviousState()
 
 void Characters::Player::drawUIStats()
 {
-  stats->drawHealthBar();
-  stats->drawHealth();
+  /*stats->drawHealthBar();
+  stats->drawHealth();*/
 }
 
 void Characters::Player::drawScore()

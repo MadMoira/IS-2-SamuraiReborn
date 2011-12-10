@@ -114,24 +114,24 @@ void SLevelOneJapan::cleanUp()
 
 void SLevelOneJapan::initializePlayers()
 {
-  gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
+  //gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
   //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
 
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(12.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -30.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -28.0f) );
   maxSpeedPanda.push_back( Vector2f(20.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -25.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -23.0f) );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   
   std::vector< Vector2f > maxSpeedMeerkat;
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
-  maxSpeedMeerkat.push_back( Vector2f(10.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -27.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -21.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(14.0f, 0.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -30.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(22.0f, 0.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -25.0f) );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
 
@@ -186,8 +186,10 @@ void SLevelOneJapan::initializePlayers()
   framerateAnimationsVector.push_back( 100 );
 
   SDL_Color color;
-  color.r = color.g = color.b = 255;
-  int sizeFont = 25;
+  color.r = 0;
+  color.g = 0;
+  color.b = 0;
+  int sizeFont = 20;
   std::string filenameFont = "Resources/GUI/Fonts/orbitron-black.ttf";
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersToInitialize().size(); i++)
@@ -202,6 +204,9 @@ void SLevelOneJapan::initializePlayers()
                              280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
 		gameCore->initializeRigidBodyVectors(SpriteData::PANDA, maxSpeedPanda);
+		gameCore->setIDNumberOfPlayer(SpriteData::PANDA, (int)i);
+		gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts( new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
+                            color, filenameFont, sizeFont, 0),  "", i);
         break;
       }
       case SpriteData::MEERKAT:
@@ -212,13 +217,13 @@ void SLevelOneJapan::initializePlayers()
                              340.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 32.0f, 135.0f, 153.0f, 42.0f);
 		gameCore->initializeRigidBodyVectors(SpriteData::MEERKAT, maxSpeedMeerkat);
+		gameCore->setIDNumberOfPlayer(SpriteData::MEERKAT, (int)i);
+		gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts( new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
+                            color, filenameFont, sizeFont, 0),  "", i);
 		break;
       }
     }
   }
-
-  gameCore->getPlayersList().at(0).getScore()->initializeTextAndFonts( new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
-                            color, filenameFont, sizeFont, 0),  "", Vector2f(170.0f, 15.0f), Vector2f(200.0f, 20.0f) );
 
   maxSpeedPanda.clear();
   maxSpeedMeerkat.clear();

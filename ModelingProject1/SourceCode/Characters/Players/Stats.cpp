@@ -20,6 +20,7 @@ PlayerStats::Stats::Stats(void)
   health = PlayerStats::Health(lifeQPos, lifeQOff, lifeIPos, lifeIOff);
 
   health.pointsOfLife = 2800;
+  health.maxPointsOfLife = 2800;
   health.healthBar = new Image::GameImage(Vector2f(10.0f, 10.0f), //X-Y Position Of The Health Bar
                                       Vector2f(353.33f, 145.0f), //Width And Height Of The Health Bar
                                       Vector2f(20.58f, 0.0f), //Texture Position X-Y Of The Health Bar
@@ -28,6 +29,18 @@ PlayerStats::Stats::Stats(void)
 
 PlayerStats::Stats::~Stats(void)
 {	
+  delete health.healthBar;
+  //delete faces.faces;
+}
+
+void PlayerStats::Stats::initializeFaceStates(std::string filename, int idPlayer)
+{
+  faces.faces = new Image::GameImage( Vector2f( 100.0f*idPlayer + 50.0f, 10.0f ),
+	                                  Vector2f( 100.0f, 100.0f ),
+									  Vector2f( 0.0f, 0.0f ),
+									  filename );
+  faces.currentFaceState = 2;
+  faces.maxFaces = 3;
 }
 
 void PlayerStats::Stats::drawHealthBar()
@@ -143,4 +156,20 @@ void PlayerStats::Stats::drawHealth()
 
   glDisableClientState( GL_VERTEX_ARRAY );			
   glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+}
+
+void PlayerStats::Stats::updateFaceState()
+{
+  int points = health.pointsOfLife;
+  int maxPoints = health.maxPointsOfLife;
+  int maxFaces = faces.maxFaces;
+
+  for(int i = faces.maxFaces - 1; i >= 0; i--)
+  {
+	if ( points > (i/maxFaces)*maxPoints && points <= ( (i + 1)/maxFaces )*maxPoints )
+	{
+	  faces.currentFaceState = i;
+	  return;
+	}
+  }
 }

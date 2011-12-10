@@ -43,13 +43,14 @@ class GameCore
 	            int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
                 GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
                 std::vector< Vector2f> delayMovement);
-   void addEnemyToGame(Characters::Enemy *enemy, SpriteData::IDSprites id, std::string filename,
+   void addEnemyToGame(Characters::Enemy* enemy, SpriteData::IDSprites id, std::string filename,
                 Vector2f pos, int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame, 
                 GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
                 std::vector< Vector2f> delayMovement);
 
    void initializeSpriteCollisionBoxPlayer(SpriteData::IDSprites id, float width, float height, GLfloat offsetX, GLfloat offsetY);
    void initializeRigidBodyVectors(SpriteData::IDSprites id, std::vector< Vector2f > maxSpeed);
+   void setIDNumberOfPlayer(SpriteData::IDSprites id, int idPlayer);
 
    bool getIsRunning() { return isRunning; }
    void setIsRunning(bool running) { isRunning = running; };

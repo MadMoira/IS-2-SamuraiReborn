@@ -117,3 +117,14 @@ void GameCore::initializeRigidBodyVectors(SpriteData::IDSprites id, std::vector<
     }
   } 
 }
+
+void GameCore::setIDNumberOfPlayer(SpriteData::IDSprites id, int idPlayer)
+{
+  for (std::string::size_type i = 0; i < playersList.size(); i++)
+  {
+    if ( playersList.at(i).getCharacterID() == id )
+    {
+      playersList.at(i).setIDNumberOfPlayer(idPlayer);
+    }
+  }   
+}
