@@ -41,6 +41,7 @@ class Sprite
 
    GLfloat getPosY() { return position.y; }
    void setPositionY(GLfloat y) { position.y -= y; }
+   void setNormalPositionY(GLfloat y) { position.y += y; }
    void movePosYWithSpeed();
 
    bool getPlayerMoveBasedInDirection();

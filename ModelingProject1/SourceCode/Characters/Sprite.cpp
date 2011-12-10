@@ -110,7 +110,7 @@ void Sprite::movePosXWithSpeed()
                                             getCurrentState(), handlerAnimation->getAnimationDirection(),
 											getPreviousState());
 
-        collisionHandler->checkTileCollision(*getCollisionBox(), &speed.x, &speed.y,
+        collisionHandler->checkTileCollisionX(*getCollisionBox(), &speed.x, &speed.y,
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY(), 
                                      directionsMove, GamePhysics::X);
         collisionHandler->checkStateCollisionXAxis(*this);
@@ -137,7 +137,7 @@ void Sprite::movePosXWithSpeed()
       characterMovement.playerMoveInX = true;
       characterMovement.playerMoveInXInCurrentFrame = true;
 
-      collisionHandler->checkTileCollision(*getCollisionBox(), &speed.x, &speed.y,
+      collisionHandler->checkTileCollisionX(*getCollisionBox(), &speed.x, &speed.y,
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY(), 
                                      directionsMove, GamePhysics::X);
       collisionHandler->checkStateCollisionXAxis(*this);
@@ -170,13 +170,8 @@ void Sprite::movePosYWithSpeed()
         return;
       }
 
-	  	  if ( getCurrentState() == GameCoreStates::JUMPING )
-	  {
-		int d =4;
-	  }
-
-      position.y += getSpeedY();
-      spriteCollisionBox->setY(position.y);
+      /*position.y += getSpeedY();
+      spriteCollisionBox->setY(position.y);*/
 
       rigidBody->applyNaturalPhysicForces(GamePhysics::Y, &speed.x, &speed.y, 
                                           getCurrentState(), handlerAnimation->getAnimationDirection(),
@@ -185,13 +180,18 @@ void Sprite::movePosYWithSpeed()
       characterMovement.playerMoveInY = true;
       characterMovement.playerMoveInYInCurrentFrame = true;
 
-      isOnGround = collisionHandler->onTheGround(*getCollisionBox(),
-                                     handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY());
-      collisionHandler->checkTileCollision(*getCollisionBox(), &speed.x, &speed.y,
+
+      collisionHandler->checkTileCollisionY(*getCollisionBox(), &speed.x, &speed.y,
                                      handlerAnimation->getAnimationDirection(), 
                                      handlerAnimation->getDirectionY(), directionsMove, GamePhysics::Y);
 
+	  position.y += getSpeedY();
+      spriteCollisionBox->setY(position.y);
+
+	  isOnGround = collisionHandler->onTheGround(*getCollisionBox(),
+                                     handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY());     
       collisionHandler->checkStateCollisionPlayer(*this);
+
       return;
     }
 
