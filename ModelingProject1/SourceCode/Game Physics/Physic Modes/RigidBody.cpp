@@ -45,9 +45,9 @@ void GamePhysics::RigidBody::applyNaturalPhysicForces(int currentMovement, GLflo
   }
 }
 
-GLfloat GamePhysics::RigidBody::getMomentumForce(GLfloat speedX, int axisDirection)
+GLfloat GamePhysics::RigidBody::getMomentumForce(GLfloat momentumValue, GLfloat speedX, int axisDirection)
 {
-  GLfloat forceMomentum = 8.0f;
+  GLfloat forceMomentum = momentumValue;
   if ( speedX*(axisDirection) - forceMomentum <= 0.0f )
   {
 	return speedX;
@@ -125,7 +125,7 @@ void GamePhysics::RigidBody::acceleratePlayer(GLfloat* xVelocity, int playerStat
   }
 
   bool noAccelerationState = indexState != GameCoreStates::FALLING && indexState != GameCoreStates::FAST_ATTACK &&
-	                        (playerState != GameCoreStates::DOUBLE_JUMP && previousState != GameCoreStates::JUMPING); 
+	                        (playerState != GameCoreStates::DOUBLE_JUMP /*&& previousState != GameCoreStates::JUMPING*/); 
 
   switch( accState )
   {

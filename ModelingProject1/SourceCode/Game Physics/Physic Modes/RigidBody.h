@@ -18,7 +18,7 @@ namespace GamePhysics
      void applyNaturalPhysicForces(int currentMovement, GLfloat* speedX, GLfloat* speedY, int playerState, int direction, 
 		                           int previousState);
 	 
-	 GLfloat getMomentumForce(GLfloat speedX, int axisDirection);
+	 GLfloat getMomentumForce(GLfloat momentumValue, GLfloat speedX, int axisDirection);
 	 void setAccelerationState(int state) { accState = (AccelerationState)state; }
 
 	 bool updateAccelerationState(std::list<InputMapping::Key> keys, GameCoreStates::ConditionsPlayerRunning isPacing, 

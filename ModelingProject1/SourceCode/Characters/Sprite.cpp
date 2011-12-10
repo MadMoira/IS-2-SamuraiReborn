@@ -253,11 +253,16 @@ void Sprite::setSpeedY(GLfloat speedY)
 void Sprite::setConstantSpeedX(int constant)
 {
   int axisDirection = handlerAnimation->returnAnimationDirectionAxisValue();
+  GLfloat momentumValue = 8.0f;
 
   if ( constant < 0 )
   {
     speed.x *= constant;
-	speed.x = rigidBody->getMomentumForce(speed.x, axisDirection);
+	if ( isPlayerOnTheAir() )
+	{
+	  momentumValue = 4.0f;
+	}
+	speed.x = rigidBody->getMomentumForce(momentumValue, speed.x, axisDirection);
   }
 }
 
