@@ -86,7 +86,7 @@ class Sprite
    int getPreviousState() { return playerStateManager->getPreviousState(); }
 
    Collider* getCollisionHandler() { return collisionHandler; }
-   CollisionSystem::CollisionBox* getCollisionBox() {return spriteCollisionBox; }
+   CollisionSystem::CollisionBox* getCollisionBox() { return spriteCollisionBox; }
 
    GLfloat getBoxX() { return spriteCollisionBox->getX(); }
    GLfloat getBoxY() { return spriteCollisionBox->getY(); }

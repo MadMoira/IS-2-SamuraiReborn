@@ -109,10 +109,17 @@ void Collider::checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* sp
 	  sy = 0.0f;
 	  k = (int)A.getY();
 	  leftCondition = k;
-	  //sign = 2;
+	  sign = 2;
 	if ( initialLoop == 0.0f )
 	{
-	  rightCondition = A.getY() + A.getHeight();
+			if ( directionY == SpriteData::UP )
+		{
+		  rightCondition = A.getY() + A.getHeight()/2;
+		}
+		else if ( directionY == SpriteData::DOWN )
+		{
+		  rightCondition = A.getY() + A.getHeight();
+		}
 	}
 	for ( k; limitLoop(sign, leftCondition, rightCondition); k += 1*(axisY) )
 	{
@@ -120,7 +127,14 @@ void Collider::checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* sp
 	  int newRightDirection = i;
 	  if ( initialLoop == 0.0f )
 	  {
-		newRightDirection = A.getY() + A.getHeight();
+		if ( directionY == SpriteData::UP )
+		{
+		  newRightDirection = A.getY() + A.getHeight()/2;
+		}
+		else if ( directionY == SpriteData::DOWN )
+		{
+		  newRightDirection = A.getY() + A.getHeight();
+		}
 	  }
 
 	  for ( i; limitLoop(0, i, newRightDirection); i += 1 )
@@ -246,14 +260,21 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 	  leftCondition = k;
 	  sign = 0;
 
-	if ( A.getY() + A.getHeight() <= 15*32 && indexLayer == 1 )
+	if ( A.getY() + A.getHeight() <= 10*32 && indexLayer == 1 )
 	{
 		int p =4;
 	}
 
 	if ( initialLoop == 0.0f )
 	{
-	  rightCondition = A.getX() + A.getWidth();
+	  if ( directionX == SpriteData::RIGHT )
+	  {
+         rightCondition = A.getX() + A.getWidth();
+	  }
+	  else if ( directionX == SpriteData::LEFT )
+	  {
+	     rightCondition = A.getX() + A.getWidth()/2;
+	  }
 	}
 
 	if ( A.getX() + A.getWidth() >= 2336 && initialLoop == 0.0f)
@@ -266,7 +287,14 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 	  int newRightDirection = i;
 	  if ( initialLoop == 0.0f )
 	  {
-		newRightDirection = A.getX() + A.getWidth();
+				  if ( directionX == SpriteData::RIGHT )
+		  {
+			 newRightDirection = A.getX() + A.getWidth();
+		  }
+		  else if ( directionX == SpriteData::LEFT )
+		  {
+			 newRightDirection = A.getX() + A.getWidth()/2;
+		  }
 	  }
 
 	  for ( i; limitLoop(0, i, newRightDirection); i += 1 )
@@ -275,13 +303,13 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 		  {
 			int e = 4;
 		  }
-		  for ( int j = A.getY(); j < A.getY() + A.getHeight(); j += 8 )
+		  for ( int j = A.getY(); j < A.getY() + A.getHeight(); j += 1 )
 		  {
 			 
 						int x = (int)i/32;
 						int y = (int)j/32;
 
-						if ( x == 147 && y == 11 && indexLayer == 1 )
+						if ( x <= 153 && y >= 9 && indexLayer == 1 )
 						{
 						  int q =4;
 						}
@@ -313,7 +341,7 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 							{
 							temp = new CollisionSystem::CollisionBox(leftCondition, A.getY(), A.getWidth(), A.getHeight(), A.getOffset());
 							}
-						  checkBoxBordersCollision(*temp, directionsMove, leftCondition, leftCondition + 85, x, y);
+						  //checkBoxBordersCollision(*temp, directionsMove, leftCondition, leftCondition + 85, x, y);
 						  //checkTopBoxCollision(directionsMove, int topY, int directionY, int currentPositionY);
 						  checkBottomBoxCollision(*temp, directionsMove, directionX, directionY, x, y, currentMovement);
 						  checkBodyBoxCollision(*temp, directionsMove, directionX, directionY, y);
@@ -322,10 +350,21 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 						  {
 							int d =4;
 						  }
-						  if ( s == 0.0f)
+						  if ( (s == 0.0f) && ( (!directionsMove.canMoveXRight && !directionsMove.canMoveXLeft) ||
+							  (!directionsMove.canMoveYUp && !directionsMove.canMoveYDown) ) )
 						  {
 							  *speedX = s;
 							  return;
+						  }
+
+						  if ( ( (directionsMove.canMoveXRight && directionsMove.canMoveXLeft) &&
+							  (directionsMove.canMoveYUp && directionsMove.canMoveYDown) ) )
+						  {
+							if ( s != 0.0f )
+							{
+							  *speedX = s;
+							}
+							return;
 						  }
 
 						  int signo = -1;
@@ -399,7 +438,7 @@ void Collider::checkBottomBoxCollision(CollisionSystem::CollisionBox& A, Collisi
     {
       case SpriteData::RIGHT:
       {
-        if ( currentPositionX == (int)(A.getX() + A.getWidth())/32 && 
+        if ( currentPositionX >= (int)(A.getX() + A.getWidth())/32 && 
              currentMovement == GamePhysics::X )
         {
           directionsMove.setCanMoveLeft(true);
@@ -409,7 +448,7 @@ void Collider::checkBottomBoxCollision(CollisionSystem::CollisionBox& A, Collisi
       }
       case SpriteData::LEFT:
       {
-        if ( currentPositionX == (int)(A.getX())/32 && 
+        if ( currentPositionX <= (int)(A.getX())/32 && 
              currentMovement == GamePhysics::X )
         {
           directionsMove.setCanMoveLeft(false);

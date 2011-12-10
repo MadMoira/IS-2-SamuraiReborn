@@ -35,7 +35,7 @@ void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState,
       if ( getSpeedX() == 0.0f )
       {
         playerStateManager->changePreviousState( GameCoreStates::WALKING );
-        setSpeedX( directionAxis*(rigidBody->getMaxSpeed().at( GameCoreStates::WALKING ).x + 3.0f) );
+        setSpeedX( directionAxis*(rigidBody->getMaxSpeed().at( GameCoreStates::WALKING ).x ) );
 		rigidBody->setAccelerationState(GamePhysics::ACCELERATE);
       }
       return;
