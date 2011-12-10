@@ -119,19 +119,19 @@ void SLevelOneJapan::initializePlayers()
 
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
-  maxSpeedPanda.push_back( Vector2f(10.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -24.0f) );
-  maxSpeedPanda.push_back( Vector2f(32.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -20.0f) );
+  maxSpeedPanda.push_back( Vector2f(12.0f, 0.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -30.0f) );
+  maxSpeedPanda.push_back( Vector2f(20.0f, 0.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -25.0f) );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   
   std::vector< Vector2f > maxSpeedMeerkat;
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(10.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -26.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -27.0f) );
   maxSpeedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -20.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -21.0f) );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
 
