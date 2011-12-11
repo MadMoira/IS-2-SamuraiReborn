@@ -114,8 +114,8 @@ void SLevelOneJapan::cleanUp()
 
 void SLevelOneJapan::initializePlayers()
 {
-  gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
-  //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
+  //gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
+  gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
 
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
@@ -200,7 +200,7 @@ void SLevelOneJapan::initializePlayers()
       {
         gameCore->addPlayerToGame( new Characters::PandaP1(), SpriteData::PANDA, 
 			                 "Resources/Characters/Players/Panda - SpriteSheet.png", 
-                             Vector2f(50.0f, 250.0f), 0, maxFrameVectorPanda, returnFrameVector,
+                             Vector2f(50.0f, 246.0f), 0, maxFrameVectorPanda, returnFrameVector,
                              280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
 		gameCore->initializeRigidBodyVectors(SpriteData::PANDA, maxSpeedPanda);
@@ -213,7 +213,7 @@ void SLevelOneJapan::initializePlayers()
       {
         gameCore->addPlayerToGame( new Characters::MeerkatP2(), SpriteData::MEERKAT, 
 			                 "Resources/Characters/Players/Meerkat - SpriteSheet.png", 
-                             Vector2f(0.0f, 275.0f), 0, maxFrameVector, returnFrameVector,
+                             Vector2f(0.0f, 271.0f), 0, maxFrameVector, returnFrameVector,
                              340.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 32.0f, 135.0f, 153.0f, 42.0f);
 		gameCore->initializeRigidBodyVectors(SpriteData::MEERKAT, maxSpeedMeerkat);
