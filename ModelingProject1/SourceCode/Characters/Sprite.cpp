@@ -95,14 +95,6 @@ void Sprite::movePosXWithSpeed()
           return;
         }
 
-        /*position.x += getSpeedX();
-        spriteCollisionBox->setX(position.x, handlerAnimation->getAnimationDirection());*/
-
-			  	  if ( getCurrentState() == GameCoreStates::JUMPING )
-	  {
-		int d =4;
-	  }
-
         characterMovement.playerMoveInX = true;
         characterMovement.playerMoveInXInCurrentFrame = true;
 

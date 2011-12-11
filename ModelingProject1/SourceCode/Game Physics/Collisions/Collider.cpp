@@ -186,10 +186,6 @@ void Collider::checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* sp
 							   }
 							}
 
-													  						    if ( x == 131 && y == 19 && directionX == SpriteData::RIGHT )
-							  {
-								int d = 4;
-							  }
 
 							if ( (int)(newRightDirection/32) == y && y == (int)((temp->getY() + temp->getHeight())/32) )
 							{
