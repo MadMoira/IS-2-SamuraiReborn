@@ -268,6 +268,7 @@ void GameRender::drawText(Font::GameFont* font, Text::GameText text)
   glBlendFunc(GL_ONE, GL_ONE);
 
   glBindTexture( GL_TEXTURE_2D, texture );
+
   glBegin( GL_QUADS );
     glTexCoord2i( 0, 0 );
     glVertex3f( x, y, 0.0f );

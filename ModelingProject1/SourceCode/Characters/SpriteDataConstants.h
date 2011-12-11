@@ -18,6 +18,5 @@ namespace SpriteData
   {
     UP,
     DOWN,
-    NO_DIRECTION,
   };
 }

@@ -7,7 +7,7 @@ Animation::Animation(int actualFrame, int currentState, SpriteData::AnimationDir
   currentFrame = actualFrame;
   this->currentState = currentState;
   animationDirectionX = direction;
-  animationDirectionY = SpriteData::NO_DIRECTION;
+  animationDirectionY = SpriteData::DOWN;
   incrementFrame = 1;
   oldTime = SDL_GetTicks();
   animationAlreadyEnd = false;
@@ -85,7 +85,7 @@ int Animation::returnAnimationDirectionAxisValue()
 
 void Animation::changeDirectionY(float speed)
 {
-  if ( speed > 0.0f )
+  if ( speed >= 0.0f )
   {
     animationDirectionY = SpriteData::DOWN;
     return;
@@ -95,8 +95,6 @@ void Animation::changeDirectionY(float speed)
     animationDirectionY = SpriteData::UP;
     return;
   }
-
-  animationDirectionY = SpriteData::NO_DIRECTION;
 }
 
 
