@@ -102,9 +102,8 @@ void Sprite::movePosXWithSpeed()
                                             getCurrentState(), handlerAnimation->getAnimationDirection(),
 											getPreviousState());
 
-        collisionHandler->checkTileCollisionX(*getCollisionBox(), &speed.x, &speed.y,
-                                     handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY(), 
-                                     directionsMove, GamePhysics::X);
+        collisionHandler->checkTileCollisionX(*getCollisionBox(), &speed.x, 
+                                     handlerAnimation->getAnimationDirection(), directionsMove);
         collisionHandler->checkStateCollisionXAxis(*this);
         isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
@@ -119,9 +118,6 @@ void Sprite::movePosXWithSpeed()
         return;
       }
 
-      /*position.x += getSpeedX();
-      spriteCollisionBox->setX(position.x + spriteCollisionBox->getOffset().x, handlerAnimation->getAnimationDirection());*/
-
       rigidBody->applyNaturalPhysicForces(GamePhysics::X, &speed.x, &speed.y, 
                                           getCurrentState(), handlerAnimation->getAnimationDirection(),
 										  getPreviousState());
@@ -129,9 +125,8 @@ void Sprite::movePosXWithSpeed()
       characterMovement.playerMoveInX = true;
       characterMovement.playerMoveInXInCurrentFrame = true;
 
-      collisionHandler->checkTileCollisionX(*getCollisionBox(), &speed.x, &speed.y,
-                                     handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY(), 
-                                     directionsMove, GamePhysics::X);
+      collisionHandler->checkTileCollisionX(*getCollisionBox(), &speed.x,
+                                     handlerAnimation->getAnimationDirection(), directionsMove);
       collisionHandler->checkStateCollisionXAxis(*this);
       isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
@@ -162,9 +157,6 @@ void Sprite::movePosYWithSpeed()
         return;
       }
 
-      /*position.y += getSpeedY();
-      spriteCollisionBox->setY(position.y);*/
-
       rigidBody->applyNaturalPhysicForces(GamePhysics::Y, &speed.x, &speed.y, 
                                           getCurrentState(), handlerAnimation->getAnimationDirection(),
 										  getPreviousState());
@@ -173,9 +165,8 @@ void Sprite::movePosYWithSpeed()
       characterMovement.playerMoveInYInCurrentFrame = true;
 
 
-      collisionHandler->checkTileCollisionY(*getCollisionBox(), &speed.x, &speed.y,
-                                     handlerAnimation->getAnimationDirection(), 
-                                     handlerAnimation->getDirectionY(), directionsMove, GamePhysics::Y);
+      collisionHandler->checkTileCollisionY(*getCollisionBox(), &speed.y,
+                                     handlerAnimation->getDirectionY(), directionsMove);
 
 	  position.y += getSpeedY();
       spriteCollisionBox->setY(position.y);

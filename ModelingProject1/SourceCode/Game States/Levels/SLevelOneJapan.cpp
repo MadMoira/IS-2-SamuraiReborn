@@ -47,8 +47,7 @@ void SLevelOneJapan::handleEvents()
 void SLevelOneJapan::logic()
 {
   gameCore->getPlayersList().at(0).getInputMapper()->dispatchInput( gameCore->getPlayersList().at(0),
-	  *gameCore->getPlayersList().at(0).getController()->getListKeys() );
-
+	                                                   *gameCore->getPlayersList().at(0).getController()->getListKeys() );
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();

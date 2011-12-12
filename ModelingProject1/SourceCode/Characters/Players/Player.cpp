@@ -91,7 +91,7 @@ void Characters::Player::drawUIStats()
 
 void Characters::Player::drawScore()
 {
-  score->drawDisplayPoints();
+  //score->drawDisplayPoints();
 }
 
 void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys)

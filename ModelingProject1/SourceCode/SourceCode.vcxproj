@@ -219,6 +219,7 @@
     <ClInclude Include="Level Design\Tilemap.h" />
     <ClInclude Include="Level Design\Tileset.h" />
     <ClInclude Include="System\File.h" />
+    <ClInclude Include="System\MathConstants.h" />
     <ClInclude Include="System\MathFunctions.h" />
     <ClInclude Include="System\StringParser.h" />
     <ClInclude Include="System\Vector.h" />

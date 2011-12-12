@@ -125,7 +125,7 @@ void GamePhysics::RigidBody::acceleratePlayer(GLfloat* xVelocity, int playerStat
   }
 
   bool noAccelerationState = indexState != GameCoreStates::FALLING && indexState != GameCoreStates::FAST_ATTACK &&
-	                        (playerState != GameCoreStates::DOUBLE_JUMP /*&& previousState != GameCoreStates::JUMPING*/); 
+	                        (playerState != GameCoreStates::DOUBLE_JUMP); 
 
   switch( accState )
   {

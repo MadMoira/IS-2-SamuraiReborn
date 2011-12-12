@@ -28,4 +28,6 @@ namespace CollisionSystem
     void setMoveXFrame(bool moveX);
     void setMoveYFrame(bool moveY);
   };
+
+  const float initialCheckingBox = 0.0f;
 }
