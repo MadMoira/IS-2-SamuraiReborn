@@ -626,6 +626,9 @@
     <ClInclude Include="Input\GameInputStructs.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="System\MathConstants.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Enemy - SpriteSheet.png">

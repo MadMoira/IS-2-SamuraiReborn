@@ -8,13 +8,11 @@ namespace CollisionSystem
   class CollisionBox
   {
     public:
-		CollisionBox(){};
+	 CollisionBox(){};
      CollisionBox(float x, float y ,float w, float h, Vector2f offset);
      ~CollisionBox(void);
 
      float getX() { return box.x; }
-     float getOffsetXPosition(int direction);
-
      void setX(float x, int direction);
 
      float getY() { return box.y; }

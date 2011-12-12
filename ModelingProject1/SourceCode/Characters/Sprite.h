@@ -35,12 +35,10 @@ class Sprite
    SpriteData::IDSprites getID() { return ID; }
 
    GLfloat getPosX() { return position.x; }
-   void setPositionX(GLfloat x) { position.x -= x; }
    void setNormalPositionX(GLfloat x) { position.x += x; }
    void movePosXWithSpeed();
 
    GLfloat getPosY() { return position.y; }
-   void setPositionY(GLfloat y) { position.y -= y; }
    void setNormalPositionY(GLfloat y) { position.y += y; }
    void movePosYWithSpeed();
 
@@ -76,7 +74,7 @@ class Sprite
    GLfloat getWidth() { return width; }
    GLfloat getHeight() { return height; }
 
-   Animation *getHandlerAnimation() { return handlerAnimation; }
+   Animation*getHandlerAnimation() { return handlerAnimation; }
    void changeCurrentFrame(int frame);
 
    int getCurrentState() { return playerStateManager->getCurrentState(); }

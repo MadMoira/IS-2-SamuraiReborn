@@ -21,24 +21,25 @@ class Collider
    void cleanUpResources();
    
    bool checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B , float direction);
-   void checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* speedX, GLfloat* speedY, int directionX,  int directionY, 
-                           CollisionSystem::DirectionsMove& directionsMove, int currentMovement);
-   void checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* speedX, GLfloat* speedY, int directionX,  int directionY, 
-                           CollisionSystem::DirectionsMove& directionsMove, int currentMovement);
 
-   void checkBoxBordersCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove,
-                                  int leftPositionBorder, int rightPositionBorder, int currentPosition, int positionY );
+   void checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* speedX, int directionX, 
+	                        CollisionSystem::DirectionsMove& directionsMove);
+   void checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* speedY, int directionY, 
+                           CollisionSystem::DirectionsMove& directionsMove);
+   int positionCollisionBoxAxisX(CollisionSystem::CollisionBox& A, int directionX, GLfloat newSpeed, int rightCondition);
+   int positionCollisionBoxAxisY(CollisionSystem::CollisionBox& A, int directionY, GLfloat newSpeed, int rightCondition);
+
    void checkTopBoxCollision( CollisionSystem::DirectionsMove& directionsMove, int topY, int directionY, int currentPositionY );
-   void checkBodyBoxCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, int directionX, 
-                               int directionY, int currentPositionY );
+   void checkBodyBoxCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, int directionX,
+	                            int currentPositionY );
    void checkBottomBoxCollision( CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, 
-                                 int directionX, int directionY, int currentPositionX, int currentPositionY,
-                                 int currentMovement);
+                                 int directionX, int currentPositionX, int currentPositionY);
+   bool checkBottomBoxMovementY( CollisionSystem::DirectionsMove& directionsMove, int newRightDirection, int currentY, int boxXtreme,
+	                             bool tileIsWalkable );
 
-   bool checkStateCollisionPlayer( Sprite& playerSprite );
-   bool checkStateCollisionXAxis( Sprite& playerSprite );
-   bool checkStatePhysicsModes( Sprite& playerSprite );
-   GLfloat recalculateSpriteBoxPosition( float initialPosition, float offsetPosition, int direction );
+   void checkStateCollisionPlayer( Sprite& playerSprite );
+   void checkStateCollisionXAxis( Sprite& playerSprite );
+   void checkStatePhysicsModes( Sprite& playerSprite );
 
    bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
