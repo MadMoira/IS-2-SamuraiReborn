@@ -34,20 +34,30 @@ void SLevelOneJapan::init()
 
 void SLevelOneJapan::handleEvents()
 {
-  gameCore->getPlayersList().at(0).getInputMapper()->clearCurrentMappedInput(
-           GameCoreStates::SpriteState(
-                                gameCore->getPlayersList().at(0).getCharacterSprite()->getCurrentState() ) );
+  for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
+  {	
+    gameCore->getPlayersList().at(i).getInputMapper()->clearCurrentMappedInput(
+            GameCoreStates::SpriteState( gameCore->getPlayersList().at(i).getCharacterSprite()->getCurrentState() ) );
+  }
 
   bool isRunning = gameInput->handleWindowEvents();
   gameCore->setIsRunning( isRunning );
 
-  gameInput->handleKeyEvents( gameCore->getPlayersList().at(0).getInputMapper(), gameCore->getPlayersList().at(0).getController() );
+  for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
+  {	
+    gameInput->handleKeyEvents( gameCore->getPlayersList().at(i).getInputMapper(), 
+		                        gameCore->getPlayersList().at(i).getController() );
+  }
 }
 
 void SLevelOneJapan::logic()
 {
-  gameCore->getPlayersList().at(0).getInputMapper()->dispatchInput( gameCore->getPlayersList().at(0),
-	                                                   *gameCore->getPlayersList().at(0).getController()->getListKeys() );
+  for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
+  {	
+    gameCore->getPlayersList().at(i).getInputMapper()->dispatchInput( gameCore->getPlayersList().at(i),
+	                           *gameCore->getPlayersList().at(i).getController()->getListKeys() );
+  }
+
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();
@@ -113,8 +123,8 @@ void SLevelOneJapan::cleanUp()
 
 void SLevelOneJapan::initializePlayers()
 {
-  //gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
-  gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
+  gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
+  //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
 
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
@@ -185,9 +195,9 @@ void SLevelOneJapan::initializePlayers()
   framerateAnimationsVector.push_back( 100 );
 
   SDL_Color color;
-  color.r = 100;
-  color.g = 200;
-  color.b = 100;
+  color.r = 10;
+  color.g = 10;
+  color.b = 175;
   int sizeFont = 20;
   std::string filenameFont = "Resources/GUI/Fonts/orbitron-black.ttf";
 
@@ -204,8 +214,7 @@ void SLevelOneJapan::initializePlayers()
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
 		gameCore->initializeRigidBodyVectors(SpriteData::PANDA, maxSpeedPanda);
 		gameCore->setIDNumberOfPlayer(SpriteData::PANDA, (int)i);
-		gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts( new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
-                            color, filenameFont, sizeFont, 0),  "", i);
+		gameCore->initializeTextureFaceState("Resources/UI/PandaFacesStates.png", i);
         break;
       }
       case SpriteData::MEERKAT:
@@ -217,8 +226,7 @@ void SLevelOneJapan::initializePlayers()
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 32.0f, 135.0f, 153.0f, 42.0f);
 		gameCore->initializeRigidBodyVectors(SpriteData::MEERKAT, maxSpeedMeerkat);
 		gameCore->setIDNumberOfPlayer(SpriteData::MEERKAT, (int)i);
-		gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts( new Font::GameFont(TTF_OpenFont(filenameFont.c_str(), sizeFont),
-                            color, filenameFont, sizeFont, 0),  "", i);
+	    gameCore->initializeTextureFaceState("Resources/UI/PandaFacesStates.png", i);
 		break;
       }
     }

@@ -24,9 +24,11 @@ void Characters::MeerkatP2::initializeCharacter(SpriteData::IDSprites id, std::s
   stats = new PlayerStats::Stats();
   score = new PlayerScore::Score();
 
-  inputMapper = new InputMapping::GameInputMapper();
+  inputMapper = new InputMapping::GameInputMapper("Resources/Input/KeyboardContextList.txt");
+  inputMapper = new InputMapping::GameInputMapper("Resources/Input/GamepadContextList.txt");
+
   //inputMapper->pushContext("gamepadcontext");
-  inputMapper->pushContext("maincontext");
+  inputMapper->pushContext("keyboardcontext");
   inputMapper->addCallback(Player::inputCallback, 0);
 
   //controller = new InputMapping::Gamepad(0);

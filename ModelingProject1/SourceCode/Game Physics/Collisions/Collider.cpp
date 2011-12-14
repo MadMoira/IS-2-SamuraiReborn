@@ -511,6 +511,7 @@ void Collider::checkStateCollisionXAxis(Sprite& playerSprite)
     playerSprite.changeStateSprite(new GameCoreStates::StillState(GameCoreStates::STILL), 0, 
                                          std::list<InputMapping::Key>() );
 
+	playerSprite.setNormalPositionX( playerSprite.getSpeedX() );
 	playerSprite.setSpeedX(0.0f);
 	playerSprite.setPlayerMoveInX(false);
     playerSprite.setPlayerMoveInY(false);

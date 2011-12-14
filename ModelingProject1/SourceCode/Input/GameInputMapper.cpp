@@ -7,11 +7,11 @@
 #include "GameInputContext.h"
 #include "File.h"
 
-InputMapping::GameInputMapper::GameInputMapper()
+InputMapping::GameInputMapper::GameInputMapper(std::string filename)
 {
   unsigned countContexts;
     
-  std::ifstream inputContextFile("Resources/Input/ContextList.txt");
+  std::ifstream inputContextFile(filename);
   countContexts = readDataTypeFromFile<unsigned>(inputContextFile);
 
   for(unsigned i = 0; i < countContexts; i++)

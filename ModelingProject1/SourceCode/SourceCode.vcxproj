@@ -125,6 +125,8 @@
     <ClCompile Include="Graphics\Font\GameText.cpp" />
     <ClCompile Include="Graphics\GameImage.cpp" />
     <ClCompile Include="Graphics\GameRender.cpp" />
+    <ClCompile Include="Graphics\ImageHealth.cpp" />
+    <ClCompile Include="Graphics\ImageObject.cpp" />
     <ClCompile Include="GUI\Elements\PushButton.cpp" />
     <ClCompile Include="GUI\GUIManager.cpp" />
     <ClCompile Include="GUI\GUIMenu.cpp" />
@@ -202,6 +204,8 @@
     <ClInclude Include="Graphics\Font\GameText.h" />
     <ClInclude Include="Graphics\GameImage.h" />
     <ClInclude Include="Graphics\GameRender.h" />
+    <ClInclude Include="Graphics\ImageHealth.h" />
+    <ClInclude Include="Graphics\ImageObject.h" />
     <ClInclude Include="GUI\Elements\PushButton.h" />
     <ClInclude Include="GUI\GUIManager.h" />
     <ClInclude Include="GUI\GUIMenu.h" />
@@ -235,9 +239,10 @@
     <None Include="Resources\Characters\Players\Panda - SpriteSheet.png" />
     <None Include="Resources\GUI\Cursor.png" />
     <None Include="Resources\GUI\Fonts\orbitron-black.ttf" />
-    <None Include="Resources\Input\ContextList.txt" />
     <None Include="Resources\Input\GamepadContext.txt" />
-    <None Include="Resources\Input\MainContext.txt" />
+    <None Include="Resources\Input\GamepadContextList.txt" />
+    <None Include="Resources\Input\KeyboardContext.txt" />
+    <None Include="Resources\Input\KeyboardContextList.txt" />
     <None Include="Resources\Levels\Level One Japan\Section One\Clouds.png" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionList.csv" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneMap.tmx" />
@@ -257,6 +262,8 @@
     <None Include="Resources\Menus\Menu Selection Player\MenuSelectionPlayerButtons.png" />
     <None Include="Resources\Menus\Menu Selection Player\PandaSelector.png" />
     <None Include="Resources\Menus\Menu Selection Player\SuricataSelector.png" />
+    <None Include="Resources\UI\HealthBarSkull.png" />
+    <None Include="Resources\UI\PandaFacesStates.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

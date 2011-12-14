@@ -3,19 +3,19 @@
 #include <windows.h>
 #include <gl\GL.h>
 
+#include <vector>
+
 #include "GameImage.h"
+#include <ImageHealth.h>
 
 namespace PlayerStats
 {
   struct Health
   {
-    Image::GameImage *healthBar;
-    Vector2f lifeQuadPosition, lifeQuadOffset;
-    Vector2f lifeInitialPosition, lifeInitialOffset;
-    int pointsOfLife, maxPointsOfLife;
+    Image::ImageObject* healthBar;
+	std::vector< Image::ImageHealth > healthForms;
 
-    Health(Vector2f lifeQPos, Vector2f lifeQOff, Vector2f lifeIPos, Vector2f lifeIOff);
-    Health(){};
+    int pointsOfLife, maxPointsOfLife;
   };
 
   struct FaceState
@@ -34,15 +34,17 @@ namespace PlayerStats
 	void initializeFaceStates(std::string filename, int idPlayer);
 
 	void drawFaceState();
+	void drawSkullKills();
     void drawHealthBar();
     void drawHealth();
 
-    void updatePositionHealthBar(GLfloat positionX);
 	void updateFaceState();
+	void updateHealthBar();
 
    private:
     Health health;
 	FaceState faces;
+	Image::ImageObject* skullKills;
 	GLuint textureHealthKills;
   };
 }

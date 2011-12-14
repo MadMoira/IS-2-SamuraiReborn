@@ -139,6 +139,46 @@ void GameRender::drawSpriteTexture(GLuint texture, Vector2f pos, int currentFram
   glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 }
 
+void GameRender::drawSpecificTexture(GLuint texture, Vector2f pos, Vector2f offset, GLfloat widthDrawTexture, GLfloat heightDrawTexture)
+{
+  GLfloat widthTexture, heightTexture;
+
+  glEnableClientState( GL_VERTEX_ARRAY );
+  glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
+    
+  glBindTexture( GL_TEXTURE_2D, texture );
+
+  glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widthTexture);
+  glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &heightTexture);
+
+  GLfloat verts[] = {
+                pos.x, pos.y,
+                pos.x + widthDrawTexture, pos.y,
+                pos.x + widthDrawTexture, pos.y + heightDrawTexture,
+                pos.x, pos.y + heightDrawTexture
+  };
+
+  const GLfloat textureWidth = widthDrawTexture/widthTexture;
+  const GLfloat textureHeight = heightDrawTexture/heightTexture;
+
+  const GLfloat textureX = offset.x/widthTexture;
+  const GLfloat textureY = offset.y/heightTexture;
+
+  GLfloat texVerts[] = {
+            textureX, textureY,
+            textureX + textureWidth, textureY,
+            textureX + textureWidth, textureY + textureHeight,
+            textureX, textureY + textureHeight
+  };
+
+  glVertexPointer(2, GL_FLOAT, 0, verts);
+  glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
+  glDrawArrays(GL_QUADS, 0, 4);
+
+  glDisableClientState( GL_VERTEX_ARRAY );			
+  glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+}
+
 void GameRender::drawButton(GLuint texture, Vector2f pos, Vector2f dimensions, Vector2f offset)
 {
   GLfloat widthTexture, heightTexture;
@@ -259,15 +299,13 @@ void GameRender::drawText(Font::GameFont* font, Text::GameText text)
     
   glGenTextures(1, &texture);
   glBindTexture(GL_TEXTURE_2D, texture);
-  glTexImage2D(GL_TEXTURE_2D, 0, 4, w, h, 0, GL_RGBA, 
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, 
                GL_UNSIGNED_BYTE, intermediary->pixels );
     
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);	
 
   glBlendFunc(GL_ONE, GL_ONE);
-
-  glBindTexture( GL_TEXTURE_2D, texture );
 
   glBegin( GL_QUADS );
     glTexCoord2i( 0, 0 );
