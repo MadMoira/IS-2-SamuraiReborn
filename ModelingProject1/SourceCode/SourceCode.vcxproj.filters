@@ -178,6 +178,12 @@
     <Filter Include="Source Files\Input\Player">
       <UniqueIdentifier>{1f64b8fc-1894-49ba-83f8-09cfaab44b69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphics\Image">
+      <UniqueIdentifier>{c2aab5a1-5ac0-40fc-85bf-7d0b69e0c020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Image">
+      <UniqueIdentifier>{11079951-551d-4a9d-8e2a-5831afa08b57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -345,9 +351,6 @@
     <ClCompile Include="Graphics\Camera.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\GameImage.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Graphics\GameRender.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
@@ -390,11 +393,14 @@
     <ClCompile Include="Input\Player\Keyboard.cpp">
       <Filter>Source Files\Input\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\ImageObject.cpp">
-      <Filter>Source Files\Graphics</Filter>
+    <ClCompile Include="Graphics\Image\GameImage.cpp">
+      <Filter>Source Files\Graphics\Image</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\ImageHealth.cpp">
-      <Filter>Source Files\Graphics</Filter>
+    <ClCompile Include="Graphics\Image\ImageHealth.cpp">
+      <Filter>Source Files\Graphics\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Image\ImageObject.cpp">
+      <Filter>Source Files\Graphics\Image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -584,9 +590,6 @@
     <ClInclude Include="Graphics\Camera.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\GameImage.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics\GameRender.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
@@ -635,11 +638,14 @@
     <ClInclude Include="System\MathConstants.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\ImageObject.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Graphics\Image\GameImage.h">
+      <Filter>Header Files\Graphics\Image</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\ImageHealth.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Graphics\Image\ImageHealth.h">
+      <Filter>Header Files\Graphics\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Image\ImageObject.h">
+      <Filter>Header Files\Graphics\Image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
