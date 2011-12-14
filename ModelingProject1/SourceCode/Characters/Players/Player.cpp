@@ -85,13 +85,18 @@ void Characters::Player::returnToPreviousState()
 
 void Characters::Player::drawUIStats()
 {
-  /*stats->drawHealthBar();
-  stats->drawHealth();*/
+  stats->updateHealthBar();
+  stats->updateFaceState();
+
+  stats->drawFaceState();
+  stats->drawSkullKills();
+  stats->drawHealthBar();
+  stats->drawHealth();
 }
 
 void Characters::Player::drawScore()
 {
-  //score->drawDisplayPoints();
+  score->drawDisplayPoints();
 }
 
 void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys)

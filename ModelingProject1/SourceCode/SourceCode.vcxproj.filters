@@ -390,6 +390,12 @@
     <ClCompile Include="Input\Player\Keyboard.cpp">
       <Filter>Source Files\Input\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\ImageObject.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\ImageHealth.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI\AI.h">
@@ -629,6 +635,12 @@
     <ClInclude Include="System\MathConstants.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\ImageObject.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\ImageHealth.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Enemy - SpriteSheet.png">
@@ -694,12 +706,6 @@
     <None Include="Resources\Menus\Intro\LogoSamuraiReborn.png">
       <Filter>Resource Files\Menus\Intro</Filter>
     </None>
-    <None Include="Resources\Input\ContextList.txt">
-      <Filter>Resource Files\Input</Filter>
-    </None>
-    <None Include="Resources\Input\MainContext.txt">
-      <Filter>Resource Files\Input</Filter>
-    </None>
     <None Include="Resources\GUI\Fonts\orbitron-black.ttf">
       <Filter>Resource Files\GUI\Fonts</Filter>
     </None>
@@ -717,6 +723,21 @@
     </None>
     <None Include="Resources\Menus\Menu Selection Player\Highlighter.png">
       <Filter>Resource Files\Menus\Menu Selection Player</Filter>
+    </None>
+    <None Include="Resources\UI\HealthBarSkull.png">
+      <Filter>Resource Files\UI</Filter>
+    </None>
+    <None Include="Resources\UI\PandaFacesStates.png">
+      <Filter>Resource Files\UI</Filter>
+    </None>
+    <None Include="Resources\Input\GamepadContextList.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\KeyboardContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\KeyboardContextList.txt">
+      <Filter>Resource Files\Input</Filter>
     </None>
   </ItemGroup>
 </Project>

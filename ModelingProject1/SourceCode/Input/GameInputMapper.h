@@ -28,7 +28,7 @@ namespace InputMapping
   class GameInputMapper
   {
     public:
-     GameInputMapper(void);
+     GameInputMapper(std::string filename);
      ~GameInputMapper(void);
 
      void clearCurrentMappedInput(GameCoreStates::SpriteState activeState);

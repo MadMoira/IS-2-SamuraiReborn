@@ -2,45 +2,65 @@
 #include "Stats.h"
 #include "GameRender.h"
 
-PlayerStats::Health::Health(Vector2f lifeQPos, Vector2f lifeQOff, Vector2f lifeIPos, Vector2f lifeIOff)
-{
-  lifeQuadPosition = lifeQPos;
-  lifeQuadOffset = lifeQOff;
-  lifeInitialPosition = lifeIPos;
-  lifeInitialOffset = lifeIOff;
-}
-
 PlayerStats::Stats::Stats(void)
 {
-  Vector2f lifeIPos(0.0f, 0.0f); //Coordinates X-Y First Quad Of The Health Bar
-  Vector2f lifeIOff(19.53f, 10.53f); //Width And Height Of The First Quad Of The Health Bar
-  Vector2f lifeQPos(2.3f, 13.97f); //Coordinates X-Y Common Quad Of The Health Bar
-  Vector2f lifeQOff(7.00f, 10.53f); //Width And Height Of The Common Quad Of The Health Bar
-
-  health = PlayerStats::Health(lifeQPos, lifeQOff, lifeIPos, lifeIOff);
-
-  health.pointsOfLife = 2800;
-  health.maxPointsOfLife = 2800;
-  health.healthBar = new Image::GameImage(Vector2f(10.0f, 10.0f), //X-Y Position Of The Health Bar
-                                      Vector2f(353.33f, 145.0f), //Width And Height Of The Health Bar
-                                      Vector2f(20.58f, 0.0f), //Texture Position X-Y Of The Health Bar
-                                      "Resources/UI/HealthBar.png");
+  health.pointsOfLife = 1300;
+  health.maxPointsOfLife = 1300;
 }
 
 PlayerStats::Stats::~Stats(void)
 {	
+  delete faces.faces;
   delete health.healthBar;
-  //delete faces.faces;
+  delete skullKills;
+
+  health.healthForms.clear();
+
+  glDeleteTextures(1, &textureHealthKills);
 }
 
 void PlayerStats::Stats::initializeFaceStates(std::string filename, int idPlayer)
 {
-  faces.faces = new Image::GameImage( Vector2f( 100.0f*idPlayer + 50.0f, 10.0f ),
+  health.healthBar = new Image::ImageObject( Vector2f(170.0f*idPlayer + 145.0f, 15.0f),
+                                             Vector2f(29.0f, 100.0f),
+                                             Vector2f(3.0f, 0.0f) ); 
+
+  health.healthForms.push_back( Image::ImageHealth( Vector2f(170.0f*idPlayer + 152.0f, 94.0f),
+	                                                Vector2f(15.0f, 8.0f),
+												    Vector2f(35.0f, 16.0f),
+												    1 ) );
+  health.healthForms.push_back( Image::ImageHealth( Vector2f(170.0f*idPlayer + 152.0f, 89.0f),
+	                                                Vector2f(15.0f, 5.0f),
+												    Vector2f(35.0f, 9.0f),
+												    12 ) );
+  health.healthForms.push_back( Image::ImageHealth( Vector2f(170.0f*idPlayer + 152.0f, 32.0f),
+	                                                Vector2f(15.0f, 4.0f),
+												    Vector2f(35.0f, 4.0f),
+												    1 ) );
+
+  textureHealthKills = GameRender::loadTexture("Resources/UI/HealthBarSkull.png");
+  faces.faces = new Image::GameImage( Vector2f( 170.0f*idPlayer + 30.0f, 15.0f ),
 	                                  Vector2f( 100.0f, 100.0f ),
 									  Vector2f( 0.0f, 0.0f ),
 									  filename );
   faces.currentFaceState = 2;
   faces.maxFaces = 3;
+
+  skullKills = new Image::ImageObject( Vector2f( 170.0f*idPlayer + 85.0f, 80.0f ),
+	                                   Vector2f( 34.0f, 34.0f ),
+									   Vector2f( 67.0f, 0.0f ) );
+}
+
+void PlayerStats::Stats::drawFaceState()
+{
+  GameRender::drawSpriteTexture(faces.faces->getTexture(), faces.faces->getPosition(), faces.currentFaceState,
+		                        300.0f, 100.0f, 100.0f, 100.0f, 0, 0);
+}
+
+void PlayerStats::Stats::drawSkullKills()
+{
+  GameRender::drawSpecificTexture(textureHealthKills, skullKills->getPosition(), skullKills->getTexturePosition(),
+		                          skullKills->getOffset().x, skullKills->getOffset().y );
 }
 
 void PlayerStats::Stats::drawHealthBar()
@@ -52,7 +72,7 @@ void PlayerStats::Stats::drawHealthBar()
   glEnableClientState( GL_VERTEX_ARRAY );
   glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
 
-  glBindTexture( GL_TEXTURE_2D, health.healthBar->getTexture() );
+  glBindTexture( GL_TEXTURE_2D, textureHealthKills );
 
   glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widthTexture);
   glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &heightTexture);
@@ -102,60 +122,59 @@ void PlayerStats::Stats::drawHealth()
   glEnableClientState( GL_VERTEX_ARRAY );
   glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
 
-  glBindTexture( GL_TEXTURE_2D, health.healthBar->getTexture() );
+  glBindTexture( GL_TEXTURE_2D, textureHealthKills );
 
   glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widthTexture);
   glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &heightTexture);
 
-  Vector2f initial(131.25f + health.healthBar->getPosition().x, 
-                   52.0f + health.healthBar->getPosition().y);
-
-  for (int i = health.pointsOfLife/100; i >= -1; i--)
+  if ( health.pointsOfLife <= 0 )
   {
-    GLfloat vertX = initial.x + i*health.lifeQuadOffset.x;
-    GLfloat vertY = initial.y;
-    GLfloat vertOffsetX = health.lifeQuadOffset.x;
-    GLfloat vertOffsetY = health.lifeQuadOffset.y;
+	return;
+  }
 
-    GLfloat textureX = health.lifeQuadPosition.x / widthTexture;
-    GLfloat textureY = health.lifeQuadPosition.y / heightTexture;
-    GLfloat textureWidth = health.lifeQuadOffset.x / widthTexture;
-    GLfloat textureHeight = health.lifeQuadOffset.y / heightTexture;
+  for (std::string::size_type i = 0; i < health.healthForms.size(); i++ )
+  {
+    Image::ImageHealth currentForm = health.healthForms.at(i);
+	for ( int j = 0; j < currentForm.getCurrentAmount(); j++)
+	{
+	  Vector2f position = currentForm.getPosition();
+      Vector2f offset = currentForm.getOffset();
+	  
+	  position.y -= j*offset.y;
+	  Vector2f texturePosition = currentForm.getTexturePosition();
 
-    if ( i == -1 )
-    {
-      initial.x = 111.0f + health.healthBar->getPosition().x;
-      vertX = initial.x;
-      vertOffsetX = health.lifeInitialOffset.x;
-      vertOffsetY = health.lifeInitialOffset.y;
+	  const GLfloat vertX = position.x;
+	  const GLfloat vertY = position.y;
+	  const GLfloat vertOffsetX = offset.x;
+	  const GLfloat vertOffsetY = offset.y;
+    
+	  const GLfloat verts[] = {
+					vertX, vertY,
+					vertX + vertOffsetX, vertY,
+					vertX + vertOffsetX, vertY + vertOffsetY,
+					vertX, vertY + vertOffsetY
+	  };
 
-      textureX = health.lifeInitialPosition.x / widthTexture;
-      textureY = health.lifeInitialPosition.y / heightTexture;
-      textureWidth = health.lifeInitialOffset.x / widthTexture;
-      textureHeight = health.lifeInitialOffset.y / heightTexture;
-    }
+	  const GLfloat textureX = texturePosition.x / widthTexture;
+	  const GLfloat textureY = texturePosition.y / heightTexture;
+	  const GLfloat textureWidth = offset.x / widthTexture;
+	  const GLfloat textureHeight = offset.y / heightTexture;
 
-    const GLfloat verts[] = {
-            vertX, vertY,
-            vertX + vertOffsetX, vertY,
-            vertX + vertOffsetX, vertY + vertOffsetY,
-            vertX, vertY + vertOffsetY
-    };
-
-    const GLfloat texVerts[] = {
-            textureX, textureY,
-            textureX + textureWidth, textureY,
-            textureX + textureWidth, textureY +textureHeight,
-            textureX, textureY + textureHeight
-    };
+	  const GLfloat texVerts[] = {
+					textureX, textureY,
+					textureX + textureWidth, textureY,
+					textureX + textureWidth, textureY + textureHeight,
+					textureX, textureY + textureHeight
+	  };
             
-    glVertexPointer(2, GL_FLOAT, 0, verts);
-    glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
-    glDrawArrays(GL_QUADS, 0, 4);
+      glVertexPointer(2, GL_FLOAT, 0, verts);
+	  glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
+	  glDrawArrays(GL_QUADS, 0, 4);
+    }
   }
 
   glDisableClientState( GL_VERTEX_ARRAY );			
-  glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+  glDisableClientState( GL_TEXTURE_COORD_ARRAY );	
 }
 
 void PlayerStats::Stats::updateFaceState()
@@ -172,4 +191,20 @@ void PlayerStats::Stats::updateFaceState()
 	  return;
 	}
   }
+}
+
+void PlayerStats::Stats::updateHealthBar()
+{
+  if ( health.pointsOfLife >= 0 )
+  {
+    health.healthForms.at(0).setCurrentAmount(1);
+  }
+
+  health.healthForms.at(1).setCurrentAmount((health.pointsOfLife - 100)/100);
+
+  Vector2f currentPosition= health.healthForms.at(2).getPosition();
+  currentPosition.y = 32.0f + health.healthForms.at(1).getOffset().y*(health.healthForms.at(1).getMaxAmount() - 
+	                                                                  health.healthForms.at(1).getCurrentAmount());
+
+  health.healthForms.at(2).setPosition(currentPosition.x, currentPosition.y);
 }

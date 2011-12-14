@@ -128,3 +128,8 @@ void GameCore::setIDNumberOfPlayer(SpriteData::IDSprites id, int idPlayer)
     }
   }   
 }
+
+void GameCore::initializeTextureFaceState(std::string filename, int idPlayer)
+{
+  playersList.at(idPlayer).getPlayerStats()->initializeFaceStates(filename, idPlayer);
+}

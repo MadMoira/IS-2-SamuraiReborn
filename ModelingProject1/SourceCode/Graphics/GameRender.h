@@ -25,6 +25,7 @@ class GameRender
                                  GLfloat widthTexture, GLfloat heightTexture, 
                                  GLfloat widthSprite, GLfloat heightSprite,
                                  int direction, int state);
+   static void drawSpecificTexture(GLuint texture, Vector2f pos, Vector2f offset, GLfloat widthDrawTexture, GLfloat heightDrawTexture);
    static void drawButton(GLuint texture, Vector2f pos, Vector2f dimensions, Vector2f offset);
    static void drawLayerTexture(GLuint texture, Vector2f offset, GLfloat widthScreen, 
                                 GLfloat heightScreen);
