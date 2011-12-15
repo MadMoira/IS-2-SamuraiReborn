@@ -41,7 +41,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\SDL - DLL, INC, LIB\include files;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\AI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Players;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Enemies;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Character States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Core;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Collisions;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Physic Modes;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Levels;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Menus;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Font;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Image;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI\Elements;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input\Player;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Level Design;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\System;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Weapons;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\SDL - DLL, INC, LIB\include files;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\AI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Players;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Enemies;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Character States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Core;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Collisions;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Physic Modes;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Levels;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Menus;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Font;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Image;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Text;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI\Elements;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input\Player;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Level Design;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\System;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Weapons;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
@@ -122,11 +122,13 @@
     <ClCompile Include="Graphics\Animation.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\Font\GameFont.cpp" />
-    <ClCompile Include="Graphics\Font\GameText.cpp" />
     <ClCompile Include="Graphics\GameRender.cpp" />
     <ClCompile Include="Graphics\Image\GameImage.cpp" />
     <ClCompile Include="Graphics\Image\ImageHealth.cpp" />
     <ClCompile Include="Graphics\Image\ImageObject.cpp" />
+    <ClCompile Include="Graphics\Text\GameText.cpp" />
+    <ClCompile Include="Graphics\Text\ScoreText.cpp" />
+    <ClCompile Include="Graphics\Text\TextObject.cpp" />
     <ClCompile Include="GUI\Elements\PushButton.cpp" />
     <ClCompile Include="GUI\GUIManager.cpp" />
     <ClCompile Include="GUI\GUIMenu.cpp" />
@@ -143,9 +145,7 @@
     <ClCompile Include="Level Design\Tilemap.cpp" />
     <ClCompile Include="Level Design\Tileset.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ScoreText.cpp" />
     <ClCompile Include="System\MathFunctions.cpp" />
-    <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="Weapons\Spear.cpp" />
     <ClCompile Include="Weapons\Sword.cpp" />
     <ClCompile Include="Weapons\Weapon.cpp" />
@@ -203,11 +203,13 @@
     <ClInclude Include="Graphics\Animation.h" />
     <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\Font\GameFont.h" />
-    <ClInclude Include="Graphics\Font\GameText.h" />
     <ClInclude Include="Graphics\GameRender.h" />
     <ClInclude Include="Graphics\Image\GameImage.h" />
     <ClInclude Include="Graphics\Image\ImageHealth.h" />
     <ClInclude Include="Graphics\Image\ImageObject.h" />
+    <ClInclude Include="Graphics\Text\GameText.h" />
+    <ClInclude Include="Graphics\Text\ScoreText.h" />
+    <ClInclude Include="Graphics\Text\TextObject.h" />
     <ClInclude Include="GUI\Elements\PushButton.h" />
     <ClInclude Include="GUI\GUIManager.h" />
     <ClInclude Include="GUI\GUIMenu.h" />
@@ -224,13 +226,11 @@
     <ClInclude Include="Level Design\Tile.h" />
     <ClInclude Include="Level Design\Tilemap.h" />
     <ClInclude Include="Level Design\Tileset.h" />
-    <ClInclude Include="ScoreText.h" />
     <ClInclude Include="System\File.h" />
     <ClInclude Include="System\MathConstants.h" />
     <ClInclude Include="System\MathFunctions.h" />
     <ClInclude Include="System\StringParser.h" />
     <ClInclude Include="System\Vector.h" />
-    <ClInclude Include="TextObject.h" />
     <ClInclude Include="Weapons\Spear.h" />
     <ClInclude Include="Weapons\Sword.h" />
     <ClInclude Include="Weapons\Weapon.h" />
