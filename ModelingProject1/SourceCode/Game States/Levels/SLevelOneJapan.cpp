@@ -194,13 +194,6 @@ void SLevelOneJapan::initializePlayers()
   framerateAnimationsVector.push_back( 100 );
   framerateAnimationsVector.push_back( 100 );
 
-  SDL_Color color;
-  color.r = 10;
-  color.g = 10;
-  color.b = 175;
-  int sizeFont = 20;
-  std::string filenameFont = "Resources/GUI/Fonts/orbitron-black.ttf";
-
   for (std::string::size_type i = 0; i < gameCore->getPlayersToInitialize().size(); i++)
   {
     switch(gameCore->getPlayersToInitialize().at(i))
@@ -230,6 +223,8 @@ void SLevelOneJapan::initializePlayers()
 		break;
       }
     }
+
+	gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts("", (int)i, "Resources/UI/Numbers.png");
   }
 
   maxSpeedPanda.clear();

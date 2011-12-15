@@ -184,6 +184,12 @@
     <Filter Include="Source Files\Graphics\Image">
       <UniqueIdentifier>{11079951-551d-4a9d-8e2a-5831afa08b57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphics\Text">
+      <UniqueIdentifier>{858d4c1d-08a2-405a-a7df-6cf99890fdc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Text">
+      <UniqueIdentifier>{0b67d74c-1973-417a-a8c0-af64f7095333}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -342,9 +348,6 @@
     <ClCompile Include="Graphics\Font\GameFont.cpp">
       <Filter>Source Files\Graphics\Fonts</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Font\GameText.cpp">
-      <Filter>Source Files\Graphics\Fonts</Filter>
-    </ClCompile>
     <ClCompile Include="Graphics\Animation.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
@@ -401,6 +404,15 @@
     </ClCompile>
     <ClCompile Include="Graphics\Image\ImageObject.cpp">
       <Filter>Source Files\Graphics\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="TextObject.cpp">
+      <Filter>Source Files\Graphics\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreText.cpp">
+      <Filter>Source Files\Graphics\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Font\GameText.cpp">
+      <Filter>Source Files\Graphics\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -581,9 +593,6 @@
     <ClInclude Include="Graphics\Font\GameFont.h">
       <Filter>Header Files\Graphics\Font</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Font\GameText.h">
-      <Filter>Header Files\Graphics\Font</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics\Animation.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
@@ -646,6 +655,15 @@
     </ClInclude>
     <ClInclude Include="Graphics\Image\ImageObject.h">
       <Filter>Header Files\Graphics\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreText.h">
+      <Filter>Header Files\Graphics\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="TextObject.h">
+      <Filter>Header Files\Graphics\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Font\GameText.h">
+      <Filter>Header Files\Graphics\Text</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -744,6 +762,9 @@
     </None>
     <None Include="Resources\Input\KeyboardContextList.txt">
       <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\UI\Numbers.png">
+      <Filter>Resource Files\UI</Filter>
     </None>
   </ItemGroup>
 </Project>

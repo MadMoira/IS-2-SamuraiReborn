@@ -16,3 +16,12 @@ std::string parseDataToString(DataType data)
 
   return outData;
 }
+
+template <typename DataType>
+int parseStringToInt(DataType data)
+{
+  int newInteger = 0;
+  newInteger = atoi(&data);
+
+  return newInteger;
+}

@@ -3,36 +3,26 @@
 #include <windows.h>
 #include <GL/gl.h>
 
-#include "Vector.h"
-#include "StringParser.h"
+#include <TextObject.h>
 
 #include "GameFont.h"
 
 namespace Text
 {
-  class GameText
+  class GameText : public TextObject
   {
     public:
-     GameText(Font::GameFont* font, std::string text, Vector2f pos, Vector2f off);
-     GameText(){};
+     GameText(std::string text, Vector2f pos, Vector2f off);
      ~GameText(void);
+
+	 void initializeFont(Font::GameFont* newFont);
 
      Font::GameFont* getFont() { return font; }
 
-     std::string getDataText() { return dataText; }
-
-     Vector2f getPosition() { return position; }
-
-     Vector2f getOffset() { return offset; }
-     void setOffset(Vector2f off) { offset = off; }
-
-     void setDataText(int data);
+	 void setDataText(int data);
 
     private:
      Font::GameFont* font;
-     std::string dataText;
-     Vector2f position;
-     Vector2f offset;
   };
 }
 
