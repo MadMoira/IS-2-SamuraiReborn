@@ -405,13 +405,13 @@
     <ClCompile Include="Graphics\Image\ImageObject.cpp">
       <Filter>Source Files\Graphics\Image</Filter>
     </ClCompile>
-    <ClCompile Include="TextObject.cpp">
+    <ClCompile Include="Graphics\Text\GameText.cpp">
       <Filter>Source Files\Graphics\Text</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreText.cpp">
+    <ClCompile Include="Graphics\Text\ScoreText.cpp">
       <Filter>Source Files\Graphics\Text</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Font\GameText.cpp">
+    <ClCompile Include="Graphics\Text\TextObject.cpp">
       <Filter>Source Files\Graphics\Text</Filter>
     </ClCompile>
   </ItemGroup>
@@ -656,13 +656,13 @@
     <ClInclude Include="Graphics\Image\ImageObject.h">
       <Filter>Header Files\Graphics\Image</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreText.h">
+    <ClInclude Include="Graphics\Text\GameText.h">
       <Filter>Header Files\Graphics\Text</Filter>
     </ClInclude>
-    <ClInclude Include="TextObject.h">
+    <ClInclude Include="Graphics\Text\ScoreText.h">
       <Filter>Header Files\Graphics\Text</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Font\GameText.h">
+    <ClInclude Include="Graphics\Text\TextObject.h">
       <Filter>Header Files\Graphics\Text</Filter>
     </ClInclude>
   </ItemGroup>
