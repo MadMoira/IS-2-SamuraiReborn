@@ -4,8 +4,8 @@
 
 PlayerStats::Stats::Stats(void)
 {
-  health.pointsOfLife = 1300;
-  health.maxPointsOfLife = 1300;
+  health.pointsOfLife = 1400;
+  health.maxPointsOfLife = 1400;
 }
 
 PlayerStats::Stats::~Stats(void)
@@ -21,19 +21,19 @@ PlayerStats::Stats::~Stats(void)
 
 void PlayerStats::Stats::initializeFaceStates(std::string filename, int idPlayer)
 {
-  health.healthBar = new Image::ImageObject( Vector2f(170.0f*idPlayer + 145.0f, 15.0f),
+  health.healthBar = new Image::ImageObject( Vector2f(170.0f*idPlayer + 125.0f, 8.0f),
                                              Vector2f(29.0f, 100.0f),
                                              Vector2f(3.0f, 0.0f) ); 
 
-  health.healthForms.push_back( Image::ImageHealth( Vector2f(170.0f*idPlayer + 152.0f, 94.0f),
+  health.healthForms.push_back( Image::ImageHealth( Vector2f(170.0f*idPlayer + 132.0f, 87.0f),
 	                                                Vector2f(15.0f, 8.0f),
 												    Vector2f(35.0f, 16.0f),
 												    1 ) );
-  health.healthForms.push_back( Image::ImageHealth( Vector2f(170.0f*idPlayer + 152.0f, 89.0f),
+  health.healthForms.push_back( Image::ImageHealth( Vector2f(170.0f*idPlayer + 132.0f, 82.0f),
 	                                                Vector2f(15.0f, 5.0f),
 												    Vector2f(35.0f, 9.0f),
-												    12 ) );
-  health.healthForms.push_back( Image::ImageHealth( Vector2f(170.0f*idPlayer + 152.0f, 32.0f),
+												    13 ) );
+  health.healthForms.push_back( Image::ImageHealth( Vector2f(170.0f*idPlayer + 132.0f, 20.0f),
 	                                                Vector2f(15.0f, 4.0f),
 												    Vector2f(35.0f, 4.0f),
 												    1 ) );
@@ -46,7 +46,7 @@ void PlayerStats::Stats::initializeFaceStates(std::string filename, int idPlayer
   faces.currentFaceState = 2;
   faces.maxFaces = 3;
 
-  skullKills = new Image::ImageObject( Vector2f( 170.0f*idPlayer + 85.0f, 80.0f ),
+  skullKills = new Image::ImageObject( Vector2f( 170.0f*idPlayer + 70.0f, 90.0f ),
 	                                   Vector2f( 34.0f, 34.0f ),
 									   Vector2f( 67.0f, 0.0f ) );
 }
@@ -203,7 +203,7 @@ void PlayerStats::Stats::updateHealthBar()
   health.healthForms.at(1).setCurrentAmount((health.pointsOfLife - 100)/100);
 
   Vector2f currentPosition= health.healthForms.at(2).getPosition();
-  currentPosition.y = 32.0f + health.healthForms.at(1).getOffset().y*(health.healthForms.at(1).getMaxAmount() - 
+  currentPosition.y = 20.0f + health.healthForms.at(1).getOffset().y*(health.healthForms.at(1).getMaxAmount() - 
 	                                                                  health.healthForms.at(1).getCurrentAmount());
 
   health.healthForms.at(2).setPosition(currentPosition.x, currentPosition.y);

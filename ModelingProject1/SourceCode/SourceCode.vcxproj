@@ -143,7 +143,9 @@
     <ClCompile Include="Level Design\Tilemap.cpp" />
     <ClCompile Include="Level Design\Tileset.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ScoreText.cpp" />
     <ClCompile Include="System\MathFunctions.cpp" />
+    <ClCompile Include="TextObject.cpp" />
     <ClCompile Include="Weapons\Spear.cpp" />
     <ClCompile Include="Weapons\Sword.cpp" />
     <ClCompile Include="Weapons\Weapon.cpp" />
@@ -222,11 +224,13 @@
     <ClInclude Include="Level Design\Tile.h" />
     <ClInclude Include="Level Design\Tilemap.h" />
     <ClInclude Include="Level Design\Tileset.h" />
+    <ClInclude Include="ScoreText.h" />
     <ClInclude Include="System\File.h" />
     <ClInclude Include="System\MathConstants.h" />
     <ClInclude Include="System\MathFunctions.h" />
     <ClInclude Include="System\StringParser.h" />
     <ClInclude Include="System\Vector.h" />
+    <ClInclude Include="TextObject.h" />
     <ClInclude Include="Weapons\Spear.h" />
     <ClInclude Include="Weapons\Sword.h" />
     <ClInclude Include="Weapons\Weapon.h" />
@@ -263,6 +267,7 @@
     <None Include="Resources\Menus\Menu Selection Player\PandaSelector.png" />
     <None Include="Resources\Menus\Menu Selection Player\SuricataSelector.png" />
     <None Include="Resources\UI\HealthBarSkull.png" />
+    <None Include="Resources\UI\Numbers.png" />
     <None Include="Resources\UI\PandaFacesStates.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

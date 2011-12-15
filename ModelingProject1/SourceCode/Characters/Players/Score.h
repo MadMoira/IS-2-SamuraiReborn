@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameText.h"
+#include "ScoreText.h"
 
 namespace PlayerScore
 {
@@ -12,13 +12,13 @@ namespace PlayerScore
 
     void drawDisplayPoints();
 
-    void initializeTextAndFonts(Font::GameFont* font, std::string text, int idNumberPlayer);
+    void initializeTextAndFonts(std::string text, int idNumberPlayer, std::string filename);
 
     int getPoints() { return points; }
     void addPoints(int value);
 
    private:
-    Text::GameText pointsDisplay;
+    Text::ScoreText pointsDisplay;
     int points;
   };
 }

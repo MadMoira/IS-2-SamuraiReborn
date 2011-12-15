@@ -9,7 +9,7 @@ namespace Font
   class GameFont
   {
     public:
-     GameFont(TTF_Font *newFont, SDL_Color color, std::string filename, int sizeFont, int idFont);
+     GameFont(TTF_Font* newFont, SDL_Color color, std::string filename, int sizeFont, int idFont);
      GameFont();
 
      GameFont(const GameFont& cSource);
