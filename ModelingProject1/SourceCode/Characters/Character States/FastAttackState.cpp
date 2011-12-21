@@ -3,10 +3,10 @@
 
 #include "FastAttackState.h"
 
+#include <GameSound.h>
 
-GameCoreStates::FastAttackState::FastAttackState(int id) : PlayerState( id )
+GameCoreStates::FastAttackState::FastAttackState(int id, int characterID) : PlayerState(id, characterID)
 {
-  currentID = id;
 }
 
 GameCoreStates::FastAttackState::~FastAttackState(void)
@@ -23,6 +23,7 @@ int GameCoreStates::FastAttackState::checkMovement(InputMapping::Controller& con
   if ( (currentState != GameCoreStates::DOUBLE_JUMP && currentState != GameCoreStates::FALLING) &&
        keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && fastAttackButtonIsPressed )
   {
+	GameSound::getInstance()->loadChunk(characterID, 0, 0);
     return GameCoreStates::CHANGE;
   }
 

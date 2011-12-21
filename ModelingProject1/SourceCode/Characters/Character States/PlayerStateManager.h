@@ -17,9 +17,9 @@
 #define STILL_STATE new GameCoreStates::StillState(GameCoreStates::STILL)
 #define WALKING_STATE new GameCoreStates::WalkingState(GameCoreStates::WALKING)
 #define JUMPING_STATE new GameCoreStates::JumpingState(GameCoreStates::JUMPING)
-#define RUNNING_STATE new GameCoreStates::RunningState(GameCoreStates::RUNNING)
+#define RUNNING_STATE(characterID) new GameCoreStates::RunningState(GameCoreStates::RUNNING, characterID)
 #define DOUBLE_JUMP_STATE new GameCoreStates::DoubleJumpState(GameCoreStates::DOUBLE_JUMP)
-#define FAST_ATTACK_STATE new GameCoreStates::FastAttackState(GameCoreStates::FAST_ATTACK)
+#define FAST_ATTACK_STATE(characterID) new GameCoreStates::FastAttackState(GameCoreStates::FAST_ATTACK, characterID)
 #define FALLING_STATE new GameCoreStates::FallingState(GameCoreStates::FALLING)
 
 namespace GameCoreStates

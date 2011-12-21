@@ -190,6 +190,27 @@
     <Filter Include="Source Files\Graphics\Text">
       <UniqueIdentifier>{0b67d74c-1973-417a-a8c0-af64f7095333}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Sounds">
+      <UniqueIdentifier>{81bd6034-98db-4312-a849-385bf0f9f7dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sounds\Characters">
+      <UniqueIdentifier>{7ef77f55-9e35-4bca-bd37-19d91be2dc42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sounds\Characters\Players">
+      <UniqueIdentifier>{ba8dab74-73a8-4aff-a8c1-036f66499a6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sounds\Menus">
+      <UniqueIdentifier>{f9a5d865-aa0b-4d5d-8b2c-32a620ec3c58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sounds\Levels">
+      <UniqueIdentifier>{9b221cf5-a020-43c6-aaf2-b175abef5ca7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sounds\Levels\Level One Japan">
+      <UniqueIdentifier>{fbf92115-f015-461c-8df9-fb09fc31f404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sounds\Levels\Level One Japan\Section One">
+      <UniqueIdentifier>{99d3d604-0bbd-4f59-a02d-459b3e734ea0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -413,6 +434,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\Text\TextObject.cpp">
       <Filter>Source Files\Graphics\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="System\File.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -765,6 +789,24 @@
     </None>
     <None Include="Resources\UI\Numbers.png">
       <Filter>Resource Files\UI</Filter>
+    </None>
+    <None Include="Resources\Sounds\Levels\Level One Japan\Section One\Japanese War Music.mp3">
+      <Filter>Resource Files\Sounds\Levels\Level One Japan\Section One</Filter>
+    </None>
+    <None Include="Resources\Sounds\Levels\Level One Japan\Section One\Wind.mp3">
+      <Filter>Resource Files\Sounds\Levels\Level One Japan\Section One</Filter>
+    </None>
+    <None Include="Resources\Sounds\Characters\Players\Running.mp3">
+      <Filter>Resource Files\Sounds\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Sounds\Characters\Players\Sword (1).mp3">
+      <Filter>Resource Files\Sounds\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Sounds\Characters\Players\Sword (2).mp3">
+      <Filter>Resource Files\Sounds\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Sounds\Characters\Players\Sword (3).mp3">
+      <Filter>Resource Files\Sounds\Characters\Players</Filter>
     </None>
   </ItemGroup>
 </Project>

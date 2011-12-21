@@ -16,7 +16,8 @@ namespace GameCoreStates
   class PlayerState : public State
   {
    public:
-    PlayerState(int id);
+	PlayerState(int id);
+    PlayerState(int id, int characterID);
     PlayerState(){};
     ~PlayerState(){};
 
@@ -29,6 +30,7 @@ namespace GameCoreStates
     ConditionsPlayerRunning checkIfPlayerIsRunning(InputMapping::Controller& controller, std::list<InputMapping::Key> keys);
 
    protected:
+	int characterID;
     virtual int checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, int previousState, 
                               int currentState, std::list<InputMapping::Key> keys);
     virtual int checkChangeOfState(InputMapping::Controller& controller, std::list<InputMapping::Key> keys, int currentState,

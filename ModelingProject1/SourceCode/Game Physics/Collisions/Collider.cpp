@@ -542,7 +542,8 @@ void Collider::checkStatePhysicsModes(Sprite& playerSprite)
   else if ( playerSprite.getSpeedX()*directionAxis > tempMaxSpeed.at(GameCoreStates::WALKING).x && 
 	        playerSprite.getSpeedX()*directionAxis <= tempMaxSpeed.at(GameCoreStates::RUNNING).x )
   {
-    playerSprite.changeStateSprite(new GameCoreStates::RunningState(GameCoreStates::RUNNING), GamePhysics::TO_WALKING, 
+    playerSprite.changeStateSprite(new GameCoreStates::RunningState(GameCoreStates::RUNNING, playerSprite.getID()), 
+		                           GamePhysics::TO_WALKING, 
                                    std::list<InputMapping::Key>() );
     playerSprite.setPlayerMoveInX(true);
 	return;

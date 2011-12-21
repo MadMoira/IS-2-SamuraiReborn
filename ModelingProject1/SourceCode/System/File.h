@@ -15,3 +15,5 @@ DataTypeOutput readDataTypeFromFile(std::ifstream& stream)
 
   return dataOutput;
 }
+
+std::string readLineFromFile(std::string filename, int row);

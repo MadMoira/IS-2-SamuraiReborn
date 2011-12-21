@@ -69,7 +69,7 @@ void Characters::Player::returnToPreviousState()
     }
     case GameCoreStates::RUNNING:
     {
-      characterSprite->changeStateSprite(RUNNING_STATE, 1, getInputMapper()->getListKeys());
+      characterSprite->changeStateSprite(RUNNING_STATE(characterSprite->getID()), 1, getInputMapper()->getListKeys());
       break;
     }
     case GameCoreStates::JUMPING:
@@ -126,7 +126,7 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
 
   if ( findRunningInStates && player.isReadyToPace() )
   {
-    playerSprite->changeStateSprite(RUNNING_STATE, inputs.buttonPreviouslyPressed, keys, *player.getController());
+    playerSprite->changeStateSprite(RUNNING_STATE(playerSprite->getID()), inputs.buttonPreviouslyPressed, keys, *player.getController());
   }
 
   if ( findJumpingInStates )
@@ -152,6 +152,7 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
   if ( findFastAttackWalkingInStates )
   {
     checkKey = player.getController()->getKeyAssociatedToState(GameCoreStates::FAST_ATTACK);
-    playerSprite->changeStateSprite(FAST_ATTACK_STATE, checkKey.wasPreviouslyPressed, keys, *player.getController());
+    playerSprite->changeStateSprite(FAST_ATTACK_STATE(playerSprite->getID()), checkKey.wasPreviouslyPressed, 
+		                            keys, *player.getController());
   }
 }

@@ -1,12 +1,13 @@
 #pragma once
-#include "playerstate.h"
+
+#include "PlayerState.h"
 
 namespace GameCoreStates
 {
   class FastAttackState : public PlayerState
   {
     public:
-     FastAttackState(int id);
+     FastAttackState(int id, int characterID);
      ~FastAttackState(void);
 
      int checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, int previousState, 
