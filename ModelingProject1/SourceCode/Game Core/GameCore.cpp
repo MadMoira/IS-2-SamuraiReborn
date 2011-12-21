@@ -58,16 +58,6 @@ void GameCore::startTimer()
   timer->start();
 }
 
-void GameCore::startMusic(std::string filename)
-{
-  sound->loadSound(filename);	
-}
-
-void GameCore::startSoundEffect(std::string filename)
-{
-  sound->loadChunk(filename);
-}
-
 void GameCore::resetCamera(GLfloat level, GLfloat spawningPoint)
 {
   camera->resetCamera(level, spawningPoint);

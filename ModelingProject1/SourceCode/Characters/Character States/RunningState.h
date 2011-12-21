@@ -7,7 +7,7 @@ namespace GameCoreStates
   class RunningState : public PlayerState
   {
    public:
-    RunningState(int id);
+    RunningState(int id, int characterID);
     ~RunningState(void);
 
     int checkMovement(InputMapping::Controller& controller, int keyPreviouslyPressed, int previousState, 

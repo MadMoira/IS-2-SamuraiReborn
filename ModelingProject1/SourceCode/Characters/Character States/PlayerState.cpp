@@ -5,9 +5,14 @@
 
 #include <SpriteDataConstants.h>
 
-GameCoreStates::PlayerState::PlayerState(int id) : State( id )
+GameCoreStates::PlayerState::PlayerState(int id) : State(id)
+{
+}
+
+GameCoreStates::PlayerState::PlayerState(int id, int characterID)
 {
   currentID = id;
+  this->characterID = characterID;
 }
 
 int GameCoreStates::PlayerState::checkIfEqualStates(InputMapping::Controller& controller, std::list<InputMapping::Key> keys, 

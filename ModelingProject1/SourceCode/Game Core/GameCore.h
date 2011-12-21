@@ -28,8 +28,6 @@ class GameCore
    void startTimer();
 
    GameSound* getGameSound() { return sound; };
-   void startMusic(std::string filename);
-   void startSoundEffect(std::string filename);
 
    Camera* getCamera() { return camera; };
    void resetCamera(GLfloat level, GLfloat spawningPoint);

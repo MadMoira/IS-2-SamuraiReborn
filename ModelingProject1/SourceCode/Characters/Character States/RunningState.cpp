@@ -4,13 +4,11 @@
 #include "RunningState.h"
 
 #include "PlayerSpriteStates.h"
-
+#include <GameSound.h>
 #include <PhysicModes.h>
 
-
-GameCoreStates::RunningState::RunningState(int id) : PlayerState( id )
+GameCoreStates::RunningState::RunningState(int id, int characterID) : PlayerState( id, characterID )
 {
-  currentID = id;
 }
 
 GameCoreStates::RunningState::~RunningState(void)
@@ -35,6 +33,7 @@ int GameCoreStates::RunningState::checkMovement(InputMapping::Controller& contro
          previousState == GameCoreStates::JUMPING ) && 
          isRunning.directionButtonPressed && isRunning.runningButtonPressed )
   {
+	GameSound::getInstance()->playSound(characterID, 0, 2);
     return GameCoreStates::CHANGE;
   }
 
@@ -47,6 +46,7 @@ int GameCoreStates::RunningState::checkMovement(InputMapping::Controller& contro
   if ( keyPreviouslyPressed == GamePhysics::TO_WALKING || 
 	  (!isRunning.directionButtonPressed && currentState == GameCoreStates::FAST_ATTACK) )
   {
+	GameSound::getInstance()->playSound(characterID, 0, 2);
     return GameCoreStates::CHANGE;
   }
 
