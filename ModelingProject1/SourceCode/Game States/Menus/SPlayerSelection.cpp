@@ -201,7 +201,7 @@ void SPlayerSelection::createGUI( )
   std::string commonPath = "Resources/Menus/Menu Selection Player/";
 
   controllers.push_back( new Image::ImageController(Vector2f(590.0f, 315.0f), Vector2f(100.0f, 67.0f), 
-                                    Vector2f(0.0f, 0.0f), commonPath + "NewKeyboard.png", 
+                                    Vector2f(0.0f, 0.0f), commonPath + "Keyboard.png", 
 									Image::ENABLE, InputMapping::KEYBOARD) );
   controllers.at(0).setController(GameInput::initializeControllerData(getNameState(), InputMapping::KEYBOARD));
   controllers.at(0).setGameInputMapper(GameInput::initializeGameInputMapperData(getNameState(), 
@@ -209,7 +209,7 @@ void SPlayerSelection::createGUI( )
   controllers.at(0).getController()->setPlayerID(0);
 
   controllers.push_back( new Image::ImageController(Vector2f(590.0f, 410.0f), Vector2f(100.0f, 67.0f), 
-                                    Vector2f(0.0f, 0.0f), commonPath + "NewGamepad.png", 
+                                    Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png", 
 									Image::DISABLE, InputMapping::GAMEPAD) );
   controllers.at(1).setController(GameInput::initializeControllerData(getNameState(), InputMapping::GAMEPAD));
   controllers.at(1).setGameInputMapper(GameInput::initializeGameInputMapperData(getNameState(), 
@@ -217,7 +217,7 @@ void SPlayerSelection::createGUI( )
   controllers.at(1).getController()->setPlayerID(1);
 
   controllers.push_back( new Image::ImageController(Vector2f(590.0f, 505.0f), Vector2f(100.0f, 67.0f), 
-                                    Vector2f(0.0f, 0.0f), commonPath + "NewGamepad.png", 
+                                    Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png", 
 									Image::DISABLE, InputMapping::GAMEPAD) );
   controllers.at(2).setController(GameInput::initializeControllerData(getNameState(), InputMapping::GAMEPAD));
   controllers.at(2).setGameInputMapper(GameInput::initializeGameInputMapperData(getNameState(), 
@@ -237,10 +237,9 @@ void SPlayerSelection::createGUI( )
 															 "") );
   guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "MenuCharacterSelectorBackground.png"));
 
-  guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(200.0f, 130.0f), 
-	                                                             Vector2f(288.0f, 384.0f), 
-	                                                             Vector2f(0.0f, 0.0f),
-																 "") );
+  guiSelectPlayer->addStaticImage( new Image::ImageObject(Vector2f(200.0f, 130.0f), 
+	                                                      Vector2f(288.0f, 384.0f), 
+	                                                      Vector2f(0.0f, 0.0f) ) );
   guiSelectPlayer->addTextureStaticImages(gameRender->loadTexture(commonPath + "PandaSelector.png"));
 
   guiSelectPlayer->addStaticImage( guiManager->createStaticImage(Vector2f(770.0f, 130.0f),
