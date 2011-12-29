@@ -25,12 +25,10 @@ namespace Image
 
 namespace Image
 {
-  struct ControllerSelection
+  struct PlayersInitialize
   {
-    GameImage* controller;
-    int selectedPlayer;
-
-    void updatePositionController();
+	int characterID;
+	int controllerID;
   };
 
   struct CustomCursor

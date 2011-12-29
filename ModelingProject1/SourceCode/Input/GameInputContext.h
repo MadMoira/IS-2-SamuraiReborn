@@ -28,6 +28,7 @@ namespace InputMapping
      std::list<Key>* getKeysList() { return &keysList; }
 
 	 std::map<RawInputButton, GameCoreStates::SpriteState>* getStateMap() { return &stateMap; }
+	 std::map<RawInputButton, GameCoreStates::Action>* getActionMap() { return &actionMap; }
 
      bool mapButtonToAction(RawInputButton button, GameCoreStates::Action& outActiveAction) const;
      bool mapButtonToState(RawInputButton button, GameCoreStates::SpriteState& outActiveState) const;

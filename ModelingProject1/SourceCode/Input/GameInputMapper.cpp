@@ -55,14 +55,15 @@ void InputMapping::GameInputMapper::addCallback(inputCallback callback, int prio
   callbackTable.insert(std::make_pair(priorityInMultimap, callback));
 }
 
-void InputMapping::GameInputMapper::dispatchInput(Characters::Player& player, std::list<Key>& keys) const
+void InputMapping::GameInputMapper::dispatchInput(Characters::Player& player, std::list<Key>& keys, 
+	                                              Image::MenuSelection& menu) const
 {
   MappedInput input = currentMappedInput;
 
   for(std::multimap<int, inputCallback>::const_iterator iter = callbackTable.begin(); 
-                                                       iter != callbackTable.end(); iter++)
+                                                        iter != callbackTable.end(); iter++)
   {
-    (*iter->second)(input, player, keys);
+    (*iter->second)(input, player, keys, menu);
   }
 }
 
@@ -96,6 +97,12 @@ std::list<InputMapping::Key> InputMapping::GameInputMapper::getListKeys() const
 {
   InputMapping::GameInputContext* gameInputActualContext = activeContexts.front();
   return *gameInputActualContext->getKeysList();
+}
+
+std::map<InputMapping::RawInputButton, GameCoreStates::Action> InputMapping::GameInputMapper::getActionMap() const
+{
+  InputMapping::GameInputContext* gameInputActualContext = activeContexts.front();
+  return *gameInputActualContext->getActionMap();
 }
 
 std::map<InputMapping::RawInputButton, GameCoreStates::SpriteState> InputMapping::GameInputMapper::getStateMap() const

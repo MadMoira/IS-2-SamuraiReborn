@@ -7,6 +7,10 @@
 #include "MenuData.h"
 #include "MenuStructs.h"
 
+#include <MenuSelectionPlayer.h>
+
+#include <ImageController.h>
+
 class SPlayerSelection : public GameState
 {
   public:
@@ -21,6 +25,8 @@ class SPlayerSelection : public GameState
 
    void createGUI();
 
+   void checkSelectedPlayers();
+
    void handleMouseDown(Uint8 button, Vector2f mousePosition);
    void handleMouseUp(Uint8 button, Vector2f mousePosition);
    void handleKeyDown(SDLKey key);
@@ -29,11 +35,18 @@ class SPlayerSelection : public GameState
    void checkClickedMouse(bool* running);
    void checkControlsButtonsSelected(SDLKey key);
 
+   void handleChangeOfState(int idState);
+
+   static void inputCallback(InputMapping::MappedInput& inputs, Characters::Player& player, 
+	                         std::list<InputMapping::Key> keys, Image::MenuSelection& menu);
+
   private:
    RPRGUI::GUIMenu* guiSelectPlayer;
-   Image::ControllerSelection controllerImageP1;
-   Image::ControllerSelection controllerImageP2;
+   Image::MenuSelectionPlayer* menuSelectionPlayer;
+   boost::ptr_vector<Image::ImageController> controllers;
    Image::ArrowSelectMenu arrowImage;
    Image::CustomCursor customCursor;
+   int numberOfPlayers;
+   bool isPlayerOneSelected, isPlayerTwoSelected;
 };
 

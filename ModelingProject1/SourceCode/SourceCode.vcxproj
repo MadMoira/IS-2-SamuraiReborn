@@ -116,6 +116,7 @@
     <ClCompile Include="Game States\GameStateManager.cpp" />
     <ClCompile Include="Game States\Levels\SLevelOneJapan.cpp" />
     <ClCompile Include="Game States\Levels\SLevelTutorial.cpp" />
+    <ClCompile Include="Game States\Menus\MenuSelectionPlayer.cpp" />
     <ClCompile Include="Game States\Menus\SIntro.cpp" />
     <ClCompile Include="Game States\Menus\SMainMenu.cpp" />
     <ClCompile Include="Game States\Menus\SPlayerSelection.cpp" />
@@ -124,6 +125,7 @@
     <ClCompile Include="Graphics\Font\GameFont.cpp" />
     <ClCompile Include="Graphics\GameRender.cpp" />
     <ClCompile Include="Graphics\Image\GameImage.cpp" />
+    <ClCompile Include="Graphics\Image\ImageController.cpp" />
     <ClCompile Include="Graphics\Image\ImageHealth.cpp" />
     <ClCompile Include="Graphics\Image\ImageObject.cpp" />
     <ClCompile Include="Graphics\Text\GameText.cpp" />
@@ -197,6 +199,8 @@
     <ClInclude Include="Game States\Levels\SLevelOneJapan.h" />
     <ClInclude Include="Game States\Levels\SLevelTutorial.h" />
     <ClInclude Include="Game States\Menus\MenuData.h" />
+    <ClInclude Include="Game States\Menus\MenuSelection.h" />
+    <ClInclude Include="Game States\Menus\MenuSelectionPlayer.h" />
     <ClInclude Include="Game States\Menus\MenuStructs.h" />
     <ClInclude Include="Game States\Menus\SIntro.h" />
     <ClInclude Include="Game States\Menus\SMainMenu.h" />
@@ -206,6 +210,7 @@
     <ClInclude Include="Graphics\Font\GameFont.h" />
     <ClInclude Include="Graphics\GameRender.h" />
     <ClInclude Include="Graphics\Image\GameImage.h" />
+    <ClInclude Include="Graphics\Image\ImageController.h" />
     <ClInclude Include="Graphics\Image\ImageHealth.h" />
     <ClInclude Include="Graphics\Image\ImageObject.h" />
     <ClInclude Include="Graphics\Text\GameText.h" />
@@ -240,14 +245,18 @@
     <None Include="box.png" />
     <None Include="boxPanda.png" />
     <None Include="Enemy - SpriteSheet.png" />
+    <None Include="Game Core\LevelSounds.txt" />
+    <None Include="Game Core\Musics.txt" />
     <None Include="Resources\Characters\Players\Meerkat - SpriteSheet.png" />
     <None Include="Resources\Characters\Players\Panda - SpriteSheet.png" />
     <None Include="Resources\GUI\Cursor.png" />
     <None Include="Resources\GUI\Fonts\orbitron-black.ttf" />
     <None Include="Resources\Input\GamepadContext.txt" />
     <None Include="Resources\Input\GamepadContextList.txt" />
+    <None Include="Resources\Input\GamepadMenuContext.txt" />
     <None Include="Resources\Input\KeyboardContext.txt" />
     <None Include="Resources\Input\KeyboardContextList.txt" />
+    <None Include="Resources\Input\KeyboardMenuContext.txt" />
     <None Include="Resources\Levels\Level One Japan\Section One\Clouds.png" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionList.csv" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneMap.tmx" />

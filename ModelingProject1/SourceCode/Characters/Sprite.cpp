@@ -298,8 +298,7 @@ void Sprite::drawTexture()
     currentState = 8;
   }
 
-  GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), 
-                                widthTexture, heightTexture, width, height,  
+  GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), width, height,  
                                 handlerAnimation->getAnimationDirection(), currentState );
 }
 

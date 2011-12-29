@@ -6,8 +6,30 @@
 #include <SpriteDataConstants.h>
 #include <algorithm>
 
-InputMapping::Gamepad::Gamepad(int id) : Controller(id)
+InputMapping::Gamepad::Gamepad(int id, std::string context) : Controller(id)
 {
+  playerID = id;
+  typeController = InputMapping::GAMEPAD;
+  filenameContext = context;
+}
+
+bool InputMapping::Gamepad::isEnabled()
+{
+  DWORD dwResult;; 
+  DWORD idController = (DWORD)playerID-1;
+
+  enabled = false;
+
+  XINPUT_STATE state;
+  ZeroMemory( &state, sizeof(XINPUT_STATE) );
+
+  dwResult = XInputGetState( idController, &state );
+
+  if( dwResult == ERROR_SUCCESS )
+  { 
+    enabled = true;
+  }
+  return enabled;
 }
 
 void InputMapping::Gamepad::parseRawInput(InputMapping::Key& key, InputMapping::MappedInput& inputs)
@@ -50,6 +72,11 @@ void InputMapping::Gamepad::parseRawInput(InputMapping::Key& key, InputMapping::
       key.button = InputMapping::RAW_INPUT_BUTTON_GP360_RSHOULDER;
 	  break;
 	}
+	case RAW_INPUT_BUTTON_GP360_START:
+	{
+	  key.button = InputMapping::RAW_INPUT_BUTTON_GP360_START;
+	  break;
+    }
   } 
 }
 
@@ -87,7 +114,10 @@ void InputMapping::Gamepad::updateStateKeys(InputMapping::MappedInput& inputs)
 {
   std::list<InputMapping::Key>::iterator iter = keys.begin();
 
-  iter++;
+  if ( iter->button == RAW_INPUT_NO_BUTTON)
+  {
+	iter++;
+  }
 
   bool anyKeyIsPressed = false;
 
@@ -133,18 +163,18 @@ void InputMapping::Gamepad::updateStateKeys(InputMapping::MappedInput& inputs)
 
 bool InputMapping::Gamepad::checkKeyState(WORD button)
 {
-  DWORD dwResult;    
-  for (DWORD i = 0; i < 1; i++ )
+  DWORD dwResult;
+  DWORD idPlayer = playerID - 1;
+  
+  XINPUT_STATE state;
+  ZeroMemory( &state, sizeof(XINPUT_STATE) );
+
+  dwResult = XInputGetState( idPlayer, &state );
+
+  if ( state.Gamepad.wButtons & button)
   {
-    XINPUT_STATE state;
-    ZeroMemory( &state, sizeof(XINPUT_STATE) );
-
-    dwResult = XInputGetState( i, &state );
-
-    if ( state.Gamepad.wButtons & button)
-    {
-	  return true;
-	}
+    return true;
   }
+  
   return false;
 }

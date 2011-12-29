@@ -91,13 +91,17 @@ void GameRender::drawFullTexture(GLuint texture, Vector2f pos, GLfloat widthText
 }
 
 void GameRender::drawSpriteTexture(GLuint texture, Vector2f pos, int currentFrame, 
-                                GLfloat widthTexture, GLfloat heightTexture, GLfloat widthSprite, GLfloat heightSprite,
-                                int direction, int state)
+                                GLfloat widthSprite, GLfloat heightSprite, int direction, int state)
 {
+  GLfloat widthTexture, heightTexture;
+
   glEnableClientState( GL_VERTEX_ARRAY );
   glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
     
   glBindTexture( GL_TEXTURE_2D, texture );
+
+  glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widthTexture);
+  glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &heightTexture);
 
   GLfloat verts[] = {
                 pos.x, pos.y,
@@ -152,10 +156,10 @@ void GameRender::drawSpecificTexture(GLuint texture, Vector2f pos, Vector2f offs
   glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &heightTexture);
 
   GLfloat verts[] = {
-                pos.x, pos.y,
-                pos.x + widthDrawTexture, pos.y,
-                pos.x + widthDrawTexture, pos.y + heightDrawTexture,
-                pos.x, pos.y + heightDrawTexture
+          pos.x, pos.y,
+          pos.x + widthDrawTexture, pos.y,
+          pos.x + widthDrawTexture, pos.y + heightDrawTexture,
+          pos.x, pos.y + heightDrawTexture
   };
 
   const GLfloat textureWidth = widthDrawTexture/widthTexture;

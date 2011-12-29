@@ -5,6 +5,8 @@
 #include "MeerkatP2.h"
 #include "JapaneseMonkey.h"
 
+#include <MenuStructs.h>
+
 SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
     : GameState( gR, gC, gI, stateName )
 {
@@ -128,8 +130,15 @@ void SLevelOneJapan::cleanUp()
 
 void SLevelOneJapan::initializePlayers()
 {
-  gameCore->pushBackPlayerToInitialize(SpriteData::PANDA);
-  //gameCore->pushBackPlayerToInitialize(SpriteData::MEERKAT);
+  std::vector<Image::PlayersInitialize> playersToInitialize = gameCore->getPlayersToInitialize();
+
+  if ( playersToInitialize.size() > 1 )
+  {
+    if ( playersToInitialize.at(0).characterID > playersToInitialize.at(1).characterID )
+	{
+	  std::swap(playersToInitialize.at(0), playersToInitialize.at(1));
+	}
+  }
 
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
@@ -201,7 +210,7 @@ void SLevelOneJapan::initializePlayers()
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersToInitialize().size(); i++)
   {
-    switch(gameCore->getPlayersToInitialize().at(i))
+	switch(playersToInitialize.at(i).characterID)
     {
       case SpriteData::PANDA:
       {
@@ -228,7 +237,12 @@ void SLevelOneJapan::initializePlayers()
 		break;
       }
     }
-
+	
+	gameCore->getPlayersList().at(i).setController(GameInput::initializeControllerData(getNameState(), playersToInitialize.at(i).controllerID));
+    gameCore->getPlayersList().at(i).setGameInputMapper(GameInput::initializeGameInputMapperData(getNameState(), 
+	                                    *gameCore->getPlayersList().at(i).getController(), 
+										playersToInitialize.at(i).controllerID));
+	gameCore->getPlayersList().at(i).getController()->setPlayerID(playersToInitialize.at(i).controllerID);
 	gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts("", (int)i, "Resources/UI/Numbers.png");
   }
 

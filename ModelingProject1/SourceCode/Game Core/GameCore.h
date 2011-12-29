@@ -13,6 +13,8 @@
 
 #include "Vector.h"
 
+#include <MenuStructs.h>
+
 class GameCore
 {
   public:
@@ -54,8 +56,8 @@ class GameCore
    bool getIsRunning() { return isRunning; }
    void setIsRunning(bool running) { isRunning = running; };
 
-   void pushBackPlayerToInitialize(int id) { playersInitialized.push_back(id); }
-   std::vector< int > getPlayersToInitialize() { return playersInitialized; }
+   void pushBackPlayerToInitialize(Image::PlayersInitialize initialize) { playersInitialized.push_back(initialize); }
+   std::vector< Image::PlayersInitialize > getPlayersToInitialize() { return playersInitialized; }
    void clearPlayerToInitialize() { playersInitialized.clear(); }
     
   private:
@@ -69,7 +71,7 @@ class GameCore
 
    boost::ptr_vector< Characters::Player > playersList;
    boost::ptr_vector< Characters::Enemy > enemiesList;
-   std::vector< int > playersInitialized;
+   std::vector< Image::PlayersInitialize > playersInitialized;
    bool isRunning;
 };
 

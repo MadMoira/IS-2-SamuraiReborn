@@ -13,14 +13,10 @@ namespace MenuData
 
   enum SelectPlayer
   {
-    NO_SELECTED_PLAYER,
 	PLAYER_ONE,
+	NO_SELECTED_PLAYER,
 	PLAYER_TWO,
-  };
-
-  enum SelectPlayerOptions
-  {
-	BEGIN = 1,
+	CONTINUE,
 	BACK,
   };
 }

@@ -26,8 +26,8 @@ int main( int argc, char* args[] )
 
   //StateManager->changeState( new SIntro( &Render, &Core, &Input, STATE_INTRO ) );
   //StateManager->changeState( new SMainMenu( &Render, &Core, &Input, STATE_MAINMENU ) );
-  //StateManager->changeState( new SPlayerSelection( &Render, &Core, &Input, STATE_MENUSELECTIONPLAYER ) );
-  StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, STATE_LEVELONEJAPAN ) );
+  StateManager->changeState( new SPlayerSelection( &Render, &Core, &Input, STATE_MENUSELECTIONPLAYER ) );
+  //StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, STATE_LEVELONEJAPAN ) );
   StateManager->init();
 
   while( Core.getIsRunning() )

@@ -1,7 +1,15 @@
 
 #include "SDL/SDL.h"
 
+#include <windows.h>
+
 #include "GameInput.h"
+
+#include <Keyboard.h>
+#include <Gamepad.h>
+
+#include <SPlayerSelection.h>
+#include <Player.h>
 
 GameInput::GameInput(void)
 {
@@ -37,4 +45,101 @@ bool GameInput::handleWindowEvents()
 void GameInput::handleKeyEvents(InputMapping::GameInputMapper* gameInputMapper, InputMapping::Controller* controller)
 {
   gameInputMapper->processNewInput(*controller);
+}
+
+InputMapping::GameInputMapper* GameInput::initializeGameInputMapperData(int currentState, InputMapping::Controller& controller, 
+	                                                                    int typeController)
+{
+  InputMapping::GameInputMapper* inputMapper = new InputMapping::GameInputMapper(controller.getFileContextList()); 
+  std::string nameContext = "";
+
+  switch( currentState )
+  {
+    case 3:
+    {
+	  switch( controller.getTypeController() )
+	  {
+	    case InputMapping::KEYBOARD:
+		{
+		  nameContext = "keyboardmenucontext";
+		  break;
+        }
+	    default:
+        {
+		  nameContext = "gamepadmenucontext";
+		  break;
+	    }
+      }
+	  inputMapper->addCallback(SPlayerSelection::inputCallback, 0);
+	  break;
+    }
+    default:
+    {
+	  switch( controller.getTypeController() )
+	  {
+	    case InputMapping::KEYBOARD:
+		{
+		  nameContext = "keyboardcontext";
+		  break;
+        }
+	    default:
+        {
+		  nameContext = "gamepadcontext";
+		  break;
+	    }
+      }
+
+	  inputMapper->addCallback(Characters::Player::inputCallback, 0);
+	  break;
+    }
+  }
+
+  inputMapper->pushContext(nameContext);
+
+  controller.initializeKeys(inputMapper->getListKeys(), inputMapper->getStateMap(), inputMapper->getActionMap());
+  return inputMapper;
+}
+
+InputMapping::Controller* GameInput::initializeControllerData(int currentState, int typeController)
+{
+  std::string fileContextList = "";
+  std::string nameContext = "";
+
+  switch( typeController )
+  {
+    case InputMapping::KEYBOARD:
+    {
+	  fileContextList = "Resources/Input/KeyboardContextList.txt";
+      return new InputMapping::Keyboard(0, fileContextList);
+	  break;
+    }
+	default:
+    {
+	  fileContextList = "Resources/Input/GamepadContextList.txt";
+	  return new InputMapping::Gamepad(0, fileContextList);
+	  break;
+    }
+  }
+
+  return new InputMapping::Keyboard(0, fileContextList);
+}
+
+int GameInput::countActiveControllers(boost::ptr_vector<Image::ImageController>& controllers)
+{
+  boost::ptr_vector<Image::ImageController>::iterator iter = controllers.begin();
+  iter++;
+
+  int count = 1;
+
+  for ( iter; iter != controllers.end(); iter++ )
+  {
+	bool stateController = iter->getController()->isEnabled();
+	if ( stateController )
+	{
+	  count += 1;
+	}
+	iter->setState(stateController);
+  }
+
+  return count;
 }
