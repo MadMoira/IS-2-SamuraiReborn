@@ -438,6 +438,12 @@
     <ClCompile Include="System\File.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\Image\ImageController.cpp">
+      <Filter>Source Files\Graphics\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\Menus\MenuSelectionPlayer.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI\AI.h">
@@ -689,6 +695,15 @@
     <ClInclude Include="Graphics\Text\TextObject.h">
       <Filter>Header Files\Graphics\Text</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Image\ImageController.h">
+      <Filter>Header Files\Graphics\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Game States\Menus\MenuSelection.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Game States\Menus\MenuSelectionPlayer.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Enemy - SpriteSheet.png">
@@ -807,6 +822,18 @@
     </None>
     <None Include="Resources\Sounds\Characters\Players\Sword (3).mp3">
       <Filter>Resource Files\Sounds\Characters\Players</Filter>
+    </None>
+    <None Include="Game Core\LevelSounds.txt">
+      <Filter>Resource Files\Sounds\Levels\Level One Japan\Section One</Filter>
+    </None>
+    <None Include="Game Core\Musics.txt">
+      <Filter>Resource Files\Sounds\Levels\Level One Japan\Section One</Filter>
+    </None>
+    <None Include="Resources\Input\GamepadMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\KeyboardMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
     </None>
   </ItemGroup>
 </Project>

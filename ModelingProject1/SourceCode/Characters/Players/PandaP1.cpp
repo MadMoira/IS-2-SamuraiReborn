@@ -4,8 +4,15 @@
 #include <Keyboard.h>
 #include <Gamepad.h>
 
+#include <GameInput.h>
+
 Characters::PandaP1::~PandaP1()
 {
+  if ( idNumberOfPlayer == -1 )
+  {
+    return;
+  }
+
   delete characterSprite;
   delete inputMapper;
   delete controller;
@@ -19,21 +26,10 @@ void Characters::PandaP1::initializeCharacter(SpriteData::IDSprites id, std::str
                 std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
   characterSprite = new PlayerSprite(id, filename, pos, initialFrame, maxFrame, returnFrame,
-                            widthSprite, heightSprite, framerateAnimations, delayMovement);
+                                     widthSprite, heightSprite, framerateAnimations, delayMovement);
 
   stats = new PlayerStats::Stats();
   score = new PlayerScore::Score();
-
-  inputMapper = new InputMapping::GameInputMapper("Resources/Input/KeyboardContextList.txt");
-  //inputMapper = new InputMapping::GameInputMapper("Resources/Input/GamepadContextList.txt"); 
-
-  //inputMapper->pushContext("gamepadcontext");
-  inputMapper->pushContext("keyboardcontext");
-  inputMapper->addCallback(Player::inputCallback, 0);
-
-  //controller = new InputMapping::Gamepad(0);
-  controller = new InputMapping::Keyboard(0);
-  controller->initializeKeys(inputMapper->getListKeys(), inputMapper->getStateMap());
 }
 
 void Characters::PandaP1::noAction()

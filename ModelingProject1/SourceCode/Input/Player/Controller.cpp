@@ -16,10 +16,12 @@ InputMapping::Controller::~Controller()
 }
 
 void InputMapping::Controller::initializeKeys(std::list<Key> listKeys, 
-	                           std::map<RawInputButton, GameCoreStates::SpriteState> mapKeys)
+	                           std::map<RawInputButton, GameCoreStates::SpriteState> mapKeys,
+							   std::map<RawInputButton, GameCoreStates::Action> actionKeys)
 {
   keys = listKeys;
   stateMap = mapKeys;
+  actionMap = actionKeys;
 }
 
 InputMapping::Key& InputMapping::Controller::getKeyAssociatedToState(int state, int directionX)
@@ -58,6 +60,16 @@ InputMapping::Key& InputMapping::Controller::getKeyAssociatedToState(int state, 
 void InputMapping::Controller::setRawButtonState(InputMapping::Key key, InputMapping::MappedInput& inputs)
 {
   GameCoreStates::SpriteState state;
+  GameCoreStates::Action action;
+
+  if( key.isPressed && !inputs.buttonPreviouslyPressed )
+  {
+    if( mapButtonToAction(key.button, action) )
+    {
+	  inputs.actions.insert(action);
+	  return;
+    }
+  }
 
   if( key.isPressed )
   {
@@ -115,8 +127,8 @@ int InputMapping::Controller::countStatesInMapper(InputMapping::MappedInput& inp
 
 bool InputMapping::Controller::verifyDoubleTappingForJumping(InputMapping::MappedInput& inputs, GameCoreStates::SpriteState state)
 {
-	if ( inputs.buttonPreviouslyPressed == getKeyAssociatedToState(GameCoreStates::JUMPING, 0).button &&
-         state == GameCoreStates::JUMPING )
+  if ( inputs.buttonPreviouslyPressed == getKeyAssociatedToState(GameCoreStates::JUMPING, 0).button &&
+       state == GameCoreStates::JUMPING )
   {
     return true;
   }
@@ -127,6 +139,19 @@ void InputMapping::Controller::pushBackNewState(InputMapping::MappedInput& input
 {
   inputs.states.push_back(GameCoreStates::SpriteState(state));
   inputs.buttonPreviouslyPressed = valueButton;
+}
+
+bool InputMapping::Controller::mapButtonToAction(RawInputButton button, GameCoreStates::Action& out) const
+{
+  std::map<RawInputButton, GameCoreStates::Action>::const_iterator iter = actionMap.find(button);
+  
+  if( iter == actionMap.end() )
+  {
+    return false;
+  }
+
+  out = iter->second;
+  return true;
 }
 
 bool InputMapping::Controller::mapButtonToState(InputMapping::RawInputButton button, 

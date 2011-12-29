@@ -2,6 +2,17 @@
 
 namespace GameCoreStates
 {
+  enum GameStates 
+  {
+    STATE_NULL,
+    STATE_INTRO, 
+    STATE_MAINMENU, 
+    STATE_MENUSELECTIONPLAYER,
+    STATE_LEVELZEROTUTORIAL, 
+    STATE_LEVELONEJAPAN,
+    STATE_EXIT,
+  };
+
   enum SpriteState
   {
     STILL,
@@ -15,6 +26,9 @@ namespace GameCoreStates
 
   enum Action
   {
+	RIGHT,
+	LEFT,
+	CONTINUE,
   };
 
   enum ChangeStateResult

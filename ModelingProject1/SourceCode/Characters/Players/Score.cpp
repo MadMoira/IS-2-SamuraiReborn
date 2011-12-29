@@ -25,8 +25,7 @@ void PlayerScore::Score::drawDisplayPoints()
   {
     Vector2f positionNumber = pointsDisplay.getPosition();
     positionNumber.x = positionNumber.x + currentNumber*(14.0f);
-	GameRender::drawSpriteTexture(pointsDisplay.getTextureNumbers(), positionNumber, parseStringToInt(*pointsIterator), 
-		                          dimensionsTexture.x, dimensionsTexture.y, 
+	GameRender::drawSpriteTexture(pointsDisplay.getTextureNumbers(), positionNumber, parseStringToInt(*pointsIterator),
 								  dimensionsNumber.x, dimensionsNumber.y);
     currentNumber++;
   }

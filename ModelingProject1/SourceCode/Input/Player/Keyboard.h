@@ -9,7 +9,7 @@ namespace InputMapping
   class Keyboard : public Controller
   {
     public:
-	 Keyboard(int id);
+	 Keyboard(int id, std::string context);
 
 	 void parseRawInput(Key& key, InputMapping::MappedInput& inputs);
 	 Key getKeyDirectionX(int directionX);

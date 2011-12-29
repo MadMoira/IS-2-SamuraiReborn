@@ -4,8 +4,12 @@
 #include <SpriteDataConstants.h>
 #include <algorithm>
 
-InputMapping::Keyboard::Keyboard(int id) : Controller (id)
+InputMapping::Keyboard::Keyboard(int id, std::string context) : Controller (id)
 {
+  playerID = id;
+  typeController = InputMapping::KEYBOARD;
+  filenameContext = context;
+  enabled = true;
 }
 
 void InputMapping::Keyboard::parseRawInput(InputMapping::Key& key, InputMapping::MappedInput& inputs)
@@ -50,6 +54,11 @@ void InputMapping::Keyboard::parseRawInput(InputMapping::Key& key, InputMapping:
       key.button = InputMapping::RAW_INPUT_BUTTON_X; 
       break;
     }
+	case SDLK_RETURN:
+	{
+	  key.button = InputMapping::RAW_INPUT_BUTTON_ENTER;
+	  break;
+	}
   } 
 }
 
@@ -88,7 +97,10 @@ void InputMapping::Keyboard::updateStateKeys(InputMapping::MappedInput& inputs)
   std::list<InputMapping::Key>::iterator iter = keys.begin();
   Uint8 *keystate = SDL_GetKeyState(NULL);
 
-  iter++;
+  if ( iter->button == RAW_INPUT_NO_BUTTON)
+  {
+	iter++;
+  }
 
   bool anyKeyIsPressed = false;
 

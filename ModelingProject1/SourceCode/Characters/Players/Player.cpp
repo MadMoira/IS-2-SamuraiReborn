@@ -99,7 +99,8 @@ void Characters::Player::drawScore()
   score->drawDisplayPoints();
 }
 
-void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys)
+void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys,
+	                                   Image::MenuSelection& menu)
 {
   Sprite* playerSprite = player.getCharacterSprite();
 

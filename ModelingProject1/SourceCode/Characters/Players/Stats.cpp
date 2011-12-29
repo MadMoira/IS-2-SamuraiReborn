@@ -54,7 +54,7 @@ void PlayerStats::Stats::initializeFaceStates(std::string filename, int idPlayer
 void PlayerStats::Stats::drawFaceState()
 {
   GameRender::drawSpriteTexture(faces.faces->getTexture(), faces.faces->getPosition(), faces.currentFaceState,
-		                        300.0f, 100.0f, 100.0f, 100.0f, 0, 0);
+		                        100.0f, 100.0f);
 }
 
 void PlayerStats::Stats::drawSkullKills()

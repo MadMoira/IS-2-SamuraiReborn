@@ -9,7 +9,9 @@ namespace InputMapping
   class Gamepad : public Controller
   {
     public:
-	 Gamepad(int id);
+	 Gamepad(int id, std::string context);
+
+	 bool isEnabled();
 
 	 void parseRawInput(Key& key, InputMapping::MappedInput& inputs);
 	 Key getKeyDirectionX(int directionX);

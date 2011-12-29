@@ -18,8 +18,8 @@ RPRGUI::PushButton* RPRGUI::GUIManager::createButton(int id, Vector2f pos, Vecto
   return newButton;
 }
 
-Image::GameImage* RPRGUI::GUIManager::createStaticImage(Vector2f imagePosition, Vector2f imageOffset, Vector2f texturePosition, 
+Image::ImageObject* RPRGUI::GUIManager::createStaticImage(Vector2f imagePosition, Vector2f imageOffset, Vector2f texturePosition, 
                                                        std::string filename)
 {
-  return new Image::GameImage(imagePosition, imageOffset, texturePosition, filename);
+  return new Image::ImageObject(imagePosition, imageOffset, texturePosition);
 }

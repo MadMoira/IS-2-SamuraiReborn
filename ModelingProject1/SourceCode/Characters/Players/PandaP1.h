@@ -7,6 +7,7 @@ namespace Characters
   class PandaP1 : public Player
   {
     public:
+     PandaP1() { idNumberOfPlayer = -1; }
      ~PandaP1();
 
      void initializeCharacter(SpriteData::IDSprites id, std::string filename,

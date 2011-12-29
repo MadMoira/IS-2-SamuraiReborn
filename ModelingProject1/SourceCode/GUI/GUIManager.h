@@ -5,7 +5,7 @@
 #include "MenuData.h"
 
 #include "PushButton.h"
-#include "GameImage.h"
+#include "ImageObject.h"
 
 namespace RPRGUI
 {
@@ -16,7 +16,7 @@ namespace RPRGUI
      ~GUIManager(void);
 
      PushButton* createButton(int id, Vector2f pos, Vector2f dimensions, Vector2f posTexture, int idChangeState);
-     Image::GameImage* createStaticImage(Vector2f imagePosition, Vector2f imageOffset, Vector2f texturePosition, std::string filename);
+     Image::ImageObject* createStaticImage(Vector2f imagePosition, Vector2f imageOffset, Vector2f texturePosition, std::string filename);
   };
 }
 

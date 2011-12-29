@@ -37,13 +37,16 @@ namespace Characters
      void drawUIStats();
      void drawScore();
       
-     static void inputCallback(InputMapping::MappedInput& inputs, Player& player, std::list<InputMapping::Key> keys);
+     static void inputCallback(InputMapping::MappedInput& inputs, Player& player, 
+		                       std::list<InputMapping::Key> keys, Image::MenuSelection& menu);
 
 	 void setIDNumberOfPlayer(int id) { idNumberOfPlayer = id; }
 
      InputMapping::GameInputMapper* getInputMapper() { return inputMapper; }
+	 void setGameInputMapper(InputMapping::GameInputMapper* mapper) { inputMapper = mapper; }
 
 	 InputMapping::Controller* getController() { return controller; }
+	 void setController(InputMapping::Controller* control) { controller = control; }
 
      PlayerStats::Stats* getPlayerStats() { return stats; }
 
