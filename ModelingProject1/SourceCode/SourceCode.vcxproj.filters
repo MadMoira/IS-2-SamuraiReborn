@@ -444,6 +444,15 @@
     <ClCompile Include="Game States\Menus\MenuSelectionPlayer.cpp">
       <Filter>Source Files\Game States\Menus</Filter>
     </ClCompile>
+    <ClCompile Include="Input\Player\MenuController.cpp">
+      <Filter>Source Files\Input\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\Menus\MainMenuSelection.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\Menus\MenuSelection.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI\AI.h">
@@ -704,6 +713,12 @@
     <ClInclude Include="Game States\Menus\MenuSelectionPlayer.h">
       <Filter>Header Files\Game States\Menus</Filter>
     </ClInclude>
+    <ClInclude Include="Input\Player\MenuController.h">
+      <Filter>Header Files\Input\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game States\Menus\MainMenuSelection.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Enemy - SpriteSheet.png">
@@ -781,12 +796,6 @@
     <None Include="Resources\Input\GamepadContext.txt">
       <Filter>Resource Files\Input</Filter>
     </None>
-    <None Include="Resources\Menus\Menu Selection Player\MenuSelectionPlayerButtons.png">
-      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
-    </None>
-    <None Include="Resources\Menus\Menu Selection Player\Highlighter.png">
-      <Filter>Resource Files\Menus\Menu Selection Player</Filter>
-    </None>
     <None Include="Resources\UI\HealthBarSkull.png">
       <Filter>Resource Files\UI</Filter>
     </None>
@@ -833,6 +842,12 @@
       <Filter>Resource Files\Input</Filter>
     </None>
     <None Include="Resources\Input\KeyboardMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\GamepadMainMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\KeyboardMainMenuContext.txt">
       <Filter>Resource Files\Input</Filter>
     </None>
   </ItemGroup>

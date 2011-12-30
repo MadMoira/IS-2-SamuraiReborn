@@ -116,6 +116,8 @@
     <ClCompile Include="Game States\GameStateManager.cpp" />
     <ClCompile Include="Game States\Levels\SLevelOneJapan.cpp" />
     <ClCompile Include="Game States\Levels\SLevelTutorial.cpp" />
+    <ClCompile Include="Game States\Menus\MainMenuSelection.cpp" />
+    <ClCompile Include="Game States\Menus\MenuSelection.cpp" />
     <ClCompile Include="Game States\Menus\MenuSelectionPlayer.cpp" />
     <ClCompile Include="Game States\Menus\SIntro.cpp" />
     <ClCompile Include="Game States\Menus\SMainMenu.cpp" />
@@ -141,6 +143,7 @@
     <ClCompile Include="Input\Player\Controller.cpp" />
     <ClCompile Include="Input\Player\Gamepad.cpp" />
     <ClCompile Include="Input\Player\Keyboard.cpp" />
+    <ClCompile Include="Input\Player\MenuController.cpp" />
     <ClCompile Include="Level Design\Layer.cpp" />
     <ClCompile Include="Level Design\Level.cpp" />
     <ClCompile Include="Level Design\Tile.cpp" />
@@ -198,6 +201,7 @@
     <ClInclude Include="Game States\GameStateManager.h" />
     <ClInclude Include="Game States\Levels\SLevelOneJapan.h" />
     <ClInclude Include="Game States\Levels\SLevelTutorial.h" />
+    <ClInclude Include="Game States\Menus\MainMenuSelection.h" />
     <ClInclude Include="Game States\Menus\MenuData.h" />
     <ClInclude Include="Game States\Menus\MenuSelection.h" />
     <ClInclude Include="Game States\Menus\MenuSelectionPlayer.h" />
@@ -226,6 +230,7 @@
     <ClInclude Include="Input\Player\Controller.h" />
     <ClInclude Include="Input\Player\Gamepad.h" />
     <ClInclude Include="Input\Player\Keyboard.h" />
+    <ClInclude Include="Input\Player\MenuController.h" />
     <ClInclude Include="Input\RawInputConstants.h" />
     <ClInclude Include="Level Design\Layer.h" />
     <ClInclude Include="Level Design\Level.h" />
@@ -253,9 +258,11 @@
     <None Include="Resources\GUI\Fonts\orbitron-black.ttf" />
     <None Include="Resources\Input\GamepadContext.txt" />
     <None Include="Resources\Input\GamepadContextList.txt" />
+    <None Include="Resources\Input\GamepadMainMenuContext.txt" />
     <None Include="Resources\Input\GamepadMenuContext.txt" />
     <None Include="Resources\Input\KeyboardContext.txt" />
     <None Include="Resources\Input\KeyboardContextList.txt" />
+    <None Include="Resources\Input\KeyboardMainMenuContext.txt" />
     <None Include="Resources\Input\KeyboardMenuContext.txt" />
     <None Include="Resources\Levels\Level One Japan\Section One\Clouds.png" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionList.csv" />
@@ -270,10 +277,8 @@
     <None Include="Resources\Menus\Main Menu\MainMenuButtons.png" />
     <None Include="Resources\Menus\Main Menu\MainMenuHighlighter.png" />
     <None Include="Resources\Menus\Menu Selection Player\Gamepad.png" />
-    <None Include="Resources\Menus\Menu Selection Player\Highlighter.png" />
     <None Include="Resources\Menus\Menu Selection Player\Keyboard.png" />
     <None Include="Resources\Menus\Menu Selection Player\MenuCharacterSelectorBackground.png" />
-    <None Include="Resources\Menus\Menu Selection Player\MenuSelectionPlayerButtons.png" />
     <None Include="Resources\Menus\Menu Selection Player\PandaSelector.png" />
     <None Include="Resources\Menus\Menu Selection Player\SuricataSelector.png" />
     <None Include="Resources\Sounds\Characters\Players\Running.mp3" />

@@ -24,17 +24,9 @@ class SPlayerSelection : public GameState
    void cleanUp();
 
    void createGUI();
-
    void checkSelectedPlayers();
 
-   void handleMouseDown(Uint8 button, Vector2f mousePosition);
    void handleMouseUp(Uint8 button, Vector2f mousePosition);
-   void handleKeyDown(SDLKey key);
-   void handleEnterPressed();
-
-   void checkClickedMouse(bool* running);
-   void checkControlsButtonsSelected(SDLKey key);
-
    void handleChangeOfState(int idState);
 
    static void inputCallback(InputMapping::MappedInput& inputs, Characters::Player& player, 
@@ -44,7 +36,7 @@ class SPlayerSelection : public GameState
    RPRGUI::GUIMenu* guiSelectPlayer;
    Image::MenuSelectionPlayer* menuSelectionPlayer;
    boost::ptr_vector<Image::ImageController> controllers;
-   Image::ArrowSelectMenu arrowImage;
+   Image::ArrowMenu arrowImage;
    Image::CustomCursor customCursor;
    int numberOfPlayers;
    bool isPlayerOneSelected, isPlayerTwoSelected;

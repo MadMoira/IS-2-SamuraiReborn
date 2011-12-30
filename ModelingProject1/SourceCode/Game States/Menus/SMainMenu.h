@@ -7,6 +7,9 @@
 #include "MenuData.h"
 #include "MenuStructs.h"
 
+#include <MainMenuSelection.h>
+#include <MenuController.h>
+
 class SMainMenu : public GameState
 {
   public:
@@ -21,14 +24,17 @@ class SMainMenu : public GameState
 
    void createGUI( );
 
-   void handleMouseDown(Uint8 button, Vector2f mousePosition);
    void handleMouseUp(Uint8 button, Vector2f mousePosition);
-   void handleKeyDown(SDLKey key);
-   void handleEnterPressed();
+
+   static void inputCallback(InputMapping::MappedInput& inputs, Characters::Player& player, 
+	                         std::list<InputMapping::Key> keys, Image::MenuSelection& menu);
 
   private:
    RPRGUI::GUIMenu* guiMainMenu;
+   Image::MainMenuSelection* mainMenu;
+   boost::ptr_vector<Image::MenuController> controllers;
    Image::ArrowMainMenu arrowImage;
    Image::CustomCursor customCursor;
+   int numberOfPlayers;
 };
 

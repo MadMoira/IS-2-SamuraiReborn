@@ -116,6 +116,11 @@ void InputMapping::GameInputMapper::pushBackStateOnMappedInput(GameCoreStates::S
   currentMappedInput.states.push_back(newState);
 }
 
+void InputMapping::GameInputMapper::pushBackActionOnMappedInput(GameCoreStates::Action newAction)
+{
+  currentMappedInput.actions.insert(newAction);
+}
+
 bool InputMapping::GameInputMapper::mapButtonToAction(InputMapping::RawInputButton button, 
                                                      GameCoreStates::Action& action) const
 {

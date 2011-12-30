@@ -29,6 +29,9 @@ namespace GameCoreStates
 	RIGHT,
 	LEFT,
 	CONTINUE,
+	BACK,
+	UP,
+	DOWN,
   };
 
   enum ChangeStateResult

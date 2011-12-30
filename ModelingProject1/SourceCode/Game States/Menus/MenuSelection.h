@@ -11,8 +11,9 @@ namespace Image
   {
     public:
 	 MenuSelection() { };
+	 ~MenuSelection();
 
-	 virtual Image::ImageObject& getController() { return ImageObject(); }
+	 virtual Image::ImageObject& getController();
 
 	 virtual void moveSelection(int direction) { };
 
@@ -31,6 +32,12 @@ namespace Image
 	 int getNewIdGameState() { return idNewGameState; }
 	 void setNewIdGameState(int id) { idNewGameState = id; }
 
+	 boost::ptr_vector<RPRGUI::PushButton>& getListButtons() { return listButtons; }
+	 void setListButtons(boost::ptr_vector<RPRGUI::PushButton>* list) { listButtons = *list; }
+
+	 bool getIsRunning() { return isRunning; }
+	 void setIsRunning(bool running) { isRunning = running; }
+
     protected:
 	 boost::ptr_vector<RPRGUI::PushButton> listButtons;
      boost::ptr_vector<Image::ImageObject> listStaticImages;
@@ -38,5 +45,6 @@ namespace Image
      int idNewGameState;
 	 int numberOfPlayers;
 	 bool playerOneSelected, playerTwoSelected;
+	 bool isRunning;
   };
 }

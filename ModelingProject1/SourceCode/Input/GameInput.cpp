@@ -8,6 +8,7 @@
 #include <Keyboard.h>
 #include <Gamepad.h>
 
+#include <SMainMenu.h>
 #include <SPlayerSelection.h>
 #include <Player.h>
 
@@ -55,7 +56,25 @@ InputMapping::GameInputMapper* GameInput::initializeGameInputMapperData(int curr
 
   switch( currentState )
   {
-    case 3:
+    case GameCoreStates::STATE_MAINMENU:
+    {
+	  switch( controller.getTypeController() )
+	  {
+	    case InputMapping::KEYBOARD:
+		{
+		  nameContext = "keyboardmainmenucontext";
+		  break;
+        }
+	    default:
+        {
+		  nameContext = "gamepadmainmenucontext";
+		  break;
+	    }
+      }
+	  inputMapper->addCallback(SMainMenu::inputCallback, 0);
+	  break;
+    }
+    case GameCoreStates::STATE_MENUSELECTIONPLAYER:
     {
 	  switch( controller.getTypeController() )
 	  {

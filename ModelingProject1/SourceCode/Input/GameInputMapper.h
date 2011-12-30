@@ -48,6 +48,7 @@ namespace InputMapping
 	 std::map<RawInputButton, GameCoreStates::Action> getActionMap() const;
 
      void pushBackStateOnMappedInput(GameCoreStates::SpriteState newState);
+	 void pushBackActionOnMappedInput(GameCoreStates::Action newAction);
 
     private:
      std::map<std::string, GameInputContext*> inputContexts;

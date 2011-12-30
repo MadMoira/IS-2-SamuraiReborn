@@ -36,6 +36,16 @@ void InputMapping::Gamepad::parseRawInput(InputMapping::Key& key, InputMapping::
 {
   switch(key.button)
   {
+    case RAW_INPUT_BUTTON_GP360_UP:
+	{
+	  key.button = RAW_INPUT_BUTTON_GP360_UP;
+	  break;
+	}
+    case RAW_INPUT_BUTTON_GP360_DOWN:
+	{
+	  key.button = RAW_INPUT_BUTTON_GP360_DOWN;
+	  break;
+	}
     case RAW_INPUT_BUTTON_GP360_RIGHT:  
     {
       key.button = RAW_INPUT_BUTTON_GP360_RIGHT;

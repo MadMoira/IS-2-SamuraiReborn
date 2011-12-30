@@ -21,6 +21,16 @@ void InputMapping::Keyboard::parseRawInput(InputMapping::Key& key, InputMapping:
       key.button = InputMapping::RAW_INPUT_BUTTON_LSHIFT; 
       break;
     }
+	case SDLK_UP:
+	{
+      key.button = InputMapping::RAW_INPUT_BUTTON_UP;
+	  break;
+	}
+	case SDLK_DOWN:
+	{
+	  key.button = InputMapping::RAW_INPUT_BUTTON_DOWN;
+	  break;
+	}
     case SDLK_RIGHT:  
     {
       key.button = InputMapping::RAW_INPUT_BUTTON_RIGHT;
@@ -48,7 +58,6 @@ void InputMapping::Keyboard::parseRawInput(InputMapping::Key& key, InputMapping:
       key.button = InputMapping::RAW_INPUT_BUTTON_Z; 
       break;
     }
-
     case SDLK_x:
     {
       key.button = InputMapping::RAW_INPUT_BUTTON_X; 
@@ -59,6 +68,11 @@ void InputMapping::Keyboard::parseRawInput(InputMapping::Key& key, InputMapping:
 	  key.button = InputMapping::RAW_INPUT_BUTTON_ENTER;
 	  break;
 	}
+	case SDLK_ESCAPE:
+	{
+	  key.button = InputMapping::RAW_INPUT_BUTTON_ESCAPE;
+	  break;
+    }
   } 
 }
 
@@ -86,7 +100,8 @@ InputMapping::Key InputMapping::Keyboard::getKeyDirectionX(int directionX)
 
   if ( iter == keys.end() )
   {
-	return Key();
+    Key* temporalKey = new Key();
+    return *temporalKey;
   }
 
   return *iter;

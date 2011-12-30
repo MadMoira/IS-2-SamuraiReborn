@@ -11,6 +11,7 @@ namespace Image
     public:
 	  MenuSelectionPlayer() {};
 	  MenuSelectionPlayer(Image::ImageController* control);
+	  ~MenuSelectionPlayer();
 
 	  Image::ImageObject& getController() { return *controller; }
 	  void setController(Image::ImageController* control) { controller = control; }
