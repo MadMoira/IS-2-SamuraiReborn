@@ -41,7 +41,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\SDL - DLL, INC, LIB\include files;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\AI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Players;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Enemies;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Character States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Core;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Collisions;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Physic Modes;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Levels;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Menus;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Font;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Image;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Text;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI\Elements;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input\Player;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Level Design;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\System;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Weapons;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\SDL - DLL, INC, LIB\include files;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\AI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Players;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Enemies;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Character States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Core;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Collisions;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Physic Modes;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Levels;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Menus;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Menus\Callback Structs;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Font;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Image;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Text;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI\Elements;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input\Player;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Level Design;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\System;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Weapons;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
@@ -116,9 +116,9 @@
     <ClCompile Include="Game States\GameStateManager.cpp" />
     <ClCompile Include="Game States\Levels\SLevelOneJapan.cpp" />
     <ClCompile Include="Game States\Levels\SLevelTutorial.cpp" />
-    <ClCompile Include="Game States\Menus\MainMenuSelection.cpp" />
-    <ClCompile Include="Game States\Menus\MenuSelection.cpp" />
-    <ClCompile Include="Game States\Menus\MenuSelectionPlayer.cpp" />
+    <ClCompile Include="Game States\Menus\Callback Structs\MainMenuSelection.cpp" />
+    <ClCompile Include="Game States\Menus\Callback Structs\MenuSelection.cpp" />
+    <ClCompile Include="Game States\Menus\Callback Structs\MenuSelectionPlayer.cpp" />
     <ClCompile Include="Game States\Menus\SIntro.cpp" />
     <ClCompile Include="Game States\Menus\SMainMenu.cpp" />
     <ClCompile Include="Game States\Menus\SPlayerSelection.cpp" />
@@ -130,6 +130,7 @@
     <ClCompile Include="Graphics\Image\ImageController.cpp" />
     <ClCompile Include="Graphics\Image\ImageHealth.cpp" />
     <ClCompile Include="Graphics\Image\ImageObject.cpp" />
+    <ClCompile Include="Graphics\Image\MenuController.cpp" />
     <ClCompile Include="Graphics\Text\GameText.cpp" />
     <ClCompile Include="Graphics\Text\ScoreText.cpp" />
     <ClCompile Include="Graphics\Text\TextObject.cpp" />
@@ -143,7 +144,6 @@
     <ClCompile Include="Input\Player\Controller.cpp" />
     <ClCompile Include="Input\Player\Gamepad.cpp" />
     <ClCompile Include="Input\Player\Keyboard.cpp" />
-    <ClCompile Include="Input\Player\MenuController.cpp" />
     <ClCompile Include="Level Design\Layer.cpp" />
     <ClCompile Include="Level Design\Level.cpp" />
     <ClCompile Include="Level Design\Tile.cpp" />
@@ -201,10 +201,10 @@
     <ClInclude Include="Game States\GameStateManager.h" />
     <ClInclude Include="Game States\Levels\SLevelOneJapan.h" />
     <ClInclude Include="Game States\Levels\SLevelTutorial.h" />
-    <ClInclude Include="Game States\Menus\MainMenuSelection.h" />
+    <ClInclude Include="Game States\Menus\Callback Structs\MainMenuSelection.h" />
+    <ClInclude Include="Game States\Menus\Callback Structs\MenuSelection.h" />
+    <ClInclude Include="Game States\Menus\Callback Structs\MenuSelectionPlayer.h" />
     <ClInclude Include="Game States\Menus\MenuData.h" />
-    <ClInclude Include="Game States\Menus\MenuSelection.h" />
-    <ClInclude Include="Game States\Menus\MenuSelectionPlayer.h" />
     <ClInclude Include="Game States\Menus\MenuStructs.h" />
     <ClInclude Include="Game States\Menus\SIntro.h" />
     <ClInclude Include="Game States\Menus\SMainMenu.h" />
@@ -217,6 +217,7 @@
     <ClInclude Include="Graphics\Image\ImageController.h" />
     <ClInclude Include="Graphics\Image\ImageHealth.h" />
     <ClInclude Include="Graphics\Image\ImageObject.h" />
+    <ClInclude Include="Graphics\Image\MenuController.h" />
     <ClInclude Include="Graphics\Text\GameText.h" />
     <ClInclude Include="Graphics\Text\ScoreText.h" />
     <ClInclude Include="Graphics\Text\TextObject.h" />
@@ -230,7 +231,6 @@
     <ClInclude Include="Input\Player\Controller.h" />
     <ClInclude Include="Input\Player\Gamepad.h" />
     <ClInclude Include="Input\Player\Keyboard.h" />
-    <ClInclude Include="Input\Player\MenuController.h" />
     <ClInclude Include="Input\RawInputConstants.h" />
     <ClInclude Include="Level Design\Layer.h" />
     <ClInclude Include="Level Design\Level.h" />
