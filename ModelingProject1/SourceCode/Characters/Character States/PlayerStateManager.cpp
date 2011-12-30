@@ -25,7 +25,7 @@ void GameCoreStates::PlayerStateManager::popState()
 void GameCoreStates::PlayerStateManager::changeState(GameCoreStates::PlayerState* newState)
 {
   previousState = GameCoreStates::SpriteState(currentState.getCurrentID());
-
+  GameSound::getInmstance()->stateSoundsHandling();
   while( !statesStack.empty() )
   {
     popState();
