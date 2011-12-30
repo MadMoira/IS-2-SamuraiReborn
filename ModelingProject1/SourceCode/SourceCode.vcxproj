@@ -45,6 +45,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
+    <IntDir>.\Debug\</IntDir>
+    <OutDir>..\..\..\..\Configuration\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -247,6 +249,7 @@
     <ClInclude Include="Weapons\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Ambience.mp3" />
     <None Include="box.png" />
     <None Include="boxPanda.png" />
     <None Include="Enemy - SpriteSheet.png" />

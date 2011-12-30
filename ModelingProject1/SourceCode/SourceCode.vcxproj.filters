@@ -94,8 +94,8 @@
     <Filter Include="Header Files\Game Physics\Collisions">
       <UniqueIdentifier>{763fff60-7751-4f8f-aa26-d30a21cbf53d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game Physics\Physics Modes">
-      <UniqueIdentifier>{1728db0d-b4b3-42ab-80ed-dc32446f52df}</UniqueIdentifier>
+    <Filter Include="Resource Files\Audio">
+      <UniqueIdentifier>{8434e9b8-f6cf-45b1-95e7-363976a11fb6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Game Physics\Physics Modes">
       <UniqueIdentifier>{99a1e128-3efb-4054-b76c-36201f86166a}</UniqueIdentifier>
@@ -296,7 +296,6 @@
     </ClCompile>
     <ClCompile Include="Characters\Players\Stats.cpp">
       <Filter>Source Files\Characters\Players</Filter>
-    </ClCompile>
     <ClCompile Include="Characters\Character States\DoubleJumpState.cpp">
       <Filter>Source Files\Characters\States</Filter>
     </ClCompile>
@@ -458,6 +457,9 @@
     </ClCompile>
     <ClCompile Include="Game States\Menus\Callback Structs\MenuSelectionPlayer.cpp">
       <Filter>Source Files\Game States\Menus\Callback Structs</Filter>
+    </ClCompile>
+    <ClCompile Include="Spear.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -856,5 +858,64 @@
     <None Include="Resources\Input\KeyboardMainMenuContext.txt">
       <Filter>Resource Files\Input</Filter>
     </None>
+    <None Include="Ambience.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Wind.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Sword (2).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Running.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Monkeys.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Menu Seleccion (4).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Menu Seleccion (3).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Menu Seleccion (2).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Menu Seleccion (1).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="groundHit.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="IntoDust.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Japanese War Music.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Musics.txt">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="River.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Sword.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Sword (3).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Sword (1).mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="LevelSounds.txt">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SourceCode.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
