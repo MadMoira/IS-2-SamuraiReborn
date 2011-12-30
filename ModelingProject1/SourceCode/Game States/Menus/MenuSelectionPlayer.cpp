@@ -7,6 +7,12 @@ Image::MenuSelectionPlayer::MenuSelectionPlayer(Image::ImageController* control)
   currentSelection = controller->getSelectedPlayer();
 }
 
+Image::MenuSelectionPlayer::~MenuSelectionPlayer()
+{
+  listButtons.clear();
+  listStaticImages.clear();
+}
+
 void Image::MenuSelectionPlayer::moveSelection(int direction)
 {
   const int RIGHT = 1;

@@ -13,6 +13,7 @@ InputMapping::Controller::~Controller()
 {
   keys.clear();  
   stateMap.clear();
+  actionMap.clear();
 }
 
 void InputMapping::Controller::initializeKeys(std::list<Key> listKeys, 
@@ -30,7 +31,8 @@ InputMapping::Key& InputMapping::Controller::getKeyAssociatedToState(int state, 
 
   if ( state == GameCoreStates::WALKING )
   {
-	return getKeyDirectionX(directionX);
+	Key directionKey = getKeyDirectionX(directionX);
+	return directionKey;
   }
 
   std::map<RawInputButton, GameCoreStates::SpriteState>::iterator iter = stateMap.begin();
@@ -54,7 +56,8 @@ InputMapping::Key& InputMapping::Controller::getKeyAssociatedToState(int state, 
     }
   }
 
-  return Key();
+  Key* temporalKey = new Key();
+  return *temporalKey;
 }
 
 void InputMapping::Controller::setRawButtonState(InputMapping::Key key, InputMapping::MappedInput& inputs)

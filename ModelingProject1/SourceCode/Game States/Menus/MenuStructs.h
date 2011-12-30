@@ -9,15 +9,10 @@ namespace Image
     GameImage* arrow;
     int optionSelected;
 
-	virtual void updatePositionArrow() = 0;
+	virtual void updatePositionArrow() { };
   };
 
   struct ArrowMainMenu : ArrowMenu
-  {
-	void updatePositionArrow();
-  };
-
-  struct ArrowSelectMenu : ArrowMenu
   {
 	void updatePositionArrow();
   };
