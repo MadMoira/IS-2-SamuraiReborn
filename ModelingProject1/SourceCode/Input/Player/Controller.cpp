@@ -65,7 +65,7 @@ void InputMapping::Controller::setRawButtonState(InputMapping::Key key, InputMap
   GameCoreStates::SpriteState state;
   GameCoreStates::Action action;
 
-  if( key.isPressed && !inputs.buttonPreviouslyPressed )
+  if( key.isPressed && !key.wasPreviouslyPressed )
   {
     if( mapButtonToAction(key.button, action) )
     {

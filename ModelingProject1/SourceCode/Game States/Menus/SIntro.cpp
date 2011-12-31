@@ -1,14 +1,14 @@
 #include "SIntro.h"
 
 
-SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
+SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
     : GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
   gameRender = gR;
   gameInput = gI;
   nameState = stateName;
-  setHasEnded(STATE_INTRO);
+  setHasEnded(MainStates::STATE_INTRO);
 
   framerate = 6000;
 }
@@ -37,7 +37,7 @@ void SIntro::handleEvents()
     return;
   }
 
-  setHasEnded(STATE_MAINMENU);
+  setHasEnded(MainStates::STATE_MAINMENU);
 }
 
 void SIntro::logic()

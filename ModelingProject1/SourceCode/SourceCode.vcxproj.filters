@@ -459,6 +459,9 @@
     <ClCompile Include="Game States\Menus\Callback Structs\MenuSelectionPlayer.cpp">
       <Filter>Source Files\Game States\Menus\Callback Structs</Filter>
     </ClCompile>
+    <ClCompile Include="Game States\Menus\SPause.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI\AI.h">
@@ -725,6 +728,12 @@
     <ClInclude Include="Graphics\Image\MenuController.h">
       <Filter>Header Files\Graphics\Image</Filter>
     </ClInclude>
+    <ClInclude Include="Game States\Menus\SPause.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Game States\GameStatesData.h">
+      <Filter>Header Files\Game States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Enemy - SpriteSheet.png">
@@ -854,6 +863,12 @@
       <Filter>Resource Files\Input</Filter>
     </None>
     <None Include="Resources\Input\KeyboardMainMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\GamepadPauseMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\KeyboardPauseMenuContext.txt">
       <Filter>Resource Files\Input</Filter>
     </None>
   </ItemGroup>

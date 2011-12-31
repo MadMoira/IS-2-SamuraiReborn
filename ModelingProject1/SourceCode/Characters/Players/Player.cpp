@@ -2,6 +2,7 @@
 #include <algorithm>
 
 #include "Player.h"
+#include <GameStatesData.h>
 
 void Characters::Player::executeAction()
 {
@@ -118,6 +119,8 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
   bool findFastAttackWalkingInStates = find(inputs.states.begin(), inputs.states.end(), 
                                        GameCoreStates::FAST_ATTACK) != inputs.states.end();
 
+  bool findPauseAction = find(inputs.actions.begin(), inputs.actions.end(), GameCoreStates::PAUSE) != inputs.actions.end();
+
   InputMapping::Key checkKey = player.getController()->getKeyAssociatedToState(GameCoreStates::JUMPING);
 
   if ( findWalkingInStates && player.isReadyToPace() )
@@ -155,5 +158,10 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
     checkKey = player.getController()->getKeyAssociatedToState(GameCoreStates::FAST_ATTACK);
     playerSprite->changeStateSprite(FAST_ATTACK_STATE(playerSprite->getID()), checkKey.wasPreviouslyPressed, 
 		                            keys, *player.getController());
+  }
+
+  if ( findPauseAction )
+  {
+    menu.setNewIdGameState(MainStates::STATE_PAUSE);
   }
 }

@@ -4,17 +4,14 @@
 
 #include "GUIMenu.h"
 
-#include "MenuData.h"
-#include "MenuStructs.h"
-
 #include <MainMenuSelection.h>
 #include <MenuController.h>
 
-class SMainMenu : public GameState
+class SPause : public GameState
 {
   public:
-   SMainMenu( GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName );
-   ~SMainMenu();
+   SPause( GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName );
+   ~SPause();
 
    void init();
    void handleEvents();
@@ -30,11 +27,10 @@ class SMainMenu : public GameState
 	                         std::list<InputMapping::Key> keys, Image::MenuSelection& menu);
 
   private:
-   RPRGUI::GUIMenu* guiMainMenu;
-   Image::MainMenuSelection* mainMenu;
+   RPRGUI::GUIMenu* guiPauseMenu;
+   Image::MainMenuSelection* pauseMenu;
    boost::ptr_vector<Image::MenuController> controllers;
-   Image::ArrowMainMenu arrowImage;
+   Image::ArrowPauseMenu arrowImage;
    Image::CustomCursor customCursor;
    int numberOfPlayers;
 };
-

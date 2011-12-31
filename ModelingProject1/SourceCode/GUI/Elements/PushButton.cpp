@@ -16,7 +16,7 @@ RPRGUI::PushButton::~PushButton(void)
 
 int RPRGUI::PushButton::eventClicked(bool* isRunning)
 {
-  if ( (GameStates)idChangeState == STATE_EXIT )
+  if ( (MainStates::GameStates)idChangeState == MainStates::STATE_EXIT )
   {
     *isRunning = false;
   }

@@ -16,6 +16,7 @@ class GameStateManager
    void changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI);
 
    void init();
+   void resume();
    void handleEvents();
    void logic();
    void render();
@@ -23,7 +24,7 @@ class GameStateManager
 
   private:
    boost::ptr_vector< GameState > statesStack;
-   GameStates currentState;
+   MainStates::GameStates currentState;
    int currentID;
 
    int checkIfCurrentStateHasEnd();

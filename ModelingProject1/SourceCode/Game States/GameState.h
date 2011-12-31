@@ -4,28 +4,20 @@
 #include "GameRender.h"
 #include "GameInput.h"
 
-enum GameStates 
-{
-  STATE_NULL,
-  STATE_INTRO, 
-  STATE_MAINMENU, 
-  STATE_MENUSELECTIONPLAYER,
-  STATE_LEVELZEROTUTORIAL, 
-  STATE_LEVELONEJAPAN,
-  STATE_EXIT,
-};
+#include <GameStatesData.h>
 
 class GameState
 {
   public:
-   virtual void init() = 0;
-   virtual void handleEvents() = 0;
-   virtual void logic() = 0;
-   virtual void render() = 0;
-   virtual void cleanUp() = 0;
-   virtual ~GameState(){};
+   virtual void init() { };
+   virtual void resume() { };
+   virtual void handleEvents() { };
+   virtual void logic() { };
+   virtual void render() { };
+   virtual void cleanUp() { };
+   virtual ~GameState() { };
 
-   GameStates getNameState() { return nameState; }
+   MainStates::GameStates getNameState() { return nameState; }
 
    int checkIfStateEnd() { return hasEnded; }
    void setHasEnded(int stateHasEnded) { hasEnded = stateHasEnded; }
@@ -34,10 +26,10 @@ class GameState
    int hasEnded;
 
   protected:
-   GameState( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
+   GameState( GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName );
    GameRender* gameRender;
    GameCore* gameCore;
    GameInput* gameInput;
-   GameStates nameState;
+   MainStates::GameStates nameState;
 };
 

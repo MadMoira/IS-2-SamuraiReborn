@@ -10,6 +10,7 @@
 
 #include <SMainMenu.h>
 #include <SPlayerSelection.h>
+#include <SPause.h>
 #include <Player.h>
 
 GameInput::GameInput(void)
@@ -25,15 +26,7 @@ bool GameInput::handleWindowEvents()
   SDL_Event evento;
 
   while( SDL_PollEvent( &evento ) )
-  {
-    if( evento.type == SDL_KEYDOWN )
-    {
-      if( evento.key.keysym.sym == SDLK_ESCAPE )
-      {  
-        return false;
-      }   
-    }
-        
+  {     
     if( evento.type == SDL_QUIT)
     {
       return false;
@@ -56,7 +49,7 @@ InputMapping::GameInputMapper* GameInput::initializeGameInputMapperData(int curr
 
   switch( currentState )
   {
-    case GameCoreStates::STATE_MAINMENU:
+    case MainStates::STATE_MAINMENU:
     {
 	  switch( controller.getTypeController() )
 	  {
@@ -74,7 +67,7 @@ InputMapping::GameInputMapper* GameInput::initializeGameInputMapperData(int curr
 	  inputMapper->addCallback(SMainMenu::inputCallback, 0);
 	  break;
     }
-    case GameCoreStates::STATE_MENUSELECTIONPLAYER:
+    case MainStates::STATE_MENUSELECTIONPLAYER:
     {
 	  switch( controller.getTypeController() )
 	  {
@@ -90,6 +83,24 @@ InputMapping::GameInputMapper* GameInput::initializeGameInputMapperData(int curr
 	    }
       }
 	  inputMapper->addCallback(SPlayerSelection::inputCallback, 0);
+	  break;
+    }
+    case MainStates::STATE_PAUSE:
+    {
+	  switch( controller.getTypeController() )
+	  {
+	    case InputMapping::KEYBOARD:
+		{
+		  nameContext = "keyboardpausemenucontext";
+		  break;
+        }
+	    default:
+        {
+		  nameContext = "gamepadpausemenucontext";
+		  break;
+	    }
+      }
+	  inputMapper->addCallback(SPause::inputCallback, 0);
 	  break;
     }
     default:

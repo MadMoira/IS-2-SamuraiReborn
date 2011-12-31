@@ -14,7 +14,7 @@
 class SPlayerSelection : public GameState
 {
   public:
-   SPlayerSelection( GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName );
+   SPlayerSelection( GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName );
    ~SPlayerSelection(void);
 
    void init();

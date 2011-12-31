@@ -5,10 +5,11 @@
 #include "SMainMenu.h"
 #include "SLevelOneJapan.h"
 #include "SPlayerSelection.h"
+#include "SPause.h"
 
 GameStateManager::GameStateManager(void)
 {
-  currentState = STATE_NULL;
+  currentState = MainStates::STATE_NULL;
   currentID = 0;
 }
 
@@ -27,7 +28,7 @@ void GameStateManager::popState()
   statesStack.pop_back();
 }
 
-void GameStateManager::changeState(GameState *gameState)
+void GameStateManager::changeState(GameState* gameState)
 {
   while( !statesStack.empty() )
   {
@@ -40,9 +41,12 @@ void GameStateManager::changeState(GameState *gameState)
 
 void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI)
 {
-  int newChangeState = checkIfCurrentStateHasEnd();
+  using namespace MainStates;
 
-  if ( newChangeState != statesStack.at(0).getNameState() )
+  int newChangeState = checkIfCurrentStateHasEnd();
+  int currentGameState = statesStack.at(currentID).getNameState();
+
+  if ( newChangeState != currentGameState && currentGameState != STATE_PAUSE )
   {
     switch(newChangeState)
     {
@@ -70,15 +74,39 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
         changeState(new SLevelOneJapan( gR, gC, gI, STATE_LEVELONEJAPAN ) );
         break;
       }
+	  case STATE_PAUSE:
+	  {
+		statesStack.push_back(new SPause( gR, gC, gI, STATE_PAUSE) );
+		currentID = 1;
+		currentState = statesStack.at(currentID).getNameState();
+		break;
+	  }
     }
 
-    init();
+	init();
+	return;
+  }
+
+  if ( newChangeState != statesStack.at(currentID).getNameState() )
+  {
+    if ( statesStack.at(currentID).getNameState() == STATE_PAUSE  )
+    {
+      statesStack.pop_back();
+	  currentState = statesStack.at(0).getNameState();
+	  currentID = 0;
+	  resume();
+    }
   }
 }
 
 void GameStateManager::init()
 {
   statesStack.at(currentID).init();
+}
+
+void GameStateManager::resume()
+{
+  statesStack.at(currentID).resume();
 }
 
 void GameStateManager::handleEvents()
@@ -103,5 +131,5 @@ void GameStateManager::cleanUp()
 
 int GameStateManager::checkIfCurrentStateHasEnd()
 {
-  return statesStack.at(0).checkIfStateEnd();
+  return statesStack.at(currentID).checkIfStateEnd();
 }

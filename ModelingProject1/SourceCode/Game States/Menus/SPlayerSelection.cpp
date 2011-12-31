@@ -5,14 +5,14 @@
 #include <Xinput.h>
 
 
-SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
+SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
     : GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
   gameRender = gR;
   gameInput = gI;
   nameState = stateName;
-  setHasEnded(STATE_MENUSELECTIONPLAYER);
+  setHasEnded(MainStates::STATE_MENUSELECTIONPLAYER);
 }
 
 SPlayerSelection::~SPlayerSelection(void)
@@ -28,7 +28,7 @@ void SPlayerSelection::init()
   createGUI();
 
   menuSelectionPlayer = new Image::MenuSelectionPlayer(&controllers.at(0));
-  menuSelectionPlayer->setNewIdGameState(GameCoreStates::STATE_MENUSELECTIONPLAYER);
+  menuSelectionPlayer->setNewIdGameState(MainStates::STATE_MENUSELECTIONPLAYER);
   numberOfPlayers = 1;
 
   gameCore->getGameTimer()->setFramesPerSecond(30);
@@ -243,7 +243,7 @@ void SPlayerSelection::handleChangeOfState(int idState)
 {
   switch(idState)
   {
-    case GameCoreStates::STATE_LEVELONEJAPAN:
+    case MainStates::STATE_LEVELONEJAPAN:
 	{
       for ( std::string::size_type i = 0; i < controllers.size(); i++)
       {
@@ -304,12 +304,12 @@ void SPlayerSelection::inputCallback(InputMapping::MappedInput& inputs, Characte
   {
 	if ( menu.isPlayerOneSelected() || menu.isPlayerTwoSelected() )
 	{
-      menu.setNewIdGameState(GameCoreStates::STATE_LEVELONEJAPAN);
+      menu.setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
 	}
   }
 
   if ( backAction )
   {
-    menu.setNewIdGameState(GameCoreStates::STATE_MAINMENU);
+    menu.setNewIdGameState(MainStates::STATE_MAINMENU);
   }
 }

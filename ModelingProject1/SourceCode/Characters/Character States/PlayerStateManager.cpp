@@ -2,6 +2,8 @@
 #include "PlayerStateManager.h"
 #include "PlayerState.h"
 
+#include <GameSound.h>
+
 GameCoreStates::PlayerStateManager::PlayerStateManager(void)
 {
   currentState = *STILL_STATE;
@@ -25,6 +27,7 @@ void GameCoreStates::PlayerStateManager::popState()
 void GameCoreStates::PlayerStateManager::changeState(GameCoreStates::PlayerState* newState)
 {
   previousState = GameCoreStates::SpriteState(currentState.getCurrentID());
+  GameSound::getInstance()->stateSoundsHandling(previousState);
 
   while( !statesStack.empty() )
   {

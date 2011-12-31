@@ -7,7 +7,7 @@
 
 #include <MenuStructs.h>
 
-SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, GameStates stateName) 
+SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
     : GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
@@ -16,7 +16,7 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Game
   nameState = stateName;
 
   gameCore->getGameTimer()->setFramesPerSecond(60);
-  setHasEnded(STATE_LEVELONEJAPAN);
+  setHasEnded(MainStates::STATE_LEVELONEJAPAN);
 }
 
 SLevelOneJapan::~SLevelOneJapan(void)
@@ -37,6 +37,16 @@ void SLevelOneJapan::init()
                                  gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
 
   Collider::getInstance()->setLevelLength(6400);
+
+  inGameMenu = new Image::MenuSelection();
+  inGameMenu->setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
+}
+
+void SLevelOneJapan::resume()
+{
+  gameCore->getGameTimer()->setFramesPerSecond(60);
+  setHasEnded(MainStates::STATE_LEVELONEJAPAN);
+  inGameMenu->setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
 }
 
 void SLevelOneJapan::handleEvents()
@@ -62,7 +72,13 @@ void SLevelOneJapan::logic()
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).getInputMapper()->dispatchInput( gameCore->getPlayersList().at(i),
-	                           *gameCore->getPlayersList().at(i).getController()->getListKeys() );
+	                           *gameCore->getPlayersList().at(i).getController()->getListKeys(), *inGameMenu );
+
+    if ( inGameMenu->getNewIdGameState() != getNameState() )
+    {
+	  setHasEnded( inGameMenu->getNewIdGameState() );
+	  return;
+	}
   }
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
@@ -70,7 +86,7 @@ void SLevelOneJapan::logic()
     gameCore->getPlayersList().at(i).executeAction();
     if ( !gameCore->getPlayersList().at(i).isAlive() )
     {
-      setHasEnded(STATE_MENUSELECTIONPLAYER);
+      setHasEnded(MainStates::STATE_MENUSELECTIONPLAYER);
     }
   }
   
@@ -124,6 +140,7 @@ void SLevelOneJapan::render()
 void SLevelOneJapan::cleanUp()
 {
   delete japanLevel;
+  delete inGameMenu;
   gameCore->getPlayersList().clear();
   gameCore->getEnemyList().clear();
 }

@@ -1,49 +1,43 @@
 
-#include "SMainMenu.h"
+#include "SPause.h"
 
 #include <PandaP1.h>
 
-void Image::ArrowMainMenu::updatePositionArrow()
+void Image::ArrowPauseMenu::updatePositionArrow()
 {
-  if ( optionSelected == MenuData::NOTHING_SELECTED )
-  {
-    return;
-  } 
-
-  arrow->setPosition(420.0f, 280.0f + ( (optionSelected-1)*50.0f) );
 }
 
-SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
+SPause::SPause(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
     : GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
   gameRender = gR;
   gameInput = gI;
   nameState = stateName;
-  setHasEnded(MainStates::STATE_MAINMENU);
+  setHasEnded(MainStates::STATE_PAUSE);
 }
 
-SMainMenu::~SMainMenu(void)
+SPause::~SPause(void)
 {
 }
 
-void SMainMenu::init()
+void SPause::init()
 {
-  guiMainMenu = new RPRGUI::GUIMenu();
+  guiPauseMenu = new RPRGUI::GUIMenu();
 
   createGUI();
 
   gameCore->clearPlayerToInitialize();
 
-  mainMenu = new Image::MainMenuSelection(&controllers.at(0));
-  mainMenu->setNewIdGameState(MainStates::STATE_MAINMENU);
-  mainMenu->setListButtons(&guiMainMenu->getListButtons());
+  pauseMenu = new Image::MainMenuSelection(&controllers.at(0));
+  pauseMenu->setNewIdGameState(MainStates::STATE_PAUSE);
+  pauseMenu->setListButtons(&guiPauseMenu->getListButtons());
   numberOfPlayers = 1;
 
   gameCore->getGameTimer()->setFramesPerSecond(30);
 }
 
-void SMainMenu::handleEvents()
+void SPause::handleEvents()
 {
   SDL_Event e;
   bool running = gameCore->getIsRunning();
@@ -77,7 +71,7 @@ void SMainMenu::handleEvents()
       case SDL_MOUSEMOTION:
       {
         customCursor.cursor->setPosition(mousePosition.x, mousePosition.y);
-		arrowImage.optionSelected = guiMainMenu->checkMousePosition(mousePosition);
+		//arrowImage.optionSelected = guiPauseMenu->checkMousePosition(mousePosition);
         break;
       }
       case SDL_QUIT:
@@ -98,27 +92,27 @@ void SMainMenu::handleEvents()
   }
 }
 
-void SMainMenu::logic()
+void SPause::logic()
 {
   for (std::string::size_type i = 0; i < controllers.size(); i++)
   {
 	if ( controllers.at(i).getController()->isEnabled() )
 	{
-	  mainMenu->setController(&controllers.at(i));
-	  mainMenu->setCurrentSelection(arrowImage.optionSelected);
-	  mainMenu->setNumberOfPlayers(numberOfPlayers);
-	  mainMenu->setIsRunning(gameCore->getIsRunning());
+	  pauseMenu->setController(&controllers.at(i));
+	  pauseMenu->setCurrentSelection(arrowImage.optionSelected);
+	  pauseMenu->setNumberOfPlayers(numberOfPlayers);
+	  pauseMenu->setIsRunning(gameCore->getIsRunning());
 
       controllers.at(i).getInputMapper()->dispatchInput( Characters::PandaP1(),
 	                                      *controllers.at(i).getController()->getListKeys(), 
-										  *mainMenu );
-	  arrowImage.optionSelected = mainMenu->getCurrentSelection();
+										  *pauseMenu );
+	  arrowImage.optionSelected = pauseMenu->getCurrentSelection();
 
-	  gameCore->setIsRunning(mainMenu->getIsRunning());
+	  gameCore->setIsRunning(pauseMenu->getIsRunning());
 
-	  if ( mainMenu->getNewIdGameState() != getNameState() )
+	  if ( pauseMenu->getNewIdGameState() != getNameState() )
 	  {
-		setHasEnded( mainMenu->getNewIdGameState() );
+		setHasEnded( pauseMenu->getNewIdGameState() );
 		return;
 	  }
 	}
@@ -126,26 +120,26 @@ void SMainMenu::logic()
   arrowImage.updatePositionArrow();
 }
 
-void SMainMenu::render()
+void SPause::render()
 {
   glClear( GL_COLOR_BUFFER_BIT );
 
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-  for (std::string::size_type i = 0; i < guiMainMenu->getListStaticImages().size(); i++)
+  for (std::string::size_type i = 0; i < guiPauseMenu->getListStaticImages().size(); i++)
   {
-    gameRender->drawFullTexture(guiMainMenu->getTexturesStaticImages().at(i), 
-		                        guiMainMenu->getListStaticImages().at(i).getPosition(),
-                                guiMainMenu->getListStaticImages().at(i).getOffset().x, 
-								guiMainMenu->getListStaticImages().at(i).getOffset().y);
+    gameRender->drawFullTexture(guiPauseMenu->getTexturesStaticImages().at(i), 
+		                        guiPauseMenu->getListStaticImages().at(i).getPosition(),
+                                guiPauseMenu->getListStaticImages().at(i).getOffset().x, 
+								guiPauseMenu->getListStaticImages().at(i).getOffset().y);
   }
 
-  for (std::string::size_type i = 0; i < guiMainMenu->getListButtons().size(); i++)
+  for (std::string::size_type i = 0; i < guiPauseMenu->getListButtons().size(); i++)
   {
-    gameRender->drawButton(guiMainMenu->getTextureButtons(),
-		                   guiMainMenu->getListButtons().at(i).getPosition(),
-		                   guiMainMenu->getListButtons().at(i).getDimensions(),
-		                   guiMainMenu->getListButtons().at(i).getTexturePosition());
+    gameRender->drawButton(guiPauseMenu->getTextureButtons(),
+		                   guiPauseMenu->getListButtons().at(i).getPosition(),
+		                   guiPauseMenu->getListButtons().at(i).getDimensions(),
+		                   guiPauseMenu->getListButtons().at(i).getTexturePosition());
   }
 
   if ( arrowImage.optionSelected != MenuData::NOTHING_SELECTED )
@@ -160,18 +154,18 @@ void SMainMenu::render()
   SDL_GL_SwapBuffers();
 }
 
-void SMainMenu::cleanUp()
+void SPause::cleanUp()
 {
   controllers.clear();
 
   delete arrowImage.arrow;
   delete customCursor.cursor;
 
-  delete guiMainMenu;
-  delete mainMenu;
+  delete guiPauseMenu;
+  delete pauseMenu;
 }
 
-void SMainMenu::createGUI()
+void SPause::createGUI()
 {
   RPRGUI::GUIManager* guiManager = gameRender->getGUIManager();
   std::string commonPath = "Resources/Menus/Main Menu/";
@@ -201,34 +195,20 @@ void SMainMenu::createGUI()
   customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
                                              Vector2f(0.0f, 0.0f), "Resources/GUI/Cursor.png");  
 
-  guiMainMenu->addStaticImage( guiManager->createStaticImage(Vector2f(0.0f, 0.0f),
+  guiPauseMenu->addStaticImage( guiManager->createStaticImage(Vector2f(0.0f, 0.0f),
 	                                                         Vector2f(1280.0f, 720.0f),
 															 Vector2f(0.0f, 0.0f),
 															 "") );
-  guiMainMenu->addTextureStaticImages(gameRender->loadTexture(commonPath + "MainMenuBackground.png"));
-
-  guiMainMenu->addButton( guiManager->createButton(MenuData::HISTORY_MODE, Vector2f(522.0f, 300.0f), 
-	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 0.0f),
-	                                               MainStates::STATE_MENUSELECTIONPLAYER) );
-  guiMainMenu->addButton( guiManager->createButton(MenuData::TUTORIAL, Vector2f(522.0f, 350.0f), 
-	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 28.75f),
-	                                               MainStates::STATE_MAINMENU) );
-  guiMainMenu->addButton( guiManager->createButton(MenuData::CREDITS, Vector2f(522.0f, 400.0f), 
-	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 57.5f),
-	                                               MainStates::STATE_MAINMENU) );
-  guiMainMenu->addButton( guiManager->createButton(MenuData::QUIT, Vector2f(522.0f, 450.0f), 
-	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 86.25f),
-	                                               MainStates::STATE_EXIT) );
-  guiMainMenu->addTextureButtons( gameRender->loadTexture(commonPath + "MainMenuButtons.png") );                                               
+  guiPauseMenu->addTextureStaticImages(gameRender->loadTexture(commonPath + "MainMenuBackground.png"));                                           
 }
 
-void SMainMenu::handleMouseUp(Uint8 button, Vector2f mousePosition)
+void SPause::handleMouseUp(Uint8 button, Vector2f mousePosition)
 {
   switch ( button )
   {
     case SDL_BUTTON_LEFT:
     {
-      arrowImage.optionSelected = guiMainMenu->checkMousePosition(mousePosition);
+      arrowImage.optionSelected = guiPauseMenu->checkMousePosition(mousePosition);
       break;
     }
     case SDL_BUTTON_MIDDLE:
@@ -242,7 +222,7 @@ void SMainMenu::handleMouseUp(Uint8 button, Vector2f mousePosition)
   }
 }
 
-void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Player& player, 
+void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player& player, 
 	                                 std::list<InputMapping::Key> keys, Image::MenuSelection& menu)
 {
   const int UP = -1;
@@ -251,11 +231,11 @@ void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Pla
   bool moveUp = inputs.actions.find(GameCoreStates::UP) != inputs.actions.end();
   bool moveDown = inputs.actions.find(GameCoreStates::DOWN) != inputs.actions.end();
   bool pressedButton = inputs.actions.find(GameCoreStates::CONTINUE) != inputs.actions.end();
-  bool back = inputs.actions.find(GameCoreStates::BACK) != inputs.actions.end();
+  bool unpause = inputs.actions.find(GameCoreStates::UNPAUSE) != inputs.actions.end();
 
   if ( moveUp )
   {
-    if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
+    /*if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
 	  menu.setCurrentSelection(MenuData::QUIT);
@@ -263,33 +243,33 @@ void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Pla
 	else
 	{
 	  menu.moveSelection(UP);
-	}
+	}*/
   }
 
   if ( moveDown )
   {
-    if ( menu.getCurrentSelection() + 1 > MenuData::QUIT )
+   /* if ( menu.getCurrentSelection() + 1 > MenuData::QUIT )
     {
 	  menu.setCurrentSelection(MenuData::HISTORY_MODE);
     }
 	else
 	{
       menu.moveSelection(DOWN);
-	}
+	}*/
   }
 
   if ( pressedButton )
   {
-	bool running = menu.getIsRunning();
+	/*bool running = menu.getIsRunning();
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
 	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
     }
-	menu.setIsRunning(running);
+	menu.setIsRunning(running);*/
   }
 
-  if ( back )
+  if ( unpause )
   {
-    menu.setCurrentSelection(MenuData::QUIT);
+    menu.setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
   }
 }
