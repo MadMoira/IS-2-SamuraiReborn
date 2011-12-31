@@ -30,6 +30,8 @@ namespace InputMapping
 	 void initializeKeys(std::list<Key> listKeys, std::map<RawInputButton, GameCoreStates::SpriteState> mapKeys,
 		                 std::map<RawInputButton, GameCoreStates::Action> actionKeys);
 
+	 void setWasPreviouslyPressedAllKeys();
+
 	 Key& getKeyAssociatedToState(int state, int directionX = 0);
 
 	 void setRawButtonState(Key key, MappedInput& inputs);

@@ -72,6 +72,11 @@ void InputMapping::Gamepad::parseRawInput(InputMapping::Key& key, InputMapping::
       key.button = InputMapping::RAW_INPUT_BUTTON_GP360_A;
 	  break;
 	}
+	case RAW_INPUT_BUTTON_GP360_B:  
+    {
+      key.button = InputMapping::RAW_INPUT_BUTTON_GP360_B;
+	  break;
+	}
     case RAW_INPUT_BUTTON_GP360_X:  
     {
       key.button = InputMapping::RAW_INPUT_BUTTON_GP360_X;
