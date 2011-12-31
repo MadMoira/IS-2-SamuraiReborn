@@ -1,0 +1,5 @@
+4
+gamepadcontext Resources/Input/GamepadContext.txt
+gamepadmenucontext Resources/Input/GamepadMenuContext.txt
+gamepadmainmenucontext Resources/Input/GamepadMainMenuContext.txt
+gamepadpausemenucontext Resources/Input/GamepadPauseMenuContext.txt
