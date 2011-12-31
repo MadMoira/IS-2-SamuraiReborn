@@ -15,7 +15,7 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Main
   gameInput = gI;
   nameState = stateName;
 
-  gameCore->getGameTimer()->setFramesPerSecond(60);
+  gameCore->getGameTimer()->setFramesPerSecond(70);
   setHasEnded(MainStates::STATE_LEVELONEJAPAN);
 }
 
@@ -44,7 +44,7 @@ void SLevelOneJapan::init()
 
 void SLevelOneJapan::resume()
 {
-  gameCore->getGameTimer()->setFramesPerSecond(60);
+  gameCore->getGameTimer()->setFramesPerSecond(70);
   setHasEnded(MainStates::STATE_LEVELONEJAPAN);
   inGameMenu->setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
 }

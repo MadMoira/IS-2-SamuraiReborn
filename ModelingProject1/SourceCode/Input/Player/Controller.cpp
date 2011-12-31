@@ -25,6 +25,19 @@ void InputMapping::Controller::initializeKeys(std::list<Key> listKeys,
   actionMap = actionKeys;
 }
 
+void InputMapping::Controller::setWasPreviouslyPressedAllKeys()
+{
+  std::list<InputMapping::Key>::iterator iter = keys.begin();
+
+  bool anyKeyIsPressed = false;
+
+  for ( iter; iter != keys.end(); iter++)
+  {
+	iter->wasPreviouslyPressed = true;
+	iter->isPressed = true;
+  }
+}
+
 InputMapping::Key& InputMapping::Controller::getKeyAssociatedToState(int state, int directionX)
 {
   RawInputButton rawKey = RAW_INPUT_NO_BUTTON;
