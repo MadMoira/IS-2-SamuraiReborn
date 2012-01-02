@@ -8,6 +8,9 @@ SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStat
   gameRender = gR;
   gameInput = gI;
   nameState = stateName;
+
+  timer = new GameTimer();
+  timer->setFramesPerSecond(30);
   setHasEnded(MainStates::STATE_INTRO);
 
   framerate = 6000;
@@ -23,8 +26,6 @@ void SIntro::init()
 	                                    Vector2f(1280.0f, 720.0f),
                                         Vector2f(0.0f, 0.0f), 
 										"Resources/Menus/Intro/LogoSamuraiReborn.png" );
-
-  gameCore->getGameTimer()->setFramesPerSecond(30);
 }
 
 void SIntro::handleEvents()

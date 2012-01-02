@@ -37,6 +37,7 @@ void GameStateManager::changeState(GameState* gameState)
 
   pushState(gameState);
   currentState = gameState->getNameState();
+  currentID = 0;
 }
 
 void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI)
@@ -46,7 +47,8 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
   int newChangeState = checkIfCurrentStateHasEnd();
   int currentGameState = statesStack.at(currentID).getNameState();
 
-  if ( newChangeState != currentGameState && currentGameState != STATE_PAUSE )
+  if ( newChangeState != currentGameState && ( currentGameState != STATE_PAUSE ||
+	   newChangeState == STATE_MAINMENU ) )
   {
     switch(newChangeState)
     {
@@ -107,6 +109,16 @@ void GameStateManager::init()
 void GameStateManager::resume()
 {
   statesStack.at(currentID).resume();
+}
+
+void GameStateManager::startTimer()
+{
+  statesStack.at(currentID).getGameTimer().start();
+}
+
+void GameStateManager::delayTimer()
+{
+  statesStack.at(currentID).getGameTimer().delay();
 }
 
 void GameStateManager::handleEvents()

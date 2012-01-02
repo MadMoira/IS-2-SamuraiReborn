@@ -16,6 +16,8 @@ class GameStateManager
    void changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI);
 
    void init();
+   void startTimer();
+   void delayTimer();
    void resume();
    void handleEvents();
    void logic();

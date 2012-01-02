@@ -15,7 +15,8 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Main
   gameInput = gI;
   nameState = stateName;
 
-  gameCore->getGameTimer()->setFramesPerSecond(70);
+  timer = new GameTimer();
+  timer->setFramesPerSecond(70);
   setHasEnded(MainStates::STATE_LEVELONEJAPAN);
 }
 
@@ -44,9 +45,14 @@ void SLevelOneJapan::init()
 
 void SLevelOneJapan::resume()
 {
-  gameCore->getGameTimer()->setFramesPerSecond(70);
+  timer->unpause();
   setHasEnded(MainStates::STATE_LEVELONEJAPAN);
   inGameMenu->setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
+
+  for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
+  {
+	gameCore->getPlayersList().at(i).getCharacterSprite()->getHandlerAnimation()->unpauseAnimation();
+  }
 }
 
 void SLevelOneJapan::handleEvents()
@@ -76,6 +82,7 @@ void SLevelOneJapan::logic()
 
     if ( inGameMenu->getNewIdGameState() != getNameState() )
     {
+	  handleChangeOfState(inGameMenu->getNewIdGameState());
 	  setHasEnded( inGameMenu->getNewIdGameState() );
 	  return;
 	}
@@ -281,4 +288,21 @@ void SLevelOneJapan::initializeLevel()
   japanLevel->addLayerToList(commonPath + "Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);
   japanLevel->addLayerToList(commonPath + "Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
   japanLevel->addLayerToList(commonPath + "Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
+}
+
+void SLevelOneJapan::handleChangeOfState(int idState)
+{
+  switch(idState)
+  {
+    case MainStates::STATE_PAUSE:
+	{
+	  timer->pause();
+
+      for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
+      {
+	    gameCore->getPlayersList().at(i).getCharacterSprite()->getHandlerAnimation()->pauseAnimation();
+	  }
+	  break;
+	}
+  }
 }

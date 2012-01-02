@@ -5,6 +5,12 @@
 
 void Image::ArrowPauseMenu::updatePositionArrow()
 {
+  if ( optionSelected == MenuData::NOTHING_SELECTED )
+  {
+    return;
+  } 
+
+  arrow->setPosition(430.0f, 280.0f + ( (optionSelected-1)*50.0f) );
 }
 
 SPause::SPause(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
@@ -14,6 +20,9 @@ SPause::SPause(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStat
   gameRender = gR;
   gameInput = gI;
   nameState = stateName;
+
+  timer = new GameTimer();
+  timer->setFramesPerSecond(30);
   setHasEnded(MainStates::STATE_PAUSE);
 }
 
@@ -33,8 +42,6 @@ void SPause::init()
   pauseMenu->setNewIdGameState(MainStates::STATE_PAUSE);
   pauseMenu->setListButtons(&guiPauseMenu->getListButtons());
   numberOfPlayers = 1;
-
-  gameCore->getGameTimer()->setFramesPerSecond(30);
 }
 
 void SPause::handleEvents()
@@ -71,13 +78,13 @@ void SPause::handleEvents()
       case SDL_MOUSEMOTION:
       {
         customCursor.cursor->setPosition(mousePosition.x, mousePosition.y);
-		//arrowImage.optionSelected = guiPauseMenu->checkMousePosition(mousePosition);
+		arrowImage.optionSelected = guiPauseMenu->checkMousePosition(mousePosition);
         break;
       }
       case SDL_QUIT:
       {
-        running = false;
-        break;
+        gameCore->setIsRunning(false);
+        return;
       }
     }
   }
@@ -163,12 +170,13 @@ void SPause::cleanUp()
 
   delete guiPauseMenu;
   delete pauseMenu;
+  delete timer;
 }
 
 void SPause::createGUI()
 {
   RPRGUI::GUIManager* guiManager = gameRender->getGUIManager();
-  std::string commonPath = "Resources/Menus/Main Menu/";
+  std::string commonPath = "Resources/Menus/Pause Menu/";
 
   controllers.push_back( new Image::MenuController(Image::ENABLE, InputMapping::KEYBOARD) );
   controllers.at(0).setController(GameInput::initializeControllerData(getNameState(), InputMapping::KEYBOARD));
@@ -202,7 +210,19 @@ void SPause::createGUI()
 	                                                         Vector2f(1280.0f, 720.0f),
 															 Vector2f(0.0f, 0.0f),
 															 "") );
-  guiPauseMenu->addTextureStaticImages(gameRender->loadTexture(commonPath + "MainMenuBackground.png"));                                           
+  guiPauseMenu->addTextureStaticImages(gameRender->loadTexture(commonPath + "PauseMenuBackground.png")); 
+
+  guiPauseMenu->addButton( guiManager->createButton(MenuData::CONTINUE_GAME, Vector2f(510.0f, 300.0f), 
+	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 0.0f),
+	                                               MainStates::STATE_MENUSELECTIONPLAYER) );
+  guiPauseMenu->addButton( guiManager->createButton(MenuData::SOUND, Vector2f(510.0f, 350.0f), 
+	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 32.0f),
+	                                               MainStates::STATE_MAINMENU) );
+  guiPauseMenu->addButton( guiManager->createButton(MenuData::MAIN_MENU, Vector2f(510.0f, 400.0f), 
+	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 64.0f),
+	                                               MainStates::STATE_MAINMENU) );
+
+  guiPauseMenu->addTextureButtons( gameRender->loadTexture(commonPath + "PauseMenuButtons.png") );     
 }
 
 void SPause::handleMouseUp(Uint8 button, Vector2f mousePosition)
@@ -238,37 +258,37 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 
   if ( moveUp )
   {
-    /*if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
+    if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
-	  menu.setCurrentSelection(MenuData::QUIT);
+	  menu.setCurrentSelection(MenuData::MAIN_MENU);
 	}
 	else
 	{
 	  menu.moveSelection(UP);
-	}*/
+	}
   }
 
   if ( moveDown )
   {
-   /* if ( menu.getCurrentSelection() + 1 > MenuData::QUIT )
+    if ( menu.getCurrentSelection() + 1 > MenuData::MAIN_MENU )
     {
-	  menu.setCurrentSelection(MenuData::HISTORY_MODE);
+	  menu.setCurrentSelection(MenuData::CONTINUE_GAME);
     }
 	else
 	{
       menu.moveSelection(DOWN);
-	}*/
+	}
   }
 
   if ( pressedButton )
   {
-	/*bool running = menu.getIsRunning();
+	bool running = menu.getIsRunning();
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
 	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
     }
-	menu.setIsRunning(running);*/
+	menu.setIsRunning(running);
   }
 
   if ( unpause )

@@ -286,6 +286,9 @@
     <None Include="Resources\Menus\Menu Selection Player\MenuCharacterSelectorBackground.png" />
     <None Include="Resources\Menus\Menu Selection Player\PandaSelector.png" />
     <None Include="Resources\Menus\Menu Selection Player\SuricataSelector.png" />
+    <None Include="Resources\Menus\Pause Menu\MainMenuHighlighter.png" />
+    <None Include="Resources\Menus\Pause Menu\PauseMenuBackground.png" />
+    <None Include="Resources\Menus\Pause Menu\PauseMenuButtons.png" />
     <None Include="Resources\Sounds\Characters\Players\Running.mp3" />
     <None Include="Resources\Sounds\Characters\Players\Sword (1).mp3" />
     <None Include="Resources\Sounds\Characters\Players\Sword (2).mp3" />

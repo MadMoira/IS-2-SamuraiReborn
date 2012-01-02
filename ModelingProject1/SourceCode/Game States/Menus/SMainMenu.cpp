@@ -20,6 +20,8 @@ SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::Ga
   gameRender = gR;
   gameInput = gI;
   nameState = stateName;
+
+  timer = new GameTimer();
   setHasEnded(MainStates::STATE_MAINMENU);
 }
 
@@ -40,7 +42,7 @@ void SMainMenu::init()
   mainMenu->setListButtons(&guiMainMenu->getListButtons());
   numberOfPlayers = 1;
 
-  gameCore->getGameTimer()->setFramesPerSecond(30);
+  timer->setFramesPerSecond(30);
 }
 
 void SMainMenu::handleEvents()
@@ -82,8 +84,8 @@ void SMainMenu::handleEvents()
       }
       case SDL_QUIT:
       {
-        running = false;
-        break;
+        gameCore->setIsRunning(false);
+        return;
       }
     }
   }
