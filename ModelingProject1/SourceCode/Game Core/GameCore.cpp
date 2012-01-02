@@ -6,7 +6,6 @@ GameCore::GameCore(void)
   configuration = new GameConfiguration();
   saves = new GameSaves();
   screen = new GameScreen();
-  timer = new GameTimer();
   sound = new GameSound();
   camera = Camera::getInstance();
   collider = Collider::getInstance();
@@ -18,7 +17,6 @@ GameCore::~GameCore(void)
   delete configuration;
   delete saves;
   delete screen;
-  delete timer;
   delete sound;
   delete camera;
   delete collider;
@@ -51,11 +49,6 @@ bool GameCore::cleanUpGameCore()
   SDL_Quit();
 
   return true;
-}
-
-void GameCore::startTimer()
-{
-  timer->start();
 }
 
 void GameCore::resetCamera(GLfloat level, GLfloat spawningPoint)

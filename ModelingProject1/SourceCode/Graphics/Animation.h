@@ -14,6 +14,11 @@ class Animation
  
    int animate();
 
+   void pauseAnimation();
+   void unpauseAnimation();
+
+   int getTicks();
+
    bool getAnimationAlreadyEnd() { return animationAlreadyEnd; }
    void restartAnimationBegin() { animationAlreadyEnd = false; }
  
@@ -35,9 +40,9 @@ class Animation
   private:
    int currentFrame, incrementFrame;
    int currentState;
-   Uint32 oldTime;
+   Uint32 oldTime, currentTicks;
+   bool animationAlreadyEnd, wasPaused;
    int animationDirectionX, animationDirectionY;
-   bool animationAlreadyEnd;
    std::vector< int > maxFramesPerAnimation;
    std::vector< int > returnFramesPerAnimation;
    std::vector< int > frameratePerAnimation;

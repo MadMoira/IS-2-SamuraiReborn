@@ -19,4 +19,11 @@ namespace MenuData
 	CONTINUE,
 	BACK,
   };
+
+  enum PauseOptions
+  {
+	CONTINUE_GAME = 1,
+	SOUND,
+	MAIN_MENU,
+  };
 }

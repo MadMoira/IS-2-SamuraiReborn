@@ -26,7 +26,8 @@ Animation::~Animation(void)
 
 int Animation::animate() 
 {
-  if( oldTime + frameratePerAnimation.at(currentState) > SDL_GetTicks() ) 
+  currentTicks = getTicks();
+  if( oldTime + frameratePerAnimation.at(currentState) > currentTicks ) 
   {
     return -1;
   }
@@ -45,6 +46,29 @@ int Animation::animate()
   }
 
   return currentFrame;
+}
+
+void Animation::pauseAnimation()
+{
+  wasPaused = false;
+}
+
+void Animation::unpauseAnimation()
+{
+  wasPaused = true;
+}
+
+int Animation::getTicks()
+{
+  if( wasPaused == true )
+  {
+	int differenceBetweenTicks = SDL_GetTicks() - currentTicks;
+	oldTime += differenceBetweenTicks;
+	currentTicks += differenceBetweenTicks;
+	wasPaused = false;
+  }
+
+  return SDL_GetTicks();
 }
 
 void Animation::setCurrentStateForAnimation(int state)

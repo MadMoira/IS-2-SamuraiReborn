@@ -217,6 +217,9 @@
     <Filter Include="Source Files\Game States\Menus\Callback Structs">
       <UniqueIdentifier>{5fb05add-8c23-4e1a-9075-4377568f3a77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Menus\Pause Menu">
+      <UniqueIdentifier>{85fa9fda-f787-4610-b774-4669f2ca9fbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -870,6 +873,15 @@
     </None>
     <None Include="Resources\Input\KeyboardPauseMenuContext.txt">
       <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Menus\Pause Menu\MainMenuHighlighter.png">
+      <Filter>Resource Files\Menus\Pause Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Pause Menu\PauseMenuBackground.png">
+      <Filter>Resource Files\Menus\Pause Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Pause Menu\PauseMenuButtons.png">
+      <Filter>Resource Files\Menus\Pause Menu</Filter>
     </None>
   </ItemGroup>
 </Project>

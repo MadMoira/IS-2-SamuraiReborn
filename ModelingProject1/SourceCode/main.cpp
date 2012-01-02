@@ -34,13 +34,13 @@ int main( int argc, char* args[] )
   {
     StateManager->changeCurrentState( &Render, &Core, &Input );
 
-    Core.getGameTimer()->start();
+	StateManager->startTimer();
 
     StateManager->handleEvents();
     StateManager->logic();
     StateManager->render();
 
-    Core.getGameTimer()->delay();
+    StateManager->delayTimer();
   }
   
   StateManager->cleanUp();

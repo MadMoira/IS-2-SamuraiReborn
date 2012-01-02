@@ -3,7 +3,6 @@
 #include "GameConfiguration.h"
 #include "GameSaves.h"
 #include "GameScreen.h"
-#include "GameTimer.h"
 #include "GameSound.h"
 
 #include "Camera.h"
@@ -25,9 +24,6 @@ class GameCore
    bool cleanUpGameCore();
 
    void initializePlayers();
-
-   GameTimer* getGameTimer() { return timer; }
-   void startTimer();
 
    GameSound* getGameSound() { return sound; };
 
@@ -64,7 +60,6 @@ class GameCore
    GameConfiguration* configuration;
    GameSaves* saves;
    GameScreen* screen;
-   GameTimer* timer;
    GameSound* sound;
    Camera* camera;
    Collider* collider;

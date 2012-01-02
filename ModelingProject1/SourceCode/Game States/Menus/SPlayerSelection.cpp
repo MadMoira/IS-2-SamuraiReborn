@@ -4,7 +4,6 @@
 #include <PandaP1.h>
 #include <Xinput.h>
 
-
 SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
     : GameState( gR, gC, gI, stateName )
 {
@@ -12,6 +11,9 @@ SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, 
   gameRender = gR;
   gameInput = gI;
   nameState = stateName;
+
+  timer = new GameTimer();
+  timer->setFramesPerSecond(30);
   setHasEnded(MainStates::STATE_MENUSELECTIONPLAYER);
 }
 
@@ -23,6 +25,7 @@ void SPlayerSelection::init()
 {
   guiSelectPlayer = new RPRGUI::GUIMenu();
 
+  gameCore->getPlayersList().clear();
   gameCore->clearPlayerToInitialize();
 
   createGUI();
@@ -30,8 +33,6 @@ void SPlayerSelection::init()
   menuSelectionPlayer = new Image::MenuSelectionPlayer(&controllers.at(0));
   menuSelectionPlayer->setNewIdGameState(MainStates::STATE_MENUSELECTIONPLAYER);
   numberOfPlayers = 1;
-
-  gameCore->getGameTimer()->setFramesPerSecond(30);
 }
 
 void SPlayerSelection::handleEvents()
@@ -70,7 +71,7 @@ void SPlayerSelection::handleEvents()
       case SDL_QUIT:
       {
         gameCore->setIsRunning(false);
-        break;
+        return;
       }
     }
   }
@@ -155,7 +156,7 @@ void SPlayerSelection::createGUI( )
   RPRGUI::GUIManager* guiManager = gameRender->getGUIManager();
   std::string commonPath = "Resources/Menus/Menu Selection Player/";
 
-  controllers.push_back( new Image::ImageController(Vector2f(590.0f, 315.0f), Vector2f(100.0f, 67.0f), 
+  controllers.push_back( new Image::ImageController(Vector2f(590.0f, 215.0f), Vector2f(100.0f, 67.0f), 
                                     Vector2f(0.0f, 0.0f), commonPath + "Keyboard.png", 
 									Image::ENABLE, InputMapping::KEYBOARD) );
   controllers.at(0).setController(GameInput::initializeControllerData(getNameState(), InputMapping::KEYBOARD));
@@ -163,7 +164,7 @@ void SPlayerSelection::createGUI( )
 	                                   *controllers.at(0).getController(), InputMapping::KEYBOARD));
   controllers.at(0).getController()->setPlayerID(0);
 
-  controllers.push_back( new Image::ImageController(Vector2f(590.0f, 410.0f), Vector2f(100.0f, 67.0f), 
+  controllers.push_back( new Image::ImageController(Vector2f(590.0f, 310.0f), Vector2f(100.0f, 67.0f), 
                                     Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png", 
 									Image::DISABLE, InputMapping::GAMEPAD) );
   controllers.at(1).setController(GameInput::initializeControllerData(getNameState(), InputMapping::GAMEPAD));
@@ -171,7 +172,7 @@ void SPlayerSelection::createGUI( )
 	                                   *controllers.at(1).getController(), InputMapping::GAMEPAD));
   controllers.at(1).getController()->setPlayerID(1);
 
-  controllers.push_back( new Image::ImageController(Vector2f(590.0f, 505.0f), Vector2f(100.0f, 67.0f), 
+  controllers.push_back( new Image::ImageController(Vector2f(590.0f, 405.0f), Vector2f(100.0f, 67.0f), 
                                     Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png", 
 									Image::DISABLE, InputMapping::GAMEPAD) );
   controllers.at(2).setController(GameInput::initializeControllerData(getNameState(), InputMapping::GAMEPAD));

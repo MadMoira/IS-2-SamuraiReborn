@@ -24,9 +24,9 @@ void Image::ImageController::updatePositionController(int idController)
 {
   if ( selectedPlayer == MenuData::NO_SELECTED_PLAYER )
   {
-    setPosition(590.0f, 315.0f + (idController)*95.0f);
+    setPosition(590.0f, 215.0f + (idController)*95.0f);
     return;
   }
 
-  setPosition(520.0f + (selectedPlayer)*66.0f, 315.0f + (idController)*95.0f);
+  setPosition(520.0f + (selectedPlayer)*66.0f, 215.0f + (idController)*95.0f);
 }

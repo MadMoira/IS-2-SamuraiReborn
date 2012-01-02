@@ -4,6 +4,8 @@
 #include "GameRender.h"
 #include "GameInput.h"
 
+#include <GameTimer.h>
+
 #include <GameStatesData.h>
 
 class GameState
@@ -22,6 +24,11 @@ class GameState
    int checkIfStateEnd() { return hasEnded; }
    void setHasEnded(int stateHasEnded) { hasEnded = stateHasEnded; }
 
+   void startTimer() { timer->start(); }
+   void delayTimer() { timer->delay(); }
+
+   GameTimer& getGameTimer() { return *timer; }
+
   private:
    int hasEnded;
 
@@ -30,6 +37,7 @@ class GameState
    GameRender* gameRender;
    GameCore* gameCore;
    GameInput* gameInput;
+   GameTimer* timer;
    MainStates::GameStates nameState;
 };
 
