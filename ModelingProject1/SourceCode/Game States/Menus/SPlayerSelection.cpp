@@ -282,12 +282,12 @@ void SPlayerSelection::inputCallback(InputMapping::MappedInput& inputs, Characte
   {
     if ( menu.getCurrentSelection() <= MenuData::NO_SELECTED_PLAYER && !menu.isPlayerTwoSelected() )
     {
-	  GameSound::getInstance()->loadChunk(2,1,1);
+	  GameSound::getInstance()->loadChunk(1,1,1);
 	  menu.moveSelection(RIGHT);
 	}
 	if ( menu.getCurrentSelection() == MenuData::PLAYER_ONE && menu.isPlayerTwoSelected() )
 	{
-	  GameSound::getInstance()->loadChunk(2,1,1);
+	  GameSound::getInstance()->loadChunk(1,1,1);
 	  menu.moveSelection(RIGHT);
 	}
   }
@@ -296,12 +296,12 @@ void SPlayerSelection::inputCallback(InputMapping::MappedInput& inputs, Characte
   {
 	if ( menu.getCurrentSelection() >= MenuData::NO_SELECTED_PLAYER && !menu.isPlayerOneSelected() )
 	{
-	  GameSound::getInstance()->loadChunk(2,1,1);
+	  GameSound::getInstance()->loadChunk(1,1,1);
 	  menu.moveSelection(LEFT);
 	}
 	if ( menu.getCurrentSelection() == MenuData::PLAYER_TWO && menu.isPlayerOneSelected() )
 	{
-	  GameSound::getInstance()->loadChunk(2,1,1);
+	  GameSound::getInstance()->loadChunk(1,1,1);
 	  menu.moveSelection(LEFT);
 	}
   }
@@ -310,8 +310,7 @@ void SPlayerSelection::inputCallback(InputMapping::MappedInput& inputs, Characte
   {
 	if ( menu.isPlayerOneSelected() || menu.isPlayerTwoSelected() )
 	{
-	  GameSound::getInstance()->loadChunk(2,1,2);
-          menu.setNewIdGameState(GameCoreStates::STATE_LEVELONEJAPAN);
+      menu.setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
 	}
   }
 
