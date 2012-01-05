@@ -46,7 +46,6 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
 
   int newChangeState = checkIfCurrentStateHasEnd();
   int currentGameState = statesStack.at(currentID).getNameState();
-
   if ( newChangeState != currentGameState && ( currentGameState != STATE_PAUSE ||
 	   newChangeState == STATE_MAINMENU ) )
   {

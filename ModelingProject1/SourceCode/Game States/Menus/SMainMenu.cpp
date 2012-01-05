@@ -1,6 +1,5 @@
 
 #include "SMainMenu.h"
-
 #include <PandaP1.h>
 
 void Image::ArrowMainMenu::updatePositionArrow()
@@ -8,8 +7,7 @@ void Image::ArrowMainMenu::updatePositionArrow()
   if ( optionSelected == MenuData::NOTHING_SELECTED )
   {
     return;
-  } 
-
+  }
   arrow->setPosition(420.0f, 280.0f + ( (optionSelected-1)*50.0f) );
 }
 
@@ -41,8 +39,10 @@ void SMainMenu::init()
   mainMenu->setNewIdGameState(MainStates::STATE_MAINMENU);
   mainMenu->setListButtons(&guiMainMenu->getListButtons());
   numberOfPlayers = 1;
-
-  timer->setFramesPerSecond(30);
+  GameSound::getInstance()->playSound(1,1,0);
+  GameSound::getInstance()->downVolume(2,0.95);
+  GameSound::getInstance()->upVolume(1,100.0);
+  gameCore->getGameTimer()->setFramesPerSecond(30);
 }
 
 void SMainMenu::handleEvents()
@@ -257,6 +257,7 @@ void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Pla
 
   if ( moveUp )
   {
+	GameSound::getInstance()->loadChunk(1,1,1);
     if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
@@ -270,13 +271,14 @@ void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Pla
 
   if ( moveDown )
   {
+	GameSound::getInstance()->loadChunk(1,1,1);
     if ( menu.getCurrentSelection() + 1 > MenuData::QUIT )
     {
 	  menu.setCurrentSelection(MenuData::HISTORY_MODE);
     }
 	else
 	{
-      menu.moveSelection(DOWN);
+	  menu.moveSelection(DOWN);
 	}
   }
 
@@ -286,7 +288,7 @@ void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Pla
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
 	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
-    }
+	}
 	menu.setIsRunning(running);
   }
 
