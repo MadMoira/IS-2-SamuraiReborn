@@ -1,8 +1,6 @@
 
 #include <algorithm>
-
 #include "PlayerState.h"
-
 #include <SpriteDataConstants.h>
 
 GameCoreStates::PlayerState::PlayerState(int id) : State(id)

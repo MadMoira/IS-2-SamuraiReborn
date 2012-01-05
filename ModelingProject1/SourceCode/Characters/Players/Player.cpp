@@ -132,7 +132,7 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
 
   if ( findJumpingInStates )
   {
-    playerSprite->changeStateSprite(JUMPING_STATE, checkKey.wasPreviouslyPressed, keys, *player.getController());
+    playerSprite->changeStateSprite(JUMPING_STATE(playerSprite->getID()), checkKey.wasPreviouslyPressed, keys, *player.getController());
 
     if ( player.isReadyToDoubleJump() )
     {

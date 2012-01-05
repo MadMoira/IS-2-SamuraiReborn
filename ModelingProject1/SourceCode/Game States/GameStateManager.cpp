@@ -41,7 +41,6 @@ void GameStateManager::changeState(GameState *gameState)
 void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInput* gI)
 {
   int newChangeState = checkIfCurrentStateHasEnd();
-
   if ( newChangeState != statesStack.at(0).getNameState() )
   {
     switch(newChangeState)
