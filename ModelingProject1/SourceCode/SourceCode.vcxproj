@@ -41,16 +41,18 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\SDL - DLL, INC, LIB\include files;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\AI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Players;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Enemies;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Character States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Core;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Collisions;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Physic Modes;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Levels;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Menus;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Menus\Callback Structs;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Font;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Image;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Text;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI\Elements;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input\Player;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Level Design;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\System;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Weapons;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Esteban\Programas\FMOD Programmers API Win32\api\inc;D:\Esteban\Dropbox\Ingenieria De Software II\External Libraries\SDL - DLL, INC, LIB\include files;D:\SDL-1.2.14\include;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\AI;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Characters;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Characters\Character States;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Characters\Enemies;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Characters\Players;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Game Core;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Game Physics;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Game Physics\Collisions;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Game Physics\Physic Modes;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Game States;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Game States\Levels;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Game States\Menus;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Game States\Menus\Callback Structs;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Graphics;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Graphics\Font;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Graphics\Image;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Graphics\Text;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\GUI;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\GUI\Elements;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Input;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Input\Player;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Level Design;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\System;D:\Esteban\workspace\IngSoft 2-clone\ModelingProject1\SourceCode\Weapons;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Esteban\Programas\FMOD Programmers API Win32\api\lib;D:\SDL-1.2.14\lib;$(LibraryPath)</LibraryPath>
+    <IntDir>.\Debug\</IntDir>
+    <OutDir>..\..\..\..\Configuration\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Esteban\Programas\boost_1_47;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -240,6 +242,7 @@
     <ClInclude Include="Level Design\Tile.h" />
     <ClInclude Include="Level Design\Tilemap.h" />
     <ClInclude Include="Level Design\Tileset.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="System\File.h" />
     <ClInclude Include="System\MathConstants.h" />
     <ClInclude Include="System\MathFunctions.h" />
@@ -250,6 +253,7 @@
     <ClInclude Include="Weapons\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Ambience.mp3" />
     <None Include="box.png" />
     <None Include="boxPanda.png" />
     <None Include="Enemy - SpriteSheet.png" />
@@ -289,15 +293,24 @@
     <None Include="Resources\Menus\Pause Menu\MainMenuHighlighter.png" />
     <None Include="Resources\Menus\Pause Menu\PauseMenuBackground.png" />
     <None Include="Resources\Menus\Pause Menu\PauseMenuButtons.png" />
+    <None Include="Resources\Sounds\Characters\Players\groundHit.mp3" />
     <None Include="Resources\Sounds\Characters\Players\Running.mp3" />
     <None Include="Resources\Sounds\Characters\Players\Sword (1).mp3" />
     <None Include="Resources\Sounds\Characters\Players\Sword (2).mp3" />
     <None Include="Resources\Sounds\Characters\Players\Sword (3).mp3" />
     <None Include="Resources\Sounds\Levels\Level One Japan\Section One\Japanese War Music.mp3" />
     <None Include="Resources\Sounds\Levels\Level One Japan\Section One\Wind.mp3" />
+    <None Include="Resources\Sounds\Levels\SMainMenu\08 - Crushcrushcrush.mp3" />
+    <None Include="Resources\Sounds\Levels\SMainMenu\Menu Seleccion (1).mp3" />
+    <None Include="Resources\Sounds\Levels\SMainMenu\Menu Seleccion (2).mp3" />
+    <None Include="Resources\Sounds\Levels\SMainMenu\Menu Seleccion (3).mp3" />
+    <None Include="Resources\Sounds\Levels\SMainMenu\Menu Seleccion (4).mp3" />
     <None Include="Resources\UI\HealthBarSkull.png" />
     <None Include="Resources\UI\Numbers.png" />
     <None Include="Resources\UI\PandaFacesStates.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SourceCode.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

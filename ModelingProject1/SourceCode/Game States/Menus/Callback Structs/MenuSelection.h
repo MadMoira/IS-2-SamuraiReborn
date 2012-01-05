@@ -1,9 +1,9 @@
 #pragma once
 
 #include <boost/ptr_container/ptr_vector.hpp>
-
 #include "PushButton.h"
 #include "ImageObject.h"
+#include "GameSound.h"
 
 namespace Image
 {

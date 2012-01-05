@@ -3,6 +3,7 @@
 #include "GameCore.h"
 #include "GameRender.h"
 #include "GameInput.h"
+#include "GameSound.h"
 
 #include <GameTimer.h>
 

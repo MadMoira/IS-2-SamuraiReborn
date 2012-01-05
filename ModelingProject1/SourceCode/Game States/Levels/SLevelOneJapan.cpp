@@ -30,9 +30,8 @@ void SLevelOneJapan::init()
   initializeLevel();
 
   GameSound::getInstance()->loadSound(0, 1, 0);
-  GameSound::getInstance()->downVolumeMUS();
+  GameSound::getInstance()->downVolume(0, 0.5);
   GameSound::getInstance()->loadSound(0, 1, 1);
-  GameSound::getInstance()->upVolumeMUS();
 
   gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
                                  gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
