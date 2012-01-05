@@ -2,7 +2,7 @@
 
 #include "State.h"
 #include <Controller.h>
-
+#include "GameSound.h"
 #include "GameInputContext.h"
 
 namespace GameCoreStates
