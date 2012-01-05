@@ -42,7 +42,7 @@ void SMainMenu::init()
   GameSound::getInstance()->playSound(1,1,0);
   GameSound::getInstance()->downVolume(2,0.95);
   GameSound::getInstance()->upVolume(1,100.0);
-  gameCore->getGameTimer()->setFramesPerSecond(30);
+  timer->setFramesPerSecond(30);
 }
 
 void SMainMenu::handleEvents()
