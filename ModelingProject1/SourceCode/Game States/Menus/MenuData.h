@@ -26,4 +26,17 @@ namespace MenuData
 	SOUND,
 	MAIN_MENU,
   };
+
+  enum SoundOptions
+  {
+	MUSIC = 1,
+	EFFECTS,
+	BACK_PAUSE,
+  };
+
+  enum SoundBarStates
+  {
+    EMPTY,
+	TO_FULLFILL,
+  };
 }

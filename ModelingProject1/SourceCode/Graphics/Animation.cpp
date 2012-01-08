@@ -9,7 +9,7 @@ Animation::Animation(int actualFrame, int currentState, SpriteData::AnimationDir
   animationDirectionX = direction;
   animationDirectionY = SpriteData::DOWN;
   incrementFrame = 1;
-  oldTime = SDL_GetTicks();
+  oldTime = currentTicks = SDL_GetTicks();
   animationAlreadyEnd = false;
 
   maxFramesPerAnimation = maxFrames;
@@ -27,11 +27,12 @@ Animation::~Animation(void)
 int Animation::animate() 
 {
   currentTicks = getTicks();
+
   if( oldTime + frameratePerAnimation.at(currentState) > currentTicks ) 
   {
     return -1;
   }
- 
+
   oldTime += frameratePerAnimation.at(currentState);
 
   animationAlreadyEnd = false;
@@ -62,10 +63,8 @@ int Animation::getTicks()
 {
   if( wasPaused == true )
   {
-	int differenceBetweenTicks = SDL_GetTicks() - currentTicks;
-	oldTime += differenceBetweenTicks;
-	currentTicks += differenceBetweenTicks;
-	wasPaused = false;
+    restartOldTime();
+	return currentTicks;
   }
 
   return SDL_GetTicks();
@@ -85,6 +84,14 @@ void Animation::setCurrentFrame(int frame)
   }
  
   currentFrame = frame;
+}
+
+void Animation::restartOldTime()
+{
+  int differenceBetweenTicks = SDL_GetTicks() - currentTicks;
+  oldTime += differenceBetweenTicks;
+  currentTicks += differenceBetweenTicks;
+  wasPaused = false;
 }
 
 int Animation::changeAnimationDirection(int direction)

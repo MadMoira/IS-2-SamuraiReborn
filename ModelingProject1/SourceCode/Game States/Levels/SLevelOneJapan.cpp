@@ -17,7 +17,9 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Main
 
   timer = new GameTimer();
   timer->setFramesPerSecond(70);
+
   setHasEnded(MainStates::STATE_LEVELONEJAPAN);
+  setProperty(MainStates::IN_GAME);
 }
 
 SLevelOneJapan::~SLevelOneJapan(void)

@@ -223,6 +223,52 @@ void GameRender::drawButton(GLuint texture, Vector2f pos, Vector2f dimensions, V
   glDisableClientState( GL_TEXTURE_COORD_ARRAY );
 }
 
+void GameRender::drawSoundBar(GLuint texture, Vector2f pos, Vector2f barDimensions, int currentFrame, int idState)
+{
+  GLfloat widthTexture, heightTexture;
+    
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+  glEnableClientState( GL_VERTEX_ARRAY );
+  glEnableClientState( GL_TEXTURE_COORD_ARRAY );	
+    
+  glBindTexture( GL_TEXTURE_2D, texture );
+
+  glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &widthTexture);
+  glGetTexLevelParameterfv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &heightTexture);
+
+  const GLfloat offsetX = (currentFrame*barDimensions.x);
+  const GLfloat offsetY = heightTexture;
+
+
+  const GLfloat verts[] = {
+                pos.x, pos.y,
+                pos.x + offsetX, pos.y,
+                pos.x + offsetX, pos.y + offsetY,
+                pos.x, pos.y + offsetY
+  };
+
+  const GLfloat textureWidth = (currentFrame)*(barDimensions.x/widthTexture);
+  const GLfloat textureHeight = 1.0f;
+
+  const GLfloat textureX = ((GLfloat)idState/(GLfloat)2);
+  const GLfloat textureY = 0.0f;
+
+  GLfloat texVerts[] = {
+            textureX, textureY,
+            textureX + textureWidth, textureY,
+            textureX + textureWidth, textureY + textureHeight,
+            textureX, textureY + textureHeight
+  };
+
+  glVertexPointer(2, GL_FLOAT, 0, verts);
+  glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
+  glDrawArrays(GL_QUADS, 0, 4);
+
+  glDisableClientState( GL_VERTEX_ARRAY );			
+  glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+}
+
 void GameRender::drawLayerTexture(GLuint texture, Vector2f offset, GLfloat widthScreen, 
                                 GLfloat heightScreen)
 {

@@ -14,7 +14,9 @@ SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, 
 
   timer = new GameTimer();
   timer->setFramesPerSecond(30);
+
   setHasEnded(MainStates::STATE_MENUSELECTIONPLAYER);
+  setProperty(MainStates::NORMAL_MENU);
 }
 
 SPlayerSelection::~SPlayerSelection(void)
