@@ -922,9 +922,6 @@
     <None Include="Game Core\LevelSounds.txt">
       <Filter>Resource Files\Sounds</Filter>
     </None>
-    <None Include="Resources\Menus\Pause Menu\MainMenuHighlighter.png">
-      <Filter>Resource Files\Menus\Pause Menu</Filter>
-    </None>
     <None Include="Resources\Menus\Pause Menu\PauseMenuButtons.png">
       <Filter>Resource Files\Menus\Pause Menu</Filter>
     </None>

@@ -188,7 +188,7 @@ void SLevelOneJapan::initializePlayers()
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 5 );
   maxFrameVector.push_back( 6 );
-  maxFrameVector.push_back( 6 );
+  maxFrameVector.push_back( 5 );
   maxFrameVector.push_back( 4 );
   maxFrameVector.push_back( 2 );
   maxFrameVector.push_back( 6 );
