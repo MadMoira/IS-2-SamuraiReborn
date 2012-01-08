@@ -2,12 +2,12 @@
 
 GameSound::GameSound(void)
 {
-	result = FMOD::System_Create(&system);
-	printf("FMOD created");
-	ERRCHECK(result);
-	//The file structure will be: attackSound;groundhitSound;runningSound;others....
-	sFilename = "Game Core/Musics.txt";
-	lFilename = "Game Core/LevelSounds.txt";
+  result = FMOD::System_Create(&system);
+  printf("FMOD created");
+  ERRCHECK(result);
+
+  sFilename = "Game Core/Musics.txt";
+  lFilename = "Game Core/LevelSounds.txt";
 }
 
 bool GameSound::instanceFlag = false;
