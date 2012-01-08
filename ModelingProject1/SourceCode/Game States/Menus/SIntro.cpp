@@ -11,7 +11,9 @@ SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStat
 
   timer = new GameTimer();
   timer->setFramesPerSecond(30);
+
   setHasEnded(MainStates::STATE_INTRO);
+  setProperty(MainStates::NORMAL_MENU);
 
   framerate = 6000;
 }

@@ -24,11 +24,14 @@ class GameStateManager
    void render();
    void cleanUp();
 
+   bool checkChangeOfState(int currentStateProperty, int newStateProperty);
+
   private:
    boost::ptr_vector< GameState > statesStack;
    MainStates::GameStates currentState;
    int currentID;
 
    int checkIfCurrentStateHasEnd();
+   void popBackMenuInGameState(int currentState);
 };
 

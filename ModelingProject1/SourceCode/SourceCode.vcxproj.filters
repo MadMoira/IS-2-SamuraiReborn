@@ -217,11 +217,20 @@
     <Filter Include="Source Files\Game States\Menus\Callback Structs">
       <UniqueIdentifier>{5fb05add-8c23-4e1a-9075-4377568f3a77}</UniqueIdentifier>
     </Filter>
-     <Filter Include="Resource Files\Sounds\Menus\SMainMenu">
+    <Filter Include="Resource Files\Sounds\Menus\SMainMenu">
       <UniqueIdentifier>{50ffcdc6-6f9a-4cbc-a308-d26ccb044360}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\Sounds\Menus\SMainMenu">
       <UniqueIdentifier>{50ffcdc6-6f9a-4cbc-a308-d26ccb044360}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Pause Menu">
+      <UniqueIdentifier>{406e9f76-794b-4f63-95ba-e9c778518e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game Physics\Physics Modes">
+      <UniqueIdentifier>{bff47d91-47b5-43bb-b88b-51a646a806d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Sound Menu">
+      <UniqueIdentifier>{ed2f252f-5623-45da-a796-b3c8d004cfd4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -467,6 +476,12 @@
     </ClCompile>
     <ClCompile Include="Game States\Menus\SPause.cpp">
       <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\Menus\SSoundOptions.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\Elements\SoundBar.cpp">
+      <Filter>Source Files\GUI\Elements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -731,11 +746,23 @@
     <ClInclude Include="Game States\GameStatesData.h">
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
-    <ClInclude Include="Game Physics\Physic Modes\RigidBody.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Game Physics\Physic Modes\PhysicModes.h">
+      <Filter>Header Files\Game Physics\Physics Modes</Filter>
     </ClInclude>
-    <ClInclude Include="resource1.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Game Physics\Physic Modes\RigidBody.h">
+      <Filter>Header Files\Game Physics\Physics Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Physics\Physic Modes\PhysicsCore.h">
+      <Filter>Header Files\Game Physics\Physics Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game States\Menus\SSoundOptions.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Elements\Bar.h">
+      <Filter>Header Files\GUI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Elements\SoundBar.h">
+      <Filter>Header Files\GUI\Elements</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -868,15 +895,6 @@
     <None Include="Resources\Input\KeyboardPauseMenuContext.txt">
       <Filter>Resource Files\Input</Filter>
     </None>
-    <None Include="Resources\Menus\Pause Menu\MainMenuHighlighter.png">
-      <Filter>Resource Files\Menus\Pause Menu</Filter>
-    </None>
-    <None Include="Resources\Menus\Pause Menu\PauseMenuBackground.png">
-      <Filter>Resource Files\Menus\Pause Menu</Filter>
-    </None>
-    <None Include="Resources\Menus\Pause Menu\PauseMenuButtons.png">
-      <Filter>Resource Files\Menus\Pause Menu</Filter>
-    </None>
     <None Include="Ambience.mp3">
       <Filter>Resource Files\Audio</Filter>
     </None>
@@ -904,10 +922,35 @@
     <None Include="Game Core\LevelSounds.txt">
       <Filter>Resource Files\Sounds</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="SourceCode.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <None Include="Resources\Menus\Pause Menu\MainMenuHighlighter.png">
+      <Filter>Resource Files\Menus\Pause Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Pause Menu\PauseMenuButtons.png">
+      <Filter>Resource Files\Menus\Pause Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Pause Menu\PauseMenuBackground.png">
+      <Filter>Resource Files\Menus\Pause Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Sound Menu\SoundLevel.png">
+      <Filter>Resource Files\Menus\Sound Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Sound Menu\SoundMenuBackground.png">
+      <Filter>Resource Files\Menus\Sound Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Sound Menu\SoundMenuButtons.png">
+      <Filter>Resource Files\Menus\Sound Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Sound Menu\SoundMenuHighlighter.png">
+      <Filter>Resource Files\Menus\Sound Menu</Filter>
+    </None>
+    <None Include="Resources\Input\GamepadSoundMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\KeyboardSoundMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Menus\Pause Menu\PauseMenuHighlighter.png">
+      <Filter>Resource Files\Menus\Pause Menu</Filter>
+    </None>
   </ItemGroup>
 </Project>
