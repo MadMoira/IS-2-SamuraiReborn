@@ -10,7 +10,7 @@ void Image::ArrowSoundMenu::updatePositionArrow()
     return;
   } 
 
-  arrow->setPosition(370.0f, 280.0f + ( (optionSelected-1)*90.0f) );
+  arrow->setPosition(372.0f, 260.0f + ( (optionSelected-1)*100.0f) );
 }
 
 SSoundOptions::SSoundOptions(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
@@ -207,7 +207,7 @@ void SSoundOptions::createGUI()
   controllers.at(2).getController()->setPlayerID(2);
   controllers.at(2).getController()->setWasPreviouslyPressedAllKeys();
 
-  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(460.0f, 64.0f), 
+  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(530.0f, 64.0f), 
                                     Vector2f(0.0f, 0.0f), commonPath + "SoundMenuHighlighter.png");
   arrowImage.optionSelected = MenuData::NOTHING_SELECTED;
 
@@ -220,10 +220,10 @@ void SSoundOptions::createGUI()
 															 "") );
   guiSoundMenu->addTextureStaticImages(gameRender->loadTexture(commonPath + "SoundMenuBackground.png")); 
 
-  guiSoundMenu->addButton( guiManager->createButton(MenuData::MUSIC, Vector2f(410.0f, 300.0f), 
+  guiSoundMenu->addButton( guiManager->createButton(MenuData::MUSIC, Vector2f(410.0f, 280.0f), 
 	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 0.0f),
 	                                               MainStates::STATE_SOUNDS_OPTIONS) );
-  guiSoundMenu->addButton( guiManager->createButton(MenuData::EFFECTS, Vector2f(387.0f, 390.0f), 
+  guiSoundMenu->addButton( guiManager->createButton(MenuData::EFFECTS, Vector2f(387.0f, 380.0f), 
 	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 32.0f),
 	                                               MainStates::STATE_SOUNDS_OPTIONS) );
   guiSoundMenu->addButton( guiManager->createButton(MenuData::BACK_PAUSE, Vector2f(510.0f, 480.0f), 
