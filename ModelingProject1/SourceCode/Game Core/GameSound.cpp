@@ -105,6 +105,27 @@ float GameSound::getVolume(int channelID){
   return volume;
 }
 
+
+void GameSound::upOverallVolume(float increasingValue){
+  float volume;
+  for(int i=0;i<3;i++){
+	  float volume;
+	  channel[i]->getVolume(&volume);
+	  volume += increasingValue;
+	  result = channel[i]->setVolume(volume);
+  }
+}
+
+void GameSound::downOverallVolume(float decreasingValue){
+  float volume;
+  for(int i=0;i<3;i++){
+	  float volume;
+	  channel[i]->getVolume(&volume);
+	  volume -= decreasingValue;
+	  result = channel[i]->setVolume(volume);
+  }
+}
+
 void GameSound::loadChunk(int row, int soundType, int soundID)
 {
   initSounds(row, soundType);
