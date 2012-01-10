@@ -23,7 +23,9 @@ SPause::SPause(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStat
 
   timer = new GameTimer();
   timer->setFramesPerSecond(30);
+
   setHasEnded(MainStates::STATE_PAUSE);
+  setProperty(MainStates::MENU_IN_GAME);
 }
 
 SPause::~SPause(void)
@@ -199,8 +201,8 @@ void SPause::createGUI()
   controllers.at(2).getController()->setPlayerID(2);
   controllers.at(2).getController()->setWasPreviouslyPressedAllKeys();
 
-  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(412.0f, 64.0f), 
-                                    Vector2f(0.0f, 0.0f), commonPath + "MainMenuHighlighter.png");
+  arrowImage.arrow = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(430.0f, 64.0f), 
+                                    Vector2f(0.0f, 0.0f), commonPath + "PauseMenuHighlighter.png");
   arrowImage.optionSelected = MenuData::NOTHING_SELECTED;
 
   customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
@@ -214,10 +216,10 @@ void SPause::createGUI()
 
   guiPauseMenu->addButton( guiManager->createButton(MenuData::CONTINUE_GAME, Vector2f(510.0f, 300.0f), 
 	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 0.0f),
-	                                               MainStates::STATE_MENUSELECTIONPLAYER) );
+	                                               MainStates::STATE_IN_GAME) );
   guiPauseMenu->addButton( guiManager->createButton(MenuData::SOUND, Vector2f(510.0f, 350.0f), 
 	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 32.0f),
-	                                               MainStates::STATE_MAINMENU) );
+	                                               MainStates::STATE_SOUNDS_OPTIONS) );
   guiPauseMenu->addButton( guiManager->createButton(MenuData::MAIN_MENU, Vector2f(510.0f, 400.0f), 
 	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 64.0f),
 	                                               MainStates::STATE_MAINMENU) );
