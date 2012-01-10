@@ -11,6 +11,7 @@
 #include <SMainMenu.h>
 #include <SPlayerSelection.h>
 #include <SPause.h>
+#include <SSoundOptions.h>
 #include <Player.h>
 
 GameInput::GameInput(void)
@@ -101,6 +102,24 @@ InputMapping::GameInputMapper* GameInput::initializeGameInputMapperData(int curr
 	    }
       }
 	  inputMapper->addCallback(SPause::inputCallback, 0);
+	  break;
+    }
+    case MainStates::STATE_SOUNDS_OPTIONS:
+    {
+	  switch( controller.getTypeController() )
+	  {
+	    case InputMapping::KEYBOARD:
+		{
+		  nameContext = "keyboardsoundmenucontext";
+		  break;
+        }
+	    default:
+        {
+		  nameContext = "gamepadsoundmenucontext";
+		  break;
+	    }
+      }
+	  inputMapper->addCallback(SSoundOptions::inputCallback, 0);
 	  break;
     }
     default:

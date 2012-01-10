@@ -17,7 +17,9 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Main
 
   timer = new GameTimer();
   timer->setFramesPerSecond(70);
+
   setHasEnded(MainStates::STATE_LEVELONEJAPAN);
+  setProperty(MainStates::IN_GAME);
 }
 
 SLevelOneJapan::~SLevelOneJapan(void)
@@ -99,16 +101,16 @@ void SLevelOneJapan::logic()
   //levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
   gameCore->getCamera()->updateCamera(&gameCore->getPlayersList());
 
-  japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
-  japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
   japanLevel->scrollContinuousBackgroundLayers();
   
   if ( gameCore->getPlayersList().at(0).getCharacterSprite()->getPlayerMoveInXCurrentFrame() )
   {
+    japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
+    japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
     japanLevel->scrollBackgroundLayers();
     japanLevel->scrollTilemap();
   }
-  gameCore->getCamera()->setCameraSpeed(0.f);
+  gameCore->getCamera()->setCameraSpeed(0.0f);
 }
 
 void SLevelOneJapan::render()
@@ -186,7 +188,7 @@ void SLevelOneJapan::initializePlayers()
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 5 );
   maxFrameVector.push_back( 6 );
-  maxFrameVector.push_back( 6 );
+  maxFrameVector.push_back( 5 );
   maxFrameVector.push_back( 4 );
   maxFrameVector.push_back( 2 );
   maxFrameVector.push_back( 6 );

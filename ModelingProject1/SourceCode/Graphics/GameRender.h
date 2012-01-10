@@ -26,6 +26,7 @@ class GameRender
                                  int direction = 0, int state = 0);
    static void drawSpecificTexture(GLuint texture, Vector2f pos, Vector2f offset, GLfloat widthDrawTexture, GLfloat heightDrawTexture);
    static void drawButton(GLuint texture, Vector2f pos, Vector2f dimensions, Vector2f offset);
+   static void drawSoundBar(GLuint texture, Vector2f pos, Vector2f barDimensions, int currentFrame, int idState);
    static void drawLayerTexture(GLuint texture, Vector2f offset, GLfloat widthScreen, 
                                 GLfloat heightScreen);
    static void drawText(Font::GameFont* font, Text::GameText text);

@@ -28,7 +28,7 @@ class Animation
 
    void setCurrentStateForAnimation(int state);
 
-   void restartOldTime() { oldTime = SDL_GetTicks(); }
+   void restartOldTime();
 
    int getAnimationDirection() { return animationDirectionX; }
    int changeAnimationDirection(int direction);
