@@ -24,22 +24,23 @@ int main( int argc, char* args[] )
     return 1;
   }
 
-  StateManager->changeState( new SMainMenu( &Render, &Core, &Input, STATE_MAINMENU ) );
-  //StateManager->changeState( new SPlayerSelection( &Render, &Core, &Input, STATE_MENUSELECTIONPLAYER ) );
-  //StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, STATE_LEVELONEJAPAN ) );
+  //StateManager->changeState( new SIntro( &Render, &Core, &Input, MainStates::STATE_INTRO ) );
+  StateManager->changeState( new SMainMenu( &Render, &Core, &Input, MainStates::STATE_MAINMENU ) );
+  //StateManager->changeState( new SPlayerSelection( &Render, &Core, &Input, MainStates::STATE_MENUSELECTIONPLAYER ) );
+  //StateManager->changeState( new SLevelOneJapan( &Render, &Core, &Input, MainStates::STATE_LEVELONEJAPAN ) );
   StateManager->init();
 
   while( Core.getIsRunning() )
   {
     StateManager->changeCurrentState( &Render, &Core, &Input );
 
-    Core.getGameTimer()->start();
+	StateManager->startTimer();
 
     StateManager->handleEvents();
     StateManager->logic();
     StateManager->render();
 
-    Core.getGameTimer()->delay();
+    StateManager->delayTimer();
   }
   
   StateManager->cleanUp();
