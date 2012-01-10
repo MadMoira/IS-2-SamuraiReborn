@@ -27,6 +27,7 @@ syntax: glob
 *.opensdf
 *.sdf
 *.ipch
+*.vsp
 [Bb]in
 [Dd]ebug*/
 obj/

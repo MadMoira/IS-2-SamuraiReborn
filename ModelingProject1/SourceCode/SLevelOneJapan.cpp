@@ -25,8 +25,6 @@ void SLevelOneJapan::init()
 {
   initializePlayers();
   initializeLevel();
-									gameCore->getPlayersList().at(0).getPlayerSprite()->getBoxWidth()/2);
-
   gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
                                  gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
 }
