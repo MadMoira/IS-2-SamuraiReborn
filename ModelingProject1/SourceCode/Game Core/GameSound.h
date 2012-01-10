@@ -32,6 +32,9 @@ LevelSounds.txt:
 Channel[0] = SE = on going sounds
 Channel[1] = MUS = one time, multiple use sounds, chunks
 Channel[2] = RS = partial duration sounds
+
+**Volume**
+The volume value on the channel is a float with maximum value 1.0 and minimum value 0.0
 */
 
 class GameSound 
@@ -51,6 +54,8 @@ class GameSound
    void upVolume(int channelID, float increasingValue);
    void downVolume(int channelID, float decreasingValue);
    float getVolume(int channelID);
+   void upOverallVolume(float increasingValue);
+   void downOverallVolume(float decreasingValue);
    
    void loadChunk(int row, int soundType, int soundID);
    void loadSound(int row, int soundType, int soundID);
