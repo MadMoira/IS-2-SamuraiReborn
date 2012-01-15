@@ -99,7 +99,8 @@ void GameSound::downVolume(int channelID, float decreasingValue)
   result = channel[channelID]->setVolume(volume);
 }
 
-float GameSound::getVolume(int channelID){
+float GameSound::getVolume(int channelID)
+{
   float volume;
   channel[channelID]->getVolume(&volume);
   return volume;
@@ -107,7 +108,6 @@ float GameSound::getVolume(int channelID){
 
 void GameSound::upOverallVolume(float increasingValue)
 {
-  float volume;
   for(int i = 0; i < 3; i++)
   {
     float volume;
@@ -119,7 +119,6 @@ void GameSound::upOverallVolume(float increasingValue)
 
 void GameSound::downOverallVolume(float decreasingValue)
 {
-  float volume;
   for(int i = 0; i < 3; i++)
   {
     float volume;
