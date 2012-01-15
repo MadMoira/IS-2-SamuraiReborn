@@ -60,27 +60,27 @@ void GameSound::initSounds(int row, int soundType)
 
 void GameSound::splitFileSounds(std::string line, int soundType)
 {
-	std::string temp;
+  std::string temp;
 
-	for(std::string::size_type i = 0; i < line.size(); i++)
-	{
-		if( line.at(i) == ';' && temp != "" )
-		{
-			if( soundType == 0 )
-			{
-				statesSounds.push_back(temp);
-			}
-			else
-			{
-				ambienceSounds.push_back(temp);
-			}       
-			temp = "";
-		}
-		else
-		{
-			temp += line.at(i);
-		}
-	}
+  for(std::string::size_type i = 0; i < line.size(); i++)
+  {
+    if( line.at(i) == ';' && temp != "" )
+    {
+	  if( soundType == 0 )
+	  {
+	    statesSounds.push_back(temp);
+      }
+	  else
+	  {
+	    ambienceSounds.push_back(temp);
+	  }       
+      temp = "";
+    }
+    else
+    {
+      temp += line.at(i);
+    }
+  }
 }
 
 void GameSound::upVolume(int channelID, float increasingValue)
@@ -103,6 +103,30 @@ float GameSound::getVolume(int channelID){
   float volume;
   channel[channelID]->getVolume(&volume);
   return volume;
+}
+
+void GameSound::upOverallVolume(float increasingValue)
+{
+  float volume;
+  for(int i = 0; i < 3; i++)
+  {
+    float volume;
+    channel[i]->getVolume(&volume);
+    volume += increasingValue;
+    result = channel[i]->setVolume(volume);
+  }
+}
+
+void GameSound::downOverallVolume(float decreasingValue)
+{
+  float volume;
+  for(int i = 0; i < 3; i++)
+  {
+    float volume;
+    channel[i]->getVolume(&volume);
+    volume -= decreasingValue;
+    result = channel[i]->setVolume(volume);
+  }
 }
 
 void GameSound::loadChunk(int row, int soundType, int soundID)

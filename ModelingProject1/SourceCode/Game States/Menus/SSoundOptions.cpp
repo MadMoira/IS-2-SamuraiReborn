@@ -3,6 +3,8 @@
 #include <SoundBar.h>
 #include <PandaP1.h>
 
+#include <GameSound.h>
+
 void Image::ArrowSoundMenu::updatePositionArrow()
 {
   if ( optionSelected == MenuData::NOTHING_SELECTED )
@@ -264,6 +266,8 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
 
   bool moveUp = inputs.actions.find(GameCoreStates::UP) != inputs.actions.end();
   bool moveDown = inputs.actions.find(GameCoreStates::DOWN) != inputs.actions.end();
+  bool increaseVolume = inputs.actions.find(GameCoreStates::RIGHT) != inputs.actions.end();
+  bool decreaseVolume = inputs.actions.find(GameCoreStates::LEFT) != inputs.actions.end();
   bool pressedButton = inputs.actions.find(GameCoreStates::CONTINUE) != inputs.actions.end();
   bool back = inputs.actions.find(GameCoreStates::BACK) != inputs.actions.end();
 
@@ -292,12 +296,26 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
 	}
   }
 
+  if ( increaseVolume || decreaseVolume )
+  {
+    if ( menu.getCurrentSelection() == MenuData::EFFECTS )
+    {
+      GameSound::getInstance()->upOverallVolume(0.1f);
+    }
+
+    if ( menu.getCurrentSelection() == MenuData::MUSIC )
+    {
+      GameSound::getInstance()->downOverallVolume(0.1f);
+    }
+  }
+
   if ( pressedButton )
   {
 	bool running = menu.getIsRunning();
+	int gameMode = 0;
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
-	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
+	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running, &gameMode) );
     }
 	menu.setIsRunning(running);
   }

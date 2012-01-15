@@ -12,15 +12,15 @@ class Collider
   public:
    static Collider* getInstance();
    
-   void initializeColliderSprites(boost::ptr_vector< Characters::Enemy >* enemiesList, 
-                                  boost::ptr_vector< Characters::Player >* playersList);
    void addLayerTilemap(std::vector< std::vector < Tile > > layer);
+
+   void setGameMode(int mode) { gameMode = mode; }
    
    void setLevelLength(int length) { levelLength = length; }
 
    void cleanUpResources();
    
-   bool checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B , float direction);
+   bool checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B, int direction);
 
    void checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* speedX, int directionX, 
 	                        CollisionSystem::DirectionsMove& directionsMove);
@@ -43,8 +43,12 @@ class Collider
 
    bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
-   //boost::ptr_vector< Characters::Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX);
-   //boost::ptr_vector< Characters::Enemy > checkAttackCollision(CollisionBox& A, float directionX);
+   void checkAttackCollisions( boost::ptr_vector< Characters::Enemy >& enemiesList, 
+                               boost::ptr_vector< Characters::Player >& playersList, 
+							   int indexPlayer );
+
+   void checkArenaCollisions( boost::ptr_vector< Characters::Player >& playersList, int indexPlayer );
+   void checkEnemiesCollisions( boost::ptr_vector< Characters::Enemy >& enemiesList, CollisionSystem::CollisionBox& A );
 
    bool onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY);
 
@@ -58,7 +62,6 @@ class Collider
    static bool instanceFlag;
    static Collider* collider;
    int levelLength;
+   int gameMode;
    std::vector< std::vector< std::vector < Tile > > > layers;
-   boost::ptr_vector< Characters::Enemy >* enemies;
-   boost::ptr_vector< Characters::Player >* players;
 };

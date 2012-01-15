@@ -34,8 +34,6 @@ bool GameCore::initializeGameCore()
    camera->initCamera();
    return true;
   }
-
-  collider->initializeColliderSprites(&enemiesList, &playersList);
     
   return true;
 }
@@ -86,6 +84,17 @@ void GameCore::initializeSpriteCollisionBoxPlayer(SpriteData::IDSprites id, floa
     if ( playersList.at(i).getCharacterID() == id )
     {
       playersList.at(i).initializeSpriteCollisionBox(width, height, offsetX, offsetY);
+    }
+  }
+}
+
+void GameCore::initializeWeaponCollisionBoxes(SpriteData::IDSprites id, std::string filename)
+{
+  for (std::string::size_type i = 0; i < playersList.size(); i++)
+  {
+    if ( playersList.at(i).getCharacterID() == id )
+    {
+      playersList.at(i).initializeWeaponCollisionBoxes(filename);
     }
   }
 }

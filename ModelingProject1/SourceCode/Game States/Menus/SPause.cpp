@@ -286,9 +286,10 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
   if ( pressedButton )
   {
 	bool running = menu.getIsRunning();
+	int gameMode = 0;
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
-	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
+	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running, &gameMode) );
     }
 	menu.setIsRunning(running);
   }

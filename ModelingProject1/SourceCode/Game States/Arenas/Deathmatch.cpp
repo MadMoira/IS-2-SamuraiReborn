@@ -1,5 +1,5 @@
 
-#include "SLevelOneJapan.h"
+#include "Deathmatch.h"
 
 #include "PandaP1.h"
 #include "MeerkatP2.h"
@@ -7,7 +7,7 @@
 
 #include <MenuStructs.h>
 
-SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
+Deathmatch::Deathmatch(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
     : GameState( gR, gC, gI, stateName )
 {
   gameCore = gC;
@@ -18,38 +18,34 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Main
   timer = new GameTimer();
   timer->setFramesPerSecond(70);
 
-  setHasEnded(MainStates::STATE_LEVELONEJAPAN);
+  setHasEnded(MainStates::STATE_ARENA_MODE);
   setProperty(MainStates::IN_GAME);
 }
 
-SLevelOneJapan::~SLevelOneJapan(void)
+Deathmatch::~Deathmatch(void)
 {
 }
 
-void SLevelOneJapan::init()
+void Deathmatch::init()
 {
   initializePlayers();
   initializeLevel();
 
-  GameSound::getInstance()->loadSound(0, 1, 0);
-  GameSound::getInstance()->downVolume(0, 0.5);
-  GameSound::getInstance()->loadSound(0, 1, 1);
-
-  gameCore->resetCamera(11200.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
+  gameCore->resetCamera(1280.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
                                  gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
 
-  Collider::getInstance()->setLevelLength(11200);
+  Collider::getInstance()->setLevelLength(1280);
   Collider::getInstance()->setGameMode(gameCore->getCurrentGameMode());
 
   inGameMenu = new Image::MenuSelection();
-  inGameMenu->setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
+  inGameMenu->setNewIdGameState(MainStates::STATE_ARENA_MODE);
 }
 
-void SLevelOneJapan::resume()
+void Deathmatch::resume()
 {
   timer->unpause();
-  setHasEnded(MainStates::STATE_LEVELONEJAPAN);
-  inGameMenu->setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
+  setHasEnded(MainStates::STATE_ARENA_MODE);
+  inGameMenu->setNewIdGameState(MainStates::STATE_ARENA_MODE);
 
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {
@@ -57,7 +53,7 @@ void SLevelOneJapan::resume()
   }
 }
 
-void SLevelOneJapan::handleEvents()
+void Deathmatch::handleEvents()
 {
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
@@ -75,7 +71,7 @@ void SLevelOneJapan::handleEvents()
   }
 }
 
-void SLevelOneJapan::logic()
+void Deathmatch::logic()
 {
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
@@ -107,24 +103,24 @@ void SLevelOneJapan::logic()
 
   gameCore->getCamera()->updateCamera(&gameCore->getPlayersList());
 
-  japanLevel->scrollContinuousBackgroundLayers();
+  deathmatchLevel->scrollContinuousBackgroundLayers();
   
   if ( gameCore->getPlayersList().at(0).getCharacterSprite()->getPlayerMoveInXCurrentFrame() )
   {
-    japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
-    japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
-    japanLevel->scrollBackgroundLayers();
-    japanLevel->scrollTilemap();
+    deathmatchLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
+    deathmatchLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
+    deathmatchLevel->scrollBackgroundLayers();
+    deathmatchLevel->scrollTilemap();
   }
   gameCore->getCamera()->setCameraSpeed(0.0f);
 }
 
-void SLevelOneJapan::render()
+void Deathmatch::render()
 {
   glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
   glClearColor(1.0f, 1.0f, 1.0f, 1.0f);	
   
-  japanLevel->drawLevelMap();
+  deathmatchLevel->drawLevelMap();
 
   glPushMatrix();
     
@@ -151,15 +147,15 @@ void SLevelOneJapan::render()
   SDL_GL_SwapBuffers();
 }
 
-void SLevelOneJapan::cleanUp()
+void Deathmatch::cleanUp()
 {
-  delete japanLevel;
+  delete deathmatchLevel;
   delete inGameMenu;
   gameCore->getPlayersList().clear();
   gameCore->getEnemyList().clear();
 }
 
-void SLevelOneJapan::initializePlayers()
+void Deathmatch::initializePlayers()
 {
   std::vector<Image::PlayersInitialize> playersToInitialize = gameCore->getPlayersToInitialize();
 
@@ -260,7 +256,7 @@ void SLevelOneJapan::initializePlayers()
       {
         gameCore->addPlayerToGame( new Characters::MeerkatP2(), SpriteData::MEERKAT, 
 			                 "Resources/Characters/Players/Meerkat - SpriteSheet.png", 
-                             Vector2f(0.0f, 271.0f), 0, maxFrameVector, returnFrameVector,
+                             Vector2f(800.0f, 395.0f), 0, maxFrameVector, returnFrameVector,
                              340.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 32.0f, 135.0f, 153.0f, 42.0f);
 		gameCore->initializeWeaponCollisionBoxes(SpriteData::MEERKAT, "Resources/Characters/Players/WeaponCollisionBoxesMeerkat.txt");
@@ -287,19 +283,19 @@ void SLevelOneJapan::initializePlayers()
   framerateAnimationsVector.clear();
 }
 
-void SLevelOneJapan::initializeLevel()
+void Deathmatch::initializeLevel()
 {
   std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
-  japanLevel = new Level(LEVELONEJAPAN);
-  japanLevel->loadTMXTileMapFile(commonPath + "LevelOneSectionOneMap.tmx");
+  deathmatchLevel = new Level(LEVELONEJAPAN);
+  deathmatchLevel->loadTMXTileMapFile(commonPath + "LevelOneSectionOneMap.tmx");
 
-  japanLevel->addLayerToList(commonPath + "SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
-  japanLevel->addLayerToList(commonPath + "Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);
-  japanLevel->addLayerToList(commonPath + "Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
-  japanLevel->addLayerToList(commonPath + "Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
+  deathmatchLevel->addLayerToList(commonPath + "SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
+  deathmatchLevel->addLayerToList(commonPath + "Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);
+  deathmatchLevel->addLayerToList(commonPath + "Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
+  deathmatchLevel->addLayerToList(commonPath + "Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
 }
 
-void SLevelOneJapan::handleChangeOfState(int idState)
+void Deathmatch::handleChangeOfState(int idState)
 {
   switch(idState)
   {

@@ -52,10 +52,14 @@ class GameSound
    void downVolume(int channelID, float decreasingValue);
    float getVolume(int channelID);
    
+   void upOverallVolume(float increasingValue);
+   void downOverallVolume(float decreasingValue);
+
    void loadChunk(int row, int soundType, int soundID);
    void loadSound(int row, int soundType, int soundID);
    void playSound(int row, int soundType, int soundID);
    void closeSound();
+
    void stateSoundsHandling(GameCoreStates::SpriteState previousState);
         
   private:

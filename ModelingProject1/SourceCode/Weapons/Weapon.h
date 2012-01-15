@@ -1,16 +1,16 @@
 #pragma once
 
-#include "CollisionBox.h"
-
-class Weapon
+namespace Weapons
 {
-public:
-	Weapon(void);
-	~Weapon(void);
+  class Weapon
+  {
+    public:
+     Weapon(int valueDamage);
+     ~Weapon(void);
 
-private:
-	int damage;
-	bool actived;
-	CollisionSystem::CollisionBox* weaponCollisionBox;
-};
+	 int getDamage() { return damage; }
 
+    private:
+     int damage;
+  };
+}

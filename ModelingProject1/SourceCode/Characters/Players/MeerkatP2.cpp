@@ -4,9 +4,12 @@
 #include <Keyboard.h>
 #include <Gamepad.h>
 
+#include <Spear.h>
+
 Characters::MeerkatP2::~MeerkatP2()
 {
   delete characterSprite;
+  delete characterWeapon;
   delete inputMapper;
   delete controller;
   delete stats;
@@ -19,21 +22,13 @@ void Characters::MeerkatP2::initializeCharacter(SpriteData::IDSprites id, std::s
                 std::vector < int > framerateAnimations, std::vector< Vector2f> delayMovement)
 {
   characterSprite = new PlayerSprite(id, filename, pos, initialFrame, maxFrame, returnFrame,
-                            widthSprite, heightSprite, framerateAnimations, delayMovement);
-
+                                     widthSprite, heightSprite, framerateAnimations, delayMovement);
+  characterWeapon = new Weapons::Spear(100);
+  
   stats = new PlayerStats::Stats();
   score = new PlayerScore::Score();
 
-  /*inputMapper = new InputMapping::GameInputMapper("Resources/Input/KeyboardContextList.txt");
-  //inputMapper = new InputMapping::GameInputMapper("Resources/Input/GamepadContextList.txt");
-
-  //inputMapper->pushContext("gamepadcontext");
-  inputMapper->pushContext("keyboardcontext");
-  inputMapper->addCallback(Player::inputCallback, 0);
-
-  //controller = new InputMapping::Gamepad(0);
-  controller = new InputMapping::Keyboard(0);
-  controller->initializeKeys(inputMapper->getListKeys(), inputMapper->getStateMap(), inputMapper->getActionMap());*/
+  attackData.attackAlreadyDamaged = false;
 }
 
 void Characters::MeerkatP2::noAction()
@@ -77,6 +72,7 @@ void Characters::MeerkatP2::fastAttack()
 
   if ( characterSprite->getHandlerAnimation()->getAnimationAlreadyEnd() )
   {
+	attackData.attackAlreadyDamaged = false;
     returnToPreviousState();
   }
   else

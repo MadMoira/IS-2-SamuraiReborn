@@ -7,6 +7,7 @@
 #include "SPlayerSelection.h"
 #include "SPause.h"
 #include "SSoundOptions.h"
+#include "Deathmatch.h"
 
 GameStateManager::GameStateManager(void)
 {
@@ -94,6 +95,12 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
 		currentState = statesStack.at(currentID).getNameState();
 		break;
 	  }
+	  case STATE_ARENA_MODE:
+      {
+        cleanUp();
+        changeState(new Deathmatch( gR, gC, gI, STATE_ARENA_MODE ) );
+        break;
+      }
     }
 
 	init();
