@@ -112,7 +112,7 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 		  previousTileX = x;
 		  previousTileY = y;
 
-		  if ( x > 6400.0f/32 || y > 720.0f/32 )
+		  if ( x > levelLength/32 || y > 720.0f/32 )
 		  {
 			return;
 		  }
@@ -249,7 +249,7 @@ void Collider::checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* sp
 		  previousTileX = x;
 		  previousTileY = y;
 
-		  if ( x > 6400.0f/32 || y > 720.0f/32 )
+		  if ( x > levelLength/32 || y > 720.0f/32 )
 		  {
 			return;
 		  }
@@ -550,19 +550,6 @@ void Collider::checkStatePhysicsModes(Sprite& playerSprite)
   playerSprite.setPlayerMoveInX(false);
 }
 
-bool Collider::checkEnemiesCollision(CollisionSystem::CollisionBox& A, float directionX)
-{
- /* for(int i = 0; i == enemies->size(); i++)
-  {
-    if( checkCollision(A, *enemies->at(i).getSprite()->getCollisionBox(), directionX) )
-    {
-      return true;
-    }
-  }
-  */
-  return false;
-}
-
 void Collider::checkAttackCollisions(boost::ptr_vector< Characters::Enemy >& enemiesList, 
                                boost::ptr_vector< Characters::Player >& playersList, int indexPlayer)
 {
@@ -570,7 +557,6 @@ void Collider::checkAttackCollisions(boost::ptr_vector< Characters::Enemy >& ene
   {
     case MainStates::LEVELS:
 	{
-	  //checkEnemiesCollisions(enemiesList, A);
       break;
 	}
     case MainStates::ARENAS:
@@ -579,10 +565,6 @@ void Collider::checkAttackCollisions(boost::ptr_vector< Characters::Enemy >& ene
       break;
 	}
   }
-}
-
-void Collider::checkEnemiesCollisions(boost::ptr_vector< Characters::Enemy >& enemiesList, CollisionSystem::CollisionBox& A)
-{
 }
 
 void Collider::checkArenaCollisions(boost::ptr_vector< Characters::Player >& playersList, int indexPlayer)

@@ -1,11 +1,9 @@
 #pragma once
 
-#include <boost/ptr_container/ptr_vector.hpp>
-
 #include "CollisionBox.h"
 #include "Enemy.h"
 #include "Player.h"
-#include "Tilemap.h"
+#include "Tile.h"
 
 class Collider
 {
@@ -40,8 +38,6 @@ class Collider
    void checkStateCollisionPlayer( Sprite& playerSprite );
    void checkStateCollisionXAxis( Sprite& playerSprite );
    void checkStatePhysicsModes( Sprite& playerSprite );
-
-   bool checkEnemiesCollision( CollisionSystem::CollisionBox& A, float directionX );
 
    void checkAttackCollisions( boost::ptr_vector< Characters::Enemy >& enemiesList, 
                                boost::ptr_vector< Characters::Player >& playersList, 
