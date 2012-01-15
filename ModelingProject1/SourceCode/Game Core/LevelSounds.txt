@@ -1,0 +1,3 @@
+Resources/Sounds/Levels/Level One Japan/Section One/Wind.mp3;Resources/Sounds/Levels/Level One Japan/Section One/Japanese War Music.mp3;
+Resources/Sounds/Levels/SMainMenu/08 - Crushcrushcrush.mp3;Resources/Sounds/Levels/SMainMenu/Menu Seleccion (1).mp3;
+Resources/Sounds/Levels/SPlayerSelection/08 - Crushcrushcrush.mp3;Resources/Sounds/Levels/SPlayerSelection/Menu Seleccion (2).mp3
