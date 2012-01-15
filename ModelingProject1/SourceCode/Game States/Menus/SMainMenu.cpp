@@ -43,7 +43,7 @@ void SMainMenu::init()
   mainMenu->setListButtons(&guiMainMenu->getListButtons());
 
   numberOfPlayers = 1;
-
+  
   GameSound::getInstance()->playSound(1,1,0);
   GameSound::getInstance()->downVolume(2, 0.95f);
   GameSound::getInstance()->upVolume(1, 100.0f);

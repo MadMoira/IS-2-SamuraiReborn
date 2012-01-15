@@ -1,7 +1,6 @@
 #pragma once
 
 #include "GameState.h"
-
 #include "GUIMenu.h"
 
 #include <MainMenuSelection.h>

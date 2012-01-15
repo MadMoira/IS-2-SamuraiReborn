@@ -1,6 +1,5 @@
 
 #include "SPause.h"
-
 #include <PandaP1.h>
 
 void Image::ArrowPauseMenu::updatePositionArrow()
@@ -37,9 +36,8 @@ void SPause::init()
   guiPauseMenu = new RPRGUI::GUIMenu();
 
   createGUI();
-
+  GameSound::getInstance()->playAdditionalSound(3,1,0);
   gameCore->clearPlayerToInitialize();
-
   pauseMenu = new Image::MainMenuSelection(&controllers.at(0));
   pauseMenu->setNewIdGameState(MainStates::STATE_PAUSE);
   pauseMenu->setListButtons(&guiPauseMenu->getListButtons());
@@ -260,6 +258,7 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 
   if ( moveUp )
   {
+	GameSound::getInstance()->playAdditionalChunk(3,1,1);
     if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
@@ -273,6 +272,7 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 
   if ( moveDown )
   {
+	GameSound::getInstance()->playAdditionalChunk(3,1,1);
     if ( menu.getCurrentSelection() + 1 > MenuData::MAIN_MENU )
     {
 	  menu.setCurrentSelection(MenuData::CONTINUE_GAME);
@@ -288,6 +288,14 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 	bool running = menu.getIsRunning();
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
+		int d = (menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running));
+		if(d==2){
+			GameSound::getInstance()->unpauseSystem();
+			GameSound::getInstance()->closeAll();
+        }
+		if(d==8){
+			GameSound::getInstance()->unpauseSystem();
+        }
 	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
     }
 	menu.setIsRunning(running);
@@ -295,6 +303,7 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 
   if ( unpause )
   {
+	GameSound::getInstance()->unpauseSystem();
     menu.setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
   }
 }

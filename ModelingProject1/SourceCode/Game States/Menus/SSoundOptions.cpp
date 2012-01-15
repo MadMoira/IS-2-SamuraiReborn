@@ -269,6 +269,7 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
 
   if ( moveUp )
   {
+	GameSound::getInstance()->playAdditionalChunk(4,1,1);
     if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
@@ -282,6 +283,7 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
 
   if ( moveDown )
   {
+	  GameSound::getInstance()->playAdditionalChunk(4,1,1);
     if ( menu.getCurrentSelection() + 1 > MenuData::BACK_PAUSE )
     {
 	  menu.setCurrentSelection(MenuData::MUSIC);

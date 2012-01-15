@@ -80,6 +80,7 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
 	  case STATE_PAUSE:
 	  {
 		popBackMenuInGameState(currentGameState);
+		GameSound::getInstance()->pauseSystem();
 		statesStack.push_back(new SPause( gR, gC, gI, STATE_PAUSE ) );
 		currentID = 1;
 		currentState = statesStack.at(currentID).getNameState();
