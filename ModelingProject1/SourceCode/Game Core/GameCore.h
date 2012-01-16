@@ -45,6 +45,7 @@ class GameCore
                 std::vector< Vector2f> delayMovement);
 
    void initializeSpriteCollisionBoxPlayer(SpriteData::IDSprites id, float width, float height, GLfloat offsetX, GLfloat offsetY);
+   void initializeSpriteCollisionBoxEnemy(SpriteData::IDSprites id, float width, float height, GLfloat offsetX, GLfloat offsetY);
    void initializeRigidBodyVectors(SpriteData::IDSprites id, std::vector< Vector2f > maxSpeed);
    void setIDNumberOfPlayer(SpriteData::IDSprites id, int idPlayer);
    void initializeTextureFaceState(std::string filename, int idPlayer);

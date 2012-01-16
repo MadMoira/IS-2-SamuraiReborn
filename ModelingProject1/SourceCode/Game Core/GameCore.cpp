@@ -90,6 +90,16 @@ void GameCore::initializeSpriteCollisionBoxPlayer(SpriteData::IDSprites id, floa
   }
 }
 
+void GameCore::initializeSpriteCollisionBoxEnemy(SpriteData::IDSprites id, float width, float height, GLfloat offsetX, GLfloat offsetY)
+{
+  for (std::string::size_type i = 0; i < enemiesList.size(); i++){
+	if ( enemiesList.at(i).getCharacterID() == id)
+	{
+      enemiesList.at(i).initializeSpriteCollisionBox(width, height, offsetX, offsetY);
+	}
+  }
+}
+
 void GameCore::initializeRigidBodyVectors(SpriteData::IDSprites id, std::vector< Vector2f > maxSpeed)
 {
   for (std::string::size_type i = 0; i < playersList.size(); i++)

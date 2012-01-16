@@ -97,7 +97,7 @@ void SLevelOneJapan::logic()
     }
   }
   
-  //levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
+  levelAI.searchPath(&gameCore->getPlayersList().at(0),&gameCore->getEnemyList().at(0));
   gameCore->getCamera()->updateCamera(&gameCore->getPlayersList());
 
   japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
@@ -232,6 +232,13 @@ void SLevelOneJapan::initializePlayers()
   framerateAnimationsVector.push_back( 100 );
   framerateAnimationsVector.push_back( 100 );
 
+  gameCore->addEnemyToGame( new Characters::JapaneseMonkey() , SpriteData::MEERKAT, 
+			               "Resources/Characters/Players/Meerkat - SpriteSheet.png", 
+                           Vector2f(0.0f, 275.0f), 0, maxFrameVector, returnFrameVector,
+                           340.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
+
+  gameCore->initializeSpriteCollisionBoxEnemy(SpriteData::MEERKAT, 32.0f, 135.0f, 153.0f, 42.0f);
+
   for (std::string::size_type i = 0; i < gameCore->getPlayersToInitialize().size(); i++)
   {
 	switch(playersToInitialize.at(i).characterID)
@@ -269,6 +276,8 @@ void SLevelOneJapan::initializePlayers()
 	gameCore->getPlayersList().at(i).getController()->setPlayerID(playersToInitialize.at(i).controllerID);
 	gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts("", (int)i, "Resources/UI/Numbers.png");
   }
+
+
 
   maxSpeedPanda.clear();
   maxSpeedMeerkat.clear();

@@ -4,6 +4,13 @@
 
 #include "EnemySprite.h"
 
+enum AIState
+{
+	STATE_PATROL,
+	STATE_CHASE,	
+	STATE_RESET,
+};
+
 namespace Characters
 {
   class Enemy : public Character
@@ -26,11 +33,15 @@ namespace Characters
    
      void stop();
 
+	 void setState(AIState newState);
+	 AIState getState() {return state;}
+
      void returnToPreviousState();
 
     protected:
      int health;
      int modeIA;
      int pointsForDeath;
+	 AIState state;
   };
 }
