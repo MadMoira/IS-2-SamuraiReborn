@@ -266,7 +266,7 @@ void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Pla
 
   if ( moveUp )
   {
-	GameSound::getInstance()->loadChunk(1,1,1);
+	GameSound::getInstance()->loadChunk(1, 1, 1);
     if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
@@ -280,7 +280,7 @@ void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Pla
 
   if ( moveDown )
   {
-	GameSound::getInstance()->loadChunk(1,1,1);
+	GameSound::getInstance()->loadChunk(1, 1, 1);
     if ( menu.getCurrentSelection() + 1 > MenuData::QUIT )
     {
 	  menu.setCurrentSelection(MenuData::HISTORY_MODE);
