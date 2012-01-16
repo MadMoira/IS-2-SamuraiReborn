@@ -6,6 +6,11 @@ void Characters::Character::initializeSpriteCollisionBox(float width, float heig
   characterSprite->initializeSpriteCollisionBox(width, height, offsetX, offsetY);
 }
 
+void Characters::Character::initializeWeaponCollisionBoxes(std::string filename)
+{
+  characterSprite->initializeWeaponCollisionBoxes(filename);
+}
+
 void Characters::Character::initializeRigidBodyVectors(std::vector< Vector2f > maxSpeed)
 {
   characterSprite->getRigidBody().initializeSpeedVectors(maxSpeed);

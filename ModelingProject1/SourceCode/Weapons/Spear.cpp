@@ -1,6 +1,6 @@
 
 #include "Spear.h"
 
-Spear::Spear(void)
+Weapons::Spear::Spear(int valueDamage) : Weapon(valueDamage)
 {
 }

@@ -22,7 +22,9 @@ namespace RPRGUI
 
 	 void setIdChangeState(int id) { idChangeState = id; }
 
-	 int eventClicked(bool* isRunning);
+	 void setIdGameMode(int mode) { idGameMode = mode; }
+
+	 int eventClicked(bool* isRunning, int* gameMode);
 
     private:
      int id;
@@ -30,6 +32,7 @@ namespace RPRGUI
 	 Vector2f dimensions;
 	 Vector2f texturePosition;
 	 int idChangeState;
+	 int idGameMode;
   };
 }
 

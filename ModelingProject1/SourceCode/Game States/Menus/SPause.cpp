@@ -286,6 +286,7 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
   if ( pressedButton )
   {
 	bool running = menu.getIsRunning();
+	int gameMode = 0;
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
 		int d = (menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running));
@@ -296,7 +297,6 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 		if(d==8){
 			GameSound::getInstance()->unpauseSystem();
         }
-	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
     }
 	menu.setIsRunning(running);
   }

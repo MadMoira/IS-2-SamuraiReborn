@@ -41,6 +41,10 @@ namespace PlayerStats
 	void updateFaceState();
 	void updateHealthBar();
 
+	void takeDamage(int damage);
+
+	int getHealth() { return health.pointsOfLife; }
+
    private:
     Health health;
 	FaceState faces;

@@ -81,27 +81,27 @@ void GameSound::initSounds(int row, int soundType)
 
 void GameSound::splitFileSounds(std::string line, int soundType)
 {
-	std::string temp;
+  std::string temp;
 
-	for(std::string::size_type i = 0; i < line.size(); i++)
-	{
-		if( line.at(i) == ';' && temp != "" )
-		{
-			if( soundType == 0 )
-			{
-				statesSounds.push_back(temp);
-			}
-			else
-			{
-				ambienceSounds.push_back(temp);
-			}       
-			temp = "";
-		}
-		else
-		{
-			temp += line.at(i);
-		}
-	}
+  for(std::string::size_type i = 0; i < line.size(); i++)
+  {
+    if( line.at(i) == ';' && temp != "" )
+    {
+	  if( soundType == 0 )
+	  {
+	    statesSounds.push_back(temp);
+      }
+	  else
+	  {
+	    ambienceSounds.push_back(temp);
+	  }       
+      temp = "";
+    }
+    else
+    {
+      temp += line.at(i);
+    }
+  }
 }
 
 void GameSound::upVolume(int channelID, float increasingValue)
@@ -120,13 +120,14 @@ void GameSound::downVolume(int channelID, float decreasingValue)
   result = channel[channelID]->setVolume(volume);
 }
 
-float GameSound::getVolume(int channelID){
+float GameSound::getVolume(int channelID)
+{
   float volume;
   channel[channelID]->getVolume(&volume);
   return volume;
 }
 
-void GameSound::upOverallVolume(float increasingValue){
+{
     FMOD::ChannelGroup *cG;
 	FMOD::ChannelGroup *cG1;
 	float volume;
@@ -170,19 +171,19 @@ void GameSound::downMusicVolume(float decreasingValue){
 
 void GameSound::upEffectsVolume(float increasingValue){
   for(int i=1;i<3;i++){
-	  float volume;
-	  channel[i]->getVolume(&volume);
-	  volume += increasingValue;
-	  result = channel[i]->setVolume(volume);
+    channel[i]->getVolume(&volume);
+    volume += increasingValue;
+    result = channel[i]->setVolume(volume);
   }
 }
 
 void GameSound::downEffectsVolume(float decreasingValue){
   for(int i=1;i<3;i++){
-	  float volume;
-	  channel[i]->getVolume(&volume);
-	  volume -= decreasingValue;
-	  result = channel[i]->setVolume(volume);
+  {
+    float volume;
+    channel[i]->getVolume(&volume);
+    volume -= decreasingValue;
+    result = channel[i]->setVolume(volume);
   }
 }
 
