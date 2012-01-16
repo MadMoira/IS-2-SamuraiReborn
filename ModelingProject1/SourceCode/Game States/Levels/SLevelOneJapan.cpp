@@ -35,8 +35,7 @@ void SLevelOneJapan::init()
   GameSound::getInstance()->downVolume(0, 0.5);
   GameSound::getInstance()->loadSound(0, 1, 1);
 
-  gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
-                                 gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
+  gameCore->resetCamera(6400.0f);
 
   Collider::getInstance()->setLevelLength(6400);
 
@@ -99,16 +98,19 @@ void SLevelOneJapan::logic()
   }
   
   //levelAI.searchPath(&gameCore->getPlayersList().at(i),&gameCore->getEnemyList().at(0));
-  gameCore->getCamera()->updateCamera(&gameCore->getPlayersList());
+  gameCore->getCamera()->updateCamera();
 
   japanLevel->scrollContinuousBackgroundLayers();
-  
-  if ( gameCore->getPlayersList().at(0).getCharacterSprite()->getPlayerMoveInXCurrentFrame() )
-  {
-    japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
-    japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
-    japanLevel->scrollBackgroundLayers();
-    japanLevel->scrollTilemap();
+  for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
+  {	  
+	if ( gameCore->getPlayersList().at(i).getCharacterSprite()->getPlayerMoveInXCurrentFrame() )
+	{
+		japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
+		japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
+		japanLevel->scrollBackgroundLayers();
+		japanLevel->scrollTilemap();
+		break;
+	}
   }
   gameCore->getCamera()->setCameraSpeed(0.0f);
 }

@@ -31,7 +31,7 @@ bool GameCore::initializeGameCore()
     
   if( screen->initializeScreen())
   {
-   camera->initCamera();
+   camera->initCamera(&playersList);
    return true;
   }
 
@@ -51,9 +51,9 @@ bool GameCore::cleanUpGameCore()
   return true;
 }
 
-void GameCore::resetCamera(GLfloat level, GLfloat spawningPoint)
+void GameCore::resetCamera(GLfloat level)
 {
-  camera->resetCamera(level, spawningPoint);
+	camera->resetCamera(level);
 }
 
 void GameCore::addPlayerToGame(Characters::Player *player, SpriteData::IDSprites id, std::string filename, 
