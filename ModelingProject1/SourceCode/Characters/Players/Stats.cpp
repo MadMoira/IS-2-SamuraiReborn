@@ -185,7 +185,9 @@ void PlayerStats::Stats::updateFaceState()
 
   for(int i = faces.maxFaces - 1; i >= 0; i--)
   {
-	if ( points > (i/maxFaces)*maxPoints && points <= ( (i + 1)/maxFaces )*maxPoints )
+	GLfloat maxTopPoints = (GLfloat(i)/GLfloat(maxFaces))*maxPoints;
+	GLfloat nextFaceState = ( GLfloat((i + 1))/GLfloat(maxFaces) )*maxPoints;
+	if ( points > maxTopPoints && points <= nextFaceState )
 	{
 	  faces.currentFaceState = i;
 	  return;
@@ -207,4 +209,9 @@ void PlayerStats::Stats::updateHealthBar()
 	                                                                  health.healthForms.at(1).getCurrentAmount());
 
   health.healthForms.at(2).setPosition(currentPosition.x, currentPosition.y);
+}
+
+void PlayerStats::Stats::takeDamage(int damage)
+{
+  health.pointsOfLife -= damage;
 }

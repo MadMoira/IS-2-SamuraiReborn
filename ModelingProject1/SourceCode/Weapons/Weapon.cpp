@@ -1,10 +1,11 @@
 
 #include "Weapon.h"
 
-Weapon::Weapon(void)
+Weapons::Weapon::Weapon(int valueDamage)
 {
+  damage = valueDamage;
 }
 
-Weapon::~Weapon(void)
+Weapons::Weapon::~Weapon(void)
 {
 }

@@ -32,3 +32,11 @@ namespace GameCoreStates
     UPDATE_SPEEDX,
   };
 }
+
+namespace Characters
+{
+  struct AttackData
+  {
+	bool attackAlreadyDamaged;
+  };
+}

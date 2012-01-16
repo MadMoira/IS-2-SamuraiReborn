@@ -25,3 +25,12 @@ int parseStringToInt(DataType data)
 
   return newInteger;
 }
+
+template <typename DataType>
+int parsePointerStringToInt(DataType data)
+{
+  int newInteger = 0;
+  newInteger = atoi(data);
+
+  return newInteger;
+}

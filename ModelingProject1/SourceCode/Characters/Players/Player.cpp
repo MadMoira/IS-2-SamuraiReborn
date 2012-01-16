@@ -84,11 +84,24 @@ void Characters::Player::returnToPreviousState()
   characterSprite->changeCurrentFrame( characterSprite->getCurrentState() ); 
 }
 
-void Characters::Player::drawUIStats()
+bool Characters::Player::isAlive()
+{
+  if ( stats->getHealth() <= 0 || characterSprite->getBoxY() > 720.0f )
+  {
+	return false;
+  }
+
+  return true;
+}
+
+void Characters::Player::updateStats()
 {
   stats->updateHealthBar();
   stats->updateFaceState();
+}
 
+void Characters::Player::drawUIStats()
+{
   stats->drawFaceState();
   stats->drawSkullKills();
   stats->drawHealthBar();

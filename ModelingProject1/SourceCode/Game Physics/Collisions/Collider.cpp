@@ -8,6 +8,8 @@
 #include <MathFunctions.h>
 #include <MathConstants.h>
 
+#include <GameStatesData.h>
+
 Collider::Collider()
 {
 }
@@ -25,13 +27,6 @@ Collider* Collider::getInstance()
   return collider;
 }
 
-void Collider::initializeColliderSprites(boost::ptr_vector< Characters::Enemy >* enemiesList, 
-                                         boost::ptr_vector< Characters::Player >* playersList)
-{
-  enemies = enemiesList;
-  players = playersList;
-}
-
 void Collider::addLayerTilemap(std::vector< std::vector < Tile > > layer)
 {
   layers.push_back(layer);
@@ -45,15 +40,15 @@ void Collider::cleanUpResources()
   }
 }
 
-bool Collider::checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B, float directionX)
+bool Collider::checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B, int directionX)
 {
   if( ( ( ((A.getY() + A.getHeight()) > B.getY()) && 
         ( (A.getX() + A.getWidth()) > (B.getX()) ) && 
         ( A.getX() < (B.getX() + B.getWidth()))) || 
         (( (A.getX() + A.getWidth()) > (B.getX()) ) && 
-        ( A.getX() < (B.getX() + B.getWidth())) && directionX > 0.0f) || 
+		( A.getX() < (B.getX() + B.getWidth())) && directionX == SpriteData::RIGHT) || 
         (( (A.getX() + A.getWidth()) > (B.getX()) ) && 
-        ( A.getX() < (B.getX() + B.getWidth())) && directionX < 0.0f)))
+        ( A.getX() < (B.getX() + B.getWidth())) && directionX == SpriteData::LEFT)))
   {
     return true;
   }
@@ -117,7 +112,7 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 		  previousTileX = x;
 		  previousTileY = y;
 
-		  if ( x > 6400.0f/32 || y > 720.0f/32 )
+		  if ( x > levelLength/32 || y > 720.0f/32 )
 		  {
 			return;
 		  }
@@ -254,7 +249,7 @@ void Collider::checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* sp
 		  previousTileX = x;
 		  previousTileY = y;
 
-		  if ( x > 6400.0f/32 || y > 720.0f/32 )
+		  if ( x > levelLength/32 || y > 720.0f/32 )
 		  {
 			return;
 		  }
@@ -555,46 +550,46 @@ void Collider::checkStatePhysicsModes(Sprite& playerSprite)
   playerSprite.setPlayerMoveInX(false);
 }
 
-bool Collider::checkEnemiesCollision(CollisionSystem::CollisionBox& A, float directionX)
+void Collider::checkAttackCollisions(boost::ptr_vector< Characters::Enemy >& enemiesList, 
+                               boost::ptr_vector< Characters::Player >& playersList, int indexPlayer)
 {
- /* for(int i = 0; i == enemies->size(); i++)
+  switch(gameMode)
   {
-    if( checkCollision(A, *enemies->at(i).getSprite()->getCollisionBox(), directionX) )
-    {
-      return true;
-    }
+    case MainStates::LEVELS:
+	{
+      break;
+	}
+    case MainStates::ARENAS:
+	{
+	  checkArenaCollisions(playersList, indexPlayer);
+      break;
+	}
   }
-  */
-  return false;
 }
-/*
-boost::ptr_vector< Characters::Enemy > Collider::checkAttackCollision(CollisionBox& A, float directionX)
-{
-  boost::ptr_vector< Characters::Enemy > enemiesCollided;
 
-  for(int i = 0; i == enemies->size(); i++)
-  {
-    if( checkCollision( A, *enemies->at(i).getSprite()->getCollisionBox(), directionX) )
-    {
-      enemiesCollided.push_back(&enemies->at(i));
-    }
-  }
+void Collider::checkArenaCollisions(boost::ptr_vector< Characters::Player >& playersList, int indexPlayer)
+{
+  CollisionSystem::CollisionBox A = *playersList.at(indexPlayer).getCharacterSprite()->getWeaponCollisionBox();
+  int direction = playersList.at(indexPlayer).getCharacterSprite()->getHandlerAnimation()->getAnimationDirection();
   
-  return enemiesCollided;
-}*/
+  bool attackAlreadyDamaged = playersList.at(indexPlayer).getAttackData().attackAlreadyDamaged;
 
-/*boost::ptr_vector< Characters::Player > checkEnemiesAttackCollision(CollisionBox& A, float directionX)
-{
-  boost::ptr_vector< Characters::Player > playersCollided;
-  for(int i = 0; i == players->size(); i++)
+  for(std::string::size_type i = 0; i < playersList.size(); i++)
   {
-    if( checkCollision(A, *players->at(i).getCharacterSprite()->getCollisionBox(), directionX) )
+    if ( i == indexPlayer )
     {
-      playersCollided.push_back(&players->at(i));
+      continue;
+    }
+
+    if ( checkCollision( A, *playersList.at(i).getCharacterSprite()->getCollisionBox(), direction) &&
+		 !attackAlreadyDamaged )
+    {
+	  int weaponDamage = playersList.at(indexPlayer).getCharacterWeapon()->getDamage();
+	  playersList.at(i).getPlayerStats()->takeDamage(weaponDamage);
+	  playersList.at(indexPlayer).setAttackAlreadyDamaged(true);
     }
   }
-  return playersCollided;
-}*/
+}
 
 bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY)
 {

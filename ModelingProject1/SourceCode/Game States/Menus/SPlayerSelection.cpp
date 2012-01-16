@@ -101,6 +101,7 @@ void SPlayerSelection::logic()
 	  menuSelectionPlayer->setNumberOfPlayers(numberOfPlayers);
 	  menuSelectionPlayer->setPlayerOneSelected(isPlayerOneSelected);
 	  menuSelectionPlayer->setPlayerTwoSelected(isPlayerTwoSelected);
+	  menuSelectionPlayer->setCurrentGameMode(gameCore->getCurrentGameMode());
 
       controllers.at(i).getInputMapper()->dispatchInput( Characters::PandaP1(),
 	                                      *controllers.at(i).getController()->getListKeys(), 
@@ -248,6 +249,7 @@ void SPlayerSelection::handleChangeOfState(int idState)
   switch(idState)
   {
     case MainStates::STATE_LEVELONEJAPAN:
+	case MainStates::STATE_ARENA_MODE:
 	{
       for ( std::string::size_type i = 0; i < controllers.size(); i++)
       {
@@ -312,7 +314,17 @@ void SPlayerSelection::inputCallback(InputMapping::MappedInput& inputs, Characte
   {
 	if ( menu.isPlayerOneSelected() || menu.isPlayerTwoSelected() )
 	{
-      menu.setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
+      if ( menu.getCurrentGameMode() == MainStates::LEVELS )
+      {
+        menu.setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
+      }
+	}
+	if ( menu.isPlayerOneSelected() && menu.isPlayerTwoSelected() )
+	{
+      if ( menu.getCurrentGameMode() == MainStates::ARENAS )
+      {
+        menu.setNewIdGameState(MainStates::STATE_ARENA_MODE);
+      }
 	}
   }
 

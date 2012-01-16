@@ -14,11 +14,13 @@ RPRGUI::PushButton::~PushButton(void)
 {
 }
 
-int RPRGUI::PushButton::eventClicked(bool* isRunning)
+int RPRGUI::PushButton::eventClicked(bool* isRunning, int* gameMode)
 {
   if ( (MainStates::GameStates)idChangeState == MainStates::STATE_EXIT )
   {
     *isRunning = false;
   }
+  
+  *gameMode = idGameMode;
   return idChangeState;
 }

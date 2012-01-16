@@ -19,20 +19,24 @@ namespace Characters
      virtual void initializeCharacter(SpriteData::IDSprites id, std::string filename, Vector2f pos, int initialFrame, 
 		                              std::vector < int > maxFrame, std::vector < int > returnFrame, GLfloat widthSprite, 
 									  GLfloat heightSprite, std::vector < int > framerateAnimations, 
-									  std::vector< Vector2f> delayMovement) = 0;
-     virtual void noAction() = 0;
-     virtual void walk() = 0;
-     virtual void run() = 0;
-     virtual void jump() = 0;
-     virtual void fastAttack() = 0;
-     virtual void falling() = 0;
-     virtual void draw() = 0;
+									  std::vector< Vector2f> delayMovement) { };
+     virtual void noAction() { };
+     virtual void walk() { };
+     virtual void run() { };
+     virtual void jump() { };
+     virtual void fastAttack() { };
+     virtual void falling() { };
+     virtual void draw() { };
 
      void executeAction();
    
      void stop();
 
      void returnToPreviousState();
+
+	 bool isAlive();
+
+	 void updateStats();
 
      void drawUIStats();
      void drawScore();
@@ -52,11 +56,15 @@ namespace Characters
 
      PlayerScore::Score* getScore() { return score; }
 
+	 AttackData getAttackData() { return attackData; }
+	 void setAttackAlreadyDamaged(bool attack) { attackData.attackAlreadyDamaged = attack; }
+
     protected:
 	 int idNumberOfPlayer;
      InputMapping::GameInputMapper* inputMapper;
 	 InputMapping::Controller* controller;
      PlayerStats::Stats* stats;
      PlayerScore::Score* score;
+	 AttackData attackData;
   };
 }

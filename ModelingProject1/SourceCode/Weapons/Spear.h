@@ -1,10 +1,13 @@
 #pragma once
 
-#include "weapon.h"
+#include "Weapon.h"
 
-class Spear : public Weapon
+namespace Weapons
 {
-public:
-	Spear(void);
-};
+  class Spear : public Weapon
+  {
+    public:
+     Spear(int valueDamage);
+  };
+}
 

@@ -232,6 +232,12 @@
     <Filter Include="Resource Files\Menus\Sound Menu">
       <UniqueIdentifier>{ed2f252f-5623-45da-a796-b3c8d004cfd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game States\Arenas">
+      <UniqueIdentifier>{20afbd6e-b1c8-4bda-86be-519bd419a1f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game States\Arenas">
+      <UniqueIdentifier>{b0dab99c-f20b-4953-a931-cbf689525d43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -482,6 +488,9 @@
     </ClCompile>
     <ClCompile Include="GUI\Elements\SoundBar.cpp">
       <Filter>Source Files\GUI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\Arenas\Deathmatch.cpp">
+      <Filter>Source Files\Game States\Arenas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -764,6 +773,9 @@
     <ClInclude Include="GUI\Elements\SoundBar.h">
       <Filter>Header Files\GUI\Elements</Filter>
     </ClInclude>
+    <ClInclude Include="Game States\Arenas\Deathmatch.h">
+      <Filter>Header Files\Game States\Arenas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Enemy - SpriteSheet.png">
@@ -948,6 +960,12 @@
     </None>
     <None Include="Resources\Menus\Pause Menu\PauseMenuHighlighter.png">
       <Filter>Resource Files\Menus\Pause Menu</Filter>
+    </None>
+    <None Include="Resources\Characters\Players\WeaponCollisionBoxesMeerkat.txt">
+      <Filter>Resource Files\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Characters\Players\WeaponCollisionBoxesPanda.txt">
+      <Filter>Resource Files\Characters\Players</Filter>
     </None>
   </ItemGroup>
 </Project>

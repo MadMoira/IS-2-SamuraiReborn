@@ -14,7 +14,7 @@ Name: Level1_Floor_Tileset
 Margin: 0
 Spacing: 0
 Image Width: 2656
-Image Height: 768
+Image Height: 1664
 Image Source: TileSet.png
 Transparent Color (hex): 
 Load Of Map Finished... 
