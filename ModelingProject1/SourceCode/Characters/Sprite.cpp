@@ -76,7 +76,7 @@ void Sprite::movePosXWithSpeed()
     countX = 0;
     handlerAnimation->changeDirectionY( getSpeedY() );
 
-    if ( Camera::getInstance()->isLimit(spriteCollisionBox->getX(), getSpeedX()) )
+    if ( Camera::getInstance()->isCameraLimit( getSpeedX()) )
     { 
       characterMovement.playerMoveInX = false;
       characterMovement.playerMoveInXInCurrentFrame = false;

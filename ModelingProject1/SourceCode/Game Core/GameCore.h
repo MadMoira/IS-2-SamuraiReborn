@@ -28,7 +28,7 @@ class GameCore
    GameSound* getGameSound() { return sound; };
 
    Camera* getCamera() { return camera; };
-   void resetCamera(GLfloat level, GLfloat spawningPoint);
+   void resetCamera(GLfloat level);
 
    GameScreen* getGameScreen() { return screen; };
 
