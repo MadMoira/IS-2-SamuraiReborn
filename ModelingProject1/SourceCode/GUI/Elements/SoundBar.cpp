@@ -4,6 +4,8 @@
 #include <GameRender.h>
 #include <MenuData.h>
 
+#include <GameSound.h>
+
 RPRGUI::SoundBar::SoundBar(int id, std::string filename)
 {
   this->id = id;
@@ -29,4 +31,17 @@ void RPRGUI::SoundBar::draw()
 
 void RPRGUI::SoundBar::updateCurrentBarFrame()
 {
+  int amountOfBars;
+  switch(id)
+  {
+    case MenuData::EFFECTS:
+	{
+	  float volume = GameSound::getInstance()->getMusicVolume();
+	  break;
+	}
+    case MenuData::MUSIC:
+    {
+      break;
+    }
+  }
 }

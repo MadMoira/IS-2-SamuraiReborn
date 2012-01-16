@@ -77,6 +77,8 @@ class GameSound
    void stateSoundsHandling(GameCoreStates::SpriteState previousState);
    std::string soundSelection(int soundType, int soundID);
 
+   float getMusicVolume();
+
   private:
    std::vector< std::string > ambienceSounds;
    std::vector< std::string > statesSounds;

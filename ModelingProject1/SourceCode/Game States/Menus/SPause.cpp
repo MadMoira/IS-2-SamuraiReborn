@@ -258,7 +258,7 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 
   if ( moveUp )
   {
-	GameSound::getInstance()->playAdditionalChunk(3,1,1);
+	GameSound::getInstance()->playAdditionalChunk(3, 1, 1);
     if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
@@ -272,7 +272,7 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 
   if ( moveDown )
   {
-	GameSound::getInstance()->playAdditionalChunk(3,1,1);
+	GameSound::getInstance()->playAdditionalChunk(3, 1, 1);
     if ( menu.getCurrentSelection() + 1 > MenuData::MAIN_MENU )
     {
 	  menu.setCurrentSelection(MenuData::CONTINUE_GAME);
@@ -289,14 +289,17 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 	int gameMode = 0;
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
-		int d = (menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running));
-		if(d==2){
-			GameSound::getInstance()->unpauseSystem();
-			GameSound::getInstance()->closeAll();
-        }
-		if(d==8){
-			GameSound::getInstance()->unpauseSystem();
-        }
+      int newState = (menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running, &gameMode));
+	  menu.setNewIdGameState(newState);
+	  if( newState == MainStates::STATE_MAINMENU )
+	  {
+	    GameSound::getInstance()->unpauseSystem();
+	    GameSound::getInstance()->closeAll();
+      }
+	  if( newState == MainStates::STATE_IN_GAME )
+	  {
+	    GameSound::getInstance()->unpauseSystem();
+      }
     }
 	menu.setIsRunning(running);
   }

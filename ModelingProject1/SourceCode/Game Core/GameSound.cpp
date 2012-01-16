@@ -5,6 +5,7 @@ GameSound::GameSound(void)
   result = FMOD::System_Create(&system);
   res = FMOD::System_Create(&syste);
   printf("FMOD created");
+
   ERRCHECK(result);
   FMOD::ChannelGroup *cG;
   syste->getMasterChannelGroup(&cG);
@@ -46,37 +47,40 @@ void GameSound::closeSound()
   currentSound = "NULL";
 }
 
-void GameSound::pauseSystem(){
-	FMOD::ChannelGroup *cG;
-	res = syste->init(32, FMOD_INIT_NORMAL, 0);
-	system->getMasterChannelGroup(&cG);
-	cG->setPaused(true);
+void GameSound::pauseSystem()
+{
+  FMOD::ChannelGroup *cG;
+  res = syste->init(32, FMOD_INIT_NORMAL, 0);
+  system->getMasterChannelGroup(&cG);
+  cG->setPaused(true);
 }
 
-void GameSound::unpauseSystem(){
-	ch->setPaused(true);
-	sd->release();
-	ch->stop();
-	syste->close();
-	FMOD::ChannelGroup *cG;
-	system->getMasterChannelGroup(&cG);
-	cG->setPaused(false);
+void GameSound::unpauseSystem()
+{
+  ch->setPaused(true);
+  sd->release();
+  ch->stop();
+  syste->close();
+
+  FMOD::ChannelGroup *cG;
+  system->getMasterChannelGroup(&cG);
+  cG->setPaused(false);
 }
 
 void GameSound::initSounds(int row, int soundType)
 {
-   statesSounds.clear();
-   ambienceSounds.clear();
-   std::string line;
-   if(soundType == 0)
-   {
-     line = readLineFromFile(sFilename, row);
-   }
-   else
-   {
-     line = readLineFromFile(lFilename, row);
-   }
-   splitFileSounds(line, soundType);
+  statesSounds.clear();
+  ambienceSounds.clear();
+  std::string line;
+  if(soundType == 0)
+  {
+    line = readLineFromFile(sFilename, row);
+  }
+  else
+  {
+    line = readLineFromFile(lFilename, row);
+  }
+  splitFileSounds(line, soundType);
 }
 
 void GameSound::splitFileSounds(std::string line, int soundType)
@@ -127,58 +131,68 @@ float GameSound::getVolume(int channelID)
   return volume;
 }
 
+void GameSound::upOverallVolume(float increasingValue)
 {
-    FMOD::ChannelGroup *cG;
-	FMOD::ChannelGroup *cG1;
-	float volume;
- 	system->getMasterChannelGroup(&cG);
-	volume = cG->getVolume(&volume);
-	volume += increasingValue;
-	result = cG->setVolume(volume);
-	system->getMasterChannelGroup(&cG1);
-	volume = cG1->getVolume(&volume);
-	volume += increasingValue;
-	result = cG1->setVolume(volume);
+  FMOD::ChannelGroup *cG;
+  FMOD::ChannelGroup *cG1;
+  float volume;
+  system->getMasterChannelGroup(&cG);
+
+  volume = cG->getVolume(&volume);
+  volume += increasingValue;
+  result = cG->setVolume(volume);
+  system->getMasterChannelGroup(&cG1);
+
+  volume = cG1->getVolume(&volume);
+  volume += increasingValue;
+  result = cG1->setVolume(volume);
 }
 
-void GameSound::downOverallVolume(float decreasingValue){
-    FMOD::ChannelGroup *cG;
-	FMOD::ChannelGroup *cG1;
-	float volume;
-	system->getMasterChannelGroup(&cG);
-	volume = cG->getVolume(&volume);
-	volume -= decreasingValue;
-	result = cG->setVolume(volume);
-	system->getMasterChannelGroup(&cG1);
-	volume = cG1->getVolume(&volume);
-	volume -= decreasingValue;
-	result = cG1->setVolume(volume);
+void GameSound::downOverallVolume(float decreasingValue)
+{
+  FMOD::ChannelGroup *cG;
+  FMOD::ChannelGroup *cG1;
+  float volume;
+  system->getMasterChannelGroup(&cG);
+  volume = cG->getVolume(&volume);
+  volume -= decreasingValue;
+  result = cG->setVolume(volume);
+  system->getMasterChannelGroup(&cG1);
+  volume = cG1->getVolume(&volume);
+  volume -= decreasingValue;
+  result = cG1->setVolume(volume);
 }
 
-void GameSound::upMusicVolume(float increasingValue){
-	  float volume;
-	  channel[0]->getVolume(&volume);
-	  volume += increasingValue;
-	  result = channel[0]->setVolume(volume);
+void GameSound::upMusicVolume(float increasingValue)
+{
+  float volume;
+  channel[0]->getVolume(&volume);
+  volume += increasingValue;
+  result = channel[0]->setVolume(volume);
 }
 
-void GameSound::downMusicVolume(float decreasingValue){
-	  float volume;
-	  channel[0]->getVolume(&volume);
-	  volume -= decreasingValue;
-	  result = channel[0]->setVolume(volume);
+void GameSound::downMusicVolume(float decreasingValue)
+{
+  float volume;
+  channel[0]->getVolume(&volume);
+  volume -= decreasingValue;
+  result = channel[0]->setVolume(volume);
 }
 
-void GameSound::upEffectsVolume(float increasingValue){
-  for(int i=1;i<3;i++){
+void GameSound::upEffectsVolume(float increasingValue)
+{
+  float volume;
+  for(int i = 1;i < 3; i++)
+  {
     channel[i]->getVolume(&volume);
     volume += increasingValue;
     result = channel[i]->setVolume(volume);
   }
 }
 
-void GameSound::downEffectsVolume(float decreasingValue){
-  for(int i=1;i<3;i++){
+void GameSound::downEffectsVolume(float decreasingValue)
+{
+  for(int i = 1;i < 3; i++)
   {
     float volume;
     channel[i]->getVolume(&volume);
@@ -192,7 +206,7 @@ void GameSound::loadChunk(int row, int soundType, int soundID)
   initSounds(row, soundType);
   std::string name;
 
-  name=GameSound::soundSelection(soundType, soundID);
+  name = GameSound::soundSelection(soundType, soundID);
 
   const char* chunkName = name.c_str();
   result = system->createSound(chunkName, FMOD_LOOP_OFF, 0, &chunks[0]);
@@ -207,7 +221,7 @@ void GameSound::loadSound(int row, int soundType, int soundID)
   initSounds(row, soundType);
   std::string name;
 
-  name=GameSound::soundSelection(soundType, soundID);
+  name = GameSound::soundSelection(soundType, soundID);
   
   const char* musicName = name.c_str();
   printf("Loading");
@@ -218,11 +232,12 @@ void GameSound::loadSound(int row, int soundType, int soundID)
   ERRCHECK(result);
 }
 
-void GameSound::playAdditionalSound(int row, int soundType, int soundID){
+void GameSound::playAdditionalSound(int row, int soundType, int soundID)
+{
   initSounds(row, soundType);
   std::string name;
 
-  name=GameSound::soundSelection(soundType, soundID);
+  name = GameSound::soundSelection(soundType, soundID);
                 
   if( name == "none" )
   {
@@ -236,11 +251,12 @@ void GameSound::playAdditionalSound(int row, int soundType, int soundID){
   ERRCHECK(res);
 }
 
-void GameSound::playAdditionalChunk(int row, int soundType, int soundID){
+void GameSound::playAdditionalChunk(int row, int soundType, int soundID)
+{
   initSounds(row, soundType);
   std::string name;
 
-  name=GameSound::soundSelection(soundType, soundID);
+  name = GameSound::soundSelection(soundType, soundID);
                 
   if(name == "none")
   {
@@ -259,7 +275,7 @@ void GameSound::playSound(int row, int soundType, int soundID)
   initSounds(row, soundType);
   std::string name;
 
-  name=GameSound::soundSelection(soundType, soundID);
+  name = GameSound::soundSelection(soundType, soundID);
                 
   if( name == "none" )
   {
@@ -273,9 +289,10 @@ void GameSound::playSound(int row, int soundType, int soundID)
   ERRCHECK(result);
 }
 
-std::string GameSound::soundSelection(int soundType, int soundID){
-std::string name;
-if(soundType == 0)
+std::string GameSound::soundSelection(int soundType, int soundID)
+{
+  std::string name;
+  if(soundType == 0)
   {
     name = statesSounds.at(soundID);
   }
@@ -295,7 +312,7 @@ void GameSound::stateSoundsHandling(GameCoreStates::SpriteState previousState)
   }
   if(previousState == GameCoreStates::FALLING)
   {
-     GameSound::getInstance()->loadChunk(0,0,1);
+     GameSound::getInstance()->loadChunk(0, 0, 1);
   }
 }
 
@@ -305,9 +322,11 @@ void GameSound::closeAll()
   FMOD::SoundGroup *sG;
   system->getMasterSoundGroup(&sG);
   sG->stop();
+
   ERRCHECK(result);
   result = system->release();
   ERRCHECK(result);
+
   ambienceSounds.clear();
   statesSounds.clear();
   instanceFlag = false;
@@ -320,4 +339,11 @@ void GameSound::ERRCHECK(FMOD_RESULT result)
     printf("FMOD error! (%d) %s\n", result, FMOD_ErrorString(result));
     exit(-1);
   }
+}
+
+float GameSound::getMusicVolume()
+{
+  float volume = 0.0f;
+  channel[0]->getVolume(&volume); 
+  return volume;
 }
