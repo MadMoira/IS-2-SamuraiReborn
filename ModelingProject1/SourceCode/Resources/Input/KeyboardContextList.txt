@@ -1,0 +1,5 @@
+4
+keyboardcontext Resources/Input/KeyboardContext.txt
+keyboardmenucontext Resources/Input/KeyboardMenuContext.txt
+keyboardmainmenucontext Resources/Input/KeyboardMainMenuContext.txt
+keyboardpausemenucontext Resources/Input/KeyboardPauseMenuContext.txt
