@@ -3,6 +3,7 @@
 #include "GameCore.h"
 #include "GameRender.h"
 #include "GameInput.h"
+#include "GameSound.h"
 
 #include <GameTimer.h>
 
@@ -24,6 +25,9 @@ class GameState
    int checkIfStateEnd() { return hasEnded; }
    void setHasEnded(int stateHasEnded) { hasEnded = stateHasEnded; }
 
+   int getProperty() { return propertyState; }
+   void setProperty(int stateProperty) { propertyState = stateProperty; }
+
    void startTimer() { timer->start(); }
    void delayTimer() { timer->delay(); }
 
@@ -31,6 +35,7 @@ class GameState
 
   private:
    int hasEnded;
+   int propertyState;
 
   protected:
    GameState( GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName );

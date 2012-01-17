@@ -6,6 +6,8 @@
 #include "SLevelOneJapan.h"
 #include "SPlayerSelection.h"
 #include "SPause.h"
+#include "SSoundOptions.h"
+#include "Deathmatch.h"
 
 GameStateManager::GameStateManager(void)
 {
@@ -18,7 +20,7 @@ GameStateManager::~GameStateManager(void)
   statesStack.clear();
 }
 
-void GameStateManager::pushState(GameState *gameState)
+void GameStateManager::pushState(GameState* gameState)
 {
   statesStack.push_back(gameState);
 }
@@ -46,9 +48,9 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
 
   int newChangeState = checkIfCurrentStateHasEnd();
   int currentGameState = statesStack.at(currentID).getNameState();
+  int currentProperty = statesStack.at(currentID).getProperty();
 
-  if ( newChangeState != currentGameState && ( currentGameState != STATE_PAUSE ||
-	   newChangeState == STATE_MAINMENU ) )
+  if ( newChangeState != currentGameState && checkChangeOfState(currentProperty, Properties[newChangeState]) )
   {
     switch(newChangeState)
     {
@@ -78,11 +80,28 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
       }
 	  case STATE_PAUSE:
 	  {
-		statesStack.push_back(new SPause( gR, gC, gI, STATE_PAUSE) );
+		popBackMenuInGameState(currentGameState);
+		GameSound::getInstance()->pauseSystem();
+		statesStack.push_back(new SPause( gR, gC, gI, STATE_PAUSE ) );
 		currentID = 1;
 		currentState = statesStack.at(currentID).getNameState();
 		break;
 	  }
+	  case STATE_SOUNDS_OPTIONS:
+	  {
+		cleanUp();
+		statesStack.pop_back();
+		statesStack.push_back(new SSoundOptions( gR, gC, gI, STATE_SOUNDS_OPTIONS ) );
+		currentID = 1;
+		currentState = statesStack.at(currentID).getNameState();
+		break;
+	  }
+	  case STATE_ARENA_MODE:
+      {
+        cleanUp();
+        changeState(new Deathmatch( gR, gC, gI, STATE_ARENA_MODE ) );
+        break;
+      }
     }
 
 	init();
@@ -141,7 +160,39 @@ void GameStateManager::cleanUp()
   statesStack.at(currentID).cleanUp();
 }
 
+bool GameStateManager::checkChangeOfState(int currentStateProperty, int newStateProperty)
+{
+  using namespace MainStates;
+  
+  if ( currentStateProperty == IN_GAME && newStateProperty == MENU_IN_GAME )
+  {
+	return true;
+  }
+
+  if ( currentStateProperty == MENU_IN_GAME && newStateProperty == MENU_IN_GAME )
+  {
+	return true;
+  }
+
+  if ( currentStateProperty == MENU_IN_GAME && newStateProperty == IN_GAME )
+  {
+	return false;
+  }
+
+  return true;
+}
+
 int GameStateManager::checkIfCurrentStateHasEnd()
 {
   return statesStack.at(currentID).checkIfStateEnd();
 }
+
+void GameStateManager::popBackMenuInGameState(int currentState)
+{
+  if ( currentState == MainStates::STATE_SOUNDS_OPTIONS )
+  {
+	cleanUp();
+    statesStack.pop_back();
+  }
+}
+

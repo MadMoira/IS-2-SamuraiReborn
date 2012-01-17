@@ -9,7 +9,7 @@
 
 namespace Characters
 {
-  class Character : boost::noncopyable
+  class Character 
   {
     public:
      virtual ~Character() { };
@@ -31,21 +31,25 @@ namespace Characters
 
      virtual void executeAction() = 0;
 
+	 virtual bool isAlive();
+
      void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
+	 void initializeWeaponCollisionBoxes(std::string filename);
 	 void initializeRigidBodyVectors(std::vector< Vector2f > maxSpeed);
 
      bool isReadyToPace();
      bool isReadyToDoubleJump();
      bool isFalling();
-     bool isAlive();
-
+     
      SpriteData::IDSprites getCharacterID() { return characterSprite->getID(); }
 
      Sprite* getCharacterSprite() { return characterSprite; }
 
+	 Weapons::Weapon* getCharacterWeapon() { return characterWeapon; }
+
     protected:
      Sprite* characterSprite;
-     Weapon* characterWeapon;
+     Weapons::Weapon* characterWeapon;
   };
 }
 

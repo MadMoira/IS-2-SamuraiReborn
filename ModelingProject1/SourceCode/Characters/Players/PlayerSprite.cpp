@@ -68,6 +68,7 @@ void PlayerSprite::changeStateSprite(GameCoreStates::PlayerState* newState,
   }
 
   setSpeedY(rigidBody->getMaxSpeed().at(getCurrentState()).y);
+
   handlerAnimation->setCurrentStateForAnimation(getCurrentState());
   handlerAnimation->restartOldTime();
   handlerAnimation->restartCurrentFrame();

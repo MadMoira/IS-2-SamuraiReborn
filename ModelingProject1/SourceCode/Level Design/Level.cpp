@@ -6,6 +6,7 @@
 #include "Collider.h"
 
 #include "File.h"
+#include "StringParser.h"
 
 Level::Level(Levels id)
 {
@@ -18,12 +19,13 @@ Level::~Level(void)
   tilemapList.clear();
 }
 
-int Level::loadTMXTileMapFile(std::string filename)
+int Level::loadTMXTileMapFile(std::string commonBase)
 {
   std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
   std::fstream log (commonPath + "logLoadMapFile.txt", std::fstream::out);
   
   Tmx::Map *map = new Tmx::Map();
+  std::string filename = commonPath + commonBase + "Map.tmx";
   map->ParseFile(filename);
 
   log << "Loading File: " << filename << std::endl;
@@ -35,22 +37,6 @@ int Level::loadTMXTileMapFile(std::string filename)
 
     return map->GetErrorCode();
   }
-
-  log << "Loading List Collision Tiles... " << std::endl;
-  std::ifstream collisionListFile(commonPath + "LevelOneSectionOneCollisionList.csv");
-    
-  unsigned countTiles = readDataTypeFromFile<unsigned>(collisionListFile);
-  log << "Number Of Tiles With Collision:  " << countTiles << std::endl;
-  std::vector< int > tempCollisionTilesList;
-  for(unsigned i = 0; i < countTiles; i++)
-  {
-    int tileID = readDataTypeFromFile<int>(collisionListFile);
-    tempCollisionTilesList.push_back(tileID);
-  }
-
-  collisionListFile.close();
-
-  log << "Finish Loading List Collision Tiles... " << std::endl;
 
   log << "Loading List Walkable Tiles... " << std::endl;
   std::ifstream tilesWalkableListFile(commonPath + "LevelOneSectionOneWalkableList.csv");
@@ -67,7 +53,6 @@ int Level::loadTMXTileMapFile(std::string filename)
   tilesWalkableListFile.close();
 
   log << "Finish Loading List Walkable Tiles... " << std::endl;
-
 
   log << "Loading Layers... " << std::endl;
 
@@ -88,6 +73,22 @@ int Level::loadTMXTileMapFile(std::string filename)
     tilemapList.at(i).setWidthLevelInTiles(width);
     tilemapList.at(i).setHeightLevelInTiles(height);
 
+	std::string collisionFile = commonPath + commonBase + "CollisionsLayer" + parseDataToString(i) + ".csv";
+	std::ifstream collisionListFile(collisionFile);
+    
+    unsigned countTiles = readDataTypeFromFile<unsigned>(collisionListFile);
+    log << "Number Of Tiles With Collision:  " << countTiles << std::endl;
+    std::vector< int > tempCollisionTilesList;
+    for(unsigned k = 0; k < countTiles; k++)
+    {
+      int tileID = readDataTypeFromFile<int>(collisionListFile);
+      tempCollisionTilesList.push_back(tileID);
+    }
+
+    collisionListFile.close();
+
+    log << "Finish Loading List Collision Tiles Of Layer "<< i << std::endl;
+
     for (int x = 0; x < width; x++) 
     {
       for (int y = 0; y < height; y++) 
@@ -102,6 +103,7 @@ int Level::loadTMXTileMapFile(std::string filename)
     Collider::getInstance()->addLayerTilemap(tempLayerMap);
 
     tilemapList.at(i).setLayerMap(tempLayerMap);
+	tempCollisionTilesList.clear();
     tempLayerMap.clear();
   }
 
@@ -130,7 +132,7 @@ int Level::loadTMXTileMapFile(std::string filename)
     }
   }
 
-  tempCollisionTilesList.clear();
+  //tempCollisionTilesList.clear();
 
   log << "Load Of Map Finished... " << std::endl;
   log << "Closing File... " << std::endl;

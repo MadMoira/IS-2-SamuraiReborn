@@ -3,9 +3,8 @@
 
 #include "JumpingState.h"
 
-GameCoreStates::JumpingState::JumpingState(int id) : PlayerState( id )
+GameCoreStates::JumpingState::JumpingState(int id, int characterID) : PlayerState(id, characterID)
 {
-  currentID = id;
 }
 
 GameCoreStates::JumpingState::~JumpingState(void)

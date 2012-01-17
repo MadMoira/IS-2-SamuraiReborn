@@ -17,7 +17,9 @@ SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, Main
 
   timer = new GameTimer();
   timer->setFramesPerSecond(70);
+
   setHasEnded(MainStates::STATE_LEVELONEJAPAN);
+  setProperty(MainStates::IN_GAME);
 }
 
 SLevelOneJapan::~SLevelOneJapan(void)
@@ -29,15 +31,16 @@ void SLevelOneJapan::init()
   initializePlayers();
   initializeLevel();
 
-  GameSound::getInstance()->loadSound(0, 1, 0);
-  GameSound::getInstance()->downVolumeMUS();
   GameSound::getInstance()->loadSound(0, 1, 1);
-  GameSound::getInstance()->upVolumeMUS();
+  GameSound::getInstance()->loadSound(0, 1, 0);
+  GameSound::getInstance()->downVolume(0, 0.9);
+  
 
-  gameCore->resetCamera(6400.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
+  gameCore->resetCamera(11200.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
                                  gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
 
-  Collider::getInstance()->setLevelLength(6400);
+  Collider::getInstance()->setLevelLength(11200);
+  Collider::getInstance()->setGameMode(gameCore->getCurrentGameMode());
 
   inGameMenu = new Image::MenuSelection();
   inGameMenu->setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
@@ -91,25 +94,30 @@ void SLevelOneJapan::logic()
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();
+	if ( gameCore->getPlayersList().at(i).getCharacterSprite()->getCurrentState() == GameCoreStates::FAST_ATTACK )
+	{
+	  Collider::getInstance()->checkAttackCollisions(gameCore->getEnemyList(), gameCore->getPlayersList(), i );
+	}
+
+	gameCore->getPlayersList().at(i).updateStats();
     if ( !gameCore->getPlayersList().at(i).isAlive() )
     {
       setHasEnded(MainStates::STATE_MENUSELECTIONPLAYER);
     }
   }
-  
-  levelAI.searchPath(&gameCore->getPlayersList().at(0),&gameCore->getEnemyList().at(0));
+
   gameCore->getCamera()->updateCamera(&gameCore->getPlayersList());
 
-  japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
-  japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
   japanLevel->scrollContinuousBackgroundLayers();
   
   if ( gameCore->getPlayersList().at(0).getCharacterSprite()->getPlayerMoveInXCurrentFrame() )
   {
+    japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
+    japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
     japanLevel->scrollBackgroundLayers();
     japanLevel->scrollTilemap();
   }
-  gameCore->getCamera()->setCameraSpeed(0.f);
+  gameCore->getCamera()->setCameraSpeed(0.0f);
 }
 
 void SLevelOneJapan::render()
@@ -167,18 +175,18 @@ void SLevelOneJapan::initializePlayers()
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(10.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -29.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -34.0f) );
   maxSpeedPanda.push_back( Vector2f(18.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -23.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -29.0f) );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   
   std::vector< Vector2f > maxSpeedMeerkat;
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(12.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -31.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -37.0f) );
   maxSpeedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -25.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -32.0f) );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
 
@@ -187,7 +195,7 @@ void SLevelOneJapan::initializePlayers()
   maxFrameVector.push_back( 8 );
   maxFrameVector.push_back( 5 );
   maxFrameVector.push_back( 6 );
-  maxFrameVector.push_back( 6 );
+  maxFrameVector.push_back( 5 );
   maxFrameVector.push_back( 4 );
   maxFrameVector.push_back( 2 );
   maxFrameVector.push_back( 6 );
@@ -232,13 +240,6 @@ void SLevelOneJapan::initializePlayers()
   framerateAnimationsVector.push_back( 100 );
   framerateAnimationsVector.push_back( 100 );
 
-  gameCore->addEnemyToGame( new Characters::JapaneseMonkey() , SpriteData::MEERKAT, 
-			               "Resources/Characters/Players/Meerkat - SpriteSheet.png", 
-                           Vector2f(0.0f, 275.0f), 0, maxFrameVector, returnFrameVector,
-                           340.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
-
-  gameCore->initializeSpriteCollisionBoxEnemy(SpriteData::MEERKAT, 32.0f, 135.0f, 153.0f, 42.0f);
-
   for (std::string::size_type i = 0; i < gameCore->getPlayersToInitialize().size(); i++)
   {
 	switch(playersToInitialize.at(i).characterID)
@@ -250,6 +251,7 @@ void SLevelOneJapan::initializePlayers()
                              Vector2f(50.0f, 246.0f), 0, maxFrameVectorPanda, returnFrameVector,
                              280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
+		gameCore->initializeWeaponCollisionBoxes(SpriteData::PANDA, "Resources/Characters/Players/WeaponCollisionBoxesPanda.txt");
 		gameCore->initializeRigidBodyVectors(SpriteData::PANDA, maxSpeedPanda);
 		gameCore->setIDNumberOfPlayer(SpriteData::PANDA, (int)i);
 		gameCore->initializeTextureFaceState("Resources/UI/PandaFacesStates.png", i);
@@ -262,6 +264,7 @@ void SLevelOneJapan::initializePlayers()
                              Vector2f(0.0f, 271.0f), 0, maxFrameVector, returnFrameVector,
                              340.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 32.0f, 135.0f, 153.0f, 42.0f);
+		gameCore->initializeWeaponCollisionBoxes(SpriteData::MEERKAT, "Resources/Characters/Players/WeaponCollisionBoxesMeerkat.txt");
 		gameCore->initializeRigidBodyVectors(SpriteData::MEERKAT, maxSpeedMeerkat);
 		gameCore->setIDNumberOfPlayer(SpriteData::MEERKAT, (int)i);
 	    gameCore->initializeTextureFaceState("Resources/UI/PandaFacesStates.png", i);
@@ -291,7 +294,7 @@ void SLevelOneJapan::initializeLevel()
 {
   std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
   japanLevel = new Level(LEVELONEJAPAN);
-  japanLevel->loadTMXTileMapFile(commonPath + "LevelOneSectionOneMap.tmx");
+  japanLevel->loadTMXTileMapFile("LevelOneSectionOne");
 
   japanLevel->addLayerToList(commonPath + "SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
   japanLevel->addLayerToList(commonPath + "Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);

@@ -4,6 +4,8 @@
 #include "Collider.h"
 #include "Camera.h"
 
+#include <StringParser.h>
+
 Sprite::Sprite(SpriteData::IDSprites id, std::string filename, Vector2f pos, 
                 int initialFrame, std::vector < int > maxFrame, std::vector < int > returnFrame,
                 GLfloat widthSprite, GLfloat heightSprite, std::vector < int > framerateAnimations,
@@ -20,7 +22,7 @@ Sprite::Sprite(SpriteData::IDSprites id, std::string filename, Vector2f pos,
                                    maxFrame, returnFrame, framerateAnimations );
 
   rigidBody = new GamePhysics::RigidBody(GamePhysics::RIGID_BODY);
-  rigidBody->initializeNaturalPhysicsForces(-4.0f, 1.0f);
+  rigidBody->initializeNaturalPhysicsForces(-5.5f, 1.0f);
 
   collisionHandler = Collider::getInstance();
 
@@ -46,6 +48,8 @@ Sprite::~Sprite(void)
 {
   glDeleteTextures(1, &texture);
   delayMovementSprite.clear();
+  weaponCollisionBoxes.clear();
+
   delete rigidBody;
   delete playerStateManager;
   delete handlerAnimation;
@@ -63,6 +67,33 @@ void Sprite::initializeSpriteCollisionBox(float width, float height, GLfloat off
 
   changeStateSprite( new GameCoreStates::StillState(GameCoreStates::STILL), 0,
                          std::list< InputMapping::Key >() );
+}
+
+void Sprite::initializeWeaponCollisionBoxes(std::string filename)
+{
+  unsigned countBoxes;
+    
+  std::ifstream inputContextFile(filename);
+  countBoxes = readDataTypeFromFile<unsigned>(inputContextFile);
+
+  for(unsigned i = 0; i < countBoxes; i++)
+  {
+    std::string width = readDataTypeFromFile<std::string>(inputContextFile);
+    std::string height = readDataTypeFromFile<std::string>(inputContextFile);
+    std::string offsetX = readDataTypeFromFile<std::string>(inputContextFile);
+    std::string offsetY = readDataTypeFromFile<std::string>(inputContextFile);
+
+	int parseWidth = parsePointerStringToInt(width.c_str());
+	int parseHeight = parsePointerStringToInt(height.c_str());
+    int parseOffsetX = parsePointerStringToInt(offsetX.c_str());
+	int parseOffsetY = parsePointerStringToInt(offsetY.c_str());
+
+	weaponCollisionBoxes.push_back( new CollisionSystem::CollisionBox(0.0f, 0.0f,
+		                            GLfloat(parseWidth), GLfloat(parseHeight),
+						            Vector2f(GLfloat(parseOffsetX), GLfloat(parseOffsetY) ) ) );
+	weaponCollisionBoxes.at(i).setX(position.x, handlerAnimation->getAnimationDirection());
+    weaponCollisionBoxes.at(i).setY(position.y);
+  }
 }
 
 void Sprite::movePosXWithSpeed()
@@ -107,6 +138,11 @@ void Sprite::movePosXWithSpeed()
         collisionHandler->checkStateCollisionXAxis(*this);
         isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
+
+		for(std::string::size_type i = 0; i < weaponCollisionBoxes.size(); i++)
+	    {
+	      weaponCollisionBoxes.at(i).setX( position.x, handlerAnimation->getAnimationDirection() );
+	    }
         return;
       }
     }
@@ -131,6 +167,11 @@ void Sprite::movePosXWithSpeed()
       isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
 
+	  for(std::string::size_type i = 0; i < weaponCollisionBoxes.size(); i++)
+	  {
+		weaponCollisionBoxes.at(i).setX( position.x + (width - weaponCollisionBoxes.at(i).getOffset().x) - weaponCollisionBoxes.at(i).getWidth(), 
+	                                     handlerAnimation->getAnimationDirection() );
+	  }
 	  return;
 	}
 
@@ -174,6 +215,11 @@ void Sprite::movePosYWithSpeed()
 	  isOnGround = collisionHandler->onTheGround(*getCollisionBox(),
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY());     
       collisionHandler->checkStateCollisionPlayer(*this);
+	  
+	  for(std::string::size_type i = 0; i < weaponCollisionBoxes.size(); i++)
+	  {
+	    weaponCollisionBoxes.at(i).setY( position.y );
+	  }
 
       return;
     }
@@ -259,6 +305,11 @@ void Sprite::changePreviousPlayerState(int stateID)
   playerStateManager->changePreviousState( GameCoreStates::SpriteState(stateID) );
 }
 
+void Sprite::checkAttackCollisions()
+{
+//  collisionHandler->checkAttackCollisions(weaponCollisionBoxes.at(getPreviousState()));
+}
+
 bool Sprite::isPlayerOnTheAir()
 {
   if ( getCurrentState() != GameCoreStates::JUMPING && 
@@ -280,7 +331,8 @@ void Sprite::drawTexture()
   }
 
   GameRender::drawFullTexture(textureBox, Vector2f(x, getBoxY()), getBoxWidth(), getBoxHeight());
-  
+
+ 
   int currentState = getCurrentState();
 
   if ( currentState == GameCoreStates::DOUBLE_JUMP )
@@ -290,6 +342,10 @@ void Sprite::drawTexture()
 
   if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
   {
+	int attackState = getPreviousState();
+	GameRender::drawFullTexture(textureBox, 
+		Vector2f(weaponCollisionBoxes.at(attackState).getX(), weaponCollisionBoxes.at(attackState).getY()),
+	                            weaponCollisionBoxes.at(attackState).getWidth(), weaponCollisionBoxes.at(attackState).getHeight());
     currentState = ( GameCoreStates::FAST_ATTACK - 1 ) + getPreviousState();
   }
 
@@ -301,7 +357,3 @@ void Sprite::drawTexture()
   GameRender::drawSpriteTexture(texture, position,  handlerAnimation->getCurrentFrame(), width, height,  
                                 handlerAnimation->getAnimationDirection(), currentState );
 }
-
-
-
-

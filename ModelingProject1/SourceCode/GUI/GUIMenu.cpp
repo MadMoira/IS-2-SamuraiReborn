@@ -9,6 +9,7 @@ RPRGUI::GUIMenu::~GUIMenu(void)
 {
   listButtons.clear();
   listStaticImages.clear();
+  listBars.clear();
   
   for (std::string::size_type i = 0; i < texturesStaticImages.size(); i++)
   {

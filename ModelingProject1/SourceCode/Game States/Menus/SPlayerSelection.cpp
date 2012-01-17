@@ -14,11 +14,14 @@ SPlayerSelection::SPlayerSelection(GameRender* gR, GameCore* gC, GameInput* gI, 
 
   timer = new GameTimer();
   timer->setFramesPerSecond(30);
+
   setHasEnded(MainStates::STATE_MENUSELECTIONPLAYER);
+  setProperty(MainStates::NORMAL_MENU);
 }
 
 SPlayerSelection::~SPlayerSelection(void)
 {
+  GameSound::getInstance()->closeSound();
 }
 
 void SPlayerSelection::init()
@@ -98,6 +101,7 @@ void SPlayerSelection::logic()
 	  menuSelectionPlayer->setNumberOfPlayers(numberOfPlayers);
 	  menuSelectionPlayer->setPlayerOneSelected(isPlayerOneSelected);
 	  menuSelectionPlayer->setPlayerTwoSelected(isPlayerTwoSelected);
+	  menuSelectionPlayer->setCurrentGameMode(gameCore->getCurrentGameMode());
 
       controllers.at(i).getInputMapper()->dispatchInput( Characters::PandaP1(),
 	                                      *controllers.at(i).getController()->getListKeys(), 
@@ -245,6 +249,7 @@ void SPlayerSelection::handleChangeOfState(int idState)
   switch(idState)
   {
     case MainStates::STATE_LEVELONEJAPAN:
+	case MainStates::STATE_ARENA_MODE:
 	{
       for ( std::string::size_type i = 0; i < controllers.size(); i++)
       {
@@ -281,10 +286,12 @@ void SPlayerSelection::inputCallback(InputMapping::MappedInput& inputs, Characte
   {
     if ( menu.getCurrentSelection() <= MenuData::NO_SELECTED_PLAYER && !menu.isPlayerTwoSelected() )
     {
+	  GameSound::getInstance()->loadChunk(1, 1, 1);
 	  menu.moveSelection(RIGHT);
 	}
 	if ( menu.getCurrentSelection() == MenuData::PLAYER_ONE && menu.isPlayerTwoSelected() )
 	{
+	  GameSound::getInstance()->loadChunk(1, 1, 1);
 	  menu.moveSelection(RIGHT);
 	}
   }
@@ -293,10 +300,12 @@ void SPlayerSelection::inputCallback(InputMapping::MappedInput& inputs, Characte
   {
 	if ( menu.getCurrentSelection() >= MenuData::NO_SELECTED_PLAYER && !menu.isPlayerOneSelected() )
 	{
+	  GameSound::getInstance()->loadChunk(1, 1, 1);
 	  menu.moveSelection(LEFT);
 	}
 	if ( menu.getCurrentSelection() == MenuData::PLAYER_TWO && menu.isPlayerOneSelected() )
 	{
+	  GameSound::getInstance()->loadChunk(1, 1, 1);
 	  menu.moveSelection(LEFT);
 	}
   }
@@ -305,7 +314,17 @@ void SPlayerSelection::inputCallback(InputMapping::MappedInput& inputs, Characte
   {
 	if ( menu.isPlayerOneSelected() || menu.isPlayerTwoSelected() )
 	{
-      menu.setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
+      if ( menu.getCurrentGameMode() == MainStates::LEVELS )
+      {
+        menu.setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
+      }
+	}
+	if ( menu.isPlayerOneSelected() && menu.isPlayerTwoSelected() )
+	{
+      if ( menu.getCurrentGameMode() == MainStates::ARENAS )
+      {
+        menu.setNewIdGameState(MainStates::STATE_ARENA_MODE);
+      }
 	}
   }
 

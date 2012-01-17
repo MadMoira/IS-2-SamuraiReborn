@@ -21,6 +21,11 @@ namespace Image
   {
     void updatePositionArrow();
   };
+
+  struct ArrowSoundMenu : ArrowMenu
+  {
+    void updatePositionArrow();
+  };
 }
 
 namespace Image

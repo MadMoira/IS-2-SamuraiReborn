@@ -1,6 +1,5 @@
 
 #include "SMainMenu.h"
-
 #include <PandaP1.h>
 
 void Image::ArrowMainMenu::updatePositionArrow()
@@ -8,8 +7,7 @@ void Image::ArrowMainMenu::updatePositionArrow()
   if ( optionSelected == MenuData::NOTHING_SELECTED )
   {
     return;
-  } 
-
+  }
   arrow->setPosition(420.0f, 280.0f + ( (optionSelected-1)*50.0f) );
 }
 
@@ -22,7 +20,10 @@ SMainMenu::SMainMenu(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::Ga
   nameState = stateName;
 
   timer = new GameTimer();
+  timer->setFramesPerSecond(30);
+
   setHasEnded(MainStates::STATE_MAINMENU);
+  setProperty(MainStates::NORMAL_MENU);
 }
 
 SMainMenu::~SMainMenu(void)
@@ -40,9 +41,12 @@ void SMainMenu::init()
   mainMenu = new Image::MainMenuSelection(&controllers.at(0));
   mainMenu->setNewIdGameState(MainStates::STATE_MAINMENU);
   mainMenu->setListButtons(&guiMainMenu->getListButtons());
-  numberOfPlayers = 1;
 
-  timer->setFramesPerSecond(30);
+  numberOfPlayers = 1;
+  
+  GameSound::getInstance()->playSound(1,1,0);
+  GameSound::getInstance()->downVolume(2, 0.95f);
+  GameSound::getInstance()->upVolume(1, 100.0f);
 }
 
 void SMainMenu::handleEvents()
@@ -117,6 +121,7 @@ void SMainMenu::logic()
 	  arrowImage.optionSelected = mainMenu->getCurrentSelection();
 
 	  gameCore->setIsRunning(mainMenu->getIsRunning());
+	  gameCore->setCurrentGameMode(mainMenu->getCurrentGameMode());
 
 	  if ( mainMenu->getNewIdGameState() != getNameState() )
 	  {
@@ -211,16 +216,20 @@ void SMainMenu::createGUI()
 
   guiMainMenu->addButton( guiManager->createButton(MenuData::HISTORY_MODE, Vector2f(522.0f, 300.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 0.0f),
-	                                               MainStates::STATE_MENUSELECTIONPLAYER) );
+	                                               MainStates::STATE_MENUSELECTIONPLAYER,
+												   MainStates::LEVELS) );
   guiMainMenu->addButton( guiManager->createButton(MenuData::TUTORIAL, Vector2f(522.0f, 350.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 28.75f),
-	                                               MainStates::STATE_MAINMENU) );
+	                                               MainStates::STATE_MENUSELECTIONPLAYER,
+												   MainStates::ARENAS) );
   guiMainMenu->addButton( guiManager->createButton(MenuData::CREDITS, Vector2f(522.0f, 400.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 57.5f),
-	                                               MainStates::STATE_MAINMENU) );
+	                                               MainStates::STATE_MAINMENU,
+												   MainStates::MENUS) );
   guiMainMenu->addButton( guiManager->createButton(MenuData::QUIT, Vector2f(522.0f, 450.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 86.25f),
-	                                               MainStates::STATE_EXIT) );
+	                                               MainStates::STATE_EXIT,
+												   MainStates::MENUS) );
   guiMainMenu->addTextureButtons( gameRender->loadTexture(commonPath + "MainMenuButtons.png") );                                               
 }
 
@@ -257,6 +266,7 @@ void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Pla
 
   if ( moveUp )
   {
+	GameSound::getInstance()->loadChunk(1, 1, 1);
     if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
@@ -270,24 +280,27 @@ void SMainMenu::inputCallback(InputMapping::MappedInput& inputs, Characters::Pla
 
   if ( moveDown )
   {
+	GameSound::getInstance()->loadChunk(1, 1, 1);
     if ( menu.getCurrentSelection() + 1 > MenuData::QUIT )
     {
 	  menu.setCurrentSelection(MenuData::HISTORY_MODE);
     }
 	else
 	{
-      menu.moveSelection(DOWN);
+	  menu.moveSelection(DOWN);
 	}
   }
 
   if ( pressedButton )
   {
 	bool running = menu.getIsRunning();
+	int gameMode = menu.getCurrentGameMode();
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
-	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
-    }
+	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running, &gameMode) );
+	}
 	menu.setIsRunning(running);
+	menu.setCurrentGameMode(gameMode);
   }
 
   if ( back )

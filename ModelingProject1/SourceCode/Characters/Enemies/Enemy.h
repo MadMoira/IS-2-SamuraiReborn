@@ -20,14 +20,14 @@ namespace Characters
      virtual void initializeCharacter(SpriteData::IDSprites id, std::string filename, Vector2f pos, int initialFrame, 
 		                              std::vector < int > maxFrame, std::vector < int > returnFrame, GLfloat widthSprite, 
 									  GLfloat heightSprite, std::vector < int > framerateAnimations,
-                                      std::vector< Vector2f> delayMovement) = 0;
-     virtual void noAction() = 0;
-     virtual void walk() = 0;
-     virtual void run() = 0;
-     virtual void jump() = 0;
-     virtual void attack() = 0;
-     virtual void falling() = 0;
-     virtual void draw() = 0;
+									  std::vector< Vector2f> delayMovement) { };
+     virtual void noAction() { };
+     virtual void walk() { };
+     virtual void run() { };
+     virtual void jump() { };
+     virtual void attack() { };
+     virtual void falling() { };
+     virtual void draw() { };
 
      void executeAction();
    

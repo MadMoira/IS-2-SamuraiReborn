@@ -1,9 +1,9 @@
 #pragma once
 
 #include <boost/ptr_container/ptr_vector.hpp>
-
 #include "PushButton.h"
 #include "ImageObject.h"
+#include "GameSound.h"
 
 namespace Image
 {
@@ -37,6 +37,9 @@ namespace Image
 
 	 bool getIsRunning() { return isRunning; }
 	 void setIsRunning(bool running) { isRunning = running; }
+	    
+	 int getCurrentGameMode() { return currentGameMode; }
+     void setCurrentGameMode(int mode) { currentGameMode = mode; }
 
     protected:
 	 boost::ptr_vector<RPRGUI::PushButton> listButtons;
@@ -46,5 +49,6 @@ namespace Image
 	 int numberOfPlayers;
 	 bool playerOneSelected, playerTwoSelected;
 	 bool isRunning;
+	 int currentGameMode;
   };
 }

@@ -94,8 +94,8 @@
     <Filter Include="Header Files\Game Physics\Collisions">
       <UniqueIdentifier>{763fff60-7751-4f8f-aa26-d30a21cbf53d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game Physics\Physics Modes">
-      <UniqueIdentifier>{1728db0d-b4b3-42ab-80ed-dc32446f52df}</UniqueIdentifier>
+    <Filter Include="Resource Files\Audio">
+      <UniqueIdentifier>{8434e9b8-f6cf-45b1-95e7-363976a11fb6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Game Physics\Physics Modes">
       <UniqueIdentifier>{99a1e128-3efb-4054-b76c-36201f86166a}</UniqueIdentifier>
@@ -217,8 +217,26 @@
     <Filter Include="Source Files\Game States\Menus\Callback Structs">
       <UniqueIdentifier>{5fb05add-8c23-4e1a-9075-4377568f3a77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Sounds\Menus\SMainMenu">
+      <UniqueIdentifier>{50ffcdc6-6f9a-4cbc-a308-d26ccb044360}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sounds\Menus\SMainMenu">
+      <UniqueIdentifier>{50ffcdc6-6f9a-4cbc-a308-d26ccb044360}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Resource Files\Menus\Pause Menu">
-      <UniqueIdentifier>{85fa9fda-f787-4610-b774-4669f2ca9fbc}</UniqueIdentifier>
+      <UniqueIdentifier>{406e9f76-794b-4f63-95ba-e9c778518e92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game Physics\Physics Modes">
+      <UniqueIdentifier>{bff47d91-47b5-43bb-b88b-51a646a806d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Sound Menu">
+      <UniqueIdentifier>{ed2f252f-5623-45da-a796-b3c8d004cfd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game States\Arenas">
+      <UniqueIdentifier>{20afbd6e-b1c8-4bda-86be-519bd419a1f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game States\Arenas">
+      <UniqueIdentifier>{b0dab99c-f20b-4953-a931-cbf689525d43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -465,6 +483,15 @@
     <ClCompile Include="Game States\Menus\SPause.cpp">
       <Filter>Source Files\Game States\Menus</Filter>
     </ClCompile>
+    <ClCompile Include="Game States\Menus\SSoundOptions.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\Elements\SoundBar.cpp">
+      <Filter>Source Files\GUI\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\Arenas\Deathmatch.cpp">
+      <Filter>Source Files\Game States\Arenas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI\AI.h">
@@ -481,15 +508,6 @@
     </ClInclude>
     <ClInclude Include="AI\LevelGraph.h">
       <Filter>Header Files\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game Physics\Physic Modes\PhysicModes.h">
-      <Filter>Header Files\Game Physics\Physics Modes</Filter>
-    </ClInclude>
-    <ClInclude Include="Game Physics\Physic Modes\PhysicsCore.h">
-      <Filter>Header Files\Game Physics\Physics Modes</Filter>
-    </ClInclude>
-    <ClInclude Include="Game Physics\Physic Modes\RigidBody.h">
-      <Filter>Header Files\Game Physics\Physics Modes</Filter>
     </ClInclude>
     <ClInclude Include="Game Physics\Collisions\Collider.h">
       <Filter>Header Files\Game Physics\Collisions</Filter>
@@ -737,6 +755,27 @@
     <ClInclude Include="Game States\GameStatesData.h">
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
+    <ClInclude Include="Game Physics\Physic Modes\PhysicModes.h">
+      <Filter>Header Files\Game Physics\Physics Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Physics\Physic Modes\RigidBody.h">
+      <Filter>Header Files\Game Physics\Physics Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game Physics\Physic Modes\PhysicsCore.h">
+      <Filter>Header Files\Game Physics\Physics Modes</Filter>
+    </ClInclude>
+    <ClInclude Include="Game States\Menus\SSoundOptions.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Elements\Bar.h">
+      <Filter>Header Files\GUI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Elements\SoundBar.h">
+      <Filter>Header Files\GUI\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Game States\Arenas\Deathmatch.h">
+      <Filter>Header Files\Game States\Arenas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Enemy - SpriteSheet.png">
@@ -850,12 +889,6 @@
     <None Include="Resources\Sounds\Characters\Players\Sword (3).mp3">
       <Filter>Resource Files\Sounds\Characters\Players</Filter>
     </None>
-    <None Include="Game Core\LevelSounds.txt">
-      <Filter>Resource Files\Sounds\Levels\Level One Japan\Section One</Filter>
-    </None>
-    <None Include="Game Core\Musics.txt">
-      <Filter>Resource Files\Sounds\Levels\Level One Japan\Section One</Filter>
-    </None>
     <None Include="Resources\Input\GamepadMenuContext.txt">
       <Filter>Resource Files\Input</Filter>
     </None>
@@ -874,14 +907,71 @@
     <None Include="Resources\Input\KeyboardPauseMenuContext.txt">
       <Filter>Resource Files\Input</Filter>
     </None>
-    <None Include="Resources\Menus\Pause Menu\MainMenuHighlighter.png">
+    <None Include="Ambience.mp3">
+      <Filter>Resource Files\Audio</Filter>
+    </None>
+    <None Include="Game Core\Musics.txt">
+      <Filter>Resource Files\Sounds\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Sounds\Characters\Players\groundHit.mp3">
+      <Filter>Resource Files\Sounds\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Sounds\Levels\SMainMenu\Menu Seleccion (3).mp3">
+      <Filter>Resource Files\Sounds\Menus\SMainMenu</Filter>
+    </None>
+    <None Include="Resources\Sounds\Levels\SMainMenu\Menu Seleccion (2).mp3">
+      <Filter>Resource Files\Sounds\Menus\SMainMenu</Filter>
+    </None>
+    <None Include="Resources\Sounds\Levels\SMainMenu\Menu Seleccion (4).mp3">
+      <Filter>Resource Files\Sounds\Menus\SMainMenu</Filter>
+    </None>
+    <None Include="Resources\Sounds\Levels\SMainMenu\08 - Crushcrushcrush.mp3">
+      <Filter>Resource Files\Sounds\Menus\SMainMenu</Filter>
+    </None>
+    <None Include="Resources\Sounds\Levels\SMainMenu\Menu Seleccion (1).mp3">
+      <Filter>Resource Files\Sounds\Menus\SMainMenu</Filter>
+    </None>
+    <None Include="Game Core\LevelSounds.txt">
+      <Filter>Resource Files\Sounds</Filter>
+    </None>
+    <None Include="Resources\Menus\Pause Menu\PauseMenuButtons.png">
       <Filter>Resource Files\Menus\Pause Menu</Filter>
     </None>
     <None Include="Resources\Menus\Pause Menu\PauseMenuBackground.png">
       <Filter>Resource Files\Menus\Pause Menu</Filter>
     </None>
-    <None Include="Resources\Menus\Pause Menu\PauseMenuButtons.png">
+    <None Include="Resources\Menus\Sound Menu\SoundLevel.png">
+      <Filter>Resource Files\Menus\Sound Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Sound Menu\SoundMenuBackground.png">
+      <Filter>Resource Files\Menus\Sound Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Sound Menu\SoundMenuButtons.png">
+      <Filter>Resource Files\Menus\Sound Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Sound Menu\SoundMenuHighlighter.png">
+      <Filter>Resource Files\Menus\Sound Menu</Filter>
+    </None>
+    <None Include="Resources\Input\GamepadSoundMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\KeyboardSoundMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Menus\Pause Menu\PauseMenuHighlighter.png">
       <Filter>Resource Files\Menus\Pause Menu</Filter>
+    </None>
+    <None Include="Resources\Characters\Players\WeaponCollisionBoxesMeerkat.txt">
+      <Filter>Resource Files\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Characters\Players\WeaponCollisionBoxesPanda.txt">
+      <Filter>Resource Files\Characters\Players</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer0.csv">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer1.csv">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
     </None>
   </ItemGroup>
 </Project>
