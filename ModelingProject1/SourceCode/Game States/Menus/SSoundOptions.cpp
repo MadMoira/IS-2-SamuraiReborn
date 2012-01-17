@@ -302,12 +302,12 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
   {
     if ( menu.getCurrentSelection() == MenuData::EFFECTS )
     {
-	  GameSound::getInstance()->upEffectsVolume(0.1f);
+	  GameSound::getInstance()->upEffectsVolume(0.005f);
     }
 
     if ( menu.getCurrentSelection() == MenuData::MUSIC )
     {
-      GameSound::getInstance()->upMusicVolume(0.1f);
+      GameSound::getInstance()->upMusicVolume(0.005f);
     }
   }
 
@@ -315,12 +315,12 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
   {
     if ( menu.getCurrentSelection() == MenuData::EFFECTS )
     {
-	  GameSound::getInstance()->downEffectsVolume(0.5f);
+	  GameSound::getInstance()->downEffectsVolume(0.005f);
     }
 
     if ( menu.getCurrentSelection() == MenuData::MUSIC )
     {
-      GameSound::getInstance()->downMusicVolume(0.5f);
+      GameSound::getInstance()->downMusicVolume(0.005f);
     }
   }
 

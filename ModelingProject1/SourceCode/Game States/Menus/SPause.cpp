@@ -36,7 +36,9 @@ void SPause::init()
   guiPauseMenu = new RPRGUI::GUIMenu();
 
   createGUI();
+
   GameSound::getInstance()->playAdditionalSound(3,1,0);
+
   gameCore->clearPlayerToInitialize();
   pauseMenu = new Image::MainMenuSelection(&controllers.at(0));
   pauseMenu->setNewIdGameState(MainStates::STATE_PAUSE);

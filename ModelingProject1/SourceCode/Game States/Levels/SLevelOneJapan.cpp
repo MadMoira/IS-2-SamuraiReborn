@@ -33,7 +33,7 @@ void SLevelOneJapan::init()
 
   GameSound::getInstance()->loadSound(0, 1, 1);
   GameSound::getInstance()->loadSound(0, 1, 0);
-  GameSound::getInstance()->downVolume(0, 0.5);
+  GameSound::getInstance()->downVolume(0, 0.9);
   
 
   gameCore->resetCamera(11200.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
@@ -175,18 +175,18 @@ void SLevelOneJapan::initializePlayers()
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(10.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -29.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -34.0f) );
   maxSpeedPanda.push_back( Vector2f(18.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -23.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -29.0f) );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   
   std::vector< Vector2f > maxSpeedMeerkat;
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(12.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -31.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -37.0f) );
   maxSpeedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -25.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -32.0f) );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
 
@@ -292,7 +292,7 @@ void SLevelOneJapan::initializeLevel()
 {
   std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
   japanLevel = new Level(LEVELONEJAPAN);
-  japanLevel->loadTMXTileMapFile(commonPath + "LevelOneSectionOneMap.tmx");
+  japanLevel->loadTMXTileMapFile("LevelOneSectionOne");
 
   japanLevel->addLayerToList(commonPath + "SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
   japanLevel->addLayerToList(commonPath + "Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);

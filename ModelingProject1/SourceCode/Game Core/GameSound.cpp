@@ -9,7 +9,7 @@ GameSound::GameSound(void)
   ERRCHECK(result);
   FMOD::ChannelGroup *cG;
   syste->getMasterChannelGroup(&cG);
-  cG->setVolume(0.05f);
+  cG->setVolume(0.5f);
 
   sFilename = "Game Core/Musics.txt";
   lFilename = "Game Core/LevelSounds.txt";
@@ -168,6 +168,10 @@ void GameSound::upMusicVolume(float increasingValue)
   float volume;
   channel[0]->getVolume(&volume);
   volume += increasingValue;
+  if( volume >= 0.05f )
+  {
+	volume = 0.05f;
+  }
   result = channel[0]->setVolume(volume);
 }
 
@@ -176,27 +180,39 @@ void GameSound::downMusicVolume(float decreasingValue)
   float volume;
   channel[0]->getVolume(&volume);
   volume -= decreasingValue;
+  if( volume <= 0.0f )
+  {
+	volume = 0.0f;
+  }
   result = channel[0]->setVolume(volume);
 }
 
 void GameSound::upEffectsVolume(float increasingValue)
 {
   float volume;
-  for(int i = 1;i < 3; i++)
+  for(int i = 1; i < 3; i++)
   {
     channel[i]->getVolume(&volume);
     volume += increasingValue;
+	if( volume >= 0.05f )
+    {
+	  volume = 0.05f;
+    }
     result = channel[i]->setVolume(volume);
   }
 }
 
 void GameSound::downEffectsVolume(float decreasingValue)
 {
-  for(int i = 1;i < 3; i++)
+  for(int i = 1; i < 3; i++)
   {
     float volume;
     channel[i]->getVolume(&volume);
     volume -= decreasingValue;
+	if( volume <= 0.0f )
+    {
+	  volume = 0.0f;
+    }
     result = channel[i]->setVolume(volume);
   }
 }
