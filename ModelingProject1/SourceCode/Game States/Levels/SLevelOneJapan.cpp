@@ -280,6 +280,8 @@ void SLevelOneJapan::initializePlayers()
 	gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts("", (int)i, "Resources/UI/Numbers.png");
   }
 
+
+
   maxSpeedPanda.clear();
   maxSpeedMeerkat.clear();
   maxFrameVector.clear();
