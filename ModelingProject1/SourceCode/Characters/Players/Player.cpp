@@ -122,7 +122,7 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
   playerSprite->setConstantSpeedX ( 
                 playerSprite->getHandlerAnimation()->changeAnimationDirection(inputs.directionKeyPressed) );
 
-  if ( previousDirectionX == playerSprite->getHandlerAnimation()->getAnimationDirection() )
+  if ( previousDirectionX != playerSprite->getHandlerAnimation()->getAnimationDirection() )
   {
 	return;
   }

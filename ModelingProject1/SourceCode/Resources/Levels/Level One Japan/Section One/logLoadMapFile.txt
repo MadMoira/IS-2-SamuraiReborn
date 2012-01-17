@@ -4,7 +4,7 @@ Number Of Walkable Tiles:  18
 Finish Loading List Walkable Tiles... 
 Loading Layers... 
 Loading Layer #00 - Floor
-Number Of Tiles With Collision:  103
+Number Of Tiles With Collision:  155
 Finish Loading List Collision Tiles Of Layer 0
 Loading Layer #01 - Boxes
 Number Of Tiles With Collision:  65
