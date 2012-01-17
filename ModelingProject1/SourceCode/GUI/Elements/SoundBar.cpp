@@ -11,7 +11,7 @@ RPRGUI::SoundBar::SoundBar(int id, std::string filename)
   this->id = id;
   textureBar = GameRender::loadTexture(filename);
 
-  position = Vector2f( 730.0f, 245.0f + (id*100.0f) );
+  position = Vector2f( 730.0f, 245.0f + ((id-1)*100.0f) );
   imageDimensions = Vector2f( 18.0f, 80.0f );
 
   currentBarFrame = 4;

@@ -118,8 +118,14 @@ void Characters::Player::inputCallback(InputMapping::MappedInput& inputs, Player
 {
   Sprite* playerSprite = player.getCharacterSprite();
 
+  int previousDirectionX = playerSprite->getHandlerAnimation()->getAnimationDirection();
   playerSprite->setConstantSpeedX ( 
                 playerSprite->getHandlerAnimation()->changeAnimationDirection(inputs.directionKeyPressed) );
+
+  if ( previousDirectionX == playerSprite->getHandlerAnimation()->getAnimationDirection() )
+  {
+	return;
+  }
 
   bool findStillInStates = find(inputs.states.begin(), inputs.states.end(), GameCoreStates::STILL) 
                            != inputs.states.end();

@@ -22,7 +22,7 @@ Sprite::Sprite(SpriteData::IDSprites id, std::string filename, Vector2f pos,
                                    maxFrame, returnFrame, framerateAnimations );
 
   rigidBody = new GamePhysics::RigidBody(GamePhysics::RIGID_BODY);
-  rigidBody->initializeNaturalPhysicsForces(-4.0f, 1.0f);
+  rigidBody->initializeNaturalPhysicsForces(-5.5f, 1.0f);
 
   collisionHandler = Collider::getInstance();
 
@@ -330,7 +330,7 @@ void Sprite::drawTexture()
     x = 0;
   }
 
-  //GameRender::drawFullTexture(textureBox, Vector2f(x, getBoxY()), getBoxWidth(), getBoxHeight());
+  GameRender::drawFullTexture(textureBox, Vector2f(x, getBoxY()), getBoxWidth(), getBoxHeight());
 
  
   int currentState = getCurrentState();

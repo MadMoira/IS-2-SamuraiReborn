@@ -285,6 +285,8 @@
     <None Include="Resources\Input\KeyboardSoundMenuContext.txt" />
     <None Include="Resources\Levels\Level One Japan\Section One\Clouds.png" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionList.csv" />
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer0.csv" />
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer1.csv" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneMap.tmx" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneWalkableList.csv" />
     <None Include="Resources\Levels\Level One Japan\Section One\Mountains0.png" />

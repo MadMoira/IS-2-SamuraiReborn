@@ -967,5 +967,11 @@
     <None Include="Resources\Characters\Players\WeaponCollisionBoxesPanda.txt">
       <Filter>Resource Files\Characters\Players</Filter>
     </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer0.csv">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer1.csv">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
   </ItemGroup>
 </Project>
