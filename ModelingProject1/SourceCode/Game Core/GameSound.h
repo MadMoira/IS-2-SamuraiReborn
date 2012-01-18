@@ -27,10 +27,16 @@ LevelSounds.txt:
 	2 = SPlayerSelection
 		0 = Background Music 
 		1 = Selection sound
+	3 =  PauseMenu
+		0 = Background Music 
+		1 = Selection sound
+	4 = SoundMenu
+		0 = Background Music 
+		1 = Selection sound
 
 **Channels**
-Channel[0] = SE = on going sounds
-Channel[1] = MUS = one time, multiple use sounds, chunks
+Channel[0] = SE = on going sounds/music
+Channel[1] = MUS = one time, multiple use sounds/chunks
 Channel[2] = RS = partial duration sounds
 */
 
@@ -44,6 +50,8 @@ class GameSound
    bool initSound();
    void closeAll();
    void ERRCHECK(FMOD_RESULT);
+   void pauseSystem();
+   void unpauseSystem();
 
    void initSounds(int characterID, int soundType);
    void splitFileSounds(std::string line, int soundType);
@@ -52,12 +60,25 @@ class GameSound
    void downVolume(int channelID, float decreasingValue);
    float getVolume(int channelID);
    
+   void upOverallVolume(float increasingValue);
+   void downOverallVolume(float decreasingValue);
+   void upMusicVolume(float increasingValue);
+   void downMusicVolume(float decreasingValue);
+   void upEffectsVolume(float increasingValue);
+   void downEffectsVolume(float decreasingValue);
+
    void loadChunk(int row, int soundType, int soundID);
    void loadSound(int row, int soundType, int soundID);
+   void playAdditionalSound(int row, int soundType, int soundID);
+   void playAdditionalChunk(int row, int soundType, int soundID);
    void playSound(int row, int soundType, int soundID);
    void closeSound();
+
    void stateSoundsHandling(GameCoreStates::SpriteState previousState);
-        
+   std::string soundSelection(int soundType, int soundID);
+
+   float getMusicVolume();
+
   private:
    std::vector< std::string > ambienceSounds;
    std::vector< std::string > statesSounds;
@@ -74,4 +95,9 @@ class GameSound
    FMOD::Sound* chunks[3];
    FMOD::Channel* channel[3];
    FMOD_RESULT result;
+
+   FMOD::Sound* sd;
+   FMOD::Channel* ch;
+   FMOD::System* syste;
+   FMOD_RESULT res;
 };

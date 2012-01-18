@@ -1,7 +1,7 @@
 
 #include "Sword.h"
 
-Sword::Sword(void)
+Weapons::Sword::Sword(int valueDamage) : Weapon(valueDamage)
 {
 }
 

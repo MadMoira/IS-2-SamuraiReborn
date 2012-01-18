@@ -1,6 +1,5 @@
 
 #include "SPause.h"
-
 #include <PandaP1.h>
 
 void Image::ArrowPauseMenu::updatePositionArrow()
@@ -38,8 +37,9 @@ void SPause::init()
 
   createGUI();
 
-  gameCore->clearPlayerToInitialize();
+  GameSound::getInstance()->playAdditionalSound(3,1,0);
 
+  gameCore->clearPlayerToInitialize();
   pauseMenu = new Image::MainMenuSelection(&controllers.at(0));
   pauseMenu->setNewIdGameState(MainStates::STATE_PAUSE);
   pauseMenu->setListButtons(&guiPauseMenu->getListButtons());
@@ -260,6 +260,7 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 
   if ( moveUp )
   {
+	GameSound::getInstance()->playAdditionalChunk(3, 1, 1);
     if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
@@ -273,6 +274,7 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
 
   if ( moveDown )
   {
+	GameSound::getInstance()->playAdditionalChunk(3, 1, 1);
     if ( menu.getCurrentSelection() + 1 > MenuData::MAIN_MENU )
     {
 	  menu.setCurrentSelection(MenuData::CONTINUE_GAME);
@@ -286,15 +288,27 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
   if ( pressedButton )
   {
 	bool running = menu.getIsRunning();
+	int gameMode = 0;
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
-	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
+      int newState = (menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running, &gameMode));
+	  menu.setNewIdGameState(newState);
+	  if( newState == MainStates::STATE_MAINMENU )
+	  {
+	    GameSound::getInstance()->unpauseSystem();
+	    GameSound::getInstance()->closeAll();
+      }
+	  if( newState == MainStates::STATE_IN_GAME )
+	  {
+	    GameSound::getInstance()->unpauseSystem();
+      }
     }
 	menu.setIsRunning(running);
   }
 
   if ( unpause )
   {
+	GameSound::getInstance()->unpauseSystem();
     menu.setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
   }
 }

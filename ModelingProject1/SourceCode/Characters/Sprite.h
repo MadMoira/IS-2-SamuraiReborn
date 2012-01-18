@@ -31,6 +31,7 @@ class Sprite
 								   InputMapping::Controller& controller = InputMapping::Controller() ) = 0;
 
    void initializeSpriteCollisionBox(float width, float height, GLfloat offsetX, GLfloat offsetY);
+   void initializeWeaponCollisionBoxes(std::string filename);
 
    SpriteData::IDSprites getID() { return ID; }
 
@@ -85,6 +86,9 @@ class Sprite
 
    Collider* getCollisionHandler() { return collisionHandler; }
    CollisionSystem::CollisionBox* getCollisionBox() { return spriteCollisionBox; }
+   CollisionSystem::CollisionBox* getWeaponCollisionBox() { return &weaponCollisionBoxes.at(getPreviousState()); }
+
+   void checkAttackCollisions();
 
    GLfloat getBoxX() { return spriteCollisionBox->getX(); }
    GLfloat getBoxY() { return spriteCollisionBox->getY(); }
@@ -113,6 +117,7 @@ class Sprite
    GameCoreStates::PlayerStateManager* playerStateManager;
    Collider* collisionHandler;
    CollisionSystem::CollisionBox* spriteCollisionBox;
+   boost::ptr_vector<CollisionSystem::CollisionBox> weaponCollisionBoxes;
    CollisionSystem::DirectionsMove directionsMove;
    CollisionSystem::CharacterMovement characterMovement;
    GamePhysics::RigidBody* rigidBody;

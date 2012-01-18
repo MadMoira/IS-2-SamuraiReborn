@@ -99,9 +99,9 @@ void GamePhysics::RigidBody::parabolicShot(GLfloat* yVelocity, int playerState)
       playerState == GameCoreStates::FALLING )
   {
     *yVelocity -= gravityValue;
-    if ( *yVelocity >= 60.0f )
+    if ( *yVelocity >= 120.0f )
     {
-      *yVelocity = 60.0f;
+      *yVelocity = 120.0f;
     }
     return;
   }

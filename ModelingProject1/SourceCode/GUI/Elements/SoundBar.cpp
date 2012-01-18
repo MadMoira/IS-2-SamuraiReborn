@@ -4,12 +4,14 @@
 #include <GameRender.h>
 #include <MenuData.h>
 
+#include <GameSound.h>
+
 RPRGUI::SoundBar::SoundBar(int id, std::string filename)
 {
   this->id = id;
   textureBar = GameRender::loadTexture(filename);
 
-  position = Vector2f( 730.0f, 245.0f + (id*100.0f) );
+  position = Vector2f( 730.0f, 245.0f + ((id-1)*100.0f) );
   imageDimensions = Vector2f( 18.0f, 80.0f );
 
   currentBarFrame = 4;
@@ -29,4 +31,17 @@ void RPRGUI::SoundBar::draw()
 
 void RPRGUI::SoundBar::updateCurrentBarFrame()
 {
+  int amountOfBars;
+  switch(id)
+  {
+    case MenuData::EFFECTS:
+	{
+	  float volume = GameSound::getInstance()->getMusicVolume();
+	  break;
+	}
+    case MenuData::MUSIC:
+    {
+      break;
+    }
+  }
 }
