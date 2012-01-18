@@ -112,7 +112,7 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 		  previousTileX = x;
 		  previousTileY = y;
 
-		  if ( x > levelLength/32 || y > 720.0f/32 )
+		  if ( x >= levelLength/32 || y > 720.0f/32 )
 		  {
 			return;
 		  }
@@ -254,7 +254,7 @@ void Collider::checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* sp
 		  previousTileX = x;
 		  previousTileY = y;
 
-		  if ( x > levelLength/32 || y > 720.0f/32 )
+		  if ( x >= levelLength/32 || y > 720.0f/32 )
 		  {
 			return;
 		  }
