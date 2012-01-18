@@ -5,10 +5,31 @@
       <component Id="dd308aa4-b5e0-4f76-bb4b-ee2617c6e906" name="Game Core" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="9913a961-d98b-47e9-bb10-88a65fc24823" />
         <ownedAttributesInternal>
-          <part Id="99584e1e-2ab5-40b0-a24c-e7f7a4c9614f" name="timer" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
+          <part Id="99584e1e-2ab5-40b0-a24c-e7f7a4c9614f" name="State Manager" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
             <elementDefinition Id="4dc54a2b-0d56-439b-91d6-0b6c3cb7e21d" />
+            <targetNamedElementsInternal>
+              <connector Id="1ef8a2bb-c3a8-4f64-86f6-81c27353f8ff" isLeaf="false" isStatic="false">
+                <requiredInterfaceMoniker Id="90fe51ef-37d0-4bce-a74c-60ca8fdfc4a5" LastKnownName="Port2" />
+                <relationshipOwnedElementsInternal>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd Id="8f41ac60-b65b-4225-8d3f-515bbd63c9f8">
+                      <elementDefinition Id="a55ba288-4d5b-4925-b0ec-2c614c448f0f" />
+                      <portWithPart>
+                        <requiredInterfaceMoniker Id="96de6504-4078-47a6-b5b1-6b80fe357920" LastKnownName="Port1" />
+                      </portWithPart>
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                  <connectorHasConnectorEnds>
+                    <connectorEnd Id="02c636ca-c8bd-418a-b8ad-e97e02e9df8f">
+                      <elementDefinition Id="c5f7c832-178f-41ac-9dcc-ab82fd901c76" />
+                    </connectorEnd>
+                  </connectorHasConnectorEnds>
+                </relationshipOwnedElementsInternal>
+                <elementDefinition Id="c419f466-8ee8-4cd1-8605-77b3b8d953df" />
+              </connector>
+            </targetNamedElementsInternal>
             <type_NamedElement>
-              <componentMoniker Id="d9ae59fe-4f0a-414e-88f0-a2aec9e260dd" LastKnownName="Timer" />
+              <componentMoniker Id="d9ae59fe-4f0a-414e-88f0-a2aec9e260dd" />
             </type_NamedElement>
           </part>
           <part Id="4d3bdb7a-3a42-4129-b168-f29fbe0ff66a" name="configuration" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
@@ -23,33 +44,6 @@
               <componentMoniker Id="78c53ae8-dea5-4d1a-87af-b73a5fd35e15" LastKnownName="GameSaves" />
             </type_NamedElement>
           </part>
-          <providedInterface Id="e0a1fca5-5efc-4149-bf7b-c8bb56bf9364" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
-            <elementDefinition Id="dfcd494c-f038-4119-99f3-c02429cce7ba" />
-            <targetNamedElementsInternal>
-              <connector Id="038ffe43-885b-4f99-8994-6283dc6ffa69" isLeaf="false" isStatic="false">
-                <partMoniker Id="99584e1e-2ab5-40b0-a24c-e7f7a4c9614f" LastKnownName="timer" />
-                <relationshipOwnedElementsInternal>
-                  <connectorHasConnectorEnds>
-                    <connectorEnd Id="29cc9967-efea-4e17-a8e3-de57380d8b18">
-                      <elementDefinition Id="aa697dbc-6652-4486-84f3-439deee3164c" />
-                    </connectorEnd>
-                  </connectorHasConnectorEnds>
-                  <connectorHasConnectorEnds>
-                    <connectorEnd Id="22c58e9c-4f39-4a5e-9ea5-e67dd9e30c43">
-                      <elementDefinition Id="b96e1324-e52c-4c3a-b8ed-cae6b795e3f9" />
-                      <portWithPart>
-                        <providedInterfaceMoniker Id="efa6066c-79f1-4637-a5aa-581472ebec60" LastKnownName="Port1" />
-                      </portWithPart>
-                    </connectorEnd>
-                  </connectorHasConnectorEnds>
-                </relationshipOwnedElementsInternal>
-                <elementDefinition Id="88f42849-ed8c-4f21-abbb-ac91133f8be2" />
-              </connector>
-            </targetNamedElementsInternal>
-            <type_NamedElement>
-              <interfaceMoniker Id="5377a2f3-eae3-4cd4-96ca-ff871bfb7725" LastKnownName="Timer Request" />
-            </type_NamedElement>
-          </providedInterface>
           <providedInterface Id="9ccb6b95-00c8-4851-a0a4-bec84017fb06" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
             <elementDefinition Id="26b4a9db-18b7-42ac-8684-051a2b4f623a" />
             <targetNamedElementsInternal>
@@ -102,39 +96,6 @@
             </targetNamedElementsInternal>
             <type_NamedElement>
               <interfaceMoniker Id="2f27f97e-031c-485c-ae97-745042ca9087" LastKnownName="Change Configuration" />
-            </type_NamedElement>
-          </providedInterface>
-          <part Id="39bbb21b-c79e-4e3e-a160-5d3111e27c32" name="score" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="true">
-            <elementDefinition Id="5430be0b-8c51-4f17-893e-be20034186d5" />
-            <type_NamedElement>
-              <componentMoniker Id="ec9a3d63-0676-498d-a6f4-468a9a4889d5" LastKnownName="Score" />
-            </type_NamedElement>
-          </part>
-          <providedInterface Id="47fee7a4-2fe6-4bb5-b5d4-1cacc3f3967a" name="Port4" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
-            <elementDefinition Id="cf9cb32b-2cfd-448c-84f7-cf1c6018a0f5" />
-            <targetNamedElementsInternal>
-              <connector Id="3ed4cbc8-d4f1-4ed9-9662-f92f5bb36e93" isLeaf="false" isStatic="false">
-                <partMoniker Id="39bbb21b-c79e-4e3e-a160-5d3111e27c32" LastKnownName="score" />
-                <relationshipOwnedElementsInternal>
-                  <connectorHasConnectorEnds>
-                    <connectorEnd Id="6dc23b22-f925-4567-ab24-acf616b17b62">
-                      <elementDefinition Id="0a451871-78f6-458b-9690-c120015022c2" />
-                    </connectorEnd>
-                  </connectorHasConnectorEnds>
-                  <connectorHasConnectorEnds>
-                    <connectorEnd Id="804dcf76-4972-40db-b75f-3f20413cad87">
-                      <elementDefinition Id="5e28cc3e-7ca2-4b0a-9aa8-f93bfe8cfd89" />
-                      <portWithPart>
-                        <providedInterfaceMoniker Id="24e41ad7-1d42-464c-9235-7059f926e364" LastKnownName="Port1" />
-                      </portWithPart>
-                    </connectorEnd>
-                  </connectorHasConnectorEnds>
-                </relationshipOwnedElementsInternal>
-                <elementDefinition Id="643aa8e3-fe0c-4834-9ffd-5429cacacff7" />
-              </connector>
-            </targetNamedElementsInternal>
-            <type_NamedElement>
-              <interfaceMoniker Id="7b972362-f1d0-47b2-a441-9349dcf55576" LastKnownName="Compute Score" />
             </type_NamedElement>
           </providedInterface>
           <requiredInterface Id="eed6500d-71a9-40aa-b13e-d3dd44d010c9" name="Port5" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
@@ -215,19 +176,31 @@
               <interfaceMoniker Id="8e5d53c1-20a0-4108-98a7-cef65ed6248d" LastKnownName="File Reading" />
             </type_NamedElement>
           </providedInterface>
+          <requiredInterface Id="90fe51ef-37d0-4bce-a74c-60ca8fdfc4a5" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="bc8efe8f-39db-46c6-b5d6-3aa8050472d9" />
+            <suppliersInternal>
+              <dependency Id="02f06483-52a0-4b9d-b3bb-f1851488f645" name="Time Provide">
+                <providedInterfaceMoniker Id="55a6e5fd-7c1f-4122-be2f-221f8a23b0cb" LastKnownName="Port1" />
+                <elementDefinition Id="c01de1f7-fe09-4a9a-8e47-903a6840075f" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="f34125e5-cbb2-49e3-abb6-233e1851ae16" LastKnownName="Time Request" />
+            </type_NamedElement>
+          </requiredInterface>
         </ownedAttributesInternal>
       </component>
     </componentModelHasComponents>
     <componentModelHasComponents>
-      <component Id="d9ae59fe-4f0a-414e-88f0-a2aec9e260dd" name="Timer" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <component Id="d9ae59fe-4f0a-414e-88f0-a2aec9e260dd" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="242274d9-0fe9-48a5-b252-98bf6c84f89a" />
         <ownedAttributesInternal>
-          <providedInterface Id="efa6066c-79f1-4637-a5aa-581472ebec60" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
-            <elementDefinition Id="0dc72acb-587d-4762-b0b8-2f629055a53f" />
+          <requiredInterface Id="96de6504-4078-47a6-b5b1-6b80fe357920" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="daee93b9-5041-4db6-869d-fbbc3b3a1e6a" />
             <type_NamedElement>
-              <interfaceMoniker Id="3b7f750c-394e-44b0-9c90-7da62fbf1813" LastKnownName="Timer Request" />
+              <interfaceMoniker Id="10e5954f-1779-4fe6-a48f-7f5aa87ba69c" LastKnownName="Time Request" />
             </type_NamedElement>
-          </providedInterface>
+          </requiredInterface>
         </ownedAttributesInternal>
       </component>
     </componentModelHasComponents>
@@ -258,16 +231,6 @@
       </component>
     </componentModelHasComponents>
     <modelContainsNamedElements>
-      <Interface Id="5377a2f3-eae3-4cd4-96ca-ff871bfb7725" name="Timer Request" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="6122bbef-e126-434e-a232-61f9ed4e400a" />
-      </Interface>
-    </modelContainsNamedElements>
-    <modelContainsNamedElements>
-      <Interface Id="3b7f750c-394e-44b0-9c90-7da62fbf1813" name="Timer Request" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="35e2a8ae-a487-4e2d-9bdf-802ab462bb8a" />
-      </Interface>
-    </modelContainsNamedElements>
-    <modelContainsNamedElements>
       <Interface Id="9181d0df-b7ae-4800-a7c1-2b011301f8a1" name="Save/Load Game" isAbstract="false" isLeaf="false">
         <elementDefinition Id="0dfb0444-ecb4-49ca-9260-fa734ed1db6a" />
       </Interface>
@@ -285,29 +248,6 @@
     <modelContainsNamedElements>
       <Interface Id="2f27f97e-031c-485c-ae97-745042ca9087" name="Change Configuration" isAbstract="false" isLeaf="false">
         <elementDefinition Id="104a7a66-c213-40f4-a7de-08f136f834dd" />
-      </Interface>
-    </modelContainsNamedElements>
-    <componentModelHasComponents>
-      <component Id="ec9a3d63-0676-498d-a6f4-468a9a4889d5" name="Score" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="29b49758-b344-4cfb-b5f5-447f5815affc" />
-        <ownedAttributesInternal>
-          <providedInterface Id="24e41ad7-1d42-464c-9235-7059f926e364" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
-            <elementDefinition Id="f4d88277-8799-4440-8e65-b67ccd366384" />
-            <type_NamedElement>
-              <interfaceMoniker Id="7e56ac04-9ee9-4b26-8089-fb982aaee098" LastKnownName="ComputeScore" />
-            </type_NamedElement>
-          </providedInterface>
-        </ownedAttributesInternal>
-      </component>
-    </componentModelHasComponents>
-    <modelContainsNamedElements>
-      <Interface Id="7b972362-f1d0-47b2-a441-9349dcf55576" name="Compute Score" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="1872a58b-5917-44d9-885b-564c8f38866b" />
-      </Interface>
-    </modelContainsNamedElements>
-    <modelContainsNamedElements>
-      <Interface Id="7e56ac04-9ee9-4b26-8089-fb982aaee098" name="ComputeScore" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="b052e073-f9b6-4830-aec2-68ca8bfabd3d" />
       </Interface>
     </modelContainsNamedElements>
     <componentModelHasComponents>
@@ -524,6 +464,18 @@
             </suppliersInternal>
             <type_NamedElement>
               <interfaceMoniker Id="54c31f85-ca67-42ae-94a4-5de7d66bad40" LastKnownName="Observer / Update physics paramaters" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="3133f52b-de6d-4ae3-90bf-84f5d4ea6015" name="Port6" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="2e627cf7-57a2-4568-bad8-1f360360edee" />
+            <suppliersInternal>
+              <dependency Id="af084524-8c8b-4b64-8ab9-d45c8a382b0c">
+                <providedInterfaceMoniker Id="4bc7d25c-1ec9-48d7-a9f8-ecec59edfbb5" LastKnownName="Port1" />
+                <elementDefinition Id="f8f2aaf1-d041-422c-bd9f-584c1c994329" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="616db281-b761-471b-bafb-b3ac3b308a62" />
             </type_NamedElement>
           </requiredInterface>
         </ownedAttributesInternal>
@@ -813,6 +765,57 @@
     <modelContainsNamedElements>
       <Interface Id="8e5d53c1-20a0-4108-98a7-cef65ed6248d" name="File Reading" isAbstract="false" isLeaf="false">
         <elementDefinition Id="4b39dd28-f713-47d8-90bd-9a286147f884" />
+      </Interface>
+    </modelContainsNamedElements>
+    <componentModelHasComponents>
+      <component Id="d3ec5d23-3d04-48a3-8256-6a69be51cc9b" name="Score" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="aec8106b-40e7-4ab6-8c15-1644a1eaa9e0" />
+        <ownedAttributesInternal>
+          <providedInterface Id="4bc7d25c-1ec9-48d7-a9f8-ecec59edfbb5" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="284699ac-21f6-490b-a337-e63e40c9a759" />
+            <type_NamedElement>
+              <interfaceMoniker Id="c5fd5bbb-446c-45ff-9a53-a1eae7faa4a8" LastKnownName="Compute Score" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="c5fd5bbb-446c-45ff-9a53-a1eae7faa4a8" name="Compute Score" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="370880f1-4521-4013-a438-0e7631a97e36" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="616db281-b761-471b-bafb-b3ac3b308a62" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bfe91dda-a024-4c33-9148-b9d331d8ab7e" />
+      </Interface>
+    </modelContainsNamedElements>
+    <componentModelHasComponents>
+      <component Id="fb150c45-361d-41de-bde2-206a199a6abb" name="Game Timer" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6b620514-f861-4923-bbf5-ba6fb79cbf63" />
+        <ownedAttributesInternal>
+          <providedInterface Id="55a6e5fd-7c1f-4122-be2f-221f8a23b0cb" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="09035248-ee1e-4e31-b8fb-3c3450d39071" />
+            <type_NamedElement>
+              <interfaceMoniker Id="b3219926-2fd3-49ef-b22c-5ac4d9737d5c" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="b3219926-2fd3-49ef-b22c-5ac4d9737d5c" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bee39488-a85e-413e-a395-680bbdb2aa82" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="10e5954f-1779-4fe6-a48f-7f5aa87ba69c" name="Time Request" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="fc7e8a85-48fa-4bfd-988f-b05f211d5394" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="f34125e5-cbb2-49e3-abb6-233e1851ae16" name="Time Request" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c8ae9301-e2ec-4998-b31c-07090360892e" />
       </Interface>
     </modelContainsNamedElements>
   </packagedElements>

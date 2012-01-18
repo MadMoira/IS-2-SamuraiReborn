@@ -31,8 +31,7 @@ void Deathmatch::init()
   initializePlayers();
   initializeLevel();
 
-  gameCore->resetCamera(1280.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
-                                 gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxWidth()/2 );
+  gameCore->resetCamera(1280.0f);
 
   Collider::getInstance()->setLevelLength(1280);
   Collider::getInstance()->setGameMode(gameCore->getCurrentGameMode());
@@ -102,7 +101,7 @@ void Deathmatch::logic()
     }
   }
 
-  gameCore->getCamera()->updateCamera(&gameCore->getPlayersList());
+  gameCore->getCamera()->updateCamera();
 
   deathmatchLevel->scrollContinuousBackgroundLayers();
   
