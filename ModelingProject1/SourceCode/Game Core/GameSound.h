@@ -15,6 +15,7 @@ StateID:
 	0 = attackSound
 	1 = groundhitSound
 	2 = runningSound
+	3 = Still Attack Sound
 **Files Layout**
 Musics.txt:
 	0 = Panda sounds
@@ -38,6 +39,16 @@ LevelSounds.txt:
 Channel[0] = SE = on going sounds/music
 Channel[1] = MUS = one time, multiple use sounds/chunks
 Channel[2] = RS = partial duration sounds
+
+ch[0] = Additional musics
+ch[1] = Additional effects
+
+**Volume**
+Max value = 1.0f
+Min Value = 0.0f
+volumeValues[0] = Value for the musics volume
+volumeValues[1] = Value for the effects volume
+
 */
 
 class GameSound 
@@ -52,6 +63,7 @@ class GameSound
    void ERRCHECK(FMOD_RESULT);
    void pauseSystem();
    void unpauseSystem();
+   void clearAuxiliarSystem();
 
    void initSounds(int characterID, int soundType);
    void splitFileSounds(std::string line, int soundType);
@@ -59,7 +71,7 @@ class GameSound
    void upVolume(int channelID, float increasingValue);
    void downVolume(int channelID, float decreasingValue);
    float getVolume(int channelID);
-   
+
    void upOverallVolume(float increasingValue);
    void downOverallVolume(float decreasingValue);
    void upMusicVolume(float increasingValue);
@@ -97,7 +109,8 @@ class GameSound
    FMOD_RESULT result;
 
    FMOD::Sound* sd;
-   FMOD::Channel* ch;
+   FMOD::Channel* ch[2];
    FMOD::System* syste;
    FMOD_RESULT res;
+   float volumeValues[2];
 };
