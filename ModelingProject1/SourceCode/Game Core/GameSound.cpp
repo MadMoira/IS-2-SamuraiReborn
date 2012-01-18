@@ -3,8 +3,13 @@
 GameSound::GameSound(void)
 {
   result = FMOD::System_Create(&system);
+  res = FMOD::System_Create(&syste);
   printf("FMOD created");
+
   ERRCHECK(result);
+  FMOD::ChannelGroup *cG;
+  syste->getMasterChannelGroup(&cG);
+  cG->setVolume(0.5f);
 
   sFilename = "Game Core/Musics.txt";
   lFilename = "Game Core/LevelSounds.txt";
@@ -42,45 +47,65 @@ void GameSound::closeSound()
   currentSound = "NULL";
 }
 
+void GameSound::pauseSystem()
+{
+  FMOD::ChannelGroup *cG;
+  res = syste->init(32, FMOD_INIT_NORMAL, 0);
+  system->getMasterChannelGroup(&cG);
+  cG->setPaused(true);
+}
+
+void GameSound::unpauseSystem()
+{
+  ch->setPaused(true);
+  sd->release();
+  ch->stop();
+  syste->close();
+
+  FMOD::ChannelGroup *cG;
+  system->getMasterChannelGroup(&cG);
+  cG->setPaused(false);
+}
+
 void GameSound::initSounds(int row, int soundType)
 {
-   statesSounds.clear();
-   ambienceSounds.clear();
-   std::string line;
-   if(soundType == 0)
-   {
-     line = readLineFromFile(sFilename, row);
-   }
-   else
-   {
-     line = readLineFromFile(lFilename, row);
-   }
-   splitFileSounds(line, soundType);
+  statesSounds.clear();
+  ambienceSounds.clear();
+  std::string line;
+  if(soundType == 0)
+  {
+    line = readLineFromFile(sFilename, row);
+  }
+  else
+  {
+    line = readLineFromFile(lFilename, row);
+  }
+  splitFileSounds(line, soundType);
 }
 
 void GameSound::splitFileSounds(std::string line, int soundType)
 {
-	std::string temp;
+  std::string temp;
 
-	for(std::string::size_type i = 0; i < line.size(); i++)
-	{
-		if( line.at(i) == ';' && temp != "" )
-		{
-			if( soundType == 0 )
-			{
-				statesSounds.push_back(temp);
-			}
-			else
-			{
-				ambienceSounds.push_back(temp);
-			}       
-			temp = "";
-		}
-		else
-		{
-			temp += line.at(i);
-		}
-	}
+  for(std::string::size_type i = 0; i < line.size(); i++)
+  {
+    if( line.at(i) == ';' && temp != "" )
+    {
+	  if( soundType == 0 )
+	  {
+	    statesSounds.push_back(temp);
+      }
+	  else
+	  {
+	    ambienceSounds.push_back(temp);
+	  }       
+      temp = "";
+    }
+    else
+    {
+      temp += line.at(i);
+    }
+  }
 }
 
 void GameSound::upVolume(int channelID, float increasingValue)
@@ -99,10 +124,97 @@ void GameSound::downVolume(int channelID, float decreasingValue)
   result = channel[channelID]->setVolume(volume);
 }
 
-float GameSound::getVolume(int channelID){
+float GameSound::getVolume(int channelID)
+{
   float volume;
   channel[channelID]->getVolume(&volume);
   return volume;
+}
+
+void GameSound::upOverallVolume(float increasingValue)
+{
+  FMOD::ChannelGroup *cG;
+  FMOD::ChannelGroup *cG1;
+  float volume;
+  system->getMasterChannelGroup(&cG);
+
+  volume = cG->getVolume(&volume);
+  volume += increasingValue;
+  result = cG->setVolume(volume);
+  system->getMasterChannelGroup(&cG1);
+
+  volume = cG1->getVolume(&volume);
+  volume += increasingValue;
+  result = cG1->setVolume(volume);
+}
+
+void GameSound::downOverallVolume(float decreasingValue)
+{
+  FMOD::ChannelGroup *cG;
+  FMOD::ChannelGroup *cG1;
+  float volume;
+  system->getMasterChannelGroup(&cG);
+  volume = cG->getVolume(&volume);
+  volume -= decreasingValue;
+  result = cG->setVolume(volume);
+  system->getMasterChannelGroup(&cG1);
+  volume = cG1->getVolume(&volume);
+  volume -= decreasingValue;
+  result = cG1->setVolume(volume);
+}
+
+void GameSound::upMusicVolume(float increasingValue)
+{
+  float volume;
+  channel[0]->getVolume(&volume);
+  volume += increasingValue;
+  if( volume >= 0.05f )
+  {
+	volume = 0.05f;
+  }
+  result = channel[0]->setVolume(volume);
+}
+
+void GameSound::downMusicVolume(float decreasingValue)
+{
+  float volume;
+  channel[0]->getVolume(&volume);
+  volume -= decreasingValue;
+  if( volume <= 0.0f )
+  {
+	volume = 0.0f;
+  }
+  result = channel[0]->setVolume(volume);
+}
+
+void GameSound::upEffectsVolume(float increasingValue)
+{
+  float volume;
+  for(int i = 1; i < 3; i++)
+  {
+    channel[i]->getVolume(&volume);
+    volume += increasingValue;
+	if( volume >= 0.05f )
+    {
+	  volume = 0.05f;
+    }
+    result = channel[i]->setVolume(volume);
+  }
+}
+
+void GameSound::downEffectsVolume(float decreasingValue)
+{
+  for(int i = 1; i < 3; i++)
+  {
+    float volume;
+    channel[i]->getVolume(&volume);
+    volume -= decreasingValue;
+	if( volume <= 0.0f )
+    {
+	  volume = 0.0f;
+    }
+    result = channel[i]->setVolume(volume);
+  }
 }
 
 void GameSound::loadChunk(int row, int soundType, int soundID)
@@ -110,19 +222,7 @@ void GameSound::loadChunk(int row, int soundType, int soundID)
   initSounds(row, soundType);
   std::string name;
 
-  if(soundType == 0)
-  {
-    name = statesSounds.at(soundID);
-  }
-  else
-  {
-    name = ambienceSounds.at(soundID);
-  }
-                
-  if(name == "none")
-  {
-    return;
-  }
+  name = GameSound::soundSelection(soundType, soundID);
 
   const char* chunkName = name.c_str();
   result = system->createSound(chunkName, FMOD_LOOP_OFF, 0, &chunks[0]);
@@ -137,19 +237,7 @@ void GameSound::loadSound(int row, int soundType, int soundID)
   initSounds(row, soundType);
   std::string name;
 
-  if(soundType == 0)
-  {
-    name = statesSounds.at(soundID);
-  }
-  else
-  {
-    name = ambienceSounds.at(soundID);
-  }
-                
-  if(name == "none")
-  {
-    return;
-  }
+  name = GameSound::soundSelection(soundType, soundID);
   
   const char* musicName = name.c_str();
   printf("Loading");
@@ -160,19 +248,50 @@ void GameSound::loadSound(int row, int soundType, int soundID)
   ERRCHECK(result);
 }
 
+void GameSound::playAdditionalSound(int row, int soundType, int soundID)
+{
+  initSounds(row, soundType);
+  std::string name;
+
+  name = GameSound::soundSelection(soundType, soundID);
+                
+  if( name == "none" )
+  {
+    return;
+  }
+
+  currentSound = name.c_str();
+  res = syste->createStream(currentSound, FMOD_DEFAULT, 0 , &sd );
+  ERRCHECK(res);
+  res = syste->playSound( FMOD_CHANNEL_REUSE, sd, false, &ch);
+  ERRCHECK(res);
+}
+
+void GameSound::playAdditionalChunk(int row, int soundType, int soundID)
+{
+  initSounds(row, soundType);
+  std::string name;
+
+  name = GameSound::soundSelection(soundType, soundID);
+                
+  if(name == "none")
+  {
+    return;
+  }
+  
+  const char* chunkName = name.c_str();
+  res = syste->createSound(chunkName, FMOD_LOOP_OFF, 0, &sd);
+  ERRCHECK(res);
+  result = syste->playSound(FMOD_CHANNEL_FREE, sd, false, &ch);
+  ERRCHECK(res);
+}
+
 void GameSound::playSound(int row, int soundType, int soundID)
 {
   initSounds(row, soundType);
   std::string name;
 
-  if(soundType == 0)
-  {
-    name = statesSounds.at(soundID);
-  }
-  else
-  {
-    name = ambienceSounds.at(soundID);
-  }
+  name = GameSound::soundSelection(soundType, soundID);
                 
   if( name == "none" )
   {
@@ -186,6 +305,21 @@ void GameSound::playSound(int row, int soundType, int soundID)
   ERRCHECK(result);
 }
 
+std::string GameSound::soundSelection(int soundType, int soundID)
+{
+  std::string name;
+  if(soundType == 0)
+  {
+    name = statesSounds.at(soundID);
+  }
+  else
+  {
+    name = ambienceSounds.at(soundID);
+  }
+                
+  return name;
+}
+
 void GameSound::stateSoundsHandling(GameCoreStates::SpriteState previousState)
 {
   if( previousState == GameCoreStates::RUNNING )
@@ -194,16 +328,24 @@ void GameSound::stateSoundsHandling(GameCoreStates::SpriteState previousState)
   }
   if(previousState == GameCoreStates::FALLING)
   {
-     GameSound::getInstance()->loadChunk(0,0,1);
+     GameSound::getInstance()->loadChunk(0, 0, 1);
   }
 }
 
 void GameSound::closeAll()
 {
   result = system->close();
+  FMOD::SoundGroup *sG;
+  system->getMasterSoundGroup(&sG);
+  sG->stop();
+
   ERRCHECK(result);
   result = system->release();
   ERRCHECK(result);
+
+  ambienceSounds.clear();
+  statesSounds.clear();
+  instanceFlag = false;
 }
 
 void GameSound::ERRCHECK(FMOD_RESULT result)
@@ -213,4 +355,11 @@ void GameSound::ERRCHECK(FMOD_RESULT result)
     printf("FMOD error! (%d) %s\n", result, FMOD_ErrorString(result));
     exit(-1);
   }
+}
+
+float GameSound::getMusicVolume()
+{
+  float volume = 0.0f;
+  channel[0]->getVolume(&volume); 
+  return volume;
 }

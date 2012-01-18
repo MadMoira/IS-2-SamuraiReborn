@@ -29,8 +29,8 @@ namespace MenuData
 
   enum SoundOptions
   {
-	MUSIC = 1,
-	EFFECTS,
+	EFFECTS = 1,
+	MUSIC,
 	BACK_PAUSE,
   };
 

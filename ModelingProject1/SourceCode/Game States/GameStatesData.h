@@ -12,11 +12,19 @@ namespace MainStates
     STATE_LEVELONEJAPAN,
 	STATE_PAUSE,
 	STATE_SOUNDS_OPTIONS,
+	STATE_ARENA_MODE,
 	STATE_IN_GAME,
     STATE_EXIT,
   };
 
-  const int Properties[9] = { 0, 0, 0, 0, 1, 1, 2, 2, 1 };
+  enum GameMode
+  {
+	LEVELS,
+	ARENAS,
+	MENUS,
+  };
+
+  const int Properties[11] = { 0, 0, 0, 0, 1, 1, 2, 2, 1, 1, 0 };
 
   enum PropertiesStates
   {

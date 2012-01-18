@@ -7,6 +7,7 @@
 #include "SPlayerSelection.h"
 #include "SPause.h"
 #include "SSoundOptions.h"
+#include "Deathmatch.h"
 
 GameStateManager::GameStateManager(void)
 {
@@ -80,6 +81,7 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
 	  case STATE_PAUSE:
 	  {
 		popBackMenuInGameState(currentGameState);
+		GameSound::getInstance()->pauseSystem();
 		statesStack.push_back(new SPause( gR, gC, gI, STATE_PAUSE ) );
 		currentID = 1;
 		currentState = statesStack.at(currentID).getNameState();
@@ -94,6 +96,12 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
 		currentState = statesStack.at(currentID).getNameState();
 		break;
 	  }
+	  case STATE_ARENA_MODE:
+      {
+        cleanUp();
+        changeState(new Deathmatch( gR, gC, gI, STATE_ARENA_MODE ) );
+        break;
+      }
     }
 
 	init();

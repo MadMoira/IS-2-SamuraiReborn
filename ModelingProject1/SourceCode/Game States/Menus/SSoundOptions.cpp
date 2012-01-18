@@ -3,6 +3,8 @@
 #include <SoundBar.h>
 #include <PandaP1.h>
 
+#include <GameSound.h>
+
 void Image::ArrowSoundMenu::updatePositionArrow()
 {
   if ( optionSelected == MenuData::NOTHING_SELECTED )
@@ -220,10 +222,10 @@ void SSoundOptions::createGUI()
 															 "") );
   guiSoundMenu->addTextureStaticImages(gameRender->loadTexture(commonPath + "SoundMenuBackground.png")); 
 
-  guiSoundMenu->addButton( guiManager->createButton(MenuData::MUSIC, Vector2f(410.0f, 280.0f), 
+  guiSoundMenu->addButton( guiManager->createButton(MenuData::EFFECTS, Vector2f(410.0f, 280.0f), 
 	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 0.0f),
 	                                               MainStates::STATE_SOUNDS_OPTIONS) );
-  guiSoundMenu->addButton( guiManager->createButton(MenuData::EFFECTS, Vector2f(387.0f, 380.0f), 
+  guiSoundMenu->addButton( guiManager->createButton(MenuData::MUSIC, Vector2f(387.0f, 380.0f), 
 	                                               Vector2f(256.0f, 32.0f), Vector2f(0.0f, 32.0f),
 	                                               MainStates::STATE_SOUNDS_OPTIONS) );
   guiSoundMenu->addButton( guiManager->createButton(MenuData::BACK_PAUSE, Vector2f(510.0f, 480.0f), 
@@ -232,8 +234,8 @@ void SSoundOptions::createGUI()
 
   guiSoundMenu->addTextureButtons( gameRender->loadTexture(commonPath + "SoundMenuButtons.png") );  
 
-  guiSoundMenu->addBar( new RPRGUI::SoundBar(0, commonPath + "SoundLevel.png") );
-  guiSoundMenu->addBar( new RPRGUI::SoundBar(1, commonPath + "SoundLevel.png") );
+  guiSoundMenu->addBar( new RPRGUI::SoundBar(MenuData::EFFECTS, commonPath + "SoundLevel.png") );
+  guiSoundMenu->addBar( new RPRGUI::SoundBar(MenuData::MUSIC, commonPath + "SoundLevel.png") );
 }
 
 void SSoundOptions::handleMouseUp(Uint8 button, Vector2f mousePosition)
@@ -264,11 +266,14 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
 
   bool moveUp = inputs.actions.find(GameCoreStates::UP) != inputs.actions.end();
   bool moveDown = inputs.actions.find(GameCoreStates::DOWN) != inputs.actions.end();
+  bool increaseVolume = inputs.actions.find(GameCoreStates::RIGHT) != inputs.actions.end();
+  bool decreaseVolume = inputs.actions.find(GameCoreStates::LEFT) != inputs.actions.end();
   bool pressedButton = inputs.actions.find(GameCoreStates::CONTINUE) != inputs.actions.end();
   bool back = inputs.actions.find(GameCoreStates::BACK) != inputs.actions.end();
 
   if ( moveUp )
   {
+	GameSound::getInstance()->playAdditionalChunk(4, 1, 1);
     if ( menu.getCurrentSelection() - 1 == MenuData::NOTHING_SELECTED ||
 		 menu.getCurrentSelection() == MenuData::NOTHING_SELECTED)
     {
@@ -282,6 +287,7 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
 
   if ( moveDown )
   {
+	  GameSound::getInstance()->playAdditionalChunk(4, 1, 1);
     if ( menu.getCurrentSelection() + 1 > MenuData::BACK_PAUSE )
     {
 	  menu.setCurrentSelection(MenuData::MUSIC);
@@ -292,12 +298,39 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
 	}
   }
 
+  if ( increaseVolume )
+  {
+    if ( menu.getCurrentSelection() == MenuData::EFFECTS )
+    {
+	  GameSound::getInstance()->upEffectsVolume(0.005f);
+    }
+
+    if ( menu.getCurrentSelection() == MenuData::MUSIC )
+    {
+      GameSound::getInstance()->upMusicVolume(0.005f);
+    }
+  }
+
+  if ( decreaseVolume )
+  {
+    if ( menu.getCurrentSelection() == MenuData::EFFECTS )
+    {
+	  GameSound::getInstance()->downEffectsVolume(0.005f);
+    }
+
+    if ( menu.getCurrentSelection() == MenuData::MUSIC )
+    {
+      GameSound::getInstance()->downMusicVolume(0.005f);
+    }
+  }
+
   if ( pressedButton )
   {
 	bool running = menu.getIsRunning();
+	int gameMode = 0;
 	if ( menu.getCurrentSelection() != MenuData::NOTHING_SELECTED )
     {
-	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running) );
+	  menu.setNewIdGameState( menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running, &gameMode) );
     }
 	menu.setIsRunning(running);
   }

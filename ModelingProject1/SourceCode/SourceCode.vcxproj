@@ -41,7 +41,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files\Boost\boost_1_47_0;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;C:\Users\Sebastian\Documents\Librerias\CEGUI-SDK-0.7.5-vc10\cegui\include;C:\Users\Sebastian\Documents\Librerias;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Characters\Enemies;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Game States\Menus\Callback Structs;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Game Physics\Physic Modes;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Input\Player;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Characters\Character States;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\GUI\Elements;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Graphics\Image;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Graphics\Text;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Graphics\Font;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Characters\Players;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\System;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Game Physics\Collisions;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Game States\Menus;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Game States\Levels;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Weapons;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Level Design;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Input;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\GUI;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Graphics;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Game States;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Game Physics;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Game Core;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\Characters;C:\Users\Sebastian\Documents\Visual Studio 2010\Projects\MyClon\ModelingProject1\SourceCode\AI;C:\Program Files\Boost\boost_1_47_0;C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;C:\Users\Sebastian\Documents\Librerias\CEGUI-SDK-0.7.5-vc10\cegui\include;C:\Users\Sebastian\Documents\Librerias;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;C:\Users\Sebastian\Documents\Librerias\CEGUI-SDK-0.7.5-vc10\lib;C:\Users\Sebastian\Documents\Librerias;$(LibraryPath)</LibraryPath>
@@ -114,6 +114,7 @@
     <ClCompile Include="Game Physics\Collisions\CollisionStructs.cpp" />
     <ClCompile Include="Game Physics\Physic Modes\PhysicsCore.cpp" />
     <ClCompile Include="Game Physics\Physic Modes\RigidBody.cpp" />
+    <ClCompile Include="Game States\Arenas\Deathmatch.cpp" />
     <ClCompile Include="Game States\GameState.cpp" />
     <ClCompile Include="Game States\GameStateManager.cpp" />
     <ClCompile Include="Game States\Levels\SLevelOneJapan.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Game Physics\Physic Modes\PhysicModes.h" />
     <ClInclude Include="Game Physics\Physic Modes\PhysicsCore.h" />
     <ClInclude Include="Game Physics\Physic Modes\RigidBody.h" />
+    <ClInclude Include="Game States\Arenas\Deathmatch.h" />
     <ClInclude Include="Game States\GameState.h" />
     <ClInclude Include="Game States\GameStateManager.h" />
     <ClInclude Include="Game States\GameStatesData.h" />
@@ -265,6 +267,8 @@
     <None Include="Game Core\Musics.txt" />
     <None Include="Resources\Characters\Players\Meerkat - SpriteSheet.png" />
     <None Include="Resources\Characters\Players\Panda - SpriteSheet.png" />
+    <None Include="Resources\Characters\Players\WeaponCollisionBoxesMeerkat.txt" />
+    <None Include="Resources\Characters\Players\WeaponCollisionBoxesPanda.txt" />
     <None Include="Resources\GUI\Cursor.png" />
     <None Include="Resources\GUI\Fonts\orbitron-black.ttf" />
     <None Include="Resources\Input\GamepadContext.txt" />
@@ -281,6 +285,8 @@
     <None Include="Resources\Input\KeyboardSoundMenuContext.txt" />
     <None Include="Resources\Levels\Level One Japan\Section One\Clouds.png" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionList.csv" />
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer0.csv" />
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer1.csv" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneMap.tmx" />
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneWalkableList.csv" />
     <None Include="Resources\Levels\Level One Japan\Section One\Mountains0.png" />
