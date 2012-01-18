@@ -33,7 +33,7 @@ void SLevelOneJapan::init()
 
   GameSound::getInstance()->loadSound(0, 1, 1);
   GameSound::getInstance()->loadSound(0, 1, 0);
-  GameSound::getInstance()->downVolume(0, 0.9);
+  GameSound::getInstance()->downVolume(0, 0.5);
   
 
   gameCore->resetCamera(11200.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
