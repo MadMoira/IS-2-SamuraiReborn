@@ -8,6 +8,8 @@
 #include "SPause.h"
 #include "SSoundOptions.h"
 #include "Deathmatch.h"
+#include "SArenaWinner.h"
+#include "SCredits.h"
 
 GameStateManager::GameStateManager(void)
 {
@@ -102,6 +104,18 @@ void GameStateManager::changeCurrentState(GameRender* gR, GameCore* gC, GameInpu
         changeState(new Deathmatch( gR, gC, gI, STATE_ARENA_MODE ) );
         break;
       }
+	  case STATE_ARENA_WINNER:
+	  {
+        cleanUp();
+        changeState(new SArenaWinner( gR, gC, gI, STATE_ARENA_WINNER ) );
+        break;
+	  }
+	  case STATE_CREDITS:
+	  {
+	    cleanUp();
+        changeState(new SCredits( gR, gC, gI, STATE_CREDITS ) );
+        break;
+	  }
     }
 
 	init();

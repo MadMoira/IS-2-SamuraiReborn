@@ -13,7 +13,7 @@ EnemySprite::EnemySprite(SpriteData::IDSprites id, std::string filename, Vector2
 void EnemySprite::changeStateSprite(GameCoreStates::PlayerState* newState, int keyPreviouslyPressed, 
                                     std::list<InputMapping::Key> keys, InputMapping::Controller& controller)
 {
-  int resultCheckingEqualStates = newState->checkIfEqualStates(controller, keys, getCurrentState(),
+  /*int resultCheckingEqualStates = newState->checkIfEqualStates(controller, keys, getCurrentState(),
                                   getPreviousState(), newState, keyPreviouslyPressed);
 
   if ( resultCheckingEqualStates == GameCoreStates::NO_CHANGE )
@@ -28,4 +28,64 @@ void EnemySprite::changeStateSprite(GameCoreStates::PlayerState* newState, int k
   handlerAnimation->restartOldTime();
   handlerAnimation->restartCurrentFrame();
   handlerAnimation->restartAnimationBegin();
+
+  int resultCheckingEqualStates = newState->checkIfEqualStates(controller, keys, getCurrentState(),
+                                    getPreviousState(), newState, keyPreviouslyPressed);
+
+  GameCoreStates::ConditionsPlayerRunning isPacing = playerStateManager->getObjectState().checkIfPlayerIsRunning(controller, keys);
+
+  int directionAxis = handlerAnimation->returnAnimationDirectionAxisValue();
+
+  bool resultAccelerationForce = rigidBody->updateAccelerationState(keys, isPacing, speed.x, getCurrentState(),
+	                                        newState->getCurrentID(), directionAxis);
+
+  if ( resultAccelerationForce )
+  {
+	return;
+  }
+
+  switch(resultCheckingEqualStates)
+  {
+    case GameCoreStates::UPDATE_SPEEDX:
+    {
+      if ( getSpeedX() == 0.0f )
+      {
+        playerStateManager->changePreviousState( GameCoreStates::WALKING );
+        setSpeedX( directionAxis*(rigidBody->getMaxSpeed().at( GameCoreStates::WALKING ).x ) );
+		rigidBody->setAccelerationState(GamePhysics::ACCELERATE);
+      }
+      return;
+    }
+    case GameCoreStates::NO_CHANGE:
+    {
+      return;
+    }
+  }
+
+  int result = newState->checkMovementRestrictions(controller, keyPreviouslyPressed, getPreviousState(), 
+                                                   getCurrentState(), keys );
+
+  switch(result)
+  {
+    case GameCoreStates::NO_CHANGE:
+    {
+      return;
+    }
+    case GameCoreStates::CHANGE:
+    {
+      playerStateManager->changeState(newState);
+      break;
+    }
+  }
+
+  if ( getCurrentState() == GameCoreStates::WALKING && getSpeedX() == 0.0f )
+  {
+	setSpeedX( directionAxis*2.0f );
+  }
+
+  setSpeedY(rigidBody->getMaxSpeed().at(getCurrentState()).y);
+  handlerAnimation->setCurrentStateForAnimation(getCurrentState());
+  handlerAnimation->restartOldTime();
+  handlerAnimation->restartCurrentFrame();
+  handlerAnimation->restartAnimationBegin();*/
 }

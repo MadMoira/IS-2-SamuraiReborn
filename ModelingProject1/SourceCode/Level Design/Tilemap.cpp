@@ -54,6 +54,11 @@ void Tilemap::drawTilemap(int indexTileset)
     posXPrevious -= offsetXTemp;
     variableSizeTile = 32.f;
 
+	if ( i == heightLevelInTiles )
+	{
+	  break;
+	}
+
     for (int j = 0; j < widthMap; j++) 
     {
       if ( startX == widthLevelInTiles )

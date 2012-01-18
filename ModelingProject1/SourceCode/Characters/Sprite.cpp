@@ -208,9 +208,9 @@ void Sprite::movePosYWithSpeed()
 
       collisionHandler->checkTileCollisionY(*getCollisionBox(), &speed.y,
                                      handlerAnimation->getDirectionY(), directionsMove);
-
-	  position.y += getSpeedY();
-      spriteCollisionBox->setY(position.y);
+	  
+      spriteCollisionBox->setBoxYBasedOnSpeed(spriteCollisionBox->getY() + getSpeedY());
+	  position.y = spriteCollisionBox->getY() - spriteCollisionBox->getOffset().y;
 
 	  isOnGround = collisionHandler->onTheGround(*getCollisionBox(),
                                      handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY());     

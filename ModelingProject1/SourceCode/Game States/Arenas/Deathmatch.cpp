@@ -97,7 +97,8 @@ void Deathmatch::logic()
 	gameCore->getPlayersList().at(i).updateStats();
     if ( !gameCore->getPlayersList().at(i).isAlive() )
     {
-      setHasEnded(MainStates::STATE_MENUSELECTIONPLAYER);
+	  gameCore->setMenuEndData( Image::MenuEndData(gameCore->getPlayersList().at(i).getCharacterID()) );
+      setHasEnded(MainStates::STATE_ARENA_WINNER);
     }
   }
 
@@ -170,18 +171,18 @@ void Deathmatch::initializePlayers()
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(10.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -29.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -34.0f) );
   maxSpeedPanda.push_back( Vector2f(18.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -23.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -29.0f) );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   
   std::vector< Vector2f > maxSpeedMeerkat;
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(12.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -31.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -37.0f) );
   maxSpeedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -25.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -32.0f) );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
 
@@ -243,7 +244,7 @@ void Deathmatch::initializePlayers()
       {
         gameCore->addPlayerToGame( new Characters::PandaP1(), SpriteData::PANDA, 
 			                 "Resources/Characters/Players/Panda - SpriteSheet.png", 
-                             Vector2f(50.0f, 246.0f), 0, maxFrameVectorPanda, returnFrameVector,
+                             Vector2f(50.0f, 6.0f), 0, maxFrameVectorPanda, returnFrameVector,
                              280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
 		gameCore->initializeWeaponCollisionBoxes(SpriteData::PANDA, "Resources/Characters/Players/WeaponCollisionBoxesPanda.txt");
@@ -256,7 +257,7 @@ void Deathmatch::initializePlayers()
       {
         gameCore->addPlayerToGame( new Characters::MeerkatP2(), SpriteData::MEERKAT, 
 			                 "Resources/Characters/Players/Meerkat - SpriteSheet.png", 
-                             Vector2f(800.0f, 395.0f), 0, maxFrameVector, returnFrameVector,
+                             Vector2f(10.0f, 485.0f), 0, maxFrameVector, returnFrameVector,
                              340.0f, 187.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::MEERKAT, 32.0f, 135.0f, 153.0f, 42.0f);
 		gameCore->initializeWeaponCollisionBoxes(SpriteData::MEERKAT, "Resources/Characters/Players/WeaponCollisionBoxesMeerkat.txt");
@@ -285,14 +286,9 @@ void Deathmatch::initializePlayers()
 
 void Deathmatch::initializeLevel()
 {
-  std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
+  std::string commonPath = "Resources/Arenas/Cave/";
   deathmatchLevel = new Level(LEVELONEJAPAN);
-  deathmatchLevel->loadTMXTileMapFile(commonPath + "LevelOneSectionOneMap.tmx");
-
-  deathmatchLevel->addLayerToList(commonPath + "SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
-  deathmatchLevel->addLayerToList(commonPath + "Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);
-  deathmatchLevel->addLayerToList(commonPath + "Mountains0.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.2f, true, false);
-  deathmatchLevel->addLayerToList(commonPath + "Mountains1.png", 2400.f, 720.f, Vector2f(1.0f, 0.0f), 0.4f, true, false);
+  deathmatchLevel->loadTMXTileMapFile("CaveArenaMode", commonPath);
 }
 
 void Deathmatch::handleChangeOfState(int idState)

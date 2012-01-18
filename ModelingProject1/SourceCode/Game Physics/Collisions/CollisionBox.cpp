@@ -30,6 +30,11 @@ void CollisionSystem::CollisionBox::setY(float y)
   box.y = (Sint16)y + (Sint16)offsetBox.y;
 }
 
+void CollisionSystem::CollisionBox::setBoxYBasedOnSpeed(float y)
+{
+  box.y = (Sint16)y;
+}
+
 float CollisionSystem::CollisionBox::getOffsetXBasedOnDirection(int direction)
 {
   if ( direction == SpriteData::LEFT )

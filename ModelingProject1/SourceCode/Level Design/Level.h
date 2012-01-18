@@ -32,7 +32,7 @@ class Level
    Level(Levels id);
    ~Level(void);
 
-   int loadTMXTileMapFile(std::string filename);
+   int loadTMXTileMapFile(std::string filename, std::string commonPath);
    bool initializeCollisionData(int tileID, std::vector< int > listCollisionTiles);
    bool initializeWalkableData(int tileID, std::vector< int > listWalkableTiles);
 

@@ -36,6 +36,14 @@ namespace Image
 	int controllerID;
   };
 
+  struct MenuEndData
+  {
+    int loserMode;
+
+	MenuEndData(int loser) { loserMode = loser; }
+	MenuEndData(){};
+  };
+
   struct CustomCursor
   {
     GameImage* cursor;

@@ -238,6 +238,18 @@
     <Filter Include="Source Files\Game States\Arenas">
       <UniqueIdentifier>{b0dab99c-f20b-4953-a931-cbf689525d43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Menus\Arena Winner Menu">
+      <UniqueIdentifier>{9ac2dee3-6cec-4583-8c2e-fb20ca14f36c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Arenas">
+      <UniqueIdentifier>{13feb366-526a-47a3-8e10-3a9e0b6aab9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Arenas\Cave">
+      <UniqueIdentifier>{0261d4b6-c241-480c-90e1-c39c5e081c12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Menus\Credits Menu">
+      <UniqueIdentifier>{e3be8627-f3cb-46f7-9dd9-842a5eabf804}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -491,6 +503,12 @@
     </ClCompile>
     <ClCompile Include="Game States\Arenas\Deathmatch.cpp">
       <Filter>Source Files\Game States\Arenas</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\Menus\SArenaWinner.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\Menus\SCredits.cpp">
+      <Filter>Source Files\Game States\Menus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -776,6 +794,12 @@
     <ClInclude Include="Game States\Arenas\Deathmatch.h">
       <Filter>Header Files\Game States\Arenas</Filter>
     </ClInclude>
+    <ClInclude Include="Game States\Menus\SArenaWinner.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Game States\Menus\SCredits.h">
+      <Filter>Header Files\Game States\Menus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Enemy - SpriteSheet.png">
@@ -972,6 +996,33 @@
     </None>
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer1.csv">
       <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
+    <None Include="Resources\Input\GamepadArenaWinnerContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\GamepadCreditsMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\KeyboardArenaWinnerContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Input\KeyboardCreditsMenuContext.txt">
+      <Filter>Resource Files\Input</Filter>
+    </None>
+    <None Include="Resources\Menus\Arena Winner Menu\ArenaWinnerBackground.png">
+      <Filter>Resource Files\Menus\Arena Winner Menu</Filter>
+    </None>
+    <None Include="Resources\Arenas\Cave\CaveArenaMode.png">
+      <Filter>Resource Files\Arenas\Cave</Filter>
+    </None>
+    <None Include="Resources\Arenas\Cave\CaveArenaModeCollisionsLayer0.csv">
+      <Filter>Resource Files\Arenas\Cave</Filter>
+    </None>
+    <None Include="Resources\Arenas\Cave\CaveArenaModeMap.tmx">
+      <Filter>Resource Files\Arenas\Cave</Filter>
+    </None>
+    <None Include="Resources\Arenas\Cave\CaveArenaModeWalkableList.csv">
+      <Filter>Resource Files\Arenas\Cave</Filter>
     </None>
   </ItemGroup>
 </Project>

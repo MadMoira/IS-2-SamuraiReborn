@@ -21,6 +21,8 @@ namespace CollisionSystem
      float getHeight() { return box.h; }
      float getWidth() { return box.w; }
 
+	 void setBoxYBasedOnSpeed(float y);
+
      Vector2f getOffset() { return offsetBox; }
      GLfloat getOffsetXBasedOnDirection(int direction);
 
