@@ -33,7 +33,7 @@ void SLevelOneJapan::init()
 
   GameSound::getInstance()->loadSound(0, 1, 1);
   GameSound::getInstance()->loadSound(0, 1, 0);
-  GameSound::getInstance()->downVolume(0, 0.9);
+  GameSound::getInstance()->downVolume(0, 0.9f);
   
   gameCore->resetCamera(11200.0f);
 
@@ -268,7 +268,7 @@ void SLevelOneJapan::initializePlayers()
 		gameCore->initializeWeaponCollisionBoxes(SpriteData::MEERKAT, "Resources/Characters/Players/WeaponCollisionBoxesMeerkat.txt");
 		gameCore->initializeRigidBodyVectors(SpriteData::MEERKAT, maxSpeedMeerkat);
 		gameCore->setIDNumberOfPlayer(SpriteData::MEERKAT, (int)i);
-	    gameCore->initializeTextureFaceState("Resources/UI/PandaFacesStates.png", i);
+	    gameCore->initializeTextureFaceState("Resources/UI/MeerkatFacesStates.png", i);
 		break;
       }
     }

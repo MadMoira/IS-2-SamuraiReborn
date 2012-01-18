@@ -101,8 +101,6 @@ void Deathmatch::logic()
     }
   }
 
-  gameCore->getCamera()->updateCamera();
-
   deathmatchLevel->scrollContinuousBackgroundLayers();
   
   if ( gameCore->getPlayersList().at(0).getCharacterSprite()->getPlayerMoveInXCurrentFrame() )
@@ -262,7 +260,7 @@ void Deathmatch::initializePlayers()
 		gameCore->initializeWeaponCollisionBoxes(SpriteData::MEERKAT, "Resources/Characters/Players/WeaponCollisionBoxesMeerkat.txt");
 		gameCore->initializeRigidBodyVectors(SpriteData::MEERKAT, maxSpeedMeerkat);
 		gameCore->setIDNumberOfPlayer(SpriteData::MEERKAT, (int)i);
-	    gameCore->initializeTextureFaceState("Resources/UI/PandaFacesStates.png", i);
+	    gameCore->initializeTextureFaceState("Resources/UI/MeerkatFacesStates.png", i);
 		break;
       }
     }
