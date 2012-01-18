@@ -35,8 +35,7 @@ void SLevelOneJapan::init()
   GameSound::getInstance()->loadSound(0, 1, 0);
   GameSound::getInstance()->downVolume(0, 0.9);
   
-  gameCore->resetCamera(6400.0f);
-  gameCore->resetCamera(11200.0f, gameCore->getPlayersList().at(0).getCharacterSprite()->getBoxX() +
+  gameCore->resetCamera(11200.0f);
 
   Collider::getInstance()->setLevelLength(11200);
   Collider::getInstance()->setGameMode(gameCore->getCurrentGameMode());
@@ -112,11 +111,11 @@ void SLevelOneJapan::logic()
   {	  
 	if ( gameCore->getPlayersList().at(i).getCharacterSprite()->getPlayerMoveInXCurrentFrame() )
 	{
-		japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
-		japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
-		japanLevel->scrollBackgroundLayers();
-		japanLevel->scrollTilemap();
-		break;
+	  japanLevel->checkLayersSpeed( gameCore->getCamera()->getCameraSpeed() );
+	  japanLevel->checkTilemapsSpeed( gameCore->getCamera()->getCameraSpeed() );
+	  japanLevel->scrollBackgroundLayers();
+	  japanLevel->scrollTilemap();
+	  break;
 	}
   }
   gameCore->getCamera()->setCameraSpeed(0.0f);
@@ -282,6 +281,8 @@ void SLevelOneJapan::initializePlayers()
 	gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts("", (int)i, "Resources/UI/Numbers.png");
   }
 
+
+
   maxSpeedPanda.clear();
   maxSpeedMeerkat.clear();
   maxFrameVector.clear();
@@ -294,7 +295,7 @@ void SLevelOneJapan::initializeLevel()
 {
   std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
   japanLevel = new Level(LEVELONEJAPAN);
-  japanLevel->loadTMXTileMapFile("LevelOneSectionOne");
+  japanLevel->loadTMXTileMapFile("LevelOneSectionOne", commonPath);
 
   japanLevel->addLayerToList(commonPath + "SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
   japanLevel->addLayerToList(commonPath + "Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);

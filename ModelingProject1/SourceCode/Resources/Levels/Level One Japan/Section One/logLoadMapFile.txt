@@ -1,13 +1,13 @@
 Loading File: Resources/Levels/Level One Japan/Section One/LevelOneSectionOneMap.tmx
 Loading List Walkable Tiles... 
-Number Of Walkable Tiles:  18
+Number Of Walkable Tiles:  21
 Finish Loading List Walkable Tiles... 
 Loading Layers... 
 Loading Layer #00 - Floor
 Number Of Tiles With Collision:  155
 Finish Loading List Collision Tiles Of Layer 0
 Loading Layer #01 - Boxes
-Number Of Tiles With Collision:  65
+Number Of Tiles With Collision:  167
 Finish Loading List Collision Tiles Of Layer 1
 Loading Tilesets... 
 Loading Tileset #00

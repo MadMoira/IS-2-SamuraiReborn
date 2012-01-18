@@ -59,6 +59,9 @@ class GameCore
    void pushBackPlayerToInitialize(Image::PlayersInitialize initialize) { playersInitialized.push_back(initialize); }
    std::vector< Image::PlayersInitialize > getPlayersToInitialize() { return playersInitialized; }
    void clearPlayerToInitialize() { playersInitialized.clear(); }
+
+   Image::MenuEndData getMenuEndData() { return menuEndData; }
+   void setMenuEndData(Image::MenuEndData menuEnd) { menuEndData = menuEnd; }
     
   private:
    GameConfiguration* configuration;
@@ -71,6 +74,7 @@ class GameCore
    boost::ptr_vector< Characters::Player > playersList;
    boost::ptr_vector< Characters::Enemy > enemiesList;
    std::vector< Image::PlayersInitialize > playersInitialized;
+   Image::MenuEndData menuEndData;
    bool isRunning;
    int currentGameMode;
 };

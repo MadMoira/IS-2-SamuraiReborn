@@ -103,26 +103,29 @@ void Camera::resetCamera(GLfloat level)
   levelLenght = level;
   onMidpoint = false;
   midPoint = (GLfloat)defaultResolution->current_w/2;
+
   if( players->size() == 1 )
   {
     interactionPoint=players->at(0).getCharacterSprite()->getBoxX() + players->at(0).getCharacterSprite()->getBoxWidth()/2; 
   }
+
   else if(players->size() > 1)
   {
 	GLfloat minPosition = std::numeric_limits<float>::max();
     GLfloat maxPosition = -std::numeric_limits<float>::max();
-    unsigned iMax=0,iMin=0;
+    unsigned iMax = 0,iMin = 0;
+
     for(unsigned i = 0; i < players->size(); i++)
     {
       if( players->at(i).getCharacterSprite()->getBoxX() > maxPosition )
       {
 		maxPosition = players->at(i).getCharacterSprite()->getBoxX();
-		iMax=i;
+		iMax = i;
       }
       if( players->at(i).getCharacterSprite()->getBoxX() < minPosition )
       {
 		minPosition = players->at(i).getCharacterSprite()->getBoxX();
-		iMin=i;
+		iMin = i;
       }
     }
     interactionPoint=(players->at(iMin).getCharacterSprite()->getBoxX() + players->at(iMax).getCharacterSprite()->getBoxX() )/2;
@@ -172,10 +175,11 @@ bool Camera::isCameraLimit(GLfloat speed)
   {
 	  if( players->at(i).getCharacterSprite()->getBoxX() - speed < posX||
 		  players->at(i).getCharacterSprite()->getBoxX() + players->at(i).getCharacterSprite()->getBoxWidth() - speed    
-	      >  posX + (GLfloat)defaultResolution->current_w){
-			  GLfloat punto1 = players->at(i).getCharacterSprite()->getBoxX() + players->at(i).getCharacterSprite()->getBoxWidth()/2;
-			  GLfloat posCam = posX;
-		  return true;
+	      >  posX + (GLfloat)defaultResolution->current_w)
+	  {
+	    GLfloat punto1 = players->at(i).getCharacterSprite()->getBoxX() + players->at(i).getCharacterSprite()->getBoxWidth()/2;
+	    GLfloat posCam = posX;
+		return true;
 	  }
   }
   return false;

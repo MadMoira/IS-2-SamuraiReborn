@@ -10,20 +10,24 @@ void Characters::JapaneseMonkey::initializeCharacter(SpriteData::IDSprites id, s
                            widthSprite, heightSprite,framerateAnimations,delayMovement);
 }
 
+Characters::JapaneseMonkey::~JapaneseMonkey(){
+
+}
+
 void Characters::JapaneseMonkey::noAction()
 {
-  /*enemySprite->setSpeedX(0);
-  enemySprite->setPlayerMoveInX(false);
-  enemySprite->setPlayerMoveInY(false);
-  stop();	*/	
+  characterSprite->setSpeedX(0);
+  characterSprite->setPlayerMoveInX(false);
+  characterSprite->setPlayerMoveInY(false);
+  stop();		
 }
 
 void Characters::JapaneseMonkey::walk()
 {
-  /*enemySprite->setSpeedX( enemySprite->getStateXSpeed() );
-  enemySprite->movePosXWithSpeed();
-  enemySprite->getHandlerAnimation()->animate() ;
-  stop();*/
+  characterSprite->movePosXWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
+  characterSprite->setPlayerMoveInY(false);
+  stop();
 }
 
 void Characters::JapaneseMonkey::run()
@@ -59,6 +63,25 @@ void Characters::JapaneseMonkey::attack()
   {
     enemySprite->getHandlerAnimation()->animate(); 
   }*/
+}
+
+void Characters::JapaneseMonkey::falling()
+{/*
+  characterSprite->setPlayerMoveInY(true);
+  characterSprite->setSpeedX( characterSprite->getPreviousStateXSpeed() );
+  characterSprite->movePosXWithSpeed();
+  characterSprite->movePosYWithSpeed();
+  characterSprite->getHandlerAnimation()->animate();
+
+  if ( !isFalling() )
+  {
+    stop();
+  }*/
+}
+
+void Characters::JapaneseMonkey::stopping()
+{
+  //
 }
 
 void Characters::JapaneseMonkey::draw()

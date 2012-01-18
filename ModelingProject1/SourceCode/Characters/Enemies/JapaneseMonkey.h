@@ -18,6 +18,7 @@ namespace Characters
      void jump();
      void attack();
      void falling();
+	 void stopping();
      void draw();
   };
 }
