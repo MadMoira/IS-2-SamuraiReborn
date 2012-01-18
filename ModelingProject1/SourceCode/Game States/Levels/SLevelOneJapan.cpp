@@ -294,7 +294,7 @@ void SLevelOneJapan::initializeLevel()
 {
   std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
   japanLevel = new Level(LEVELONEJAPAN);
-  japanLevel->loadTMXTileMapFile("LevelOneSectionOne");
+  japanLevel->loadTMXTileMapFile("LevelOneSectionOne", commonPath);
 
   japanLevel->addLayerToList(commonPath + "SkyBackground.png", 1280.f, 720.f, Vector2f(0.0f, 0.0f), 0.0f, false, false);
   japanLevel->addLayerToList(commonPath + "Clouds.png", 2400.f, 720.f, Vector2f(0.1f, 0.0f), 0.1f, true, true);

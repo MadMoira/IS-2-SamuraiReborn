@@ -19,9 +19,8 @@ Level::~Level(void)
   tilemapList.clear();
 }
 
-int Level::loadTMXTileMapFile(std::string commonBase)
+int Level::loadTMXTileMapFile(std::string commonBase, std::string commonPath)
 {
-  std::string commonPath = "Resources/Levels/Level One Japan/Section One/";
   std::fstream log (commonPath + "logLoadMapFile.txt", std::fstream::out);
   
   Tmx::Map *map = new Tmx::Map();
@@ -39,7 +38,7 @@ int Level::loadTMXTileMapFile(std::string commonBase)
   }
 
   log << "Loading List Walkable Tiles... " << std::endl;
-  std::ifstream tilesWalkableListFile(commonPath + "LevelOneSectionOneWalkableList.csv");
+  std::ifstream tilesWalkableListFile(commonPath + commonBase + "WalkableList.csv");
     
   unsigned countWalkableTiles = readDataTypeFromFile<unsigned>(tilesWalkableListFile);
   log << "Number Of Walkable Tiles:  " << countWalkableTiles << std::endl;

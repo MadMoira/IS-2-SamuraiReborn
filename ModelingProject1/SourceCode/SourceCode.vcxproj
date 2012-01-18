@@ -41,10 +41,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Librerias\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\Librerias\SDL - DLL, INC, LIB\include files;D:\Software2\Juego2\ModelingProject1\SourceCode;D:\Software2\Juego2\ModelingProject1\SourceCode\AI;D:\Software2\Juego2\ModelingProject1\SourceCode\Characters;D:\Software2\Juego2\ModelingProject1\SourceCode\Characters\Players;D:\Software2\Juego2\ModelingProject1\SourceCode\Characters\Enemies;D:\Software2\Juego2\ModelingProject1\SourceCode\Characters\Character States;D:\Software2\Juego2\ModelingProject1\SourceCode\Game Core;D:\Software2\Juego2\ModelingProject1\SourceCode\Game Physics;D:\Software2\Juego2\ModelingProject1\SourceCode\Game Physics\Collisions;D:\Software2\Juego2\ModelingProject1\SourceCode\Game Physics\Physic Modes;D:\Software2\Juego2\ModelingProject1\SourceCode\Game States;D:\Software2\Juego2\ModelingProject1\SourceCode\Game States\Levels;D:\Software2\Juego2\ModelingProject1\SourceCode\Game States\Menus;D:\Software2\Juego2\ModelingProject1\SourceCode\Game States\Menus\Callback Structs;D:\Software2\Juego2\ModelingProject1\SourceCode\Graphics;D:\Software2\Juego2\ModelingProject1\SourceCode\Graphics\Font;D:\Software2\Juego2\ModelingProject1\SourceCode\Graphics\Image;D:\Software2\Juego2\ModelingProject1\SourceCode\Graphics\Text;D:\Software2\Juego2\ModelingProject1\SourceCode\GUI;D:\Software2\Juego2\ModelingProject1\SourceCode\GUI\Elements;D:\Software2\Juego2\ModelingProject1\SourceCode\Input;D:\Software2\Juego2\ModelingProject1\SourceCode\Input\Player;D:\Software2\Juego2\ModelingProject1\SourceCode\Level Design;D:\Software2\Juego2\ModelingProject1\SourceCode\System;D:\Software2\Juego2\ModelingProject1\SourceCode\Weapons;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\inc;D:\SDL - DLL, INC, LIB\include files;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\AI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Players;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Enemies;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Characters\Character States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Core;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Collisions;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game Physics\Physic Modes;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Arenas;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Levels;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Menus;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Game States\Menus\Callback Structs;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Font;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Image;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Graphics\Text;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\GUI\Elements;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Input\Player;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Level Design;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\System;D:\Users\Silex RPR\Documents\Visual Studio 2010\Projects\Test\ModelingProject1\SourceCode\Weapons;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>D:\Librerias\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\Librerias\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files %28x86%29\FMOD SoundSystem\FMOD Programmers API Win32\api\lib;D:\SDL - DLL, INC, LIB\lib files;$(LibraryPath)</LibraryPath>
     <IntDir>.\Debug\</IntDir>
     <OutDir>..\..\..\..\Configuration\</OutDir>
   </PropertyGroup>
@@ -52,7 +52,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>D:\Librerias\boost_1_47_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\boost\boost_1_46_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -122,6 +122,8 @@
     <ClCompile Include="Game States\Menus\Callback Structs\MainMenuSelection.cpp" />
     <ClCompile Include="Game States\Menus\Callback Structs\MenuSelection.cpp" />
     <ClCompile Include="Game States\Menus\Callback Structs\MenuSelectionPlayer.cpp" />
+    <ClCompile Include="Game States\Menus\SArenaWinner.cpp" />
+    <ClCompile Include="Game States\Menus\SCredits.cpp" />
     <ClCompile Include="Game States\Menus\SIntro.cpp" />
     <ClCompile Include="Game States\Menus\SMainMenu.cpp" />
     <ClCompile Include="Game States\Menus\SPause.cpp" />
@@ -214,6 +216,8 @@
     <ClInclude Include="Game States\Menus\Callback Structs\MenuSelectionPlayer.h" />
     <ClInclude Include="Game States\Menus\MenuData.h" />
     <ClInclude Include="Game States\Menus\MenuStructs.h" />
+    <ClInclude Include="Game States\Menus\SArenaWinner.h" />
+    <ClInclude Include="Game States\Menus\SCredits.h" />
     <ClInclude Include="Game States\Menus\SIntro.h" />
     <ClInclude Include="Game States\Menus\SMainMenu.h" />
     <ClInclude Include="Game States\Menus\SPause.h" />
@@ -265,20 +269,28 @@
     <None Include="Enemy - SpriteSheet.png" />
     <None Include="Game Core\LevelSounds.txt" />
     <None Include="Game Core\Musics.txt" />
+    <None Include="Resources\Arenas\Cave\CaveArenaMode.png" />
+    <None Include="Resources\Arenas\Cave\CaveArenaModeCollisionsLayer0.csv" />
+    <None Include="Resources\Arenas\Cave\CaveArenaModeMap.tmx" />
+    <None Include="Resources\Arenas\Cave\CaveArenaModeWalkableList.csv" />
     <None Include="Resources\Characters\Players\Meerkat - SpriteSheet.png" />
     <None Include="Resources\Characters\Players\Panda - SpriteSheet.png" />
     <None Include="Resources\Characters\Players\WeaponCollisionBoxesMeerkat.txt" />
     <None Include="Resources\Characters\Players\WeaponCollisionBoxesPanda.txt" />
     <None Include="Resources\GUI\Cursor.png" />
     <None Include="Resources\GUI\Fonts\orbitron-black.ttf" />
+    <None Include="Resources\Input\GamepadArenaWinnerContext.txt" />
     <None Include="Resources\Input\GamepadContext.txt" />
     <None Include="Resources\Input\GamepadContextList.txt" />
+    <None Include="Resources\Input\GamepadCreditsMenuContext.txt" />
     <None Include="Resources\Input\GamepadMainMenuContext.txt" />
     <None Include="Resources\Input\GamepadMenuContext.txt" />
     <None Include="Resources\Input\GamepadPauseMenuContext.txt" />
     <None Include="Resources\Input\GamepadSoundMenuContext.txt" />
+    <None Include="Resources\Input\KeyboardArenaWinnerContext.txt" />
     <None Include="Resources\Input\KeyboardContext.txt" />
     <None Include="Resources\Input\KeyboardContextList.txt" />
+    <None Include="Resources\Input\KeyboardCreditsMenuContext.txt" />
     <None Include="Resources\Input\KeyboardMainMenuContext.txt" />
     <None Include="Resources\Input\KeyboardMenuContext.txt" />
     <None Include="Resources\Input\KeyboardPauseMenuContext.txt" />
@@ -293,6 +305,7 @@
     <None Include="Resources\Levels\Level One Japan\Section One\Mountains1.png" />
     <None Include="Resources\Levels\Level One Japan\Section One\SkyBackground.png" />
     <None Include="Resources\Levels\Level One Japan\Section One\Tileset.png" />
+    <None Include="Resources\Menus\Arena Winner Menu\ArenaWinnerBackground.png" />
     <None Include="Resources\Menus\Intro\LogoSamuraiReborn.png" />
     <None Include="Resources\Menus\Main Menu\MainMenuBackground.png" />
     <None Include="Resources\Menus\Main Menu\MainMenuButtons.png" />

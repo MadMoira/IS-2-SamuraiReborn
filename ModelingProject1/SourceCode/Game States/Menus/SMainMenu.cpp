@@ -224,7 +224,7 @@ void SMainMenu::createGUI()
 												   MainStates::ARENAS) );
   guiMainMenu->addButton( guiManager->createButton(MenuData::CREDITS, Vector2f(522.0f, 400.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 57.5f),
-	                                               MainStates::STATE_MAINMENU,
+												   MainStates::STATE_CREDITS,
 												   MainStates::MENUS) );
   guiMainMenu->addButton( guiManager->createButton(MenuData::QUIT, Vector2f(522.0f, 450.0f), 
 	                                               Vector2f(230.0f, 28.75f), Vector2f(0.0f, 86.25f),

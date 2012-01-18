@@ -12,6 +12,8 @@
 #include <SPlayerSelection.h>
 #include <SPause.h>
 #include <SSoundOptions.h>
+#include <SArenaWinner.h>
+#include <SCredits.h>
 #include <Player.h>
 
 GameInput::GameInput(void)
@@ -120,6 +122,42 @@ InputMapping::GameInputMapper* GameInput::initializeGameInputMapperData(int curr
 	    }
       }
 	  inputMapper->addCallback(SSoundOptions::inputCallback, 0);
+	  break;
+    }
+	case MainStates::STATE_ARENA_WINNER:
+    {
+	  switch( controller.getTypeController() )
+	  {
+	    case InputMapping::KEYBOARD:
+		{
+		  nameContext = "keyboardarenawinnercontext";
+		  break;
+        }
+	    default:
+        {
+		  nameContext = "gamepadarenawinnercontext";
+		  break;
+	    }
+      }
+	  inputMapper->addCallback(SArenaWinner::inputCallback, 0);
+	  break;
+    }
+	case MainStates::STATE_CREDITS:
+    {
+	  switch( controller.getTypeController() )
+	  {
+	    case InputMapping::KEYBOARD:
+		{
+		  nameContext = "keyboardcreditsmenucontext";
+		  break;
+        }
+	    default:
+        {
+		  nameContext = "gamepadcreditsmenucontext";
+		  break;
+	    }
+      }
+	  inputMapper->addCallback(SCredits::inputCallback, 0);
 	  break;
     }
     default:
