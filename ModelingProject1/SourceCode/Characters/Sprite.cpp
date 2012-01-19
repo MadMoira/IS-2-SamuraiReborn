@@ -136,8 +136,7 @@ void Sprite::movePosXWithSpeed()
         collisionHandler->checkTileCollisionX(*getCollisionBox(), &speed.x, 
                                      handlerAnimation->getAnimationDirection(), directionsMove);
         collisionHandler->checkStateCollisionXAxis(*this);
-        isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
-                                     handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
+        isOnGround = collisionHandler->onTheGround(*getCollisionBox());
 
 		for(std::string::size_type i = 0; i < weaponCollisionBoxes.size(); i++)
 	    {
@@ -164,8 +163,7 @@ void Sprite::movePosXWithSpeed()
       collisionHandler->checkTileCollisionX(*getCollisionBox(), &speed.x,
                                      handlerAnimation->getAnimationDirection(), directionsMove);
       collisionHandler->checkStateCollisionXAxis(*this);
-      isOnGround = collisionHandler->onTheGround(*getCollisionBox(), 
-                                     handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY() );
+      isOnGround = collisionHandler->onTheGround(*getCollisionBox());
 
 	  for(std::string::size_type i = 0; i < weaponCollisionBoxes.size(); i++)
 	  {
@@ -212,8 +210,7 @@ void Sprite::movePosYWithSpeed()
       spriteCollisionBox->setBoxYBasedOnSpeed(spriteCollisionBox->getY() + getSpeedY());
 	  position.y = spriteCollisionBox->getY() - spriteCollisionBox->getOffset().y;
 
-	  isOnGround = collisionHandler->onTheGround(*getCollisionBox(),
-                                     handlerAnimation->getAnimationDirection(), handlerAnimation->getDirectionY());     
+	  isOnGround = collisionHandler->onTheGround(*getCollisionBox());     
       collisionHandler->checkStateCollisionPlayer(*this);
 	  
 	  for(std::string::size_type i = 0; i < weaponCollisionBoxes.size(); i++)

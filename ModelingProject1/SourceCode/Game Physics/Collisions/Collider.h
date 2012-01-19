@@ -18,7 +18,7 @@ class Collider
 
    void cleanUpResources();
    
-   bool checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B, int direction);
+   bool checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B);
 
    void checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* speedX, int directionX, 
 	                        CollisionSystem::DirectionsMove& directionsMove);
@@ -46,7 +46,7 @@ class Collider
    void checkArenaCollisions( boost::ptr_vector< Characters::Player >& playersList, int indexPlayer );
    void checkEnemiesCollisions( boost::ptr_vector< Characters::Enemy >& enemiesList, CollisionSystem::CollisionBox& A );
 
-   bool onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY);
+   bool onTheGround(CollisionSystem::CollisionBox& A);
 
    bool checkPositionWithinLevelLength(CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, 
 	                                   Vector2f speed, int directionX);
