@@ -340,9 +340,9 @@ void Sprite::drawTexture()
   if ( getCurrentState() == GameCoreStates::FAST_ATTACK )
   {
 	int attackState = getPreviousState();
-	GameRender::drawFullTexture(textureBox, 
+	/*GameRender::drawFullTexture(textureBox, 
 		Vector2f(weaponCollisionBoxes.at(attackState).getX(), weaponCollisionBoxes.at(attackState).getY()),
-	                            weaponCollisionBoxes.at(attackState).getWidth(), weaponCollisionBoxes.at(attackState).getHeight());
+	                            weaponCollisionBoxes.at(attackState).getWidth(), weaponCollisionBoxes.at(attackState).getHeight());*/
     currentState = ( GameCoreStates::FAST_ATTACK - 1 ) + getPreviousState();
   }
 
