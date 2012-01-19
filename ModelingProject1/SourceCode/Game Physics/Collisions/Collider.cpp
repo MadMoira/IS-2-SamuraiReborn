@@ -40,20 +40,20 @@ void Collider::cleanUpResources()
   }
 }
 
-bool Collider::checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B, int directionX)
+bool Collider::checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B)
 {
-  if( ( ( ((A.getY() + A.getHeight()) > B.getY()) && 
-        ( (A.getX() + A.getWidth()) > (B.getX()) ) && 
-        ( A.getX() < (B.getX() + B.getWidth()))) || 
-        (( (A.getX() + A.getWidth()) > (B.getX()) ) && 
-		( A.getX() < (B.getX() + B.getWidth())) && directionX == SpriteData::RIGHT) || 
-        (( (A.getX() + A.getWidth()) > (B.getX()) ) && 
-        ( A.getX() < (B.getX() + B.getWidth())) && directionX == SpriteData::LEFT)))
+  GLfloat ABoxX2 = A.getX() + A.getWidth();
+  GLfloat ABoxY2 = A.getY() + A.getHeight();
+  GLfloat BBoxX2 = B.getX() + B.getWidth();
+  GLfloat BBoxY2 = B.getY() + B.getHeight();
+
+  if ( A.getX() < BBoxX2 && ABoxX2 > B.getX() &&
+       A.getY() < BBoxY2 && ABoxY2 > B.getY() ) 
   {
     return true;
   }
 
-  return false;
+  return false;	
 }
 
 void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* speedX, int directionX, 
@@ -590,8 +590,6 @@ void Collider::checkAttackCollisions(boost::ptr_vector< Characters::Enemy >& ene
 void Collider::checkArenaCollisions(boost::ptr_vector< Characters::Player >& playersList, int indexPlayer)
 {
   CollisionSystem::CollisionBox A = *playersList.at(indexPlayer).getCharacterSprite()->getWeaponCollisionBox();
-  int direction = playersList.at(indexPlayer).getCharacterSprite()->getHandlerAnimation()->getAnimationDirection();
-  
   bool attackAlreadyDamaged = playersList.at(indexPlayer).getAttackData().attackAlreadyDamaged;
 
   for(std::string::size_type i = 0; i < playersList.size(); i++)
@@ -601,7 +599,7 @@ void Collider::checkArenaCollisions(boost::ptr_vector< Characters::Player >& pla
       continue;
     }
 
-    if ( checkCollision( A, *playersList.at(i).getCharacterSprite()->getCollisionBox(), direction) &&
+    if ( checkCollision( A, *playersList.at(i).getCharacterSprite()->getCollisionBox()) &&
 		 !attackAlreadyDamaged )
     {
 	  int weaponDamage = playersList.at(indexPlayer).getCharacterWeapon()->getDamage();
@@ -611,7 +609,7 @@ void Collider::checkArenaCollisions(boost::ptr_vector< Characters::Player >& pla
   }
 }
 
-bool Collider::onTheGround(CollisionSystem::CollisionBox& A, int directionX, int directionY)
+bool Collider::onTheGround(CollisionSystem::CollisionBox& A)
 {
   int directionPlayer = SpriteData::RIGHT;
   int initialX = 0;
