@@ -167,6 +167,7 @@ void SPlayerSelection::createGUI( )
   controllers.at(0).setGameInputMapper(GameInput::initializeGameInputMapperData(getNameState(), 
 	                                   *controllers.at(0).getController(), InputMapping::KEYBOARD));
   controllers.at(0).getController()->setPlayerID(0);
+  controllers.at(0).getController()->setWasPreviouslyPressedAllKeys();
 
   controllers.push_back( new Image::ImageController(Vector2f(590.0f, 310.0f), Vector2f(100.0f, 67.0f), 
                                     Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png", 
@@ -175,6 +176,7 @@ void SPlayerSelection::createGUI( )
   controllers.at(1).setGameInputMapper(GameInput::initializeGameInputMapperData(getNameState(), 
 	                                   *controllers.at(1).getController(), InputMapping::GAMEPAD));
   controllers.at(1).getController()->setPlayerID(1);
+  controllers.at(1).getController()->setWasPreviouslyPressedAllKeys();
 
   controllers.push_back( new Image::ImageController(Vector2f(590.0f, 405.0f), Vector2f(100.0f, 67.0f), 
                                     Vector2f(0.0f, 0.0f), commonPath + "Gamepad.png", 
@@ -183,6 +185,7 @@ void SPlayerSelection::createGUI( )
   controllers.at(2).setGameInputMapper(GameInput::initializeGameInputMapperData(getNameState(), 
 	                                   *controllers.at(2).getController(), InputMapping::GAMEPAD));
   controllers.at(2).getController()->setPlayerID(2);
+  controllers.at(2).getController()->setWasPreviouslyPressedAllKeys();
 
   customCursor.cursor = new Image::GameImage(Vector2f(0.0f, 0.0f), Vector2f(64.0f, 64.0f), 
                                              Vector2f(0.0f, 0.0f), "Resources/GUI/Cursor.png");  
