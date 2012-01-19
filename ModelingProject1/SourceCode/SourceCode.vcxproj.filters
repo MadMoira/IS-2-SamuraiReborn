@@ -1024,5 +1024,8 @@
     <None Include="Resources\Arenas\Cave\CaveArenaModeWalkableList.csv">
       <Filter>Resource Files\Arenas\Cave</Filter>
     </None>
+    <None Include="Resources\Menus\Credits Menu\CreditsBackground.png">
+      <Filter>Resource Files\Menus\Credits Menu</Filter>
+    </None>
   </ItemGroup>
 </Project>

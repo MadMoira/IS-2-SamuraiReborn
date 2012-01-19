@@ -29,7 +29,7 @@ void Characters::PandaP1::initializeCharacter(SpriteData::IDSprites id, std::str
 {
   characterSprite = new PlayerSprite(id, filename, pos, initialFrame, maxFrame, returnFrame,
                                      widthSprite, heightSprite, framerateAnimations, delayMovement);
-  characterWeapon = new Weapons::Sword(140);
+  characterWeapon = new Weapons::Sword(120);
 
   stats = new PlayerStats::Stats();
   score = new PlayerScore::Score();

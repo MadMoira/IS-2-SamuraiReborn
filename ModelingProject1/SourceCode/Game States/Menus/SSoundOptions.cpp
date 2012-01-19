@@ -11,7 +11,6 @@ void Image::ArrowSoundMenu::updatePositionArrow()
   {
     return;
   } 
-
   arrow->setPosition(372.0f, 260.0f + ( (optionSelected-1)*100.0f) );
 }
 
@@ -129,6 +128,12 @@ void SSoundOptions::logic()
 	  }
 	}
   }
+
+  for (std::string::size_type i = 0; i < guiSoundMenu->getListBars().size(); i++)
+  {
+    guiSoundMenu->getListBars().at(i).updateCurrentBarFrame();
+  } 
+
   arrowImage.updatePositionArrow();
 }
 
@@ -236,6 +241,11 @@ void SSoundOptions::createGUI()
 
   guiSoundMenu->addBar( new RPRGUI::SoundBar(MenuData::EFFECTS, commonPath + "SoundLevel.png") );
   guiSoundMenu->addBar( new RPRGUI::SoundBar(MenuData::MUSIC, commonPath + "SoundLevel.png") );
+
+  for (std::string::size_type i = 0; i < guiSoundMenu->getListBars().size(); i++)
+  {
+    guiSoundMenu->getListBars().at(i).updateCurrentBarFrame();
+  } 
 }
 
 void SSoundOptions::handleMouseUp(Uint8 button, Vector2f mousePosition)
@@ -302,12 +312,12 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
   {
     if ( menu.getCurrentSelection() == MenuData::EFFECTS )
     {
-	  GameSound::getInstance()->upEffectsVolume(0.005f);
+	  GameSound::getInstance()->upEffectsVolume(0.1f);
     }
 
     if ( menu.getCurrentSelection() == MenuData::MUSIC )
     {
-      GameSound::getInstance()->upMusicVolume(0.005f);
+      GameSound::getInstance()->upMusicVolume(0.1f);
     }
   }
 
@@ -315,12 +325,12 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
   {
     if ( menu.getCurrentSelection() == MenuData::EFFECTS )
     {
-	  GameSound::getInstance()->downEffectsVolume(0.005f);
+	  GameSound::getInstance()->downEffectsVolume(0.1f);
     }
 
     if ( menu.getCurrentSelection() == MenuData::MUSIC )
     {
-      GameSound::getInstance()->downMusicVolume(0.005f);
+      GameSound::getInstance()->downMusicVolume(0.1f);
     }
   }
 
@@ -337,6 +347,7 @@ void SSoundOptions::inputCallback(InputMapping::MappedInput& inputs, Characters:
 
   if ( back )
   {
-    menu.setNewIdGameState(MainStates::STATE_PAUSE);
+	  GameSound::getInstance()->clearAuxiliarSystem();
+      menu.setNewIdGameState(MainStates::STATE_PAUSE);
   }
 }

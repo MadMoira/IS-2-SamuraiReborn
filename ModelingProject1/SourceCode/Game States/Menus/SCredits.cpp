@@ -121,7 +121,7 @@ void SCredits::cleanUp()
 
 void SCredits::createGUI()
 {
-  std::string commonPath = "Resources/Menus/Credits/";
+  std::string commonPath = "Resources/Menus/Credits Menu/";
 
   controllers.push_back( new Image::MenuController(Image::ENABLE, InputMapping::KEYBOARD) );
   controllers.at(0).setController(GameInput::initializeControllerData(getNameState(), InputMapping::KEYBOARD));
@@ -144,7 +144,7 @@ void SCredits::createGUI()
   background = new Image::GameImage( Vector2f(0.0f, 0.0f), 
 	                                 Vector2f(1280.0f, 720.0f),
                                      Vector2f(0.0f, 0.0f), 
-									 "Resources/Menus/Credits/CreditsBackground.png" );
+									 commonPath + "CreditsBackground.png" );
 }
 
 void SCredits::inputCallback(InputMapping::MappedInput& inputs, Characters::Player& player, 

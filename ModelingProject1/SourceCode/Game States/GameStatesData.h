@@ -26,7 +26,7 @@ namespace MainStates
 	MENUS,
   };
 
-  const int Properties[11] = { 0, 0, 0, 0, 1, 1, 2, 2, 1, 1, 0 };
+  const int Properties[13] = { 0, 0, 0, 0, 1, 1, 2, 2, 1, 0, 1, 0, 0 };
 
   enum PropertiesStates
   {

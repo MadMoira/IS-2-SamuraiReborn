@@ -293,6 +293,7 @@ void SPause::inputCallback(InputMapping::MappedInput& inputs, Characters::Player
     {
       int newState = (menu.getListButtons().at( menu.getCurrentSelection() - 1 ).eventClicked(&running, &gameMode));
 	  menu.setNewIdGameState(newState);
+
 	  if( newState == MainStates::STATE_MAINMENU )
 	  {
 	    GameSound::getInstance()->unpauseSystem();

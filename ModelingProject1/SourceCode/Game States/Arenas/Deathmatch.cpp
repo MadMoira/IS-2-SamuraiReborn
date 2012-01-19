@@ -168,18 +168,18 @@ void Deathmatch::initializePlayers()
   std::vector< Vector2f > maxSpeedPanda;
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(10.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -34.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -38.0f) );
   maxSpeedPanda.push_back( Vector2f(18.0f, 0.0f) );
-  maxSpeedPanda.push_back( Vector2f(0.0f, -29.0f) );
+  maxSpeedPanda.push_back( Vector2f(0.0f, -35.0f) );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedPanda.push_back( Vector2f(0.0f, 0.0f)  );
   
   std::vector< Vector2f > maxSpeedMeerkat;
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(12.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -37.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -40.0f) );
   maxSpeedMeerkat.push_back( Vector2f(20.0f, 0.0f) );
-  maxSpeedMeerkat.push_back( Vector2f(0.0f, -32.0f) );
+  maxSpeedMeerkat.push_back( Vector2f(0.0f, -35.0f) );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
   maxSpeedMeerkat.push_back( Vector2f(0.0f, 0.0f)  );
 
@@ -198,7 +198,7 @@ void Deathmatch::initializePlayers()
   maxFrameVectorPanda.push_back( 8 );
   maxFrameVectorPanda.push_back( 5 );
   maxFrameVectorPanda.push_back( 8 );
-  maxFrameVectorPanda.push_back( 8 );
+  maxFrameVectorPanda.push_back( 4 );
   maxFrameVectorPanda.push_back( 5 );
   maxFrameVectorPanda.push_back( 2 );
   maxFrameVectorPanda.push_back( 8 );
@@ -241,7 +241,7 @@ void Deathmatch::initializePlayers()
       {
         gameCore->addPlayerToGame( new Characters::PandaP1(), SpriteData::PANDA, 
 			                 "Resources/Characters/Players/Panda - SpriteSheet.png", 
-                             Vector2f(50.0f, 6.0f), 0, maxFrameVectorPanda, returnFrameVector,
+                             Vector2f(50.0f, 54.0f), 0, maxFrameVectorPanda, returnFrameVector,
                              280.0f, 218.0f, framerateAnimationsVector, delayMovementVector);
         gameCore->initializeSpriteCollisionBoxPlayer(SpriteData::PANDA, 85.0f, 160.0f, 97.0f, 42.0f);
 		gameCore->initializeWeaponCollisionBoxes(SpriteData::PANDA, "Resources/Characters/Players/WeaponCollisionBoxesPanda.txt");
