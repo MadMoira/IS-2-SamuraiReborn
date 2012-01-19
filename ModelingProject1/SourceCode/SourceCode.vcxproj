@@ -306,6 +306,7 @@
     <None Include="Resources\Levels\Level One Japan\Section One\SkyBackground.png" />
     <None Include="Resources\Levels\Level One Japan\Section One\Tileset.png" />
     <None Include="Resources\Menus\Arena Winner Menu\ArenaWinnerBackground.png" />
+    <None Include="Resources\Menus\Credits Menu\CreditsBackground.png" />
     <None Include="Resources\Menus\Intro\LogoSamuraiReborn.png" />
     <None Include="Resources\Menus\Main Menu\MainMenuBackground.png" />
     <None Include="Resources\Menus\Main Menu\MainMenuButtons.png" />

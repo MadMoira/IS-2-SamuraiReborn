@@ -33,7 +33,7 @@ void SLevelOneJapan::init()
 
   GameSound::getInstance()->loadSound(0, 1, 1);
   GameSound::getInstance()->loadSound(0, 1, 0);
-  GameSound::getInstance()->downVolume(0, 0.9f);
+  GameSound::getInstance()->downVolume(0, 0.5);
   
   gameCore->resetCamera(11200.0f);
 
@@ -206,7 +206,7 @@ void SLevelOneJapan::initializePlayers()
   maxFrameVectorPanda.push_back( 8 );
   maxFrameVectorPanda.push_back( 5 );
   maxFrameVectorPanda.push_back( 8 );
-  maxFrameVectorPanda.push_back( 8 );
+  maxFrameVectorPanda.push_back( 4 );
   maxFrameVectorPanda.push_back( 5 );
   maxFrameVectorPanda.push_back( 2 );
   maxFrameVectorPanda.push_back( 8 );

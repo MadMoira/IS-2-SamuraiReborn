@@ -31,17 +31,29 @@ void RPRGUI::SoundBar::draw()
 
 void RPRGUI::SoundBar::updateCurrentBarFrame()
 {
-  int amountOfBars;
+  int amountOfBars = 0;
+  float volume = 0.0f;
   switch(id)
   {
     case MenuData::EFFECTS:
 	{
-	  float volume = GameSound::getInstance()->getMusicVolume();
+	  volume = GameSound::getInstance()->getEffectsVolume();
 	  break;
 	}
     case MenuData::MUSIC:
     {
+	  volume = GameSound::getInstance()->getMusicVolume();
       break;
     }
   }
+
+  for ( int i = 0; i < maxBarFrames; i++)
+  {
+	if ( volume > 0.20f*i )
+	{
+	  amountOfBars  += 1;
+	}
+  }
+
+  currentBarFrame = amountOfBars;
 }

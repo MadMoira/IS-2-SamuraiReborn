@@ -23,7 +23,14 @@ int GameCoreStates::FastAttackState::checkMovement(InputMapping::Controller& con
   if ( (currentState != GameCoreStates::DOUBLE_JUMP && currentState != GameCoreStates::FALLING) &&
        keyPreviouslyPressed == InputMapping::RAW_INPUT_NO_BUTTON && fastAttackButtonIsPressed )
   {
-	GameSound::getInstance()->loadChunk(characterID, 0, 0);
+    if (currentState == GameCoreStates::STILL)
+    {
+	  GameSound::getInstance()->loadChunk(characterID, 0, 3);
+    }
+    else
+    {
+	  GameSound::getInstance()->loadChunk(characterID, 0, 0);
+	}
     return GameCoreStates::CHANGE;
   }
 

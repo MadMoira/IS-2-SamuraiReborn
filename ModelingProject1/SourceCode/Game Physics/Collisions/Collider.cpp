@@ -122,6 +122,11 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 			continue;
 		  }
 
+		  if ( x == levelLength/32 )
+		  {
+			return;
+		  }
+
 		  Tile foundTile = layers.at(indexLayer)[y][x];
 
 	      if ( foundTile.getID() == 0 )
@@ -262,6 +267,11 @@ void Collider::checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* sp
 		  if ( y < 0 )
 		  {
 			continue;
+		  }
+
+		  if ( x == levelLength/32 )
+		  {
+			return;
 		  }
 
 		  Tile foundTile = layers.at(indexLayer)[y][x];

@@ -16,6 +16,8 @@ namespace RPRGUI
 
 	 int getValue() { return value; }
 
+	 virtual void updateCurrentBarFrame() { };
+
     protected:
 	 int id;
      int value;
