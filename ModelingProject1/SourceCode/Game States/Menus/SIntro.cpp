@@ -1,5 +1,8 @@
 #include "SIntro.h"
 
+const int LOGO_COMPANY = 0;
+const int LOGO_GAME = 1;
+const int NO_LOGO = 2;
 
 SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
     : GameState( gR, gC, gI, stateName )
@@ -15,9 +18,7 @@ SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStat
   setHasEnded(MainStates::STATE_INTRO);
   setProperty(MainStates::NORMAL_MENU);
 
-  currentLogo = 0;
-
-  framerate = 6000;
+  currentLogo = LOGO_COMPANY;
 }
 
 SIntro::~SIntro(void)
@@ -28,35 +29,23 @@ void SIntro::init()
 {
   std::string commonPath = "Resources/Menus/Intro/";
   logos.push_back( new Image::GameImage( Vector2f(0.0f, 0.0f), 
-	                                    Vector2f(1280.0f, 720.0f),
-                                        Vector2f(0.0f, 0.0f), 
-										commonPath + "LogoSamuraiReborn.png" ) );
-  logos.push_back( new Image::GameImage( Vector2f(0.0f, 0.0f), 
 	                                     Vector2f(696.0f, 285.0f),
                                          Vector2f(0.0f, 0.0f), 
 								         commonPath + "LogoBrainstormInteractive.png" ) );
+  logos.push_back( new Image::GameImage( Vector2f(0.0f, 0.0f), 
+	                                    Vector2f(1280.0f, 720.0f),
+                                        Vector2f(0.0f, 0.0f), 
+										commonPath + "LogoSamuraiReborn.png" ) );
 }
 
 void SIntro::handleEvents()
 {
   bool isRunning = gameInput->handleWindowEvents();
   gameCore->setIsRunning( isRunning );
-
-  if( framerate > SDL_GetTicks() ) 
-  {
-	currentLogo += 1;
-    return;
-  }
-
-  setHasEnded(MainStates::STATE_MAINMENU);
 }
 
 void SIntro::logic()
 {
-  if ( currentLogo == 1 )
-  {
-	
-  }
 }
 
 void SIntro::render()
@@ -67,6 +56,17 @@ void SIntro::render()
                               logos.at(currentLogo).getOffset().x, logos.at(currentLogo).getOffset().y);
 
   SDL_GL_SwapBuffers();
+
+  Uint32 startTime = SDL_GetTicks();
+  while(SDL_GetTicks() - startTime < 3000)
+  {
+  }
+  currentLogo += 1;
+
+  if ( currentLogo == NO_LOGO )
+  {
+	setHasEnded(MainStates::STATE_MAINMENU);
+  }
 }
 
 void SIntro::cleanUp()
