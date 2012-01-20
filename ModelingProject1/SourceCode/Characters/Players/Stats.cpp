@@ -138,7 +138,7 @@ void PlayerStats::Stats::drawHealth()
 	for ( int j = 0; j < currentForm.getCurrentAmount(); j++)
 	{
 	  Vector2f position = currentForm.getPosition();
-      Vector2f offset = currentForm.getOffset();
+    Vector2f offset = currentForm.getOffset();
 	  
 	  position.y -= j*offset.y;
 	  Vector2f texturePosition = currentForm.getTexturePosition();
@@ -167,7 +167,7 @@ void PlayerStats::Stats::drawHealth()
 					textureX, textureY + textureHeight
 	  };
             
-      glVertexPointer(2, GL_FLOAT, 0, verts);
+    glVertexPointer(2, GL_FLOAT, 0, verts);
 	  glTexCoordPointer(2, GL_FLOAT, 0, texVerts);
 	  glDrawArrays(GL_QUADS, 0, 4);
     }

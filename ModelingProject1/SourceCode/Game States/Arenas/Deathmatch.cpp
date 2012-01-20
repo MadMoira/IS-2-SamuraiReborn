@@ -4,6 +4,7 @@
 #include "PandaP1.h"
 #include "MeerkatP2.h"
 #include "JapaneseMonkey.h"
+#include "LoadingScreen.h"
 
 #include <MenuStructs.h>
 
@@ -28,8 +29,16 @@ Deathmatch::~Deathmatch(void)
 
 void Deathmatch::init()
 {
+	LoadingScreen load;
+	load.updateValues(0);
+
   initializePlayers();
+
+	load.updateValues(50);
+
   initializeLevel();
+
+	load.updateValues(75);
 
   gameCore->resetCamera(1280.0f);
 
@@ -38,6 +47,7 @@ void Deathmatch::init()
 
   inGameMenu = new Image::MenuSelection();
   inGameMenu->setNewIdGameState(MainStates::STATE_ARENA_MODE);
+	load.updateValues(100);
 }
 
 void Deathmatch::resume()

@@ -250,6 +250,9 @@
     <Filter Include="Resource Files\Menus\Credits Menu">
       <UniqueIdentifier>{e3be8627-f3cb-46f7-9dd9-842a5eabf804}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Menus\Loading State">
+      <UniqueIdentifier>{67af1b15-9909-4a61-9151-de8452f6afe1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -509,6 +512,9 @@
     </ClCompile>
     <ClCompile Include="Game States\Menus\SCredits.cpp">
       <Filter>Source Files\Game States\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Game States\LoadingScreen.cpp">
+      <Filter>Source Files\Game States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -800,6 +806,9 @@
     <ClInclude Include="Game States\Menus\SCredits.h">
       <Filter>Header Files\Game States\Menus</Filter>
     </ClInclude>
+    <ClInclude Include="Game States\LoadingScreen.h">
+      <Filter>Header Files\Game States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Enemy - SpriteSheet.png">
@@ -1026,6 +1035,12 @@
     </None>
     <None Include="Resources\Menus\Credits Menu\CreditsBackground.png">
       <Filter>Resource Files\Menus\Credits Menu</Filter>
+    </None>
+    <None Include="Resources\Menus\Loading State\LoadingBar.png">
+      <Filter>Resource Files\Menus\Loading State</Filter>
+    </None>
+    <None Include="Resources\Menus\Loading State\LoadingState.png">
+      <Filter>Resource Files\Menus\Loading State</Filter>
     </None>
     <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer2.csv">
       <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
