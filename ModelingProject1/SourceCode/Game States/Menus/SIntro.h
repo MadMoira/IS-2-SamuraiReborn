@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameState.h"
+#include <boost\ptr_container\ptr_vector.hpp>
 
 class SIntro : public GameState
 {
@@ -15,7 +16,11 @@ class SIntro : public GameState
    void cleanUp();
 
   private:
-   Image::GameImage* logoGameImage;
+   boost::ptr_vector<Image::GameImage> logos;
    Uint32 framerate;
+
+   int currentLogo;
+   static const int LOGO_COMPANY = 0;
+   static const int LOGO_GAME = 1;
 };
 

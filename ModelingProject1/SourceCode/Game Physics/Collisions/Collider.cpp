@@ -83,7 +83,7 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 	axisX = -1;
   }
 
-  for (std::string::size_type indexLayer = 0; indexLayer < numberOfCollisionLayers; indexLayer++)
+  for (std::string::size_type indexLayer = 0; (int)indexLayer < numberOfCollisionLayers; indexLayer++)
   {
     newSpeed = CollisionSystem::initialCheckingBox;
     positionToCheck = (int)A.getX();
@@ -231,7 +231,7 @@ void Collider::checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* sp
     axisY = -1;
   }
 
-  for (std::string::size_type indexLayer = 0; indexLayer < numberOfCollisionLayers; indexLayer++)
+  for (std::string::size_type indexLayer = 0; (int)indexLayer < numberOfCollisionLayers; indexLayer++)
   {
     newSpeed = CollisionSystem::initialCheckingBox;
     positionToCheck = (int)A.getY();
