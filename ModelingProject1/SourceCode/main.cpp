@@ -25,8 +25,8 @@ int main( int argc, char* args[] )
     return 1;
   }
 
-  StateManager->changeState( new SIntro( &Render, &Core, &Input, MainStates::STATE_INTRO ) );
-  //StateManager->changeState( new SMainMenu( &Render, &Core, &Input, MainStates::STATE_MAINMENU ) );
+  //StateManager->changeState( new SIntro( &Render, &Core, &Input, MainStates::STATE_INTRO ) );
+  StateManager->changeState( new SMainMenu( &Render, &Core, &Input, MainStates::STATE_MAINMENU ) );
 
   StateManager->init();
 

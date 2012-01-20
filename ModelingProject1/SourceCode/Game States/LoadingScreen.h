@@ -1,4 +1,5 @@
 #pragma once
+
 #include <windows.h>
 #include <gl\GL.h>
 #include <SDL/SDL.h>
@@ -7,18 +8,19 @@
 
 class LoadingScreen
 {
-public:
-	LoadingScreen(void);
+  public:
+   LoadingScreen(std::string nameLevel);
+   ~LoadingScreen(void);
 
-	void updateValues(int percentage);
-	void renderScreen(int percentage);
+   void updateValues(int percentage);
+   void renderScreen(int percentage);
 
-	~LoadingScreen(void);
-private:
-	int statusBarWidth;
-	GLuint statusBarUnit;
-	GLuint background;
-	Vector2f statusBarPosition;
-	Vector2f statusBarOffset;
+  private:
+   GLuint statusBarUnit;
+   GLuint background;
+   GLuint levelScreen;
+   Vector2f statusBarPosition;
+   Vector2f statusBarOffset;
+   int statusBarWidth;
 };
 

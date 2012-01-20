@@ -29,16 +29,16 @@ Deathmatch::~Deathmatch(void)
 
 void Deathmatch::init()
 {
-	LoadingScreen load;
-	load.updateValues(0);
+  LoadingScreen load("CaveArenaMode");
+  load.updateValues(0);
 
   initializePlayers();
 
-	load.updateValues(50);
+  load.updateValues(50);
 
   initializeLevel();
 
-	load.updateValues(75);
+  load.updateValues(75);
 
   gameCore->resetCamera(1280.0f);
 
@@ -47,7 +47,8 @@ void Deathmatch::init()
 
   inGameMenu = new Image::MenuSelection();
   inGameMenu->setNewIdGameState(MainStates::STATE_ARENA_MODE);
-	load.updateValues(100);
+  
+  load.updateValues(100);
 }
 
 void Deathmatch::resume()
