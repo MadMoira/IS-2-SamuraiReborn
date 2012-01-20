@@ -4,8 +4,9 @@
 #include "PandaP1.h"
 #include "MeerkatP2.h"
 #include "JapaneseMonkey.h"
-
+#include "LoadingScreen.h"
 #include <MenuStructs.h>
+
 
 SLevelOneJapan::SLevelOneJapan(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStates stateName) 
     : GameState( gR, gC, gI, stateName )
@@ -28,8 +29,16 @@ SLevelOneJapan::~SLevelOneJapan(void)
 
 void SLevelOneJapan::init()
 {
+  LoadingScreen load;
+	load.updateValues(0);
+
   initializePlayers();
+	
+	load.updateValues(50);
+
   initializeLevel();
+		
+	load.updateValues(75);
 
   GameSound::getInstance()->loadSound(0, 1, 1);
   GameSound::getInstance()->loadSound(0, 1, 0);
@@ -42,6 +51,8 @@ void SLevelOneJapan::init()
 
   inGameMenu = new Image::MenuSelection();
   inGameMenu->setNewIdGameState(MainStates::STATE_LEVELONEJAPAN);
+	
+	load.updateValues(100);
 }
 
 void SLevelOneJapan::resume()
