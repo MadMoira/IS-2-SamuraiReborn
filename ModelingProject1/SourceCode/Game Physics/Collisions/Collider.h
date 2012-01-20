@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CollisionBox.h"
+#include <Tilemap.h>
 #include "Enemy.h"
 #include "Player.h"
 #include "Tile.h"
@@ -46,6 +47,8 @@ class Collider
    void checkArenaCollisions( boost::ptr_vector< Characters::Player >& playersList, int indexPlayer );
    void checkEnemiesCollisions( boost::ptr_vector< Characters::Enemy >& enemiesList, CollisionSystem::CollisionBox& A );
 
+   void checkCollisionsObjects( Characters::Player& player, Tilemap& tilemap );
+
    bool onTheGround(CollisionSystem::CollisionBox& A);
 
    bool checkPositionWithinLevelLength(CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, 
@@ -60,4 +63,6 @@ class Collider
    int levelLength;
    int gameMode;
    std::vector< std::vector< std::vector < Tile > > > layers;
+   int numberOfCollisionLayers;
+   bool hasObjectLayerChange;
 };

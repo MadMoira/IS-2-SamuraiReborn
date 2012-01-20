@@ -46,6 +46,7 @@ class Level
    void checkLayersSpeed(GLfloat speedX);
 
    boost::ptr_vector< Tilemap > getTilemapList() { return tilemapList; }
+   boost::ptr_vector< Tilemap >& getReferenceTilemapList() { return tilemapList; }
    void scrollTilemap();
    void checkTilemapsSpeed(GLfloat speedX);
 

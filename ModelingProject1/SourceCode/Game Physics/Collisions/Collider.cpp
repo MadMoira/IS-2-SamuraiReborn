@@ -30,6 +30,10 @@ Collider* Collider::getInstance()
 void Collider::addLayerTilemap(std::vector< std::vector < Tile > > layer)
 {
   layers.push_back(layer);
+  if ( layers.size() > 2 )
+  {
+	numberOfCollisionLayers = 2;
+  }
 }
 
 void Collider::cleanUpResources()
@@ -38,6 +42,8 @@ void Collider::cleanUpResources()
   {
     layers.at(i).clear();
   }
+
+  layers.clear();
 }
 
 bool Collider::checkCollision(CollisionSystem::CollisionBox& A, CollisionSystem::CollisionBox& B)
@@ -77,7 +83,7 @@ void Collider::checkTileCollisionX(CollisionSystem::CollisionBox& A, GLfloat* sp
 	axisX = -1;
   }
 
-  for (std::string::size_type indexLayer = 0; indexLayer < layers.size(); indexLayer++)
+  for (std::string::size_type indexLayer = 0; indexLayer < numberOfCollisionLayers; indexLayer++)
   {
     newSpeed = CollisionSystem::initialCheckingBox;
     positionToCheck = (int)A.getX();
@@ -225,7 +231,7 @@ void Collider::checkTileCollisionY(CollisionSystem::CollisionBox& A, GLfloat* sp
     axisY = -1;
   }
 
-  for (std::string::size_type indexLayer = 0; indexLayer < layers.size(); indexLayer++)
+  for (std::string::size_type indexLayer = 0; indexLayer < numberOfCollisionLayers; indexLayer++)
   {
     newSpeed = CollisionSystem::initialCheckingBox;
     positionToCheck = (int)A.getY();
@@ -609,6 +615,72 @@ void Collider::checkArenaCollisions(boost::ptr_vector< Characters::Player >& pla
   }
 }
 
+void Collider::checkCollisionsObjects(Characters::Player& player, Tilemap& tilemap)
+{
+  CollisionSystem::CollisionBox A = *player.getCharacterSprite()->getCollisionBox();
+
+  if ( hasObjectLayerChange )
+  {
+    tilemap.setLayerMap(layers.at(2));
+	hasObjectLayerChange = false;
+  }
+
+  int width = (int)A.getX() + (int)A.getWidth();
+  int height = (int)A.getY() + (int)A.getHeight();
+
+  int indexLayer = layers.size() - 1;
+
+  for ( int i = (int)A.getX(); i <= width; i += 8 )
+  {
+	int previousTileX = 0;
+	int previousTileY = 0;
+
+    for ( int j = (int)A.getY(); j <= height; j += 8 )
+	{
+      int x = (int)i/32;
+      int y = (int)j/32;
+
+	  if ( x == previousTileX && y == previousTileY )
+	  {
+	    continue;
+	  }
+
+	  previousTileX = x;
+	  previousTileY = y;
+
+	  if ( x >= levelLength/32 || y > 720.0f/32 )
+	  {
+	    return;
+	  }
+
+	  if ( y < 0 )
+	  {
+	    continue;
+	  }
+
+	  if ( x == levelLength/32 )
+	  {
+	    return;
+	  }
+
+	  Tile foundTile = layers.at(indexLayer)[y][x];
+
+	  if ( foundTile.getID() == 0 )
+	  {
+	    continue;
+	  }
+ 
+	  if ( foundTile.getHasCollision() )
+	  {
+		layers.at(indexLayer)[y][x] = Tile();
+		hasObjectLayerChange = true;
+	    player.getScore()->addPoints(1);
+		return;
+	  }
+	}
+  }
+}
+
 bool Collider::onTheGround(CollisionSystem::CollisionBox& A)
 {
   int directionPlayer = SpriteData::RIGHT;
@@ -625,7 +697,7 @@ bool Collider::onTheGround(CollisionSystem::CollisionBox& A)
 
   bool isOnGround = false;
 
-  for (std::string::size_type indexLayer = 0; indexLayer < layers.size(); indexLayer++)
+  for (std::string::size_type indexLayer = 0; (int)indexLayer < numberOfCollisionLayers; indexLayer++)
   {
     if ( isOnGround )
     {

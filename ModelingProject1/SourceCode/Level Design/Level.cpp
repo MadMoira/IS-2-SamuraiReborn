@@ -27,6 +27,8 @@ int Level::loadTMXTileMapFile(std::string commonBase, std::string commonPath)
   std::string filename = commonPath + commonBase + "Map.tmx";
   map->ParseFile(filename);
 
+  Collider::getInstance()->cleanUpResources();
+
   log << "Loading File: " << filename << std::endl;
 
   if ( map->HasError() ) 
@@ -130,8 +132,6 @@ int Level::loadTMXTileMapFile(std::string commonBase, std::string commonPath)
                                     tileset->GetTiles().size() );
     }
   }
-
-  //tempCollisionTilesList.clear();
 
   log << "Load Of Map Finished... " << std::endl;
   log << "Closing File... " << std::endl;

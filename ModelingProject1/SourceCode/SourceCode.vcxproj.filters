@@ -1027,5 +1027,8 @@
     <None Include="Resources\Menus\Credits Menu\CreditsBackground.png">
       <Filter>Resource Files\Menus\Credits Menu</Filter>
     </None>
+    <None Include="Resources\Levels\Level One Japan\Section One\LevelOneSectionOneCollisionsLayer2.csv">
+      <Filter>Resource Files\Levels\LevelOneJapan\Section1</Filter>
+    </None>
   </ItemGroup>
 </Project>
