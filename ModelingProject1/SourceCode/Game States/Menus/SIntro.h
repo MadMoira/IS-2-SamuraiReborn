@@ -17,8 +17,6 @@ class SIntro : public GameState
 
   private:
    boost::ptr_vector<Image::GameImage> logos;
-   Uint32 framerate;
-
    int currentLogo;
 };
 
