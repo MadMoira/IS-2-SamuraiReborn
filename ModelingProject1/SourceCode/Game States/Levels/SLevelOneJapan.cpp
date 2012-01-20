@@ -92,9 +92,10 @@ void SLevelOneJapan::logic()
   for (std::string::size_type i = 0; i < gameCore->getPlayersList().size(); i++)
   {	
     gameCore->getPlayersList().at(i).executeAction();
-	if ( gameCore->getPlayersList().at(i).getCharacterSprite()->getCurrentState() == GameCoreStates::FAST_ATTACK )
+	
+	if ( gameCore->getPlayersList().at(i).getCharacterSprite()->getCurrentState() != GameCoreStates::STILL )
 	{
-	  Collider::getInstance()->checkAttackCollisions(gameCore->getEnemyList(), gameCore->getPlayersList(), i );
+	  Collider::getInstance()->checkCollisionsObjects(gameCore->getPlayersList().at(i), japanLevel->getReferenceTilemapList().at(2));
 	}
 
 	gameCore->getPlayersList().at(i).updateStats();
@@ -280,8 +281,6 @@ void SLevelOneJapan::initializePlayers()
 	gameCore->getPlayersList().at(i).getController()->setPlayerID(playersToInitialize.at(i).controllerID);
 	gameCore->getPlayersList().at(i).getScore()->initializeTextAndFonts("", (int)i, "Resources/UI/Numbers.png");
   }
-
-
 
   maxSpeedPanda.clear();
   maxSpeedMeerkat.clear();

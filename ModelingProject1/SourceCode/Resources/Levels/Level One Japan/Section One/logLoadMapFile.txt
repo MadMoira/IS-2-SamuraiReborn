@@ -9,6 +9,9 @@ Finish Loading List Collision Tiles Of Layer 0
 Loading Layer #01 - Boxes
 Number Of Tiles With Collision:  167
 Finish Loading List Collision Tiles Of Layer 1
+Loading Layer #02 - Objects
+Number Of Tiles With Collision:  1
+Finish Loading List Collision Tiles Of Layer 2
 Loading Tilesets... 
 Loading Tileset #00
 Name: Level1_Floor_Tileset
