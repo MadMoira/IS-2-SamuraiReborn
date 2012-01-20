@@ -15,7 +15,7 @@ SIntro::SIntro(GameRender* gR, GameCore* gC, GameInput* gI, MainStates::GameStat
   setHasEnded(MainStates::STATE_INTRO);
   setProperty(MainStates::NORMAL_MENU);
 
-  currentLogo = LOGO_COMPANY;
+  currentLogo = 0;
 
   framerate = 6000;
 }
@@ -47,13 +47,15 @@ void SIntro::handleEvents()
 	currentLogo += 1;
     return;
   }
+
+  setHasEnded(MainStates::STATE_MAINMENU);
 }
 
 void SIntro::logic()
 {
-  if ( currentLogo == LOGO_GAME )
+  if ( currentLogo == 1 )
   {
-	setHasEnded(MainStates::STATE_MAINMENU);
+	
   }
 }
 

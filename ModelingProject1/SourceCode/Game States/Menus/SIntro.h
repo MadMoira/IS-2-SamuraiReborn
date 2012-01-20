@@ -20,7 +20,5 @@ class SIntro : public GameState
    Uint32 framerate;
 
    int currentLogo;
-   static const int LOGO_COMPANY = 0;
-   static const int LOGO_GAME = 1;
 };
 

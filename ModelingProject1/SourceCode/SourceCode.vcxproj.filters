@@ -1048,5 +1048,11 @@
     <None Include="Resources\Menus\Intro\LogoBrainstormInteractive.png">
       <Filter>Resource Files\Menus\Intro</Filter>
     </None>
+    <None Include="Resources\UI\MeerkatFacesStates.png">
+      <Filter>Resource Files\UI</Filter>
+    </None>
+    <None Include="Resources\Menus\Loading State\LevelOneSectionOne.png">
+      <Filter>Resource Files\Menus\Loading State</Filter>
+    </None>
   </ItemGroup>
 </Project>
