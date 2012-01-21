@@ -171,29 +171,35 @@ bool Camera::isLevelLimit(GLfloat position, GLfloat speed)
 
 bool Camera::isCameraLimit(GLfloat speed)
 {
-	bool isLimit = false;
+  bool isLimit = false;
   for(unsigned i = 0; i < players->size(); i++)
   {
-	  GLfloat boxX = players->at(i).getCharacterSprite()->getBoxX();
-	  GLfloat boxWidth = players->at(i).getCharacterSprite()->getBoxWidth();
-	  GLfloat cameraWidth = (GLfloat)defaultResolution->current_w;
-	  int direction = players->at(i).getCharacterSprite()->getHandlerAnimation()->getAnimationDirection();
-	  
-	  
-	  switch(direction){
-		case SpriteData::LEFT:
-			if( posX - speed > boxX ||
-				posX + cameraWidth - speed <  boxX + boxWidth){ 
-			    isLimit = true;
-			}
-			break;
-		case SpriteData::RIGHT:
-			if( posX + speed > boxX ||
-				posX + cameraWidth + speed <  boxX + boxWidth){ 
-			    isLimit = true;
-			}
-			break;
-	  }
+    GLfloat boxX = players->at(i).getCharacterSprite()->getBoxX();
+    GLfloat boxWidth = players->at(i).getCharacterSprite()->getBoxWidth();
+    GLfloat cameraWidth = (GLfloat)defaultResolution->current_w;
+    int direction = players->at(i).getCharacterSprite()->getHandlerAnimation()->getAnimationDirection();
+
+	switch(direction)
+	{
+	  case SpriteData::LEFT:
+	  {
+	    if( (posX - speed > boxX || posX + cameraWidth - speed <  boxX + boxWidth) && 
+			 boxX != levelLenght - boxWidth)
+		{ 
+		  isLimit = true;
+	    }
+		break;
+      }
+	  case SpriteData::RIGHT:
+	  {
+	    if( (posX + speed > boxX || posX + cameraWidth + speed <  boxX + boxWidth) && 
+			 boxX != 0.0f)
+		{ 
+		  isLimit = true;
+		}
+		break;
+      }
+    }
   }
   return isLimit;
 }

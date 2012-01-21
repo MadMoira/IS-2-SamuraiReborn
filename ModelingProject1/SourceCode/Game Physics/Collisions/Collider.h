@@ -54,6 +54,8 @@ class Collider
    bool checkPositionWithinLevelLength(CollisionSystem::CollisionBox& A, CollisionSystem::DirectionsMove& directionsMove, 
 	                                   Vector2f speed, int directionX);
 
+   int getLevelLength() { return levelLength; }
+
   protected:
    Collider();
 

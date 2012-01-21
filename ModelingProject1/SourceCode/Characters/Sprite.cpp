@@ -111,6 +111,28 @@ void Sprite::movePosXWithSpeed()
     { 
       characterMovement.playerMoveInX = false;
       characterMovement.playerMoveInXInCurrentFrame = false;
+	  setSpeedX(0.0f);
+	  int animationDirection = getHandlerAnimation()->getAnimationDirection();
+	  GLfloat correctPosition = 0.0f;
+
+	  switch( animationDirection )
+	  {
+	    case SpriteData::RIGHT:
+		{
+		  correctPosition = Collider::getInstance()->getLevelLength() - spriteCollisionBox->getWidth();
+          position.x = correctPosition - spriteCollisionBox->getOffset().x;
+		  break;
+		}
+	    case SpriteData::LEFT:
+	    {
+		  correctPosition = -spriteCollisionBox->getX();
+		  setNormalPositionX( correctPosition );
+          break;
+        }
+	  }
+
+      getCollisionBox()->setX( getPosX() + getCollisionBox()->getOffsetXBasedOnDirection(animationDirection), 
+		                       animationDirection );
       return;
     }
 

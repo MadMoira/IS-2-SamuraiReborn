@@ -744,7 +744,7 @@ bool Collider::checkPositionWithinLevelLength(CollisionSystem::CollisionBox& A, 
   }
   else
   {
-    if ( A.getX() + speed.x < 0.0f )
+    if ( A.getX() <= 0.0f )
     {
 	  directionsMove.setCanMoveLeft(false);
 	  return false;
