@@ -1,7 +1,7 @@
 
 #include <fstream>
 #include "Level.h"
-#include "TmxParser/Tmx.h"
+#include "Tmx.h"
 
 #include "Collider.h"
 

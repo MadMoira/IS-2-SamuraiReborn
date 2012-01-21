@@ -1054,5 +1054,8 @@
     <None Include="Resources\Menus\Loading State\LevelOneSectionOne.png">
       <Filter>Resource Files\Menus\Loading State</Filter>
     </None>
+    <None Include="Resources\Menus\Loading State\CaveArenaMode.png">
+      <Filter>Resource Files\Menus\Loading State</Filter>
+    </None>
   </ItemGroup>
 </Project>
