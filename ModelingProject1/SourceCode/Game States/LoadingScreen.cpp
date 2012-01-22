@@ -32,7 +32,7 @@ void LoadingScreen::renderScreen(int percentage)
 
   GameRender::drawFullTexture(background, Vector2f(0,0), 1280.f, 720.f);
   GameRender::drawFullTexture(statusBarUnit, statusBarPosition, statusBarWidth*percentage/100, statusBarOffset.y);
-  GameRender::drawFullTexture(levelScreen, Vector2f(458.0f, 129.0f), 349.0f, 197.0f);
+  GameRender::drawFullTexture(levelScreen, Vector2f(358.0f, 129.0f), 549.0f, 297.0f);
 	
   SDL_GL_SwapBuffers();
   if( percentage == 100 )
