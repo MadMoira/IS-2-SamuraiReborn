@@ -7,7 +7,7 @@ Loading Layer #00 - Floor
 Number Of Tiles With Collision:  155
 Finish Loading List Collision Tiles Of Layer 0
 Loading Layer #01 - Boxes
-Number Of Tiles With Collision:  167
+Number Of Tiles With Collision:  174
 Finish Loading List Collision Tiles Of Layer 1
 Loading Layer #02 - Objects
 Number Of Tiles With Collision:  1

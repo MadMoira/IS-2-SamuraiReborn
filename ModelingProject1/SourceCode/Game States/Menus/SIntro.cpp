@@ -29,7 +29,7 @@ void SIntro::init()
 {
   std::string commonPath = "Resources/Menus/Intro/";
   logos.push_back( new Image::GameImage( Vector2f(0.0f, 0.0f), 
-	                                     Vector2f(696.0f, 285.0f),
+	                                     Vector2f(1280.0f, 720.0f),
                                          Vector2f(0.0f, 0.0f), 
 								         commonPath + "LogoBrainstormInteractive.png" ) );
   logos.push_back( new Image::GameImage( Vector2f(0.0f, 0.0f), 
